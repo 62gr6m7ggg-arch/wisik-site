@@ -124,6 +124,9 @@ if (!/\/assets\/js\/\*\s+[\s\S]*Cache-Control:\s*no-cache, max-age=0, must-reval
 if (!/\/assets\/data\/\*\s+[\s\S]*Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(headers)) {
   fail("Het openbare vrijgavebewijs kan nog langdurig worden gecachet");
 }
+if (!/\/backstage\/\*\s+[\s\S]*Cache-Control:\s*no-cache, no-store, max-age=0, must-revalidate/.test(headers)) {
+  fail("De Backstage-HTML heeft geen expliciete cachebestendige route");
+}
 if (/\/assets\/\*\s+[\s\S]*Cache-Control:\s*public, max-age=604800/.test(headers)) {
   fail("Een brede assets-cache-regel kan de JavaScript-cachefix overschrijven");
 }

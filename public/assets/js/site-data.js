@@ -1,5 +1,5 @@
 /* Wisik.nl — centrale attractieregistratie. */
-window.WISIK_SITE_VERSION = "0.1.7";
+window.WISIK_SITE_VERSION = "0.1.8";
 window.WISIK_TOOLS = Object.freeze([
   Object.freeze({
     id: "pabo-rekenklaar",

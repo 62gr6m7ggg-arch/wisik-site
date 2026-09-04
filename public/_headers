@@ -11,6 +11,9 @@
 /assets/data/*
   Cache-Control: no-cache, max-age=0, must-revalidate
 
+/backstage/*
+  Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+
 /assets/css/*
   Cache-Control: public, max-age=604800
 

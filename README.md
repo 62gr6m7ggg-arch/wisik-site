@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.7
+# Wisik.nl — versie 0.1.8
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -18,6 +18,8 @@ De repository bevat onder meer:
 - een cachebestendige Kladblokroute voor Safari en andere mobiele browsers;
 - mobiele navigatie en een gewone lijstweergave naast de terreinplattegrond;
 - een verplichte deterministische vrijgavecontrole bij iedere wijziging.
+
+Backstage toont de actuele vrijgavestatus direct in de pagina-intro. De terreinplattegrond en de Backstage-knop op de homepage springen rechtstreeks naar het volledige openbare bewijs; op smalle schermen blijven de zes technische detailcontroles compact uitklapbaar.
 
 ## Lokaal bekijken
 
