@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123b5d">
-<title>Pabo Rekenklaar 1.5.9 – rubricgestuurd oefenen met diagnostische foutpatronen</title>
+<title>Pabo Rekenklaar 1.6.0 – rubricgestuurd oefenen met diagnostische foutpatronen</title>
 <style>
 :root{
   --navy:#123b5d;
@@ -71,7 +71,12 @@ body.session-active .bottom-nav{display:none}
   background:rgba(244,248,251,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(18,59,93,.08)
 }
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
-.logo-orbit{width:44px;height:44px;border-radius:15px;background:linear-gradient(145deg,var(--navy),#246d9b);color:#fff;display:grid;place-items:center;box-shadow:0 9px 20px rgba(18,59,93,.25);font-weight:900;font-size:22px;transform:rotate(-3deg)}
+.logo-orbit{width:44px;height:44px;border-radius:15px;background:linear-gradient(145deg,var(--navy),#246d9b);color:#fff;display:grid;place-items:center;box-shadow:0 9px 20px rgba(18,59,93,.25);font-weight:900;font-size:22px;transform:rotate(-3deg);text-decoration:none;position:relative;flex:0 0 auto}
+.logo-orbit::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:#ffd563;right:5px;top:5px}
+.logo-orbit:hover{transform:rotate(-3deg) translateY(-1px)}
+.wisik-terrain-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:8px 12px;border:1px solid #bfd3df;border-radius:13px;background:var(--paper);color:var(--navy);font-weight:800;text-decoration:none;box-shadow:0 5px 14px rgba(23,50,75,.06);white-space:nowrap}
+.wisik-terrain-link:hover{background:var(--sky);border-color:#9fc5dc}
+.wisik-terrain-link .terrain-short{display:none}
 .brand-copy{min-width:0}
 .brand-copy strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:1.08rem;letter-spacing:-.01em}
 .brand-copy span{display:block;color:var(--muted);font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -394,6 +399,9 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
   .topbar{min-height:62px}
   .brand-copy span{display:none}
   .logo-orbit{width:40px;height:40px;border-radius:13px}
+  .wisik-terrain-link{min-height:40px;padding:7px 10px}
+  .wisik-terrain-link .terrain-long{display:none}
+  .wisik-terrain-link .terrain-short{display:inline}
   .stat-pill small{display:none}
   .stat-pill{padding:7px 9px}
   .top-stats .stat-pill:nth-child(2){display:none}
@@ -435,6 +443,11 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
   .version-row{align-items:flex-start}
   .version-badge{font-size:.74rem}
   .nav-btn{font-size:.66rem}
+}
+@media(max-width:420px){
+  .top-stats .stat-pill:first-of-type{display:none}
+  .brand-copy strong{font-size:.98rem}
+  .wisik-terrain-link{padding-inline:9px}
 }
 @media(max-width:360px){
   main{padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}
@@ -483,13 +496,14 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 <div class="app-shell">
   <header class="topbar">
     <div class="brand">
-      <div class="logo-orbit" aria-hidden="true">∑</div>
+      <a class="logo-orbit" href="https://wisik.nl/" data-wisik-exit aria-label="Terug naar het Wisik-terrein" title="Terug naar het Wisik-terrein">√</a>
       <div class="brand-copy">
         <strong>Pabo Rekenklaar</strong>
         <span>Van havo-3-basis naar toetsvertrouwen</span>
       </div>
     </div>
     <div class="top-stats">
+      <a class="wisik-terrain-link" href="https://wisik.nl/" data-wisik-exit aria-label="Terug naar het Wisik-terrein"><span aria-hidden="true">←</span><span class="terrain-long">Terug naar het Wisik-terrein</span><span class="terrain-short">Terrein</span></a>
       <div class="stat-pill" title="Huidige dagelijkse reeks"><span aria-hidden="true">🔥</span><strong id="topStreak">0</strong><small>dagen</small></div>
       <div class="stat-pill" title="Ervaringspunten"><span aria-hidden="true">⭐</span><strong id="topXp">0</strong><small>XP</small></div>
       <button class="icon-btn" id="settingsBtn" aria-label="Instellingen openen" title="Instellingen">⚙️</button>
@@ -500,7 +514,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
     <section id="view-home" class="view active" aria-labelledby="homeTitle">
       <div class="hero">
         <div class="hero-copy">
-          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.5.9</span></button></div>
+          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.6.0</span></button></div>
           <h1 id="homeTitle"><span id="heroGreeting">Klaar om rekenen weer vanzelfsprekend te maken?</span></h1>
           <p>Leer per onderdeel, oefen adaptief en bouw de officiële toetsopzet na. De uitleg start rond havo 3 en groeit door naar het overwegend 3F-niveau van de toets.</p>
           <div class="button-row">
@@ -697,8 +711,10 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 
 <script>
 "use strict";
-const APP_VERSION = "1.5.9";
+const APP_VERSION = "1.6.0";
 const STORAGE_KEY = "pabo-rekenklaar-state-v1";
+const WISIK_TERRAIN_URL = "https://wisik.nl/";
+const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
 
 const DIAGNOSTIC_SCHEMA_VERSION = 1;
 const URL_FLAGS = new URLSearchParams(window.location.search);
@@ -748,6 +764,13 @@ const MISCONCEPTION_CATALOG = Object.freeze({
 const DIAGNOSTIC_DEFAULT_STATE = Object.freeze({schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0});
 
 const RELEASE_NOTES = [
+  {version:"1.6.0",date:"4 september 2026",title:"Herkenbare uitgang naar het Wisik-terrein",items:[
+    "De sticky bovenbalk bevat voortaan permanent een duidelijke knop terug naar het Wisik-terrein.",
+    "Het Wisik-logo linksboven werkt eveneens als terugweg naar de koepelsite.",
+    "Voor vertrek wordt de lokale voortgang expliciet opgeslagen, ook bij mobiele paginawissels.",
+    "De bronpagina, het actieve onderdeel en deze productversie worden als context klaargezet voor het Wisik-Kladblok.",
+    "De automatische releasecontrole blokkeert toekomstige versies wanneer de terugweg of contextregistratie ontbreekt."
+  ]},
   {version:"1.5.9",date:"2 september 2026",title:"Broncorrectie, declaratie-opruiming en reproduceerbare buildcontrole",items:[
     "De onjuiste Cito-bronvermelding uit eerdere interne kandidaten is verwijderd. De toetsinformatie verwijst nu naar de officiële Handreiking RWT versie 2.2 (januari 2026) en naar de actuele Cito-bronpagina.",
     "De dubbele declaratie van genBConversions is verwijderd. Er bestaat nu precies één canonieke implementatie met verschillende, expliciete afrondingsregels voor hoofdrekenen en niet-hoofdrekenen.",
@@ -1089,6 +1112,20 @@ function loadState(){
 function saveState(){
   try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){console.warn("Voortgang kon niet worden opgeslagen",e)}
 }
+function currentWisikContext(){
+  const activeView=document.querySelector(".view.active");
+  return {
+    product:"Pabo Rekenklaar",
+    productVersion:APP_VERSION,
+    pageUrl:window.location.href,
+    view:(currentView||activeView?.id||"home").replace(/^view-/,""),
+    savedAt:new Date().toISOString()
+  };
+}
+function rememberWisikContext(){
+  try{sessionStorage.setItem(WISIK_CONTEXT_KEY,JSON.stringify(currentWisikContext()))}catch(e){console.warn("Wisik-context kon niet worden opgeslagen",e)}
+}
+function persistBeforeWisikExit(){saveState();rememberWisikContext()}
 function todayKey(date=new Date()){return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`}
 function yesterdayKey(){const d=new Date();d.setDate(d.getDate()-1);return todayKey(d)}
 function touchActivity(){
@@ -2444,6 +2481,7 @@ function showView(name,skipSessionGuard=false){
   }
   if(!activeSession||activeSession.finished)document.body.classList.remove("session-active");
   currentView=name;
+  rememberWisikContext();
   document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===`view-${name}`));
   document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.nav===name));
   window.scrollTo({top:0,behavior:state.profile.reduceMotion?"auto":"smooth"});
@@ -3131,6 +3169,12 @@ function handleResultAction(action,button){
 }
 
 function bindEvents(){
+  document.querySelectorAll("[data-wisik-exit]").forEach(link=>{
+    link.addEventListener("pointerdown",persistBeforeWisikExit,{passive:true});
+    link.addEventListener("click",persistBeforeWisikExit);
+  });
+  window.addEventListener("pagehide",persistBeforeWisikExit);
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")persistBeforeWisikExit()});
   document.addEventListener("click",e=>{
     const nav=e.target.closest("[data-nav]");if(nav){showView(nav.dataset.nav);return}
     const actionEl=e.target.closest("[data-action]");if(actionEl){
@@ -3297,11 +3341,11 @@ function runQualityAudit({samplesPerCombination=100,seed=12062026}={}){
   return {version:APP_VERSION,passed:failures.length===0,counts,failures};
 }
 
-window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,diagnosticSchemaVersion:DIAGNOSTIC_SCHEMA_VERSION,RWT_SOURCE,sourceIntegrityIssues,duplicateTopLevelFunctionNames,runQualityAudit,runDiagnosticAudit,validateGeneratedQuestion,parseNumeric,checkResponse,applyCalculatorPolicy,calculatorAllowedForQuestion,calculatorAvailableInContext,calcEvaluateExpression,calculatorUseIsCurrentlyAllowed,assessQuestionDifficulty,rubricLevelFromDemand,RUBRIC_VARIANTS,RUBRIC_LEVEL_META,MISCONCEPTION_CATALOG,generateQuestion,generateDiagnosticProbe,generateNaturalRecoveryQuestion,classifyIncorrectResponse,diagnosticTestResponseFor,normalizeDiagnosticsState});
+window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,wisikTerrainUrl:WISIK_TERRAIN_URL,wisikContextKey:WISIK_CONTEXT_KEY,diagnosticSchemaVersion:DIAGNOSTIC_SCHEMA_VERSION,RWT_SOURCE,sourceIntegrityIssues,duplicateTopLevelFunctionNames,runQualityAudit,runDiagnosticAudit,validateGeneratedQuestion,parseNumeric,checkResponse,applyCalculatorPolicy,calculatorAllowedForQuestion,calculatorAvailableInContext,calcEvaluateExpression,calculatorUseIsCurrentlyAllowed,assessQuestionDifficulty,rubricLevelFromDemand,RUBRIC_VARIANTS,RUBRIC_LEVEL_META,MISCONCEPTION_CATALOG,generateQuestion,generateDiagnosticProbe,generateNaturalRecoveryQuestion,classifyIncorrectResponse,diagnosticTestResponseFor,normalizeDiagnosticsState});
 
 function init(){
   if(state.dailyDate!==todayKey()){state.dailyDate=todayKey();state.dailyCorrect=0}
-  saveState();
+  saveState();rememberWisikContext();
   applySettings();bindEvents();renderHome();renderLearn();renderPracticeSetup();renderStats();updateTopStats();
   if(DIAGNOSTIC_DIRECT_MODE)setTimeout(openDiagnosticRegister,120);else if(RELEASE_CHECK_MODE)setTimeout(runVisibleReleaseCheck,120);else if(!state.profile.name)setTimeout(()=>openSettings(true),450);
 }

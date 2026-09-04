@@ -1,10 +1,10 @@
 {
   "name": "wisik-site",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": true,
   "description": "Wisik.nl — festivalterrein voor rekenen en wiskunde",
   "scripts": {
-    "check": "node scripts/check-site.mjs && node scripts/test-feedback.mjs",
+    "check": "node scripts/check-site.mjs && node scripts/test-feedback.mjs && node scripts/test-pabo-navigation.mjs",
     "preview": "npx wrangler pages dev public",
     "deploy": "npx wrangler pages deploy public --project-name wisik-site"
   },

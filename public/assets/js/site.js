@@ -2,9 +2,18 @@
   "use strict";
 
   const TOOLS = Array.isArray(window.WISIK_TOOLS) ? window.WISIK_TOOLS : [];
+  const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
+  const VIEW_LABELS = Object.freeze({
+    home: "Start",
+    learn: "Leren per onderdeel",
+    practice: "Adaptief oefenen",
+    exam: "Toets nabootsen",
+    stats: "Voortgang"
+  });
   const escapeHtml = (value) => String(value ?? "").replace(/[&<>'"]/g, (char) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
   })[char]);
+  const cleanContextValue = (value, maxLength = 500) => String(value ?? "").trim().slice(0, maxLength);
 
   const statusClass = (status) => status === "openingsklaar" || status === "open" ? "live" : "concept";
   const toolCardMarkup = (tool) => {
@@ -106,16 +115,79 @@
     });
   }
 
+  function readFeedbackSourceContext(currentUrl) {
+    let stored = {};
+    try {
+      stored = JSON.parse(sessionStorage.getItem(WISIK_CONTEXT_KEY) || "{}") || {};
+    } catch {
+      stored = {};
+    }
+
+    const context = {
+      pageUrl: cleanContextValue(currentUrl.searchParams.get("bron") || stored.pageUrl, 1000),
+      product: cleanContextValue(currentUrl.searchParams.get("product") || stored.product, 120),
+      productVersion: cleanContextValue(currentUrl.searchParams.get("productversie") || stored.productVersion, 40),
+      view: cleanContextValue(currentUrl.searchParams.get("onderdeel") || stored.view, 80)
+    };
+
+    if (!context.pageUrl && document.referrer) {
+      try {
+        const referrer = new URL(document.referrer);
+        if (referrer.origin === window.location.origin && referrer.pathname !== "/kladblok/") {
+          context.pageUrl = referrer.href;
+        }
+      } catch {
+        // Een ongeldige referrer wordt genegeerd.
+      }
+    }
+    return context;
+  }
+
+  function applyFeedbackSourceContext(form, context) {
+    const fieldValues = {
+      Bronpagina: context.pageUrl,
+      Bronproduct: context.product,
+      Productversie: context.productVersion,
+      Onderdeel: VIEW_LABELS[context.view] || context.view
+    };
+
+    for (const [name, value] of Object.entries(fieldValues)) {
+      const field = form.elements.namedItem(name);
+      if (field) field.value = value;
+    }
+
+    if (context.product === "Pabo Rekenklaar") {
+      const attraction = form.elements.namedItem("Attractie of terrein");
+      if (attraction) attraction.value = "Pabo Rekenklaar";
+    }
+
+    const subject = form.elements.namedItem("_subject");
+    if (subject && context.product) {
+      const version = context.productVersion ? ` ${context.productVersion}` : "";
+      subject.value = `[Wisik-Kladblok] ${context.product}${version} — nieuwe notitie`;
+    }
+
+    const note = form.querySelector("[data-feedback-source]");
+    if (note && (context.product || context.pageUrl)) {
+      const parts = [context.product, context.productVersion, VIEW_LABELS[context.view] || context.view].filter(Boolean);
+      note.hidden = false;
+      note.textContent = `Automatisch meegestuurde context: ${parts.join(" · ") || "vorige Wisik-pagina"}.`;
+    }
+  }
+
   function setupFeedbackForms() {
     const forms = [...document.querySelectorAll(".wisik-direct-feedback-form")];
     if (!forms.length) return;
 
     const currentUrl = new URL(window.location.href);
     const delivered = currentUrl.searchParams.get("verzonden") === "1";
+    const sourceContext = readFeedbackSourceContext(currentUrl);
 
     forms.forEach((form) => {
       const submit = form.querySelector("button[type='submit']");
       const status = form.querySelector(".form-status");
+
+      applyFeedbackSourceContext(form, sourceContext);
 
       // Herstel altijd een eventueel door een oudere, gecachte scriptversie uitgeschakelde knop.
       if (submit) submit.disabled = false;
@@ -129,6 +201,7 @@
       }
 
       form.addEventListener("submit", () => {
+        applyFeedbackSourceContext(form, sourceContext);
         if (status) {
           status.className = "form-status";
           status.textContent = "Je notitie wordt beveiligd verzonden…";
