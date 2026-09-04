@@ -1,4 +1,15 @@
-# Testresultaten Wisik 0.1.7
+# Testresultaten Wisik 0.1.8
+
+## Zichtbaarheid Backstage-vrijgavecontrole
+
+Gecontroleerd:
+
+- de actuele vrijgavestatus staat direct in de Backstage-hero en vóór de lange roadie-sectie;
+- een prominente knop en beide Backstage-ingangen op de homepage verwijzen rechtstreeks naar `#vrijgavecontrole`;
+- de vaste navigatie bedekt de sprongbestemming niet;
+- zonder JavaScript blijft een directe link naar het machineleesbare bewijs beschikbaar;
+- de Backstage-HTML en het auditrapport gebruiken expliciete hervalidatie-/no-cache-regels;
+- de zes detailcontroles zijn compact uitklapbaar en de kerncijfers hebben begrijpelijke labels.
 
 ## Deterministische Pabo-vrijgavecontrole
 
