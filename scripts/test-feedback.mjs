@@ -7,6 +7,11 @@ const html = fs.readFileSync(path.join(root, "public/kladblok/index.html"), "utf
 const siteJs = fs.readFileSync(path.join(root, "public/assets/js/site.js"), "utf8");
 const headers = fs.readFileSync(path.join(root, "public/_headers"), "utf8");
 
+function hasClassToken(markup, token) {
+  return [...markup.matchAll(/\sclass=["']([^"']+)["']/g)]
+    .some((match) => match[1].split(/\s+/).includes(token));
+}
+
 const requiredFragments = [
   'src="/assets/js/site-data.js?v=0.1.5"',
   'src="/assets/js/site.js?v=0.1.5"',
@@ -30,7 +35,7 @@ for (const fragment of requiredFragments) {
   if (!html.includes(fragment)) throw new Error(`Kladblok mist: ${fragment}`);
 }
 
-if (/class=["'][^"']*\bfeedback-form\b/i.test(html)) {
+if (hasClassToken(html, "feedback-form")) {
   throw new Error("De oude formulierklasse kan nog door gecacht JavaScript worden uitgeschakeld");
 }
 if (/name=["']_captcha["'][^>]*value=["']false["']/i.test(html)) {
