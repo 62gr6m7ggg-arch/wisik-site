@@ -16,6 +16,8 @@ De repository bevat onder meer:
 - Backstage voor kwaliteit en verantwoording;
 - het Wisik-Kladblok als gratis HTML-formulier via FormSubmit;
 - Cloudflare Email Routing voor `kladblok@wisik.nl`;
+- een vaste terugweg vanuit Pabo Rekenklaar naar het Wisik-terrein;
+- automatische bronpagina- en attractieversieregistratie in het Kladblok;
 - een cachebestendige Kladblokroute voor Safari en andere mobiele browsers;
 - mobiele navigatie en een gewone lijstweergave naast de terreinplattegrond;
 - automatische kwaliteitscontrole bij iedere wijziging.

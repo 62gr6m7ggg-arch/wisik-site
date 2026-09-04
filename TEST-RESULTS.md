@@ -70,3 +70,14 @@ De bestaande interfacecontroles blijven van toepassing, waaronder:
 - geen onverwachte consolefouten.
 
 Zie `tests/Wisik_v0.1_browsertest.json`.
+
+## Navigatie vanuit Pabo Rekenklaar
+
+Automatisch gecontroleerd:
+
+- een permanent zichtbare, compacte terugweg naar het Wisik-terrein;
+- het Wisik-merkteken is een echte link naar de hoofdpagina;
+- vóór vertrek wordt een aanvullend lokaal voortgangssnapshot opgeslagen en krijgt de app tijd voor haar eigen opslaghandlers;
+- een directe Kladbloklink stuurt de exacte bron-URL en Pabo Rekenklaar-versie 1.5.9 mee;
+- het Kladblok neemt bronpagina en attractieversie op in de verzonden notitie;
+- de navigatie heeft een afzonderlijke mobiele vormgeving.
