@@ -16,6 +16,10 @@ function walk(dir) {
 
 function fail(message) { failures.push(message); }
 function rel(file) { return path.relative(root, file).replaceAll(path.sep, "/"); }
+function hasClassToken(html, token) {
+  return [...html.matchAll(/\sclass=["']([^"']+)["']/g)]
+    .some((match) => match[1].split(/\s+/).includes(token));
+}
 
 const htmlFiles = walk(publicDir).filter((file) => file.endsWith(".html"));
 for (const file of htmlFiles) {
@@ -68,7 +72,7 @@ const headers = fs.readFileSync(path.join(publicDir, "_headers"), "utf8");
 if (!kladblok.includes('src="/assets/js/site-data.js?v=0.1.5"') || !kladblok.includes('src="/assets/js/site.js?v=0.1.5"')) {
   fail("Kladblok mist versiegebonden JavaScript-URL's en kan daardoor oud Safari-script laden");
 }
-if (!kladblok.includes('class="feedback-panel wisik-direct-feedback-form"') || /class=["'][^"']*\bfeedback-form\b/i.test(kladblok)) {
+if (!hasClassToken(kladblok, "wisik-direct-feedback-form") || hasClassToken(kladblok, "feedback-form")) {
   fail("Kladblok gebruikt nog de oude formulierklasse die gecacht JavaScript kan uitschakelen");
 }
 if (!kladblok.includes('action="https://formsubmit.co/kladblok@wisik.nl"') || !kladblok.includes('method="POST"')) {
