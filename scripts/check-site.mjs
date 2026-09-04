@@ -59,12 +59,13 @@ if (/RWT\s+versie\s+3\.1|handreiking-31\.pdf/i.test(pabo)) fail("Pabo Rekenklaar
 if (!/rwt-handreiking_22\.pdf/.test(pabo)) fail("Pabo Rekenklaar mist de officiële handreiking 2.2-link");
 
 const siteData = fs.readFileSync(path.join(publicDir, "assets/js/site-data.js"), "utf8");
-if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.2"')) fail("Siteversie 0.1.2 ontbreekt in site-data.js");
+if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.3"')) fail("Siteversie 0.1.3 ontbreekt in site-data.js");
 if (!siteData.includes('id: "pabo-rekenklaar"')) fail("Pabo Rekenklaar ontbreekt in het attractieregister");
 
 const feedbackFunction = fs.readFileSync(path.join(root, "functions/api/feedback.js"), "utf8");
 const siteJs = fs.readFileSync(path.join(publicDir, "assets/js/site.js"), "utf8");
 const wrangler = fs.readFileSync(path.join(root, "wrangler.jsonc"), "utf8");
+const headers = fs.readFileSync(path.join(publicDir, "_headers"), "utf8");
 
 if (!feedbackFunction.includes('FORM_ENDPOINT = "https://formsubmit.co/kladblok@wisik.nl"')) {
   fail("Kladblok mist de vaste gratis FormSubmit-bezorgroute");
@@ -80,6 +81,9 @@ if (!siteJs.includes("submitViaBrowser") || !siteJs.includes('action.pathname !=
 }
 if (!siteJs.includes('fetch("/api/feedback"')) fail("Kladblok omzeilt de Wisik-validatiefunctie");
 if (/"send_email"|send_email\s*=/.test(wrangler)) fail("Pages-configuratie bevat een niet-ondersteunde send_email-binding");
+if (!/form-action\s+'self'\s+https:\/\/formsubmit\.co/.test(headers)) {
+  fail("Content-Security-Policy blokkeert de gevalideerde Kladblokpost naar FormSubmit");
+}
 
 const privacyNotes = fs.readFileSync(path.join(root, "PRIVACY-NOTITIES.md"), "utf8");
 if (!/FormSubmit/i.test(privacyNotes) || !/30 dagen/i.test(privacyNotes)) {
@@ -92,4 +96,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, gevalideerde Kladblokbezorging en Pabo-releasecontrole.`);
+console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, CSP, gevalideerde Kladblokbezorging en Pabo-releasecontrole.`);
