@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "Wisik_site_v0.1.0_cloudflare.zip"
+      - ".github/workflows/bootstrap.yml"
   workflow_dispatch:
 
 permissions:
@@ -31,8 +31,8 @@ jobs:
           mkdir -p /tmp/wisik-install
           unzip -q -o "$ZIP" -d /tmp/wisik-install
           test -d /tmp/wisik-install/wisik_site_v0.1.0
-          cp -a /tmp/wisik-install/wisik_site_v0.1.0/. ./
-          cp bootstrap/quality.yml .github/workflows/quality.yml
+          rsync -a --exclude='.github/' /tmp/wisik-install/wisik_site_v0.1.0/ ./
+          rm -rf bootstrap
           rm -f "$ZIP"
 
       - uses: actions/setup-node@v4
@@ -46,8 +46,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf bootstrap
-          rm -f .github/workflows/bootstrap.yml
           git config user.name "wisik-release-bot"
           git config user.email "actions@users.noreply.github.com"
           git add -A
