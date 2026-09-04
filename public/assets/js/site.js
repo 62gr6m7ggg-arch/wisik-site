@@ -3,6 +3,14 @@
 
   const TOOLS = Array.isArray(window.WISIK_TOOLS) ? window.WISIK_TOOLS : [];
   const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
+  const REQUIRED_RELEASE_GATES = Object.freeze([
+    "source-integrity",
+    "generated-variants",
+    "reproducible-answers",
+    "no-fallbacks",
+    "readable-graphs",
+    "diagnostic-patterns"
+  ]);
   const VIEW_LABELS = Object.freeze({
     home: "Start",
     learn: "Leren per onderdeel",
@@ -256,41 +264,86 @@
     </li>`;
   }
 
+  function evaluateReleaseAudit(report, registeredToolVersion) {
+    const gates = Array.isArray(report?.gates) ? report.gates : [];
+    const gateIds = gates.map((gate) => gate?.id);
+    const completeGateSet = gates.length === REQUIRED_RELEASE_GATES.length
+      && new Set(gateIds).size === REQUIRED_RELEASE_GATES.length
+      && REQUIRED_RELEASE_GATES.every((id) => gates.some((gate) => gate?.id === id && gate?.passed === true));
+    const schemaValid = report?.schemaVersion === 1 && report?.tool === "Pabo Rekenklaar";
+    const versionsCurrent = report?.siteVersion === window.WISIK_SITE_VERSION && report?.toolVersion === registeredToolVersion;
+    const passed = schemaValid && versionsCurrent && report?.status === "passed" && completeGateSet;
+    const stale = schemaValid && report?.status === "passed" && completeGateSet && !versionsCurrent;
+    return {
+      gates,
+      counts: report?.counts || {},
+      passed,
+      stale,
+      passedGateCount: gates.filter((gate) => gate?.passed === true).length,
+      requiredGateCount: REQUIRED_RELEASE_GATES.length
+    };
+  }
+
   async function renderReleaseAudit() {
     const panel = document.querySelector("[data-release-audit]");
-    if (!panel) return;
-    const reportUrl = panel.dataset.auditUrl;
+    const summary = document.querySelector("[data-release-audit-summary]");
+    const intro = document.querySelector("[data-audit-intro]");
+    if (!panel && !summary) return;
+    const reportUrl = panel?.dataset.auditUrl || summary?.dataset.auditUrl;
     try {
       const response = await fetch(reportUrl, { cache: "no-store", headers: { Accept: "application/json" } });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const report = await response.json();
-      const gates = Array.isArray(report.gates) ? report.gates : [];
       const registeredToolVersion = TOOLS.find((tool) => tool.id === "pabo-rekenklaar")?.version;
-      const schemaValid = report.schemaVersion === 1 && report.tool === "Pabo Rekenklaar";
-      const versionsCurrent = report.siteVersion === window.WISIK_SITE_VERSION && report.toolVersion === registeredToolVersion;
-      const passed = schemaValid && versionsCurrent && report.status === "passed" && gates.length > 0 && gates.every((gate) => gate.passed === true);
-      const stale = schemaValid && report.status === "passed" && !versionsCurrent;
-      const counts = report.counts || {};
+      const { gates, counts, passed, stale, passedGateCount, requiredGateCount } = evaluateReleaseAudit(report, registeredToolVersion);
+      const statusLabel = passed ? "Online versie gecontroleerd" : stale ? "Bewijs hoort niet bij deze versie" : "Nieuwe versie niet vrijgegeven";
+
+      if (summary) {
+        summary.classList.toggle("passed", passed);
+        summary.classList.toggle("stale", stale);
+        summary.classList.toggle("failed", !passed && !stale);
+        summary.innerHTML = `<span class="release-summary-icon" aria-hidden="true">${passed ? "✓" : "!"}</span>
+          <span class="release-summary-copy"><strong>${escapeHtml(report.tool || "Attractie")} ${escapeHtml(report.toolVersion || "")} · ${escapeHtml(statusLabel)}</strong><small>${passedGateCount}/${requiredGateCount} controles geslaagd · ${Number(counts.generatedQuestions || 0).toLocaleString("nl-NL")} vragen doorgerekend · bekijk het bewijs</small></span>
+          <span class="release-summary-arrow" aria-hidden="true">↓</span>`;
+      }
+
+      if (intro) {
+        intro.textContent = passed
+          ? `${report.tool} ${report.toolVersion} is in de ingestelde vrijgaveprocedure automatisch gecontroleerd. Alle ${requiredGateCount} controles zijn geslaagd.`
+          : stale
+            ? `Het beschikbare controlebewijs hoort niet bij de huidige versie. De pagina toont daarom geen groene vrijgavestatus.`
+            : `De kandidaatversie heeft niet alle verplichte controles doorstaan en is niet als geslaagde vrijgave gemarkeerd.`;
+      }
+
       panel.classList.toggle("failed", !passed);
       panel.classList.toggle("stale", stale);
       panel.setAttribute("aria-busy", "false");
       panel.innerHTML = `<div class="audit-panel-head">
-        <div><span class="audit-kicker">Laatste geverifieerde online vrijgave</span><h3>${escapeHtml(report.tool || "Attractie")} <span>${escapeHtml(report.toolVersion || "")}</span></h3></div>
-        <span class="audit-status ${passed ? "passed" : stale ? "stale" : "failed"}">${passed ? "✓ Vrijgave geslaagd" : stale ? "! Bewijs niet actueel" : "! Vrijgave geblokkeerd"}</span>
+        <div><span class="audit-kicker">Laatste geverifieerde online vrijgave</span><h4>${escapeHtml(report.tool || "Attractie")} <span>${escapeHtml(report.toolVersion || "")}</span></h4></div>
+        <span class="audit-status ${passed ? "passed" : stale ? "stale" : "failed"}" role="status" aria-atomic="true">${passed ? "✓ Online versie gecontroleerd" : stale ? "! Bewijs hoort niet bij deze versie" : "! Nieuwe versie niet vrijgegeven"}</span>
       </div>
       <div class="audit-metrics" aria-label="Samenvatting vrijgavecontrole">
-        <div><strong>${Number(counts.generatedQuestions || 0).toLocaleString("nl-NL")}</strong><span>vraaginstanties intern gecontroleerd</span></div>
-        <div><strong>${Number(counts.generatorCombinations || 0).toLocaleString("nl-NL")}</strong><span>generatorcombinaties</span></div>
-        <div><strong>${Number(counts.fallbackQuestions || 0).toLocaleString("nl-NL")}</strong><span>terugvalvragen</span></div>
-        <div><strong>${Number(counts.naturalDiagnosticCoverage || 0)}/${Number(counts.diagnosticPatterns || 0)}</strong><span>patronen natuurlijk gedekt</span></div>
+        <div><strong>${Number(counts.generatedQuestions || 0).toLocaleString("nl-NL")}</strong><span>vragen doorgerekend</span></div>
+        <div><strong>${Number(counts.generatorCombinations || 0).toLocaleString("nl-NL")}</strong><span>generatorcombinaties getest</span></div>
+        <div><strong>${Number(counts.fallbackQuestions || 0).toLocaleString("nl-NL")}</strong><span>noodvragen gebruikt</span></div>
+        <div><strong>${Number(counts.naturalDiagnosticCoverage || 0)}/${Number(counts.diagnosticPatterns || 0)}</strong><span>foutpatronen getest</span></div>
       </div>
-      <ul class="audit-gates">${gates.map(auditGateMarkup).join("")}</ul>
+      <details class="audit-gate-details"><summary>Bekijk alle ${gates.length} controles</summary><ul class="audit-gates">${gates.map(auditGateMarkup).join("")}</ul></details>
       <div class="audit-panel-foot">
-        <p><strong>Gecontroleerd:</strong> ${escapeHtml(formatAuditDate(report.generatedAt))} · Wisik ${escapeHtml(report.siteVersion || "onbekend")}</p>
+        <p><strong>Gecontroleerd:</strong> ${escapeHtml(formatAuditDate(report.generatedAt))}</p>
+        <p><strong>Versies:</strong> ${escapeHtml(report.tool || "Attractie")} ${escapeHtml(report.toolVersion || "onbekend")} · Wisik-site ${escapeHtml(report.siteVersion || "onbekend")}</p>
         <p><strong>Bronvingerafdruk:</strong> <code>${escapeHtml(String(report.source?.sha256 || "onbekend").slice(0, 16))}…</code></p>
         <p>${escapeHtml(report.scope || "")}</p>
       </div>`;
     } catch (error) {
+      if (summary) {
+        summary.classList.remove("passed", "stale");
+        summary.classList.add("failed");
+        summary.innerHTML = `<span class="release-summary-icon" aria-hidden="true">!</span>
+          <span class="release-summary-copy"><strong>Controlebewijs tijdelijk niet zichtbaar</strong><small>Bekijk hieronder wat er aan de hand is</small></span>
+          <span class="release-summary-arrow" aria-hidden="true">↓</span>`;
+      }
+      if (intro) intro.textContent = "Het actuele controlebewijs kan nu niet worden geladen. Daarom toont Backstage geen groene vrijgavestatus.";
       panel.classList.add("failed");
       panel.setAttribute("aria-busy", "false");
       panel.innerHTML = `<div class="audit-unavailable"><strong>Vrijgavebewijs kan niet worden geladen.</strong><p>De attractie blijft bereikbaar, maar dit Backstage-overzicht is op dit moment niet verifieerbaar. Probeer de pagina later opnieuw of meld het via het Kladblok.</p></div>`;
