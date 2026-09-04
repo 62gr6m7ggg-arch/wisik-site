@@ -7,8 +7,8 @@
   <link rel="icon" href="/assets/img/wisik-mark.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script src="/assets/js/site-data.js?v=0.1.7" defer></script>
-  <script src="/assets/js/site.js?v=0.1.7" defer></script>
+  <script src="/assets/js/site-data.js?v=0.1.8" defer></script>
+  <script src="/assets/js/site.js?v=0.1.8" defer></script>
   <meta name="description" content="Ontmoet de roadie achter Wisik en lees over de missie, didactiek, kwaliteit, versies en privacy.">
   <title>Backstage — Wisik</title>
   <style>
@@ -17,6 +17,71 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 24px;
+    }
+
+    .release-summary-link {
+      width: min(100%, 790px);
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 13px;
+      margin-top: 22px;
+      padding: 14px 16px;
+      border: 2px solid rgba(22, 63, 88, .28);
+      border-radius: 18px;
+      color: white;
+      background: linear-gradient(135deg, #0c2738, #163f58);
+      box-shadow: 0 10px 28px rgba(5, 22, 34, .14);
+      text-decoration: none;
+    }
+
+    .release-summary-link:hover {
+      background: linear-gradient(135deg, #12364d, #1b506e);
+    }
+
+    .release-summary-link.passed {
+      border-color: rgba(29, 112, 78, .42);
+      background: linear-gradient(135deg, #124d3a, #1d704e);
+    }
+
+    .release-summary-link.stale,
+    .release-summary-link.failed {
+      border-color: rgba(125, 72, 14, .42);
+      background: linear-gradient(135deg, #663d0e, #82551c);
+    }
+
+    .release-summary-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--navy-2);
+      background: var(--yellow);
+      font-weight: 900;
+    }
+
+    .release-summary-copy strong,
+    .release-summary-copy small {
+      display: block;
+    }
+
+    .release-summary-copy strong {
+      color: white;
+      font-size: .98rem;
+      line-height: 1.25;
+    }
+
+    .release-summary-copy small {
+      margin-top: 3px;
+      color: white;
+      line-height: 1.35;
+    }
+
+    .release-summary-arrow {
+      color: var(--yellow);
+      font-size: 1.35rem;
+      font-weight: 900;
     }
 
     .roadie-section {
@@ -311,6 +376,7 @@
       max-width: 820px;
       margin-top: 54px;
       margin-bottom: 22px;
+      scroll-margin-top: 96px;
     }
 
     .audit-heading h3 {
@@ -364,12 +430,12 @@
       text-transform: uppercase;
     }
 
-    .audit-panel-head h3 {
+    .audit-panel-head h4 {
       margin: 7px 0 0;
       font-size: clamp(1.45rem, 3vw, 2rem);
     }
 
-    .audit-panel-head h3 span {
+    .audit-panel-head h4 span {
       color: var(--muted);
       font-size: .72em;
     }
@@ -435,6 +501,45 @@
       margin: 0;
       padding: 24px 26px;
       list-style: none;
+    }
+
+    .audit-gate-details {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .audit-gate-details summary {
+      margin: 0;
+      padding: 17px 26px;
+      color: var(--navy);
+      background: rgba(255, 255, 255, .72);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .audit-gate-details[open] summary {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .audit-method {
+      max-width: 820px;
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: white;
+    }
+
+    .audit-method summary {
+      padding: 13px 16px;
+      color: var(--navy);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .audit-method p {
+      margin: 0;
+      padding: 0 16px 16px;
+      color: var(--muted);
+      font-size: .9rem;
     }
 
     .audit-gate {
@@ -532,6 +637,17 @@
       .roadie-actions .btn {
         width: 100%;
       }
+      .backstage-hero-actions .btn {
+        width: 100%;
+      }
+      .release-summary-link {
+        grid-template-columns: 38px minmax(0, 1fr) auto;
+        padding: 13px 14px;
+      }
+      .release-summary-icon {
+        width: 38px;
+        height: 38px;
+      }
       .audit-panel-head {
         display: grid;
         padding: 20px;
@@ -613,8 +729,15 @@
         <span class="kicker" style="margin-top:18px">Missie, kwaliteit & verantwoording</span>
         <h1>Backstage</h1>
         <p class="lead">Speels aan de voorkant, precies aan de achterkant. Hier ontmoet de missie om wiskunde leuk te maken het vakmanschap dat daarvoor nodig is.</p>
+        <a class="release-summary-link" href="#vrijgavecontrole" data-release-audit-summary data-audit-url="/assets/data/pabo-release-audit.json" aria-live="polite" aria-atomic="true">
+          <span class="release-summary-icon" aria-hidden="true">↻</span>
+          <span class="release-summary-copy"><strong>Laatste vrijgavecontrole laden…</strong><small>Pabo Rekenklaar · bekijk het openbare bewijs</small></span>
+          <span class="release-summary-arrow" aria-hidden="true">↓</span>
+        </a>
+        <noscript><p class="roadie-accountability">De live samenvatting vraagt JavaScript. <a href="/assets/data/pabo-release-audit.json">Open het controlebewijs rechtstreeks als JSON</a>.</p></noscript>
         <div class="backstage-hero-actions">
-          <a class="btn coral" href="#roadie">Ontmoet de roadie</a>
+          <a class="btn coral" href="#vrijgavecontrole">Bekijk live vrijgavecontrole</a>
+          <a class="btn light" href="#roadie">Ontmoet de roadie</a>
           <a class="btn light" href="#kwaliteit">Bekijk het kwaliteitsbeleid</a>
         </div>
       </div>
@@ -682,11 +805,15 @@
       <div class="audit-heading" id="vrijgavecontrole">
         <span class="kicker">Live uit de releasecontrole</span>
         <h3>Wat is bij de huidige versie werkelijk getest?</h3>
-        <p class="lead">De GitHub-workflow voert vóór iedere vrijgave dezelfde deterministische audit uit. Een door de controle gevonden structureel ongeldige of intern tegenstrijdige variant, een niet-herberekenbaar antwoord, een terugvalvraag, een schending van de technische afleesbaarheidsregels of een verkeerd geclassificeerd diagnostisch patroon blokkeert de vrijgave. Past één fout antwoord bij meerdere denkpatronen, dan moet de tool juist bewust géén diagnose stellen.</p>
+        <p class="lead" data-audit-intro>Hier verschijnt het openbare controlebewijs van de huidige online versie. De samenvatting wordt rechtstreeks uit het gepubliceerde auditrapport geladen.</p>
+        <details class="audit-method">
+          <summary>Wat controleert Wisik precies?</summary>
+          <p>De GitHub-workflow voert voor iedere kandidaatvrijgave dezelfde deterministische audit uit. Een structureel ongeldige of intern tegenstrijdige variant, een niet-herberekenbaar antwoord, een noodvraag, een schending van de technische afleesbaarheidsregels of een verkeerd geclassificeerd diagnostisch patroon laat de kandidaatvrijgave niet slagen. Past één fout antwoord bij meerdere denkpatronen, dan moet de tool juist bewust géén diagnose stellen. Het technisch volledig tegenhouden van publicatie vraagt daarnaast om de verplichte GitHub- en Cloudflare-instellingen.</p>
+        </details>
       </div>
 
       <article class="audit-panel" data-release-audit data-audit-url="/assets/data/pabo-release-audit.json" aria-live="polite" aria-busy="true">
-        <p class="audit-loading"><strong>Actueel vrijgavebewijs laden…</strong></p>
+        <p class="audit-loading"><strong>Actueel vrijgavebewijs laden…</strong><br>Hier komen de versie, kerncijfers en zes verplichte controles te staan.</p>
       </article>
       <p class="audit-proof-link">Voor controle en hergebruik is hetzelfde bewijs ook <a href="/assets/data/pabo-release-audit.json">machineleesbaar als JSON</a>. Dit is een sterke regressie- en consistentiecontrole, geen bewijs van leerwinst; vakdidactische review en mobiele toetsing met echte gebruikers blijven daarnaast nodig.</p>
 
@@ -698,7 +825,7 @@
     <div class="footer-inner">
       <div>
         <a class="brand" href="/" style="color:white"><span class="brand-mark" aria-hidden="true">√</span><span class="brand-copy"><strong>WISIK</strong><small style="color:rgba(255,255,255,.68)">Wiskunde om te beleven</small></span></a>
-        <p class="footer-small">Initiatief en inhoudelijke regie: Edwin van der Plas · siteversie <span data-site-version>0.1.7</span></p>
+        <p class="footer-small">Initiatief en inhoudelijke regie: Edwin van der Plas · siteversie <span data-site-version>0.1.8</span></p>
       </div>
       <div>
         <nav class="footer-nav" aria-label="Voetnavigatie"><a href="/vo/">VO</a><a href="/pabo/">PABO</a><a href="/hbo/">HBO</a><a href="/rafelrand/">Rafelrand</a><a href="/backstage/">Backstage</a><a href="/kladblok/">Kladblok</a></nav>
