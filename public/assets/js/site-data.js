@@ -1,5 +1,5 @@
 /* Wisik.nl — centrale attractieregistratie. */
-window.WISIK_SITE_VERSION = "0.1.5";
+window.WISIK_SITE_VERSION = "0.1.6";
 window.WISIK_TOOLS = Object.freeze([
   Object.freeze({
     id: "pabo-rekenklaar",
@@ -13,7 +13,7 @@ window.WISIK_TOOLS = Object.freeze([
     maturity: "mainstage",
     status: "openingsklaar",
     statusLabel: "Openingsklaar",
-    version: "1.5.9",
+    version: "1.6.0",
     summary: "Versterk je rekenbasis, oefen rubricgestuurd en ontdek welke terugkerende denkpatronen je mogelijk in de weg zitten.",
     productUrl: "/pabo/pabo-rekenklaar/",
     appUrl: "/apps/pabo-rekenklaar/",
