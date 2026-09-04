@@ -59,15 +59,27 @@ if (/RWT\s+versie\s+3\.1|handreiking-31\.pdf/i.test(pabo)) fail("Pabo Rekenklaar
 if (!/rwt-handreiking_22\.pdf/.test(pabo)) fail("Pabo Rekenklaar mist de officiële handreiking 2.2-link");
 
 const siteData = fs.readFileSync(path.join(publicDir, "assets/js/site-data.js"), "utf8");
-if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.1"')) fail("Siteversie 0.1.1 ontbreekt in site-data.js");
+if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.2"')) fail("Siteversie 0.1.2 ontbreekt in site-data.js");
 if (!siteData.includes('id: "pabo-rekenklaar"')) fail("Pabo Rekenklaar ontbreekt in het attractieregister");
 
 const feedbackFunction = fs.readFileSync(path.join(root, "functions/api/feedback.js"), "utf8");
-if (!feedbackFunction.includes("https://formsubmit.co/ajax/")) fail("Kladblok mist de gratis FormSubmit-relay");
-if (/\/email\/sending\/send|CF_ACCOUNT_ID|EMAIL_API_TOKEN/.test(feedbackFunction)) {
-  fail("Kladblok bevat nog afhankelijkheden van de betaalde Cloudflare Email Sending-API");
+const siteJs = fs.readFileSync(path.join(publicDir, "assets/js/site.js"), "utf8");
+const wrangler = fs.readFileSync(path.join(root, "wrangler.jsonc"), "utf8");
+
+if (!feedbackFunction.includes('FORM_ENDPOINT = "https://formsubmit.co/kladblok@wisik.nl"')) {
+  fail("Kladblok mist de vaste gratis FormSubmit-bezorgroute");
 }
-if (!feedbackFunction.includes("TURNSTILE_SECRET_KEY")) fail("Kladblok mist server-side Turnstile-validatie");
+if (!feedbackFunction.includes("delivery:") || !feedbackFunction.includes("TURNSTILE_SECRET_KEY")) {
+  fail("Kladblok mist de server-side validatie of veilige bezorgdescriptor");
+}
+if (/formsubmit\.co\/ajax|\/email\/sending\/send|CF_ACCOUNT_ID|EMAIL_API_TOKEN/.test(feedbackFunction)) {
+  fail("Kladblok bevat nog een geblokkeerde of betaalde server-to-server e-mailroute");
+}
+if (!siteJs.includes("submitViaBrowser") || !siteJs.includes('action.pathname !== "/kladblok@wisik.nl"') || !siteJs.includes("relay.submit()")) {
+  fail("Kladblok mist de begrensde browserpost na server-side validatie");
+}
+if (!siteJs.includes('fetch("/api/feedback"')) fail("Kladblok omzeilt de Wisik-validatiefunctie");
+if (/"send_email"|send_email\s*=/.test(wrangler)) fail("Pages-configuratie bevat een niet-ondersteunde send_email-binding");
 
 const privacyNotes = fs.readFileSync(path.join(root, "PRIVACY-NOTITIES.md"), "utf8");
 if (!/FormSubmit/i.test(privacyNotes) || !/30 dagen/i.test(privacyNotes)) {
@@ -80,4 +92,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, Kladblok-relay en Pabo-releasecontrole.`);
+console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, gevalideerde Kladblokbezorging en Pabo-releasecontrole.`);

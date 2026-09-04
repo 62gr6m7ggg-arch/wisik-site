@@ -18,7 +18,8 @@ const ALLOWED_TURNSTILE_HOSTNAMES = new Set([
   "wisik.nl",
   "www.wisik.nl"
 ]);
-const DEFAULT_FORM_RECIPIENT = "kladblok@wisik.nl";
+const FORM_ENDPOINT = "https://formsubmit.co/kladblok@wisik.nl";
+const SUCCESS_URL = "https://wisik.nl/kladblok/?verzonden=1";
 
 const json = (body, status = 200) => Response.json(body, {
   status,
@@ -61,11 +62,6 @@ export async function onRequestPost({ request, env }) {
     return json({ message: "Het Wisik-Kladblok is nog niet volledig geconfigureerd." }, 503);
   }
 
-  const formRecipient = cleanLine(env.FORM_RECIPIENT || env.FEEDBACK_FROM || DEFAULT_FORM_RECIPIENT, 180).toLowerCase();
-  if (!validEmail(formRecipient)) {
-    return json({ message: "Het ontvangstadres van het Wisik-Kladblok is niet geldig geconfigureerd." }, 503);
-  }
-
   const origin = request.headers.get("origin");
   if (origin) {
     try {
@@ -91,7 +87,7 @@ export async function onRequestPost({ request, env }) {
 
   // Honeypot: reageer neutraal, zodat eenvoudige spambots geen nuttige feedback krijgen.
   if (cleanLine(payload.company, 100)) {
-    return json({ ok: true });
+    return json({ ok: true, ignored: true });
   }
 
   const category = cleanLine(payload.category, 60);
@@ -153,46 +149,34 @@ export async function onRequestPost({ request, env }) {
   };
 
   const subject = `[Wisik-Kladblok] ${categoryLabels[category]} — ${attractionLabels[attraction]}`;
-  const providerPayload = {
+  const fields = {
     _subject: subject,
     _template: "table",
     _captcha: "false",
-    _honey: "",
-    email,
+    _next: SUCCESS_URL,
+    _url: "https://wisik.nl/kladblok/",
     Categorie: categoryLabels[category],
     "Attractie of terrein": attractionLabels[attraction],
     Pagina: page || "niet meegegeven",
     Siteversie: siteVersion || "onbekend",
+    "E-mailadres voor reactie": email || "niet ingevuld",
     "Toestemming geanonimiseerd citaat": quotePermission ? "ja" : "nee",
     Bericht: message
   };
+  if (email) fields.email = email;
 
-  let providerResponse;
-  try {
-    providerResponse = await fetch(`https://formsubmit.co/ajax/${formRecipient}`, {
+  // De server controleert en schoont de inzending. Daarna verstuurt de browser
+  // dezelfde opgeschoonde velden als een gewone HTML-formulierpost naar FormSubmit.
+  // Een browserpost kan hun anti-botcontrole doorlopen; server-to-serververkeer wordt
+  // door FormSubmit soms terecht met een challenge geweigerd.
+  return json({
+    ok: true,
+    delivery: {
       method: "POST",
-      headers: {
-        "accept": "application/json",
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(providerPayload)
-    });
-  } catch {
-    return json({ message: "De bezorgdienst was tijdelijk niet bereikbaar." }, 503);
-  }
-
-  const providerResult = await providerResponse.json().catch(() => ({}));
-  const providerFailed = providerResult.success === false || providerResult.success === "false";
-  if (!providerResponse.ok || providerFailed) {
-    console.error("Wisik feedbackbezorging mislukt", {
-      status: providerResponse.status,
-      providerMessage: cleanLine(providerResult.message, 200)
-    });
-    return json({ message: "De notitie kon niet worden afgeleverd. Probeer het later opnieuw." }, 502);
-  }
-
-  const activationPending = /activat|confirm/i.test(cleanLine(providerResult.message, 300));
-  return json({ ok: true, activationPending });
+      action: FORM_ENDPOINT,
+      fields
+    }
+  });
 }
 
 export function onRequest() {
