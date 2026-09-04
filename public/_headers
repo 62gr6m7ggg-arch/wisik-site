@@ -10,6 +10,3 @@
 
 /apps/pabo-rekenklaar/*
   Cache-Control: no-cache
-
-/api/*
-  Cache-Control: no-store
