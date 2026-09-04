@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 path = Path("public/apps/pabo-rekenklaar/index.html")
@@ -13,18 +14,26 @@ def replace_once(old: str, new: str, label: str) -> None:
     source = source.replace(old, new, 1)
 
 
-replace_once(
-    '<span id="homeVersion">1.5.9</span>',
-    '<span id="homeVersion">1.6.0</span>',
-    "statische homeversie",
-)
-replace_once(
-    '    view:(activeView?.id||`view-${currentView}`).replace(/^view-/,""),',
-    '    view:(currentView||activeView?.id||"home").replace(/^view-/,""),',
-    "actief onderdeel in Wisik-context",
-)
+version_match = re.search(r'const APP_VERSION = "([^"]+)";', source)
+if not version_match:
+    raise SystemExit("APP_VERSION ontbreekt")
+app_version = version_match.group(1)
 
-if source == original:
-    raise SystemExit("Geen finalisatiewijziging uitgevoerd")
-path.write_text(source, encoding="utf-8")
-print("Pabo Rekenklaar 1.6.0-finalisatie geslaagd.")
+home_pattern = r'<span id="homeVersion">[^<]+</span>'
+home_matches = re.findall(home_pattern, source)
+if len(home_matches) != 1:
+    raise SystemExit(f"statische homeversie: verwacht exact 1 vindplaats, gevonden {len(home_matches)}")
+source = re.sub(home_pattern, f'<span id="homeVersion">{app_version}</span>', source, count=1)
+
+old_context = '    view:(activeView?.id||`view-${currentView}`).replace(/^view-/,""),'
+new_context = '    view:(currentView||activeView?.id||"home").replace(/^view-/,""),'
+if old_context in source:
+    replace_once(old_context, new_context, "actief onderdeel in Wisik-context")
+elif new_context not in source:
+    raise SystemExit("actief onderdeel in Wisik-context: bekende oude en nieuwe vorm ontbreken")
+
+if source != original:
+    path.write_text(source, encoding="utf-8")
+    print(f"Pabo Rekenklaar {app_version}-finalisatie uitgevoerd.")
+else:
+    print(f"Pabo Rekenklaar {app_version} was al correct gefinaliseerd.")

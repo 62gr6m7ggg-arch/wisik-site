@@ -1,13 +1,16 @@
 (() => {
   "use strict";
 
-  const APP_VERSION = "1.5.9";
   const WISIK_HOME = "https://wisik.nl/";
   const KLADBLOK_URL = "https://wisik.nl/kladblok/";
   const SNAPSHOT_KEY = "wisik:pabo-rekenklaar:last-exit";
 
   function currentContextUrl() {
     return window.location.href;
+  }
+
+  function currentAppVersion() {
+    return String(window.PaboRekenklaarQA?.version || document.getElementById("homeVersion")?.textContent || "onbekend").trim();
   }
 
   function saveExitSnapshot(destination) {
@@ -26,7 +29,7 @@
 
       localStorage.setItem(SNAPSHOT_KEY, JSON.stringify({
         app: "Pabo Rekenklaar",
-        version: APP_VERSION,
+        version: currentAppVersion(),
         page: currentContextUrl(),
         destination,
         savedAt: new Date().toISOString(),
@@ -52,7 +55,7 @@
   function buildKladblokUrl() {
     const url = new URL(KLADBLOK_URL);
     url.searchParams.set("bron", currentContextUrl());
-    url.searchParams.set("appversie", APP_VERSION);
+    url.searchParams.set("appversie", currentAppVersion());
     url.searchParams.set("attractie", "Pabo Rekenklaar");
     return url.href;
   }
