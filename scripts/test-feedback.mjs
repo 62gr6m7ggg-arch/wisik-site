@@ -2,35 +2,23 @@ import { onRequestPost } from "../functions/api/feedback.js";
 import { onRequestGet } from "../functions/api/config.js";
 
 const originalFetch = globalThis.fetch;
-let providerRequest = null;
 let turnstileResult = { success: true, action: "wisik_kladblok", hostname: "wisik.nl" };
-let providerStatus = 200;
-let providerResult = { success: true, message: "The form was submitted successfully." };
+let networkCalls = 0;
 
-globalThis.fetch = async (url, options = {}) => {
-  if (String(url).includes("siteverify")) {
-    return new Response(JSON.stringify(turnstileResult), {
-      status: 200,
-      headers: { "content-type": "application/json" }
-    });
+globalThis.fetch = async (url) => {
+  networkCalls += 1;
+  if (!String(url).includes("siteverify")) {
+    throw new Error(`Onverwacht serververzoek: ${url}`);
   }
-  if (String(url).startsWith("https://formsubmit.co/ajax/")) {
-    providerRequest = {
-      url: String(url),
-      payload: JSON.parse(String(options.body || "{}"))
-    };
-    return new Response(JSON.stringify(providerResult), {
-      status: providerStatus,
-      headers: { "content-type": "application/json" }
-    });
-  }
-  throw new Error(`Onverwacht netwerkverzoek: ${url}`);
+  return new Response(JSON.stringify(turnstileResult), {
+    status: 200,
+    headers: { "content-type": "application/json" }
+  });
 };
 
 const env = {
   TURNSTILE_SITE_KEY: "site-key",
-  TURNSTILE_SECRET_KEY: "secret-key",
-  FEEDBACK_FROM: "kladblok@wisik.nl"
+  TURNSTILE_SECRET_KEY: "secret-key"
 };
 const base = {
   category: "ervaring",
@@ -40,9 +28,21 @@ const base = {
   quotePermission: false,
   company: "",
   page: "/kladblok/",
-  siteVersion: "0.1.1",
+  siteVersion: "0.1.2",
   turnstileToken: "dummy"
 };
+
+function request(payload, origin = "https://wisik.nl") {
+  return new Request("https://wisik.nl/api/feedback", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "origin": origin,
+      "CF-Connecting-IP": "192.0.2.1"
+    },
+    body: JSON.stringify(payload)
+  });
+}
 
 const configResponse = await onRequestGet({ env });
 const config = await configResponse.json();
@@ -53,75 +53,54 @@ if (config.provider !== "formsubmit" || config.providerRetentionDays !== 30) {
   throw new Error("Providerinformatie ontbreekt in de configuratie");
 }
 
-const validRequest = new Request("https://wisik.nl/api/feedback", {
-  method: "POST",
-  headers: {
-    "content-type": "application/json",
-    "origin": "https://wisik.nl",
-    "CF-Connecting-IP": "192.0.2.1"
-  },
-  body: JSON.stringify(base)
-});
-const validResponse = await onRequestPost({ request: validRequest, env });
+networkCalls = 0;
+const validResponse = await onRequestPost({ request: request(base), env });
 if (validResponse.status !== 200) throw new Error(`Geldige inzending geweigerd: ${validResponse.status}`);
-if (providerRequest?.url !== "https://formsubmit.co/ajax/kladblok@wisik.nl") {
-  throw new Error("FormSubmit-endpoint klopt niet");
-}
+const validResult = await validResponse.json();
+if (networkCalls !== 1) throw new Error("De server mag alleen Turnstile benaderen");
 if (
-  providerRequest.payload.Bericht !== base.message ||
-  providerRequest.payload.email !== base.email ||
-  providerRequest.payload._captcha !== "false" ||
-  !providerRequest.payload._subject.includes("Pabo Rekenklaar")
+  !validResult.ok ||
+  validResult.delivery?.method !== "POST" ||
+  validResult.delivery?.action !== "https://formsubmit.co/kladblok@wisik.nl"
 ) {
-  throw new Error("FormSubmit-payload klopt niet");
+  throw new Error("De gevalideerde browser-bezorgroute klopt niet");
+}
+const fields = validResult.delivery.fields;
+if (
+  fields.Bericht !== base.message ||
+  fields.email !== base.email ||
+  fields._captcha !== "false" ||
+  fields._next !== "https://wisik.nl/kladblok/?verzonden=1" ||
+  !fields._subject.includes("Pabo Rekenklaar") ||
+  fields.Siteversie !== "0.1.2"
+) {
+  throw new Error("De opgeschoonde bezorgvelden kloppen niet");
 }
 
-const shortRequest = new Request("https://wisik.nl/api/feedback", {
-  method: "POST",
-  headers: { "content-type": "application/json" },
-  body: JSON.stringify({ ...base, message: "te kort" })
-});
-const shortResponse = await onRequestPost({ request: shortRequest, env });
+const shortResponse = await onRequestPost({ request: request({ ...base, message: "te kort" }), env });
 if (shortResponse.status !== 400) throw new Error("Te korte notitie is niet geweigerd");
 
-providerRequest = null;
-const botRequest = new Request("https://wisik.nl/api/feedback", {
-  method: "POST",
-  headers: { "content-type": "application/json" },
-  body: JSON.stringify({ ...base, company: "spam" })
-});
-const botResponse = await onRequestPost({ request: botRequest, env });
-if (botResponse.status !== 200 || providerRequest !== null) {
-  throw new Error("Honeypot reageert niet neutraal of verzendt toch gegevens");
+networkCalls = 0;
+const botResponse = await onRequestPost({ request: request({ ...base, company: "spam" }), env });
+const botResult = await botResponse.json();
+if (botResponse.status !== 200 || botResult.ignored !== true || networkCalls !== 0) {
+  throw new Error("Honeypot reageert niet neutraal of benadert toch een dienst");
 }
 
-const foreignRequest = new Request("https://wisik.nl/api/feedback", {
-  method: "POST",
-  headers: { "content-type": "application/json", "origin": "https://example.org" },
-  body: JSON.stringify(base)
-});
-const foreignResponse = await onRequestPost({ request: foreignRequest, env });
+const foreignResponse = await onRequestPost({ request: request(base, "https://example.org"), env });
 if (foreignResponse.status !== 403) throw new Error("Vreemde herkomst is niet geweigerd");
 
+const badEmailResponse = await onRequestPost({ request: request({ ...base, email: "geen-e-mailadres" }), env });
+if (badEmailResponse.status !== 400) throw new Error("Ongeldig e-mailadres is niet geweigerd");
+
 turnstileResult = { success: true, action: "wisik_kladblok", hostname: "example.org" };
-const wrongHostRequest = new Request("https://wisik.nl/api/feedback", {
-  method: "POST",
-  headers: { "content-type": "application/json" },
-  body: JSON.stringify(base)
-});
-const wrongHostResponse = await onRequestPost({ request: wrongHostRequest, env });
+const wrongHostResponse = await onRequestPost({ request: request(base), env });
 if (wrongHostResponse.status !== 400) throw new Error("Turnstile-token van verkeerd hostname is niet geweigerd");
+
+turnstileResult = { success: true, action: "andere_actie", hostname: "wisik.nl" };
+const wrongActionResponse = await onRequestPost({ request: request(base), env });
+if (wrongActionResponse.status !== 400) throw new Error("Turnstile-token met verkeerde actie is niet geweigerd");
+
 turnstileResult = { success: true, action: "wisik_kladblok", hostname: "wisik.nl" };
-
-providerStatus = 502;
-providerResult = { success: false, message: "provider down" };
-const failedProviderRequest = new Request("https://wisik.nl/api/feedback", {
-  method: "POST",
-  headers: { "content-type": "application/json" },
-  body: JSON.stringify(base)
-});
-const failedProviderResponse = await onRequestPost({ request: failedProviderRequest, env });
-if (failedProviderResponse.status !== 502) throw new Error("Providerfout wordt niet correct afgehandeld");
-
 globalThis.fetch = originalFetch;
-console.log("Feedbackfunctie geslaagd: configuratie, Turnstile, FormSubmit-relay, validatie en honeypot.");
+console.log("Feedbackfunctie geslaagd: configuratie, Turnstile, validatie, honeypot en veilige browser-bezorgroute.");
