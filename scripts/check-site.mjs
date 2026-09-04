@@ -59,8 +59,20 @@ if (/RWT\s+versie\s+3\.1|handreiking-31\.pdf/i.test(pabo)) fail("Pabo Rekenklaar
 if (!/rwt-handreiking_22\.pdf/.test(pabo)) fail("Pabo Rekenklaar mist de officiële handreiking 2.2-link");
 
 const siteData = fs.readFileSync(path.join(publicDir, "assets/js/site-data.js"), "utf8");
-if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.0"')) fail("Siteversie 0.1.0 ontbreekt in site-data.js");
+if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.1"')) fail("Siteversie 0.1.1 ontbreekt in site-data.js");
 if (!siteData.includes('id: "pabo-rekenklaar"')) fail("Pabo Rekenklaar ontbreekt in het attractieregister");
+
+const feedbackFunction = fs.readFileSync(path.join(root, "functions/api/feedback.js"), "utf8");
+if (!feedbackFunction.includes("https://formsubmit.co/ajax/")) fail("Kladblok mist de gratis FormSubmit-relay");
+if (/\/email\/sending\/send|CF_ACCOUNT_ID|EMAIL_API_TOKEN/.test(feedbackFunction)) {
+  fail("Kladblok bevat nog afhankelijkheden van de betaalde Cloudflare Email Sending-API");
+}
+if (!feedbackFunction.includes("TURNSTILE_SECRET_KEY")) fail("Kladblok mist server-side Turnstile-validatie");
+
+const privacyNotes = fs.readFileSync(path.join(root, "PRIVACY-NOTITIES.md"), "utf8");
+if (!/FormSubmit/i.test(privacyNotes) || !/30 dagen/i.test(privacyNotes)) {
+  fail("Privacy-notities vermelden FormSubmit en de bewaartermijn van 30 dagen niet");
+}
 
 if (failures.length) {
   console.error(`Wisik kwaliteitscontrole mislukt (${failures.length}):`);
@@ -68,4 +80,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis en Pabo-releasecontrole.`);
+console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, Kladblok-relay en Pabo-releasecontrole.`);
