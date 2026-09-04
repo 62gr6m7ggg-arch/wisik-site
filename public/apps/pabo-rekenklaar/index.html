@@ -514,7 +514,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
     <section id="view-home" class="view active" aria-labelledby="homeTitle">
       <div class="hero">
         <div class="hero-copy">
-          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.5.9</span></button></div>
+          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.6.0</span></button></div>
           <h1 id="homeTitle"><span id="heroGreeting">Klaar om rekenen weer vanzelfsprekend te maken?</span></h1>
           <p>Leer per onderdeel, oefen adaptief en bouw de officiële toetsopzet na. De uitleg start rond havo 3 en groeit door naar het overwegend 3F-niveau van de toets.</p>
           <div class="button-row">
@@ -1118,7 +1118,7 @@ function currentWisikContext(){
     product:"Pabo Rekenklaar",
     productVersion:APP_VERSION,
     pageUrl:window.location.href,
-    view:(activeView?.id||`view-${currentView}`).replace(/^view-/,""),
+    view:(currentView||activeView?.id||"home").replace(/^view-/,""),
     savedAt:new Date().toISOString()
   };
 }
