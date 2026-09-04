@@ -1,0 +1,32 @@
+name: Exporteer Pabo Rekenklaar 1.6.0
+
+on:
+  push:
+    branches:
+      - export-pabo-1.6.0
+    paths:
+      - ".github/workflows/export-pabo-1.6.0.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Controleer en hernoem HTML-bestand
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'const APP_VERSION = "1.6.0"' public/apps/pabo-rekenklaar/index.html
+          cp public/apps/pabo-rekenklaar/index.html Pabo_Rekenklaar_v1.6.0.html
+      - name: Upload downloadbestand
+        uses: actions/upload-artifact@v4
+        with:
+          name: Pabo_Rekenklaar_v1.6.0
+          path: Pabo_Rekenklaar_v1.6.0.html
+          retention-days: 1
+          if-no-files-found: error
