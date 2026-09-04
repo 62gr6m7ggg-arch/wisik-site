@@ -40,11 +40,11 @@ if (!bridgeCss.includes("position: fixed") || !bridgeCss.includes("safe-area-ins
 }
 
 const requiredKladblok = [
-  '/assets/js/kladblok-context.js?v=0.1.7',
+  '/assets/js/kladblok-context.js?v=0.1.8',
   'name="Pagina"',
   'name="Attractieversie"',
   'data-feedback-context',
-  'name="Siteversie" value="0.1.7"',
+  'name="Siteversie" value="0.1.8"',
   'Wisik Kladblok – nieuwe reactie'
 ];
 for (const fragment of requiredKladblok) {
