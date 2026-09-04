@@ -1,0 +1,48 @@
+name: Pas Pabo-Wisik-navigatie toe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/apply-pabo-wisik-navigation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/pabo-wisik-navigation
+          fetch-depth: 0
+      - name: Pas navigatiepatch toe
+        run: python scripts/patch-pabo-wisik-navigation.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Controleer ingesloten JavaScript
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          html = Path('public/apps/pabo-rekenklaar/index.html').read_text(encoding='utf-8')
+          scripts = re.findall(r'<script>([\s\S]*?)</script>', html)
+          if len(scripts) != 1:
+              raise SystemExit(f'Verwacht exact één ingesloten script, gevonden {len(scripts)}')
+          Path('/tmp/pabo-rekenklaar.js').write_text(scripts[0], encoding='utf-8')
+          PY
+          node --check /tmp/pabo-rekenklaar.js
+      - name: Leg wijziging vast op featurebranch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "wisik-release-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/apps/pabo-rekenklaar/index.html
+          git commit -m "Voeg permanente uitgang naar het Wisik-terrein toe"
+          git push origin HEAD:feature/pabo-wisik-navigation
