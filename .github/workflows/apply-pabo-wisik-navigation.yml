@@ -19,8 +19,16 @@ jobs:
         with:
           ref: feature/pabo-wisik-navigation
           fetch-depth: 0
-      - name: Pas navigatiepatch toe
-        run: python scripts/patch-pabo-wisik-navigation.py
+      - name: Pas navigatie- en finalisatiepatch toe
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -q 'const APP_VERSION = "1.5.9"' public/apps/pabo-rekenklaar/index.html; then
+            python scripts/patch-pabo-wisik-navigation.py
+          fi
+          if grep -q '<span id="homeVersion">1.5.9</span>' public/apps/pabo-rekenklaar/index.html; then
+            python scripts/finalize-pabo-wisik-navigation.py
+          fi
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -44,7 +52,11 @@ jobs:
           git config user.name "wisik-release-bot"
           git config user.email "actions@users.noreply.github.com"
           git add public/apps/pabo-rekenklaar/index.html
-          git commit -m "Voeg permanente uitgang naar het Wisik-terrein toe"
+          if git diff --cached --quiet; then
+            echo 'Geen aanvullende Pabo-wijziging nodig.'
+            exit 0
+          fi
+          git commit -m "Finaliseer permanente uitgang naar het Wisik-terrein"
           git push origin HEAD:feature/pabo-wisik-navigation
 
 # Eenmalige migratieworkflow; verwijderen na de geslaagde merge.
