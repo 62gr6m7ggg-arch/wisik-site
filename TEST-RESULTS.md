@@ -10,23 +10,35 @@ Geslaagd:
 - interne paden bestaan;
 - JavaScript-syntaxis geldig;
 - Wisik-versies in code, productpagina en formulier zijn consistent;
-- Pabo Rekenklaar 1.6.0 opgenomen;
+- Pabo-releasecontrole uitgevoerd;
 - `genBConversions` exact één keer gedeclareerd;
 - afgekeurde RWT 3.1-verwijzing afwezig;
 - officiële RWT 2.2-verwijzing aanwezig.
+
+## Backstage: missie en roadie
+
+Automatisch gecontroleerd:
+
+- de missie **Mijn missie is wiskunde leuk maken** staat prominent in Backstage;
+- de moodboardzin **Wiskunde hoeft niet stil te zitten** is opgenomen;
+- Edwin van der Plas wordt benoemd als initiatiefnemer en roadie achter Wisik;
+- het HAN-portret is via een duidelijke knop en festivalachtige videokaart bereikbaar;
+- beide videolinks verwijzen exact naar `https://youtu.be/JygCTgAxcsk`;
+- externe links openen veilig in een nieuw tabblad en hebben toegankelijke namen;
+- Wisik laadt geen YouTube-iframe, autoplaycode of externe thumbnail voordat de bezoeker zelf klikt;
+- de videokeuze en het openen van YouTube worden zichtbaar toegelicht;
+- tablet-, smalscherm- en verminderde-bewegingsinstellingen zijn aanwezig;
+- het onderscheid tussen persoonlijke introductie en institutionele goedkeuring blijft expliciet.
 
 ## Pabo Rekenklaar: uitgang naar Wisik
 
 Automatisch gecontroleerd:
 
-- het klikbare Wisik-logo verwijst naar `https://wisik.nl/`;
-- de sticky bovenbalk bevat een expliciete knop **Terug naar het Wisik-terrein**;
-- op mobiele schermen wordt die knop compact weergegeven als **Terrein**;
-- op zeer smalle schermen maakt de bovenbalk ruimte zonder de uitgang te verbergen;
-- vóór vertrek worden lokale voortgang en context expliciet opgeslagen;
-- opslag vindt ook plaats bij `pagehide` en wanneer de browser naar de achtergrond gaat;
-- de bron-URL, het actieve onderdeel en Pabo-versie 1.6.0 worden in de browsersessie geregistreerd;
-- de interne QA-metadata bevat de canonieke Wisik-URL en gedeelde contextsleutel.
+- het klikbare Wisik-logo verwijst naar het hoofddomein;
+- de vaste bovenbalk bevat een expliciete terugweg naar het Wisik-terrein;
+- de mobiele vormgeving houdt de uitgang zichtbaar;
+- vóór vertrek wordt een aanvullend lokaal voortgangssnapshot opgeslagen;
+- de bron-URL en attractieversie kunnen aan een Kladbloknotitie worden toegevoegd.
 
 ## Kladblokfunctie
 
@@ -43,14 +55,13 @@ Automatisch gecontroleerd:
 - Content-Security-Policy staat alleen de noodzakelijke externe formulierpost toe;
 - geen afhankelijkheid van betaalde Cloudflare Email Sending;
 - geen overbodige Pages Functions of Turnstile-code;
-- bronpagina, product, productversie en actief onderdeel worden automatisch ingevuld wanneer die context beschikbaar is;
-- Pabo Rekenklaar wordt dan automatisch als attractie geselecteerd en in het e-mailonderwerp opgenomen.
+- bronpagina en attractieversie worden automatisch ingevuld wanneer die context beschikbaar is.
 
 ## Safari-cachefix
 
 Automatisch gecontroleerd:
 
-- het Kladblok laadt `site-data.js` en `site.js` via een nieuwe versiegebonden URL;
+- het Kladblok laadt scripts via een versiegebonden URL;
 - de directe formulierklasse wijkt af van de klasse waarop een oudere scriptversie reageerde;
 - het actuele script herstelt een eventueel eerder uitgeschakelde verzendknop;
 - terugkeer via de iOS-navigatiecache laat de knop bruikbaar;
@@ -70,14 +81,3 @@ De bestaande interfacecontroles blijven van toepassing, waaronder:
 - geen onverwachte consolefouten.
 
 Zie `tests/Wisik_v0.1_browsertest.json`.
-
-## Navigatie vanuit Pabo Rekenklaar
-
-Automatisch gecontroleerd:
-
-- een permanent zichtbare, compacte terugweg naar het Wisik-terrein;
-- het Wisik-merkteken is een echte link naar de hoofdpagina;
-- vóór vertrek wordt een aanvullend lokaal voortgangssnapshot opgeslagen en krijgt de app tijd voor haar eigen opslaghandlers;
-- een directe Kladbloklink stuurt de exacte bron-URL en Pabo Rekenklaar-versie 1.5.9 mee;
-- het Kladblok neemt bronpagina en attractieversie op in de verzonden notitie;
-- de navigatie heeft een afzonderlijke mobiele vormgeving.
