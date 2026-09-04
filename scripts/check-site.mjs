@@ -54,23 +54,39 @@ for (const file of [
 
 const paboFile = path.join(publicDir, "apps/pabo-rekenklaar/index.html");
 const pabo = fs.readFileSync(paboFile, "utf8");
-if (!/const APP_VERSION\s*=\s*["']1\.5\.9["']/.test(pabo)) fail("Pabo Rekenklaar in de site is niet versie 1.5.9");
+if (!/const APP_VERSION\s*=\s*["']1\.6\.0["']/.test(pabo)) fail("Pabo Rekenklaar in de site is niet versie 1.6.0");
+if (!/<title>Pabo Rekenklaar 1\.6\.0\b/.test(pabo)) fail("Pabo Rekenklaar-documenttitel is niet versie 1.6.0");
+if (!pabo.includes('<span id="homeVersion">1.6.0</span>')) fail("Pabo Rekenklaar toont op het beginscherm niet versie 1.6.0");
 const conversionDeclarations = (pabo.match(/function\s+genBConversions\s*\(/g) || []).length;
 if (conversionDeclarations !== 1) fail(`genBConversions komt ${conversionDeclarations} keer voor; verwacht exact 1`);
 if (/RWT\s+versie\s+3\.1|handreiking-31\.pdf/i.test(pabo)) fail("Pabo Rekenklaar bevat de afgekeurde RWT 3.1-verwijzing");
 if (!/rwt-handreiking_22\.pdf/.test(pabo)) fail("Pabo Rekenklaar mist de officiële handreiking 2.2-link");
 
+const exitLinks = [...pabo.matchAll(/<a\b[^>]*data-wisik-exit[^>]*>/g)].map((match) => match[0]);
+if (exitLinks.length < 2) fail("Pabo Rekenklaar mist een dubbele, herkenbare uitgang naar het Wisik-terrein");
+if (exitLinks.some((link) => !/href=["']https:\/\/wisik\.nl\/["']/.test(link))) fail("Een Pabo-terreinuitgang wijst niet naar https://wisik.nl/");
+if (!pabo.includes('Terug naar het Wisik-terrein') || !pabo.includes('class="terrain-short">Terrein</span>')) fail("Pabo Rekenklaar mist duidelijke desktop- of mobiele uitgangstekst");
+if (!pabo.includes('function persistBeforeWisikExit(){saveState();rememberWisikContext()}')) fail("Pabo Rekenklaar slaat voortgang en context niet expliciet op vóór vertrek");
+if (!pabo.includes('window.addEventListener("pagehide",persistBeforeWisikExit)')) fail("Pabo Rekenklaar mist opslag bij mobiele paginawissels");
+if (!pabo.includes('sessionStorage.setItem(WISIK_CONTEXT_KEY')) fail("Pabo Rekenklaar bewaart geen Kladblokcontext in de browsersessie");
+if (!pabo.includes('productVersion:APP_VERSION') || !pabo.includes('pageUrl:window.location.href')) fail("Pabo Rekenklaar registreert productversie of bron-URL niet voor het Kladblok");
+
 const siteData = fs.readFileSync(path.join(publicDir, "assets/js/site-data.js"), "utf8");
-if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.5"')) fail("Siteversie 0.1.5 ontbreekt in site-data.js");
+if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.6"')) fail("Siteversie 0.1.6 ontbreekt in site-data.js");
 if (!siteData.includes('id: "pabo-rekenklaar"')) fail("Pabo Rekenklaar ontbreekt in het attractieregister");
+if (!/id:\s*["']pabo-rekenklaar["'][\s\S]*?version:\s*["']1\.6\.0["']/.test(siteData)) fail("Attractieregister vermeldt Pabo Rekenklaar 1.6.0 niet");
+
+const productPage = fs.readFileSync(path.join(publicDir, "pabo/pabo-rekenklaar/index.html"), "utf8");
+if (!productPage.includes('<strong>Versie</strong><span>1.6.0</span>')) fail("Pabo-productpagina vermeldt versie 1.6.0 niet");
+if (!productPage.includes('terugkeren naar het Wisik-terrein')) fail("Pabo-productpagina beschrijft de nieuwe terugweg niet");
 
 const kladblok = fs.readFileSync(path.join(publicDir, "kladblok/index.html"), "utf8");
 const siteJs = fs.readFileSync(path.join(publicDir, "assets/js/site.js"), "utf8");
 const wrangler = fs.readFileSync(path.join(root, "wrangler.jsonc"), "utf8");
 const headers = fs.readFileSync(path.join(publicDir, "_headers"), "utf8");
 
-if (!kladblok.includes('src="/assets/js/site-data.js?v=0.1.5"') || !kladblok.includes('src="/assets/js/site.js?v=0.1.5"')) {
-  fail("Kladblok mist versiegebonden JavaScript-URL's en kan daardoor oud Safari-script laden");
+if (!kladblok.includes('src="/assets/js/site-data.js?v=0.1.6"') || !kladblok.includes('src="/assets/js/site.js?v=0.1.6"')) {
+  fail("Kladblok mist versiegebonden JavaScript-URL's voor siteversie 0.1.6");
 }
 if (!hasClassToken(kladblok, "wisik-direct-feedback-form") || hasClassToken(kladblok, "feedback-form")) {
   fail("Kladblok gebruikt nog de oude formulierklasse die gecacht JavaScript kan uitschakelen");
@@ -78,7 +94,14 @@ if (!hasClassToken(kladblok, "wisik-direct-feedback-form") || hasClassToken(klad
 if (!kladblok.includes('action="https://formsubmit.co/kladblok@wisik.nl"') || !kladblok.includes('method="POST"')) {
   fail("Kladblok mist de directe gratis FormSubmit-bezorgroute");
 }
-if (!kladblok.includes('name="Siteversie" value="0.1.5"')) fail("Kladblok vermeldt niet siteversie 0.1.5");
+if (!kladblok.includes('name="Siteversie" value="0.1.6"')) fail("Kladblok vermeldt niet siteversie 0.1.6");
+for (const field of ["Bronpagina", "Bronproduct", "Productversie", "Onderdeel"]) {
+  if (!kladblok.includes(`name="${field}"`)) fail(`Kladblok mist automatisch contextveld ${field}`);
+  if (!siteJs.includes(`${field}:`)) fail(`Kladblokscript vult automatisch contextveld ${field} niet`);
+}
+if (!kladblok.includes('data-feedback-source hidden')) fail("Kladblok mist een zichtbare melding over meegestuurde context");
+if (!siteJs.includes('sessionStorage.getItem(WISIK_CONTEXT_KEY)')) fail("Kladblok leest de Pabo-context niet uit sessionStorage");
+if (!siteJs.includes('attraction.value = "Pabo Rekenklaar"')) fail("Kladblok selecteert Pabo Rekenklaar niet automatisch vanuit broncontext");
 if (!kladblok.includes('name="_honey"') || /name=["']_captcha["'][^>]*value=["']false["']/i.test(kladblok)) {
   fail("Kladblok mist de honeypot of schakelt de provider-spamcontrole uit");
 }
@@ -118,4 +141,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, Safari-cachefix, direct Kladblokformulier en Pabo-releasecontrole.`);
+console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, Safari-cachefix, Pabo-terreinuitgang, Kladblokcontext en Pabo-releasecontrole.`);
