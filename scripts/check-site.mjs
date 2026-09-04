@@ -16,6 +16,10 @@ function walk(dir) {
 
 function fail(message) { failures.push(message); }
 function rel(file) { return path.relative(root, file).replaceAll(path.sep, "/"); }
+function hasClassToken(html, token) {
+  return [...html.matchAll(/\sclass=["']([^"']+)["']/g)]
+    .some((match) => match[1].split(/\s+/).includes(token));
+}
 
 const htmlFiles = walk(publicDir).filter((file) => file.endsWith(".html"));
 for (const file of htmlFiles) {
@@ -57,7 +61,7 @@ if (/RWT\s+versie\s+3\.1|handreiking-31\.pdf/i.test(pabo)) fail("Pabo Rekenklaar
 if (!/rwt-handreiking_22\.pdf/.test(pabo)) fail("Pabo Rekenklaar mist de officiële handreiking 2.2-link");
 
 const siteData = fs.readFileSync(path.join(publicDir, "assets/js/site-data.js"), "utf8");
-if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.4"')) fail("Siteversie 0.1.4 ontbreekt in site-data.js");
+if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.5"')) fail("Siteversie 0.1.5 ontbreekt in site-data.js");
 if (!siteData.includes('id: "pabo-rekenklaar"')) fail("Pabo Rekenklaar ontbreekt in het attractieregister");
 
 const kladblok = fs.readFileSync(path.join(publicDir, "kladblok/index.html"), "utf8");
@@ -65,11 +69,21 @@ const siteJs = fs.readFileSync(path.join(publicDir, "assets/js/site.js"), "utf8"
 const wrangler = fs.readFileSync(path.join(root, "wrangler.jsonc"), "utf8");
 const headers = fs.readFileSync(path.join(publicDir, "_headers"), "utf8");
 
+if (!kladblok.includes('src="/assets/js/site-data.js?v=0.1.5"') || !kladblok.includes('src="/assets/js/site.js?v=0.1.5"')) {
+  fail("Kladblok mist versiegebonden JavaScript-URL's en kan daardoor oud Safari-script laden");
+}
+if (!hasClassToken(kladblok, "wisik-direct-feedback-form") || hasClassToken(kladblok, "feedback-form")) {
+  fail("Kladblok gebruikt nog de oude formulierklasse die gecacht JavaScript kan uitschakelen");
+}
 if (!kladblok.includes('action="https://formsubmit.co/kladblok@wisik.nl"') || !kladblok.includes('method="POST"')) {
   fail("Kladblok mist de directe gratis FormSubmit-bezorgroute");
 }
+if (!kladblok.includes('name="Siteversie" value="0.1.5"')) fail("Kladblok vermeldt niet siteversie 0.1.5");
 if (!kladblok.includes('name="_honey"') || /name=["']_captcha["'][^>]*value=["']false["']/i.test(kladblok)) {
   fail("Kladblok mist de honeypot of schakelt de provider-spamcontrole uit");
+}
+if (!siteJs.includes('querySelectorAll(".wisik-direct-feedback-form")') || !siteJs.includes("submit.disabled = false")) {
+  fail("Kladblokscript mist de nieuwe formulierkoppeling of herstelroute voor de knop");
 }
 if (/turnstile|\/api\/feedback|\/api\/config/i.test(siteJs + kladblok)) {
   fail("Kladblok bevat nog overbodige Turnstile- of Pages Function-code");
@@ -79,6 +93,12 @@ if (fs.existsSync(path.join(root, "functions/api/config.js")) || fs.existsSync(p
 }
 if (!/form-action\s+'self'\s+https:\/\/formsubmit\.co/.test(headers)) {
   fail("Content-Security-Policy blokkeert de Kladblokpost naar FormSubmit");
+}
+if (!/\/assets\/js\/\*\s+[\s\S]*Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(headers)) {
+  fail("JavaScript kan nog langdurig in Safari worden gecachet");
+}
+if (/\/assets\/\*\s+[\s\S]*Cache-Control:\s*public, max-age=604800/.test(headers)) {
+  fail("Een brede assets-cache-regel kan de JavaScript-cachefix overschrijven");
 }
 if (/challenges\.cloudflare\.com/.test(headers)) {
   fail("Content-Security-Policy bevat nog ongebruikte Turnstile-uitzonderingen");
@@ -98,4 +118,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, CSP, direct Kladblokformulier en Pabo-releasecontrole.`);
+console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, Safari-cachefix, direct Kladblokformulier en Pabo-releasecontrole.`);

@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.4
+# Wisik.nl — versie 0.1.5
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -13,6 +13,7 @@ De repository bevat onder meer:
 - Backstage voor kwaliteit en verantwoording;
 - het Wisik-Kladblok als gratis HTML-formulier via FormSubmit;
 - Cloudflare Email Routing voor `kladblok@wisik.nl`;
+- een cachebestendige Kladblokroute voor Safari en andere mobiele browsers;
 - mobiele navigatie en een gewone lijstweergave naast de terreinplattegrond;
 - automatische kwaliteitscontrole bij iedere wijziging.
 
@@ -35,6 +36,7 @@ De controle test onder meer:
 - HTML-basisstructuur en interne links;
 - dubbele id's;
 - JavaScript-syntaxis;
+- versiegebonden scripts en korte JavaScript-caching op het Kladblok;
 - Kladblokvelden, honeypot, succesroute en Content-Security-Policy;
 - afwezigheid van overbodige Kladblok-API-code en betaalde e-mailafhankelijkheden;
 - Pabo Rekenklaar 1.5.9;
