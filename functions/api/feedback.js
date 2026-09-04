@@ -14,6 +14,11 @@ const ALLOWED_ATTRACTIONS = new Set([
   "rafelrand",
   "backstage"
 ]);
+const ALLOWED_TURNSTILE_HOSTNAMES = new Set([
+  "wisik.nl",
+  "www.wisik.nl"
+]);
+const DEFAULT_FORM_RECIPIENT = "kladblok@wisik.nl";
 
 const json = (body, status = 200) => Response.json(body, {
   status,
@@ -22,10 +27,6 @@ const json = (body, status = 200) => Response.json(body, {
     "x-content-type-options": "nosniff"
   }
 });
-
-const escapeHtml = (value) => String(value ?? "").replace(/[&<>'"]/g, (char) => ({
-  "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
-})[char]);
 
 function cleanLine(value, maxLength) {
   return String(value ?? "").replace(/[\r\n\t]+/g, " ").trim().slice(0, maxLength);
@@ -56,8 +57,13 @@ async function verifyTurnstile({ token, secret, remoteIp }) {
 }
 
 export async function onRequestPost({ request, env }) {
-  if (!env.TURNSTILE_SECRET_KEY || !env.CF_ACCOUNT_ID || !env.EMAIL_API_TOKEN || !env.FEEDBACK_TO || !env.FEEDBACK_FROM) {
+  if (!env.TURNSTILE_SECRET_KEY) {
     return json({ message: "Het Wisik-Kladblok is nog niet volledig geconfigureerd." }, 503);
+  }
+
+  const formRecipient = cleanLine(env.FORM_RECIPIENT || env.FEEDBACK_FROM || DEFAULT_FORM_RECIPIENT, 180).toLowerCase();
+  if (!validEmail(formRecipient)) {
+    return json({ message: "Het ontvangstadres van het Wisik-Kladblok is niet geldig geconfigureerd." }, 503);
   }
 
   const origin = request.headers.get("origin");
@@ -121,7 +127,11 @@ export async function onRequestPost({ request, env }) {
     return json({ message: "De spamcontrole kon niet worden uitgevoerd. Probeer het later opnieuw." }, 503);
   }
 
-  if (!turnstile.success || (turnstile.action && turnstile.action !== "wisik_kladblok")) {
+  if (
+    !turnstile.success ||
+    (turnstile.action && turnstile.action !== "wisik_kladblok") ||
+    (turnstile.hostname && !ALLOWED_TURNSTILE_HOSTNAMES.has(turnstile.hostname))
+  ) {
     return json({ message: "De spamcontrole is niet geslaagd. Vernieuw de pagina en probeer opnieuw." }, 400);
   }
 
@@ -143,64 +153,46 @@ export async function onRequestPost({ request, env }) {
   };
 
   const subject = `[Wisik-Kladblok] ${categoryLabels[category]} — ${attractionLabels[attraction]}`;
-  const text = [
-    "Nieuwe notitie op het Wisik-Kladblok",
-    "",
-    `Categorie: ${categoryLabels[category]}`,
-    `Attractie/terrein: ${attractionLabels[attraction]}`,
-    `Pagina: ${page || "niet meegegeven"}`,
-    `Siteversie: ${siteVersion || "onbekend"}`,
-    `E-mailadres voor reactie: ${email || "niet ingevuld"}`,
-    `Toestemming voor geanonimiseerd citaat: ${quotePermission ? "ja" : "nee"}`,
-    "",
-    "Notitie:",
-    message
-  ].join("\n");
-
-  const html = `<h2>Nieuwe notitie op het Wisik-Kladblok</h2>
-    <table cellpadding="6" cellspacing="0" style="border-collapse:collapse">
-      <tr><th align="left">Categorie</th><td>${escapeHtml(categoryLabels[category])}</td></tr>
-      <tr><th align="left">Attractie/terrein</th><td>${escapeHtml(attractionLabels[attraction])}</td></tr>
-      <tr><th align="left">Pagina</th><td>${escapeHtml(page || "niet meegegeven")}</td></tr>
-      <tr><th align="left">Siteversie</th><td>${escapeHtml(siteVersion || "onbekend")}</td></tr>
-      <tr><th align="left">E-mailadres</th><td>${escapeHtml(email || "niet ingevuld")}</td></tr>
-      <tr><th align="left">Geanonimiseerd citeren</th><td>${quotePermission ? "ja" : "nee"}</td></tr>
-    </table>
-    <h3>Notitie</h3><p style="white-space:pre-wrap">${escapeHtml(message)}</p>`;
-
-  const emailBody = {
-    to: env.FEEDBACK_TO,
-    from: env.FEEDBACK_FROM,
-    subject,
-    text,
-    html
+  const providerPayload = {
+    _subject: subject,
+    _template: "table",
+    _captcha: "false",
+    _honey: "",
+    email,
+    Categorie: categoryLabels[category],
+    "Attractie of terrein": attractionLabels[attraction],
+    Pagina: page || "niet meegegeven",
+    Siteversie: siteVersion || "onbekend",
+    "Toestemming geanonimiseerd citaat": quotePermission ? "ja" : "nee",
+    Bericht: message
   };
-  if (email) emailBody.replyTo = email;
 
-  let emailResponse;
+  let providerResponse;
   try {
-    emailResponse = await fetch(`https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(env.CF_ACCOUNT_ID)}/email/sending/send`, {
+    providerResponse = await fetch(`https://formsubmit.co/ajax/${formRecipient}`, {
       method: "POST",
       headers: {
-        "authorization": `Bearer ${env.EMAIL_API_TOKEN}`,
+        "accept": "application/json",
         "content-type": "application/json"
       },
-      body: JSON.stringify(emailBody)
+      body: JSON.stringify(providerPayload)
     });
   } catch {
-    return json({ message: "De e-maildienst was tijdelijk niet bereikbaar." }, 503);
+    return json({ message: "De bezorgdienst was tijdelijk niet bereikbaar." }, 503);
   }
 
-  const emailResult = await emailResponse.json().catch(() => ({}));
-  if (!emailResponse.ok || emailResult.success === false) {
-    console.error("Wisik feedback e-mail mislukt", {
-      status: emailResponse.status,
-      errors: emailResult.errors || []
+  const providerResult = await providerResponse.json().catch(() => ({}));
+  const providerFailed = providerResult.success === false || providerResult.success === "false";
+  if (!providerResponse.ok || providerFailed) {
+    console.error("Wisik feedbackbezorging mislukt", {
+      status: providerResponse.status,
+      providerMessage: cleanLine(providerResult.message, 200)
     });
     return json({ message: "De notitie kon niet worden afgeleverd. Probeer het later opnieuw." }, 502);
   }
 
-  return json({ ok: true });
+  const activationPending = /activat|confirm/i.test(cleanLine(providerResult.message, 300));
+  return json({ ok: true, activationPending });
 }
 
 export function onRequest() {
