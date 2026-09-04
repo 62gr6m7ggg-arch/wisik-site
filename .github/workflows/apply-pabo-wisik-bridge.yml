@@ -1,0 +1,38 @@
+name: Pas Wisik-uitgang toe op Pabo Rekenklaar
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/apply-pabo-wisik-bridge.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Voeg de bridge toe aan Pabo Rekenklaar
+        run: python scripts/patch-pabo-wisik-bridge.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Controleer JavaScript
+        run: node --check public/apps/pabo-rekenklaar/wisik-bridge.js
+      - name: Leg de wijziging vast
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "Bridge stond al in Pabo Rekenklaar."
+            exit 0
+          fi
+          git config user.name "wisik-release-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/apps/pabo-rekenklaar/index.html
+          git commit -m "Voeg vaste Wisik-uitgang toe aan Pabo Rekenklaar"
+          git push origin HEAD:main
