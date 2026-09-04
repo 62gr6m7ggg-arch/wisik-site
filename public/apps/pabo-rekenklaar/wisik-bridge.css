@@ -1,0 +1,117 @@
+.wisik-exit-nav {
+  position: fixed;
+  z-index: 2147483000;
+  top: max(8px, env(safe-area-inset-top));
+  left: max(8px, env(safe-area-inset-left));
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.15;
+  filter: drop-shadow(0 7px 18px rgba(14, 45, 66, 0.20));
+}
+
+.wisik-exit-link {
+  min-height: 42px;
+  border: 1px solid rgba(22, 63, 88, 0.18);
+  border-radius: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #163f58;
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wisik-exit-link:focus-visible {
+  outline: 3px solid #ffd563;
+  outline-offset: 2px;
+}
+
+.wisik-exit-home {
+  gap: 8px;
+  padding: 5px 10px 5px 6px;
+}
+
+.wisik-exit-mark {
+  width: 31px;
+  height: 31px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #163f58;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.wisik-exit-label {
+  display: grid;
+  text-align: left;
+}
+
+.wisik-exit-label strong {
+  font-size: 13px;
+  letter-spacing: .02em;
+}
+
+.wisik-exit-label small {
+  font-size: 10px;
+  font-weight: 700;
+  color: #526b78;
+}
+
+.wisik-exit-feedback {
+  padding: 0 11px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+@media (max-width: 520px) {
+  .wisik-exit-nav {
+    top: max(6px, env(safe-area-inset-top));
+    left: max(6px, env(safe-area-inset-left));
+    gap: 4px;
+  }
+
+  .wisik-exit-link {
+    min-height: 38px;
+    border-radius: 12px;
+  }
+
+  .wisik-exit-home {
+    padding: 4px 8px 4px 5px;
+  }
+
+  .wisik-exit-mark {
+    width: 29px;
+    height: 29px;
+    border-radius: 9px;
+  }
+
+  .wisik-exit-label small {
+    display: none;
+  }
+
+  .wisik-exit-feedback {
+    padding: 0 9px;
+  }
+}
+
+@media (max-width: 360px) {
+  .wisik-exit-label strong {
+    font-size: 0;
+  }
+
+  .wisik-exit-label strong::after {
+    content: "Terrein";
+    font-size: 12px;
+  }
+
+  .wisik-exit-feedback {
+    font-size: 11px;
+  }
+}
