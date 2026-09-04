@@ -46,3 +46,5 @@ jobs:
           git add public/apps/pabo-rekenklaar/index.html
           git commit -m "Voeg permanente uitgang naar het Wisik-terrein toe"
           git push origin HEAD:feature/pabo-wisik-navigation
+
+# Eenmalige migratieworkflow; verwijderen na de geslaagde merge.
