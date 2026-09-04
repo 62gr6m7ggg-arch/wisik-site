@@ -13,8 +13,8 @@ function hasClassToken(markup, token) {
 }
 
 const requiredFragments = [
-  'src="/assets/js/site-data.js?v=0.1.7"',
-  'src="/assets/js/site.js?v=0.1.7"',
+  'src="/assets/js/site-data.js?v=0.1.8"',
+  'src="/assets/js/site.js?v=0.1.8"',
   'class="feedback-panel wisik-direct-feedback-form"',
   'action="https://formsubmit.co/kladblok@wisik.nl"',
   'method="POST"',
@@ -22,7 +22,7 @@ const requiredFragments = [
   'name="_template" value="table"',
   'name="_next" value="https://wisik.nl/kladblok/?verzonden=1"',
   'name="_url" value="https://wisik.nl/kladblok/"',
-  'name="Siteversie" value="0.1.7"',
+  'name="Siteversie" value="0.1.8"',
   'name="Bronpagina"',
   'name="Bronproduct"',
   'name="Productversie"',
