@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.5
+# Wisik.nl — versie 0.1.6
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -8,7 +8,10 @@ De repository bevat onder meer:
 - zichtbare onderwijsroutes VO, PABO en HBO;
 - ontwikkelstatus via MainStage, bouwplaats en Rafelrand;
 - een centraal attractieregister in `public/assets/js/site-data.js`;
-- Pabo Rekenklaar 1.5.9 onder `public/apps/pabo-rekenklaar/`;
+- Pabo Rekenklaar 1.6.0 onder `public/apps/pabo-rekenklaar/`;
+- een permanente, mobiele terugweg vanuit Pabo Rekenklaar naar het Wisik-terrein;
+- lokale opslag van Pabo-voortgang vóór het verlaten van de attractie;
+- automatische bronpagina-, product-, onderdeel- en versiecontext voor het Wisik-Kladblok;
 - afzonderlijke routepagina's;
 - Backstage voor kwaliteit en verantwoording;
 - het Wisik-Kladblok als gratis HTML-formulier via FormSubmit;
@@ -38,8 +41,11 @@ De controle test onder meer:
 - JavaScript-syntaxis;
 - versiegebonden scripts en korte JavaScript-caching op het Kladblok;
 - Kladblokvelden, honeypot, succesroute en Content-Security-Policy;
+- automatische Kladblokcontext vanuit Pabo Rekenklaar;
+- zichtbare desktop- en mobiele terreinuitgangen;
+- lokale opslag bij vertrek, `pagehide` en achtergrondwissel;
 - afwezigheid van overbodige Kladblok-API-code en betaalde e-mailafhankelijkheden;
-- Pabo Rekenklaar 1.5.9;
+- Pabo Rekenklaar 1.6.0;
 - exact één declaratie van `genBConversions`;
 - afwezigheid van de afgekeurde RWT 3.1-bron;
 - aanwezigheid van de officiële RWT 2.2-verwijzing.
