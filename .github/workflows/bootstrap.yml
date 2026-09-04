@@ -1,0 +1,59 @@
+name: Wisik-sitepakket installeren
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Wisik_site_v0.1.0_cloudflare.zip"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wisik-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pak het gecontroleerde sitepakket uit
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP="Wisik_site_v0.1.0_cloudflare.zip"
+          test -f "$ZIP"
+          rm -rf /tmp/wisik-install
+          mkdir -p /tmp/wisik-install
+          unzip -q -o "$ZIP" -d /tmp/wisik-install
+          test -d /tmp/wisik-install/wisik_site_v0.1.0
+          cp -a /tmp/wisik-install/wisik_site_v0.1.0/. ./
+          cp bootstrap/quality.yml .github/workflows/quality.yml
+          rm -f "$ZIP"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Voer alle kwaliteitscontroles uit
+        run: npm run check
+
+      - name: Publiceer de uitgepakte broncode in de repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf bootstrap
+          rm -f .github/workflows/bootstrap.yml
+          git config user.name "wisik-release-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Geen wijzigingen om vast te leggen."
+            exit 0
+          fi
+          git commit -m "Plaats Wisik-site 0.1.0"
+          git push
