@@ -12,8 +12,8 @@ const kladblok = read("public/kladblok/index.html");
 const context = read("public/assets/js/kladblok-context.js");
 
 const requiredPabo = [
-  './wisik-bridge.css?v=1.0.0',
-  './wisik-bridge.js?v=1.0.0'
+  './wisik-bridge.css?v=1.1.0',
+  './wisik-bridge.js?v=1.1.0'
 ];
 for (const fragment of requiredPabo) {
   if (!pabo.includes(fragment)) throw new Error(`Pabo Rekenklaar mist ${fragment}`);
@@ -27,22 +27,24 @@ const requiredBridge = [
   'localStorage.setItem(SNAPSHOT_KEY',
   'active.blur()',
   'url.searchParams.set("bron"',
-  'url.searchParams.set("appversie", APP_VERSION)',
-  'APP_VERSION = "1.5.9"'
+  'url.searchParams.set("appversie", currentAppVersion())',
+  'window.PaboRekenklaarQA?.version',
+  'version: currentAppVersion()'
 ];
 for (const fragment of requiredBridge) {
   if (!bridge.includes(fragment)) throw new Error(`Wisik-bridge mist ${fragment}`);
 }
+if (/const APP_VERSION\s*=/.test(bridge)) throw new Error("Wisik-bridge bevat nog een tweede, handmatig versienummer");
 if (!bridgeCss.includes("position: fixed") || !bridgeCss.includes("safe-area-inset-top") || !bridgeCss.includes("@media (max-width: 520px)")) {
   throw new Error("De vaste Wisik-uitgang is niet aantoonbaar mobiel ontworpen");
 }
 
 const requiredKladblok = [
-  '/assets/js/kladblok-context.js?v=0.1.6',
+  '/assets/js/kladblok-context.js?v=0.1.7',
   'name="Pagina"',
   'name="Attractieversie"',
   'data-feedback-context',
-  'name="Siteversie" value="0.1.6"',
+  'name="Siteversie" value="0.1.7"',
   'Wisik Kladblok – nieuwe reactie'
 ];
 for (const fragment of requiredKladblok) {

@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const publicDir = path.join(root, "public");
 const failures = [];
+const siteVersion = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).version;
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -44,19 +45,17 @@ for (const file of htmlFiles) {
   }
 }
 
-for (const file of [
-  path.join(publicDir, "assets/js/site-data.js"),
-  path.join(publicDir, "assets/js/site.js")
-]) {
+for (const file of walk(publicDir).filter((candidate) => candidate.endsWith(".js"))) {
   try { execFileSync(process.execPath, ["--check", file], { stdio: "pipe" }); }
   catch (error) { fail(`${rel(file)} heeft een JavaScript-syntaxfout: ${String(error.stderr || error.message).trim()}`); }
 }
 
 const paboFile = path.join(publicDir, "apps/pabo-rekenklaar/index.html");
 const pabo = fs.readFileSync(paboFile, "utf8");
-if (!/const APP_VERSION\s*=\s*["']1\.6\.0["']/.test(pabo)) fail("Pabo Rekenklaar in de site is niet versie 1.6.0");
-if (!/<title>Pabo Rekenklaar 1\.6\.0\b/.test(pabo)) fail("Pabo Rekenklaar-documenttitel is niet versie 1.6.0");
-if (!pabo.includes('<span id="homeVersion">1.6.0</span>')) fail("Pabo Rekenklaar toont op het beginscherm niet versie 1.6.0");
+const paboVersion = pabo.match(/const APP_VERSION\s*=\s*["']([^"']+)["']/)?.[1];
+if (!paboVersion) fail("Pabo Rekenklaar bevat geen herkenbare APP_VERSION");
+if (!pabo.includes(`<title>Pabo Rekenklaar ${paboVersion}`)) fail(`Pabo Rekenklaar-documenttitel vermeldt niet versie ${paboVersion}`);
+if (!pabo.includes(`<span id="homeVersion">${paboVersion}</span>`)) fail(`Pabo Rekenklaar toont op het beginscherm niet versie ${paboVersion}`);
 const conversionDeclarations = (pabo.match(/function\s+genBConversions\s*\(/g) || []).length;
 if (conversionDeclarations !== 1) fail(`genBConversions komt ${conversionDeclarations} keer voor; verwacht exact 1`);
 if (/RWT\s+versie\s+3\.1|handreiking-31\.pdf/i.test(pabo)) fail("Pabo Rekenklaar bevat de afgekeurde RWT 3.1-verwijzing");
@@ -72,21 +71,23 @@ if (!pabo.includes('sessionStorage.setItem(WISIK_CONTEXT_KEY')) fail("Pabo Reken
 if (!pabo.includes('productVersion:APP_VERSION') || !pabo.includes('pageUrl:window.location.href')) fail("Pabo Rekenklaar registreert productversie of bron-URL niet voor het Kladblok");
 
 const siteData = fs.readFileSync(path.join(publicDir, "assets/js/site-data.js"), "utf8");
-if (!siteData.includes('window.WISIK_SITE_VERSION = "0.1.6"')) fail("Siteversie 0.1.6 ontbreekt in site-data.js");
+if (!siteData.includes(`window.WISIK_SITE_VERSION = "${siteVersion}"`)) fail(`Siteversie ${siteVersion} ontbreekt in site-data.js`);
 if (!siteData.includes('id: "pabo-rekenklaar"')) fail("Pabo Rekenklaar ontbreekt in het attractieregister");
-if (!/id:\s*["']pabo-rekenklaar["'][\s\S]*?version:\s*["']1\.6\.0["']/.test(siteData)) fail("Attractieregister vermeldt Pabo Rekenklaar 1.6.0 niet");
+if (!new RegExp(`id:\\s*["']pabo-rekenklaar["'][\\s\\S]*?version:\\s*["']${paboVersion.replaceAll(".", "\\.")}["']`).test(siteData)) fail(`Attractieregister vermeldt Pabo Rekenklaar ${paboVersion} niet`);
 
 const productPage = fs.readFileSync(path.join(publicDir, "pabo/pabo-rekenklaar/index.html"), "utf8");
-if (!productPage.includes('<strong>Versie</strong><span>1.6.0</span>')) fail("Pabo-productpagina vermeldt versie 1.6.0 niet");
+if (!productPage.includes(`<strong>Versie</strong><span>${paboVersion}</span>`)) fail(`Pabo-productpagina vermeldt versie ${paboVersion} niet`);
 if (!productPage.includes('terugkeren naar het Wisik-terrein')) fail("Pabo-productpagina beschrijft de nieuwe terugweg niet");
+const homepage = fs.readFileSync(path.join(publicDir, "index.html"), "utf8");
+if (!homepage.includes(`RWT-voorbereiding · versie ${paboVersion}.`)) fail(`Homepage vermeldt Pabo Rekenklaar ${paboVersion} niet`);
 
 const kladblok = fs.readFileSync(path.join(publicDir, "kladblok/index.html"), "utf8");
 const siteJs = fs.readFileSync(path.join(publicDir, "assets/js/site.js"), "utf8");
 const wrangler = fs.readFileSync(path.join(root, "wrangler.jsonc"), "utf8");
 const headers = fs.readFileSync(path.join(publicDir, "_headers"), "utf8");
 
-if (!kladblok.includes('src="/assets/js/site-data.js?v=0.1.6"') || !kladblok.includes('src="/assets/js/site.js?v=0.1.6"')) {
-  fail("Kladblok mist versiegebonden JavaScript-URL's voor siteversie 0.1.6");
+if (!kladblok.includes(`src="/assets/js/site-data.js?v=${siteVersion}"`) || !kladblok.includes(`src="/assets/js/site.js?v=${siteVersion}"`)) {
+  fail(`Kladblok mist versiegebonden JavaScript-URL's voor siteversie ${siteVersion}`);
 }
 if (!hasClassToken(kladblok, "wisik-direct-feedback-form") || hasClassToken(kladblok, "feedback-form")) {
   fail("Kladblok gebruikt nog de oude formulierklasse die gecacht JavaScript kan uitschakelen");
@@ -94,7 +95,7 @@ if (!hasClassToken(kladblok, "wisik-direct-feedback-form") || hasClassToken(klad
 if (!kladblok.includes('action="https://formsubmit.co/kladblok@wisik.nl"') || !kladblok.includes('method="POST"')) {
   fail("Kladblok mist de directe gratis FormSubmit-bezorgroute");
 }
-if (!kladblok.includes('name="Siteversie" value="0.1.6"')) fail("Kladblok vermeldt niet siteversie 0.1.6");
+if (!kladblok.includes(`name="Siteversie" value="${siteVersion}"`)) fail(`Kladblok vermeldt niet siteversie ${siteVersion}`);
 for (const field of ["Bronpagina", "Bronproduct", "Productversie", "Onderdeel"]) {
   if (!kladblok.includes(`name="${field}"`)) fail(`Kladblok mist automatisch contextveld ${field}`);
   if (!siteJs.includes(`${field}:`)) fail(`Kladblokscript vult automatisch contextveld ${field} niet`);
@@ -119,6 +120,9 @@ if (!/form-action\s+'self'\s+https:\/\/formsubmit\.co/.test(headers)) {
 }
 if (!/\/assets\/js\/\*\s+[\s\S]*Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(headers)) {
   fail("JavaScript kan nog langdurig in Safari worden gecachet");
+}
+if (!/\/assets\/data\/\*\s+[\s\S]*Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(headers)) {
+  fail("Het openbare vrijgavebewijs kan nog langdurig worden gecachet");
 }
 if (/\/assets\/\*\s+[\s\S]*Cache-Control:\s*public, max-age=604800/.test(headers)) {
   fail("Een brede assets-cache-regel kan de JavaScript-cachefix overschrijven");

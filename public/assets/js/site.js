@@ -240,6 +240,64 @@
     document.querySelectorAll("[data-site-version]").forEach((node) => { node.textContent = window.WISIK_SITE_VERSION || "0.1.0"; });
   }
 
+  function formatAuditDate(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return "onbekend moment";
+    return new Intl.DateTimeFormat("nl-NL", {
+      day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit"
+    }).format(date);
+  }
+
+  function auditGateMarkup(gate) {
+    const passed = gate?.passed === true;
+    return `<li class="audit-gate ${passed ? "passed" : "failed"}">
+      <span class="audit-gate-icon" aria-hidden="true">${passed ? "✓" : "!"}</span>
+      <span><strong>${escapeHtml(gate?.label || "Onbekende controle")}</strong><small>${escapeHtml(gate?.evidence || "Geen bewijsgegevens beschikbaar")}</small></span>
+    </li>`;
+  }
+
+  async function renderReleaseAudit() {
+    const panel = document.querySelector("[data-release-audit]");
+    if (!panel) return;
+    const reportUrl = panel.dataset.auditUrl;
+    try {
+      const response = await fetch(reportUrl, { cache: "no-store", headers: { Accept: "application/json" } });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const report = await response.json();
+      const gates = Array.isArray(report.gates) ? report.gates : [];
+      const registeredToolVersion = TOOLS.find((tool) => tool.id === "pabo-rekenklaar")?.version;
+      const schemaValid = report.schemaVersion === 1 && report.tool === "Pabo Rekenklaar";
+      const versionsCurrent = report.siteVersion === window.WISIK_SITE_VERSION && report.toolVersion === registeredToolVersion;
+      const passed = schemaValid && versionsCurrent && report.status === "passed" && gates.length > 0 && gates.every((gate) => gate.passed === true);
+      const stale = schemaValid && report.status === "passed" && !versionsCurrent;
+      const counts = report.counts || {};
+      panel.classList.toggle("failed", !passed);
+      panel.classList.toggle("stale", stale);
+      panel.setAttribute("aria-busy", "false");
+      panel.innerHTML = `<div class="audit-panel-head">
+        <div><span class="audit-kicker">Laatste geverifieerde online vrijgave</span><h3>${escapeHtml(report.tool || "Attractie")} <span>${escapeHtml(report.toolVersion || "")}</span></h3></div>
+        <span class="audit-status ${passed ? "passed" : stale ? "stale" : "failed"}">${passed ? "✓ Vrijgave geslaagd" : stale ? "! Bewijs niet actueel" : "! Vrijgave geblokkeerd"}</span>
+      </div>
+      <div class="audit-metrics" aria-label="Samenvatting vrijgavecontrole">
+        <div><strong>${Number(counts.generatedQuestions || 0).toLocaleString("nl-NL")}</strong><span>vraaginstanties intern gecontroleerd</span></div>
+        <div><strong>${Number(counts.generatorCombinations || 0).toLocaleString("nl-NL")}</strong><span>generatorcombinaties</span></div>
+        <div><strong>${Number(counts.fallbackQuestions || 0).toLocaleString("nl-NL")}</strong><span>terugvalvragen</span></div>
+        <div><strong>${Number(counts.naturalDiagnosticCoverage || 0)}/${Number(counts.diagnosticPatterns || 0)}</strong><span>patronen natuurlijk gedekt</span></div>
+      </div>
+      <ul class="audit-gates">${gates.map(auditGateMarkup).join("")}</ul>
+      <div class="audit-panel-foot">
+        <p><strong>Gecontroleerd:</strong> ${escapeHtml(formatAuditDate(report.generatedAt))} · Wisik ${escapeHtml(report.siteVersion || "onbekend")}</p>
+        <p><strong>Bronvingerafdruk:</strong> <code>${escapeHtml(String(report.source?.sha256 || "onbekend").slice(0, 16))}…</code></p>
+        <p>${escapeHtml(report.scope || "")}</p>
+      </div>`;
+    } catch (error) {
+      panel.classList.add("failed");
+      panel.setAttribute("aria-busy", "false");
+      panel.innerHTML = `<div class="audit-unavailable"><strong>Vrijgavebewijs kan niet worden geladen.</strong><p>De attractie blijft bereikbaar, maar dit Backstage-overzicht is op dit moment niet verifieerbaar. Probeer de pagina later opnieuw of meld het via het Kladblok.</p></div>`;
+      console.warn("Wisik kon het openbare vrijgavebewijs niet laden", error);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     renderToolGrids();
     bindFilters();
@@ -249,5 +307,6 @@
     markCurrentNav();
     setFooterDetails();
     setupFeedbackForms();
+    renderReleaseAudit();
   });
 })();

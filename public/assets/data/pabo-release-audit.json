@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "auditVersion": "1.0.0",
+  "siteVersion": "0.1.7",
+  "tool": "Pabo Rekenklaar",
+  "toolVersion": "1.6.0",
+  "generatedAt": "2026-09-04T16:51:45.369Z",
+  "status": "passed",
+  "configuration": {
+    "generatorSeed": 12062026,
+    "samplesPerCombination": 100,
+    "diagnosticSamplesPerPattern": 20
+  },
+  "counts": {
+    "generatedQuestions": 17000,
+    "generatorCombinations": 170,
+    "rubricSelections": 3500,
+    "fallbackQuestions": 0,
+    "diagnosticPatterns": 30,
+    "diagnosticProbes": 1200,
+    "naturalDiagnosticCoverage": 30,
+    "naturalClassificationChecks": 8865,
+    "unambiguousDiagnosticMatches": 8863,
+    "ambiguousDiagnosticsSuppressed": 2,
+    "chartInstances": 600,
+    "exactReadableChartInstances": 500
+  },
+  "gates": [
+    {
+      "id": "source-integrity",
+      "label": "Bron en declaraties",
+      "passed": true,
+      "evidence": "0 bronproblemen; 0 dubbele functies"
+    },
+    {
+      "id": "generated-variants",
+      "label": "Gegenereerde vraagvarianten",
+      "passed": true,
+      "evidence": "17.000 vragen in 170 combinaties"
+    },
+    {
+      "id": "reproducible-answers",
+      "label": "Herberekenbare antwoorden",
+      "passed": true,
+      "evidence": "Vaste seed tweemaal gelijk; canonieke antwoorden en rekenregels herberekend"
+    },
+    {
+      "id": "no-fallbacks",
+      "label": "Geen terugvalvragen",
+      "passed": true,
+      "evidence": "0 terugvalvragen aangetroffen"
+    },
+    {
+      "id": "readable-graphs",
+      "label": "Afleesbare grafieken",
+      "passed": true,
+      "evidence": "600 grafiekinstanties; rasterwaarden, asschaal, mobiele pixelafstand en toegankelijke SVG-markering gecontroleerd"
+    },
+    {
+      "id": "diagnostic-patterns",
+      "label": "Diagnostische patronen",
+      "passed": true,
+      "evidence": "30 patronen; 30/30 natuurlijke dekking; 1200 controlevragen; 8865 natuurlijke classificatiechecks; 2 dubbelzinnige gevallen veilig zonder diagnose"
+    }
+  ],
+  "failures": [],
+  "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
+  "source": {
+    "file": "/apps/pabo-rekenklaar/index.html",
+    "sha256": "a9a490b5745889402e06187331fee3cb6a76b0a427d22fe3282bdcd8f05152b5"
+  },
+  "provenance": {
+    "auditScript": "scripts/audit-pabo-release.mjs",
+    "requiredWorkflow": ".github/workflows/quality.yml",
+    "publicReport": "/assets/data/pabo-release-audit.json"
+  }
+}

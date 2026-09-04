@@ -4,12 +4,18 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: wisik-release-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  check:
+  release-gate:
+    name: Verplichte vrijgavecontrole
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -17,5 +23,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Controleer site, Pabo-release en Kladblokfunctie
+      - name: Controleer auditbewijs, site en Pabo-release
         run: npm run check
+      - name: Publiceer controlebewijs als workflow-artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wisik-vrijgavebewijs
+          path: public/assets/data/pabo-release-audit.json
+          if-no-files-found: error

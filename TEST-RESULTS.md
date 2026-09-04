@@ -1,4 +1,20 @@
-# Testresultaten Wisik 0.1.6
+# Testresultaten Wisik 0.1.7
+
+## Deterministische Pabo-vrijgavecontrole
+
+Geslaagd:
+
+- 17.000 vraaginstanties in 170 generatorcombinaties;
+- 3.500 rubricselecties;
+- nul terugvalvragen en nul vrijgavefouten;
+- dezelfde kwaliteitscontrole tweemaal reproduceerbaar met seed `12062026`;
+- 600 grafiekinstanties gecontroleerd op technische schaal-, raster-, mobiele afstands- en SVG-regels;
+- 30 diagnostische patronen en 1.200 gerichte controlevragen;
+- 8.865 natuurlijke diagnostische terugclassificaties;
+- 8.863 eenduidige matches;
+- twee inhoudelijk dubbelzinnige antwoorden correct zonder diagnose gehouden;
+- natuurlijke dekking 30 van 30 patronen;
+- openbaar Backstage-bewijs gekoppeld aan de SHA-256-vingerafdruk van de geteste appbron.
 
 ## Statische kwaliteitscontrole
 
@@ -10,7 +26,7 @@ Geslaagd:
 - interne paden bestaan;
 - JavaScript-syntaxis geldig;
 - Wisik-versies in code, productpagina en formulier zijn consistent;
-- Pabo-releasecontrole uitgevoerd;
+- Pabo-vrijgavecontrole en publiek auditbewijs actueel;
 - `genBConversions` exact één keer gedeclareerd;
 - afgekeurde RWT 3.1-verwijzing afwezig;
 - officiële RWT 2.2-verwijzing aanwezig.
@@ -39,6 +55,7 @@ Automatisch gecontroleerd:
 - de mobiele vormgeving houdt de uitgang zichtbaar;
 - vóór vertrek wordt een aanvullend lokaal voortgangssnapshot opgeslagen;
 - de bron-URL en attractieversie kunnen aan een Kladbloknotitie worden toegevoegd.
+- de bridge ontleent het versienummer aan de app zelf en bevat geen verouderde tweede versiebron.
 
 ## Kladblokfunctie
 
