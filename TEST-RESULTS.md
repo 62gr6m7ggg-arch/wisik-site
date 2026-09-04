@@ -1,4 +1,4 @@
-# Testresultaten Wisik 0.1.4
+# Testresultaten Wisik 0.1.5
 
 ## Statische kwaliteitscontrole
 
@@ -30,6 +30,17 @@ Automatisch gecontroleerd:
 - Content-Security-Policy staat alleen de noodzakelijke externe formulierpost toe;
 - geen afhankelijkheid van betaalde Cloudflare Email Sending;
 - geen overbodige Pages Functions of Turnstile-code.
+
+## Safari-cachefix
+
+Automatisch gecontroleerd:
+
+- het Kladblok laadt `site-data.js` en `site.js` via een nieuwe versiegebonden URL;
+- de directe formulierklasse wijkt af van de klasse waarop de oude scriptversie reageerde;
+- het actuele script herstelt een eventueel eerder uitgeschakelde verzendknop;
+- terugkeer via de iOS-navigatiecache laat de knop bruikbaar;
+- JavaScript krijgt geen cacheduur van zeven dagen meer;
+- een brede assets-cache-regel kan de JavaScriptinstelling niet overschrijven.
 
 ## Responsieve browsertest
 
