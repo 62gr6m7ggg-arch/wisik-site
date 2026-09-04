@@ -15,13 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Wacht op Wisik 0.1.3
+      - name: Wacht op Wisik 0.1.4
         shell: bash
         run: |
           set -euo pipefail
           ready=0
           for attempt in $(seq 1 30); do
-            if curl --silent --show-error --fail https://wisik.nl/assets/js/site-data.js | grep -q 'WISIK_SITE_VERSION = "0.1.3"'; then
+            if curl --silent --show-error --fail https://wisik.nl/assets/js/site-data.js | grep -q 'WISIK_SITE_VERSION = "0.1.4"'; then
               ready=1
               break
             fi
@@ -29,39 +29,37 @@ jobs:
           done
           test "$ready" -eq 1
 
-      - name: Controleer HTTPS, canoniek domein en Kladblokpagina
+      - name: Controleer HTTPS en canoniek domein
         shell: bash
         run: |
           set -euo pipefail
-          curl --silent --show-error --fail https://wisik.nl/kladblok/ | grep -q 'Wisik-Kladblok'
-
           http_location=$(curl --silent --show-error --head http://wisik.nl/ | tr -d '\r' | awk 'BEGIN{IGNORECASE=1} /^location:/ {print $2; exit}')
           test "$http_location" = "https://wisik.nl/"
 
-          www_location=$(curl --silent --show-error --head https://www.wisik.nl/kladblok/?test=1 | tr -d '\r' | awk 'BEGIN{IGNORECASE=1} /^location:/ {print $2; exit}')
+          www_location=$(curl --silent --show-error --head 'https://www.wisik.nl/kladblok/?test=1' | tr -d '\r' | awk 'BEGIN{IGNORECASE=1} /^location:/ {print $2; exit}')
           test "$www_location" = "https://wisik.nl/kladblok/?test=1"
 
-      - name: Controleer productieconfiguratie en beveiliging
+      - name: Controleer live Kladblokformulier en beveiligingsheaders
         shell: bash
         run: |
           set -euo pipefail
-          curl --silent --show-error --fail https://wisik.nl/api/config > /tmp/config.json
-          node - <<'NODE'
-          const fs = require('node:fs');
-          const config = JSON.parse(fs.readFileSync('/tmp/config.json', 'utf8'));
-          if (config.feedbackEnabled !== true) throw new Error('Kladblok staat niet actief');
-          if (!config.turnstileSiteKey) throw new Error('Turnstile-sitekey ontbreekt');
-          if (config.provider !== 'formsubmit') throw new Error('Onverwachte bezorgprovider');
-          NODE
+          curl --silent --show-error --fail https://wisik.nl/kladblok/ > /tmp/kladblok.html
+          grep -q 'action="https://formsubmit.co/kladblok@wisik.nl"' /tmp/kladblok.html
+          grep -q 'method="POST"' /tmp/kladblok.html
+          grep -q 'name="_honey"' /tmp/kladblok.html
+          grep -q 'name="_next" value="https://wisik.nl/kladblok/?verzonden=1"' /tmp/kladblok.html
+          grep -q 'name="Siteversie" value="0.1.4"' /tmp/kladblok.html
+          if grep -Eqi 'name=["'"']_captcha["'"'][^>]*value=["'"']false["'"']' /tmp/kladblok.html; then
+            echo 'FormSubmit-spamcontrole is uitgeschakeld'
+            exit 1
+          fi
 
           headers=$(curl --silent --show-error --head https://wisik.nl/kladblok/ | tr -d '\r')
           printf '%s\n' "$headers" | grep -Ei '^content-security-policy:' | grep -q "form-action 'self' https://formsubmit.co"
+          if printf '%s\n' "$headers" | grep -Ei '^content-security-policy:' | grep -q 'challenges.cloudflare.com'; then
+            echo 'Ongebruikte Turnstile-uitzondering staat nog live'
+            exit 1
+          fi
 
-          status=$(curl --silent --show-error --output /tmp/missing-token.json --write-out '%{http_code}' \
-            --request POST \
-            --header 'Content-Type: application/json' \
-            --header 'Origin: https://wisik.nl' \
-            --data '{"category":"ervaring","attraction":"algemeen","message":"Dit is een geldige lengte voor de controle.","email":"","company":"","turnstileToken":""}' \
-            https://wisik.nl/api/feedback)
-          test "$status" = "400"
-          grep -q 'spamcontrole ontbreekt' /tmp/missing-token.json
+          config_status=$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' https://wisik.nl/api/config)
+          test "$config_status" = "404"
