@@ -1,0 +1,12 @@
+{
+  "name": "Wisik — wiskunde om te beleven",
+  "short_name": "Wisik",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f7f1",
+  "theme_color": "#163f58",
+  "description": "Een festivalterrein met doordachte rekentools en wiskundige leerattracties.",
+  "icons": [
+    {"src":"/assets/img/wisik-mark.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

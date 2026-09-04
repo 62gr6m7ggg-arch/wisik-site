@@ -1,0 +1,66 @@
+{
+  "checks": [
+    {
+      "name": "hoofdkop zichtbaar",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pabo-zone zichtbaar",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "attractiekaarten geladen",
+      "passed": true,
+      "detail": "2"
+    },
+    {
+      "name": "routekeuzedialoog opent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "routekeuzedialoog sluit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "PABO-filter toont één kaart",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "PABO-filter toont Rekenklaar",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mobiel menu zichtbaar",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mobiel menu opent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mobiel menu sluit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "geen horizontale overflow mobiel",
+      "passed": true,
+      "detail": "scroll=390 client=390"
+    },
+    {
+      "name": "geen onverwachte mobiele consolefouten",
+      "passed": true,
+      "detail": "[]"
+    }
+  ],
+  "console_errors": [],
+  "passed": true
+}

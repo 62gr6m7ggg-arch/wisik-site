@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#163f58">
+  <meta name="description" content="Wisik is een festivalterrein met doordachte tools die rekenen en wiskunde begrijpelijker én leuker maken.">
+  <title>Wisik — wiskunde om te beleven</title>
+  <link rel="icon" href="/assets/img/wisik-mark.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/assets/js/site-data.js" defer></script>
+  <script src="/assets/js/site.js" defer></script>
+</head>
+<body data-route="terrein">
+<a class="skip-link" href="#main">Ga naar de inhoud</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Wisik startpagina">
+      <span class="brand-mark" aria-hidden="true">√</span>
+      <span class="brand-copy"><strong>WISIK</strong><small>Wiskunde om te beleven</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Hoofdnavigatie">
+      <a href="/#terrein" data-nav-route="terrein">Terrein</a>
+      <a href="/vo/" data-nav-route="vo">VO</a>
+      <a href="/pabo/" data-nav-route="pabo">PABO</a>
+      <a href="/hbo/" data-nav-route="hbo">HBO</a>
+      <a href="/rafelrand/" data-nav-route="rafelrand">Rafelrand</a>
+      <a href="/backstage/" data-nav-route="backstage">Backstage</a>
+      <a href="/kladblok/" data-nav-route="kladblok">Kladblok</a>
+    </nav>
+    <button class="btn coral small header-cta" type="button" data-open-route-dialog>Vind mijn plek</button>
+    <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Menu openen">☰</button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobiele navigatie">
+  <a href="/#terrein">Terrein</a><a href="/vo/">VO</a><a href="/pabo/">PABO</a><a href="/hbo/">HBO</a><a href="/rafelrand/">Rafelrand</a><a href="/backstage/">Backstage</a><a href="/kladblok/">Kladblok</a>
+  <button class="btn coral" type="button" data-open-route-dialog>Vind mijn plek</button>
+</nav>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="kicker">Gratis toegang · zonder account · rekenen en wiskunde</span>
+        <h1 id="hero-title">Wiskunde hoeft niet stil te zitten.</h1>
+        <p class="lead">Welkom op Wisik: een festivalterrein met doordachte tools, proeftenten en onverwachte omwegen die rekenen en wiskunde begrijpelijker én leuker maken. Kies je opleiding, volg een route of dwaal gewoon even rond.</p>
+        <div class="hero-actions">
+          <button class="btn coral" type="button" data-open-route-dialog>Kies je polsbandje</button>
+          <button class="btn light" type="button" data-scroll-to="#terrein">Bekijk de plattegrond</button>
+        </div>
+        <span class="hero-note"><span aria-hidden="true">✓</span> Hoofdattracties zijn uitgebreid getest; in de Rafelrand zie je eerlijk wat nog in ontwikkeling is.</span>
+      </div>
+      <div class="entrance-arch" aria-hidden="true">
+        <div class="arch-flags"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="arch-sign"><strong>WISIK</strong><small>wiskunde om te beleven</small></div>
+        <div class="arch-post left"></div><div class="arch-post right"></div><div class="arch-path"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="wristband-title">
+    <div class="section-head">
+      <div><span class="kicker">Routekeuze</span><h2 id="wristband-title">Kies je polsbandje</h2><p class="lead">De festivalvorm maakt ontdekken leuk; de labels maken kiezen helder.</p></div>
+    </div>
+    <div class="wristbands">
+      <a class="wristband vo" href="/vo/"><span class="wristband-code">VO</span><h3>VO-veld</h3><p>Van onderbouw tot examen. Straks met duidelijke routes voor vmbo, havo en vwo.</p><span class="status-line"><span class="status-dot"></span> Terrein wordt ingericht</span></a>
+      <a class="wristband pabo" href="/pabo/"><span class="wristband-code">PA</span><h3>Pabo-plein</h3><p>Rekenen, toetsvertrouwen en later ook de stap naar rekendidactiek.</p><span class="status-line"><span class="status-dot live"></span> Eerste MainStage openingsklaar</span></a>
+      <a class="wristband hbo" href="/hbo/"><span class="wristband-code">HBO</span><h3>HBO-werkplaats</h3><p>Wiskunde voor opleiding en beroep, waaronder instroom voor Bouwkunde.</p><span class="status-line"><span class="status-dot build"></span> Eerste bouwplaats zichtbaar</span></a>
+      <a class="wristband all" href="#vandaag-open"><span class="wristband-code">∞</span><h3>Vrij rondlopen</h3><p>Bekijk MainStages, bouwplaatsen en rafelranden door elkaar.</p><span class="status-line"><span class="status-dot live"></span> Geen route verplicht</span></a>
+    </div>
+  </section>
+
+  <section class="map-wrap" id="terrein" aria-labelledby="map-title">
+    <div class="map-intro">
+      <span class="kicker">Terreinplattegrond</span>
+      <h2 id="map-title">Waar wil je vandaag heen?</h2>
+      <p class="lead">Op ieder bord staat voor welke opleiding, fase en niveau de attractie is. De plek op het terrein vertelt hoe ver de ontwikkeling is.</p>
+    </div>
+    <p class="sr-only">De plattegrond bevat het Pabo-plein met Pabo Rekenklaar, een VO-veld in aanleg, een HBO-werkplaats, de Rafelrand, Backstage en het Wisik-Kladblok.</p>
+    <div class="festival-map">
+      <span class="map-sky-label">Wisik Festivalterrein · seizoen 0.1</span>
+      <div class="map-legend" aria-hidden="true"><span><i class="legend-chip"></i>MainStage</span><span><i class="legend-chip build"></i>Bouwplaats</span><span><i class="legend-chip edge"></i>Rafelrand</span></div>
+      <svg class="map-paths" viewBox="0 0 1200 810" preserveAspectRatio="none" aria-hidden="true">
+        <path class="edge" d="M80 150 C250 200, 280 350, 520 350 S930 215, 1110 280 M540 350 C520 520, 680 570, 610 750 M280 350 C190 520, 260 620, 120 720 M910 310 C1010 470, 870 590, 1020 720"/>
+        <path d="M80 150 C250 200, 280 350, 520 350 S930 215, 1110 280 M540 350 C520 520, 680 570, 610 750 M280 350 C190 520, 260 620, 120 720 M910 310 C1010 470, 870 590, 1020 720"/>
+      </svg>
+
+      <a class="map-zone zone-vo" href="/vo/">
+        <div class="zone-card"><span class="zone-marker" aria-hidden="true">VO</span><span class="zone-badge">terrein in aanleg</span><h3>VO-veld</h3><p>Onderbouw, vmbo, havo, vwo en examenterrein. Attracties verschijnen pas wanneer ze werkelijk bruikbaar zijn.</p></div>
+      </a>
+
+      <a class="map-zone zone-hbo" href="/hbo/">
+        <div class="zone-card"><span class="zone-marker" aria-hidden="true">△</span><span class="zone-badge">HBO · bouwplaats</span><h3>HBO-werkplaats</h3><p>Bouwkunde &amp; Civiele Techniek · instroom/jaar 1. Hier krijgt de Summer Course straks vorm.</p></div>
+      </a>
+
+      <a class="map-zone zone-pabo" href="/pabo/pabo-rekenklaar/">
+        <div class="zone-card"><span class="zone-marker" aria-hidden="true">∑</span><span class="zone-badge">PABO · MainStage</span><h3>Pabo Rekenklaar</h3><p>Instroom en eerste studiefase · overwegend 3F / RWT-voorbereiding · versie 1.5.9.</p></div>
+      </a>
+
+      <a class="map-zone zone-rafel" href="/rafelrand/">
+        <div class="zone-card"><span class="zone-marker" aria-hidden="true">✎</span><span class="zone-badge">proeftenten</span><h3>De Rafelrand</h3><p>Prototypes, pilots en ideeën die nog mogen schuren. Je ziet wat al werkt én wat nog niet betrouwbaar genoeg is.</p></div>
+      </a>
+
+      <a class="map-zone zone-backstage" href="/backstage/">
+        <div class="zone-card"><span class="zone-marker" aria-hidden="true">⚙</span><span class="zone-badge">kwaliteit</span><h3>Backstage</h3><p>Rubrics, testbeleid, versies, bronnen, beperkingen en privacy. Achter een leuke attractie hoort degelijk bouwwerk.</p></div>
+      </a>
+
+      <a class="map-zone zone-kladblok" href="/kladblok/">
+        <div class="zone-card"><span class="zone-marker" aria-hidden="true">📝</span><span class="zone-badge">ervaringen &amp; tips</span><h3>Wisik-Kladblok</h3><p>Schrijf wat werkt, wat schuurt of wat er volgens jou nog op het terrein ontbreekt.</p></div>
+      </a>
+
+      <div class="map-pond" aria-hidden="true"></div>
+      <div class="keiblij-sign" aria-hidden="true">KEIBLIJWEIDE</div>
+      <div class="grabbel-sign" aria-hidden="true">GRABBELTON →</div>
+    </div>
+  </section>
+
+  <section class="section" id="vandaag-open" aria-labelledby="open-title">
+    <div class="section-head">
+      <div><span class="kicker">Lijstweergave</span><h2 id="open-title">Vandaag open en in opbouw</h2><p class="lead">Ook zonder plattegrond vind je hier meteen opleiding, niveau, status en versie.</p></div>
+    </div>
+    <div class="filter-row" aria-label="Filter attracties op onderwijsroute">
+      <button class="filter-chip active" type="button" data-filter-route="ALL">Alles</button>
+      <button class="filter-chip" type="button" data-filter-route="VO">VO</button>
+      <button class="filter-chip" type="button" data-filter-route="PABO">PABO</button>
+      <button class="filter-chip" type="button" data-filter-route="HBO">HBO</button>
+    </div>
+    <div class="cards-grid" id="allToolsGrid" data-tools-grid data-route="ALL"></div>
+  </section>
+
+  <section class="split-band" aria-labelledby="backstage-title">
+    <div class="section">
+      <div><span class="kicker">Backstage</span><h2 id="backstage-title">Achter een leuke attractie hoort degelijk bouwwerk.</h2><p class="lead">Wisik laat niet alleen zien wat een tool kan, maar ook waarop die is gebaseerd, wat is getest en welke beperkingen nog bestaan.</p><a class="btn light" href="/backstage/">Kijk achter de schermen</a></div>
+      <div class="backstage-grid">
+        <div class="backstage-card"><strong>Kwaliteit</strong><p>Hoe vragen, antwoorden, routes en bronvermeldingen worden gecontroleerd.</p></div>
+        <div class="backstage-card"><strong>Didactiek</strong><p>Welke leerdoelen, rubrics en foutpatronen de leerervaring sturen.</p></div>
+        <div class="backstage-card"><strong>Versies</strong><p>Welke fouten zijn gevonden, wat is verbeterd en welke release openbaar is.</p></div>
+        <div class="backstage-card"><strong>Privacy</strong><p>Welke gegevens lokaal blijven en wanneer de browser wél verbinding maakt.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kladblok-section" id="kladblok" aria-labelledby="kladblok-title">
+    <div class="section">
+      <div class="kladblok-grid">
+        <div class="notepad-illustration">
+          <span class="kicker">Bij de uitgang</span>
+          <h2 id="kladblok-title">Laat iets achter op het Wisik-Kladblok</h2>
+          <p>Wat werkte goed? Waar liep je vast? Zag je een fout of heb je een idee voor een nieuwe attractie?</p>
+          <p class="scribble">“Niet alleen applaus is bruikbaar. Ook een scheve plank moet iemand aanwijzen.”</p>
+        </div>
+        <form class="feedback-panel feedback-form" novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="category-home">Ik schrijf over</label><select id="category-home" name="category" required><option value="ervaring">Een ervaring</option><option value="inhoudelijke-fout">Een inhoudelijke fout</option><option value="technische-fout">Een technische fout</option><option value="verbetersuggestie">Een verbetersuggestie</option><option value="nieuwe-tool">Een idee voor een nieuwe tool</option><option value="anders">Iets anders</option></select></div>
+            <div class="field"><label for="attraction-home">Attractie of terrein</label><select id="attraction-home" name="attraction"><option value="algemeen">Wisik algemeen</option><option value="pabo-rekenklaar">Pabo Rekenklaar</option><option value="vo">VO-veld</option><option value="hbo">HBO-werkplaats</option><option value="rafelrand">Rafelrand</option><option value="backstage">Backstage</option></select></div>
+            <div class="field full"><label for="message-home">Mijn notitie</label><textarea id="message-home" name="message" maxlength="2000" required placeholder="Schrijf wat je merkte, waar het gebeurde en wat volgens jou beter kan."></textarea><small>Maximaal 2.000 tekens.</small></div>
+            <div class="field full"><label for="email-home">E-mailadres voor een reactie <span class="muted">(optioneel)</span></label><input id="email-home" name="email" type="email" maxlength="180" autocomplete="email"><small>Alleen invullen wanneer je antwoord wilt ontvangen.</small></div>
+            <label class="field full" style="display:flex;grid-template-columns:auto 1fr;align-items:start"><input name="quotePermission" type="checkbox" value="yes" style="width:auto;margin-top:5px"><span>Mijn reactie mag later geanonimiseerd op Wisik worden aangehaald.</span></label>
+            <div class="honeypot" aria-hidden="true"><label>Bedrijf<input name="company" tabindex="-1" autocomplete="off"></label></div>
+            <div class="field full turnstile-mount" aria-label="Spamcontrole"></div>
+          </div>
+          <div class="form-note">Deel geen namen van leerlingen, studentnummers of andere gevoelige persoonsgegevens. Je bericht wordt niet automatisch openbaar.</div>
+          <button class="btn coral" type="submit">Leg op het Kladblok</button>
+          <div class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><a class="brand" href="/" style="color:white"><span class="brand-mark" aria-hidden="true">√</span><span class="brand-copy"><strong>WISIK</strong><small style="color:rgba(255,255,255,.68)">Wiskunde om te beleven</small></span></a><p class="footer-small">Initiatief en inhoudelijke regie: Edwin van der Plas · siteversie <span data-site-version>0.1.0</span></p></div>
+    <div><nav class="footer-nav" aria-label="Voetnavigatie"><a href="/vo/">VO</a><a href="/pabo/">PABO</a><a href="/hbo/">HBO</a><a href="/rafelrand/">Rafelrand</a><a href="/backstage/">Backstage</a><a href="/kladblok/">Kladblok</a></nav><p class="footer-small">© <span data-current-year>2026</span> Wisik / Edwin van der Plas</p></div>
+  </div>
+</footer>
+
+<div class="dialog-backdrop" id="routeDialogBackdrop" aria-hidden="true">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="route-dialog-title">
+    <div class="dialog-head"><div><span class="kicker">Routehulp</span><h2 id="route-dialog-title" style="font-size:2rem;margin-top:10px">Welk polsbandje past bij jou?</h2></div><button class="dialog-close" type="button" data-close-route-dialog aria-label="Venster sluiten">×</button></div>
+    <div class="route-options">
+      <a class="route-option" href="/vo/"><span class="route-icon">VO</span><span><strong>Ik zit in het voortgezet onderwijs</strong><br><small class="muted">Onderbouw, vmbo, havo of vwo</small></span><span>→</span></a>
+      <a class="route-option" href="/pabo/"><span class="route-icon">PA</span><span><strong>Ik zit op of ga naar de PABO</strong><br><small class="muted">Rekenvaardigheid en RWT-voorbereiding</small></span><span>→</span></a>
+      <a class="route-option" href="/hbo/"><span class="route-icon">HBO</span><span><strong>Ik volg een andere hbo-opleiding</strong><br><small class="muted">Opleidingsgerichte wiskunde</small></span><span>→</span></a>
+      <a class="route-option" href="#vandaag-open"><span class="route-icon">∞</span><span><strong>Ik wil gewoon rondkijken</strong><br><small class="muted">Bekijk alles wat open of in aanbouw is</small></span><span>→</span></a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
