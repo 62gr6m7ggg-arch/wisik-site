@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.8
+# Wisik.nl — versie 0.1.9
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -19,7 +19,7 @@ De repository bevat onder meer:
 - mobiele navigatie en een gewone lijstweergave naast de terreinplattegrond;
 - een verplichte deterministische vrijgavecontrole bij iedere wijziging.
 
-Backstage toont de actuele vrijgavestatus direct in de pagina-intro. De terreinplattegrond en de Backstage-knop op de homepage springen rechtstreeks naar het volledige openbare bewijs; op smalle schermen blijven de zes technische detailcontroles compact uitklapbaar.
+Backstage toont de actuele vrijgavestatus direct in de pagina-intro. De terreinplattegrond en de Backstage-knop op de homepage springen rechtstreeks naar het volledige openbare bewijs; op smalle schermen blijven de zes technische detailcontroles compact uitklapbaar. Het HAN-portret is bereikbaar via één fotokaart met een speciaal afgestemde mobiele uitsnede; er staat geen tweede videoknop naast.
 
 ## Lokaal bekijken
 
@@ -45,7 +45,7 @@ De controle test onder meer:
 - automatische Kladblokcontext vanuit Pabo Rekenklaar;
 - zichtbare desktop- en mobiele terreinuitgangen;
 - lokale opslag bij vertrek en mobiele paginawissels;
-- de Backstage-roadiekaart, missietekst, HAN-link, toegankelijkheid en privacyvriendelijke videokeuze;
+- exact één Backstage-roadiekaart met de lokale festivalfoto, missietekst, HAN-link, mobiele uitsnede, toegankelijkheid en privacyvriendelijke videokeuze;
 - afwezigheid van overbodige Kladblok-API-code en betaalde e-mailafhankelijkheden;
 - 17.000 gegenereerde Pabo-vraaginstanties in 170 generatorcombinaties;
 - herhaalde deterministische antwoordcontrole en nul terugvalvragen;

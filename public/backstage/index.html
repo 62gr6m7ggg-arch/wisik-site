@@ -7,8 +7,8 @@
   <link rel="icon" href="/assets/img/wisik-mark.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script src="/assets/js/site-data.js?v=0.1.8" defer></script>
-  <script src="/assets/js/site.js?v=0.1.8" defer></script>
+  <script src="/assets/js/site-data.js?v=0.1.9" defer></script>
+  <script src="/assets/js/site.js?v=0.1.9" defer></script>
   <meta name="description" content="Ontmoet de roadie achter Wisik en lees over de missie, didactiek, kwaliteit, versies en privacy.">
   <title>Backstage — Wisik</title>
   <style>
@@ -133,7 +133,7 @@
     }
 
     .roadie-copy,
-    .roadie-video-card {
+    .roadie-video {
       position: relative;
       z-index: 1;
     }
@@ -193,18 +193,16 @@
       font-size: .9rem;
     }
 
-    .roadie-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 11px 14px;
-      margin-top: 24px;
+    .roadie-video {
+      display: grid;
+      gap: 16px;
     }
 
     .roadie-link-note {
       margin: 0;
       color: rgba(255, 255, 255, .65);
       font-size: .78rem;
+      line-height: 1.5;
     }
 
     .roadie-video-card {
@@ -218,10 +216,13 @@
       border: 4px solid rgba(255, 255, 255, .92);
       border-radius: 28px 22px 30px 24px;
       color: white;
-      background:
-        radial-gradient(circle at 24% 18%, rgba(255, 213, 99, .34), transparent 12rem),
-        radial-gradient(circle at 83% 24%, rgba(239, 111, 93, .4), transparent 13rem),
-        linear-gradient(155deg, #18374a 0%, #0b2434 54%, #291f46 100%);
+      background-color: #0b2434;
+      background-image:
+        linear-gradient(180deg, rgba(5, 22, 34, .08) 0%, rgba(5, 22, 34, .12) 36%, rgba(5, 22, 34, .72) 68%, rgba(5, 22, 34, .96) 100%),
+        url("/assets/img/roadie-edwin-d3745f13.jpeg");
+      background-position: center, 50% 10%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%, cover;
       box-shadow: 13px 16px 0 rgba(5, 22, 34, .34);
       text-decoration: none;
       transform: rotate(1.1deg);
@@ -231,29 +232,6 @@
     .roadie-video-card:hover {
       transform: rotate(.2deg) translateY(-5px);
       box-shadow: 16px 21px 0 rgba(5, 22, 34, .3);
-    }
-
-    .roadie-video-card::before,
-    .roadie-video-card::after {
-      content: "";
-      position: absolute;
-      pointer-events: none;
-    }
-
-    .roadie-video-card::before {
-      width: 210px;
-      height: 210px;
-      right: -82px;
-      top: -82px;
-      border: 31px solid rgba(255, 255, 255, .08);
-      border-radius: 50%;
-    }
-
-    .roadie-video-card::after {
-      left: 20px;
-      right: 20px;
-      bottom: 82px;
-      border-top: 2px dashed rgba(255, 255, 255, .28);
     }
 
     .roadie-video-top,
@@ -289,7 +267,7 @@
       height: 64px;
       border: 2px solid rgba(255, 255, 255, .55);
       border-radius: 18px;
-      background: rgba(255, 255, 255, .09);
+      background: rgba(5, 22, 34, .78);
       color: var(--yellow);
       font-weight: 900;
       line-height: 1;
@@ -329,13 +307,15 @@
       font-size: clamp(1.75rem, 4vw, 2.55rem);
       line-height: 1;
       letter-spacing: -.04em;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, .82);
     }
 
     .roadie-video-bottom p {
       max-width: 390px;
       margin: 10px 0 0;
-      color: rgba(255, 255, 255, .76);
+      color: rgba(255, 255, 255, .94);
       font-size: .9rem;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, .82);
     }
 
     .roadie-video-meta {
@@ -343,7 +323,7 @@
       margin-top: 22px;
       padding: 6px 9px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, .12);
+      background: rgba(5, 22, 34, .78);
       color: white;
       font-size: .76rem;
       font-weight: 900;
@@ -599,10 +579,13 @@
       .roadie-stage {
         grid-template-columns: 1fr;
       }
-      .roadie-video-card {
+      .roadie-video {
         width: min(100%, 620px);
-        min-height: 390px;
         justify-self: center;
+      }
+      .roadie-video-card {
+        width: 100%;
+        min-height: 390px;
       }
     }
 
@@ -622,6 +605,10 @@
         min-height: 350px;
         padding: 20px;
         border-width: 3px;
+        background-image:
+          linear-gradient(180deg, rgba(5, 22, 34, .1) 0%, rgba(5, 22, 34, .22) 36%, rgba(5, 22, 34, .86) 62%, rgba(5, 22, 34, .98) 100%),
+          url("/assets/img/roadie-edwin-d3745f13.jpeg");
+        background-position: center, 50% 6%;
         box-shadow: 8px 10px 0 rgba(5, 22, 34, .3);
         transform: none;
       }
@@ -633,9 +620,6 @@
         width: 78px;
         height: 78px;
         font-size: 1.65rem;
-      }
-      .roadie-actions .btn {
-        width: 100%;
       }
       .backstage-hero-actions .btn {
         width: 100%;
@@ -753,25 +737,24 @@
           <p>Niet door wiskunde kleiner of eenvoudiger voor te stellen dan zij is. Wel door haar in beweging te brengen. Door verwondering op te roepen, ruimte te geven om te proberen, fouten niet meteen af te rekenen en goed ontworpen leerervaringen te maken die uitnodigen om nog één stap verder te gaan.</p>
           <p>Wisik is daarom geen verzameling losse rekentools. Het is een festivalterrein voor wiskundig leren: met attracties die al open zijn, bouwplaatsen waar nieuwe ideeën ontstaan en een Rafelrand waar geëxperimenteerd mag worden.</p>
           <p class="roadie-credit"><strong>Edwin van der Plas</strong><br>Initiatiefnemer en roadie achter Wisik · docent wiskunde in opleiding aan de HAN</p>
-          <div class="roadie-actions">
-            <a class="btn coral" href="https://youtu.be/JygCTgAxcsk" target="_blank" rel="noopener noreferrer" aria-label="Bekijk het HAN-portret over Edwin van der Plas op YouTube">▶ Bekijk het verhaal achter Wisik</a>
-            <p class="roadie-link-note" id="han-video-note">Opent YouTube in een nieuw tabblad. Wisik laadt hier geen externe videospeler.</p>
-          </div>
         </div>
 
-        <a class="roadie-video-card" href="https://youtu.be/JygCTgAxcsk" target="_blank" rel="noopener noreferrer" aria-describedby="han-video-note" aria-label="Bekijk het HAN-portret: ontmoet de roadie achter Wisik">
-          <span class="roadie-video-top">
-            <span class="roadie-video-badge">HAN-portret</span>
-            <span class="roadie-pass" aria-hidden="true">W<br>√</span>
-          </span>
-          <span class="roadie-play" aria-hidden="true">▶</span>
-          <span class="roadie-video-bottom">
-            <span class="roadie-video-eyebrow">Bekijk het verhaal achter Wisik</span>
-            <strong>Ontmoet de roadie</strong>
-            <p>Over de keuze voor het onderwijs en de missie om wiskunde leuk te maken.</p>
-            <span class="roadie-video-meta">YouTube ↗</span>
-          </span>
-        </a>
+        <div class="roadie-video">
+          <a class="roadie-video-card" href="https://youtu.be/JygCTgAxcsk" target="_blank" rel="noopener noreferrer" aria-describedby="han-video-note" aria-label="Bekijk het HAN-portret: ontmoet de roadie achter Wisik">
+            <span class="roadie-video-top">
+              <span class="roadie-video-badge">HAN-portret</span>
+              <span class="roadie-pass" aria-hidden="true">W<br>√</span>
+            </span>
+            <span class="roadie-play" aria-hidden="true">▶</span>
+            <span class="roadie-video-bottom">
+              <span class="roadie-video-eyebrow">Bekijk het verhaal achter Wisik</span>
+              <strong>Ontmoet de roadie</strong>
+              <p>Over de keuze voor het onderwijs en de missie om wiskunde leuk te maken.</p>
+              <span class="roadie-video-meta">YouTube ↗</span>
+            </span>
+          </a>
+          <p class="roadie-link-note" id="han-video-note">De kaart opent YouTube in een nieuw tabblad. Wisik laadt hier geen externe videospeler.</p>
+        </div>
       </div>
       <p class="roadie-accountability"><strong>De persoonlijke motivatie is het vertrekpunt.</strong> Didactische kwaliteit, toegankelijkheid, privacy en gebruikerservaring worden hieronder afzonderlijk verantwoord.</p>
     </section>
@@ -825,7 +808,7 @@
     <div class="footer-inner">
       <div>
         <a class="brand" href="/" style="color:white"><span class="brand-mark" aria-hidden="true">√</span><span class="brand-copy"><strong>WISIK</strong><small style="color:rgba(255,255,255,.68)">Wiskunde om te beleven</small></span></a>
-        <p class="footer-small">Initiatief en inhoudelijke regie: Edwin van der Plas · siteversie <span data-site-version>0.1.8</span></p>
+        <p class="footer-small">Initiatief en inhoudelijke regie: Edwin van der Plas · siteversie <span data-site-version>0.1.9</span></p>
       </div>
       <div>
         <nav class="footer-nav" aria-label="Voetnavigatie"><a href="/vo/">VO</a><a href="/pabo/">PABO</a><a href="/hbo/">HBO</a><a href="/rafelrand/">Rafelrand</a><a href="/backstage/">Backstage</a><a href="/kladblok/">Kladblok</a></nav>

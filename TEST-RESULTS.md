@@ -1,4 +1,4 @@
-# Testresultaten Wisik 0.1.8
+# Testresultaten Wisik 0.1.9
 
 ## Zichtbaarheid Backstage-vrijgavecontrole
 
@@ -49,9 +49,11 @@ Automatisch gecontroleerd:
 - de missie **Mijn missie is wiskunde leuk maken** staat prominent in Backstage;
 - de moodboardzin **Wiskunde hoeft niet stil te zitten** is opgenomen;
 - Edwin van der Plas wordt benoemd als initiatiefnemer en roadie achter Wisik;
-- het HAN-portret is via een duidelijke knop en festivalachtige videokaart bereikbaar;
-- beide videolinks verwijzen exact naar `https://youtu.be/JygCTgAxcsk`;
-- externe links openen veilig in een nieuw tabblad en hebben toegankelijke namen;
+- het HAN-portret is uitsluitend via de grote festivalachtige videokaart bereikbaar;
+- de eerdere losse, dubbele videoknop is verwijderd en exact één videolink verwijst naar `https://youtu.be/JygCTgAxcsk`;
+- de aangeleverde festivalfoto staat als lokale kaartachtergrond ingesteld, met aparte desktop- en mobiele uitsneden;
+- de fotokaart gebruikt een donkere ondergradient en tekstschaduw voor leesbare tekst;
+- de externe videolink opent veilig in een nieuw tabblad en heeft een toegankelijke naam;
 - Wisik laadt geen YouTube-iframe, autoplaycode of externe thumbnail voordat de bezoeker zelf klikt;
 - de videokeuze en het openen van YouTube worden zichtbaar toegelicht;
 - tablet-, smalscherm- en verminderde-bewegingsinstellingen zijn aanwezig;
