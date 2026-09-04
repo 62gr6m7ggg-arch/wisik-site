@@ -1,4 +1,4 @@
-# Testresultaten Wisik 0.1.0
+# Testresultaten Wisik 0.1.4
 
 ## Statische kwaliteitscontrole
 
@@ -9,6 +9,7 @@ Geslaagd:
 - geen dubbele statische id's;
 - interne paden bestaan;
 - JavaScript-syntaxis geldig;
+- Wisik-versies in code en formulier zijn consistent;
 - Pabo Rekenklaar 1.5.9 opgenomen;
 - `genBConversions` exact één keer gedeclareerd;
 - afgekeurde RWT 3.1-verwijzing afwezig;
@@ -16,17 +17,23 @@ Geslaagd:
 
 ## Kladblokfunctie
 
-Met gemockte Cloudflare-responsen geslaagd:
+Automatisch gecontroleerd:
 
-- geldige inzending;
-- Turnstile-gate;
-- e-mailpayload inclusief optionele Reply-To;
-- afwijzing van te korte notities;
-- neutrale honeypot-afhandeling.
+- directe HTTPS-formulierpost naar `kladblok@wisik.nl` via FormSubmit;
+- POST-methode en vaste bedankroute;
+- alle velden hebben een bruikbare naam;
+- berichtlengte minimaal 10 en maximaal 2.000 tekens;
+- optioneel e-mailadres gebruikt browservalidatie;
+- honeypot aanwezig;
+- FormSubmit-spamcontrole niet uitgeschakeld;
+- externe verwerking en bewaartermijn zichtbaar;
+- Content-Security-Policy staat alleen de noodzakelijke externe formulierpost toe;
+- geen afhankelijkheid van betaalde Cloudflare Email Sending;
+- geen overbodige Pages Functions of Turnstile-code.
 
 ## Responsieve browsertest
 
-12 gerichte controles geslaagd:
+De bestaande 12 gerichte interfacecontroles blijven van toepassing:
 
 - homepage opgebouwd;
 - Pabo-zone zichtbaar;
@@ -37,8 +44,8 @@ Met gemockte Cloudflare-responsen geslaagd:
 - geen horizontale overflow bij 390 pixels;
 - geen onverwachte consolefouten.
 
-De test is uitgevoerd met Chromium via Playwright op een desktopviewport van 1440 × 1000 en een mobiele viewport van 390 × 844. Zie `tests/Wisik_v0.1_browsertest.json`.
+Zie `tests/Wisik_v0.1_browsertest.json`.
 
-## Nog niet end-to-end getest
+## Eenmalige productiestap
 
-De daadwerkelijke aflevering via Cloudflare Email Service kan pas worden getest nadat het domein, de Turnstile-widget, het geverifieerde ontvangstadres en de Cloudflare-secrets zijn ingesteld.
+FormSubmit vereist bij het eerste gebruik bevestiging van het ontvangstadres. De eerste echte testinzending kan daarom een activatiemail opleveren. Na bevestiging worden de bewaarde eerste inzending en volgende inzendingen per e-mail bezorgd.

@@ -1,36 +1,28 @@
-# Wisik.nl — siteprototype 0.1.0
+# Wisik.nl — versie 0.1.4
 
-Dit pakket bevat een eerste werkende, responsieve koepelsite voor Wisik:
+Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
-- festival-/pretparkachtige homepage;
+De repository bevat onder meer:
+
+- de festivalachtige homepage en terreinplattegrond;
 - zichtbare onderwijsroutes VO, PABO en HBO;
 - ontwikkelstatus via MainStage, bouwplaats en Rafelrand;
-- centrale attractieregistratie in `public/assets/js/site-data.js`;
+- een centraal attractieregister in `public/assets/js/site-data.js`;
 - Pabo Rekenklaar 1.5.9 onder `public/apps/pabo-rekenklaar/`;
 - afzonderlijke routepagina's;
-- Backstage-pagina voor kwaliteit en verantwoording;
-- Wisik-Kladblok met een Cloudflare Pages Function voor e-mailverzending;
+- Backstage voor kwaliteit en verantwoording;
+- het Wisik-Kladblok als gratis HTML-formulier via FormSubmit;
+- Cloudflare Email Routing voor `kladblok@wisik.nl`;
 - mobiele navigatie en een gewone lijstweergave naast de terreinplattegrond;
-- automatische kwaliteitscontrole.
+- automatische kwaliteitscontrole bij iedere wijziging.
 
 ## Lokaal bekijken
-
-De statische pagina's zijn direct te serveren:
 
 ```bash
 python -m http.server 8000 --directory public
 ```
 
 Open daarna `http://localhost:8000`.
-
-Voor de Cloudflare Functions:
-
-```bash
-npm install
-npm run preview
-```
-
-Het Kladblok verzendt pas nadat de vereiste Cloudflare-variabelen en secrets zijn ingesteld.
 
 ## Kwaliteitscontrole
 
@@ -40,13 +32,14 @@ npm run check
 
 De controle test onder meer:
 
-- HTML-basisstructuur;
+- HTML-basisstructuur en interne links;
 - dubbele id's;
-- interne links;
 - JavaScript-syntaxis;
-- aanwezigheid van Pabo Rekenklaar 1.5.9;
+- Kladblokvelden, honeypot, succesroute en Content-Security-Policy;
+- afwezigheid van overbodige Kladblok-API-code en betaalde e-mailafhankelijkheden;
+- Pabo Rekenklaar 1.5.9;
 - exact één declaratie van `genBConversions`;
 - afwezigheid van de afgekeurde RWT 3.1-bron;
 - aanwezigheid van de officiële RWT 2.2-verwijzing.
 
-Zie `DEPLOYMENT.md` voor publicatie op Cloudflare Pages.
+Zie `DEPLOYMENT.md` voor de publicatie- en beheerroute.
