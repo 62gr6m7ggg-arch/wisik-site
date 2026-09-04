@@ -19,10 +19,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          response=$(curl --silent --show-error --fail-with-body \
+          status=$(curl --silent --show-error \
+            --output /tmp/formsubmit-response.txt \
+            --write-out '%{http_code}' \
             --request POST \
             --header 'Content-Type: application/json' \
             --header 'Accept: application/json' \
-            --data '{"_subject":"Activeer het Wisik-Kladblok","_template":"table","_captcha":"false","Categorie":"Technische activatie","Bericht":"Eenmalige technische activatie van het Wisik-Kladblok. Na bevestiging worden toekomstige notities vanuit wisik.nl per e-mail bezorgd."}' \
+            --header 'Origin: https://wisik.nl' \
+            --header 'Referer: https://wisik.nl/kladblok/' \
+            --header 'X-Requested-With: XMLHttpRequest' \
+            --header 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/18.0 Safari/605.1.15' \
+            --data '{"_subject":"Activeer het Wisik-Kladblok","_template":"table","_captcha":"false","_url":"https://wisik.nl/kladblok/","Categorie":"Technische activatie","Bericht":"Eenmalige technische activatie van het Wisik-Kladblok. Na bevestiging worden toekomstige notities vanuit wisik.nl per e-mail bezorgd."}' \
             'https://formsubmit.co/ajax/kladblok@wisik.nl')
-          echo "$response"
+          echo "HTTP-status: $status"
+          cat /tmp/formsubmit-response.txt
+          case "$status" in
+            2*) ;;
+            *) exit 1 ;;
+          esac
