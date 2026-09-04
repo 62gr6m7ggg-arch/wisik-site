@@ -49,7 +49,7 @@ jobs:
           grep -q 'name="_honey"' /tmp/kladblok.html
           grep -q 'name="_next" value="https://wisik.nl/kladblok/?verzonden=1"' /tmp/kladblok.html
           grep -q 'name="Siteversie" value="0.1.4"' /tmp/kladblok.html
-          if grep -Eqi 'name=["'"']_captcha["'"'][^>]*value=["'"']false["'"']' /tmp/kladblok.html; then
+          if grep -q 'name="_captcha" value="false"' /tmp/kladblok.html; then
             echo 'FormSubmit-spamcontrole is uitgeschakeld'
             exit 1
           fi
