@@ -107,31 +107,51 @@
   }
 
   function setupFeedbackForms() {
-    const forms = [...document.querySelectorAll(".feedback-form")];
+    const forms = [...document.querySelectorAll(".wisik-direct-feedback-form")];
     if (!forms.length) return;
 
     const currentUrl = new URL(window.location.href);
-    if (currentUrl.searchParams.get("verzonden") === "1") {
-      forms.forEach((form) => {
-        const status = form.querySelector(".form-status");
+    const delivered = currentUrl.searchParams.get("verzonden") === "1";
+
+    forms.forEach((form) => {
+      const submit = form.querySelector("button[type='submit']");
+      const status = form.querySelector(".form-status");
+
+      // Herstel altijd een eventueel door een oudere, gecachte scriptversie uitgeschakelde knop.
+      if (submit) submit.disabled = false;
+
+      if (delivered && status) {
+        status.className = "form-status good";
+        status.textContent = "Dank! Je notitie is bij Wisik aangekomen.";
+      } else if (status) {
+        status.className = "form-status";
+        status.textContent = "";
+      }
+
+      form.addEventListener("submit", () => {
         if (status) {
-          status.className = "form-status good";
-          status.textContent = "Dank! Je notitie is bij Wisik aangekomen.";
+          status.className = "form-status";
+          status.textContent = "Je notitie wordt beveiligd verzonden…";
         }
       });
+    });
+
+    if (delivered) {
       currentUrl.searchParams.delete("verzonden");
       const query = currentUrl.searchParams.toString();
       history.replaceState(null, "", `${currentUrl.pathname}${query ? `?${query}` : ""}${currentUrl.hash}`);
     }
 
-    forms.forEach((form) => {
-      form.addEventListener("submit", () => {
+    // iOS kan een pagina vanuit de terug-navigatiecache herstellen. Laat de knop dan bruikbaar.
+    window.addEventListener("pageshow", (event) => {
+      if (!event.persisted) return;
+      forms.forEach((form) => {
         const submit = form.querySelector("button[type='submit']");
         const status = form.querySelector(".form-status");
-        if (submit) submit.disabled = true;
-        if (status) {
+        if (submit) submit.disabled = false;
+        if (status?.textContent.includes("beveiligd verzonden")) {
           status.className = "form-status";
-          status.textContent = "Je notitie wordt beveiligd verzonden…";
+          status.textContent = "";
         }
       });
     });
