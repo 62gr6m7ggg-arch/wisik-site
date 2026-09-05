@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "auditVersion": "1.0.0",
-  "siteVersion": "0.1.10",
+  "auditVersion": "1.1.0",
+  "siteVersion": "0.1.11",
   "tool": "Pabo Rekenklaar",
-  "toolVersion": "1.6.0",
-  "generatedAt": "2026-09-05T05:54:52.979Z",
+  "toolVersion": "1.6.1",
+  "generatedAt": "2026-09-05T09:56:19.327Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -23,14 +23,16 @@
     "unambiguousDiagnosticMatches": 8863,
     "ambiguousDiagnosticsSuppressed": 2,
     "chartInstances": 600,
-    "exactReadableChartInstances": 500
+    "exactReadableChartInstances": 500,
+    "sprintQuestionChecks": 2250,
+    "sprintFallbackQuestions": 0
   },
   "gates": [
     {
       "id": "source-integrity",
       "label": "Bron en declaraties",
       "passed": true,
-      "evidence": "0 bronproblemen; 0 dubbele functies"
+      "evidence": "0 bronproblemen; 0 dubbele functies; 2250 veilige sprintvragen; Moshpit-ingang veilig begrensd"
     },
     {
       "id": "generated-variants",
@@ -67,7 +69,7 @@
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
     "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "a9a490b5745889402e06187331fee3cb6a76b0a427d22fe3282bdcd8f05152b5"
+    "sha256": "43540797074a30fedcfcf7a4af74ace9f7460709a0ac73fcaaf45c26a4551028"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",

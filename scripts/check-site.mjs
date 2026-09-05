@@ -46,12 +46,15 @@ for (const file of htmlFiles) {
   if (hasClassToken(html, "site-header") && coreScriptRefs.length !== 2) {
     fail(`${rel(file)} mist één of beide gedeelde sitescripts`);
   }
-  const cacheVersionedScriptRefs = [...html.matchAll(/\ssrc=["'](\/assets\/js\/(?:site-data|site|kladblok-context)\.js(?:\?[^"']*)?)["']/g)];
+  const cacheVersionedScriptRefs = [...html.matchAll(/\ssrc=["'](\/assets\/js\/[A-Za-z0-9._-]+\.js(?:\?[^"']*)?)["']/g)];
   for (const [, source] of cacheVersionedScriptRefs) {
     const script = source.split("?")[0].split("/").pop();
     if (source !== `/assets/js/${script}?v=${siteVersion}`) {
       fail(`${rel(file)} gebruikt ${script} zonder actuele cacheversie ${siteVersion}`);
     }
+  }
+  if (hasClassToken(html, "site-header") && !html.includes(`href="/assets/css/styles.css?v=${siteVersion}"`)) {
+    fail(`${rel(file)} gebruikt de gedeelde vormgeving niet met cacheversie ${siteVersion}`);
   }
 
   if (hasClassToken(html, "feedback-form")) fail(`${rel(file)} bevat nog het oude Kladblokformulier`);
@@ -117,10 +120,12 @@ if (!siteData.includes('id: "pabo-rekenklaar"')) fail("Pabo Rekenklaar ontbreekt
 if (!new RegExp(`id:\\s*["']pabo-rekenklaar["'][\\s\\S]*?version:\\s*["']${paboVersion.replaceAll(".", "\\.")}["']`).test(siteData)) fail(`Attractieregister vermeldt Pabo Rekenklaar ${paboVersion} niet`);
 
 const productPage = fs.readFileSync(path.join(publicDir, "pabo/pabo-rekenklaar/index.html"), "utf8");
-if (!productPage.includes(`<strong>Versie</strong><span>${paboVersion}</span>`)) fail(`Pabo-productpagina vermeldt versie ${paboVersion} niet`);
+if (!new RegExp(`<strong>Versie</strong>\\s*<span>${paboVersion.replaceAll(".", "\\.")}</span>`).test(productPage)) fail(`Pabo-productpagina vermeldt versie ${paboVersion} niet`);
 if (!productPage.includes('terugkeren naar het Wisik-terrein')) fail("Pabo-productpagina beschrijft de nieuwe terugweg niet");
 const homepage = fs.readFileSync(path.join(publicDir, "index.html"), "utf8");
 if (!homepage.includes(`RWT-voorbereiding · versie ${paboVersion}.`)) fail(`Homepage vermeldt Pabo Rekenklaar ${paboVersion} niet`);
+const moshpitPage = fs.readFileSync(path.join(publicDir, "moshpit/index.html"), "utf8");
+if (!moshpitPage.includes(`Pabo Rekenklaar ${paboVersion}`)) fail(`Moshpit vermeldt Pabo Rekenklaar ${paboVersion} niet`);
 const homepageKladblok = visibleMarkup(homepage).match(/<section\b[^>]*id=["']kladblok["'][\s\S]*?<\/section>/i)?.[0] || "";
 if (!homepageKladblok.includes('data-kladblok-entry') || !homepageKladblok.includes('href="/kladblok/">Open het Kladblok')) {
   fail("Homepage mist de centrale doorgang naar het Wisik-Kladblok");
@@ -170,6 +175,7 @@ if (fs.existsSync(path.join(root, "functions/api/config.js")) || fs.existsSync(p
 const globalHeaders = headerBlock(headers, "/*");
 const javascriptHeaders = headerBlock(headers, "/assets/js/*");
 const dataHeaders = headerBlock(headers, "/assets/data/*");
+const cssHeaders = headerBlock(headers, "/assets/css/*");
 const backstageHeaders = headerBlock(headers, "/backstage/*");
 const broadAssetHeaders = headerBlock(headers, "/assets/*");
 if (!/form-action\s+'self'\s+https:\/\/formsubmit\.co/.test(globalHeaders)) {
@@ -180,6 +186,9 @@ if (!/Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(javascriptHead
 }
 if (!/Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(dataHeaders)) {
   fail("Het openbare vrijgavebewijs kan nog langdurig worden gecachet");
+}
+if (!/Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(cssHeaders)) {
+  fail("De gedeelde CSS kan nog langdurig in mobiele browsers worden gecachet");
 }
 if (!/Cache-Control:\s*no-cache, no-store, max-age=0, must-revalidate/.test(backstageHeaders)) {
   fail("De Backstage-HTML heeft geen expliciete cachebestendige route");
@@ -205,4 +214,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, versiegebonden scripts, één centraal Kladblok, interne links, JavaScript-syntaxis, Pabo-terreinuitgang en Pabo-releasecontrole.`);
+console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, versiegebonden scripts en CSS, één centraal Kladblok, interne links, JavaScript-syntaxis, Pabo-terreinuitgang en Pabo-releasecontrole.`);

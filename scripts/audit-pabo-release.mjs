@@ -127,6 +127,39 @@ const visualAudit = runInAuditContext(context, `(() => {
 })()`);
 const sourceIssues = runInAuditContext(context, "PaboRekenklaarQA.sourceIntegrityIssues()");
 const duplicateDeclarations = runInAuditContext(context, "PaboRekenklaarQA.duplicateTopLevelFunctionNames()");
+const entryContract = runInAuditContext(context, `({
+  moshpit: PaboRekenklaarQA.resolveWisikEntry(new URLSearchParams("ingang=moshpit&modus=sprint")),
+  incomplete: PaboRekenklaarQA.resolveWisikEntry(new URLSearchParams("ingang=moshpit")),
+  unknown: PaboRekenklaarQA.resolveWisikEntry(new URLSearchParams("ingang=anders&modus=sprint"))
+})`);
+const sprintDeadlineContract = runInAuditContext(context, `({
+  before: PaboRekenklaarQA.sprintDeadlineExpired({kind:"sprint",endsAt:1000},999),
+  at: PaboRekenklaarQA.sprintDeadlineExpired({kind:"sprint",endsAt:1000},1000),
+  after: PaboRekenklaarQA.sprintDeadlineExpired({kind:"sprint",endsAt:1000},1001),
+  ordinaryPractice: PaboRekenklaarQA.sprintDeadlineExpired({kind:"practice",endsAt:1000},1001)
+})`);
+const sprintQuestionAudit = runInAuditContext(context, `(() => {
+  const result = { checks: 0, fallbacks: 0, failures: [] };
+  const originalRandom = Math.random;
+  Math.random = seededRandom(5092026);
+  try {
+    for (const domain of ["A", "B", "C"]) {
+      for (const level of [1, 2, 3]) {
+        for (let index = 0; index < 250; index++) {
+          const question = PaboRekenklaarQA.generateSprintQuestion(domain, level);
+          result.checks++;
+          if (question.generatedByFallback) result.fallbacks++;
+          if (!PaboRekenklaarQA.isSprintQuestion(question) && result.failures.length < 25) {
+            result.failures.push({ domain, level, type: question.type, mode: question.mode, visual: Boolean(question.visual) });
+          }
+        }
+      }
+    }
+  } finally {
+    Math.random = originalRandom;
+  }
+  return result;
+})()`);
 const toolVersion = String(context.PaboRekenklaarQA.version || "");
 
 const answerContract = /issues\.push\(\.\.\.validateQualityRule\(q\)\)/.test(script)
@@ -136,14 +169,27 @@ const ambiguityContract = /meerkeuzeopties zijn niet uniek/.test(script)
 const graphContract = /exact af te lezen waarde ligt niet op een rasterlijn/.test(script)
   && /rasterlijnen liggen op mobiel te dicht bij elkaar/.test(script);
 const diagnosticSafetyContract = /if\(classification\.kind!=="pattern"\)return classification/.test(script);
+const moshpitSafetyContract = entryContract.moshpit === "moshpit-sprint"
+  && entryContract.incomplete === null
+  && entryContract.unknown === null
+  && /if\(activeSession\.kind==="sprint"\)\{domain=pick\(\["A","B","C"\]\);mode="head"\}/.test(script)
+  && /const countsAsLearningEvidence=s\.kind!=="sprint"/.test(script)
+  && /countMistakes:countsAsLearningEvidence/.test(script)
+  && sprintDeadlineContract.before === false
+  && sprintDeadlineContract.at === true
+  && sprintDeadlineContract.after === true
+  && sprintDeadlineContract.ordinaryPractice === false
+  && /if\(s\.kind==="sprint"&&expireSprintIfNeeded\(\)\)return;const q=s\.current/.test(script)
+  && sprintQuestionAudit.checks === 2250
+  && sprintQuestionAudit.failures.length === 0;
 const deterministicReplay = JSON.stringify(quality) === JSON.stringify(replay);
 
 const gates = [
   {
     id: "source-integrity",
     label: "Bron en declaraties",
-    passed: sourceIssues.length === 0 && duplicateDeclarations.length === 0,
-    evidence: `${sourceIssues.length} bronproblemen; ${duplicateDeclarations.length} dubbele functies`,
+    passed: sourceIssues.length === 0 && duplicateDeclarations.length === 0 && moshpitSafetyContract,
+    evidence: `${sourceIssues.length} bronproblemen; ${duplicateDeclarations.length} dubbele functies; ${sprintQuestionAudit.checks} veilige sprintvragen; Moshpit-ingang ${moshpitSafetyContract ? "veilig begrensd" : "onveilig"}`,
   },
   {
     id: "generated-variants",
@@ -182,7 +228,7 @@ const gates = [
 const passed = gates.every((gate) => gate.passed);
 const report = {
   schemaVersion: 1,
-  auditVersion: "1.0.0",
+  auditVersion: "1.1.0",
   siteVersion: packageJson.version,
   tool: "Pabo Rekenklaar",
   toolVersion,
@@ -206,6 +252,8 @@ const report = {
     ambiguousDiagnosticsSuppressed: naturalClassification.ambiguousSuppressed,
     chartInstances: visualAudit.charts,
     exactReadableChartInstances: visualAudit.exactReadableCharts,
+    sprintQuestionChecks: sprintQuestionAudit.checks,
+    sprintFallbackQuestions: sprintQuestionAudit.fallbacks,
   },
   gates,
   failures: [
@@ -214,6 +262,7 @@ const report = {
     ...diagnostic.failures.slice(0, 25).map((failure) => ({ area: "diagnostiek", issue: failure })),
     ...naturalClassification.failures.slice(0, 25).map((failure) => ({ area: "natuurlijke-diagnostiek", issue: failure })),
     ...visualAudit.failures.slice(0, 25).map((failure) => ({ area: "grafiek", issue: failure })),
+    ...sprintQuestionAudit.failures.slice(0, 25).map((failure) => ({ area: "moshpit", issue: failure })),
   ],
   scope: "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   source: {

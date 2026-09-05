@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#163f58">
+  <meta name="description" content="De Wisik-Grabbelton wordt voorbereid op korte uitlegfilmpjes over hardnekkige rekenmisconcepten.">
+  <title>Grabbelton — Wisik</title>
+  <link rel="icon" href="/assets/img/wisik-mark.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=0.1.11">
+  <script src="/assets/js/site-data.js?v=0.1.11" defer></script>
+  <script src="/assets/js/site.js?v=0.1.11" defer></script>
+  <script src="/assets/js/grabbelton-core.js?v=0.1.11" defer></script>
+  <script src="/assets/js/grabbelton.js?v=0.1.11" defer></script>
+</head>
+<body data-route="terrein">
+<a class="skip-link" href="#main">Ga naar de inhoud</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Wisik startpagina"><span class="brand-mark" aria-hidden="true">√</span><span class="brand-copy"><strong>WISIK</strong><small>Wiskunde om te beleven</small></span></a>
+    <nav class="desktop-nav" aria-label="Hoofdnavigatie"><a href="/#terrein" data-nav-route="terrein">Terrein</a><a href="/vo/" data-nav-route="vo">VO</a><a href="/pabo/" data-nav-route="pabo">PABO</a><a href="/hbo/" data-nav-route="hbo">HBO</a><a href="/rafelrand/" data-nav-route="rafelrand">Rafelrand</a><a href="/backstage/" data-nav-route="backstage">Backstage</a><a href="/kladblok/" data-nav-route="kladblok">Kladblok</a></nav>
+    <button class="btn coral small header-cta" type="button" data-open-route-dialog>Vind mijn plek</button>
+    <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Menu openen">☰</button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobiele navigatie"><a href="/#terrein">Terrein</a><a href="/vo/">VO</a><a href="/pabo/">PABO</a><a href="/hbo/">HBO</a><a href="/rafelrand/">Rafelrand</a><a href="/backstage/">Backstage</a><a href="/kladblok/">Kladblok</a><button class="btn coral" type="button" data-open-route-dialog>Vind mijn plek</button></nav>
+
+<main id="main">
+  <section class="venue-hero" aria-labelledby="grabbelton-title">
+    <div class="venue-hero-inner">
+      <div>
+        <nav class="breadcrumbs" aria-label="Kruimelpad"><a href="/">Wisik</a><span>›</span><span>Grabbelton</span></nav>
+        <span class="kicker" style="margin-top:18px">Zijpodium · in voorbereiding</span>
+        <h1 id="grabbelton-title">Grabbelton</h1>
+        <p class="lead">Straks trek je hier een kort uitlegfilmpje dat bij je polsbandje past. Verrassend gekozen, maar niet inhoudelijk willekeurig.</p>
+      </div>
+      <aside class="venue-ticket" aria-label="Productiestatus van de Grabbelton">
+        <span class="kicker">Productiestatus</span>
+        <h2>Een filmpje per misconcept</h2>
+        <dl class="venue-facts">
+          <div class="venue-fact"><dt>Nu open</dt><dd><span id="grabbeltonPublishedCount">0</span> filmpjes</dd></div>
+          <div class="venue-fact"><dt>Serieplan</dt><dd><span id="grabbeltonTargetCount">30</span> of meer</dd></div>
+          <div class="venue-fact"><dt>Eerste route</dt><dd>PABO</dd></div>
+          <div class="venue-fact"><dt>Bron</dt><dd>30 bestaande misconceptcodes</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="grabbelton-stage-title">
+    <div class="section-head"><div><span class="kicker">De ton</span><h2 id="grabbelton-stage-title">Kies je polsbandje</h2><p class="lead">Een polsbandje filtert het aanbod. Alleen bij herhaalde aanwijzingen in Pabo Rekenklaar kan een passend misconcept voorrang krijgen; dat blijft een voorzichtige aanbeveling, geen diagnose.</p></div></div>
+    <div class="grabbelton-dashboard">
+      <aside class="grabbelton-controls" aria-label="Grabbelton instellen">
+        <h2 style="font-size:1.55rem">Jouw route</h2>
+        <div class="grabbelton-bands" role="group" aria-label="Kies een polsbandje">
+          <button class="grabbelton-band active" type="button" data-grabbelton-band="ALL" aria-pressed="true">Vrij</button>
+          <button class="grabbelton-band" type="button" data-grabbelton-band="PABO" aria-pressed="false">PABO</button>
+          <button class="grabbelton-band" type="button" data-grabbelton-band="VO" aria-pressed="false">VO</button>
+          <button class="grabbelton-band" type="button" data-grabbelton-band="HBO" aria-pressed="false">HBO</button>
+        </div>
+        <div class="grabbelton-stats">
+          <div class="grabbelton-stat"><strong id="grabbeltonAvailableCount">0</strong><span>passend en gepubliceerd</span></div>
+          <div class="grabbelton-stat"><strong>1</strong><span>filmpje per trekking</span></div>
+        </div>
+        <p class="grabbelton-status" id="grabbeltonStatus" aria-live="polite">De catalogus wordt geladen…</p>
+        <button class="btn coral" id="grabbeltonDrawButton" type="button" disabled hidden>Grijp een filmpje</button>
+      </aside>
+
+      <article class="grabbelton-result" id="grabbeltonResult" aria-live="polite">
+        <h2>De Grabbelton wordt gevuld</h2>
+        <p>Er staan nu nog geen filmpjes klaar. Straks vind je hier korte uitleg: één filmpje per hardnekkig denkpatroon.</p>
+        <div class="button-row"><a class="btn primary" href="/moshpit/">Oefen in de Moshpit</a><a class="btn ghost" href="/pabo/pabo-rekenklaar/">Bekijk Pabo Rekenklaar</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section compact" aria-labelledby="video-rules-title">
+    <div class="content-card">
+      <span class="kicker">Publicatieregels</span>
+      <h2 id="video-rules-title" style="font-size:2rem;margin:14px 0">Pas grijpbaar als het compleet is</h2>
+      <p>Een filmpje verschijnt pas wanneer beeld, Nederlandse ondertiteling, transcript en koppeling aan een bestaande misconceptcode aanwezig zijn. Bekeken betekent niet automatisch begrepen of hersteld; daarvoor blijven oefenvragen nodig.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="footer-inner"><div><a class="brand" href="/" style="color:white"><span class="brand-mark" aria-hidden="true">√</span><span class="brand-copy"><strong>WISIK</strong><small style="color:rgba(255,255,255,.68)">Wiskunde om te beleven</small></span></a><p class="footer-small">Initiatief en inhoudelijke regie: Edwin van der Plas · siteversie <span data-site-version>0.1.11</span></p></div><div><nav class="footer-nav" aria-label="Voetnavigatie"><a href="/">Terrein</a><a href="/pabo/">PABO</a><a href="/moshpit/">Moshpit</a><a href="/backstage/">Backstage</a><a href="/kladblok/">Kladblok</a></nav><p class="footer-small">© <span data-current-year>2026</span> Wisik / Edwin van der Plas</p></div></div></footer>
+
+<div class="dialog-backdrop" id="routeDialogBackdrop" aria-hidden="true"><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="route-dialog-title"><div class="dialog-head"><div><span class="kicker">Routehulp</span><h2 id="route-dialog-title" style="font-size:2rem;margin-top:10px">Welk polsbandje past bij jou?</h2></div><button class="dialog-close" type="button" data-close-route-dialog aria-label="Venster sluiten">×</button></div><div class="route-options"><a class="route-option" href="/vo/"><span class="route-icon">VO</span><span><strong>Ik zit in het voortgezet onderwijs</strong><br><small class="muted">Onderbouw, vmbo, havo of vwo</small></span><span>→</span></a><a class="route-option" href="/pabo/"><span class="route-icon">PA</span><span><strong>Ik zit op of ga naar de PABO</strong><br><small class="muted">Rekenvaardigheid en RWT-voorbereiding</small></span><span>→</span></a><a class="route-option" href="/hbo/"><span class="route-icon">HBO</span><span><strong>Ik volg een andere hbo-opleiding</strong><br><small class="muted">Opleidingsgerichte wiskunde</small></span><span>→</span></a><a class="route-option" href="/#vandaag-open"><span class="route-icon">∞</span><span><strong>Ik wil gewoon rondkijken</strong><br><small class="muted">Bekijk alles wat open of in aanbouw is</small></span><span>→</span></a></div></div></div>
+</body>
+</html>

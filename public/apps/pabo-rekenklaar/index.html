@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123b5d">
-<title>Pabo Rekenklaar 1.6.0 – rubricgestuurd oefenen met diagnostische foutpatronen</title>
+<title>Pabo Rekenklaar 1.6.1 – rubricgestuurd oefenen met diagnostische foutpatronen</title>
 <style>
 :root{
   --navy:#123b5d;
@@ -516,7 +516,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
     <section id="view-home" class="view active" aria-labelledby="homeTitle">
       <div class="hero">
         <div class="hero-copy">
-          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.6.0</span></button></div>
+          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.6.1</span></button></div>
           <h1 id="homeTitle"><span id="heroGreeting">Klaar om rekenen weer vanzelfsprekend te maken?</span></h1>
           <p>Leer per onderdeel, oefen adaptief en bouw de officiële toetsopzet na. De uitleg start rond havo 3 en groeit door naar het overwegend 3F-niveau van de toets.</p>
           <div class="button-row">
@@ -713,7 +713,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 
 <script>
 "use strict";
-const APP_VERSION = "1.6.0";
+const APP_VERSION = "1.6.1";
 const STORAGE_KEY = "pabo-rekenklaar-state-v1";
 const WISIK_TERRAIN_URL = "https://wisik.nl/";
 const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
@@ -723,6 +723,8 @@ const URL_FLAGS = new URLSearchParams(window.location.search);
 const ADMIN_MODE = URL_FLAGS.get("beheer")==="1" || URL_FLAGS.get("diagnostiek")==="1";
 const RELEASE_CHECK_MODE = URL_FLAGS.get("releasecheck")==="1";
 const DIAGNOSTIC_DIRECT_MODE = URL_FLAGS.get("diagnostiek")==="1";
+function resolveWisikEntry(flags=URL_FLAGS){return flags.get("ingang")==="moshpit"&&flags.get("modus")==="sprint"?"moshpit-sprint":null}
+const WISIK_ENTRY_MODE = resolveWisikEntry();
 const RWT_SOURCE = Object.freeze({
   title:"Handreiking Landelijke reken- en wiskundetoets voor de pabo (RWT)",
   version:"2.2",
@@ -766,6 +768,12 @@ const MISCONCEPTION_CATALOG = Object.freeze({
 const DIAGNOSTIC_DEFAULT_STATE = Object.freeze({schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0});
 
 const RELEASE_NOTES = [
+  {version:"1.6.1",date:"5 september 2026",title:"Veilige Moshpit-ingang",items:[
+    "De nieuwe Moshpit-ingang zet de bestaande 60-seconden-sprint klaar zonder een tweede vragenbank te maken.",
+    "De klok start pas na een bewuste klik in Pabo Rekenklaar en gebruikt verstreken tijd, ook wanneer een mobiel tabblad tijdelijk op de achtergrond raakt.",
+    "De sprint gebruikt uitsluitend hoofdrekenvragen uit de domeinen hele getallen, verhoudingen en meten.",
+    "Antwoorden onder tijdsdruk tellen niet mee als beheersingsbewijs, dagdoel, foutenpatroon of diagnostische aanwijzing."
+  ]},
   {version:"1.6.0",date:"4 september 2026",title:"Herkenbare uitgang naar het Wisik-terrein",items:[
     "De sticky bovenbalk bevat voortaan permanent een duidelijke knop terug naar het Wisik-terrein.",
     "Het Wisik-logo linksboven werkt eveneens als terugweg naar de koepelsite.",
@@ -1093,6 +1101,7 @@ let calcDragState = null;
 let examTimerHandle = null;
 let sprintTimerHandle = null;
 let audioContext = null;
+let modalReturnFocus = null;
 
 function deepClone(obj){return JSON.parse(JSON.stringify(obj));}
 function loadState(){
@@ -2166,18 +2175,26 @@ function generateQuestion(domain,mode="mix",difficulty=3,topicHint=null,options=
   const effectiveLevel=nearestSupportedLevel(supportedLevels(topicCandidates),requestedLevel);
   let candidates=topicCandidates.filter(g=>(g.levels||[1,2,3,4,5]).includes(effectiveLevel));
   if(!candidates.length)candidates=topicCandidates;
-  const avoid=new Set(options.avoidFamilies||[]);let lastIssues=[],closest=null;
+  const avoid=new Set(options.avoidFamilies||[]),questionFilter=typeof options.questionFilter==="function"?options.questionFilter:null;let lastIssues=[],closest=null;
   for(let attempt=0;attempt<100;attempt++){
     const generator=pick(candidates),q=finalizeGeneratedQuestion(generator.fn(effectiveLevel,actualMode),{domain,mode:actualMode,requestedLevel,effectiveLevel,generator});
     lastIssues=validateGeneratedQuestion(q);
-    if(!lastIssues.length&&q.difficulty===effectiveLevel){
+    if(!lastIssues.length&&q.difficulty===effectiveLevel&&(!questionFilter||questionFilter(q))){
       if(avoid.has(q.family)&&attempt<35)continue;
       q.generationAttempts=attempt+1;q.levelAdjusted=effectiveLevel!==requestedLevel;return q;
     }
     if(!lastIssues.length&&(!closest||Math.abs(q.difficulty-effectiveLevel)<Math.abs(closest.difficulty-effectiveLevel)))closest=q;
   }
   console.error("Rubricgenerator leverde na 100 pogingen geen exact passende vraag",{domain,actualMode,topicHint,requestedLevel,effectiveLevel,lastIssues,closest:closest?.difficulty});
-  return makeRubricFallback(domain,actualMode,effectiveLevel,topicHint);
+  const fallback=makeRubricFallback(domain,actualMode,effectiveLevel,topicHint);if(!questionFilter||questionFilter(fallback))return fallback;
+  const safeFallback=makeRubricFallback(domain,"head",2,null);if(!questionFilter||questionFilter(safeFallback))return safeFallback;
+  throw new Error("Geen vraag beschikbaar die aan het sessiecontract voldoet.");
+}
+
+function isSprintQuestion(q){return Boolean(q&&["A","B","C"].includes(q.domain)&&q.mode==="head"&&["number","mc"].includes(q.type)&&!q.visual&&!q.calculatorAllowed)}
+function generateSprintQuestion(domain,difficulty=2,options={}){
+  const safeDomain=["A","B","C"].includes(domain)?domain:pick(["A","B","C"]);
+  return generateQuestion(safeDomain,"head",clamp(Math.round(difficulty),1,3),null,{avoidFamilies:options.avoidFamilies||[],questionFilter:isSprintQuestion});
 }
 
 /* ---------- Centrale diagnostische foutpatroon-engine ---------- */
@@ -2570,12 +2587,23 @@ function topicLabel(topic){
   };return labels[topic]||topic;
 }
 function openModal(title,html){
+  const backdrop=document.getElementById("modalBackdrop");
+  if(!backdrop.classList.contains("show")&&document.activeElement?.focus)modalReturnFocus=document.activeElement;
   document.getElementById("modalTitle").textContent=title;
   document.getElementById("modalBody").innerHTML=html;
-  document.getElementById("modalBackdrop").classList.add("show");
-  document.getElementById("modalClose").focus();
+  backdrop.classList.add("show");
+  requestAnimationFrame(()=>{const preferred=document.querySelector("#modalBody [data-modal-autofocus]");(preferred||document.getElementById("modalClose")).focus()});
 }
-function closeModal(){const backdrop=document.getElementById("modalBackdrop");backdrop.classList.remove("show","visual-mode")}
+function closeModal(){const backdrop=document.getElementById("modalBackdrop"),returnFocus=modalReturnFocus;backdrop.classList.remove("show","visual-mode");modalReturnFocus=null;if(returnFocus?.isConnected)requestAnimationFrame(()=>returnFocus.focus())}
+function keepModalFocus(event){
+  const backdrop=document.getElementById("modalBackdrop");if(event.key!=="Tab"||!backdrop.classList.contains("show"))return false;
+  const modal=backdrop.querySelector(".modal"),focusable=[...modal.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(el=>el.getClientRects().length);
+  if(!focusable.length){event.preventDefault();document.getElementById("modalClose").focus();return true}
+  const first=focusable[0],last=focusable.at(-1),active=document.activeElement;
+  if(event.shiftKey&&(active===first||!modal.contains(active))){event.preventDefault();last.focus();return true}
+  if(!event.shiftKey&&(active===last||!modal.contains(active))){event.preventDefault();first.focus();return true}
+  return false;
+}
 function openCurrentVisual(){
   const q=activeSession?.current;if(!q?.visual){showToast("Bij deze vraag is geen afbeelding beschikbaar.","warn");return}
   const kind=q.visualMeta?.kind==="line"?"lijngrafiek":q.visualMeta?.kind==="bar"?"staafdiagram":"afbeelding";
@@ -2586,6 +2614,9 @@ function openCurrentVisual(){
 function openReleaseNotes(){
   const html=RELEASE_NOTES.map(r=>`<section style="margin-bottom:22px"><div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap"><h3 style="margin:0">Versie ${escapeHtml(r.version)} — ${escapeHtml(r.title)}</h3><small style="color:var(--muted)">${escapeHtml(r.date)}</small></div><ul>${r.items.map(item=>`<li>${escapeHtml(item)}</li>`).join("")}</ul></section>`).join("");
   openModal(`Pabo Rekenklaar • versie ${APP_VERSION}`,html);
+}
+function openMoshpitEntrance(){
+  openModal("Moshpit • 60-seconden-sprint",`<div class="lesson-body"><span class="eyebrow" style="background:var(--amber-soft);color:var(--navy)">Klaarzetten</span><h3 style="font-size:1.55rem;margin:14px 0 8px">Eerst juist, dan vlot</h3><p>Je krijgt zestig seconden hoofdrekenen met bestaande opgaven uit Pabo Rekenklaar. Gebruik deze sprint om een aanpak die je al begrijpt te automatiseren.</p><div class="tip"><strong>Geen beoordeling.</strong> Je score blijft zichtbaar als sprintresultaat, maar telt niet mee als bewijs van beheersing of als diagnostische aanwijzing.</div><div class="button-row" style="margin-top:20px"><button class="btn primary" data-action="startMoshpit" data-modal-autofocus>Start de 60 seconden</button><a class="btn ghost" href="https://wisik.nl/moshpit/">Terug naar de Moshpit</a></div></div>`);
 }
 function openLesson(id){
   const domain=id[0],lesson=LESSONS[domain].find(l=>l.id===id);if(!lesson)return;
@@ -2631,7 +2662,7 @@ function awardXP(points,reason=""){
   if(newLevel>oldLevel){showToast(`Niveau ${newLevel}: ${levelTitle(newLevel)}!`,"good");launchConfetti(34);playTone("level")}
   if(reason)console.debug(`+${points} XP: ${reason}`);
 }
-function recordAnswer(q,correct,{countDaily=true,countStats=true,response=null,sessionKind="practice",usedHint=false}={}){
+function recordAnswer(q,correct,{countDaily=true,countStats=true,countMistakes=true,response=null,sessionKind="practice",usedHint=false}={}){
   if(countStats){
     const m=state.mastery[q.domain];m.attempts++;if(correct)m.correct++;
     m.rating=clamp((m.rating||2)+(correct?.08:-.07)*(q.difficulty||3),1,5);
@@ -2639,11 +2670,13 @@ function recordAnswer(q,correct,{countDaily=true,countStats=true,response=null,s
     state.totalAnswered++;if(correct)state.totalCorrect++;
   }
   if(correct&&countDaily){touchActivity();state.dailyCorrect++;}
-  const same=m=>m.domain===q.domain&&m.topic===q.topic;
-  if(!correct){
-    const existing=state.mistakes.find(same);if(existing){existing.difficulty=q.difficulty;existing.date=new Date().toISOString();existing.correctSince=0}else state.mistakes.unshift({domain:q.domain,topic:q.topic,difficulty:q.difficulty,date:new Date().toISOString(),correctSince:0});state.mistakes=state.mistakes.slice(0,80);
-  }else{
-    const idx=state.mistakes.findIndex(same);if(idx>=0){state.mistakes[idx].correctSince=(state.mistakes[idx].correctSince||0)+1;if(state.mistakes[idx].correctSince>=2)state.mistakes.splice(idx,1)}
+  if(countMistakes){
+    const same=m=>m.domain===q.domain&&m.topic===q.topic;
+    if(!correct){
+      const existing=state.mistakes.find(same);if(existing){existing.difficulty=q.difficulty;existing.date=new Date().toISOString();existing.correctSince=0}else state.mistakes.unshift({domain:q.domain,topic:q.topic,difficulty:q.difficulty,date:new Date().toISOString(),correctSince:0});state.mistakes=state.mistakes.slice(0,80);
+    }else{
+      const idx=state.mistakes.findIndex(same);if(idx>=0){state.mistakes[idx].correctSince=(state.mistakes[idx].correctSince||0)+1;if(state.mistakes[idx].correctSince>=2)state.mistakes.splice(idx,1)}
+    }
   }
   const diagnosticResult=recordDiagnosticOutcome(q,response,correct,{sessionKind,usedHint});
   saveState();checkBadges();return diagnosticResult;
@@ -2690,9 +2723,16 @@ function startDailyChallenge(){
 }
 function startSprint(){
   stopTimers();
-  activeSession={kind:"sprint",label:"60-seconden-sprint",total:null,index:0,correct:0,combo:0,ability:2.4,domain:"mix",mode:"head",results:[],current:null,answered:false,usedHint:false,doubleXp:false,comboShield:false,finished:false,secondsRemaining:60};
+  activeSession={kind:"sprint",label:"60-seconden-sprint",total:null,index:0,correct:0,combo:0,ability:2.4,domain:"mix",mode:"head",results:[],current:null,answered:false,usedHint:false,doubleXp:false,comboShield:false,finished:false,xpEarned:0,secondsRemaining:60,endsAt:Date.now()+60000};
   showView("practice",true);document.getElementById("practiceSetup").style.display="none";document.getElementById("playArea").style.display="block";nextPracticeQuestion();
-  sprintTimerHandle=setInterval(()=>{if(!activeSession||activeSession.kind!=="sprint")return;activeSession.secondsRemaining--;updateSessionTimer();if(activeSession.secondsRemaining<=0){clearInterval(sprintTimerHandle);sprintTimerHandle=null;finishPracticeSession()}},1000);
+  sprintTimerHandle=setInterval(expireSprintIfNeeded,250);
+}
+function sprintDeadlineExpired(session,now=Date.now()){return session?.kind==="sprint"&&Number.isFinite(session.endsAt)&&now>=session.endsAt}
+function expireSprintIfNeeded(){
+  const s=activeSession;if(!s||s.kind!=="sprint"||s.finished)return false;
+  s.secondsRemaining=Math.max(0,Math.ceil((s.endsAt-Date.now())/1000));updateSessionTimer();
+  if(!sprintDeadlineExpired(s))return false;
+  finishPracticeSession(s.containerId);return true;
 }
 function startMistakeDeck(){
   if(!state.mistakes.length){showToast("Er staan nog geen fouten klaar om opnieuw te oefenen.","warn");return}
@@ -2722,15 +2762,17 @@ function startExam(full=true){
 }
 function nextPracticeQuestion(containerId="playArea"){
   if(!activeSession||activeSession.finished)return;
+  if(activeSession.kind==="sprint"&&expireSprintIfNeeded())return;
   if(activeSession.kind!=="sprint"&&activeSession.index>=activeSession.total){finishPracticeSession(containerId);return}
   let q,domain=activeSession.domain,mode=activeSession.mode,topic=activeSession.topic;
   if(activeSession.kind==="repair"){const step=activeSession.plan[activeSession.index]||{kind:"natural"},avoid=[...(activeSession.repairSignatures||[]),...(diagnosticEntry(activeSession.diagnosticCode).correctSignatures||[])];q=step.kind==="probe"?generateDiagnosticProbe(activeSession.diagnosticCode,step.variant,mode):generateNaturalRecoveryQuestion(activeSession.diagnosticCode,mode,avoid);const signature=diagnosticQuestionSignature(q,activeSession.diagnosticCode);activeSession.repairSignatures=[...(activeSession.repairSignatures||[]),signature].slice(-8)}
   else{
     const probe=takeDueDiagnosticProbe(activeSession);if(probe)q=probe;
     else{
+      if(activeSession.kind==="sprint"){domain=pick(["A","B","C"]);mode="head"}
       if(activeSession.kind==="daily"||activeSession.kind==="diagnostic"){domain=activeSession.plan[activeSession.index];mode=domain==="D"?"non":"mix"}
       if(activeSession.kind==="mistakes"){const p=activeSession.plan[activeSession.index];domain=p.domain;topic=p.topic;activeSession.ability=p.difficulty||3;mode=domain==="D"?"non":"mix"}
-      for(let tries=0;tries<12;tries++){q=generateQuestion(domain,mode,activeSession.ability,topic,{avoidFamilies:activeSession.recentFamilies||[]});if(activeSession.kind!=="sprint"||(q.type!=="order"&&q.type!=="text"&&!q.visual))break}
+      q=activeSession.kind==="sprint"?generateSprintQuestion(domain,activeSession.ability,{avoidFamilies:activeSession.recentFamilies||[]}):generateQuestion(domain,mode,activeSession.ability,topic,{avoidFamilies:activeSession.recentFamilies||[]});
     }
   }
   activeSession.current=q;activeSession.recentFamilies=[...(activeSession.recentFamilies||[]),q.family].filter(Boolean).slice(-2);activeSession.answered=false;activeSession.usedHint=false;prepareCalculatorForQuestion(q);renderSessionQuestion(containerId);
@@ -2758,7 +2800,7 @@ function renderSessionQuestion(containerId="playArea"){
   const s=activeSession,q=s.current;s.containerId=containerId;document.body.classList.add("session-active");
   const totalText=s.kind==="sprint"?`${s.index+1}`:`${s.index+1} / ${s.total}`;
   const progress=s.kind==="sprint"?(s.secondsRemaining/60*100):(s.index/s.total*100);
-  const noHint=s.kind==="diagnostic";
+  const noHint=s.kind==="diagnostic"||s.kind==="sprint";
   const html=`<div class="play-shell">
     <div class="play-top"><button class="icon-btn" data-action="quitSession" aria-label="Sessie stoppen">←</button><div class="progress"><span style="width:${clamp(progress,0,100)}%"></span></div><strong>${totalText}</strong></div>
     <div class="play-meta">
@@ -2770,7 +2812,7 @@ function renderSessionQuestion(containerId="playArea"){
     </div>
     <article class="question-card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px"><span class="eyebrow" style="background:var(--sky);color:var(--navy)">${escapeHtml(s.label)}</span>${calculatorAvailableInContext(q)?`<span class="calc-permission-badge"><span class="calc-permission-icon" aria-hidden="true">▦</span>Rekenmachine beschikbaar</span>`:""}</div>
-      <h3 class="question-title" id="questionPrompt">${q.prompt}</h3>
+      <h3 class="question-title" id="questionPrompt" tabindex="-1">${q.prompt}</h3>
       ${visualMarkup(q)}
       <div id="answerMount">${answerMarkup(q)}</div>
       <div class="hint-box" id="hintBox"><strong>Hint</strong><br>${escapeHtml(q.hint||"Maak de opgave stap voor stap kleiner.")}</div>
@@ -2787,7 +2829,7 @@ function renderSessionQuestion(containerId="playArea"){
     </article>
   </div>`;
   document.getElementById(containerId).innerHTML=html;
-  setTimeout(()=>document.getElementById("answerInput")?.focus(),60);
+  setTimeout(()=>{const root=document.getElementById(containerId),target=root?.querySelector("#answerInput, .option-btn, .order-controls button")||root?.querySelector("#questionPrompt");target?.focus()},60);
 }
 function updateSessionTimer(){
   const el=document.getElementById("sessionTimer");if(el&&activeSession){el.textContent=`00:${String(Math.max(0,activeSession.secondsRemaining)).padStart(2,"0")}`;if(activeSession.secondsRemaining<=10)el.classList.add("urgent")}
@@ -2843,12 +2885,13 @@ function markAnswerUI(q,response,correct){
   closeCalculator({reset:false});
 }
 function submitPracticeAnswer(){
-  const s=activeSession;if(!s||s.answered||s.finished)return;const q=s.current,response=getResponse(q);
+  const s=activeSession;if(!s||s.answered||s.finished)return;if(s.kind==="sprint"&&expireSprintIfNeeded())return;const q=s.current,response=getResponse(q);
   if(responseIsEmpty(q,response)){showToast("Vul of kies eerst een antwoord.","warn");return}
   const correct=checkResponse(q,response);closeCalculator({reset:false});s.answered=true;s.results.push({question:q,response,correct});s.index++;if(correct){s.correct++;s.combo++;const growth=(.16+.03*q.difficulty)*(s.usedHint?.4:1);s.ability=clamp(s.ability+growth,1,5)}else{s.ability=clamp(s.ability-.24,1,5);if(s.comboShield){s.comboShield=false;showToast("Je combo-schild ving de fout op.","good")}else{s.combo=0}}
   state.bestCombo=Math.max(state.bestCombo,s.combo);
-  const diagnosticResult=recordAnswer(q,correct,{countDaily:true,countStats:true,response,sessionKind:s.kind,usedHint:s.usedHint});
-  if(correct){let xp=8+q.difficulty*2+Math.min(8,s.combo);if(s.usedHint)xp=Math.max(4,Math.round(xp*.55));if(s.doubleXp){xp*=2;s.doubleXp=false;showToast("Dubbele XP toegepast!","good")}awardXP(xp,"Goed antwoord");playTone("good");if(s.combo>0&&s.combo%5===0)triggerChest(s)}else playTone("bad");
+  const countsAsLearningEvidence=s.kind!=="sprint";
+  const diagnosticResult=recordAnswer(q,correct,{countDaily:countsAsLearningEvidence,countStats:countsAsLearningEvidence,countMistakes:countsAsLearningEvidence,response,sessionKind:s.kind,usedHint:s.usedHint});
+  if(correct){let xp=8+q.difficulty*2+Math.min(8,s.combo);if(s.usedHint)xp=Math.max(4,Math.round(xp*.55));if(s.doubleXp){xp*=2;s.doubleXp=false;showToast("Dubbele XP toegepast!","good")}if(s.kind==="sprint")s.xpEarned=(s.xpEarned||0)+xp;awardXP(xp,"Goed antwoord");playTone("good");if(s.kind!=="sprint"&&s.combo>0&&s.combo%5===0)triggerChest(s)}else playTone("bad");
   if(s.kind==="sprint"){markAnswerUI(q,response,correct);setTimeout(()=>{if(activeSession&&activeSession.kind==="sprint"&&!activeSession.finished)nextPracticeQuestion(s.containerId)},correct?240:430);return}
   markAnswerUI(q,response,correct);
   const fullAnswer=answerWithUnit(q),fb=document.getElementById("feedbackBox");fb.className=`feedback show ${correct?"good":"bad"}`;fb.innerHTML=`<h4>${correct?"✓ Goed gezien!":"Nog niet — dit is de denkstap"}</h4><p>${correct?`Het antwoord is <strong>${escapeHtml(fullAnswer)}</strong>.`:`Jouw antwoord: <strong>${escapeHtml(displayResponse(q,response))}</strong>. Het juiste antwoord is <strong>${escapeHtml(fullAnswer)}</strong>.`}</p><div class="steps">${q.explanation}</div>${diagnosticFeedbackMarkup(diagnosticResult,q)}${rubricFeedbackMarkup(q)}`;
@@ -2883,7 +2926,7 @@ function finishPracticeSession(containerId=null){
   let verdict=pct>=85?"Sterke beheersing":pct>=70?"Goede basis":pct>=55?"In opbouw":"Eerst begrip versterken";
   if(s.kind==="sprint")verdict=correct>=15?"Bliksemsnel":correct>=10?"Mooi tempo":correct>=6?"Basis op gang":"Nog automatiseren";
   const heading=s.kind==="diagnostic"?"Jouw startprofiel":s.kind==="sprint"?"Sprint voorbij!":"Reeks afgerond";
-  document.getElementById(containerId).innerHTML=`<div class="play-shell"><div class="result-hero"><span class="eyebrow" style="background:var(--paper);color:var(--navy)">${escapeHtml(type)}</span><h2>${heading}</h2><div class="result-score">${s.kind==="sprint"?correct:pct}${s.kind==="sprint"?`<small> goed in 60 sec</small>`:`<small>%</small>`}</div><p>${verdict}. ${correct} van ${total} vragen goed.</p><div class="result-grid"><div class="result-mini"><strong>${correct}</strong><span>goed</span></div><div class="result-mini"><strong>${total-correct}</strong><span>nog leren</span></div><div class="result-mini"><strong>${state.bestCombo}</strong><span>beste combo</span></div><div class="result-mini"><strong>+${Math.max(0,correct*2)}</strong><span>sessie-XP indicatie</span></div></div></div>
+  document.getElementById(containerId).innerHTML=`<div class="play-shell"><div class="result-hero"><span class="eyebrow" style="background:var(--paper);color:var(--navy)">${escapeHtml(type)}</span><h2>${heading}</h2><div class="result-score">${s.kind==="sprint"?correct:pct}${s.kind==="sprint"?`<small> goed in 60 sec</small>`:`<small>%</small>`}</div><p>${verdict}. ${correct} van ${total} vragen goed.</p><div class="result-grid"><div class="result-mini"><strong>${correct}</strong><span>goed</span></div><div class="result-mini"><strong>${total-correct}</strong><span>nog leren</span></div><div class="result-mini"><strong>${state.bestCombo}</strong><span>beste combo</span></div><div class="result-mini"><strong>+${s.kind==="sprint"?Math.max(0,s.xpEarned||0):Math.max(0,correct*2)}</strong><span>${s.kind==="sprint"?"verdiende sprint-XP":"sessie-XP indicatie"}</span></div></div></div>
     ${domainRows?`<div class="card" style="margin-top:16px"><h3 style="margin-top:0">Domeinen in deze reeks</h3><div class="bar-list">${domainRows}</div></div>`:""}
     <div class="card" style="margin-top:16px"><h3 style="margin-top:0">Volgende beste stap</h3><p>${weakInSession?`Pak nu vijf vragen uit <strong>${escapeHtml(DOMAIN_META[weakInSession.d].name)}</strong>. Juist direct na feedback is je brein gevoelig voor de correcte aanpak.`:"Start een nieuwe korte reeks en probeer één antwoord meer goed te krijgen."}</p><div class="button-row"><button class="btn primary" data-result-action="again">Nog 5 vragen</button>${weakInSession?`<button class="btn secondary" data-result-action="weak" data-domain="${weakInSession.d}">Oefen zwakste domein</button>`:""}<button class="btn ghost" data-nav="home">Naar start</button></div></div></div>`;
   renderHome();
@@ -3183,6 +3226,7 @@ function bindEvents(){
       const a=actionEl.dataset.action;
       if(a==="continue")continueLearning();
       if(a==="startSprint")startSprint();
+      if(a==="startMoshpit"){closeModal();startSprint()}
       if(a==="dailyChallenge")startDailyChallenge();
       if(a==="showReleaseNotes")openReleaseNotes();
       if(a==="openDiagnosticRegister")openDiagnosticRegister();
@@ -3233,6 +3277,7 @@ function bindEvents(){
     const cnt=e.target.closest("#practiceCount button");if(cnt){practiceConfig.count=Number(cnt.dataset.value);renderPracticeSetup();return}
   });
   document.addEventListener("keydown",e=>{
+    if(keepModalFocus(e))return;
     if((e.key==="Enter"||e.key===" ")&&e.target.matches("article[role='button']")){e.preventDefault();e.target.click();return}
     if(e.key==="Escape"){closeModal();closeAuxiliary();return}
     if(e.key==="Enter"&&e.target.id==="answerInput"){
@@ -3343,13 +3388,13 @@ function runQualityAudit({samplesPerCombination=100,seed=12062026}={}){
   return {version:APP_VERSION,passed:failures.length===0,counts,failures};
 }
 
-window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,wisikTerrainUrl:WISIK_TERRAIN_URL,wisikContextKey:WISIK_CONTEXT_KEY,diagnosticSchemaVersion:DIAGNOSTIC_SCHEMA_VERSION,RWT_SOURCE,sourceIntegrityIssues,duplicateTopLevelFunctionNames,runQualityAudit,runDiagnosticAudit,validateGeneratedQuestion,parseNumeric,checkResponse,applyCalculatorPolicy,calculatorAllowedForQuestion,calculatorAvailableInContext,calcEvaluateExpression,calculatorUseIsCurrentlyAllowed,assessQuestionDifficulty,rubricLevelFromDemand,RUBRIC_VARIANTS,RUBRIC_LEVEL_META,MISCONCEPTION_CATALOG,generateQuestion,generateDiagnosticProbe,generateNaturalRecoveryQuestion,classifyIncorrectResponse,diagnosticTestResponseFor,normalizeDiagnosticsState});
+window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,wisikTerrainUrl:WISIK_TERRAIN_URL,wisikContextKey:WISIK_CONTEXT_KEY,diagnosticSchemaVersion:DIAGNOSTIC_SCHEMA_VERSION,RWT_SOURCE,sourceIntegrityIssues,duplicateTopLevelFunctionNames,runQualityAudit,runDiagnosticAudit,validateGeneratedQuestion,parseNumeric,checkResponse,applyCalculatorPolicy,calculatorAllowedForQuestion,calculatorAvailableInContext,calcEvaluateExpression,calculatorUseIsCurrentlyAllowed,assessQuestionDifficulty,rubricLevelFromDemand,RUBRIC_VARIANTS,RUBRIC_LEVEL_META,MISCONCEPTION_CATALOG,generateQuestion,generateSprintQuestion,isSprintQuestion,generateDiagnosticProbe,generateNaturalRecoveryQuestion,classifyIncorrectResponse,diagnosticTestResponseFor,normalizeDiagnosticsState,resolveWisikEntry,sprintDeadlineExpired});
 
 function init(){
   if(state.dailyDate!==todayKey()){state.dailyDate=todayKey();state.dailyCorrect=0}
   saveState();rememberWisikContext();
   applySettings();bindEvents();renderHome();renderLearn();renderPracticeSetup();renderStats();updateTopStats();
-  if(DIAGNOSTIC_DIRECT_MODE)setTimeout(openDiagnosticRegister,120);else if(RELEASE_CHECK_MODE)setTimeout(runVisibleReleaseCheck,120);else if(!state.profile.name)setTimeout(()=>openSettings(true),450);
+  if(DIAGNOSTIC_DIRECT_MODE)setTimeout(openDiagnosticRegister,120);else if(RELEASE_CHECK_MODE)setTimeout(runVisibleReleaseCheck,120);else if(WISIK_ENTRY_MODE==="moshpit-sprint")setTimeout(openMoshpitEntrance,120);else if(!state.profile.name)setTimeout(()=>openSettings(true),450);
 }
 
 document.addEventListener("DOMContentLoaded",init);

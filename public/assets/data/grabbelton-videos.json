@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": null,
+  "series": {
+    "title": "Misconcepten in beeld",
+    "targetMinimum": 30,
+    "canonicalToolId": "pabo-rekenklaar",
+    "canonicalMisconceptionSource": "PaboRekenklaarQA.MISCONCEPTION_CATALOG"
+  },
+  "videos": []
+}

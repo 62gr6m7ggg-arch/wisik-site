@@ -1,4 +1,4 @@
-# Testresultaten Wisik 0.1.10
+# Testresultaten Wisik 0.1.11
 
 ## Zichtbaarheid Backstage-vrijgavecontrole
 
@@ -31,7 +31,7 @@ Geslaagd:
 
 Geslaagd:
 
-- 10 HTML-pagina's gecontroleerd;
+- 12 HTML-pagina's gecontroleerd;
 - verplichte taal-, viewport- en titelgegevens aanwezig;
 - geen dubbele statische id's;
 - interne paden bestaan;
@@ -41,6 +41,21 @@ Geslaagd:
 - `genBConversions` exact één keer gedeclareerd;
 - afgekeurde RWT 3.1-verwijzing afwezig;
 - officiële RWT 2.2-verwijzing aanwezig.
+
+## Moshpit en Grabbelton
+
+Automatisch gecontroleerd:
+
+- Moshpit verwijst naar de ene bestaande 60-seconden-sprint en bevat geen eigen vragenbank, timer of vraaggenerator;
+- de sprint begint pas na een bewuste tweede startklik in Pabo Rekenklaar;
+- 2.250 extra sprintvragen blijven zonder terugval beperkt tot korte hoofdrekenvragen in de domeinen A, B en C;
+- sprintantwoorden beïnvloeden geen gewone beheersing, dagdoel, foutenlijst of diagnostiek;
+- de klok gebruikt werkelijk verstreken tijd en blijft daardoor betrouwbaarder na een mobiel achtergrondtabblad;
+- Grabbelton gebruikt één centrale catalogus en toont nu eerlijk nul gepubliceerde filmpjes;
+- de catalogus accepteert zonder vaste bovengrens 1, 30 en 45 geldige publicaties;
+- alleen gepubliceerde video’s met geldig polsbandje, bestaande misconceptcode, toegestane bron, Nederlandse ondertiteling en transcript worden selecteerbaar;
+- de trekking geeft voorrang aan een voldoende onderbouwde misconceptcode, vermijdt directe herhaling wanneer er een alternatief is en geeft geen diagnose af;
+- beide zijpodia zijn zichtbaar vanaf het terrein én op mobiel, staan eenmaal in de sitemap en worden in Backstage verantwoord.
 
 ## Backstage: missie en roadie
 
@@ -99,18 +114,9 @@ Automatisch gecontroleerd:
 - het actuele script herstelt een eventueel eerder uitgeschakelde verzendknop;
 - terugkeer via de iOS-navigatiecache laat de knop bruikbaar;
 - JavaScript krijgt geen cacheduur van zeven dagen meer;
+- de gedeelde CSS wordt bij elk bezoek hervalideerd, naast de versiegebonden URL;
 - een brede assets-cache-regel kan de JavaScriptinstelling niet overschrijven.
 
-## Responsieve browsertest
+## Responsieve controle
 
-De bestaande interfacecontroles blijven van toepassing, waaronder:
-
-- homepage en Pabo-zone zichtbaar;
-- attractieregister rendert de kaarten;
-- routekeuzedialoog opent en sluit;
-- PABO-filter werkt;
-- mobiel menu opent en sluit;
-- geen horizontale overflow bij 390 pixels;
-- geen onverwachte consolefouten.
-
-Zie `tests/Wisik_v0.1_browsertest.json`.
+Automatisch afgedwongen zijn de viewportinstelling, mobiele breekpunten, versiegebonden vormgeving, toegankelijke knoppen en de aanwezigheid van beide zijpodia. Het historische bestand `tests/Wisik_v0.1_browsertest.json` geldt nadrukkelijk niet als actueel browserbewijs voor 0.1.11. Na publicatie horen de nieuwe Moshpit- en Grabbeltonroutes daarom nog op de live site te worden gecontroleerd op een smal scherm, inclusief horizontale overflow, toetsenbordfocus en consolefouten.
