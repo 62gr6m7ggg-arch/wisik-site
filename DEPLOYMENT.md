@@ -22,6 +22,7 @@ De Cloudflare-buildopdracht mag daarom niet leeg zijn. Met `npm run build` stopt
 De verplichte controle voert de kwaliteits-API van Pabo Rekenklaar in een frisse, afgeschermde JavaScript-omgeving uit. Zij controleert onder meer:
 
 - 17.000 gegenereerde vraaginstanties in 170 generatorcombinaties;
+- 2.250 afzonderlijke Moshpit-vragen op het strikte korte-hoofdrekencontract;
 - herberekenbare antwoorden en een identieke herhaling met dezelfde seed;
 - nul terugvalvragen;
 - technische afleesbaarheidsregels en toegankelijke markering voor grafieken;
@@ -40,10 +41,12 @@ Pabo Rekenklaar staat onder:
 /apps/pabo-rekenklaar/
 ```
 
-Versie 1.6.0 heeft in de sticky bovenbalk twee herkenbare terugwegen naar Wisik:
+Versie 1.6.1 heeft in de sticky bovenbalk twee herkenbare terugwegen naar Wisik:
 
 - het klikbare Wisik-logo;
 - de tekstknop **Terug naar het Wisik-terrein**, op mobiel verkort tot **Terrein**.
+
+De Moshpit gebruikt de toegestane ingang `/apps/pabo-rekenklaar/?ingang=moshpit&modus=sprint`. Deze route zet binnen Pabo Rekenklaar eerst het startscherm klaar; de klok begint pas na de tweede, bewuste klik. De gewone app-route en de diagnostiek- en releasecontroleparameters blijven daarvan gescheiden.
 
 Vóór vertrek wordt de bestaande lokale voortgang opnieuw naar `localStorage` geschreven. De tool registreert daarnaast alleen voor de actuele browsersessie:
 
@@ -56,6 +59,18 @@ Vóór vertrek wordt de bestaande lokale voortgang opnieuw naar `localStorage` g
 Die context kan het Wisik-Kladblok automatisch toevoegen aan een latere notitie. Rekenantwoorden, XP, diagnostische patronen en andere lokale voortgang worden niet naar het Kladblok gekopieerd.
 
 Lokale voortgang is domeingebonden. Voortgang op een oudere URL verschijnt niet automatisch op Wisik. Voeg vóór grootschalige migratie export/import toe wanneer behoud voor bestaande gebruikers nodig is.
+
+## Grabbelton-media
+
+De enige openbare videocatalogus staat in `public/assets/data/grabbelton-videos.json`. Voeg een filmpje eerst als `draft` toe en publiceer het pas wanneer bron, Nederlandse ondertiteling, transcript, polsband en een bestaande Pabo-misconceptcode compleet zijn. Zelfgehoste media mogen van `wisik.nl` of `media.wisik.nl` komen; de Content-Security-Policy staat geen automatische externe videospeler toe.
+
+Voor media op `media.wisik.nl` is daarnaast een technisch aflevercontract verplicht vóór de status `published`:
+
+- video krijgt het juiste MIME-type (`video/mp4` of `video/webm`), byte-range-ondersteuning en `Access-Control-Allow-Origin: https://wisik.nl`;
+- Nederlandse ondertiteling krijgt `Content-Type: text/vtt` en dezelfde CORS-header;
+- video, ondertiteling en transcript worden vanaf `https://wisik.nl/grabbelton/` daadwerkelijk geladen en afgespeeld voordat de cataloguswijziging wordt vrijgegeven.
+
+Media onder hetzelfde `wisik.nl`-domein heeft geen cross-origin-configuratie nodig, maar blijft aan dezelfde publicatiecontrole onderworpen.
 
 ## Wisik-Kladblok
 

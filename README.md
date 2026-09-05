@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.10
+# Wisik.nl — versie 0.1.11
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -8,7 +8,10 @@ De repository bevat onder meer:
 - zichtbare onderwijsroutes VO, PABO en HBO;
 - ontwikkelstatus via MainStage, bouwplaats en Rafelrand;
 - een centraal attractieregister in `public/assets/js/site-data.js`;
+- een apart zijpodiaregister dat Moshpit en Grabbelton naar hun canonieke bron koppelt;
 - Pabo Rekenklaar onder `public/apps/pabo-rekenklaar/`;
+- de Moshpit als bewuste ingang naar de bestaande 60-seconden-sprint, zonder tweede vragenbank;
+- een lege maar schaalbare Grabbelton-catalogus voor minimaal 30 filmpjes, gekoppeld aan bestaande misconceptcodes;
 - een permanente, mobiele terugweg vanuit Pabo Rekenklaar naar het Wisik-terrein;
 - lokale opslag van Pabo-voortgang vóór het verlaten van de attractie;
 - automatische bronpagina- en attractieversieregistratie in het Wisik-Kladblok;
@@ -17,6 +20,7 @@ De repository bevat onder meer:
 - Cloudflare Email Routing voor `kladblok@wisik.nl`;
 - een duidelijke doorgang vanaf het terrein naar dat centrale Kladblok;
 - versiegebonden scripts op alle sitepagina's voor Safari en andere mobiele browsers;
+- versiegebonden gedeelde CSS, zodat nieuwe mobiele terreinindelingen niet achter een oude browsercache blijven hangen;
 - mobiele navigatie en een gewone lijstweergave naast de terreinplattegrond;
 - een verplichte deterministische vrijgavecontrole bij iedere wijziging.
 
@@ -56,7 +60,11 @@ De controle test onder meer:
 - actualiteit van het openbare Backstage-auditbewijs;
 - exact één declaratie van `genBConversions`;
 - afwezigheid van de afgekeurde RWT 3.1-bron;
-- aanwezigheid van de officiële RWT 2.2-verwijzing.
+- aanwezigheid van de officiële RWT 2.2-verwijzing;
+- één canonieke Pabo-vragenbank en één canonieke sprintfunctie;
+- een Moshpit-startscherm vóór de klok loopt, 2.250 extra veilige sprintvragen en scheiding tussen sprintfouten en gewone leerdata;
+- een geldige, onbegrensd schaalbare Grabbelton-catalogus die nu eerlijk nul gepubliceerde filmpjes bevat;
+- selectieproeven met 1, 30 en 45 filmpjes, polsbandfilters en herhalingsremming.
 
 Na een bewuste wijziging van Pabo Rekenklaar wordt het openbare bewijs lokaal vernieuwd met:
 
