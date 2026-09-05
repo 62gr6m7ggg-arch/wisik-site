@@ -245,7 +245,7 @@
 
   function setFooterDetails() {
     document.querySelectorAll("[data-current-year]").forEach((node) => { node.textContent = String(new Date().getFullYear()); });
-    document.querySelectorAll("[data-site-version]").forEach((node) => { node.textContent = window.WISIK_SITE_VERSION || "0.1.0"; });
+    document.querySelectorAll("[data-site-version]").forEach((node) => { node.textContent = window.WISIK_SITE_VERSION || "onbekend"; });
   }
 
   function formatAuditDate(value) {

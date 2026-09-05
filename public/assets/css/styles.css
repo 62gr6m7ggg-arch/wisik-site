@@ -533,7 +533,6 @@ h3 { margin: 0; }
 .form-status { min-height: 24px; margin-top: 11px; font-weight: 800; }
 .form-status.good { color: var(--green); }
 .form-status.bad { color: var(--red); }
-.turnstile-mount { min-height: 66px; display: grid; align-items: center; }
 .honeypot { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 
 .page-hero { padding: 78px 0 58px; background: linear-gradient(180deg,var(--sky),#f3f7f1); border-bottom: 1px solid var(--line); }

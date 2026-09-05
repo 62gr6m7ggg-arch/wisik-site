@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
+const siteVersion = JSON.parse(read("package.json")).version;
 
 const pabo = read("public/apps/pabo-rekenklaar/index.html");
 const bridge = read("public/apps/pabo-rekenklaar/wisik-bridge.js");
@@ -40,11 +41,11 @@ if (!bridgeCss.includes("position: fixed") || !bridgeCss.includes("safe-area-ins
 }
 
 const requiredKladblok = [
-  '/assets/js/kladblok-context.js?v=0.1.9',
+  `/assets/js/kladblok-context.js?v=${siteVersion}`,
   'name="Pagina"',
   'name="Attractieversie"',
   'data-feedback-context',
-  'name="Siteversie" value="0.1.9"',
+  `name="Siteversie" value="${siteVersion}"`,
   'Wisik Kladblok – nieuwe reactie'
 ];
 for (const fragment of requiredKladblok) {
