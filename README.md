@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.9
+# Wisik.nl — versie 0.1.10
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -13,9 +13,10 @@ De repository bevat onder meer:
 - lokale opslag van Pabo-voortgang vóór het verlaten van de attractie;
 - automatische bronpagina- en attractieversieregistratie in het Wisik-Kladblok;
 - Backstage met een actueel, machineleesbaar vrijgavebewijs, kwaliteitsverantwoording, de missie **wiskunde leuk maken** en het HAN-portret van de roadie achter Wisik;
-- het Wisik-Kladblok als gratis HTML-formulier via FormSubmit;
+- één centraal Wisik-Kladblok als gratis HTML-formulier via FormSubmit;
 - Cloudflare Email Routing voor `kladblok@wisik.nl`;
-- een cachebestendige Kladblokroute voor Safari en andere mobiele browsers;
+- een duidelijke doorgang vanaf het terrein naar dat centrale Kladblok;
+- versiegebonden scripts op alle sitepagina's voor Safari en andere mobiele browsers;
 - mobiele navigatie en een gewone lijstweergave naast de terreinplattegrond;
 - een verplichte deterministische vrijgavecontrole bij iedere wijziging.
 
@@ -40,13 +41,14 @@ De controle test onder meer:
 - HTML-basisstructuur en interne links;
 - dubbele id's;
 - JavaScript-syntaxis;
-- versiegebonden scripts en korte JavaScript-caching op het Kladblok;
+- versiegebonden scripts op alle sitepagina's en korte JavaScript-caching;
 - Kladblokvelden, honeypot, succesroute en Content-Security-Policy;
+- exact één Kladblokformulier en een werkende doorgang vanaf het terrein;
 - automatische Kladblokcontext vanuit Pabo Rekenklaar;
 - zichtbare desktop- en mobiele terreinuitgangen;
 - lokale opslag bij vertrek en mobiele paginawissels;
 - exact één Backstage-roadiekaart met de lokale festivalfoto, missietekst, HAN-link, mobiele uitsnede, toegankelijkheid en privacyvriendelijke videokeuze;
-- afwezigheid van overbodige Kladblok-API-code en betaalde e-mailafhankelijkheden;
+- sitebrede afwezigheid van oude Kladblok-, Turnstile- en Cloudflare-fallbackcode;
 - 17.000 gegenereerde Pabo-vraaginstanties in 170 generatorcombinaties;
 - herhaalde deterministische antwoordcontrole en nul terugvalvragen;
 - technische afleesbaarheidsregels voor 600 grafiekinstanties;

@@ -22,12 +22,45 @@ function hasClassToken(html, token) {
     .some((match) => match[1].split(/\s+/).includes(token));
 }
 
+function headerBlock(source, route) {
+  const lines = source.split(/\r?\n/);
+  const start = lines.findIndex((line) => line.trim() === route);
+  if (start < 0) return "";
+  let end = start + 1;
+  while (end < lines.length && lines[end].trim() !== "") end += 1;
+  return lines.slice(start, end).join("\n");
+}
+
+function visibleMarkup(source) {
+  return source.replace(/<!--[\s\S]*?-->/g, "");
+}
+
 const htmlFiles = walk(publicDir).filter((file) => file.endsWith(".html"));
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
   if (!/<html\s+lang=["']nl["']/i.test(html)) fail(`${rel(file)} mist lang=nl`);
   if (!/<meta\s+name=["']viewport["']/i.test(html)) fail(`${rel(file)} mist viewport-meta`);
   if (!/<title>[^<]+<\/title>/i.test(html)) fail(`${rel(file)} mist een titel`);
+
+  const coreScriptRefs = [...html.matchAll(/\ssrc=["'](\/assets\/js\/(?:site-data|site)\.js(?:\?[^"']*)?)["']/g)];
+  if (hasClassToken(html, "site-header") && coreScriptRefs.length !== 2) {
+    fail(`${rel(file)} mist één of beide gedeelde sitescripts`);
+  }
+  const cacheVersionedScriptRefs = [...html.matchAll(/\ssrc=["'](\/assets\/js\/(?:site-data|site|kladblok-context)\.js(?:\?[^"']*)?)["']/g)];
+  for (const [, source] of cacheVersionedScriptRefs) {
+    const script = source.split("?")[0].split("/").pop();
+    if (source !== `/assets/js/${script}?v=${siteVersion}`) {
+      fail(`${rel(file)} gebruikt ${script} zonder actuele cacheversie ${siteVersion}`);
+    }
+  }
+
+  if (hasClassToken(html, "feedback-form")) fail(`${rel(file)} bevat nog het oude Kladblokformulier`);
+  if (hasClassToken(html, "turnstile-mount")) fail(`${rel(file)} bevat nog een oude Turnstile-plaatsaanduiding`);
+  if (/Cloudflare-sleutels|\/api\/feedback|\/api\/config/i.test(html)) fail(`${rel(file)} bevat nog achterhaalde Kladbloktekst of API-code`);
+
+  for (const [, version] of html.matchAll(/data-site-version[^>]*>\s*([^<\s]+)\s*</g)) {
+    if (version !== siteVersion) fail(`${rel(file)} toont siteversie ${version} in plaats van ${siteVersion}`);
+  }
 
   const markupOnly = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
   const ids = [...markupOnly.matchAll(/\sid=["']([^"']+)["']/g)].map((match) => match[1]);
@@ -43,6 +76,14 @@ for (const file of htmlFiles) {
     const candidates = [target, path.join(target, "index.html"), `${target}.html`];
     if (!candidates.some((candidate) => fs.existsSync(candidate))) fail(`${rel(file)} verwijst naar ontbrekend pad ${href}`);
   }
+}
+
+const formLocations = htmlFiles.flatMap((file) => {
+  const count = (fs.readFileSync(file, "utf8").match(/<form\b/gi) || []).length;
+  return Array.from({ length: count }, () => rel(file));
+});
+if (formLocations.length !== 1 || formLocations[0] !== "public/kladblok/index.html") {
+  fail(`Verwacht exact één formulier op de centrale Kladblokpagina; gevonden in: ${formLocations.join(", ") || "geen pagina"}`);
 }
 
 for (const file of walk(publicDir).filter((candidate) => candidate.endsWith(".js"))) {
@@ -80,6 +121,13 @@ if (!productPage.includes(`<strong>Versie</strong><span>${paboVersion}</span>`))
 if (!productPage.includes('terugkeren naar het Wisik-terrein')) fail("Pabo-productpagina beschrijft de nieuwe terugweg niet");
 const homepage = fs.readFileSync(path.join(publicDir, "index.html"), "utf8");
 if (!homepage.includes(`RWT-voorbereiding · versie ${paboVersion}.`)) fail(`Homepage vermeldt Pabo Rekenklaar ${paboVersion} niet`);
+const homepageKladblok = visibleMarkup(homepage).match(/<section\b[^>]*id=["']kladblok["'][\s\S]*?<\/section>/i)?.[0] || "";
+if (!homepageKladblok.includes('data-kladblok-entry') || !homepageKladblok.includes('href="/kladblok/">Open het Kladblok')) {
+  fail("Homepage mist de centrale doorgang naar het Wisik-Kladblok");
+}
+if (/<form\b/i.test(homepageKladblok)) {
+  fail("Homepage bevat opnieuw een tweede Kladblokformulier");
+}
 
 const kladblok = fs.readFileSync(path.join(publicDir, "kladblok/index.html"), "utf8");
 const siteJs = fs.readFileSync(path.join(publicDir, "assets/js/site.js"), "utf8");
@@ -109,25 +157,34 @@ if (!kladblok.includes('name="_honey"') || /name=["']_captcha["'][^>]*value=["']
 if (!siteJs.includes('querySelectorAll(".wisik-direct-feedback-form")') || !siteJs.includes("submit.disabled = false")) {
   fail("Kladblokscript mist de nieuwe formulierkoppeling of herstelroute voor de knop");
 }
-if (/turnstile|\/api\/feedback|\/api\/config/i.test(siteJs + kladblok)) {
+const publicFrontend = walk(publicDir)
+  .filter((file) => /\.(?:html|js|css)$/.test(file))
+  .map((file) => fs.readFileSync(file, "utf8"))
+  .join("\n");
+if (/turnstile|\/api\/feedback|\/api\/config|Cloudflare-sleutels/i.test(publicFrontend)) {
   fail("Kladblok bevat nog overbodige Turnstile- of Pages Function-code");
 }
 if (fs.existsSync(path.join(root, "functions/api/config.js")) || fs.existsSync(path.join(root, "functions/api/feedback.js"))) {
   fail("Overbodige Kladblok-API-functies zijn nog aanwezig");
 }
-if (!/form-action\s+'self'\s+https:\/\/formsubmit\.co/.test(headers)) {
+const globalHeaders = headerBlock(headers, "/*");
+const javascriptHeaders = headerBlock(headers, "/assets/js/*");
+const dataHeaders = headerBlock(headers, "/assets/data/*");
+const backstageHeaders = headerBlock(headers, "/backstage/*");
+const broadAssetHeaders = headerBlock(headers, "/assets/*");
+if (!/form-action\s+'self'\s+https:\/\/formsubmit\.co/.test(globalHeaders)) {
   fail("Content-Security-Policy blokkeert de Kladblokpost naar FormSubmit");
 }
-if (!/\/assets\/js\/\*\s+[\s\S]*Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(headers)) {
+if (!/Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(javascriptHeaders)) {
   fail("JavaScript kan nog langdurig in Safari worden gecachet");
 }
-if (!/\/assets\/data\/\*\s+[\s\S]*Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(headers)) {
+if (!/Cache-Control:\s*no-cache, max-age=0, must-revalidate/.test(dataHeaders)) {
   fail("Het openbare vrijgavebewijs kan nog langdurig worden gecachet");
 }
-if (!/\/backstage\/\*\s+[\s\S]*Cache-Control:\s*no-cache, no-store, max-age=0, must-revalidate/.test(headers)) {
+if (!/Cache-Control:\s*no-cache, no-store, max-age=0, must-revalidate/.test(backstageHeaders)) {
   fail("De Backstage-HTML heeft geen expliciete cachebestendige route");
 }
-if (/\/assets\/\*\s+[\s\S]*Cache-Control:\s*public, max-age=604800/.test(headers)) {
+if (/Cache-Control:\s*public, max-age=604800/.test(broadAssetHeaders)) {
   fail("Een brede assets-cache-regel kan de JavaScript-cachefix overschrijven");
 }
 if (/challenges\.cloudflare\.com/.test(headers)) {
@@ -148,4 +205,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, interne links, JavaScript-syntaxis, Safari-cachefix, Pabo-terreinuitgang, Kladblokcontext en Pabo-releasecontrole.`);
+console.log(`Wisik kwaliteitscontrole geslaagd: ${htmlFiles.length} HTML-pagina's, versiegebonden scripts, één centraal Kladblok, interne links, JavaScript-syntaxis, Pabo-terreinuitgang en Pabo-releasecontrole.`);

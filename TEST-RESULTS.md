@@ -1,4 +1,4 @@
-# Testresultaten Wisik 0.1.9
+# Testresultaten Wisik 0.1.10
 
 ## Zichtbaarheid Backstage-vrijgavecontrole
 
@@ -74,6 +74,8 @@ Automatisch gecontroleerd:
 
 Automatisch gecontroleerd:
 
+- onderaan het terrein staat geen tweede formulier meer, maar één duidelijke doorgang naar `/kladblok/`;
+- de losse Kladblokpagina is het enige centrale formulier;
 - directe HTTPS-formulierpost naar `kladblok@wisik.nl` via FormSubmit;
 - POST-methode en vaste bedankroute;
 - alle gebruikersvelden hebben een bruikbare naam;
@@ -84,14 +86,15 @@ Automatisch gecontroleerd:
 - externe verwerking en bewaartermijn zichtbaar;
 - Content-Security-Policy staat alleen de noodzakelijke externe formulierpost toe;
 - geen afhankelijkheid van betaalde Cloudflare Email Sending;
-- geen overbodige Pages Functions of Turnstile-code;
+- nergens in de publieke site staat nog een oud Kladblokformulier, een Turnstile-element, de Cloudflare-sleutelmelding of Kladblok-API-code;
 - bronpagina en attractieversie worden automatisch ingevuld wanneer die context beschikbaar is.
 
 ## Safari-cachefix
 
 Automatisch gecontroleerd:
 
-- het Kladblok laadt scripts via een versiegebonden URL;
+- alle sitepagina's laden de gedeelde scripts via versiegebonden URL's;
+- de terreinpagina omzeilt daardoor definitief eerder gecachte Kladbloklogica;
 - de directe formulierklasse wijkt af van de klasse waarop een oudere scriptversie reageerde;
 - het actuele script herstelt een eventueel eerder uitgeschakelde verzendknop;
 - terugkeer via de iOS-navigatiecache laat de knop bruikbaar;
