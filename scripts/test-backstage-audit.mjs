@@ -35,6 +35,8 @@ const expectedGates = [
   "no-fallbacks",
   "readable-graphs",
   "diagnostic-patterns",
+  "flirt-trigger-chain",
+  "flirt-content-lock",
 ];
 for (const id of expectedGates) {
   const gate = report.gates.find((item) => item.id === id);
@@ -43,7 +45,7 @@ for (const id of expectedGates) {
 
 const instrumentedSiteJs = siteJs.replace(
   '  document.addEventListener("DOMContentLoaded", () => {',
-  '  window.__evaluateReleaseAudit = evaluateReleaseAudit;\n\n  document.addEventListener("DOMContentLoaded", () => {'
+  '  window.__evaluateReleaseAudit = evaluateReleaseAudit; window.__flirtReviewMarkup = flirtReviewMarkup;\n\n  document.addEventListener("DOMContentLoaded", () => {'
 );
 assert(instrumentedSiteJs !== siteJs, "De auditstatusfunctie kon niet voor de negatieve test worden ontsloten");
 const auditWindow = { WISIK_SITE_VERSION: packageJson.version, WISIK_TOOLS: [] };
@@ -63,11 +65,21 @@ vm.runInNewContext(instrumentedSiteJs, {
 const evaluateReleaseAudit = auditWindow.__evaluateReleaseAudit;
 assert(typeof evaluateReleaseAudit === "function", "De auditstatusfunctie is niet uitvoerbaar in de testomgeving");
 assert(evaluateReleaseAudit(report, paboVersion).passed === true, "Een compleet geldig rapport krijgt geen groene status");
+const contentMarkup = auditWindow.__flirtReviewMarkup(report.flirtContent);
+for (const entry of report.flirtContent.entries) assert(contentMarkup.includes(entry.code), `Inhoudsreview ${entry.code} ontbreekt in Backstage`);
+assert(contentMarkup.includes('geen inhoudelijke goedkeuring'), 'Technisch geslaagd wordt ten onrechte inhoudelijk akkoord');
+assert(contentMarkup.includes('niet onafhankelijk beluisterd'), 'De audio-beperking ontbreekt');
+if (report.flirtContent.counts.needsRevision) assert(contentMarkup.includes('Beeldherstel nodig'), 'Bekende beeldproblemen zijn niet zichtbaar');
+assert(evaluateReleaseAudit({...report,flirtContent:null},paboVersion).passed === false, 'Ontbrekende inhoudsreview wordt genegeerd');
+const disguisedReview=structuredClone(report);
+disguisedReview.flirtContent.entries[0].verdict='mismatch';
+disguisedReview.flirtContent.counts.needsRevision=0;
+assert(evaluateReleaseAudit(disguisedReview,paboVersion).passed === false, 'Een onjuist aantal herstelpunten maskeert inhoudelijke fouten');
 
 const incompleteReport = { ...report, gates: report.gates.slice(0, 1) };
 assert(evaluateReleaseAudit(incompleteReport, paboVersion).passed === false, "Een rapport met één controle krijgt ten onrechte een groene status");
-const duplicateGateReport = { ...report, gates: Array.from({ length: 6 }, () => report.gates[0]) };
-assert(evaluateReleaseAudit(duplicateGateReport, paboVersion).passed === false, "Zes dubbele controles krijgen ten onrechte een groene status");
+const duplicateGateReport = { ...report, gates: Array.from({ length: expectedGates.length }, () => report.gates[0]) };
+assert(evaluateReleaseAudit(duplicateGateReport, paboVersion).passed === false, "Dubbele controles krijgen ten onrechte een groene status");
 const staleReport = { ...report, siteVersion: "0.0.0" };
 const staleState = evaluateReleaseAudit(staleReport, paboVersion);
 assert(staleState.passed === false && staleState.stale === true, "Een bewijs van een andere siteversie wordt niet als verouderd herkend");
@@ -89,8 +101,8 @@ assert(/\/backstage\/\*\s+[\s\S]*Cache-Control:\s*no-cache, no-store, max-age=0,
 assert(siteJs.includes("async function renderReleaseAudit()"), "De renderer voor het Backstage-auditbewijs ontbreekt");
 assert(siteJs.includes('fetch(reportUrl, { cache: "no-store"'), "Het auditbewijs wordt niet cachebestendig opgehaald");
 assert(siteJs.includes('Online versie gecontroleerd') && siteJs.includes('Bewijs hoort niet bij deze versie'), "De vrijgavestatussen zijn niet precies genoeg geformuleerd");
-assert(siteJs.includes('Bekijk alle ${gates.length} controles'), "De zes technische controles zijn niet compact uitklapbaar");
+assert(siteJs.includes('Bekijk alle ${gates.length} controles'), "De technische controles zijn niet compact uitklapbaar");
 assert(siteJs.includes('vragen doorgerekend') && siteJs.includes('noodvragen gebruikt'), "De kerncijfers missen begrijpelijke labels");
 assert(siteJs.includes('renderReleaseAudit();'), "De auditweergave wordt niet gestart");
 
-console.log("Backstage-auditcontrole geslaagd: direct zichtbare hero-status, actueel bewijs, zes vrijgavepoorten, cachebestendige route en eerlijke begrenzing.");
+console.log("Backstage-auditcontrole geslaagd: direct zichtbare hero-status, actueel bewijs, acht vrijgavepoorten, cachebestendige route en eerlijke begrenzing.");

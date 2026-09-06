@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#163f58">
   <link rel="icon" href="/assets/img/wisik-mark.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=0.1.14">
-  <script src="/assets/js/site-data.js?v=0.1.14" defer></script>
-  <script src="/assets/js/site.js?v=0.1.14" defer></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=0.1.15">
+  <script src="/assets/js/site-data.js?v=0.1.15" defer></script>
+  <script src="/assets/js/site.js?v=0.1.15" defer></script>
   <meta name="description" content="Ontmoet de roadie achter Wisik en lees over de missie, didactiek, kwaliteit, versies en privacy.">
   <title>Backstage — Wisik</title>
   <style>
@@ -377,7 +377,8 @@
       background: linear-gradient(145deg, #fff5f5, #ffffff);
     }
 
-    .audit-panel.stale {
+    .audit-panel.stale,
+    .audit-panel.needs-review {
       border-color: rgba(185, 120, 0, .38);
       background: linear-gradient(145deg, #fff9e8, #ffffff);
     }
@@ -422,6 +423,7 @@
 
     .audit-status {
       flex: 0 0 auto;
+      max-width: 100%;
       padding: 9px 12px;
       border-radius: 999px;
       font-size: .8rem;
@@ -438,10 +440,19 @@
       background: #fde8ea;
     }
 
+    .release-summary-link.needs-review,
+    .audit-status.needs-review,
     .audit-status.stale {
       color: #745000;
       background: #fff0bd;
     }
+
+    .flirt-content-review { padding: 22px 26px; border-bottom: 1px solid var(--line); }
+    .flirt-content-review h5 { margin: 0 0 12px; font-size: 1.2rem; }
+    .flirt-content-review p, .flirt-content-review li { overflow-wrap: anywhere; }
+    .flirt-content-review li + li { margin-top: 10px; }
+    .flirt-review-item { margin: 12px 0; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+    .flirt-review-item summary { cursor: pointer; font-weight: 700; }
 
     .audit-metrics {
       display: grid;
@@ -809,7 +820,7 @@
       </div>
 
       <article class="audit-panel" data-release-audit data-audit-url="/assets/data/pabo-release-audit.json" aria-live="polite" aria-busy="true">
-        <p class="audit-loading"><strong>Actueel vrijgavebewijs laden…</strong><br>Hier komen de versie, kerncijfers en zes verplichte controles te staan.</p>
+        <p class="audit-loading"><strong>Actueel vrijgavebewijs laden…</strong><br>Hier komen de acht technische controles en de inhoudelijke flirtbeoordeling te staan.</p>
       </article>
       <p class="audit-proof-link">Voor controle en hergebruik is hetzelfde bewijs ook <a href="/assets/data/pabo-release-audit.json">machineleesbaar als JSON</a>. Dit is een sterke regressie- en consistentiecontrole, geen bewijs van leerwinst; vakdidactische review en mobiele toetsing met echte gebruikers blijven daarnaast nodig.</p>
 
@@ -821,7 +832,7 @@
     <div class="footer-inner">
       <div>
         <a class="brand" href="/" style="color:white"><span class="brand-mark" aria-hidden="true">√</span><span class="brand-copy"><strong>WISIK</strong><small style="color:rgba(255,255,255,.68)">Wiskunde om te beleven</small></span></a>
-        <p class="footer-small">Initiatief en inhoudelijke regie: Edwin van der Plas · siteversie <span data-site-version>0.1.14</span></p>
+        <p class="footer-small">Initiatief en inhoudelijke regie: Edwin van der Plas · siteversie <span data-site-version>0.1.15</span></p>
       </div>
       <div>
         <nav class="footer-nav" aria-label="Voetnavigatie"><a href="/vo/">VO</a><a href="/pabo/">PABO</a><a href="/hbo/">HBO</a><a href="/rafelrand/">Rafelrand</a><a href="/backstage/">Backstage</a><a href="/kladblok/">Kladblok</a></nav>

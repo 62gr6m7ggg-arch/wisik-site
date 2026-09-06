@@ -3,6 +3,8 @@ import path from "node:path";
 import vm from "node:vm";
 import { createHash, webcrypto } from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { runFlirtChainAudit } from "./lib/flirt-chain-audit.mjs";
+import { auditFlirtContent } from "./lib/flirt-content-audit.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const paboPath = path.join(root, "public/apps/pabo-rekenklaar/index.html");
@@ -58,6 +60,12 @@ function withoutTimestamp(report) {
 }
 
 const context = createAuditContext();
+vm.runInContext(fs.readFileSync(path.join(root, "public/assets/js/grabbelton-core.js"), "utf8"), context);
+const flirtCatalog = JSON.parse(fs.readFileSync(path.join(root, "public/assets/data/grabbelton-videos.json"), "utf8"));
+const flirtFixtures = JSON.parse(fs.readFileSync(path.join(root, "tests/flirt-cases.json"), "utf8"));
+const flirtChain = runFlirtChainAudit(context, flirtCatalog, flirtFixtures);
+const flirtReplay = runFlirtChainAudit(context, flirtCatalog, flirtFixtures);
+const flirtContent = auditFlirtContent(root, flirtCatalog, context.PaboRekenklaarQA.MISCONCEPTION_CATALOG);
 const quality = runInAuditContext(context, "PaboRekenklaarQA.runQualityAudit({samplesPerCombination:100,seed:12062026})");
 const replay = runInAuditContext(context, "PaboRekenklaarQA.runQualityAudit({samplesPerCombination:100,seed:12062026})");
 const diagnostic = runInAuditContext(context, "PaboRekenklaarQA.runDiagnosticAudit({samplesPerPattern:20})");
@@ -225,10 +233,12 @@ const gates = [
   },
 ];
 
+gates.push({id:"flirt-trigger-chain",label:"Van antwoordpatroon naar juiste flirt",passed:JSON.stringify(flirtChain)===JSON.stringify(flirtReplay),evidence:`${flirtChain.chains} ketens; ${flirtChain.answerExamples} vaste antwoordchecks; ${flirtChain.negativeExamples} andere fouten; ${flirtChain.modeExclusions} toets-/sprintuitsluitingen; dubbelzinnige denkroute onderdrukt; vaste seed tweemaal gelijk`});
+gates.push({id:"flirt-content-lock",label:"Beoordeelde flirtinhoud bewaakt",passed:flirtContent.passed,evidence:flirtContent.passed?`${flirtContent.counts.reviewed} beoordelingen gekoppeld aan de exacte tekst, media en misconceptie. ${flirtContent.counts.needsRevision} open inhoudelijke herstelpunten; dit vinkje bevestigt de ongewijzigde review, geen inhoudelijke goedkeuring.`:flirtContent.failures.join("; ")});
 const passed = gates.every((gate) => gate.passed);
 const report = {
   schemaVersion: 1,
-  auditVersion: "1.1.0",
+  auditVersion: "1.2.0",
   siteVersion: packageJson.version,
   tool: "Pabo Rekenklaar",
   toolVersion,
@@ -238,6 +248,7 @@ const report = {
     generatorSeed: 12062026,
     samplesPerCombination: 100,
     diagnosticSamplesPerPattern: 20,
+    flirtSeed: flirtChain.seed,
   },
   counts: {
     generatedQuestions: quality.counts.questions,
@@ -254,8 +265,21 @@ const report = {
     exactReadableChartInstances: visualAudit.exactReadableCharts,
     sprintQuestionChecks: sprintQuestionAudit.checks,
     sprintFallbackQuestions: sprintQuestionAudit.fallbacks,
+    flirtChains: flirtChain.chains,
+    flirtAnswerChecks: flirtChain.answerExamples,
+    flirtNegativeChecks: flirtChain.negativeExamples,
+    flirtModeExclusions: flirtChain.modeExclusions,
   },
   gates,
+  flirtContent: {
+    status: flirtContent.contentStatus,
+    counts: flirtContent.counts,
+    reviewedAt: flirtContent.review.reviewedAt,
+    reviewer: flirtContent.review.reviewer,
+    scope: flirtContent.review.scope,
+    entries: flirtContent.review.entries.map(({fingerprints,...entry})=>entry),
+    reportUrl: "/assets/data/flirt-content-review.json",
+  },
   failures: [
     ...sourceIssues.map((issue) => ({ area: "source", issue })),
     ...quality.failures.slice(0, 25).map((failure) => ({ area: "generator", issue: failure })),
@@ -263,6 +287,7 @@ const report = {
     ...naturalClassification.failures.slice(0, 25).map((failure) => ({ area: "natuurlijke-diagnostiek", issue: failure })),
     ...visualAudit.failures.slice(0, 25).map((failure) => ({ area: "grafiek", issue: failure })),
     ...sprintQuestionAudit.failures.slice(0, 25).map((failure) => ({ area: "moshpit", issue: failure })),
+    ...flirtContent.failures.map(issue=>({area:"flirt-inhoud",issue})),
   ],
   scope: "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   source: {

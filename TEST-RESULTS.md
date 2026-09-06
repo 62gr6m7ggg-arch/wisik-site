@@ -1,8 +1,12 @@
-# Testresultaten Wisik 0.1.14
+# Testresultaten Wisik 0.1.15
 
 ## Gerichte flirts in Pabo Rekenklaar 1.6.2
 
-De VM-integratiecontrole `scripts/test-pabo-flirts.mjs` test de echte bewijsopbouw, alle 30 exacte cataloguskoppelingen en de bestaande klikroute naar vier herstelvragen. Eén aanwijzing of dezelfde fout opnieuw toont geen uitnodiging; een voldoende onderbouwd patroon wel. Toets, sprint en onbeantwoorde vragen zijn uitgesloten. Openen en sluiten wijzigen geen voortgang, XP of diagnostiek.
+De VM-integratiecontrole `scripts/test-pabo-flirts.mjs` test alle 30 ketens van vast antwoord via classificatie en bewijsopbouw naar de juiste flirt. De 60 vaste opgaven hebben 120 afzonderlijk uitgerekende goede/kenmerkend foute antwoordchecks; 90 andere foutantwoorden leveren geen onterechte uitnodiging. Daarnaast zijn 60 toets-/sprintuitsluitingen en een werkelijk dubbelzinnige D04/D05-denkroute gecontroleerd. De ketens worden met dezelfde seed tweemaal herhaald. Eén aanwijzing of dezelfde fout opnieuw toont geen uitnodiging; een voldoende onderbouwd patroon wel.
+
+Voor alle 30 codes wordt vervolgens de echte spelerfunctie uitgevoerd: titel, toelichting, MP4, poster, VTT, transcript en herstelsetcode moeten aansluiten. Opzettelijk verkeerde classificatie, verkeerde filmselectie, fout-positieve uitnodiging, verwisselde codes, gewijzigde titel en ontbrekende/gewijzigde inhoudsreview laten de tests terecht falen. Openen en sluiten wijzigen geen voortgang, XP of diagnostiek.
+
+Inhoudelijke review: 17 films sluiten aan, 11 hebben kanttekeningen en C01/C04 vragen beeldherstel. C01 toont 10×10 vakjes tegenover het script over 100×100; C04 toont een driehoek waar een parallellogram wordt benoemd. Deze status blijft afzonderlijk zichtbaar naast de acht technische poorten. Bestandsvingerafdrukken bewaken catalogus, misconceptbeschrijving, film, poster, VTT en transcript. Volledige scripts en minimaal zes beeldmomenten per film zijn beoordeeld; de audio is niet onafhankelijk beluisterd. Het is geen empirische meting van diagnostische fout-positieven of leerwinst.
 
 Ook gecontroleerd: Nederlandse ondertiteling en transcript, geen autoplay, videobediening in de focustrap, stoppen en vrijgeven van media bij sluiten, behoud van de oefenreeks en focus, late netwerkresponsen na sluiten of vervangen van het venster, en een bruikbare herstelroute bij netwerk- of afspeelfouten. Dit is een runtimecontrole met DOM-doubles, geen visuele browsertest of test op een echte iPhone.
 
@@ -15,7 +19,7 @@ Gecontroleerd:
 - de vaste navigatie bedekt de sprongbestemming niet;
 - zonder JavaScript blijft een directe link naar het machineleesbare bewijs beschikbaar;
 - de Backstage-HTML en het auditrapport gebruiken expliciete hervalidatie-/no-cache-regels;
-- de zes detailcontroles zijn compact uitklapbaar en de kerncijfers hebben begrijpelijke labels.
+- de acht technische detailcontroles en 30 inhoudelijke beoordelingen zijn compact uitklapbaar; de twee inhoudelijke herstelpunten staan direct in beeld.
 
 ## Deterministische Pabo-vrijgavecontrole
 
@@ -37,7 +41,7 @@ Geslaagd:
 
 Geslaagd:
 
-- 12 HTML-pagina's gecontroleerd;
+- 42 HTML-pagina's gecontroleerd;
 - verplichte taal-, viewport- en titelgegevens aanwezig;
 - geen dubbele statische id's;
 - interne paden bestaan;
