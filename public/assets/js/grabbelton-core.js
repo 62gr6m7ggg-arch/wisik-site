@@ -27,6 +27,14 @@
     return isAllowedAssetUrl(value, baseUrl) ? new URL(value.trim(), new URL(baseUrl)).href : null;
   }
 
+  function versionedAssetUrl(value, version) {
+    const resolved = resolveAssetUrl(value);
+    if (!resolved) return null;
+    const url = new URL(resolved);
+    url.searchParams.set("v", asText(version));
+    return url.href;
+  }
+
   function validateCatalog(catalog, { knownToolIds = [], knownMisconceptionCodes = [], expectedCanonicalToolId = "", requireKnownTargets = false } = {}) {
     const errors = [];
     const tools = new Set(knownToolIds);
@@ -123,6 +131,7 @@
     normalizeRecentIds,
     isAllowedAssetUrl,
     resolveAssetUrl,
+    versionedAssetUrl,
     validStatuses: Object.freeze([...VALID_STATUSES]),
     validWristbands: Object.freeze([...VALID_WRISTBANDS])
   });

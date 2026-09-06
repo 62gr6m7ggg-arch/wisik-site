@@ -135,7 +135,14 @@ for (const video of published) {
   const vtt = read(`public${video.captionsSrc}`);
   assert(vtt.startsWith("WEBVTT") && vtt.includes("-->"), `Ondertiteling ontbreekt: ${video.id}`);
 }
-assert(grabbeltonRuntime.includes("player.poster = core.resolveAssetUrl(video.posterSrc)"), "Aangeleverde posters worden niet getoond");
+assert(grabbeltonRuntime.includes("player.poster = core.versionedAssetUrl(video.posterSrc, globalThis.WISIK_SITE_VERSION)"), "Aangeleverde posters worden niet versiegebonden getoond");
+const canonicalMedia = "/films/rekenklaar/A01/flirt.mp4";
+assert(core.versionedAssetUrl(canonicalMedia, siteVersion) === `https://wisik.nl${canonicalMedia}?v=${siteVersion}`, "Media mist een versiegebonden cache-URL");
+assert(core.versionedAssetUrl(canonicalMedia, "next") !== core.versionedAssetUrl(canonicalMedia, siteVersion), "Nieuwe versies hergebruiken de oude browsercache");
+assert(core.versionedAssetUrl("https://evil.example/film.mp4", siteVersion) === null, "Cacheversie omzeilt toegestane mediabronnen");
+for (const field of ["video.source.url", "video.posterSrc", "video.captionsSrc", "video.transcriptUrl"]) {
+  assert(grabbeltonRuntime.includes(`core.versionedAssetUrl(${field}, globalThis.WISIK_SITE_VERSION)`), `Media gebruikt geen vaste cacheversie: ${field}`);
+}
 const unsafePoster = JSON.parse(JSON.stringify(catalog));
 unsafePoster.videos[0].posterSrc = "https://evil.example/poster.jpg";
 assert(core.validateCatalog(unsafePoster, strictValidation).length > 0, "Onveilige poster passeert de poort");
@@ -228,7 +235,7 @@ assert(grabbeltonRuntime.includes("requireKnownTargets: true"), "Runtime-validat
 assert(grabbeltonRuntime.includes('venue.id === "grabbelton"') && grabbeltonRuntime.includes("expectedCanonicalToolId"), "Runtime-validatie mist de vaste Pabo-bron uit het zijpodiaregister");
 assert(count(grabbeltonRuntime, /result\.querySelector\("video"\)\?\.pause\(\);/g) >= 2 && grabbeltonRuntime.includes("updateAvailability({ resetResult: true });"), "Een polsbandwissel of nieuwe trekking stopt een eerder filmpje niet");
 assert(grabbeltonRuntime.includes('kind === "ready" ? "Klaar om te grabbelen"'), "De Grabbelton toont bij beschikbaar aanbod nog een onjuiste lege toestand");
-assert(grabbeltonRuntime.includes("core.resolveAssetUrl(video.source.url") && grabbeltonRuntime.includes("core.resolveAssetUrl(video.transcriptUrl"), "Gevalideerde en geladen media-URL's kunnen vanaf een andere basis worden opgelost");
+assert(grabbeltonRuntime.includes("core.versionedAssetUrl(video.source.url") && grabbeltonRuntime.includes("core.versionedAssetUrl(video.transcriptUrl"), "Gevalideerde en geladen media-URL's kunnen vanaf een andere basis worden opgelost");
 assert(grabbeltonRuntime.includes('player.crossOrigin = "anonymous";'), "Externe ondertiteling is niet voorbereid op anonieme CORS-media");
 
 assert(backstage.includes("De Moshpit gebruikt de bestaande Pabo-sprint; er is geen tweede vragenbank."), "Backstage verantwoordt de gedeelde Pabo-oefenbank niet");

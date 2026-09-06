@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "auditVersion": "1.1.0",
-  "siteVersion": "0.1.12",
+  "siteVersion": "0.1.13",
   "tool": "Pabo Rekenklaar",
   "toolVersion": "1.6.1",
-  "generatedAt": "2026-09-06T13:25:38.766Z",
+  "generatedAt": "2026-09-06T13:40:03.259Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
