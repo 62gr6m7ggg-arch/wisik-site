@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123b5d">
-<title>Pabo Rekenklaar 1.6.1 – rubricgestuurd oefenen met diagnostische foutpatronen</title>
+<title>Pabo Rekenklaar 1.6.2 – rubricgestuurd oefenen met diagnostische foutpatronen</title>
 <style>
 :root{
   --navy:#123b5d;
@@ -472,6 +472,8 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 .diagnostic-feedback.transient{border-left:5px solid var(--purple);background:var(--purple-soft);border-color:#d8c9fa}
 .diagnostic-feedback h5{margin:0 0 5px;font-size:.96rem}
 .diagnostic-feedback p{margin:0}
+.diagnostic-flirt{margin-top:12px;white-space:normal;text-align:left;line-height:1.45;max-width:100%}
+.flirt-player{display:block;width:100%;max-height:55dvh;margin:16px 0;background:#102e40;border-radius:12px}
 .diagnostic-register{display:grid;gap:12px}
 .diagnostic-register-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
 .diagnostic-register-item{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--paper)}
@@ -493,6 +495,8 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 </style>
   <link rel="stylesheet" href="./wisik-bridge.css?v=1.1.0">
   <script src="./wisik-bridge.js?v=1.1.0" defer></script>
+  <script src="/assets/js/site-data.js?v=0.1.14" defer></script>
+  <script src="/assets/js/grabbelton-core.js?v=0.1.14" defer></script>
 </head>
 <body>
 <div class="app-shell">
@@ -516,7 +520,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
     <section id="view-home" class="view active" aria-labelledby="homeTitle">
       <div class="hero">
         <div class="hero-copy">
-          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.6.1</span></button></div>
+          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.6.2</span></button></div>
           <h1 id="homeTitle"><span id="heroGreeting">Klaar om rekenen weer vanzelfsprekend te maken?</span></h1>
           <p>Leer per onderdeel, oefen adaptief en bouw de officiële toetsopzet na. De uitleg start rond havo 3 en groeit door naar het overwegend 3F-niveau van de toets.</p>
           <div class="button-row">
@@ -713,7 +717,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 
 <script>
 "use strict";
-const APP_VERSION = "1.6.1";
+const APP_VERSION = "1.6.2";
 const STORAGE_KEY = "pabo-rekenklaar-state-v1";
 const WISIK_TERRAIN_URL = "https://wisik.nl/";
 const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
@@ -768,7 +772,7 @@ const MISCONCEPTION_CATALOG = Object.freeze({
 const DIAGNOSTIC_DEFAULT_STATE = Object.freeze({schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0});
 
 const RELEASE_NOTES = [
-  {version:"1.6.1",date:"5 september 2026",title:"Veilige Moshpit-ingang",items:[
+  {version:"1.6.2",date:"5 september 2026",title:"Veilige Moshpit-ingang",items:[
     "De nieuwe Moshpit-ingang zet de bestaande 60-seconden-sprint klaar zonder een tweede vragenbank te maken.",
     "De klok start pas na een bewuste klik in Pabo Rekenklaar en gebruikt verstreken tijd, ook wanneer een mobiel tabblad tijdelijk op de achtergrond raakt.",
     "De sprint gebruikt uitsluitend hoofdrekenvragen uit de domeinen hele getallen, verhoudingen en meten.",
@@ -2368,12 +2372,61 @@ function recordDiagnosticOutcome(q,response,correct,{sessionKind="practice",used
   const classification=classifyIncorrectResponse(q,response);if(classification.kind!=="pattern")return classification;
   return recordDiagnosticError(classification.code,q,Boolean(q.diagnosticProbe));
 }
+// Een flirt is vrijwillige uitleg, nooit nieuw diagnostisch bewijs of herstel.
+let diagnosticFlirtCatalog=null;
+let modalRevision=0;
+function diagnosticFlirtAllowed(code,status,session=activeSession){
+  return Boolean(MISCONCEPTION_CATALOG[code]&&["likely","recovering"].includes(status)&&session&&sessionAllowsDiagnosticEvidence(session.kind)&&session.answered&&!session.finished);
+}
+function diagnosticFlirtMarkup(result){
+  if(!diagnosticFlirtAllowed(result.code,result.status))return "";
+  return `<button class="btn secondary diagnostic-flirt" type="button" data-diagnostic-flirt="${escapeHtml(result.code)}">Even anders kijken? Mag ik dan even met je flirten?</button>`;
+}
+function matchingDiagnosticFlirt(catalog,code){
+  const core=globalThis.WisikGrabbeltonCore;
+  if(!core||!MISCONCEPTION_CATALOG[code])return null;
+  const errors=core.validateCatalog(catalog,{knownToolIds:["pabo-rekenklaar"],knownMisconceptionCodes:Object.keys(MISCONCEPTION_CATALOG),expectedCanonicalToolId:"pabo-rekenklaar",requireKnownTargets:true});
+  if(errors.length)return null;
+  return core.publishedForWristband(catalog,"PABO").find(video=>video.target.toolId==="pabo-rekenklaar"&&video.target.misconceptionCode===code)||null;
+}
+async function loadDiagnosticFlirt(code){
+  if(!globalThis.WisikGrabbeltonCore)throw new Error("Videospeler niet beschikbaar");
+  if(!diagnosticFlirtCatalog){
+    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),10000);
+    try{
+      const response=await fetch(`/assets/data/grabbelton-videos.json?v=${encodeURIComponent(globalThis.WISIK_SITE_VERSION||APP_VERSION)}`,{cache:"no-cache",signal:controller.signal});
+      if(!response.ok)throw new Error("Videocatalogus niet beschikbaar");
+      const candidate=await response.json();
+      if(!matchingDiagnosticFlirt(candidate,code))return null;
+      diagnosticFlirtCatalog=candidate;
+    }finally{clearTimeout(timeout)}
+  }
+  return matchingDiagnosticFlirt(diagnosticFlirtCatalog,code);
+}
+async function openDiagnosticFlirt(code){
+  if(!diagnosticFlirtAllowed(code,state.diagnostics.patterns?.[code]?.status))return;
+  const session=activeSession;
+  openModal("Even anders kijken? Mag ik dan even met je flirten?",`<div id="diagnosticFlirtContent" aria-live="polite"><p>Je flirt wordt opgehaald…</p></div><div class="button-row" style="margin-top:18px"><button class="btn primary" type="button" data-start-repair="${code}">Start herstelset van vier vragen</button><button class="btn secondary" type="button" data-close-flirt>Verder met mijn oefenreeks</button></div>`);
+  const revision=modalRevision;
+  const stillOpen=()=>revision===modalRevision&&session===activeSession&&diagnosticFlirtAllowed(code,state.diagnostics.patterns?.[code]?.status);
+  try{
+    const video=await loadDiagnosticFlirt(code);
+    if(!stillOpen())return;
+    const content=document.getElementById("diagnosticFlirtContent");
+    if(!video){content.innerHTML="<p>Voor dit denkpatroon staat nog geen flirt klaar. Je kunt wel verder met de uitleg en herstelset.</p>";return}
+    const asset=url=>escapeHtml(globalThis.WisikGrabbeltonCore.versionedAssetUrl(url,globalThis.WISIK_SITE_VERSION||APP_VERSION));
+    content.innerHTML=`<h4>${escapeHtml(video.title)}</h4><p>${escapeHtml(video.summary)}</p><video class="flirt-player" controls tabindex="0" playsinline preload="none" crossorigin="anonymous" aria-label="Wisik-flirt: ${escapeHtml(video.title)}" src="${asset(video.source.url)}"${video.posterSrc?` poster="${asset(video.posterSrc)}"`:""}><track kind="captions" srclang="nl" label="Nederlands" src="${asset(video.captionsSrc)}" default></video><p data-flirt-error hidden>De film kan nu niet worden afgespeeld. Je kunt het transcript lezen of verder oefenen.</p><p><a href="${asset(video.transcriptUrl)}" target="_blank" rel="noopener">Lees het transcript (nieuw tabblad)</a></p>`;
+    content.querySelector("video").addEventListener("error",()=>{const message=content.querySelector("[data-flirt-error]");if(message)message.hidden=false},{once:true});
+  }catch{
+    if(stillOpen())document.getElementById("diagnosticFlirtContent").innerHTML="<p>De flirt kan nu niet worden geladen. Je kunt verder oefenen of de herstelset gebruiken.</p>";
+  }
+}
 function diagnosticFeedbackMarkup(result,q){
   if(!result||["not-recorded","correct-no-change","unknown","ambiguous"].includes(result.kind))return "";
   if(result.kind==="transient")return `<div class="diagnostic-feedback transient"><h5>${escapeHtml(result.title)}</h5><p>${escapeHtml(result.message)}</p></div>`;
   if(result.kind==="recovered"){const p=MISCONCEPTION_CATALOG[result.code];return `<div class="diagnostic-feedback recovery"><h5>✓ Denkpatroon hersteld</h5><p>Je hebt <strong>${escapeHtml(p.title.toLowerCase())}</strong> nu bij drie verschillende vragen zelfstandig correct toegepast.</p></div>`}
   if(result.kind!=="pattern")return "";const p=MISCONCEPTION_CATALOG[result.code];
-  if(result.status==="likely"||result.status==="recovering")return `<div class="diagnostic-feedback likely"><h5>Terugkerend denkpatroon gevonden</h5><p>${escapeHtml(p.hypothesis)} ${escapeHtml(p.explanation)}</p><button class="btn small secondary" type="button" data-diagnostic-pattern="${result.code}" style="margin-top:10px">Bekijk uitleg en herstelset</button></div>`;
+  if(result.status==="likely"||result.status==="recovering")return `<div class="diagnostic-feedback likely"><h5>Terugkerend denkpatroon gevonden</h5><p>${escapeHtml(p.hypothesis)} ${escapeHtml(p.explanation)}</p>${diagnosticFlirtMarkup(result)}<button class="btn small secondary" type="button" data-diagnostic-pattern="${result.code}" style="margin-top:10px">Bekijk uitleg en herstelset</button></div>`;
   return `<div class="diagnostic-feedback"><h5>Mogelijke denkroute — nog geen conclusie</h5><p>Dit antwoord past bij: <strong>${escapeHtml(p.title.toLowerCase())}</strong>. Dat kan ook een eenmalige vergissing zijn; de tool controleert dit later met een anders vormgegeven vraag.</p></div>`;
 }
 function displayResponse(q,response){if(q.type==="mc")return q.options?.[response]??"";if(Array.isArray(response))return response.join(" < ");return String(response??"")}
@@ -2586,7 +2639,12 @@ function topicLabel(topic){
     "charts":"tabellen en grafieken","statistics":"statistiek en kritisch beoordelen","formulas":"formules en verbanden","patterns":"patronen"
   };return labels[topic]||topic;
 }
+function releaseModalMedia(){
+  modalRevision++;
+  document.getElementById("modalBody").querySelectorAll("video").forEach(video=>{video.pause();video.removeAttribute("src");video.querySelectorAll("track").forEach(track=>track.removeAttribute("src"));video.load()});
+}
 function openModal(title,html){
+  releaseModalMedia();
   const backdrop=document.getElementById("modalBackdrop");
   if(!backdrop.classList.contains("show")&&document.activeElement?.focus)modalReturnFocus=document.activeElement;
   document.getElementById("modalTitle").textContent=title;
@@ -2594,7 +2652,7 @@ function openModal(title,html){
   backdrop.classList.add("show");
   requestAnimationFrame(()=>{const preferred=document.querySelector("#modalBody [data-modal-autofocus]");(preferred||document.getElementById("modalClose")).focus()});
 }
-function closeModal(){const backdrop=document.getElementById("modalBackdrop"),returnFocus=modalReturnFocus;backdrop.classList.remove("show","visual-mode");modalReturnFocus=null;if(returnFocus?.isConnected)requestAnimationFrame(()=>returnFocus.focus())}
+function closeModal(){releaseModalMedia();const backdrop=document.getElementById("modalBackdrop"),returnFocus=modalReturnFocus;backdrop.classList.remove("show","visual-mode");document.getElementById("modalBody").innerHTML="";modalReturnFocus=null;if(returnFocus?.isConnected)requestAnimationFrame(()=>returnFocus.focus())}
 function keepModalFocus(event){
   const backdrop=document.getElementById("modalBackdrop");if(event.key!=="Tab"||!backdrop.classList.contains("show"))return false;
   const modal=backdrop.querySelector(".modal"),focusable=[...modal.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(el=>el.getClientRects().length);
@@ -3244,6 +3302,8 @@ function bindEvents(){
       return;
     }
     const patternButton=e.target.closest("[data-diagnostic-pattern]");if(patternButton){openDiagnosticPattern(patternButton.dataset.diagnosticPattern);return}
+    const flirtButton=e.target.closest("[data-diagnostic-flirt]");if(flirtButton){openDiagnosticFlirt(flirtButton.dataset.diagnosticFlirt);return}
+    if(e.target.closest("[data-close-flirt]")){closeModal();return}
     const repairButton=e.target.closest("[data-start-repair]");if(repairButton){startDiagnosticRepair(repairButton.dataset.startRepair);return}
     const insert=e.target.closest("[data-answer-insert]");if(insert){insertAnswerText(insert.dataset.answerInsert||"");return}
     const option=e.target.closest(".option-btn");if(option&&activeSession&&!activeSession.answered){const root=option.closest(".answer-area");root.querySelectorAll(".option-btn").forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-checked","false")});option.classList.add("selected");option.setAttribute("aria-checked","true");return}

@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.13
+# Wisik.nl — versie 0.1.14
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -12,6 +12,7 @@ De repository bevat onder meer:
 - Pabo Rekenklaar onder `public/apps/pabo-rekenklaar/`;
 - de Moshpit als bewuste ingang naar de bestaande 60-seconden-sprint, zonder tweede vragenbank;
 - een schaalbare Grabbelton-catalogus met 30 gepubliceerde flirts, gekoppeld aan bestaande misconceptcodes;
+- een vrijwillige uitnodiging bij bevestigd terugkerend denkpatroon in Pabo-oefenfeedback: de exacte flirt uit dezelfde catalogus, met ondertiteling, transcript en gerichte herstelset;
 - een permanente, mobiele terugweg vanuit Pabo Rekenklaar naar het Wisik-terrein;
 - lokale opslag van Pabo-voortgang vóór het verlaten van de attractie;
 - automatische bronpagina- en attractieversieregistratie in het Wisik-Kladblok;
