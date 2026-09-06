@@ -1,4 +1,4 @@
-# Testresultaten Wisik 0.1.12
+# Testresultaten Wisik 0.1.13
 
 ## Zichtbaarheid Backstage-vrijgavecontrole
 
@@ -43,6 +43,8 @@ Geslaagd:
 - officiële RWT 2.2-verwijzing aanwezig.
 
 ## Moshpit en Grabbelton
+
+Na de eerste publicatie zijn alle 120 assets via HTTPS bereikbaar bevonden met passende MIME-types. MP4-byte-ranges zijn voor A01, B01, C01 en D01 gecontroleerd (HTTP 206). De hosting overschrijft voor MP4/JPEG de gewenste cacheheader met vier uur browsercache; daarom krijgen alle speler-assets vanaf 0.1.13 een geteste versieparameter. De 30 cataloguspaden en aangeleverde films blijven ongewijzigd.
 
 Festivalrelease v1: alle 30 aangeleverde MP4's zijn met ffprobe gelezen en met ffmpeg volledig gedecodeerd zonder fouten. Ze gebruiken H.264/avc1 (yuv420p, 1080p25) en AAC-LC, met faststart. De duur is 45,016–55,240 seconden; de catalogusduur is correct afgerond. Alle 30 posters zijn leesbaar en alle 30 VTT's zijn parseerbaar (383 cues, zonder ongeldige tijdstippen, overlap of overschrijding van de filmduur). D07 bevat ook productienotities in het aangeleverde transcript; dit bekende redactionele restant is geen technische releaseblokkade. Dit is geen didactische herbeoordeling of bewijs van afspelen op een echte iPhone.
 
@@ -121,4 +123,4 @@ Automatisch gecontroleerd:
 
 ## Responsieve controle
 
-Automatisch afgedwongen zijn de viewportinstelling, mobiele breekpunten, versiegebonden vormgeving, toegankelijke knoppen en de aanwezigheid van beide zijpodia. Het historische bestand `tests/Wisik_v0.1_browsertest.json` geldt nadrukkelijk niet als actueel browserbewijs voor 0.1.12. Na publicatie horen de nieuwe Moshpit- en Grabbeltonroutes daarom nog op de live site te worden gecontroleerd op een smal scherm, inclusief horizontale overflow, toetsenbordfocus en consolefouten.
+Automatisch afgedwongen zijn de viewportinstelling, mobiele breekpunten, versiegebonden vormgeving, toegankelijke knoppen en de aanwezigheid van beide zijpodia. Het historische bestand `tests/Wisik_v0.1_browsertest.json` geldt nadrukkelijk niet als actueel browserbewijs voor 0.1.13. Na publicatie horen de nieuwe Moshpit- en Grabbeltonroutes daarom nog op de live site te worden gecontroleerd op een smal scherm, inclusief horizontale overflow, toetsenbordfocus en consolefouten.

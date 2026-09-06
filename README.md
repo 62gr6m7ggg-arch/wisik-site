@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.12
+# Wisik.nl — versie 0.1.13
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 

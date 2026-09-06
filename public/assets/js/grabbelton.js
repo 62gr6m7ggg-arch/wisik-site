@@ -127,14 +127,14 @@
     player.playsInline = true;
     player.preload = "metadata";
     player.crossOrigin = "anonymous";
-    player.src = core.resolveAssetUrl(video.source.url);
-    if (video.posterSrc) player.poster = core.resolveAssetUrl(video.posterSrc);
+    player.src = core.versionedAssetUrl(video.source.url, globalThis.WISIK_SITE_VERSION);
+    if (video.posterSrc) player.poster = core.versionedAssetUrl(video.posterSrc, globalThis.WISIK_SITE_VERSION);
     player.setAttribute("aria-label", `Wisik-flirt: ${video.title}`);
     const track = document.createElement("track");
     track.kind = "captions";
     track.srclang = "nl";
     track.label = "Nederlands";
-    track.src = core.resolveAssetUrl(video.captionsSrc);
+    track.src = core.versionedAssetUrl(video.captionsSrc, globalThis.WISIK_SITE_VERSION);
     track.default = true;
     player.append(track);
     const note = document.createElement("p");
@@ -146,7 +146,7 @@
         : "Willekeurig gekozen uit alle gepubliceerde filmpjes.";
     const transcript = document.createElement("a");
     transcript.className = "btn ghost small";
-    transcript.href = core.resolveAssetUrl(video.transcriptUrl);
+    transcript.href = core.versionedAssetUrl(video.transcriptUrl, globalThis.WISIK_SITE_VERSION);
     transcript.textContent = "Lees het transcript";
     const practice = document.createElement("a");
     practice.className = "btn primary small";

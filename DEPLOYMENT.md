@@ -64,7 +64,9 @@ Lokale voortgang is domeingebonden. Voortgang op een oudere URL verschijnt niet 
 
 Festivalrelease v1 (6 september 2026) publiceert de 30 aangeleverde flirts tegelijk. Bekende inhoudelijke reviewpunten blokkeren deze experimentele release niet. Pabo Rekenklaar en zijn lokale voortgang blijven ongewijzigd; er worden geen video's aan de toetssimulatie toegevoegd.
 
-De stabiele paden zijn `/films/rekenklaar/<CODE>/flirt.mp4`, `poster.jpg`, `captions.vtt` en `transcript.html`. Vervang bij een latere filmversie de bestanden op dezelfde paden en werk catalogusdatum/duur en siteversie bij. De mediabestanden moeten opnieuw worden gevalideerd bij een volgend verzoek (`Cache-Control: no-cache`); gebruik hier geen `immutable`.
+De stabiele paden zijn `/films/rekenklaar/<CODE>/flirt.mp4`, `poster.jpg`, `captions.vtt` en `transcript.html`. Vervang bij een latere filmversie de bestanden op dezelfde paden en werk catalogusdatum/duur en siteversie bij. De speler voegt de actuele siteversie als `?v=...` toe aan video, poster, ondertiteling en transcript. Daardoor gebruikt een nieuwe release geen oude browserkopie. De canonieke paden blijven gelijk.
+
+Live vastgesteld op 6 september 2026: de hosting levert MP4/JPEG met `max-age=14400, must-revalidate`, ondanks `no-cache` in `_headers`. Reken daarom voor die bestanden niet uitsluitend op die headerregel; de versieparameter in de speler is noodzakelijk. Rechtstreekse links zonder versieparameter kunnen bij terugkerende bezoekers maximaal vier uur de vorige film tonen.
 
 Iedere film wordt pas na een trekking geladen en speelt niet automatisch. De eerste serie is voor PABO; Vrij ziet alle 30, VO/HBO krijgen een eerlijke lege toestand. De knop naar Pabo Rekenklaar opent de bestaande app, niet automatisch een specifieke herstelset.
 
