@@ -4,6 +4,8 @@ import path from "node:path";
 import vm from "node:vm";
 import { webcrypto } from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { runFlirtChainAudit } from "./lib/flirt-chain-audit.mjs";
+import { auditFlirtContent, verifyFlirtContentReview } from "./lib/flirt-content-audit.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
@@ -48,6 +50,67 @@ vm.runInContext(read("public/assets/js/site-data.js"), context);
 vm.runInContext(read("public/assets/js/grabbelton-core.js"), context);
 vm.runInContext(script, context);
 context.testCatalog = catalog;
+const fixtures = JSON.parse(read("tests/flirt-cases.json"));
+const chainAudit = runFlirtChainAudit(context, catalog, fixtures);
+assert.deepEqual(runFlirtChainAudit(context, catalog, fixtures), chainAudit, "De ketentest moet met dezelfde seed reproduceerbaar zijn");
+const contentAudit = auditFlirtContent(root, catalog, context.PaboRekenklaarQA.MISCONCEPTION_CATALOG);
+assert.ok(contentAudit.passed, contentAudit.failures.join("\n"));
+const allCodes = Object.keys(context.PaboRekenklaarQA.MISCONCEPTION_CATALOG);
+for (const part of ['misconception','catalogItem','video','poster','captions','transcript']) {
+  const changed = structuredClone(contentAudit.snapshot);
+  changed[0].fingerprints[part] = '0'.repeat(64);
+  assert.equal(verifyFlirtContentReview(contentAudit.review, changed, allCodes).passed, false, `Gewijzigd ${part} mag geen oude inhoudsreview erven`);
+}
+const swapped = structuredClone(contentAudit.snapshot);
+[swapped[0].code,swapped[1].code]=[swapped[1].code,swapped[0].code];
+assert.equal(verifyFlirtContentReview(contentAudit.review, swapped, allCodes).passed, false, 'Verwisselde codes moeten worden ontdekt');
+const changedTitle = structuredClone(contentAudit.snapshot);
+changedTitle[0].title = changedTitle[1].title;
+assert.equal(verifyFlirtContentReview(contentAudit.review, changedTitle, allCodes).passed, false, 'Verkeerde titel moet worden ontdekt');
+const missingReview = structuredClone(contentAudit.review);
+missingReview.entries.pop();
+assert.equal(verifyFlirtContentReview(missingReview, contentAudit.snapshot, allCodes).passed, false);
+const knownMismatch = structuredClone(contentAudit.review);
+knownMismatch.entries[0].verdict = 'mismatch'; knownMismatch.entries[0].notes = ['Bekend beeldprobleem: inhoudelijk herstel nodig.'];
+assert.equal(verifyFlirtContentReview(knownMismatch, contentAudit.snapshot, allCodes).contentStatus, 'revision-needed', 'Geldige bestandsvingerafdruk mag een inhoudelijk probleem niet groen maken');
+
+// Opzettelijk fout gedrag: bewijst dat de ketentest verkeerde triggers en films werkelijk afvangt.
+const originalOutcome = context.recordDiagnosticOutcome;
+context.recordDiagnosticOutcome = (...args) => { const result=originalOutcome(...args);return result.kind==='pattern'?{...result,code:'D07'}:result; };
+assert.throws(() => runFlirtChainAudit(context,catalog,fixtures), /uitnodiging|film/);
+context.recordDiagnosticOutcome = originalOutcome;
+const originalMatch = context.matchingDiagnosticFlirt;
+context.matchingDiagnosticFlirt = () => catalog.videos[0];
+assert.throws(() => runFlirtChainAudit(context,catalog,fixtures), /verkeerde exacte film/);
+context.matchingDiagnosticFlirt = originalMatch;
+const originalMarkup = context.diagnosticFeedbackMarkup;
+context.diagnosticFeedbackMarkup = () => '<button data-diagnostic-flirt="A01">Fout-positieve uitnodiging</button>';
+assert.throws(() => runFlirtChainAudit(context,catalog,fixtures), /correct antwoord toont flirt/);
+context.diagnosticFeedbackMarkup = originalMarkup;
+
+// Controleer ook de interpretatielaag zelf, niet alleen de selectie uit de catalogus.
+for (const item of fixtures.cases) {
+  context.rendererCase = item;
+  run(`state=deepClone(DEFAULT_STATE);state.diagnostics=freshDiagnostics();activeSession={kind:"practice",answered:true,finished:false};
+    for(let variant=0;variant<2;variant++){
+      const q=generateDiagnosticProbe(rendererCase.code,variant,"mix"),value=rendererCase.wrong[variant];
+      recordDiagnosticOutcome(q,q.type==="mc"?q.options.indexOf(value):value,false);
+    }`);
+  const before = run('JSON.stringify({state,activeSession})');
+  await run('openDiagnosticFlirt(rendererCase.code)');
+  const expected = catalog.videos.find(video => video.target.misconceptionCode === item.code);
+  context.rendererExpected = expected;
+  const markup = element("diagnosticFlirtContent").innerHTML;
+  assert.ok(markup.includes(`<h4>${run('escapeHtml(rendererExpected.title)')}</h4>`), `${item.code}: verkeerde getoonde titel`);
+  assert.ok(markup.includes(run('escapeHtml(rendererExpected.summary)')), `${item.code}: verkeerde getoonde flirttekst`);
+  for (const route of [expected.source.url,expected.posterSrc,expected.captionsSrc,expected.transcriptUrl]) {
+    assert.ok(markup.includes(`https://wisik.nl${route}?v=${context.WISIK_SITE_VERSION}`), `${item.code}: speler verwijst naar verkeerde asset ${route}`);
+  }
+  assert.ok(element("modalBody").innerHTML.includes(`data-start-repair="${item.code}"`), `${item.code}: verkeerde herstelset`);
+  run('closeModal()');
+  assert.equal(run('JSON.stringify({state,activeSession})'), before, `${item.code}: film wijzigt voortgang`);
+}
+run('state=deepClone(DEFAULT_STATE);state.diagnostics=freshDiagnostics();');
 
 run('activeSession={kind:"practice",answered:true,finished:false};');
 // Werkelijke bewijsopbouw: dezelfde fout herhalen is onvoldoende; een andere controlevraag bevestigt.
@@ -133,4 +196,4 @@ assert.equal(run('activeSession.kind'), "repair");
 assert.equal(run('activeSession.diagnosticCode'), "A01");
 assert.equal(run('activeSession.total'), 4);
 assert.equal(element("modalBackdrop").classList.contains("show"), false);
-console.log("Pabo-flirts geslaagd: bewijsopbouw, 30 exacte koppelingen, toets/sprint uitgesloten, vrijwillige speler, media-opruiming, late responsen, offline terugweg en gerichte herstelset.");
+console.log(`Pabo-flirts geslaagd: ${chainAudit.chains} vaste ketens en gerenderde spelers, ${chainAudit.answerExamples} antwoordchecks, ${chainAudit.negativeExamples} andere fouten, ${chainAudit.modeExclusions} toets-/sprintuitsluitingen; inhoudsreview bewaakt en opzettelijke verwisselingen afgewezen. Inhoudelijk: ${contentAudit.counts.needsRevision} open herstelpunten.`);

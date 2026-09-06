@@ -9,7 +9,9 @@
     "reproducible-answers",
     "no-fallbacks",
     "readable-graphs",
-    "diagnostic-patterns"
+    "diagnostic-patterns",
+    "flirt-trigger-chain",
+    "flirt-content-lock"
   ]);
   const VIEW_LABELS = Object.freeze({
     home: "Start",
@@ -270,7 +272,15 @@
     const completeGateSet = gates.length === REQUIRED_RELEASE_GATES.length
       && new Set(gateIds).size === REQUIRED_RELEASE_GATES.length
       && REQUIRED_RELEASE_GATES.every((id) => gates.some((gate) => gate?.id === id && gate?.passed === true));
-    const schemaValid = report?.schemaVersion === 1 && report?.tool === "Pabo Rekenklaar";
+    const review = report?.flirtContent;
+    const entries = Array.isArray(review?.entries) ? review.entries : [];
+    const contentIssues = entries.filter(entry=>entry.verdict === "mismatch").length;
+    const validReview = entries.length > 0 && entries.length === report?.counts?.diagnosticPatterns
+      && new Set(entries.map(entry=>entry.code)).size === entries.length
+      && entries.every(entry=>["aligned","aligned-with-notes","mismatch"].includes(entry.verdict))
+      && review?.counts?.reviewed === entries.length && review?.counts?.needsRevision === contentIssues
+      && (contentIssues ? review?.status === "revision-needed" : ["aligned","reviewed-with-notes"].includes(review?.status));
+    const schemaValid = report?.schemaVersion === 1 && report?.tool === "Pabo Rekenklaar" && validReview;
     const versionsCurrent = report?.siteVersion === window.WISIK_SITE_VERSION && report?.toolVersion === registeredToolVersion;
     const passed = schemaValid && versionsCurrent && report?.status === "passed" && completeGateSet;
     const stale = schemaValid && report?.status === "passed" && completeGateSet && !versionsCurrent;
@@ -282,6 +292,23 @@
       passedGateCount: gates.filter((gate) => gate?.passed === true).length,
       requiredGateCount: REQUIRED_RELEASE_GATES.length
     };
+  }
+
+  function flirtReviewMarkup(review) {
+    if (!review || !Array.isArray(review.entries)) return '<p>De inhoudelijke flirtbeoordeling ontbreekt.</p>';
+    const labels = {aligned:"Sluit aan", "aligned-with-notes":"Sluit aan, met kanttekening", mismatch:"Beeldherstel nodig"};
+    const issues = review.entries.filter(entry => entry.verdict === "mismatch");
+    return `<section class="flirt-content-review" aria-label="Inhoudelijke beoordeling van flirts">
+      <h5>Inhoudelijke beoordeling van de flirts</h5>
+      <p>${Number(review.counts?.reviewed || 0)} flirts beoordeeld: ${Number(review.counts?.aligned || 0)} sluiten aan, ${Number(review.counts?.withNotes || 0)} hebben een kanttekening en <strong>${issues.length} vragen beeldherstel</strong>.</p>
+      ${issues.length ? `<ul>${issues.map(entry=>`<li><strong>${escapeHtml(entry.code)} · ${escapeHtml(entry.title)}:</strong> ${escapeHtml(entry.notes?.[0] || entry.observedContent)}</li>`).join("")}</ul>` : ""}
+      <p>De technische controles kunnen slagen terwijl inhoudelijke herstelpunten openstaan. Die punten krijgen daarmee geen inhoudelijke goedkeuring.</p>
+      <details class="audit-gate-details"><summary>Bekijk de ${review.entries.length} inhoudelijke beoordelingen</summary>
+        ${review.entries.map(entry=>`<details class="flirt-review-item"><summary>${escapeHtml(entry.code)} · ${escapeHtml(entry.title)} — ${escapeHtml(labels[entry.verdict] || "Niet beoordeeld")}</summary><p><strong>Bedoelde denkfout:</strong> ${escapeHtml(entry.expectedMisconception)}</p><p><strong>Gewenst inzicht:</strong> ${escapeHtml(entry.intendedInsight)}</p><p><strong>Beoordeling:</strong> ${escapeHtml(entry.observedContent)}</p>${entry.notes?.length?`<ul>${entry.notes.map(note=>`<li>${escapeHtml(note)}</li>`).join("")}</ul>`:""}</details>`).join("")}
+      </details>
+      <p class="muted">${escapeHtml(review.reviewer)}. ${escapeHtml(review.scope?.audio)} ${escapeHtml(review.scope?.limitations)}</p>
+      <p><a href="/assets/data/flirt-content-review.json">Open de volledige review met beeldmomenten en bestandsvingerafdrukken</a></p>
+    </section>`;
   }
 
   async function renderReleaseAudit() {
@@ -296,20 +323,22 @@
       const report = await response.json();
       const registeredToolVersion = TOOLS.find((tool) => tool.id === "pabo-rekenklaar")?.version;
       const { gates, counts, passed, stale, passedGateCount, requiredGateCount } = evaluateReleaseAudit(report, registeredToolVersion);
-      const statusLabel = passed ? "Online versie gecontroleerd" : stale ? "Bewijs hoort niet bij deze versie" : "Nieuwe versie niet vrijgegeven";
+      const contentIssues = Number(report.flirtContent?.counts?.needsRevision || 0);
+      const statusLabel = passed ? contentIssues ? "Technisch gecontroleerd · beeldherstel nodig" : "Online versie gecontroleerd" : stale ? "Bewijs hoort niet bij deze versie" : "Nieuwe versie niet vrijgegeven";
 
       if (summary) {
-        summary.classList.toggle("passed", passed);
+        summary.classList.toggle("passed", passed && !contentIssues);
+        summary.classList.toggle("needs-review", Boolean(contentIssues));
         summary.classList.toggle("stale", stale);
         summary.classList.toggle("failed", !passed && !stale);
-        summary.innerHTML = `<span class="release-summary-icon" aria-hidden="true">${passed ? "✓" : "!"}</span>
-          <span class="release-summary-copy"><strong>${escapeHtml(report.tool || "Attractie")} ${escapeHtml(report.toolVersion || "")} · ${escapeHtml(statusLabel)}</strong><small>${passedGateCount}/${requiredGateCount} controles geslaagd · ${Number(counts.generatedQuestions || 0).toLocaleString("nl-NL")} vragen doorgerekend · bekijk het bewijs</small></span>
+        summary.innerHTML = `<span class="release-summary-icon" aria-hidden="true">${passed && !contentIssues ? "✓" : "!"}</span>
+          <span class="release-summary-copy"><strong>${escapeHtml(report.tool || "Attractie")} ${escapeHtml(report.toolVersion || "")} · ${escapeHtml(statusLabel)}</strong><small>${passedGateCount}/${requiredGateCount} technische controles geslaagd${contentIssues ? ` · ${contentIssues} flirts vragen beeldherstel` : ""} · bekijk het bewijs</small></span>
           <span class="release-summary-arrow" aria-hidden="true">↓</span>`;
       }
 
       if (intro) {
         intro.textContent = passed
-          ? `${report.tool} ${report.toolVersion} is in de ingestelde vrijgaveprocedure automatisch gecontroleerd. Alle ${requiredGateCount} controles zijn geslaagd.`
+          ? `${report.tool} ${report.toolVersion} is automatisch gecontroleerd. Alle ${requiredGateCount} technische controles zijn geslaagd.${contentIssues ? ` De inhoudelijke review benoemt daarnaast ${contentIssues} flirts die beeldherstel vragen.` : ""}`
           : stale
             ? `Het beschikbare controlebewijs hoort niet bij de huidige versie. De pagina toont daarom geen groene vrijgavestatus.`
             : `De kandidaatversie heeft niet alle verplichte controles doorstaan en is niet als geslaagde vrijgave gemarkeerd.`;
@@ -317,11 +346,13 @@
 
       panel.classList.toggle("failed", !passed);
       panel.classList.toggle("stale", stale);
+      panel.classList.toggle("needs-review", Boolean(contentIssues));
       panel.setAttribute("aria-busy", "false");
       panel.innerHTML = `<div class="audit-panel-head">
         <div><span class="audit-kicker">Laatste geverifieerde online vrijgave</span><h4>${escapeHtml(report.tool || "Attractie")} <span>${escapeHtml(report.toolVersion || "")}</span></h4></div>
-        <span class="audit-status ${passed ? "passed" : stale ? "stale" : "failed"}" role="status" aria-atomic="true">${passed ? "✓ Online versie gecontroleerd" : stale ? "! Bewijs hoort niet bij deze versie" : "! Nieuwe versie niet vrijgegeven"}</span>
+        <span class="audit-status ${passed ? contentIssues ? "needs-review" : "passed" : stale ? "stale" : "failed"}" role="status" aria-atomic="true">${passed ? contentIssues ? "! Technisch gecontroleerd · beeldherstel nodig" : "✓ Online versie gecontroleerd" : stale ? "! Bewijs hoort niet bij deze versie" : "! Nieuwe versie niet vrijgegeven"}</span>
       </div>
+      ${flirtReviewMarkup(report.flirtContent)}
       <div class="audit-metrics" aria-label="Samenvatting vrijgavecontrole">
         <div><strong>${Number(counts.generatedQuestions || 0).toLocaleString("nl-NL")}</strong><span>vragen doorgerekend</span></div>
         <div><strong>${Number(counts.generatorCombinations || 0).toLocaleString("nl-NL")}</strong><span>generatorcombinaties getest</span></div>

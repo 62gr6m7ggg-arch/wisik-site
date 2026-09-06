@@ -1,0 +1,1058 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-06",
+  "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
+  "scope": {
+    "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
+    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film.",
+    "audio": "De gesproken tekst is beoordeeld via de aangeleverde VTT en transcripten; de audiotrack is niet onafhankelijk beluisterd.",
+    "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
+    "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
+  },
+  "entries": [
+    {
+      "code": "A01",
+      "verdict": "aligned",
+      "expectedMisconception": "De waarde van een cijfer wordt los gezien van zijn positie in het getal.",
+      "intendedInsight": "Dezelfde 7 kan 7, 70 of 700 voorstellen; in 4.072 vertegenwoordigt hij zeven tientallen, dus 70.",
+      "observedContent": "Titel en poster: Plaatswaarde. Script breekt de gedachte dat het cijfer op zichzelf zijn waarde bepaalt. De kernillustratie toont 4-0-7-2 in een plaatswaardetabel en markeert de 7 onder tiental.",
+      "visualEvidence": [
+        {
+          "timestamps": "4,000 s; 48,744 s",
+          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+        },
+        {
+          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
+          "observation": "Plaatswaardetabel duizendtal/honderdtal/tiental/eenheid, geel gemarkeerde 7 bij tiental; tekst waarde 70."
+        }
+      ],
+      "captionEvidence": "35,979–40,136 s: “In 4.072 staat hij bij de tientallen. Daarom is zijn waarde 70.”",
+      "notes": [],
+      "videoId": "wisik-flirt-a01",
+      "title": "Plaatswaarde",
+      "fingerprints": {
+        "misconception": "d9a69f8afdd497028a153c954c390cfa3c2114ac0798da1557e668b804ca5f54",
+        "catalogItem": "21142340628d39c245e60d1c3dcb37777639872f221c9a0ed97acc8f0ae2106f",
+        "video": "d225986d1e3c5275a2960c1f89dc1d71c7c2424b58b0d7fa90b14ce17a1697f9",
+        "poster": "c274d380cdbd4d07c7d779e95f7c76e463170574a979c098cc8920ed9aaebccd",
+        "captions": "6ca08c35858f13dad1e69813942be9585e0e29d06c70befebcfbb63008b7fe88",
+        "transcript": "b43b2302108b8358366854a9eddb6e13ed866ba645e5f87c6b4eadedea9bd29f"
+      }
+    },
+    {
+      "code": "A02",
+      "verdict": "aligned",
+      "expectedMisconception": "Het aantal cijfers achter de komma wordt gebruikt in plaats van de plaatswaarde.",
+      "intendedInsight": "0,8 = 0,800 > 0,125; plaatswaarde en hoeveelheid bepalen de grootte, niet het aantal decimalen.",
+      "observedContent": "Titel en poster: Meer decimalen, groter getal? Script benoemt de verleiding van de langere cijferreeks en doorbreekt die met gelijke duizendsten. Twee even lange eenheidsbalken ondersteunen dezelfde vergelijking.",
+      "visualEvidence": [
+        {
+          "timestamps": "4,000 s; 46,560 s",
+          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+        },
+        {
+          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
+          "observation": "Balk 0,8 = 0,800 is voor circa 80% gevuld; balk 0,125 voor circa 12,5%. Gemeenschappelijke schaal 0–1; tekst 800 duizendsten tegen 125 duizendsten."
+        }
+      ],
+      "captionEvidence": "25,621–30,869 s: “800 duizendsten tegenover 125 duizendsten. Dan is 0,8 duidelijk groter.”",
+      "notes": [],
+      "videoId": "wisik-flirt-a02",
+      "title": "Meer decimalen, groter getal?",
+      "fingerprints": {
+        "misconception": "f2ad79e4c81167024f2b0af00c713785b0c25935023f52d6a1bf77af4efa88b7",
+        "catalogItem": "f8d4b9e9b8a3d289ccf3a72c1ad289afc4e2de57644401252bd2cd5db0afe52c",
+        "video": "d6460883e0624bbfbf61daf03812af6b8addd4dba75bf606de1af408a38ff8fc",
+        "poster": "938478be953df065b8ef3dcbde98390305f4890df2af45ec61db38d3253e007f",
+        "captions": "1a1716cc579a3c89e04d7be9dcbb5c45b159c33538980f6b4168f8ef8602288c",
+        "transcript": "01770ae4b4731c939101b2d1fe9ee86afa0f6486a5ec9f261d2228e1193690b6"
+      }
+    },
+    {
+      "code": "A03",
+      "verdict": "aligned",
+      "expectedMisconception": "Het minteken wordt bij het vergelijken onvoldoende meegenomen.",
+      "intendedInsight": "−8 ligt verder links dan −3 en is kleiner; afstand tot nul is iets anders dan de grootte van het getal.",
+      "observedContent": "Titel en poster: Negatieve getallen vergelijken. Script maakt de intuïtie acht is meer dan drie expliciet en betrekt daarna het minteken en de positie op één getallenlijn.",
+      "visualEvidence": [
+        {
+          "timestamps": "4,000 s; 44,016 s",
+          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+        },
+        {
+          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
+          "observation": "Regelmatig verdeelde getallenlijn van −10 tot 2, met −8 links van −3 en nul verder rechts. Onderschrift onderscheidt links/kleiner van afstand tot nul."
+        }
+      ],
+      "captionEvidence": "27,437–32,031 s: “Daarom is −3 groter dan −8, ook al staat er een kleiner cijfer.”",
+      "notes": [],
+      "videoId": "wisik-flirt-a03",
+      "title": "Negatieve getallen vergelijken",
+      "fingerprints": {
+        "misconception": "78d3d9004e20cc6d6d874424f5aadd945e89ea833079976a02c615937174bb82",
+        "catalogItem": "acf27d2fe5c9068576fbedff75238b8fae8ba11b7eb05bdfc5646f7d6048b8ac",
+        "video": "c8e613165f993e2776c53c7961a9d67db927b3cf01cf73b654ab5e14aaf40d87",
+        "poster": "78cac0b46991d756ac778208022c11cd7902aaade2a3fa3e8c950a4fab6c15b2",
+        "captions": "aaa3105b8cdf91d6fd822283eb788161a2273f9289417116daa35b2ef10be867",
+        "transcript": "ec21b72f641c52b1ccb11de7ae03d6e094d6a08dabf1a5318cfca29d899fed08"
+      }
+    },
+    {
+      "code": "A04",
+      "verdict": "aligned",
+      "expectedMisconception": "Bij een overgang van negatief naar positief worden alleen de absolute waarden afgetrokken.",
+      "intendedInsight": "De temperatuurstijging van −4 naar 7 is 4 + 7 = 11 graden; aftrekken van −4 verschilt van aftrekken van 4.",
+      "observedContent": "Titel en poster: Het verschil over nul. Script haalt de fout 7 − 4 = 3 aan als misleidend antwoord op de situatie en corrigeert dit onmiddellijk via het beginpunt −4 en de tussenstop nul.",
+      "visualEvidence": [
+        {
+          "timestamps": "4,000 s; 45,120 s",
+          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+        },
+        {
+          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
+          "observation": "Thermometerschaal −4 tot 7; naast de schaal −4 → 0: 4°, 0 → 7: 7°, samen 11°. Formule 7 − (−4) = 11 ondersteunt de afstand."
+        }
+      ],
+      "captionEvidence": "18,775–27,821 s: “Van −4 naar nul stijgt de temperatuur al vier graden. Daarna gaat hij nog zeven graden omhoog. De hele stijging is dus 11 graden.”",
+      "notes": [],
+      "videoId": "wisik-flirt-a04",
+      "title": "Het verschil over nul",
+      "fingerprints": {
+        "misconception": "717942f4470f1c98a390f3af587792c1db895ae15ab6907f328d303a92fe9850",
+        "catalogItem": "fe374a1fe87a7a4d7ffc9c80aa506e17edc29023ca0b626b35d91d19009d160b",
+        "video": "a0f9ce394bc2d2b5cf048bd00ba86bfd8069750cc772010cde3988459e2e519e",
+        "poster": "3e36aa596d47073956968aeeb2d8c3d87a76237b3c9fa1506e8269e580fd0f6f",
+        "captions": "52e9287d540110b49589cd61a5661006f103e111ed20fe57fb2d54846ae2543e",
+        "transcript": "6f7c4704a0d7b8707fc92f90a5c2576da5ebb732b72c64cdf08b2b35545ab372"
+      }
+    },
+    {
+      "code": "A05",
+      "verdict": "aligned-with-notes",
+      "expectedMisconception": "De rekenvolgorde keer/delen vóór plus/min wordt niet toegepast.",
+      "intendedInsight": "In 18 − 3 × 6 vormen de drie groepjes van zes de af te trekken hoeveelheid; vermenigvuldigen gaat hier vóór aftrekken, dus uitkomst 0.",
+      "observedContent": "Titel en poster: Rekenvolgorde. Script zet de onjuiste links-naar-rechts-uitkomst 90 tegenover drie groepjes van zes afhalen en legt de andere bedoeling met haakjes uit. De kernillustratie heeft precies drie rijen van zes fiches.",
+      "visualEvidence": [
+        {
+          "timestamps": "4,000 s; 46,896 s",
+          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+        },
+        {
+          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
+          "observation": "18 − 3 × 6 boven 18 gele fiches in een 3×6-formatie. Naast de fiches staan 3 × 6 hoort bij elkaar en er blijft 0 over. Op alle vier bemonsterde kernframes blijven de 18 fiches zichtbaar."
+        }
+      ],
+      "captionEvidence": "16,102–22,113 s: “3 × 6 hoort bij elkaar: dat is de hoeveelheid die je weghaalt. Er blijft niets over.”",
+      "notes": [
+        "Niet-blokkerende beeldnotitie: het afhalen wordt verteld, terwijl ook bij 21 s nog alle 18 fiches zichtbaar zijn. Wegstrepen of laten verdwijnen kan de breuk met links-naar-rechts sterker maken; de huidige berekening en doelgroepkoppeling zijn correct."
+      ],
+      "videoId": "wisik-flirt-a05",
+      "title": "Rekenvolgorde",
+      "fingerprints": {
+        "misconception": "5278a12df05e9204efa6b45c0925ea02e704ab4adedfabdf56ef8e7be5ed5600",
+        "catalogItem": "1cb54eb1d6756a54229d578f264df835376325ecccc6877d3b86e6f01171036a",
+        "video": "33591b62fe55644a9f38f73749f1a35ae189cea7a58212d57960c3d5dc7181fa",
+        "poster": "8cbaa7f9fa6cfba40bc85ef1280915615c10f1b73077222e4a862bb216ab694f",
+        "captions": "46d5b58c0a81a2045e2b8588044326fc988a20aa5902c20b6dd7acdaab399540",
+        "transcript": "6cf52c0c875cc6b887f6f5ef69e545902aae35475978680f1a047cc785e4148e"
+      }
+    },
+    {
+      "code": "A06",
+      "verdict": "aligned",
+      "expectedMisconception": "x² wordt geïnterpreteerd als 2 × x.",
+      "intendedInsight": "6² betekent 6 × 6 = 36, terwijl verdubbelen 2 × 6 = 12 geeft.",
+      "observedContent": "Titel en poster: Kwadrateren is niet verdubbelen. Het script benoemt de verkeerde interpretatie van het kleine tweetje en laat kwadrateren aansluiten op een vierkant met zes rijen van zes.",
+      "visualEvidence": [
+        {
+          "timestamps": "4,000 s; 47,616 s",
+          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+        },
+        {
+          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
+          "observation": "Vierkant rooster met zes kolommen en zes rijen; daarnaast 6² = 6 × 6 = 36 en de contrasterende bewerking 2 × 6 = 12."
+        }
+      ],
+      "captionEvidence": "39,223–42,866 s: “Kwadrateren is een getal met zichzelf vermenigvuldigen.”",
+      "notes": [],
+      "videoId": "wisik-flirt-a06",
+      "title": "Kwadrateren is niet verdubbelen",
+      "fingerprints": {
+        "misconception": "b96a02e59ca791ac00dcd54c58a19d5e0d23576024d6bc017d35c786e208a383",
+        "catalogItem": "c60f49c0afebdd4830fd94a1d5168e1d9bf7da1f9431dde898df57e75517a079",
+        "video": "a1a4732f3776f1f850bb41935b038e4c4d704d8e86f3063d3ab60b7ab3fa9085",
+        "poster": "581df7aaf0124f6a8fae754b72d4cbfbd6bf7a4b80141adc63a5a94f63b8ba44",
+        "captions": "5db5d449de47df53d69e20a15fadbf6072545f4b2c710f84ffbefb0bb6c9b5de",
+        "transcript": "4f42684149f22f7d6a67ef42bfb1756af6d0d9e75e400d13a61e445a7b6bcce1"
+      }
+    },
+    {
+      "code": "A07",
+      "verdict": "aligned",
+      "expectedMisconception": "De vierkantswortel wordt verward met delen door twee.",
+      "intendedInsight": "√144 zoekt de niet-negatieve zijlengte van een vierkant met oppervlakte 144; 12 × 12 = 144, dus de wortel is 12 en niet 72.",
+      "observedContent": "Titel en poster: Worteltrekken is niet halveren. Het script contrasteert halveren met het terugzoeken van een gelijke breedte en hoogte. De vierkantscontext maakt de positieve zijlengte passend zonder extra leerdoelen.",
+      "visualEvidence": [
+        {
+          "timestamps": "4,000 s; 50,880 s",
+          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+        },
+        {
+          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
+          "observation": "Vierkant rooster met twaalf rijen en twaalf kolommen; zijde onder en links gelabeld 12. Daarnaast √144 = 12 en afgewezen halveerbewerking 144 : 2 = 72."
+        }
+      ],
+      "captionEvidence": "23,365–28,220 s: “12 × 12 geeft precies 144 vakjes. Daarom is √144 gelijk aan twaalf.”",
+      "notes": [],
+      "videoId": "wisik-flirt-a07",
+      "title": "Worteltrekken is niet halveren",
+      "fingerprints": {
+        "misconception": "a756dc9935764c39c55e1d95d586a0c2592387a7a2be1e1289dba190e3888e23",
+        "catalogItem": "70014082903886978389c063fa78f577648ded5381efe590a37bf2828604b35d",
+        "video": "a7814233f9aed90724990ab770e8dc87cfc13276a038fc28e9ed879d5a7315f2",
+        "poster": "74fb15cafe1291bc3c9ca5fb2509a4973a417af5e0e12b1c84769d7eb64b1818",
+        "captions": "782685d31a799ea2cb84c98d4514243cd4ed2ed5cd9c38372cebf2661b76fada",
+        "transcript": "7b43b97d3f3d0db3fd8d2e6fbf64ef6bca3fe3e11de6efb8d7f8e147321f303a"
+      }
+    },
+    {
+      "code": "A08",
+      "verdict": "aligned",
+      "expectedMisconception": "“3 rest 2” wordt genoteerd als 3,2, alsof de rest tienden zijn.",
+      "intendedInsight": "Bij 23 : 7 zijn de twee overgebleven koekjes de gezamenlijke rest; verder verdelen geeft ieder 2/7 extra en niet 2/10, dus 3 rest 2 is geen 3,2.",
+      "observedContent": "Titel en poster: De rest achter de komma? Script en beeld houden de zeven porties van drie en de gezamenlijke rest van twee uit elkaar. Het script maakt ook expliciet wat 3,2 per persoon zou betekenen.",
+      "visualEvidence": [
+        {
+          "timestamps": "4,000 s; 46,728 s",
+          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+        },
+        {
+          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
+          "observation": "Zeven vakken met ieder drie gele koekjes en daaronder twee losse rode koekjes. Tekst 23 : 7 = 3 rest 2, niet 3,2; kernzin Rest 2 zijn twee helen. Niet twee tienden."
+        }
+      ],
+      "captionEvidence": "30,105–33,021 s: “krijgt ieder 2/7 koekje extra. Niet 2/10.”",
+      "notes": [],
+      "videoId": "wisik-flirt-a08",
+      "title": "De rest achter de komma?",
+      "fingerprints": {
+        "misconception": "ed88acd3df52221f1e7a290a226cb8181d8556c3fb5cfa1a98445f73c15df550",
+        "catalogItem": "fe38e96e27618769f52f07228b0ec64dd9d2c2704ef4f2c9a13de4c198b63e32",
+        "video": "02193be4930deee4624246050326eb24cf9b356670cac5bfe53ed90e04d04c7c",
+        "poster": "1729530fea26e47d0825a8775c46bd1b2a91ce34b37ca2ec2ff56c95f5bc4975",
+        "captions": "583731bfd3e108bc09ea9e8fa32a130cec5abd16165a38c832ebbb67ee4aab0e",
+        "transcript": "8abe922db5fde1525c69ed314bb4edfcc56f4198b335b45c8ee03c1ae89bb321"
+      }
+    },
+    {
+      "code": "B01",
+      "verdict": "aligned",
+      "intendedInsight": "Bij één stuk van hetzelfde geheel geeft een grotere noemer een kleiner stuk.",
+      "observedContent": "Titel, script en beeld vergelijken 1/6 met 1/8 van even grote taarten. De verleiding acht is groter wordt doorbroken doordat dezelfde taart over meer stukken wordt verdeeld.",
+      "visualEvidence": [
+        "4 s: titelkaart Een grotere noemer, code B01.",
+        "12, 21, 30 en 39 s: twee even grote cirkels met zes respectievelijk acht gelijke sectoren; één zesde heeft zichtbaar meer oppervlakte dan één achtste.",
+        "47,856 s: eindkaart met B01; poster toont dezelfde titel en code."
+      ],
+      "captionEvidence": "Bij één stuk van hetzelfde geheel betekent een grotere noemer juist een kleiner stuk.",
+      "notes": [],
+      "expectedMisconception": "De grootte van de noemer wordt rechtstreeks aan de grootte van de breuk gekoppeld.",
+      "videoId": "wisik-flirt-b01",
+      "title": "Een grotere noemer",
+      "fingerprints": {
+        "misconception": "dbd8dcfa82086fd64ef40910c6a33d42b461f83b9c6e40afe2853d619484f152",
+        "catalogItem": "be2cbbb3ecfaa0d5ce6c38f73c67934473e40976d0eae61e0e11fb0f363921a3",
+        "video": "40bbc703767d44027e9b708522a106e45c60db2f29a9080e630ebd66dce67a89",
+        "poster": "3f4e039d54ecdf6f91d906b1f152d80dd9da6a3d0e9965eb208b12e37226f9d1",
+        "captions": "64d41055cfa0d1b5dd95c7618cea4cc3cfa93a5dacfffc3b25fbe34aa066071e",
+        "transcript": "c4efd8e246dad2823ba16ede5de3900193ee6b47ec9068fd3b4e1d753754eb2f"
+      }
+    },
+    {
+      "code": "B02",
+      "verdict": "aligned",
+      "intendedInsight": "Bij optellen van helften tel je de stukken; hun grootte verandert niet. Twee helften vormen één geheel.",
+      "observedContent": "Titel en script richten zich precies op het afzonderlijk optellen van tellers en noemers. Het tegenvoorbeeld 1/2 + 1/2 laat zien dat 2/4 taart zou laten verdwijnen; de twee getoonde helften dragen het juiste inzicht.",
+      "visualEvidence": [
+        "4 s: titelkaart Breuken optellen, code B02.",
+        "12, 21, 30 en 39 s: twee complementaire taarthelften; 1/2 + 1/2 = 1 en expliciet niet 2/4.",
+        "45,528 s: eindkaart met B02; poster stemt overeen."
+      ],
+      "captionEvidence": "De stukken worden niet ineens kwarten doordat je ze optelt.",
+      "notes": [],
+      "expectedMisconception": "Bij breuken wordt a/b + c/d uitgevoerd als (a+c)/(b+d).",
+      "videoId": "wisik-flirt-b02",
+      "title": "Breuken optellen",
+      "fingerprints": {
+        "misconception": "d82854f66e2e0a8c3b29b3e8b5b3959a733fe4099eb74c18b92e27ccb5db4c5a",
+        "catalogItem": "25cb49a9e37ea385f32f8d853f858caef3a2b783a047543fb62a1413ae424bc6",
+        "video": "1b9c253cb2e89e1322346e11fc80821169bad8c692750aad0436e288de0b10f8",
+        "poster": "b63092d19e5f29a6f436c7ba8125df6f733b4115c1cd6dc4fd41f7eebd5b0bb7",
+        "captions": "75a158abe97b90beab2a2add5fe9c8d4d1de4108b84d20653f041f071e09e9fe",
+        "transcript": "1a2b5c12e3acab124303a5a0e45ca430469e871c376089ee49a6009f66a976f7"
+      }
+    },
+    {
+      "code": "B03",
+      "verdict": "aligned",
+      "intendedInsight": "Delen door een breuk meet hoeveel keer die maat in de hoeveelheid past; rechtstreeks vermenigvuldigen beantwoordt een andere vraag.",
+      "observedContent": "De film zet de fout 3/4 × 1/4 = 3/16 expliciet tegenover 3/4 : 1/4 = 3. Eén kan met driekwart liter en drie kwartliterbekers geven één passend meetbeeld. De film behandelt de beoogde misconceptie, ook zonder de volledige omkeerprocedure te onderwijzen.",
+      "visualEvidence": [
+        "4 s: titelkaart Delen door een breuk, code B03.",
+        "12, 21, 30 en 39 s: kan met label 3/4 L en drie bekers met elk 1/4 L; onderaan 3/4 : 1/4 = 3.",
+        "46,416 s: eindkaart met B03; poster stemt overeen."
+      ],
+      "captionEvidence": "De uitkomst vertelt hier hoeveel keer de bekermaat in de hoeveelheid past.",
+      "notes": [],
+      "expectedMisconception": "De breuken worden bij een deling rechtstreeks met elkaar vermenigvuldigd.",
+      "videoId": "wisik-flirt-b03",
+      "title": "Delen door een breuk",
+      "fingerprints": {
+        "misconception": "f07e640cbacd409393e29ee09cfb8511ed8a4ec413304cf6c969748f6d0ac957",
+        "catalogItem": "6e893c217b48508f73b58692abbea4c6ac034b83ab0b9ff91479d346b5e002c2",
+        "video": "2838bd6202ecbe7c8cd4d9b761d8979809ce4016cf4c9d6cbcf67d20bf803e4d",
+        "poster": "236406c9651282341bf59a0c3a5c5ef30722bdb07eabcd03a6ff9c0e4bfb6c0c",
+        "captions": "54438da1b58f7891c3b8f0cd0488a0d09567b3c6fba545310128bdc53307921b",
+        "transcript": "185842c078f56e4c6fb404fd0a881976f8910ec80eb98e1b92d4629acd379638"
+      }
+    },
+    {
+      "code": "B04",
+      "verdict": "aligned-with-notes",
+      "intendedInsight": "0,7 is zeven tienden en dus zeventig honderdsten: 70%, niet 7%.",
+      "observedContent": "Titel, script en gelijkheid richten zich op precies de fout één kommaplaats verschuiven. Zeven gevulde kolommen van tien maken 0,7 zichtbaar; de gesproken verfijning naar honderd vakjes ontbreekt in de bekeken beelden.",
+      "visualEvidence": [
+        "4 s: titelkaart Van decimaal naar procent, code B04.",
+        "12 en 21 s: tien onverdeelde kolommen, waarvan zeven gevuld; bovenaan 0,7 = 7/10 = 70/100 = 70%.",
+        "30 en 39 s: dezelfde tien kolommen zonder horizontale onderverdeling; ook bij de uitleg over zeventig van honderd vakjes is geen honderdveld zichtbaar.",
+        "50,640 s: eindkaart met B04; poster stemt overeen."
+      ],
+      "captionEvidence": "Nu verdelen we elke kolom in tien vakjes.",
+      "notes": [
+        "Niet-blokkerend voor de experimentele festivalversie: voeg horizontale lijnen toe tijdens 19,710–31,419 s zodat de aangekondigde honderd vakjes en het behoud van hoeveelheid zichtbaar worden. De weergegeven gelijkheid en kernuitleg zijn correct."
+      ],
+      "expectedMisconception": "De komma verschuift één in plaats van twee plaatsen.",
+      "videoId": "wisik-flirt-b04",
+      "title": "Van decimaal naar procent",
+      "fingerprints": {
+        "misconception": "ad998fa1c5534bf9bea8675540435ca99ce8ffa85d2bae22fa1b027101e2dcf8",
+        "catalogItem": "5d244ca645026e684a163635c79d51d28b527dd9ea8cb1ea41a1be82223e4d3a",
+        "video": "5cce4d79bf34d32d6938914dd19a9ac2e03efc37efe3d5570c7bf52f4c230ff4",
+        "poster": "48da16c90e6e730daf7eddfcc91bd313ae91caeac4540f6e6832d60e9e618982",
+        "captions": "48f3051774003e6a85fedf1eae0e3644df2502f1ff60ee3a6c6137a154aa1025",
+        "transcript": "de19fd40cce99c34b21d090c21341fb4163a665fcf42e62a89466249b1675a9f"
+      }
+    },
+    {
+      "code": "B05",
+      "verdict": "aligned",
+      "intendedInsight": "De nieuwe prijs na 20% korting is 80% van het oorspronkelijke geheel; hetzelfde percentage erbij gebruikt een andere basis.",
+      "observedContent": "De film vraagt expliciet of €72 plus 20% de oorspronkelijke prijs geeft en doorbreekt dit met twintig procent waarvan. Een 80/20-strook maakt €72 als deel van €90 zichtbaar; €90 − €18 = €72 controleert het juiste geheel.",
+      "visualEvidence": [
+        "4 s: titelkaart Terugrekenen na korting, code B05.",
+        "12, 21, 30 en 39 s: strook met circa 80% blauwgroen gelabeld €72 = 80% en 20% oranje; oorspronkelijk geheel = €90.",
+        "52,080 s: eindkaart met B05; poster stemt overeen."
+      ],
+      "captionEvidence": "Eerst zien wat het bedrag voorstelt: hier 80%, niet het hele bedrag.",
+      "notes": [],
+      "expectedMisconception": "Het percentage wordt toegepast op het nieuwe bedrag in plaats van op het oorspronkelijke geheel.",
+      "videoId": "wisik-flirt-b05",
+      "title": "Terugrekenen na korting",
+      "fingerprints": {
+        "misconception": "4df99ffe17321aa6a993ea8c49bb890b0408056cda90ae973fefe925703ee895",
+        "catalogItem": "c2f5682f378f126abb346802ed6eac7ec5e77cebea40a68ec75ee8a7bf9410d2",
+        "video": "f8450ddace0184ff2f8c8a05d34515eff0da5912944a3fcb70f1652f6fa0675f",
+        "poster": "8ace993ab4b04f6ad5f4929ffec85a42d19ff6df07d57f259d4e5696269abe60",
+        "captions": "b35d42fea73e33cb54bc0a00d6c0b498e5c6bdc8ffa2f95756cfbd150fc91c74",
+        "transcript": "5f92072cb21cafa8341f8d42096a7f170998338f3927019433d13e2a2bfd33c8"
+      }
+    },
+    {
+      "code": "B06",
+      "verdict": "aligned-with-notes",
+      "intendedInsight": "Een daling en stijging met hetzelfde percentage heffen elkaar niet op doordat de tweede basis kleiner is: 100 → 80 → 96.",
+      "observedContent": "Het script confronteert de terug-naar-het-begin-verwachting rechtstreeks en rekent correct met 20% van 100 en vervolgens 20% van 80. Het honderdveld toont 80 behouden blokjes, 16 teruggevoegde blokjes en vier lege vakjes.",
+      "visualEvidence": [
+        "4 s: titelkaart Twintig procent eraf en erbij, code B06.",
+        "12, 21, 30 en 39 s: 10 × 10-veld met 80 blauwgroene, 16 gele en vier lege vakjes; onderschrift 20% van 100 is 20. 20% van 80 is 16.",
+        "12–39 s: losse rekentekst links toont −20, +16 en =96 zonder uitgeschreven startwaarde 100.",
+        "50,400 s: eindkaart met B06; poster stemt overeen."
+      ],
+      "captionEvidence": "De percentages waren gelijk, maar de hoeveelheden waarover je ze berekende niet.",
+      "notes": [
+        "Niet-blokkerende notatieverbetering: schrijf bij de losse rekentekst ook de startwaarde 100, bijvoorbeeld 100 − 20 + 16 = 96. Script, blokjestelling en einduitkomst zijn correct; de huidige losse tekens kunnen zonder context onvolledig worden gelezen."
+      ],
+      "expectedMisconception": "−p% en daarna +p% worden verondersteld elkaar op te heffen.",
+      "videoId": "wisik-flirt-b06",
+      "title": "Twintig procent eraf en erbij",
+      "fingerprints": {
+        "misconception": "f6e08bf7f2f921e248073f90a37566c802fc4e68aec4ed0be18efaa51bef4165",
+        "catalogItem": "a10aafcd2e322da841fdb9607066580fd496a15b2d52a1fc3d0892d905c740ca",
+        "video": "3decdafb5ec86e1263ffc1320b220dc4e741dcaf92acdf641484bccf05bab6d0",
+        "poster": "809925fb10bd5ebf4c62478df659651d7fd0098ca4498d51081f1091da746325",
+        "captions": "a45caf14fe3478b837ac71d48e7321c9cf6e49ac40f7ec6131f838703f3fc092",
+        "transcript": "07ed5904f52bbb31e4449f397d51efea878a38a0b7f4506b0fbcd34de1fa0c1e"
+      }
+    },
+    {
+      "code": "B07",
+      "verdict": "aligned",
+      "intendedInsight": "Bij een verhouding groeien beide hoeveelheden met dezelfde factor; vier groepjes 2 : 3 geven 8 : 12.",
+      "observedContent": "De film maakt de additive fout 2 → 8 en 3 → 9 expliciet. Vier visueel herhaalde menggroepjes tonen waarom het verschil bewaren iets anders is dan dezelfde samenstelling bewaren.",
+      "visualEvidence": [
+        "4 s: titelkaart Verhoudingen vergroten, code B07.",
+        "12, 21, 30 en 39 s: vier groepjes met elk twee oranje siroopeenheden en drie blauwgroene watereenheden; totaaltekst 4 groepjes → 8 siroop en 12 water.",
+        "50,568 s: eindkaart met B07; poster stemt overeen."
+      ],
+      "captionEvidence": "Je kunt de groepjes herhalen of beide aantallen met vier vermenigvuldigen.",
+      "notes": [],
+      "expectedMisconception": "Het verschil tussen de verhoudingsgetallen wordt opgeteld in plaats van dezelfde factor te gebruiken.",
+      "videoId": "wisik-flirt-b07",
+      "title": "Verhoudingen vergroten",
+      "fingerprints": {
+        "misconception": "627bb5eb0ad314cf480a15d69dbc6a35dbd7df62f58dc8bdb2c6111aa454a1ba",
+        "catalogItem": "1de659b5b6d03c39b5662b391ad9211532d0fd96c6b47f426c29083cc48253e7",
+        "video": "7f0231df340da9acf99fe06e75b9af03067f5f1ff295a0c9d5ec7ec547d8f12a",
+        "poster": "f3e1a36a9c9cf38e0f34dc62f313a827c60f3c5b30a14be7cd93c43413712a1e",
+        "captions": "88b8d4801a128b06627d19b2d27e6a11ff4f64be20448f301f8e81fca53e5329",
+        "transcript": "40774b8b308d9b02975bbf4e90d3f72b03e66904dc4a10ccc8a711b0ff14edf0"
+      }
+    },
+    {
+      "code": "B08",
+      "verdict": "aligned-with-notes",
+      "intendedInsight": "De 36 geordende paren zijn even waarschijnlijk bij twee eerlijke onafhankelijk geworpen dobbelstenen; de elf sommen zijn dat niet.",
+      "observedContent": "Titel en script confronteren gelijke kansen voor sommen 2 tot 12. De sommentabel toont één manier voor 2 en zes voor 7; de tekst onderscheidt (1,6) van (6,1) en noemt eerlijkheid en onafhankelijkheid expliciet.",
+      "visualEvidence": [
+        "4 s: titelkaart Kansen met twee dobbelstenen, code B08.",
+        "12, 21, 30 en 39 s: correcte 6 × 6-sommentabel van 2 tot 12; één oranje cel voor som 2 en zes gele cellen voor som 7; labels som 2: 1 paar en som 7: 6 paren.",
+        "12–39 s: geen rij-/kolomkoppen die eerste en tweede dobbelsteen aangeven.",
+        "45,936 s: eindkaart met B08; poster stemt overeen."
+      ],
+      "captionEvidence": "De paren hebben gelijke kansen. De sommen niet.",
+      "notes": [
+        "Niet-blokkerende didactische verbetering: voeg rij-/kolomkoppen 1–6 en eerste/tweede steen toe, zodat leerlingen de geordende paren rechtstreeks uit het beeld kunnen aflezen. De huidige telling en conclusie zijn correct."
+      ],
+      "expectedMisconception": "De elf mogelijke somwaarden worden behandeld alsof elke som één even waarschijnlijke uitkomst is.",
+      "videoId": "wisik-flirt-b08",
+      "title": "Kansen met twee dobbelstenen",
+      "fingerprints": {
+        "misconception": "53f5fda2e449ac020dfa395daab85a76744d6258f41552e7f14c56c8fdd03b18",
+        "catalogItem": "88d2eb00c8e553d2e7446c354ce0636e2c6de97bd8ce0b40e716d29d0c4d25db",
+        "video": "902b5536a0819eac9652771c3a63c817cba2f4f0a1e5a5983d9e105b8749a253",
+        "poster": "4c4a7d8061c631fcd4d4e650bab5255c383cab54cfa4c8ff82fcadf26b8e1e37",
+        "captions": "4a0e51b762dde52e6cf954fea52e4ff2c9c4369961ac095394d49a858d4ea889",
+        "transcript": "af0a47762ed204363f6062000927f4cf164b4cd17fbab0a8126fea915abe4b3e"
+      }
+    },
+    {
+      "code": "C01",
+      "verdict": "mismatch",
+      "expectedMisconception": "De factor 100 van meter naar centimeter wordt niet gekwadrateerd.",
+      "intendedInsight": "1 m² is 100 cm × 100 cm = 10.000 cm²; de lengtefactor werkt in twee richtingen.",
+      "observedContent": "Titel en volledige VTT/transcript treffen de bedoelde misvatting. Het centrale beeld toont een vierkant van 1 m bij 1 m met een 10×10-raster, naast de correcte uitkomst 100 × 100 = 10.000 cm². Dit raster blijft gelijk tijdens de beschrijving van honderd rijen met elk honderd vakjes van 1 cm².",
+      "visualEvidence": [
+        {
+          "timestampsSeconds": [
+            4,
+            54.24
+          ],
+          "observation": "Correcte C01-titelkaart en afsluiting."
+        },
+        {
+          "timestampsSeconds": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Tien kolommen en tien rijen zichtbaar, zijden gelabeld 1 m; rechts 100 × 100 = 10.000 cm²."
+        },
+        {
+          "timestampsSeconds": [
+            25
+          ],
+          "observation": "Extra opname op volledige resolutie bevestigt honderd zichtbare vakjes, zonder fijnraster, vergroting of aanduiding dat ieder vakje 100 cm² voorstelt."
+        }
+      ],
+      "captionEvidence": "23.379–27.287: “met in elke rij honderd vakjes van één vierkante centimeter.”",
+      "notes": [
+        "Inhoudelijk beeldprobleem: de gesproken telredenering correspondeert niet met het getoonde raster. In deze context kan het beeld juist 1 m² = 100 cm² bevestigen. Toon een 100×100-raster, of verklaar zichtbaar de grovere vakken en vergroot één vak tot 100 cm².",
+        "De rekenuitkomst en uitleg zijn correct; het probleem zit in de visuele representatie, niet in de toewijzing aan C01.",
+        "Kleine redactionele VTT-noot: “100 cms” is onhandige eenheidnotatie; gebruik “100 cm” of “honderd centimeters”."
+      ],
+      "videoId": "wisik-flirt-c01",
+      "title": "Van vierkante meter naar vierkante centimeter",
+      "fingerprints": {
+        "misconception": "116432efe2dd92622d6a938520f6be9d21be2c13a3a9efadc9a9d024a4b0d972",
+        "catalogItem": "3e568f81475e33575b53215c0a7959a57b3ca1d25df8120cd5a1ed2a7b7cf887",
+        "video": "d8756e6debbd870d73c4eb3d4433841aed7ff37d03de162a7dcc175d1c68ebdd",
+        "poster": "4a6a2d095fe29543673b80ef43d21ef32c40321150adc50f048b976f23dd07ec",
+        "captions": "721be99848ec9ca912325b8d3148788a0ab9e48fb32eb127e942659c94409ff9",
+        "transcript": "3b4b28ecdc505eaefb9378b647167ceaef4cf6c8492d070db58590ec41ca65be"
+      }
+    },
+    {
+      "code": "C02",
+      "verdict": "aligned-with-notes",
+      "expectedMisconception": "De omzetfactor wordt slechts één keer of als 1.000 gebruikt waar 100³ nodig is.",
+      "intendedInsight": "1 m³ bevat 100 × 100 × 100 = 1.000.000 cm³; breedte, diepte én hoogte tellen mee.",
+      "observedContent": "Titel en volledige VTT/transcript breken de gedachte dat duizend cm³ in een m³ passen met een correcte rij-laag-stapeling. Het beeld is een onverdeelde kubus; de rekenregel staat grotendeels achter de witte inzichtbalk.",
+      "visualEvidence": [
+        {
+          "timestampsSeconds": [
+            4,
+            53.52
+          ],
+          "observation": "Correcte C02-titelkaart en afsluiting."
+        },
+        {
+          "timestampsSeconds": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Vaste kubus in perspectief met drie zichtbare vlakken; inzichtbalk “Inhoud telt drie richtingen.” Geen blokjes, maten of laagopbouw zichtbaar."
+        },
+        {
+          "timestampsSeconds": [
+            35
+          ],
+          "observation": "Extra opname op volledige resolutie bevestigt dat de onderste delen van 100 × 100 × 100 = 1.000.000 cm³ achter de inzichtbalk vallen."
+        }
+      ],
+      "captionEvidence": "33.710–37.073: “Honderd keer 10.000 is 1.000.000.”",
+      "notes": [
+        "Nietblokkerende festivalnotitie: schuif de rekenregel omhoog zodat de uitkomst volledig leesbaar is.",
+        "Het bedoelde inzicht is juist, maar de verwijzingen naar blokjes en lagen krijgen weinig visuele steun. Een zichtbaar laagje of drie maatlabels zou de bestaande uitleg directer maken."
+      ],
+      "videoId": "wisik-flirt-c02",
+      "title": "Van kubieke meter naar kubieke centimeter",
+      "fingerprints": {
+        "misconception": "aa8c767fbc70ebfbe242366b00ff537a3ff901efe900f6fdc5ca18753814dca9",
+        "catalogItem": "603873a33df23efcaf177e3fbec77e7c7fb60a881ab68d9ea9090f40164cebd1",
+        "video": "c0238aca698c458eb29d81b6e23684623f8c0f4baf9db7912d83b08a487c601d",
+        "poster": "964b651d5d382016aa513e7a92ea1bdedb932ea6406a47b0f740f45290fd25c6",
+        "captions": "813e32f03241eb0ba9204075e752ada5daf4a141488741f271c279ea367c97df",
+        "transcript": "4a6510e12884e1a5b0020b09b14bf017ec04606f648e8967fbb14f240be76368"
+      }
+    },
+    {
+      "code": "C03",
+      "verdict": "aligned",
+      "expectedMisconception": "De randmaat en de vlakmaat worden niet onderscheiden.",
+      "intendedInsight": "Omtrek meet de rand in cm; oppervlakte meet het gevulde vlak in cm².",
+      "observedContent": "Titel, volledige VTT/transcript en beeld vergelijken dezelfde rechthoek van 8 bij 5: rand 26 cm en vlak 40 cm². De vraag wat er gemeten wordt doorbreekt het verwisselen van beide grootheden.",
+      "visualEvidence": [
+        {
+          "timestampsSeconds": [
+            4,
+            52.32
+          ],
+          "observation": "Correcte C03-titelkaart en afsluiting."
+        },
+        {
+          "timestampsSeconds": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Rechthoek met telbaar 8×5-raster; warme buitenrand gekoppeld aan “omtrek 26 cm” en koel raster aan “oppervlakte 40 cm²”. Inzichtbalk onderscheidt rand lopen en vlak vullen."
+        }
+      ],
+      "captionEvidence": "32.449–36.127: “Dezelfde rechthoek, maar twee verschillende grootheden.”",
+      "notes": [],
+      "videoId": "wisik-flirt-c03",
+      "title": "Omtrek of oppervlakte",
+      "fingerprints": {
+        "misconception": "acb68ae51f0615ba40a6c386c1a35dfcae0d9e01b7b332398a1f989a85ca04a7",
+        "catalogItem": "68848198ee1cf8639ecdd4b5b745937da04d5b6fc92709016786431d239e56f1",
+        "video": "d6f420e7ce6ad47392ec3ebb425f9ea81299b65b6492b8817682a732800fa8e3",
+        "poster": "cb8f52bf73593f6b1bee0f327516c665683e1f267ae994de7910a7d603c66e7e",
+        "captions": "4edb171831eed02c70021888e08d81a2154eb1a882b81c3ca97421810e3d9373",
+        "transcript": "a494ba3a76b362e617d68d0ab90ba93781960bb8521e7d726ec74a5cf5adde39"
+      }
+    },
+    {
+      "code": "C04",
+      "verdict": "mismatch",
+      "expectedMisconception": "Basis × hoogte wordt gebruikt alsof de figuur een rechthoek is.",
+      "intendedInsight": "De oppervlakte van één driehoek is de helft van basis × loodrechte hoogte.",
+      "observedContent": "Titel en volledige VTT/transcript richten zich correct op de ontbrekende helft en geven een correcte constructie in woorden. Het getoonde bewijsbeeld is echter een grote driehoek, verdeeld in twee gekleurde driehoeken, terwijl zowel VTT als inzichtbalk het geheel een parallellogram noemen.",
+      "visualEvidence": [
+        {
+          "timestampsSeconds": [
+            4,
+            47.93
+          ],
+          "observation": "Correcte C04-titelkaart en afsluiting."
+        },
+        {
+          "timestampsSeconds": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Twee gekleurde driehoeken met gelijke horizontale basislengte en dezelfde hoogte vormen samen een grotere driehoek. De tekst zegt “Twee driehoeken maken het parallellogram. Eén driehoek is de helft.”"
+        },
+        {
+          "timestampsSeconds": [
+            18
+          ],
+          "observation": "Extra opname tijdens de parallellogramzin bevestigt een driehoekige buitenrand met drie hoekpunten. De gekleurde delen zijn gelijk in oppervlakte, maar niet congruent. De hoogte is wel loodrecht op de basis getekend."
+        }
+      ],
+      "captionEvidence": "15.428–19.536: “Samen vormen ze een parallellogram met dezelfde basis en dezelfde hoogte.”",
+      "notes": [
+        "Inhoudelijk beeldprobleem: het getoonde geheel is geen parallellogram en de beweerde oppervlakte basis × hoogte volgt daarom niet uit deze constructie. Vervang het bewijsbeeld door twee congruente driehoeken die werkelijk een parallellogram vormen.",
+        "De tekstuele factor 1/2 en de uitleg van loodrechte hoogte zijn correct; het huidige beeld ondermijnt juist de reden voor het halveren."
+      ],
+      "videoId": "wisik-flirt-c04",
+      "title": "De oppervlakte van een driehoek",
+      "fingerprints": {
+        "misconception": "44ec3215613b97452d8e7c6d3f59294d8f4d0397f87286b3c06f0907e224063a",
+        "catalogItem": "a354e41d8766e7ad93884e8523678e559e19521828892730f9503fa44c9bbc8d",
+        "video": "efd5bb4a8453f309b3b53d6102df2f143ef8af57c7991682a3c112ae242675b8",
+        "poster": "b284f8db613a4f37ac55f27452ddb91be334dda12f21cd98d9000073c4dcb05c",
+        "captions": "94e034db1c83ef285758169120e7088348b0eae2cac8599f3a17fbcf6ec9510f",
+        "transcript": "92c18a28df6e6207f8bd27b4c4ccf3512550e4794a81ff186ec5f0575f0fb3d1"
+      }
+    },
+    {
+      "code": "C05",
+      "verdict": "aligned-with-notes",
+      "expectedMisconception": "De gegeven straal wordt rechtstreeks als diameter gebruikt of opnieuw gehalveerd.",
+      "intendedInsight": "De straal loopt van middelpunt naar rand; de diameter loopt door het middelpunt van rand naar rand en is tweemaal zo lang.",
+      "observedContent": "Titel, volledige VTT/transcript en cirkelbeeld treffen de verwisseling van r en d. De film benoemt correct r = 5 cm, d = 10 cm en de gelijkwaardige omtrekformules πd en 2πr.",
+      "visualEvidence": [
+        {
+          "timestampsSeconds": [
+            4,
+            45.6
+          ],
+          "observation": "Correcte C05-titelkaart en afsluiting."
+        },
+        {
+          "timestampsSeconds": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Cirkel met middelpuntstip, volledige diameter en gelabelde rechterstraal “r = 5 cm”; “d = 10 cm” staat onder de cirkel. Inzichtbalk vraagt eerst straal of diameter. Een losse “M” staat ver rechts buiten de cirkel."
+        }
+      ],
+      "captionEvidence": "23.267–26.063: “Die bestaat uit twee stralen en is hier dus 10 cm.”",
+      "notes": [
+        "Nietblokkerende visuele notitie: plaats M direct bij de middelpuntstip of laat die losse letter weg; de huidige positie buiten de cirkel is onduidelijk. De straal-diameterrelatie zelf is correct zichtbaar."
+      ],
+      "videoId": "wisik-flirt-c05",
+      "title": "Straal of diameter",
+      "fingerprints": {
+        "misconception": "7cff2e8d2de303b4a67af96bb9467aa0d2fc758e22e8b70bd1d2f1718960c597",
+        "catalogItem": "ea4e31528a2a961e960be196949b95430503d94c993b473fce3562993f616f2f",
+        "video": "8241395a1e087189cecb99b459e38970f4ae3509e20ee87c768620ad114aa72e",
+        "poster": "3120024e59c17fde4a1c899391dbe754830a731ef07ba71caf5765dd4d1630fc",
+        "captions": "3b5cc3fc2baed247201818ff72cae26481ec4aebc1020ebe09b647c4de9a6491",
+        "transcript": "427eecc6761c70871b600f18562f9b36dc153a6f0fd2b9841c90976f4c9901b1"
+      }
+    },
+    {
+      "code": "C06",
+      "verdict": "aligned-with-notes",
+      "expectedMisconception": "Een lineaire factor wordt niet gekwadrateerd of tot de derde macht genomen.",
+      "intendedInsight": "Bij gelijkvormige vergroting met lengtefactor 3 wordt de oppervlakte 9 maal en de inhoud 27 maal zo groot.",
+      "observedContent": "Titel en volledige VTT/transcript doorbreken expliciet het gebruik van één factor voor lengte, oppervlakte en inhoud. De voorwaarde dat alle lengterichtingen met dezelfde factor groeien wordt correct genoemd. Het beeld ondersteunt de oppervlakte met negen vakjes en geeft alle drie correcte factoren.",
+      "visualEvidence": [
+        {
+          "timestampsSeconds": [
+            4,
+            51.7
+          ],
+          "observation": "Correcte C06-titelkaart en afsluiting."
+        },
+        {
+          "timestampsSeconds": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "3×3-raster met “vlak ×9”; daarnaast “lengte ×3”, “oppervlakte ×9” en “inhoud ×27”. Inzichtbalk benoemt dat alleen hoger maken iets anders is. Geen blok of kubusverdeling zichtbaar."
+        }
+      ],
+      "captionEvidence": "36.502–40.567: “Dat geldt omdat alle lengterichtingen met dezelfde factor groeien.”",
+      "notes": [
+        "Nietblokkerende festivalnotitie: de woorden “Dit blok” en de beschrijving van 27 blokjes hebben geen zichtbaar blok als referent; de film toont alleen het 2D-raster. Een compact 3×3×3-blok zou het inhoudsinzicht concreter maken. De huidige tekst en factoren zijn wiskundig correct."
+      ],
+      "videoId": "wisik-flirt-c06",
+      "title": "Vergroten in één, twee en drie richtingen",
+      "fingerprints": {
+        "misconception": "fa384a100de4137fbf2ee05dea5ac414adeac898773fc29f08d553c64025315b",
+        "catalogItem": "680da73c0d8ad749d6835c0172b01d48106a6378f2845133f1a372b67566a37f",
+        "video": "aeb25cd2bde11a72b79545a1ce83513e37f377338aec1f2a995c5f8aec6e7bc4",
+        "poster": "00fc36d312e6e056700a178eda1bd1bf0beefe4169ae4543083e0fee08c3368a",
+        "captions": "7b45aad3f8c127e0fdc116aed9a2ba01ba2074b750178054a7183a40312ad2fa",
+        "transcript": "13c0c5f651138a7db0ad1d84e80a7840ce9ee95bf7c2e6319f3b784a33c342f2"
+      }
+    },
+    {
+      "code": "C07",
+      "verdict": "aligned",
+      "expectedMisconception": "Minuten worden behandeld alsof een uur 100 minuten heeft.",
+      "intendedInsight": "Minuten zijn zestigsten van een uur: 20 minuten = 1/3 uur; 0,20 uur = 1/5 uur = 12 minuten.",
+      "observedContent": "Titel, volledige VTT/transcript en klokmodel richten zich precies op het behandelen van tijd als honderdsten. Het contrast tussen 20/60 en 20/100 maakt duidelijk dat een decimale komma geen scheiding tussen uren en minuten is.",
+      "visualEvidence": [
+        {
+          "timestampsSeconds": [
+            4,
+            47.76
+          ],
+          "observation": "Correcte C07-titelkaart en afsluiting."
+        },
+        {
+          "timestampsSeconds": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Cirkel met een correct ingekleurde derde sector en label “20 min = 1/3 uur”; daarnaast “0,20 uur = 12 minuten”. Inzichtbalk: “Twintig van zestig, niet twintig van honderd.”"
+        }
+      ],
+      "captionEvidence": "40.646–43.071: “En 20 minuten is 20/60, niet 20/100.”",
+      "notes": [],
+      "videoId": "wisik-flirt-c07",
+      "title": "Minuten zijn geen honderdsten van een uur",
+      "fingerprints": {
+        "misconception": "d4440e974ba3fabe1f488b71ecb8e5dc9fdc8efb40698553529e5a27af0074ae",
+        "catalogItem": "fd78b9004ce1d5a7962b7bf8be824f0bd4d01852d1a3215fb10cfe83cb43c34e",
+        "video": "c6f11911a5976fd74f4cdef68099596d6c64b80f55227dd9a2b078465e70e61c",
+        "poster": "1865b08493002e80409cd9b6cd3963a534e3a1da996efbc3558493f1d9c6fab2",
+        "captions": "d1cecdc22165ec3756bce54cb7505a0598ed0a5b8d9ea6de5ba576e879760fdf",
+        "transcript": "22fad23b3f2c1b283219fad9309fda99cdf53779016dcb50b567eb89e4ec2e24"
+      }
+    },
+    {
+      "code": "D01",
+      "verdict": "aligned",
+      "expectedMisconception": "Het hoogste punt wordt gekozen wanneer de grootste toename tussen opeenvolgende waarden wordt gevraagd.",
+      "intendedInsight": "Vergelijk de verschillen: de hoogste eindwaarde hoeft niet na de grootste stijging te liggen.",
+      "observedContent": "Titel, script en één lijngrafiek vergelijken 10→30→35→40. De eerste stap is +20, de volgende zijn +5; de hoogste waarde 40 ligt rechts. Het script benoemt gelijke intervallen van één jaar. De rekenkundige vergelijking klopt.",
+      "visualEvidence": [
+        {
+          "timestamps": [
+            4
+          ],
+          "observation": "Titelkaart ‘Hoogste punt of grootste toename’ met code D01."
+        },
+        {
+          "timestamps": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Vier punten 10, 30, 35, 40; het eerste lijnstuk is gemarkeerd met +20, de volgende met +5. Onderaan: ‘Hoogste punt rechts. Grootste stijging eerder.’"
+        },
+        {
+          "timestamps": [
+            48.504
+          ],
+          "observation": "Afsluiting verwijst naar de herstelset."
+        }
+      ],
+      "captionEvidence": "Het laatste punt ligt het hoogst, maar de grootste stijging gebeurde eerder.",
+      "notes": [],
+      "videoId": "wisik-flirt-d01",
+      "title": "Hoogste punt of grootste toename",
+      "fingerprints": {
+        "misconception": "d3831aae0034f225794b0d0696ad4615eb58316d9954eea70ff3cb1c8c2f98fd",
+        "catalogItem": "ffa2d1e22560f5342b48c0b0a448b16874ec52e2a3593fc8514fcf9ad85014b3",
+        "video": "e1400f677da2cca3e0653af04647693a882d1072f00ba69e028c67b694f61e3e",
+        "poster": "90926f71ce4e20fde095e343aa4ba40f20bf521b9e8ca8970538eae594b53a38",
+        "captions": "80b174ef0ff777590a534fadb2646e4bc06b43cf546da62ff3f181ca3a9beee8",
+        "transcript": "76498d392e7e3e5733c6cf9810901c926bd71bca3d7dc06991277b85398fc2be"
+      }
+    },
+    {
+      "code": "D02",
+      "verdict": "aligned",
+      "expectedMisconception": "Het grootste absolute aantal wordt verward met het grootste aandeel of percentage.",
+      "intendedInsight": "Vergelijk ieder aantal met de eigen groepsgrootte; minder personen kunnen een groter aandeel vormen.",
+      "observedContent": "Titel ‘Aantal of aandeel’ en script gebruiken twee groepen: 20/30 = 2/3 tegenover 18/20 = 9/10 = 90%. Het eerste aantal is groter, het tweede aandeel is groter. Twee correct getelde vakjesgroepen dragen hetzelfde inzicht.",
+      "visualEvidence": [
+        {
+          "timestamps": [
+            4
+          ],
+          "observation": "Titelkaart ‘Aantal of aandeel’ met code D02."
+        },
+        {
+          "timestamps": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Links 30 vakjes waarvan 20 gevuld; rechts 20 waarvan 18 gevuld. Labels ‘20 van 30’ en ‘18 van 20’; takeaway ‘Meer mensen ≠ groter aandeel.’"
+        },
+        {
+          "timestamps": [
+            47.784
+          ],
+          "observation": "Afsluiting verwijst naar de herstelset."
+        }
+      ],
+      "captionEvidence": "De tweede groep heeft dus minder geslaagden, maar een groter aandeel geslaagden.",
+      "notes": [],
+      "videoId": "wisik-flirt-d02",
+      "title": "Aantal of aandeel",
+      "fingerprints": {
+        "misconception": "16f98e6812a752fb79ab0ff807fccccae1b7ae5ec06d2babf889f718f899fbe2",
+        "catalogItem": "5ea334cd80ccbb015badff4b03bbebed3c62e240493740c69be2cbef474b888b",
+        "video": "1867eb9d416f44a359fc6b74295e7206ff4b0cd3b60f3bfe3f421f83d6e97575",
+        "poster": "50772a77ef367a3b8f66e0fe0b3b0a71ad4dbc70e668847c388df51369efb27f",
+        "captions": "aee73d73e27927820cb0607d49bb12bfe31aa774255ead1f8bbb53280b6e03f4",
+        "transcript": "7035448f256a028f6cfce981aadd685981dd18cf4eb0887ab929037332582c7a"
+      }
+    },
+    {
+      "code": "D03",
+      "verdict": "aligned-with-notes",
+      "expectedMisconception": "De zichtbare staafhoogte op een afgekorte as wordt rechtstreeks gelezen als de werkelijke verhouding.",
+      "intendedInsight": "Lees asstart en waarden: 100→110 is +10%, ook wanneer de zichtbare tweede staaf twee keer zo hoog lijkt.",
+      "observedContent": "Titel, captions en staafdiagram behandelen precies de afgekorte as. De as begint op 90 en de staven eindigen correct op 100 en 110; ‘lijkt ×2 / is +10%’ doorbreekt de fout. Het script nuanceert terecht dat de betekenis van 10% van de context afhangt.",
+      "visualEvidence": [
+        {
+          "timestamps": [
+            4
+          ],
+          "observation": "Titelkaart ‘Een afgekorte as’ met code D03."
+        },
+        {
+          "timestamps": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "As met 90, 100, 110; zichtbare staafhoogten in verhouding 1:2; labels ‘lijkt ×2’ en ‘is +10%’."
+        },
+        {
+          "timestamps": [
+            26.2,
+            28.5
+          ],
+          "observation": "Gerichte extra controle tijdens ‘Laat de as bij 0 beginnen’ en ‘de indruk verandert’: de zichtbare as blijft op 90 beginnen en de staven behouden hun hoogteverhouding."
+        },
+        {
+          "timestamps": [
+            47.376
+          ],
+          "observation": "Afsluiting verwijst naar de herstelset."
+        }
+      ],
+      "captionEvidence": "Een stijging van 10%, geen 100%.",
+      "notes": [
+        "Niet-blokkerend voor deze experimentele festivalversie: het script vraagt een asstart bij nul en beschrijft een veranderende indruk, maar de bekeken beelden voeren die omslag niet uit. Een nulasbeeld op dat moment zou de bedoelde ontdekking versterken. De getoonde berekening en het kerninzicht zijn correct."
+      ],
+      "videoId": "wisik-flirt-d03",
+      "title": "Een afgekorte as",
+      "fingerprints": {
+        "misconception": "8e1a98a3c87b80bebfa9ff2d7c2a17b7a2986eac281d1a8d41236320a0822c42",
+        "catalogItem": "ce9c2fb325ba914fc1fa33c53af8b9e76c4be59d6bad32011d6fb0bef6d02bb9",
+        "video": "220cef2a3b3d63db52a0f1a65b24c251891cf36e2ec42e1e4ca51f9f9b6e9d51",
+        "poster": "0bb6176e2b57bb2296f52a375aaac00cc83e537dc8d2be7647d0a68c444e1f7b",
+        "captions": "c0bd415747e576473a969aa8258ab21a6b2ad63cda32bd53d80f2518d5e972dc",
+        "transcript": "b4c04ff9684a8a15609b827cdf2453bcc74ea72719bb54dbd6d2b45e6de4f13c"
+      }
+    },
+    {
+      "code": "D04",
+      "verdict": "aligned",
+      "expectedMisconception": "Bij een vraag naar het rekenkundig gemiddelde wordt de middelste of meest voorkomende waarde gekozen.",
+      "intendedInsight": "Modus, mediaan en gemiddelde beantwoorden verschillende vragen; voor het gemiddelde telt het totaal gedeeld door het aantal waarden.",
+      "observedContent": "De geordende rij 1, 1, 3, 5, 10 heeft modus 1, mediaan 3 en gemiddelde 20/5 = 4. Titel, script en één rij kaarten tonen deze drie verschillende uitkomsten correct en confronteren expliciet ‘het vaakst = gemiddelde’.",
+      "visualEvidence": [
+        {
+          "timestamps": [
+            4
+          ],
+          "observation": "Titelkaart ‘Gemiddelde, mediaan en modus’ met code D04."
+        },
+        {
+          "timestamps": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Vijf kaarten 1, 1, 3, 5, 10; beide enen krijgen ‘modus’, de 3 krijgt ‘mediaan’; onderaan staat ‘gemiddelde = 20 : 5 = 4’."
+        },
+        {
+          "timestamps": [
+            47.376
+          ],
+          "observation": "Afsluiting verwijst naar de herstelset."
+        }
+      ],
+      "captionEvidence": "Voor het gemiddelde kijken we naar het totaal: 20.",
+      "notes": [],
+      "videoId": "wisik-flirt-d04",
+      "title": "Gemiddelde, mediaan en modus",
+      "fingerprints": {
+        "misconception": "21938cd7e7f4abbb542de6cc640191c5022a45d0bafa6c50a8cd9b4414c91e18",
+        "catalogItem": "3f0f32fc2cc3ac91aae4f448fd76a3a6ea33951afa02788c8a948521d0508896",
+        "video": "03f30b58e03057c80937b2531b11a5bdc39f17cf274617e885e23fcc0d41b0cc",
+        "poster": "863421b580c28e3883d813b8ecacf076fbe42cabcb0519d8297adb907012998e",
+        "captions": "d0b56ced8f2138874db90f36b7777dabda7b678d97384878f96966f4e2f1810b",
+        "transcript": "7c3195c4abcc0c1328880b0ad45cb9c8a084dd567b4b70fcc35e003775b28bdd"
+      }
+    },
+    {
+      "code": "D05",
+      "verdict": "aligned-with-notes",
+      "expectedMisconception": "Voor het gemiddelde wordt de som gedeeld door het aantal tussenruimten of een ander verkeerd aantal.",
+      "intendedInsight": "Vier meetwaarden vormen vier bijdragen aan het totaal; daarom wordt 20 over vier waarden verdeeld en is het gemiddelde 5.",
+      "observedContent": "Titel en script onderscheiden vier meetwaarden 2, 4, 6, 8 van de drie tussenruimten. Eén beeld toont vier bakjes met overeenkomstige aantallen fiches en drie verbindingsstreepjes. Het script bakent het inzicht correct af tot het gemiddelde van deze meetwaarden; 20/4 = 5 klopt.",
+      "visualEvidence": [
+        {
+          "timestamps": [
+            4
+          ],
+          "observation": "Titelkaart ‘Gemiddelde: waarden of tussenruimten?’ met code D05."
+        },
+        {
+          "timestamps": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Vier bakjes met stapels van 2, 4, 6 en 8 fiches; drie tussenruimten zijn gemarkeerd. Takeaway ‘Vier waarden, niet drie tussenruimten. Gemiddelde = 5.’"
+        },
+        {
+          "timestamps": [
+            25.8,
+            27
+          ],
+          "observation": "Gerichte extra controle bij ‘Elk krijgt 5 fiches’: de stapels blijven zichtbaar 2, 4, 6, 8; een gelijke verdeling wordt niet getoond."
+        },
+        {
+          "timestamps": [
+            50.424
+          ],
+          "observation": "Afsluiting verwijst naar de herstelset."
+        }
+      ],
+      "captionEvidence": "Het blijven 4 bakjes. Elk krijgt 5 fiches.",
+      "notes": [
+        "Niet-blokkerend: de aangekondigde gelijke verdeling blijft verbaal; de afbeelding behoudt de beginhoeveelheden. Het verdelen naar 5 fiches per bakje op circa 25 seconden zou de betekenis van de juiste deler zichtbaar maken.",
+        "De film beweert niet dat tussenruimten bij iedere statistische of tijdsvraag irrelevant zijn; de afbakening tot vier meetwaarden voorkomt die overgeneralisatie."
+      ],
+      "videoId": "wisik-flirt-d05",
+      "title": "Gemiddelde: waarden of tussenruimten?",
+      "fingerprints": {
+        "misconception": "97145a3b26919f9dafc5cbaf2de8ff450f7bad6dfcad7ecf9644ac083e6273d5",
+        "catalogItem": "8850a99d5fb5eda868f3d33d7d7eff479e9917f13e17b7231fc79fe3463043a4",
+        "video": "2c2196a9675610e4b00944c33239a131b456d900de7e3806bb2750deaf9f46e9",
+        "poster": "7af51b189048d9b67bddbe3308e2f53da3f992d07207d7b4ce7df0d279fcc0ed",
+        "captions": "82edb8c6c2d8ec66859b0470f746de5a9592a369c31cf253cd575903c8799a99",
+        "transcript": "30b1c95bacd775ef6a0c66fc351fc43dfd35309b4138ec44c3aadde1c12e6bd6"
+      }
+    },
+    {
+      "code": "D06",
+      "verdict": "aligned-with-notes",
+      "expectedMisconception": "Bij een ontbrekende waarde wordt de benodigde totaalsom niet berekend en wordt het gemiddelde rechtstreeks van de bekende som afgetrokken.",
+      "intendedInsight": "Een gemiddelde van 10 bij vier waarden vereist totaal 40; trek de bekende som 24 daarvan af, zodat 16 ontbreekt.",
+      "observedContent": "Vier waarden 6, 8, 10, ? vormen één samenhangende situatie. Script en beeld leggen de cruciale brug gemiddelde 10→totaal 40 en 24+?=40, ?=16 correct. De opening vraagt of men 10 moet invullen en de slotzin legt de betekenis van gelijk verdelen uit.",
+      "visualEvidence": [
+        {
+          "timestamps": [
+            4
+          ],
+          "observation": "Titelkaart ‘Het ontbrekende getal bij een gemiddelde’ met code D06."
+        },
+        {
+          "timestamps": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Kaarten 6, 8, 10, ?; bovenaan ‘gemiddelde 10 → totaal 40’; onderaan ‘24 + ? = 40   ? = 16’."
+        },
+        {
+          "timestamps": [
+            46.656
+          ],
+          "observation": "Afsluiting verwijst naar de herstelset."
+        }
+      ],
+      "captionEvidence": "Vier getallen die gemiddeld 10 zijn, moeten samen 40 zijn.",
+      "notes": [
+        "De opening en takeaway richten zich op de verwante gedachte ‘het ontbrekende getal is het gemiddelde’, niet letterlijk op ‘gemiddelde van bekende som aftrekken’. De noodzakelijke totaalsom wordt wel expliciet opgebouwd en is centraal in beeld; daarom inhoudelijk passend bij D06, met een accentverschil en geen verkeerde koppeling."
+      ],
+      "videoId": "wisik-flirt-d06",
+      "title": "Het ontbrekende getal bij een gemiddelde",
+      "fingerprints": {
+        "misconception": "b55953f551beec82508007c5aa8b097f8933722e22fd6c9cc1666180f618b6ba",
+        "catalogItem": "13c4994a79ed55533d4fc9e9b31ae70237d360d65dffd2fb309ee010377e944f",
+        "video": "f9f8b1099cf91c76052ceffa38288a878ad13e201c8a2e010b7423ade96ee7a1",
+        "poster": "ea21bd638985e09847de20854ecf3b133833d4eebe817096cf4db59eed69f5d0",
+        "captions": "082eda9a3506455db316851d2aa49fa3d3a109bf1b09fd284edcdbff0939b4d6",
+        "transcript": "df73708d419f11411bb689a8c7f144288abb73f2967e47ebc44fa190660697f5"
+      }
+    },
+    {
+      "code": "D07",
+      "verdict": "aligned-with-notes",
+      "expectedMisconception": "Alleen de verandering per eenheid wordt gebruikt en het vaste startbedrag wordt vergeten.",
+      "intendedInsight": "De ritprijs bestaat uit een eenmalig beginbedrag plus afstandskosten: 4 + 6 × 2,50 = 19; bij 0 km is er al €4.",
+      "observedContent": "Titel en taxiverhaal confronteren de onvolledige uitkomst €15 met het instaptarief €4. Eén schema en een lijn met een positieve startwaarde laten correct zien waarom de totale prijs €19 is. De startwaarde wordt expliciet gekoppeld aan nul kilometer.",
+      "visualEvidence": [
+        {
+          "timestamps": [
+            4
+          ],
+          "observation": "Titelkaart ‘De startwaarde niet vergeten’ met code D07."
+        },
+        {
+          "timestamps": [
+            12,
+            21,
+            30,
+            39
+          ],
+          "observation": "Schema ‘instap €4 + €2,50 per km’, ‘6 km → 4 + 15 = €19’; lijn begint boven de horizontale as met label ‘€4 bij 0 km’. Er is geen taxi of bewegende teller in deze beelden."
+        },
+        {
+          "timestamps": [
+            48.072
+          ],
+          "observation": "Afsluiting verwijst naar de herstelset."
+        }
+      ],
+      "captionEvidence": "maar de ritprijs begint hier al bij €4.",
+      "notes": [
+        "Het schema ondersteunt de wiskunde, maar de verwijzing ‘Kijk naar de teller voordat de taxi vertrekt’ correspondeert met een formule/grafiek in plaats van een getoonde taxiteller. Dit is een niet-blokkerend redactioneel verschil.",
+        "Het volledige transcript bevat na de inhoud PRODUCTIENOTITIES, waaronder een opmerking over D05. Dat is redactionele bijvangst in de publieksversie; de inhoudelijke D07-uitleg en de VTT blijven correct."
+      ],
+      "videoId": "wisik-flirt-d07",
+      "title": "De startwaarde niet vergeten",
+      "fingerprints": {
+        "misconception": "347a8ef39a2d3fc5b0aeef5623b542205f273caea5200a74a377c5b1a6fd8c2f",
+        "catalogItem": "a9416bcd26c52dae81d46ffd26300cdcc223f6169d83f6c0555aaa7ca87d5f17",
+        "video": "6958c8616c76903c5404b4aa25b55c33b1c9ed675da59c76f7589981c23d01c9",
+        "poster": "db6ee3d3d5ba89680a3a62d9a23f91f34e05957706eec5b2038106b98ba2d1e3",
+        "captions": "363299812a84d32e968d3abe14227eebd927d0b00ce1c3ab7c2df4253f1c6387",
+        "transcript": "da4350307897b7bcff5049159636249729b9a2ae295336d8d95c810cb8f11b44"
+      }
+    }
+  ]
+}

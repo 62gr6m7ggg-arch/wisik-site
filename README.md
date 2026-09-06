@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.14
+# Wisik.nl — versie 0.1.15
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -13,6 +13,7 @@ De repository bevat onder meer:
 - de Moshpit als bewuste ingang naar de bestaande 60-seconden-sprint, zonder tweede vragenbank;
 - een schaalbare Grabbelton-catalogus met 30 gepubliceerde flirts, gekoppeld aan bestaande misconceptcodes;
 - een vrijwillige uitnodiging bij bevestigd terugkerend denkpatroon in Pabo-oefenfeedback: de exacte flirt uit dezelfde catalogus, met ondertiteling, transcript en gerichte herstelset;
+- vaste ketentests voor alle 30 flirtpatronen en hun gerenderde spelers, met afzonderlijke inhoudsreview en bewaking van gewijzigde tekst en media;
 - een permanente, mobiele terugweg vanuit Pabo Rekenklaar naar het Wisik-terrein;
 - lokale opslag van Pabo-voortgang vóór het verlaten van de attractie;
 - automatische bronpagina- en attractieversieregistratie in het Wisik-Kladblok;
@@ -25,7 +26,7 @@ De repository bevat onder meer:
 - mobiele navigatie en een gewone lijstweergave naast de terreinplattegrond;
 - een verplichte deterministische vrijgavecontrole bij iedere wijziging.
 
-Backstage toont de actuele vrijgavestatus direct in de pagina-intro. De terreinplattegrond en de Backstage-knop op de homepage springen rechtstreeks naar het volledige openbare bewijs; op smalle schermen blijven de zes technische detailcontroles compact uitklapbaar. Het HAN-portret is bereikbaar via één fotokaart met een speciaal afgestemde mobiele uitsnede; er staat geen tweede videoknop naast.
+Backstage toont de actuele technische vrijgavestatus en eventuele inhoudelijke flirtproblemen direct in de pagina-intro. De terreinplattegrond en de Backstage-knop op de homepage springen rechtstreeks naar het volledige openbare bewijs; op smalle schermen blijven de acht technische detailcontroles compact uitklapbaar. Het HAN-portret is bereikbaar via één fotokaart met een speciaal afgestemde mobiele uitsnede; er staat geen tweede videoknop naast.
 
 ## Lokaal bekijken
 
@@ -36,6 +37,12 @@ python -m http.server 8000 --directory public
 Open daarna `http://localhost:8000`.
 
 ## Kwaliteitscontrole
+
+De flirtcontrole gebruikt `tests/flirt-cases.json` met onafhankelijk uitgerekende goede, kenmerkend foute en andere foute antwoorden. Dezelfde seed moet hetzelfde resultaat geven. Ook een dubbelzinnig antwoord, een herhaalde identieke vraag en toets/sprint worden gecontroleerd. De DOM-double test voor alle 30 codes de daadwerkelijk gerenderde titel, toelichting, film, poster, ondertiteling, transcript en herstelsetcode.
+
+De inhoudsreview staat in `public/assets/data/flirt-content-review.json`. Per film zijn het bedoelde misconcept, gewenste inzicht, geobserveerde inhoud, beeldmomenten en kanttekeningen vastgelegd. SHA-256-vingerafdrukken verbinden die review met de catalogus, het canonieke misconcept en alle vier bestanden. Een wijziging laat de controle falen totdat de getroffen inhoud opnieuw is bekeken en de betreffende review bewust is bijgewerkt. `npm run audit:update` vernieuwt deze inhoudelijke beoordeling en vingerafdrukken **niet** automatisch.
+
+De eerste review bevat 17 aansluitende films, 11 films met kanttekeningen en twee beeldproblemen (C01 en C04). Die bestaande festivalpublicaties blijven beschikbaar conform de gekozen experimenteerruimte. Backstage toont de herstelpunten expliciet; een geslaagde technische controle is geen inhoudelijke goedkeuring. De review gebruikt volledige VTT/transcripten en minimaal zes beeldmomenten per film. De audiotrack is niet onafhankelijk beluisterd; empirische fout-positieven en leerwinst zijn niet vastgesteld.
 
 ```bash
 npm run check
