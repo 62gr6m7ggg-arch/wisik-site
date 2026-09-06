@@ -70,8 +70,8 @@
     copy.textContent = kind === "error"
       ? "De veilige videocatalogus kon niet worden geladen. Probeer het later opnieuw; er wordt nu geen filmpje getoond."
       : kind === "ready"
-        ? "Druk op ‘Grijp een filmpje’ voor één korte uitleg die bij dit polsbandje past."
-      : "Er staan voor dit polsbandje nog geen filmpjes klaar. Straks vind je hier korte uitleg: één filmpje per hardnekkig denkpatroon.";
+        ? "Druk op ‘Grijp een flirt’ voor een korte film die bij dit polsbandje past."
+      : "Er staan voor dit polsbandje nog geen flirts klaar. Kies PABO of Vrij om de eerste serie te ontdekken.";
     const links = document.createElement("div");
     links.className = "button-row";
     links.innerHTML = '<a class="btn primary" href="/moshpit/">Oefen in de Moshpit</a><a class="btn ghost" href="/pabo/pabo-rekenklaar/">Bekijk Pabo Rekenklaar</a>';
@@ -128,6 +128,8 @@
     player.preload = "metadata";
     player.crossOrigin = "anonymous";
     player.src = core.resolveAssetUrl(video.source.url);
+    if (video.posterSrc) player.poster = core.resolveAssetUrl(video.posterSrc);
+    player.setAttribute("aria-label", `Wisik-flirt: ${video.title}`);
     const track = document.createElement("track");
     track.kind = "captions";
     track.srclang = "nl";
@@ -146,7 +148,14 @@
     transcript.className = "btn ghost small";
     transcript.href = core.resolveAssetUrl(video.transcriptUrl);
     transcript.textContent = "Lees het transcript";
-    result.append(eyebrow, heading, summary, player, note, transcript);
+    const practice = document.createElement("a");
+    practice.className = "btn primary small";
+    practice.href = "/apps/pabo-rekenklaar/";
+    practice.textContent = "Verder oefenen in Pabo Rekenklaar";
+    const links = document.createElement("div");
+    links.className = "button-row";
+    links.append(transcript, practice);
+    result.append(eyebrow, heading, summary, player, note, links);
     rememberVideo(video.id);
   }
 

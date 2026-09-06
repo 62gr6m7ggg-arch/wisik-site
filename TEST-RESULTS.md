@@ -1,4 +1,4 @@
-# Testresultaten Wisik 0.1.11
+# Testresultaten Wisik 0.1.12
 
 ## Zichtbaarheid Backstage-vrijgavecontrole
 
@@ -44,6 +44,8 @@ Geslaagd:
 
 ## Moshpit en Grabbelton
 
+Festivalrelease v1: alle 30 aangeleverde MP4's zijn met ffprobe gelezen en met ffmpeg volledig gedecodeerd zonder fouten. Ze gebruiken H.264/avc1 (yuv420p, 1080p25) en AAC-LC, met faststart. De duur is 45,016–55,240 seconden; de catalogusduur is correct afgerond. Alle 30 posters zijn leesbaar en alle 30 VTT's zijn parseerbaar (383 cues, zonder ongeldige tijdstippen, overlap of overschrijding van de filmduur). D07 bevat ook productienotities in het aangeleverde transcript; dit bekende redactionele restant is geen technische releaseblokkade. Dit is geen didactische herbeoordeling of bewijs van afspelen op een echte iPhone.
+
 Automatisch gecontroleerd:
 
 - Moshpit verwijst naar de ene bestaande 60-seconden-sprint en bevat geen eigen vragenbank, timer of vraaggenerator;
@@ -51,7 +53,7 @@ Automatisch gecontroleerd:
 - 2.250 extra sprintvragen blijven zonder terugval beperkt tot korte hoofdrekenvragen in de domeinen A, B en C;
 - sprintantwoorden beïnvloeden geen gewone beheersing, dagdoel, foutenlijst of diagnostiek;
 - de klok gebruikt werkelijk verstreken tijd en blijft daardoor betrouwbaarder na een mobiel achtergrondtabblad;
-- Grabbelton gebruikt één centrale catalogus en toont nu eerlijk nul gepubliceerde filmpjes;
+- Grabbelton gebruikt één centrale catalogus met alle 30 gepubliceerde flirts uit festivalversie v1;
 - de catalogus accepteert zonder vaste bovengrens 1, 30 en 45 geldige publicaties;
 - alleen gepubliceerde video’s met geldig polsbandje, bestaande misconceptcode, toegestane bron, Nederlandse ondertiteling en transcript worden selecteerbaar;
 - de trekking geeft voorrang aan een voldoende onderbouwde misconceptcode, vermijdt directe herhaling wanneer er een alternatief is en geeft geen diagnose af;
@@ -119,4 +121,4 @@ Automatisch gecontroleerd:
 
 ## Responsieve controle
 
-Automatisch afgedwongen zijn de viewportinstelling, mobiele breekpunten, versiegebonden vormgeving, toegankelijke knoppen en de aanwezigheid van beide zijpodia. Het historische bestand `tests/Wisik_v0.1_browsertest.json` geldt nadrukkelijk niet als actueel browserbewijs voor 0.1.11. Na publicatie horen de nieuwe Moshpit- en Grabbeltonroutes daarom nog op de live site te worden gecontroleerd op een smal scherm, inclusief horizontale overflow, toetsenbordfocus en consolefouten.
+Automatisch afgedwongen zijn de viewportinstelling, mobiele breekpunten, versiegebonden vormgeving, toegankelijke knoppen en de aanwezigheid van beide zijpodia. Het historische bestand `tests/Wisik_v0.1_browsertest.json` geldt nadrukkelijk niet als actueel browserbewijs voor 0.1.12. Na publicatie horen de nieuwe Moshpit- en Grabbeltonroutes daarom nog op de live site te worden gecontroleerd op een smal scherm, inclusief horizontale overflow, toetsenbordfocus en consolefouten.

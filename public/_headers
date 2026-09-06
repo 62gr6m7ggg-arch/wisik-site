@@ -22,3 +22,6 @@
 
 /apps/pabo-rekenklaar/*
   Cache-Control: no-cache
+
+/films/rekenklaar/*
+  Cache-Control: no-cache, max-age=0, must-revalidate
