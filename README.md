@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.11
+# Wisik.nl — versie 0.1.12
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -11,7 +11,7 @@ De repository bevat onder meer:
 - een apart zijpodiaregister dat Moshpit en Grabbelton naar hun canonieke bron koppelt;
 - Pabo Rekenklaar onder `public/apps/pabo-rekenklaar/`;
 - de Moshpit als bewuste ingang naar de bestaande 60-seconden-sprint, zonder tweede vragenbank;
-- een lege maar schaalbare Grabbelton-catalogus voor minimaal 30 filmpjes, gekoppeld aan bestaande misconceptcodes;
+- een schaalbare Grabbelton-catalogus met 30 gepubliceerde flirts, gekoppeld aan bestaande misconceptcodes;
 - een permanente, mobiele terugweg vanuit Pabo Rekenklaar naar het Wisik-terrein;
 - lokale opslag van Pabo-voortgang vóór het verlaten van de attractie;
 - automatische bronpagina- en attractieversieregistratie in het Wisik-Kladblok;
@@ -63,7 +63,7 @@ De controle test onder meer:
 - aanwezigheid van de officiële RWT 2.2-verwijzing;
 - één canonieke Pabo-vragenbank en één canonieke sprintfunctie;
 - een Moshpit-startscherm vóór de klok loopt, 2.250 extra veilige sprintvragen en scheiding tussen sprintfouten en gewone leerdata;
-- een geldige, onbegrensd schaalbare Grabbelton-catalogus die nu eerlijk nul gepubliceerde filmpjes bevat;
+- een geldige, onbegrensd schaalbare Grabbelton-catalogus met 30 gepubliceerde flirts en 120 lokale media-/toegankelijkheidsbestanden;
 - selectieproeven met 1, 30 en 45 filmpjes, polsbandfilters en herhalingsremming.
 
 Na een bewuste wijziging van Pabo Rekenklaar wordt het openbare bewijs lokaal vernieuwd met:

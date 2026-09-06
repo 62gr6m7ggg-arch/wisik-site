@@ -1,5 +1,5 @@
 /* Wisik.nl — centrale attractieregistratie. */
-window.WISIK_SITE_VERSION = "0.1.11";
+window.WISIK_SITE_VERSION = "0.1.12";
 window.WISIK_MISCONCEPTION_CODES = Object.freeze([
   "A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08",
   "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08",
@@ -69,8 +69,8 @@ window.WISIK_VENUES = Object.freeze([
   Object.freeze({
     id: "grabbelton",
     title: "Grabbelton",
-    status: "in-voorbereiding",
-    statusLabel: "In voorbereiding",
+    status: "open",
+    statusLabel: "Festivalversie v1",
     pageUrl: "/grabbelton/",
     source: Object.freeze({
       type: "video-catalog",

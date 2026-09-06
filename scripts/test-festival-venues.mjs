@@ -106,7 +106,7 @@ assert(grabbelton.includes('id="grabbeltonDrawButton" type="button" disabled hid
 assert(styles.includes('.btn[hidden] { display: none !important; }'), "Knoppen met hidden kunnen door de algemene knopstijl toch zichtbaar worden");
 assert(styles.includes('.btn.coral { background: var(--coral-dark); color: white;'), "De primaire koraalknop heeft onvoldoende tekstcontrast");
 assert(styles.includes('.side-stage-card:focus-visible { outline: 3px solid var(--navy-2);'), "Zijpodiumkaarten missen een contrastrijke focusmarkering");
-assert(grabbelton.includes("Er staan nu nog geen filmpjes klaar"), "De lege toestand van de Grabbelton is niet eerlijk zichtbaar");
+assert(grabbelton.includes("festivalversie v1") && grabbelton.includes("experimenteel"), "De festivalstatus is niet eerlijk zichtbaar");
 
 const coreContext = vm.createContext({ URL, console });
 vm.runInContext(read("public/assets/js/grabbelton-core.js"), coreContext);
@@ -117,7 +117,28 @@ const misconceptionCodes = [...pabo.matchAll(/"([A-D]\d{2})":Object\.freeze\(/g)
 assert(misconceptionCodes.length === 30 && new Set(misconceptionCodes).size === 30, "De canonieke Pabo-catalogus bevat niet exact 30 unieke misconceptcodes");
 assert(JSON.stringify(registeredMisconceptionCodes) === JSON.stringify(misconceptionCodes), "Het publieke misconceptregister wijkt af van de canonieke Pabo-catalogus");
 const strictValidation = { knownToolIds: tools.map((tool) => tool.id), knownMisconceptionCodes: misconceptionCodes, expectedCanonicalToolId: paboTool.id, requireKnownTargets: true };
-assert(core.validateCatalog(catalog, strictValidation).length === 0, "De lege Grabbelton-catalogus is ongeldig");
+assert(core.validateCatalog(catalog, strictValidation).length === 0, "De Grabbelton-catalogus is ongeldig");
+const published = core.publishedForWristband(catalog, "ALL");
+assert(published.length === 30, "Festivalversie v1 moet alle 30 flirts tegelijk publiceren");
+assert(grabbeltonVenue.status === "open", "De Grabbelton staat nog in voorbereiding");
+assert(new Set(published.map(video => video.target.misconceptionCode)).size === 30, "Niet alle 30 misconcepten hebben een eigen flirt");
+assert(core.publishedForWristband(catalog, "PABO").length === 30, "PABO mist flirts");
+assert(core.publishedForWristband(catalog, "VO").length === 0 && core.publishedForWristband(catalog, "HBO").length === 0, "PABO-flirts worden onbedoeld aan andere polsbandjes toegewezen");
+for (const video of published) {
+  for (const [field, suffix] of [[video.source.url, "flirt.mp4"], [video.posterSrc, "poster.jpg"], [video.captionsSrc, "captions.vtt"], [video.transcriptUrl, "transcript.html"]]) {
+    assert(field === `/films/rekenklaar/${video.target.misconceptionCode}/${suffix}`, `Stabiele media-URL wijkt af: ${video.id}/${suffix}`);
+    const asset = path.join(root, "public", field);
+    assert(fs.existsSync(asset) && fs.statSync(asset).size > 0, `Publicatie mist bestand: ${field}`);
+  }
+  const mp4 = fs.readFileSync(path.join(root, "public", video.source.url));
+  assert(mp4.subarray(4, 8).toString() === "ftyp", `Ongeldig MP4-bestand: ${video.id}`);
+  const vtt = read(`public${video.captionsSrc}`);
+  assert(vtt.startsWith("WEBVTT") && vtt.includes("-->"), `Ondertiteling ontbreekt: ${video.id}`);
+}
+assert(grabbeltonRuntime.includes("player.poster = core.resolveAssetUrl(video.posterSrc)"), "Aangeleverde posters worden niet getoond");
+const unsafePoster = JSON.parse(JSON.stringify(catalog));
+unsafePoster.videos[0].posterSrc = "https://evil.example/poster.jpg";
+assert(core.validateCatalog(unsafePoster, strictValidation).length > 0, "Onveilige poster passeert de poort");
 assert(core.validateCatalog(catalog, { requireKnownTargets: true }).length > 0, "Ontbrekende canonieke registerdata sluit de Grabbelton niet");
 for (const value of ["", null, undefined, "#", "?x", "/", ".", {}, 123]) assert(!core.isAllowedAssetUrl(value), "Een lege, relatieve of niet-tekstuele media-URL wordt onterecht als veilig gezien");
 assert(!core.isAllowedAssetUrl("javascript:alert(1)"), "Een javascript-URL wordt onterecht als mediabron toegestaan");
@@ -189,7 +210,7 @@ const selectionFixture = {
 };
 assert(core.publishedForWristband(selectionFixture, "PABO").length === 2, "Polsbandfilter laat concepten of andere routes door");
 assert(core.publishedForWristband(selectionFixture, "VO").length === 1, "VO-polsbandfilter werkt niet");
-assert(core.chooseVideo(catalog, { wristband: "PABO" }) === null, "Een lege catalogus levert toch een trekking op");
+assert(core.chooseVideo({ ...catalog, videos: [] }, { wristband: "PABO" }) === null, "Een lege catalogus levert toch een trekking op");
 const preferred = core.chooseVideo(selectionFixture, { wristband: "PABO", preferredCodes: ["B01"], random: () => 0 });
 assert(preferred?.video?.target?.misconceptionCode === "B01" && preferred.reason === "misconception", "Voorzichtige voorkeur voor een ondersteund misconcept werkt niet");
 const noRepeat = core.chooseVideo(selectionFixture, { wristband: "PABO", recentIds: [selectionFixture.videos[0].id], random: () => 0 });
@@ -211,6 +232,6 @@ assert(grabbeltonRuntime.includes("core.resolveAssetUrl(video.source.url") && gr
 assert(grabbeltonRuntime.includes('player.crossOrigin = "anonymous";'), "Externe ondertiteling is niet voorbereid op anonieme CORS-media");
 
 assert(backstage.includes("De Moshpit gebruikt de bestaande Pabo-sprint; er is geen tweede vragenbank."), "Backstage verantwoordt de gedeelde Pabo-oefenbank niet");
-assert(backstage.includes("De Grabbelton gebruikt één gecontroleerde catalogus en heeft nu 0 gepubliceerde filmpjes."), "Backstage vermeldt de lege centrale Grabbelton-catalogus niet");
+assert(backstage.includes("De Grabbelton gebruikt één gecontroleerde catalogus en heeft nu 30 gepubliceerde flirts."), "Backstage vermeldt de gevulde centrale Grabbelton-catalogus niet");
 
-console.log("Zijpodiacontrole geslaagd: één Pabo-sprint, bewuste Moshpit-start, gescheiden leerdata en een lege schaalbare Grabbelton voor 30+ filmpjes.");
+console.log("Zijpodiacontrole geslaagd: één Pabo-sprint, gescheiden leerdata en 30 gepubliceerde flirts met alle 120 assets.");

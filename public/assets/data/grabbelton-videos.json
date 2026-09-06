@@ -1,11 +1,673 @@
 {
   "schemaVersion": 1,
-  "updatedAt": null,
+  "updatedAt": "2026-09-06",
   "series": {
-    "title": "Misconcepten in beeld",
+    "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
     "canonicalToolId": "pabo-rekenklaar",
-    "canonicalMisconceptionSource": "PaboRekenklaarQA.MISCONCEPTION_CATALOG"
+    "canonicalMisconceptionSource": "PaboRekenklaarQA.MISCONCEPTION_CATALOG",
+    "releaseLabel": "Festivalversie v1 · experimenteel"
   },
-  "videos": []
+  "videos": [
+    {
+      "id": "wisik-flirt-a01",
+      "status": "published",
+      "title": "Plaatswaarde",
+      "summary": "Waarom hetzelfde cijfer op een andere plaats een andere waarde krijgt.",
+      "durationSeconds": 50,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/A01/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/A01/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/A01/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/A01/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "A01"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-a02",
+      "status": "published",
+      "title": "Meer decimalen, groter getal?",
+      "summary": "Waarom meer cijfers achter de komma niet automatisch een groter getal betekenen.",
+      "durationSeconds": 48,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/A02/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/A02/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/A02/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/A02/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "A02"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-a03",
+      "status": "published",
+      "title": "Negatieve getallen vergelijken",
+      "summary": "Waarom min acht kleiner is dan min drie, ondanks de grotere acht.",
+      "durationSeconds": 45,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/A03/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/A03/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/A03/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/A03/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "A03"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-a04",
+      "status": "published",
+      "title": "Het verschil over nul",
+      "summary": "Waarom een verandering van min vier naar zeven elf stappen groot is.",
+      "durationSeconds": 46,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/A04/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/A04/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/A04/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/A04/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "A04"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-a05",
+      "status": "published",
+      "title": "Rekenvolgorde",
+      "summary": "Waarom de schrijfwijze bepaalt welke bewerking eerst bij elkaar hoort.",
+      "durationSeconds": 48,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/A05/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/A05/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/A05/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/A05/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "A05"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-a06",
+      "status": "published",
+      "title": "Kwadrateren is niet verdubbelen",
+      "summary": "Waarom kwadrateren iets anders is dan een getal verdubbelen.",
+      "durationSeconds": 49,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/A06/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/A06/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/A06/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/A06/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "A06"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-a07",
+      "status": "published",
+      "title": "Worteltrekken is niet halveren",
+      "summary": "Waarom worteltrekken de zijlengte terugzoekt en niet het getal halveert.",
+      "durationSeconds": 52,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/A07/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/A07/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/A07/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/A07/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "A07"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-a08",
+      "status": "published",
+      "title": "De rest achter de komma?",
+      "summary": "Waarom drie rest twee niet hetzelfde betekent als drie komma twee.",
+      "durationSeconds": 48,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/A08/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/A08/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/A08/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/A08/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "A08"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-b01",
+      "status": "published",
+      "title": "Een grotere noemer",
+      "summary": "Waarom een grotere noemer bij hetzelfde geheel juist een kleiner stuk kan betekenen.",
+      "durationSeconds": 49,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/B01/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/B01/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/B01/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/B01/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "B01"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-b02",
+      "status": "published",
+      "title": "Breuken optellen",
+      "summary": "Waarom tellers en noemers niet allebei zomaar bij elkaar worden opgeteld.",
+      "durationSeconds": 47,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/B02/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/B02/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/B02/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/B02/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "B02"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-b03",
+      "status": "published",
+      "title": "Delen door een breuk",
+      "summary": "Waarom delen door een breuk kan worden gezien als meten hoeveel keer een maat past.",
+      "durationSeconds": 47,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/B03/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/B03/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/B03/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/B03/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "B03"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-b04",
+      "status": "published",
+      "title": "Van decimaal naar procent",
+      "summary": "Waarom nul komma zeven gelijk is aan zeventig procent en niet zeven procent.",
+      "durationSeconds": 52,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/B04/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/B04/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/B04/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/B04/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "B04"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-b05",
+      "status": "published",
+      "title": "Terugrekenen na korting",
+      "summary": "Waarom terugrekenen na korting begint bij het deel dat de nieuwe prijs voorstelt.",
+      "durationSeconds": 53,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/B05/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/B05/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/B05/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/B05/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "B05"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-b06",
+      "status": "published",
+      "title": "Twintig procent eraf en erbij",
+      "summary": "Waarom twintig procent eraf en daarna twintig procent erbij niet terug naar honderd leidt.",
+      "durationSeconds": 51,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/B06/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/B06/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/B06/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/B06/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "B06"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-b07",
+      "status": "published",
+      "title": "Verhoudingen vergroten",
+      "summary": "Waarom een verhouding behouden betekent dat beide aantallen met dezelfde factor meegroeien.",
+      "durationSeconds": 52,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/B07/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/B07/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/B07/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/B07/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "B07"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-b08",
+      "status": "published",
+      "title": "Kansen met twee dobbelstenen",
+      "summary": "Waarom de mogelijke sommen met twee dobbelstenen niet allemaal even waarschijnlijk zijn.",
+      "durationSeconds": 47,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/B08/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/B08/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/B08/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/B08/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "B08"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-c01",
+      "status": "published",
+      "title": "Van vierkante meter naar vierkante centimeter",
+      "summary": "Waarom een vierkante meter tienduizend vierkante centimeter bevat.",
+      "durationSeconds": 55,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/C01/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/C01/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/C01/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/C01/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "C01"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-c02",
+      "status": "published",
+      "title": "Van kubieke meter naar kubieke centimeter",
+      "summary": "Waarom een kubieke meter een miljoen kubieke centimeter bevat.",
+      "durationSeconds": 55,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/C02/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/C02/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/C02/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/C02/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "C02"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-c03",
+      "status": "published",
+      "title": "Omtrek of oppervlakte",
+      "summary": "Waarom omtrek de rand meet en oppervlakte het vlak binnen de rand.",
+      "durationSeconds": 53,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/C03/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/C03/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/C03/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/C03/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "C03"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-c04",
+      "status": "published",
+      "title": "De oppervlakte van een driehoek",
+      "summary": "Waarom de oppervlakte van een driehoek de helft is van basis maal loodrechte hoogte.",
+      "durationSeconds": 49,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/C04/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/C04/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/C04/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/C04/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "C04"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-c05",
+      "status": "published",
+      "title": "Straal of diameter",
+      "summary": "Waarom je eerst moet weten of een gegeven lijn straal of diameter is.",
+      "durationSeconds": 47,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/C05/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/C05/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/C05/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/C05/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "C05"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-c06",
+      "status": "published",
+      "title": "Vergroten in één, twee en drie richtingen",
+      "summary": "Waarom een vergrotingsfactor anders doorwerkt in lengte, oppervlakte en inhoud.",
+      "durationSeconds": 53,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/C06/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/C06/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/C06/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/C06/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "C06"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-c07",
+      "status": "published",
+      "title": "Minuten zijn geen honderdsten van een uur",
+      "summary": "Waarom twintig minuten geen nul komma twintig uur is.",
+      "durationSeconds": 49,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/C07/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/C07/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/C07/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/C07/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "C07"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-d01",
+      "status": "published",
+      "title": "Hoogste punt of grootste toename",
+      "summary": "Waarom het hoogste punt niet hetzelfde hoeft te zijn als de grootste toename.",
+      "durationSeconds": 50,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/D01/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/D01/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/D01/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/D01/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "D01"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-d02",
+      "status": "published",
+      "title": "Aantal of aandeel",
+      "summary": "Waarom een groter aantal niet automatisch een groter aandeel betekent.",
+      "durationSeconds": 49,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/D02/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/D02/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/D02/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/D02/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "D02"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-d03",
+      "status": "published",
+      "title": "Een afgekorte as",
+      "summary": "Waarom de schaal van een as de visuele indruk van een verschil sterk kan veranderen.",
+      "durationSeconds": 48,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/D03/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/D03/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/D03/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/D03/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "D03"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-d04",
+      "status": "published",
+      "title": "Gemiddelde, mediaan en modus",
+      "summary": "Waarom gemiddelde, mediaan en modus drie verschillende samenvattingen zijn.",
+      "durationSeconds": 48,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/D04/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/D04/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/D04/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/D04/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "D04"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-d05",
+      "status": "published",
+      "title": "Gemiddelde: waarden of tussenruimten?",
+      "summary": "Waarom je bij het gemiddelde van meetwaarden deelt door het aantal waarden, niet de tussenruimten.",
+      "durationSeconds": 51,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/D05/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/D05/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/D05/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/D05/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "D05"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-d06",
+      "status": "published",
+      "title": "Het ontbrekende getal bij een gemiddelde",
+      "summary": "Waarom het gemiddelde niet automatisch het ontbrekende getal is.",
+      "durationSeconds": 48,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/D06/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/D06/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/D06/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/D06/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "D06"
+      },
+      "release": "festival-v1"
+    },
+    {
+      "id": "wisik-flirt-d07",
+      "status": "published",
+      "title": "De startwaarde niet vergeten",
+      "summary": "Waarom een vaste startwaarde niet verdwijnt wanneer de variabele kosten gaan groeien.",
+      "durationSeconds": 49,
+      "wristbands": [
+        "PABO"
+      ],
+      "source": {
+        "kind": "self-hosted",
+        "url": "/films/rekenklaar/D07/flirt.mp4"
+      },
+      "posterSrc": "/films/rekenklaar/D07/poster.jpg",
+      "captionsSrc": "/films/rekenklaar/D07/captions.vtt",
+      "transcriptUrl": "/films/rekenklaar/D07/transcript.html",
+      "target": {
+        "toolId": "pabo-rekenklaar",
+        "misconceptionCode": "D07"
+      },
+      "release": "festival-v1"
+    }
+  ]
 }

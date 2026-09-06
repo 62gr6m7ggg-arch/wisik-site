@@ -76,6 +76,7 @@
         }
         if (seenSources.has(sourceUrl)) errors.push(`${at} gebruikt een dubbele videobron.`);
         if (sourceUrl) seenSources.add(sourceUrl);
+        if (video?.posterSrc !== undefined && !isAllowedAssetUrl(video.posterSrc)) errors.push(`${at} heeft geen toegestane posterbron.`);
         if (!isAllowedAssetUrl(video?.captionsSrc)) errors.push(`${at} mist Nederlandse ondertiteling op een toegestane bron.`);
         if (!isAllowedAssetUrl(video?.transcriptUrl)) errors.push(`${at} mist een transcript op een toegestane bron.`);
       }

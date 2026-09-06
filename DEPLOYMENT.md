@@ -62,6 +62,12 @@ Lokale voortgang is domeingebonden. Voortgang op een oudere URL verschijnt niet 
 
 ## Grabbelton-media
 
+Festivalrelease v1 (6 september 2026) publiceert de 30 aangeleverde flirts tegelijk. Bekende inhoudelijke reviewpunten blokkeren deze experimentele release niet. Pabo Rekenklaar en zijn lokale voortgang blijven ongewijzigd; er worden geen video's aan de toetssimulatie toegevoegd.
+
+De stabiele paden zijn `/films/rekenklaar/<CODE>/flirt.mp4`, `poster.jpg`, `captions.vtt` en `transcript.html`. Vervang bij een latere filmversie de bestanden op dezelfde paden en werk catalogusdatum/duur en siteversie bij. De mediabestanden moeten opnieuw worden gevalideerd bij een volgend verzoek (`Cache-Control: no-cache`); gebruik hier geen `immutable`.
+
+Iedere film wordt pas na een trekking geladen en speelt niet automatisch. De eerste serie is voor PABO; Vrij ziet alle 30, VO/HBO krijgen een eerlijke lege toestand. De knop naar Pabo Rekenklaar opent de bestaande app, niet automatisch een specifieke herstelset.
+
 De enige openbare videocatalogus staat in `public/assets/data/grabbelton-videos.json`. Voeg een filmpje eerst als `draft` toe en publiceer het pas wanneer bron, Nederlandse ondertiteling, transcript, polsband en een bestaande Pabo-misconceptcode compleet zijn. Zelfgehoste media mogen van `wisik.nl` of `media.wisik.nl` komen; de Content-Security-Policy staat geen automatische externe videospeler toe.
 
 Voor media op `media.wisik.nl` is daarnaast een technisch aflevercontract verplicht vóór de status `published`:
