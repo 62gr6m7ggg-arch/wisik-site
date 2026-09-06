@@ -4,7 +4,7 @@
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film.",
+    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen.",
     "audio": "De gesproken tekst is beoordeeld via de aangeleverde VTT en transcripten; de audiotrack is niet onafhankelijk beluisterd.",
     "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
     "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
@@ -447,49 +447,68 @@
     },
     {
       "code": "C01",
-      "verdict": "mismatch",
+      "verdict": "aligned",
       "expectedMisconception": "De factor 100 van meter naar centimeter wordt niet gekwadrateerd.",
       "intendedInsight": "1 m² is 100 cm × 100 cm = 10.000 cm²; de lengtefactor werkt in twee richtingen.",
-      "observedContent": "Titel en volledige VTT/transcript treffen de bedoelde misvatting. Het centrale beeld toont een vierkant van 1 m bij 1 m met een 10×10-raster, naast de correcte uitkomst 100 × 100 = 10.000 cm². Dit raster blijft gelijk tijdens de beschrijving van honderd rijen met elk honderd vakjes van 1 cm².",
+      "observedContent": "Het eerdere 10×10-raster is hersteld. Het vierkant blijft even groot en krijgt werkelijk 100 rijen en 100 kolommen. Beide zijden tonen 1 m = 100 cm. Eén gekoppeld vergroot vakje is 1 cm bij 1 cm, dus 1 cm². De uitkomst 1 m² = 10.000 cm² volgt zichtbaar uit beide lengtefactoren; beeld, VTT en transcript behandelen dezelfde misconceptie.",
       "visualEvidence": [
         {
           "timestampsSeconds": [
             4,
-            54.24
+            54
           ],
-          "observation": "Correcte C01-titelkaart en afsluiting."
+          "observation": "C01-titelkaart en afsluiting behouden."
         },
         {
           "timestampsSeconds": [
             12,
-            21,
-            30,
-            39
+            17
           ],
-          "observation": "Tien kolommen en tien rijen zichtbaar, zijden gelabeld 1 m; rechts 100 × 100 = 10.000 cm²."
+          "observation": "Hetzelfde vierkant van 1 m bij 1 m krijgt een fijnraster van 100×100, met beide zijden als 100 cm."
         },
         {
           "timestampsSeconds": [
-            25
+            25,
+            30
           ],
-          "observation": "Extra opname op volledige resolutie bevestigt honderd zichtbare vakjes, zonder fijnraster, vergroting of aanduiding dat ieder vakje 100 cm² voorstelt."
+          "observation": "Gekoppelde vergroting van één vakje van 1 cm², naast 100 rijen × 100 vakjes en de juiste oppervlakteconversie. Kernlabels staan boven de ondertitelzone."
         }
       ],
-      "captionEvidence": "23.379–27.287: “met in elke rij honderd vakjes van één vierkante centimeter.”",
-      "notes": [
-        "Inhoudelijk beeldprobleem: de gesproken telredenering correspondeert niet met het getoonde raster. In deze context kan het beeld juist 1 m² = 100 cm² bevestigen. Toon een 100×100-raster, of verklaar zichtbaar de grovere vakken en vergroot één vak tot 100 cm².",
-        "De rekenuitkomst en uitleg zijn correct; het probleem zit in de visuele representatie, niet in de toewijzing aan C01.",
-        "Kleine redactionele VTT-noot: “100 cms” is onhandige eenheidnotatie; gebruik “100 cm” of “honderd centimeters”."
-      ],
+      "captionEvidence": "16.460–20.245 s: langs beide richtingen 100 cm; 20.275–27.287 s: honderd rijen met elk honderd vakjes van één vierkante centimeter; vanaf 27.317 s: 10.000 vakjes. De ondertitelnotatie “100 cms” is hersteld naar “100 cm”, met dezelfde tijdstippen.",
+      "notes": [],
       "videoId": "wisik-flirt-c01",
       "title": "Van vierkante meter naar vierkante centimeter",
       "fingerprints": {
         "misconception": "116432efe2dd92622d6a938520f6be9d21be2c13a3a9efadc9a9d024a4b0d972",
         "catalogItem": "3e568f81475e33575b53215c0a7959a57b3ca1d25df8120cd5a1ed2a7b7cf887",
-        "video": "d8756e6debbd870d73c4eb3d4433841aed7ff37d03de162a7dcc175d1c68ebdd",
+        "video": "c530c34ef838018ce023d71fd1eb7b04def6075fdc5ab9a237626f008c71664c",
         "poster": "4a6a2d095fe29543673b80ef43d21ef32c40321150adc50f048b976f23dd07ec",
-        "captions": "721be99848ec9ca912325b8d3148788a0ab9e48fb32eb127e942659c94409ff9",
+        "captions": "b7cfb27506681bbecdaa046f91adcf3ac2ab0c96520de79c4526a3c42311b4be",
         "transcript": "3b4b28ecdc505eaefb9378b647167ceaef4cf6c8492d070db58590ec41ca65be"
+      },
+      "reviewedAt": "2026-09-06",
+      "visualRepair": {
+        "date": "2026-09-06",
+        "originalVideoSha256": "d8756e6debbd870d73c4eb3d4433841aed7ff37d03de162a7dcc175d1c68ebdd",
+        "resolvedFindings": [
+          "10×10-raster vervangen door werkelijk 100×100 met een vergroot vakje van 1 cm².",
+          "Ondertitelnotatie 100 cms vervangen door 100 cm."
+        ],
+        "verification": {
+          "code": "C01",
+          "frames": 1381,
+          "fps": 25,
+          "duration": "55.240000",
+          "sha256": "c530c34ef838018ce023d71fd1eb7b04def6075fdc5ab9a237626f008c71664c",
+          "unchangedAudioSha256": "7c283ab0d66ad009df76319785524c1178411cdfc80bf3bbeb51750f8f8469cd",
+          "stageFrames": [
+            113,
+            411,
+            584,
+            683
+          ],
+          "mainSceneEndFrame": 1244
+        }
       }
     },
     {
@@ -577,48 +596,70 @@
     },
     {
       "code": "C04",
-      "verdict": "mismatch",
+      "verdict": "aligned",
       "expectedMisconception": "Basis × hoogte wordt gebruikt alsof de figuur een rechthoek is.",
       "intendedInsight": "De oppervlakte van één driehoek is de helft van basis × loodrechte hoogte.",
-      "observedContent": "Titel en volledige VTT/transcript richten zich correct op de ontbrekende helft en geven een correcte constructie in woorden. Het getoonde bewijsbeeld is echter een grote driehoek, verdeeld in twee gekleurde driehoeken, terwijl zowel VTT als inzichtbalk het geheel een parallellogram noemen.",
+      "observedContent": "Het eerdere driehoekige totaalbeeld is hersteld. Eerst staat één driehoek in beeld; vanaf 11,12 s komt de congruente kopie erbij en ontstaat een werkelijk parallellogram. De gedeelde diagonaal verdeelt dit in twee even grote driehoeken. Vanaf 19,56 s verschijnt b × h voor het geheel en vanaf 25,80 s ½ × b × h voor één driehoek. De hoogte staat loodrecht op de basis, met het rechtehoektekentje bij de voet; vanaf 29,48 s wordt dat benadrukt.",
       "visualEvidence": [
         {
           "timestampsSeconds": [
             4,
-            47.93
+            47
           ],
-          "observation": "Correcte C04-titelkaart en afsluiting."
+          "observation": "C04-titelkaart en afsluiting behouden."
         },
         {
           "timestampsSeconds": [
-            12,
-            21,
-            30,
-            39
-          ],
-          "observation": "Twee gekleurde driehoeken met gelijke horizontale basislengte en dezelfde hoogte vormen samen een grotere driehoek. De tekst zegt “Twee driehoeken maken het parallellogram. Eén driehoek is de helft.”"
-        },
-        {
-          "timestampsSeconds": [
+            8,
+            14,
             18
           ],
-          "observation": "Extra opname tijdens de parallellogramzin bevestigt een driehoekige buitenrand met drie hoekpunten. De gekleurde delen zijn gelijk in oppervlakte, maar niet congruent. De hoogte is wel loodrecht op de basis getekend."
+          "observation": "Eerst één driehoek, daarna twee congruente driehoeken binnen een buitenrand met twee paren evenwijdige zijden: een parallellogram."
+        },
+        {
+          "timestampsSeconds": [
+            28,
+            34
+          ],
+          "observation": "Het gehele parallellogram heeft oppervlakte b × h; één driehoek de helft. De getekende h staat loodrecht op de horizontale basis, met rechtehoekmarkering aan de voet. Kernlabels staan boven de ondertitelzone."
         }
       ],
-      "captionEvidence": "15.428–19.536: “Samen vormen ze een parallellogram met dezelfde basis en dezelfde hoogte.”",
-      "notes": [
-        "Inhoudelijk beeldprobleem: het getoonde geheel is geen parallellogram en de beweerde oppervlakte basis × hoogte volgt daarom niet uit deze constructie. Vervang het bewijsbeeld door twee congruente driehoeken die werkelijk een parallellogram vormen.",
-        "De tekstuele factor 1/2 en de uitleg van loodrechte hoogte zijn correct; het huidige beeld ondermijnt juist de reden voor het halveren."
-      ],
+      "captionEvidence": "11.100–15.398 s: een precies gelijke driehoek erbij; 15.428–19.536 s: samen een parallellogram met dezelfde basis en hoogte; 25.802–29.465 s: één driehoek heeft de helft; 29.495–38.258 s: loodrechte hoogte, geen schuine zijde. Het herstelde beeld volgt deze opbouw.",
+      "notes": [],
       "videoId": "wisik-flirt-c04",
       "title": "De oppervlakte van een driehoek",
       "fingerprints": {
         "misconception": "44ec3215613b97452d8e7c6d3f59294d8f4d0397f87286b3c06f0907e224063a",
         "catalogItem": "a354e41d8766e7ad93884e8523678e559e19521828892730f9503fa44c9bbc8d",
-        "video": "efd5bb4a8453f309b3b53d6102df2f143ef8af57c7991682a3c112ae242675b8",
+        "video": "628951efca6d0c53b177c144183dc10d1145748f7bc8bf7630859b6a747b5e70",
         "poster": "b284f8db613a4f37ac55f27452ddb91be334dda12f21cd98d9000073c4dcb05c",
         "captions": "94e034db1c83ef285758169120e7088348b0eae2cac8599f3a17fbcf6ec9510f",
         "transcript": "92c18a28df6e6207f8bd27b4c4ccf3512550e4794a81ff186ec5f0575f0fb3d1"
+      },
+      "reviewedAt": "2026-09-06",
+      "visualRepair": {
+        "date": "2026-09-06",
+        "originalVideoSha256": "efd5bb4a8453f309b3b53d6102df2f143ef8af57c7991682a3c112ae242675b8",
+        "resolvedFindings": [
+          "Driehoekige buitenrand vervangen door een echt parallellogram uit twee congruente driehoeken.",
+          "Loodrechte hoogte voorzien van een rechtehoekmarkering bij de voet van de hoogte."
+        ],
+        "verification": {
+          "code": "C04",
+          "frames": 1223,
+          "fps": 25,
+          "duration": "48.928005",
+          "sha256": "628951efca6d0c53b177c144183dc10d1145748f7bc8bf7630859b6a747b5e70",
+          "unchangedAudioSha256": "776c791ae88654a8b8316352062cc8bbe3f3ca84b8aec2844db2dbccd3bab3d5",
+          "stageFrames": [
+            113,
+            278,
+            489,
+            645,
+            737
+          ],
+          "mainSceneEndFrame": 1086
+        }
       }
     },
     {

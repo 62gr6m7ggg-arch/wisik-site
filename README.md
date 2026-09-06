@@ -1,4 +1,4 @@
-# Wisik.nl — versie 0.1.15
+# Wisik.nl — versie 0.1.16
 
 Wisik is een responsieve koepelsite in festival-/pretparkstijl voor rekenen en wiskunde.
 
@@ -42,7 +42,9 @@ De flirtcontrole gebruikt `tests/flirt-cases.json` met onafhankelijk uitgerekend
 
 De inhoudsreview staat in `public/assets/data/flirt-content-review.json`. Per film zijn het bedoelde misconcept, gewenste inzicht, geobserveerde inhoud, beeldmomenten en kanttekeningen vastgelegd. SHA-256-vingerafdrukken verbinden die review met de catalogus, het canonieke misconcept en alle vier bestanden. Een wijziging laat de controle falen totdat de getroffen inhoud opnieuw is bekeken en de betreffende review bewust is bijgewerkt. `npm run audit:update` vernieuwt deze inhoudelijke beoordeling en vingerafdrukken **niet** automatisch.
 
-De eerste review bevat 17 aansluitende films, 11 films met kanttekeningen en twee beeldproblemen (C01 en C04). Die bestaande festivalpublicaties blijven beschikbaar conform de gekozen experimenteerruimte. Backstage toont de herstelpunten expliciet; een geslaagde technische controle is geen inhoudelijke goedkeuring. De review gebruikt volledige VTT/transcripten en minimaal zes beeldmomenten per film. De audiotrack is niet onafhankelijk beluisterd; empirische fout-positieven en leerwinst zijn niet vastgesteld.
+Na herstel en herbeoordeling van C01 en C04 bevat de review 19 aansluitende films, 11 films met kanttekeningen en geen open beeldmismatch. C01 toont werkelijk 100×100 vakjes en een vergroot vakje van 1 cm²; C04 bouwt een parallellogram op uit twee congruente driehoeken, met loodrechte hoogte en de factor ½. De eerdere bevindingen zijn bij beide beoordelingen als opgelost vastgelegd. Backstage houdt de inhoudelijke beoordeling apart van de technische vrijgave. De review gebruikt volledige VTT/transcripten en minimaal zes beeldmomenten per film. De audiotrack is niet onafhankelijk beluisterd; empirische fout-positieven en leerwinst zijn niet vastgesteld.
+
+`scripts/repair-flirt-diagrams.py` reproduceert de twee beeldcorrecties vanuit de originele festival-MP4's. Benodigd: Python 3, Pillow, DejaVu Sans en ffmpeg/ffprobe. Geef de originele filmmap en een aparte uitvoermap als argumenten. Het script weigert onbekende bronbestanden, bewaart de oorspronkelijke audiopakketten, controleert duur/beeldtellingen en decodeert de hele uitvoer. Het werkt geen inhoudsoordelen of vingerafdrukken bij: dat gebeurt pas na herbeoordeling. De canonieke filmlinks blijven gelijk; de bestaande versieparameter laat spelers de nieuwe beelden ophalen.
 
 ```bash
 npm run check
