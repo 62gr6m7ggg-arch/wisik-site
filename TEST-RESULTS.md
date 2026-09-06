@@ -1,4 +1,4 @@
-# Testresultaten Wisik 0.1.15
+# Testresultaten Wisik 0.1.16
 
 ## Gerichte flirts in Pabo Rekenklaar 1.6.2
 
@@ -6,7 +6,9 @@ De VM-integratiecontrole `scripts/test-pabo-flirts.mjs` test alle 30 ketens van 
 
 Voor alle 30 codes wordt vervolgens de echte spelerfunctie uitgevoerd: titel, toelichting, MP4, poster, VTT, transcript en herstelsetcode moeten aansluiten. Opzettelijk verkeerde classificatie, verkeerde filmselectie, fout-positieve uitnodiging, verwisselde codes, gewijzigde titel en ontbrekende/gewijzigde inhoudsreview laten de tests terecht falen. Openen en sluiten wijzigen geen voortgang, XP of diagnostiek.
 
-Inhoudelijke review: 17 films sluiten aan, 11 hebben kanttekeningen en C01/C04 vragen beeldherstel. C01 toont 10×10 vakjes tegenover het script over 100×100; C04 toont een driehoek waar een parallellogram wordt benoemd. Deze status blijft afzonderlijk zichtbaar naast de acht technische poorten. Bestandsvingerafdrukken bewaken catalogus, misconceptbeschrijving, film, poster, VTT en transcript. Volledige scripts en minimaal zes beeldmomenten per film zijn beoordeeld; de audio is niet onafhankelijk beluisterd. Het is geen empirische meting van diagnostische fout-positieven of leerwinst.
+Inhoudelijke review na beeldherstel: 19 films sluiten aan, 11 hebben kanttekeningen en er zijn geen open beeldmismatches. C01 toont 100×100 vakjes, beide lengtefactoren en een vergroot vakje van 1 cm²; C04 toont twee congruente driehoeken die een parallellogram vormen. Deze status blijft afzonderlijk zichtbaar naast de acht technische poorten. Bestandsvingerafdrukken bewaken catalogus, misconceptbeschrijving, film, poster, VTT en transcript. Volledige scripts en minimaal zes beeldmomenten per film zijn beoordeeld; de audio is niet onafhankelijk beluisterd. Het is geen empirische meting van diagnostische fout-positieven of leerwinst.
+
+De C01/C04-correcties zijn reproduceerbaar met `scripts/repair-flirt-diagrams.py`. Van de gecodeerde MP4's zijn intro, opbouw, kernuitleg en afsluiting opnieuw bekeken, inclusief de overgangsframes. De illustraties houden de ondertitelzone vrij. C01 blijft 1.381 frames (55,24 s), C04 1.223 frames (48,92 s video / 48,928005 s bestand), beide 1080p25 H.264/yuv420p. De volledige AAC-audiopakketten hebben vóór en na herstel dezelfde SHA-256; beide films decoderen volledig zonder fouten. C01-ondertitel “100 cms” is gecorrigeerd naar “100 cm”, zonder gewijzigde tijdstippen. Alleen deze twee inhoudsoordelen en hun gewijzigde bestandsvingerafdrukken zijn vernieuwd; de overige 28 beoordelingen blijven behouden.
 
 Ook gecontroleerd: Nederlandse ondertiteling en transcript, geen autoplay, videobediening in de focustrap, stoppen en vrijgeven van media bij sluiten, behoud van de oefenreeks en focus, late netwerkresponsen na sluiten of vervangen van het venster, en een bruikbare herstelroute bij netwerk- of afspeelfouten. Dit is een runtimecontrole met DOM-doubles, geen visuele browsertest of test op een echte iPhone.
 
@@ -19,7 +21,7 @@ Gecontroleerd:
 - de vaste navigatie bedekt de sprongbestemming niet;
 - zonder JavaScript blijft een directe link naar het machineleesbare bewijs beschikbaar;
 - de Backstage-HTML en het auditrapport gebruiken expliciete hervalidatie-/no-cache-regels;
-- de acht technische detailcontroles en 30 inhoudelijke beoordelingen zijn compact uitklapbaar; de twee inhoudelijke herstelpunten staan direct in beeld.
+- de acht technische detailcontroles en 30 inhoudelijke beoordelingen zijn compact uitklapbaar; eventuele beeldmismatches worden direct gemeld, met een afzonderlijke telling van resterende kanttekeningen.
 
 ## Deterministische Pabo-vrijgavecontrole
 
@@ -54,7 +56,7 @@ Geslaagd:
 
 ## Moshpit en Grabbelton
 
-Na de eerste publicatie zijn alle 120 assets via HTTPS bereikbaar bevonden met passende MIME-types. MP4-byte-ranges zijn voor A01, B01, C01 en D01 gecontroleerd (HTTP 206). De hosting overschrijft voor MP4/JPEG de gewenste cacheheader met vier uur browsercache; daarom krijgen alle speler-assets vanaf 0.1.13 een geteste versieparameter. De 30 cataloguspaden en aangeleverde films blijven ongewijzigd.
+Na de eerste publicatie zijn alle 120 assets via HTTPS bereikbaar bevonden met passende MIME-types. MP4-byte-ranges zijn voor A01, B01, C01 en D01 gecontroleerd (HTTP 206). De hosting overschrijft voor MP4/JPEG de gewenste cacheheader met vier uur browsercache; daarom krijgen alle speler-assets vanaf 0.1.13 een geteste versieparameter. De 30 cataloguspaden blijven ongewijzigd. C01/C04 gebruiken vanaf Wisik 0.1.16 de herstelde beelden; de andere 28 MP4's zijn ongewijzigd.
 
 Festivalrelease v1: alle 30 aangeleverde MP4's zijn met ffprobe gelezen en met ffmpeg volledig gedecodeerd zonder fouten. Ze gebruiken H.264/avc1 (yuv420p, 1080p25) en AAC-LC, met faststart. De duur is 45,016–55,240 seconden; de catalogusduur is correct afgerond. Alle 30 posters zijn leesbaar en alle 30 VTT's zijn parseerbaar (383 cues, zonder ongeldige tijdstippen, overlap of overschrijding van de filmduur). D07 bevat ook productienotities in het aangeleverde transcript; dit bekende redactionele restant is geen technische releaseblokkade. Dit is geen didactische herbeoordeling of bewijs van afspelen op een echte iPhone.
 
