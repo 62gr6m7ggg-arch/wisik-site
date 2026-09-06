@@ -41,7 +41,7 @@ Pabo Rekenklaar staat onder:
 /apps/pabo-rekenklaar/
 ```
 
-Versie 1.6.1 heeft in de sticky bovenbalk twee herkenbare terugwegen naar Wisik:
+Versie 1.6.2 heeft in de sticky bovenbalk twee herkenbare terugwegen naar Wisik:
 
 - het klikbare Wisik-logo;
 - de tekstknop **Terug naar het Wisik-terrein**, op mobiel verkort tot **Terrein**.

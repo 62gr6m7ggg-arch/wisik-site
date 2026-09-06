@@ -1,4 +1,10 @@
-# Testresultaten Wisik 0.1.13
+# Testresultaten Wisik 0.1.14
+
+## Gerichte flirts in Pabo Rekenklaar 1.6.2
+
+De VM-integratiecontrole `scripts/test-pabo-flirts.mjs` test de echte bewijsopbouw, alle 30 exacte cataloguskoppelingen en de bestaande klikroute naar vier herstelvragen. Eén aanwijzing of dezelfde fout opnieuw toont geen uitnodiging; een voldoende onderbouwd patroon wel. Toets, sprint en onbeantwoorde vragen zijn uitgesloten. Openen en sluiten wijzigen geen voortgang, XP of diagnostiek.
+
+Ook gecontroleerd: Nederlandse ondertiteling en transcript, geen autoplay, videobediening in de focustrap, stoppen en vrijgeven van media bij sluiten, behoud van de oefenreeks en focus, late netwerkresponsen na sluiten of vervangen van het venster, en een bruikbare herstelroute bij netwerk- of afspeelfouten. Dit is een runtimecontrole met DOM-doubles, geen visuele browsertest of test op een echte iPhone.
 
 ## Zichtbaarheid Backstage-vrijgavecontrole
 
