@@ -1,0 +1,115 @@
+{
+  "product": "Space-tent · Ruimteklaar",
+  "appVersion": "0.3",
+  "siteVersion": "0.1.17",
+  "status": "passed",
+  "scope": {
+    "questions": 41,
+    "theory": 16,
+    "diagnosticRoutes": 4,
+    "constructionVariants": 2,
+    "available": "Level 1 en constructieatelier; vervolglevels en toplevel nog niet beschikbaar"
+  },
+  "checks": {
+    "diagnosticAnswerCombinations": 144,
+    "questionCardStates": 492,
+    "feedbackFigures": 82,
+    "cameraMovements": 140,
+    "projectedScenes": 11480,
+    "externalIntersections": "beide varianten, vier schermbreedtes en drie kijkrichtingen",
+    "storage": "herladen, import/export, ontdubbeling, ongeldige bestanden, opslagfouten, nul netwerkaanroepen"
+  },
+  "browser": {
+    "environment": "Chromium, eigen preview van dezelfde clientbron",
+    "verified": [
+      "Lijn QR tekenen en evenwijdige lijn door P toevoegen",
+      "Muisdrag verandert kijkrichting van hele constructie",
+      "Terug naar Construeren behoudt kijkrichting en maakt punten selecteerbaar",
+      "Standaardtekening herstelt oorspronkelijke projectie",
+      "Mobiel iframe 390×844: geen horizontale overloop, punt aantikken, rondkijkstand",
+      "Fout antwoord toont juiste antwoord in groen",
+      "Voortgang blijft na herladen beschikbaar, geen aanmelding nodig"
+    ],
+    "limitations": [
+      "Geen fysieke iPhone/Safari-test uitgevoerd",
+      "Aanraakcode gebruikt dezelfde Pointer Events; echte vingertest blijft nuttig",
+      "Geen empirische validering van leerwinst of diagnostische foutpositieven",
+      "Geen volledige tentamenvoorbereiding en geen geauthenticeerd toetsbewijs"
+    ]
+  },
+  "runs": [
+    {
+      "file": "check-learning.mjs",
+      "output": "Construction framing checks passed: both variants, external intersections, 4 widths and 3 cameras; no premature points.\nLearning checks passed: 41 questions, 16 theory examples, 4 visual repair routes, projection/plane geometry and unrevealed answers, scoring, route progress, checkpoint gates and both valid construction routes in both variants."
+    },
+    {
+      "file": "check-diagnostic.mjs",
+      "output": "Diagnostic proposal passed 144 complete answer combinations, all 4 resume chains, session isolation, forged correctness, and 7 incomplete-check counter states."
+    },
+    {
+      "file": "check-local-progress.mjs",
+      "output": "Local progress checks passed: all 41 questions, fresh/reloaded storage, scoring and level gates, proof rechecking for both construction variants, duplicate/conflicting IDs, safe import/export, malformed files, quota/security failures, clock reversal and no network calls."
+    },
+    {
+      "file": "check-interaction.cjs",
+      "output": "Interaction SSR checks passed: 492 question-card states, 82 feedback figures, 4 deferred triggers, 140 camera movements and 11480 projected question scenes. Pointer behavior still requires browser QA."
+    }
+  ],
+  "sourceFiles": {
+    "tools/space-tent/app/construction-insight.tsx": "6b5535f19ea3ee6e2a3f47e32a0483465909eb928ef5da83a61d5470c62eaabc",
+    "tools/space-tent/app/content.json": "5e1d548b05b3e88f79c3957961f93192f1a9a7b396b1139c29b1d1f40cae781a",
+    "tools/space-tent/app/diagnostic.ts": "077888b75522353686c4d3eb2b33100029e73d3ca1e8e3ea271e609289551913",
+    "tools/space-tent/app/geometry-math.ts": "95f258d712435ac433783b09fbb1edf3fc1c503dd0c3bbdbfdc9035d65ff4647",
+    "tools/space-tent/app/geometry.tsx": "f0c9cabfc425c5cbc861af6cb5eb5ceaa0cd56eafb6f0a82516978109f535bd6",
+    "tools/space-tent/app/globals.css": "4a05b1376c161b20d403fd7d3e013cd4fb9876c35317cf6695d11a61341b8e28",
+    "tools/space-tent/app/identity.ts": "85dc95038f97d3ef7b0c5b0c732a7aa3589862736c1e0e3ecac8d2e833be09e6",
+    "tools/space-tent/app/insight-figure.tsx": "0c6f930cedc85e0f93681069dc0ff0f52b9e48b7bea704dfd06cd5bd6c7c7488",
+    "tools/space-tent/app/insight-scenes.ts": "4ea4cd759dd320a849bc365b8d410b66b991790cfb5d5230666e0cf229a6c49e",
+    "tools/space-tent/app/learning.tsx": "6aa013e089dd42e8a89a0cf0f5601781df55951c169793bddb822ebc4832b344",
+    "tools/space-tent/app/line-extension-example.tsx": "874c5900aabb4300640663bee7a1b2e000bb4e6d1748d3e127c48af236a5e9a9",
+    "tools/space-tent/app/local-progress.ts": "db82b254df43cd8a6fd2c99b8856c65b73c920dcf5a9d1da22aa01f92c6bf03e",
+    "tools/space-tent/app/model.ts": "ae4c09b20fe9d596fb2fcc5e334dc3ae71293d3c9955304de568d3daf70268c6",
+    "tools/space-tent/app/paper.tsx": "d87018a4db3a463ec7dffee348e5b1f62cdbdd6418dcf9c9eabc90df27844828",
+    "tools/space-tent/app/question-figure.tsx": "4de0e2289965c79510cd9fc40aeb436f651e8b282296cfdd1031bb749d76e397",
+    "tools/space-tent/app/question-visuals.ts": "4b0f3780a43a53bdf9b61ae27ef61f5d8e705ae532d1fe5ddee955a1dbf59e17",
+    "tools/space-tent/app/rotation.ts": "2c478f06af92bc49e27f9a2d001b13fc675b3a7ffe48b54b863af91d2abc2b2f",
+    "tools/space-tent/app/route-header.tsx": "863892c262676a82103e2db47e3d0578c055a594acf3759388a7166ce949f7a1",
+    "tools/space-tent/app/route-progress.ts": "191815d73a4ebef051ceb5cc6b0505458b07495f8fd242062a1e0bc5dfdf1629",
+    "tools/space-tent/app/ruimteklaar.tsx": "3bc35c863f2e0b121c53f6254be2531b996938826519d182322eadc33338fdaa",
+    "tools/space-tent/app/version.ts": "3e162b1ae0b6ca43cf0d1ae3aba342d85207f08f85b886f04a85c271e08c9553",
+    "tools/space-tent/app/workbench-math.ts": "77c2e882262fa69495b773afbac1e71881e21568d6673791a468d2bb8b81a131",
+    "tools/space-tent/app/workbench.tsx": "0d9651e014310b577658511af3d147f7e8702a62195c446c2440babd8f6d8f0c",
+    "tools/space-tent/audit-runtime/check-diagnostic.mjs": "dc88cce20d1317d0bb7b96051344f11cfa23d8cc1aaf05417a6a4170637e4c87",
+    "tools/space-tent/audit-runtime/check-interaction.cjs": "aeca6e9f5be32ef9e0ef6307f43ef7c59f612abb4e1bec0740228a4424f8cfbb",
+    "tools/space-tent/audit-runtime/check-learning.mjs": "4cf93002b3319700821f5e5c839db2b732df372ba78705995774b194a62395e2",
+    "tools/space-tent/audit-runtime/check-local-progress.mjs": "600119a0f7c797a1ea89190e087f6a2c52e1bc344d53b8deb8c6d94e2807a238",
+    "tools/space-tent/components/ui/button.tsx": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4",
+    "tools/space-tent/components/ui/checkbox.tsx": "b23ab9d4deeedf2ac8f512c368361ede681aa383437ef48563a6f9b7dbe95f27",
+    "tools/space-tent/components/ui/progress.tsx": "c8c26e8f5f041c3cdf4915347dc1d9c022f9448f149990fadcaf303e952fa57d",
+    "tools/space-tent/components/ui/radio-group.tsx": "fe5ce39636d0818c2bf9c4eebddff893d1225fa2c81b5fa4bb8cbb39a8c913ce",
+    "tools/space-tent/components/ui/select.tsx": "0b796a108a4eb5ba52d9ad938b7aea36dc56ae66c703a6d0a23dbc24f96daff3",
+    "tools/space-tent/components/ui/slider.tsx": "0e37484f4b416e79ac18c655cac961aefacf6e67085cfc2b320ea8af545635a3",
+    "tools/space-tent/components/ui/tabs.tsx": "865d0194331b9b2be36723fa79d3575dc83078b4cb941cafee87cb72fc2cff46",
+    "tools/space-tent/lib/utils.ts": "53f3d3d070f0a9082934da25b875f9499855c2b0693868dd28be8c23d8730f68",
+    "tools/space-tent/package-lock.json": "9b91987e6c3cdbda4f01c917a2c580ed7afbe77cb3eae066dbbba2afd99f2718",
+    "tools/space-tent/package.json": "0803535e4ac8f8e3e5f105c3ac9966427ef48ab4b069a6a08f31da3a6ed10944",
+    "tools/space-tent/postcss.config.mjs": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde",
+    "tools/space-tent/README.md": "e1057681d44dd47520660ca11b1d242833d7f6b0a15cc851297cb5486ee5f0b9",
+    "tools/space-tent/scripts/build-audit.mjs": "71ccce0c2b5d382bf9d4b33869dc6f8795b44c270c3d33efa75efa25aa2af579",
+    "tools/space-tent/scripts/build-space.mjs": "276258dbb27aed97c9380eb99276fc430d8241d491192c2cc2e55bfbf282f852",
+    "tools/space-tent/scripts/check-diagnostic.mjs": "329d18bfb5b4daa7953647cecd5db28202d5d9c74b831c8575cb74c90d057e0e",
+    "tools/space-tent/scripts/check-interaction.mjs": "291ec1bd1e9f0331f08d0b67304d697a23a3d404966dc1eb4011d58589f20f25",
+    "tools/space-tent/scripts/check-learning.mjs": "ed4f4a4fe948abafb6028b654671ffac4927a9b56ad94ab3c58c6c00d639f61a",
+    "tools/space-tent/scripts/check-local-progress.mjs": "77e0c1d50c02147f158166b40384f7f70fb79ad5c4216e305a8c05a610953506",
+    "tools/space-tent/space/index.html": "b2a705e523becd7ad6f5f7b734a258aad897781d69b0f49002c577d9c516127c",
+    "tools/space-tent/space/main.tsx": "208b12a7017044bdfa345874f0a6110822f6a43c8f814da612ac3722bda502bc",
+    "tools/space-tent/tsconfig.json": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3",
+    "tools/space-tent/vendor/shadcn-tailwind-4.13.0.css": "bc7d83425702955b4cb67cb14ede9d603f9d912376d57a2d81d661094d2a782a",
+    "tools/space-tent/vendor/shadcn-tailwind-4.13.0.LICENSE.md": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
+  },
+  "publicFiles": {
+    "public/apps/ruimteklaar/assets/index-DfY6jwLo.css": "8d578b4ee98838e69ef38dc85287604bb18ac0b37e6f10ad1fc1f20373724f29",
+    "public/apps/ruimteklaar/assets/index-XYdJ3M6a.js": "30ea7d5bdcae896c7061a9ece0afb40d276914a967d03ada82cf695524c5d4d3",
+    "public/apps/ruimteklaar/index.html": "f460210af6eb454047ef1f207759c2492053c2a25f419595903048947f741aed"
+  }
+}

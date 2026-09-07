@@ -25,3 +25,9 @@
 
 /films/rekenklaar/*
   Cache-Control: no-cache, max-age=0, must-revalidate
+
+/apps/ruimteklaar/*
+  Cache-Control: no-cache, max-age=0, must-revalidate
+
+/rafelrand/*
+  Cache-Control: no-cache, max-age=0, must-revalidate

@@ -1,5 +1,5 @@
 /* Wisik.nl — centrale attractieregistratie. */
-window.WISIK_SITE_VERSION = "0.1.16";
+window.WISIK_SITE_VERSION = "0.1.17";
 window.WISIK_MISCONCEPTION_CODES = Object.freeze([
   "A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08",
   "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08",
@@ -7,6 +7,27 @@ window.WISIK_MISCONCEPTION_CODES = Object.freeze([
   "D01", "D02", "D03", "D04", "D05", "D06", "D07"
 ]);
 window.WISIK_TOOLS = Object.freeze([
+  Object.freeze({
+    id: "ruimteklaar",
+    title: "Space-tent · Ruimteklaar",
+    route: "HBO",
+    programme: "Lerarenopleiding Wiskunde tweedegraads",
+    phase: "Ruimtemeetkunde · eerste leerroute",
+    level: "Hbo · ruimtelijk inzicht en construeren",
+    subject: "Projecties, lijnen, vlakken en doorsneden",
+    venue: "Rafelrand · Space-tent",
+    maturity: "prototype",
+    status: "prototype",
+    statusLabel: "Technisch prototype",
+    version: "0.3",
+    summary: "Draai kubussen, onderzoek lijnen en vlakken en construeer een doorsnede. Level 1 en het constructieatelier zijn open; de vervolgroute is in aanbouw.",
+    productUrl: "/rafelrand/space-tent/",
+    appUrl: "/apps/ruimteklaar/",
+    icon: "◇",
+    accent: "blue",
+    featured: false,
+    tags: Object.freeze(["ruimtemeetkunde", "construeren", "ruimtelijk inzicht"])
+  }),
   Object.freeze({
     id: "pabo-rekenklaar",
     title: "Pabo Rekenklaar",
