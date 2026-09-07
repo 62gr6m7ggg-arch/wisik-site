@@ -1,0 +1,8078 @@
+{
+  "blocks": [
+    {
+      "id": "l2-hulpvlak",
+      "level": 2,
+      "title": "Een lijn ontmoet een vlak",
+      "subtitle": "Kies een hulpvlak en verantwoord elke stap.",
+      "theory": [
+        {
+          "title": "Maak van ruimte een vlakprobleem",
+          "text": "Wil je AG ∩ BDE vinden? Neem eerst een hulpvlak dat de gehele lijn AG bevat, bijvoorbeeld ACGE. Je kunt daarna binnen dat hulpvlak verder construeren.",
+          "scene": {
+            "caption": "ACGE bevat AG. K is het midden van BD; E en K liggen in beide vlakken.",
+            "showCube": true,
+            "points": {
+              "K": [
+                0.5,
+                0.5,
+                0
+              ]
+            },
+            "highlights": [
+              "AG",
+              "EK"
+            ],
+            "planes": [
+              [
+                "A",
+                "C",
+                "G",
+                "E"
+              ],
+              [
+                "B",
+                "D",
+                "E"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Twee gemeenschappelijke punten",
+          "text": "K = AC ∩ BD en E liggen in ACGE én BDE. Daarom is EK de snijlijn van deze twee vlakken. Een lijn-vlaksnijding wordt nu een snijding van twee lijnen in één vlak.",
+          "scene": {
+            "caption": "ACGE bevat AG. K is het midden van BD; E en K liggen in beide vlakken.",
+            "showCube": true,
+            "points": {
+              "K": [
+                0.5,
+                0.5,
+                0
+              ]
+            },
+            "highlights": [
+              "AG",
+              "EK"
+            ],
+            "planes": [
+              [
+                "A",
+                "C",
+                "G",
+                "E"
+              ],
+              [
+                "B",
+                "D",
+                "E"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Controleer de betekenis van het snijpunt",
+          "text": "S = AG ∩ EK ligt op AG en in BDE. Een kruising van getekende lijnen alleen is geen bewijs: hun ruimtelijke ligging moet de constructie rechtvaardigen.",
+          "scene": {
+            "caption": "S = AG ∩ EK ligt in vlak BDE. De gelijke coördinaten van S zijn elk ⅓ van de kubusribbe.",
+            "showCube": true,
+            "points": {
+              "K": [
+                0.5,
+                0.5,
+                0
+              ],
+              "S": [
+                0.3333333333333333,
+                0.3333333333333333,
+                0.3333333333333333
+              ]
+            },
+            "highlights": [
+              "AG",
+              "EK"
+            ],
+            "planes": [
+              [
+                "B",
+                "D",
+                "E"
+              ]
+            ]
+          }
+        }
+      ],
+      "questionIds": [
+        "l2-hulpvlak-1",
+        "l2-hulpvlak-2",
+        "l2-hulpvlak-3",
+        "l2-hulpvlak-4"
+      ],
+      "probeIds": [
+        "l2-hulpvlak-p1",
+        "l2-hulpvlak-p2"
+      ],
+      "retestIds": [
+        "l2-hulpvlak-r1",
+        "l2-hulpvlak-r2"
+      ],
+      "misconception": {
+        "label": "Een hulpvlak hoeft de onderzochte lijn niet te bevatten",
+        "trigger": {
+          "qid": "l2-hulpvlak-1",
+          "wrongAnswer": "a"
+        },
+        "probeWrongAnswers": [
+          "c",
+          "b"
+        ]
+      },
+      "repair": {
+        "title": "Het hulpvlak draagt de hele lijn",
+        "text": "Controleer eerst beide punten van de lijn. In het voorbeeld bevat ACGE zowel A als G. Pas daarna teken je EK = ACGE ∩ BDE en vind je S = AG ∩ EK. ABCD snijdt BDE wel, maar bevat AG niet en levert dus niet deze constructie.",
+        "scene": {
+          "caption": "S = AG ∩ EK ligt in vlak BDE. De gelijke coördinaten van S zijn elk ⅓ van de kubusribbe.",
+          "showCube": true,
+          "points": {
+            "K": [
+              0.5,
+              0.5,
+              0
+            ],
+            "S": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333
+            ]
+          },
+          "highlights": [
+            "AG",
+            "EK"
+          ],
+          "planes": [
+            [
+              "B",
+              "D",
+              "E"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2-doorsnede",
+      "level": 2,
+      "title": "De rand van een doorsnede",
+      "subtitle": "Van gegeven punten naar een gesloten veelhoek.",
+      "theory": [
+        {
+          "title": "Verbind binnen één zijvlak",
+          "text": "P en Q liggen beide in ABFE: teken PQ. Q en R liggen beide in BCGF: teken QR. Verbind niet automatisch elk paar gegeven punten als randzijde.",
+          "scene": {
+            "caption": "PQ ligt in ABFE; QR ligt in BCGF. PR is geen rand in een zijvlak.",
+            "showCube": true,
+            "points": {
+              "P": [
+                0,
+                0,
+                0.25
+              ],
+              "Q": [
+                1,
+                0,
+                0.5
+              ],
+              "R": [
+                1,
+                1,
+                0.75
+              ]
+            },
+            "highlights": [
+              "PQ",
+              "QR"
+            ]
+          }
+        },
+        {
+          "title": "Gebruik evenwijdige vlakken",
+          "text": "BCGF en ADHE zijn evenwijdig. Hun snijlijnen met het doorsnedevlak zijn dus evenwijdig. Teken door P een lijn evenwijdig aan QR; die ontmoet DH in S.",
+          "scene": {
+            "caption": "De doorsnede is PQRS; S is het midden van DH. PS ∥ QR en PQ ∥ SR.",
+            "showCube": true,
+            "points": {
+              "P": [
+                0,
+                0,
+                0.25
+              ],
+              "Q": [
+                1,
+                0,
+                0.5
+              ],
+              "R": [
+                1,
+                1,
+                0.75
+              ],
+              "S": [
+                0,
+                1,
+                0.5
+              ]
+            },
+            "highlights": [
+              "PQ",
+              "QR",
+              "RS",
+              "SP"
+            ],
+            "planes": [
+              [
+                "P",
+                "Q",
+                "R",
+                "S"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Sluit en controleer de rand",
+          "text": "Verbind S met R in het achtervlak. De rand is P–Q–R–S–P. Elk randstuk ligt in een zijvlak; PR ligt binnen de veelhoek en is daarom een diagonaal.",
+          "scene": {
+            "caption": "De doorsnede is PQRS; S is het midden van DH. PS ∥ QR en PQ ∥ SR.",
+            "showCube": true,
+            "points": {
+              "P": [
+                0,
+                0,
+                0.25
+              ],
+              "Q": [
+                1,
+                0,
+                0.5
+              ],
+              "R": [
+                1,
+                1,
+                0.75
+              ],
+              "S": [
+                0,
+                1,
+                0.5
+              ]
+            },
+            "highlights": [
+              "PQ",
+              "QR",
+              "RS",
+              "SP"
+            ],
+            "planes": [
+              [
+                "P",
+                "Q",
+                "R",
+                "S"
+              ]
+            ]
+          }
+        }
+      ],
+      "questionIds": [
+        "l2-doorsnede-1",
+        "l2-doorsnede-2",
+        "l2-doorsnede-3",
+        "l2-doorsnede-4"
+      ],
+      "probeIds": [
+        "l2-doorsnede-p1",
+        "l2-doorsnede-p2"
+      ],
+      "retestIds": [
+        "l2-doorsnede-r1",
+        "l2-doorsnede-r2"
+      ],
+      "misconception": {
+        "label": "Drie gegeven punten vormen automatisch de volledige doorsnederand",
+        "trigger": {
+          "qid": "l2-doorsnede-1",
+          "wrongAnswer": "c"
+        },
+        "probeWrongAnswers": [
+          "a",
+          "b"
+        ]
+      },
+      "repair": {
+        "title": "Drie punten bepalen het vlak, niet het aantal zijden",
+        "text": "Het doorsnedevlak door P, Q en R raakt ook ribbe DH in S. Alleen lijnen in zijvlakken behoren tot de rand. Loop P–Q–R–S–P langs en noem bij elk stuk het bijbehorende zijvlak.",
+        "scene": {
+          "caption": "De doorsnede is PQRS; S is het midden van DH. PS ∥ QR en PQ ∥ SR.",
+          "showCube": true,
+          "points": {
+            "P": [
+              0,
+              0,
+              0.25
+            ],
+            "Q": [
+              1,
+              0,
+              0.5
+            ],
+            "R": [
+              1,
+              1,
+              0.75
+            ],
+            "S": [
+              0,
+              1,
+              0.5
+            ]
+          },
+          "highlights": [
+            "PQ",
+            "QR",
+            "RS",
+            "SP"
+          ],
+          "planes": [
+            [
+              "P",
+              "Q",
+              "R",
+              "S"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2-buiten",
+      "level": 2,
+      "title": "Verder dan de kubusrand",
+      "subtitle": "Gebruik verlengde lijnen zonder schijnsnijpunten.",
+      "theory": [
+        {
+          "title": "Een lijn is onbeperkt",
+          "text": "M ligt halverwege AE. De zichtbare lijnstukken GM en AC raken niet, maar hun volledige lijnen liggen in hetzelfde diagonaalvlak en snijden buiten de kubus in X.",
+          "scene": {
+            "caption": "X ligt buiten de kubus, voorbij A op AC. GM en AC snijden in X.",
+            "showCube": true,
+            "points": {
+              "M": [
+                0,
+                0,
+                0.5
+              ],
+              "X": [
+                -1,
+                -1,
+                0
+              ]
+            },
+            "highlights": [
+              "GM",
+              "AC"
+            ],
+            "segments": [
+              {
+                "from": [
+                  0,
+                  0,
+                  0.5
+                ],
+                "to": [
+                  -1.1,
+                  -1.1,
+                  -0.05
+                ],
+                "color": "#ffab66",
+                "dashed": true
+              },
+              {
+                "from": [
+                  0,
+                  0,
+                  0
+                ],
+                "to": [
+                  -1.1,
+                  -1.1,
+                  0
+                ],
+                "color": "#66d9ca",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "title": "Buitenpunten blijven bruikbaar",
+          "text": "X ligt zowel in het grondvlak als in elk vlak dat de volledige lijn GM bevat. Als je een tweede gemeenschappelijk grondvlakpunt hebt, bepalen deze punten de snijlijn, ook wanneer zij buiten het lichaam liggen.",
+          "scene": {
+            "caption": "X ligt buiten de kubus, voorbij A op AC. GM en AC snijden in X.",
+            "showCube": true,
+            "points": {
+              "M": [
+                0,
+                0,
+                0.5
+              ],
+              "X": [
+                -1,
+                -1,
+                0
+              ]
+            },
+            "highlights": [
+              "GM",
+              "AC"
+            ],
+            "segments": [
+              {
+                "from": [
+                  0,
+                  0,
+                  0.5
+                ],
+                "to": [
+                  -1.1,
+                  -1.1,
+                  -0.05
+                ],
+                "color": "#ffab66",
+                "dashed": true
+              },
+              {
+                "from": [
+                  0,
+                  0,
+                  0
+                ],
+                "to": [
+                  -1.1,
+                  -1.1,
+                  0
+                ],
+                "color": "#66d9ca",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "title": "Reken in het gemeenschappelijke vlak",
+          "text": "Omdat AM ∥ CG zijn de driehoeken XAM en XCG gelijkvormig. Met M halverwege AE geldt XA/XC = 1/2. A ligt tussen X en C, dus XC = XA + AC en XA = AC. Controleer eerst de gemeenschappelijke vlakligging voordat je zo’n verhouding gebruikt.",
+          "scene": {
+            "caption": "X ligt buiten de kubus, voorbij A op AC. GM en AC snijden in X.",
+            "showCube": true,
+            "points": {
+              "M": [
+                0,
+                0,
+                0.5
+              ],
+              "X": [
+                -1,
+                -1,
+                0
+              ]
+            },
+            "highlights": [
+              "GM",
+              "AC"
+            ],
+            "segments": [
+              {
+                "from": [
+                  0,
+                  0,
+                  0.5
+                ],
+                "to": [
+                  -1.1,
+                  -1.1,
+                  -0.05
+                ],
+                "color": "#ffab66",
+                "dashed": true
+              },
+              {
+                "from": [
+                  0,
+                  0,
+                  0
+                ],
+                "to": [
+                  -1.1,
+                  -1.1,
+                  0
+                ],
+                "color": "#66d9ca",
+                "dashed": true
+              }
+            ]
+          }
+        }
+      ],
+      "questionIds": [
+        "l2-buiten-1",
+        "l2-buiten-2",
+        "l2-buiten-3",
+        "l2-buiten-4"
+      ],
+      "probeIds": [
+        "l2-buiten-p1",
+        "l2-buiten-p2"
+      ],
+      "retestIds": [
+        "l2-buiten-r1",
+        "l2-buiten-r2"
+      ],
+      "misconception": {
+        "label": "Een snijpunt buiten het lichaam bestaat niet",
+        "trigger": {
+          "qid": "l2-buiten-1",
+          "wrongAnswer": "a"
+        },
+        "probeWrongAnswers": [
+          "b",
+          "b"
+        ]
+      },
+      "repair": {
+        "title": "Verleng het wiskundige object",
+        "text": "Het getekende AC is een diagonaal lijnstuk; de lijn AC loopt in beide richtingen door. Hetzelfde geldt voor GM. Binnen ACGE vind je X. Het buitenpunt is geldig voor de constructie, zonder dat het een hoekpunt van de uiteindelijke doorsnede hoeft te zijn.",
+        "scene": {
+          "caption": "X ligt buiten de kubus, voorbij A op AC. GM en AC snijden in X.",
+          "showCube": true,
+          "points": {
+            "M": [
+              0,
+              0,
+              0.5
+            ],
+            "X": [
+              -1,
+              -1,
+              0
+            ]
+          },
+          "highlights": [
+            "GM",
+            "AC"
+          ],
+          "segments": [
+            {
+              "from": [
+                0,
+                0,
+                0.5
+              ],
+              "to": [
+                -1.1,
+                -1.1,
+                -0.05
+              ],
+              "color": "#ffab66",
+              "dashed": true
+            },
+            {
+              "from": [
+                0,
+                0,
+                0
+              ],
+              "to": [
+                -1.1,
+                -1.1,
+                0
+              ],
+              "color": "#66d9ca",
+              "dashed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2-gelijkvormig",
+      "level": 2,
+      "title": "Gelijkvormigheid als meetgereedschap",
+      "subtitle": "Koppel overeenkomstige zijden en kies de richting.",
+      "theory": [
+        {
+          "title": "Eerst de overeenkomst",
+          "text": "PQ ∥ BC. De driehoeken APQ en ABC hebben overeenkomstige hoeken; P hoort bij B en Q bij C. Daarom horen AP bij AB, AQ bij AC en PQ bij BC.",
+          "scene": {
+            "caption": "AB = 6 cm, AC = 8 cm; P is het midden van AB en PQ ∥ BC.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                0,
+                8,
+                0
+              ],
+              "P": [
+                3.0,
+                0,
+                0
+              ],
+              "Q": [
+                0,
+                4.0,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA",
+              "PQ"
+            ],
+            "view": "top"
+          }
+        },
+        {
+          "title": "De factor heeft een richting",
+          "text": "AB = 6 en AP = 3. Van ABC naar APQ is k = 3/6 = 1/2. Terug van APQ naar ABC is de factor 2. Noteer de richting voordat je vermenigvuldigt.",
+          "scene": {
+            "caption": "AB = 6 cm, AC = 8 cm; P is het midden van AB en PQ ∥ BC.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                0,
+                8,
+                0
+              ],
+              "P": [
+                3.0,
+                0,
+                0
+              ],
+              "Q": [
+                0,
+                4.0,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA",
+              "PQ"
+            ],
+            "view": "top"
+          }
+        },
+        {
+          "title": "Eén factor, alle lengtes",
+          "text": "Omdat AC = 8 en BC = 10, worden AQ = 4 en PQ = 5. Dit gaat over lengtes. Een oppervlak vraagt twee lengtefactoren; een volume drie. Dat onderscheid gebruik je later bij ruimtefiguren.",
+          "scene": {
+            "caption": "ABC: zijden 6, 8 en 10 cm. APQ: zijden 3, 4 en 5 cm.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                0,
+                8,
+                0
+              ],
+              "P": [
+                3.0,
+                0,
+                0
+              ],
+              "Q": [
+                0,
+                4.0,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA",
+              "PQ"
+            ],
+            "highlights": [
+              "PQ"
+            ],
+            "view": "top"
+          }
+        }
+      ],
+      "questionIds": [
+        "l2-gelijkvormig-1",
+        "l2-gelijkvormig-2",
+        "l2-gelijkvormig-3",
+        "l2-gelijkvormig-4"
+      ],
+      "probeIds": [
+        "l2-gelijkvormig-p1",
+        "l2-gelijkvormig-p2"
+      ],
+      "retestIds": [
+        "l2-gelijkvormig-r1",
+        "l2-gelijkvormig-r2"
+      ],
+      "misconception": {
+        "label": "De lengtefactor wordt in de omgekeerde richting gebruikt",
+        "trigger": {
+          "qid": "l2-gelijkvormig-1",
+          "wrongAnswer": "c"
+        },
+        "probeWrongAnswers": [
+          "c",
+          "a"
+        ]
+      },
+      "repair": {
+        "title": "Schrijf de pijl bij de factor",
+        "text": "ABC → APQ betekent nieuw/oud = AP/AB = 3/6. Vermenigvuldig AC = 8 met 1/2 en krijg AQ = 4. Controleer of een verkleining inderdaad een kleinere lengte oplevert.",
+        "scene": {
+          "caption": "AB = 6 cm, AC = 8 cm; P is het midden van AB en PQ ∥ BC.",
+          "showCube": false,
+          "points": {
+            "A": [
+              0,
+              0,
+              0
+            ],
+            "B": [
+              6,
+              0,
+              0
+            ],
+            "C": [
+              0,
+              8,
+              0
+            ],
+            "P": [
+              3.0,
+              0,
+              0
+            ],
+            "Q": [
+              0,
+              4.0,
+              0
+            ]
+          },
+          "edges": [
+            "AB",
+            "BC",
+            "CA",
+            "PQ"
+          ],
+          "view": "top"
+        }
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren",
+      "level": 3,
+      "title": "Dezelfde regels, andere lichamen",
+      "subtitle": "Kies constructies die ook bij prisma en piramide geldig zijn.",
+      "theory": [
+        {
+          "title": "Zoek eerst het gemeenschappelijke zijvlak",
+          "text": "In een prisma verbind je twee gegeven punten zodra ze in één zijvlak liggen. In dit voorbeeld leveren PR, RS, SQ en QP samen een trapezium op. De doorsnede heeft meer hoekpunten dan er gegeven waren.",
+          "scene": {
+            "caption": "De doorsnede is P–R–S–Q. S is het midden van CF. PQ ∥ RS.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                2,
+                0,
+                0
+              ],
+              "C": [
+                0,
+                2,
+                0
+              ],
+              "D": [
+                0,
+                0,
+                3
+              ],
+              "E": [
+                2,
+                0,
+                3
+              ],
+              "F": [
+                0,
+                2,
+                3
+              ],
+              "P": [
+                1,
+                0,
+                0
+              ],
+              "Q": [
+                0,
+                1,
+                0
+              ],
+              "R": [
+                2,
+                0,
+                1.5
+              ],
+              "S": [
+                0,
+                2,
+                1.5
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA",
+              "DE",
+              "EF",
+              "FD",
+              "AD",
+              "BE",
+              "CF"
+            ],
+            "highlights": [
+              "PR",
+              "RS",
+              "SQ",
+              "QP"
+            ],
+            "planes": [
+              [
+                "P",
+                "R",
+                "S",
+                "Q"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Controleer de voorwaarde voor evenwijdigheid",
+          "text": "In een kubus zijn overstaande zijvlakken evenwijdig. In een piramide ontmoeten verschillende zijvlakken elkaar bij de top. De kubusregel mag je daar niet zonder nieuwe onderbouwing toepassen.",
+          "scene": {
+            "caption": "De volledige doorsnede is PQRS. S ligt op DT met DS = ¼ DT.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                2,
+                0,
+                0
+              ],
+              "C": [
+                2,
+                2,
+                0
+              ],
+              "D": [
+                0,
+                2,
+                0
+              ],
+              "T": [
+                1,
+                1,
+                4
+              ],
+              "P": [
+                0.25,
+                0.25,
+                1
+              ],
+              "Q": [
+                1.5,
+                0.5,
+                2
+              ],
+              "R": [
+                1.5,
+                1.5,
+                2
+              ],
+              "S": [
+                0.25,
+                1.75,
+                1
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "AT",
+              "BT",
+              "CT",
+              "DT"
+            ],
+            "highlights": [
+              "PQ",
+              "QR",
+              "RS",
+              "SP"
+            ],
+            "planes": [
+              [
+                "P",
+                "Q",
+                "R",
+                "S"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Gebruik een snijlijn buiten het lichaam",
+          "text": "Verleng PQ en AB tot X. Omdat QR evenwijdig aan het grondvlak is, loopt de grondvlak-snijlijn door X evenwijdig aan QR. Vind Y op de verlengde CD, teken RY en vind S op DT. Sluit de rand via SP.",
+          "scene": {
+            "caption": "X = PQ ∩ AB ligt voorbij A. Door X loopt de grondvlak-snijlijn evenwijdig aan QR; Y ligt op de verlengde CD.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                2,
+                0,
+                0
+              ],
+              "C": [
+                2,
+                2,
+                0
+              ],
+              "D": [
+                0,
+                2,
+                0
+              ],
+              "T": [
+                1,
+                1,
+                4
+              ],
+              "P": [
+                0.25,
+                0.25,
+                1
+              ],
+              "Q": [
+                1.5,
+                0.5,
+                2
+              ],
+              "R": [
+                1.5,
+                1.5,
+                2
+              ],
+              "S": [
+                0.25,
+                1.75,
+                1
+              ],
+              "X": [
+                -1,
+                0,
+                0
+              ],
+              "Y": [
+                -1,
+                2,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "AT",
+              "BT",
+              "CT",
+              "DT"
+            ],
+            "highlights": [
+              "PQ",
+              "QR",
+              "RS",
+              "SP"
+            ],
+            "segments": [
+              {
+                "from": [
+                  0.25,
+                  0.25,
+                  1
+                ],
+                "to": [
+                  -1,
+                  0,
+                  0
+                ],
+                "color": "#ffab66",
+                "dashed": true
+              },
+              {
+                "from": [
+                  -1,
+                  0,
+                  0
+                ],
+                "to": [
+                  -1,
+                  2,
+                  0
+                ],
+                "color": "#66d9ca",
+                "dashed": true
+              },
+              {
+                "from": [
+                  -1,
+                  2,
+                  0
+                ],
+                "to": [
+                  1.5,
+                  1.5,
+                  2
+                ],
+                "color": "#ffab66",
+                "dashed": true
+              },
+              {
+                "from": [
+                  0,
+                  0,
+                  0
+                ],
+                "to": [
+                  -1,
+                  0,
+                  0
+                ],
+                "color": "#66d9ca",
+                "dashed": true
+              },
+              {
+                "from": [
+                  0,
+                  2,
+                  0
+                ],
+                "to": [
+                  -1,
+                  2,
+                  0
+                ],
+                "color": "#66d9ca",
+                "dashed": true
+              }
+            ]
+          }
+        }
+      ],
+      "questionIds": [
+        "l3-ruimtefiguren-1",
+        "l3-ruimtefiguren-2",
+        "l3-ruimtefiguren-3",
+        "l3-ruimtefiguren-4"
+      ],
+      "probeIds": [
+        "l3-ruimtefiguren-p1",
+        "l3-ruimtefiguren-p2"
+      ],
+      "retestIds": [
+        "l3-ruimtefiguren-r1",
+        "l3-ruimtefiguren-r2"
+      ],
+      "misconception": {
+        "label": "Tegenoverliggende zijvlakken zijn bij elk lichaam evenwijdig",
+        "trigger": {
+          "qid": "l3-ruimtefiguren-1",
+          "wrongAnswer": "b"
+        },
+        "probeWrongAnswers": [
+          "c",
+          "a"
+        ]
+      },
+      "repair": {
+        "title": "Controleer eerst welke vlakken evenwijdig zijn",
+        "text": "De regel over evenwijdige snijlijnen geldt pas nadat je evenwijdige vlakken hebt vastgesteld. ABT en CDT bevatten allebei T en zijn niet evenwijdig. Gebruik bij deze piramide daarom de grondvlak-snijlijn; daarmee ontstaat S op DT zonder een ongeldige evenwijdigheidsaanname.",
+        "scene": {
+          "caption": "X = PQ ∩ AB ligt voorbij A. Door X loopt de grondvlak-snijlijn evenwijdig aan QR; Y ligt op de verlengde CD.",
+          "showCube": false,
+          "points": {
+            "A": [
+              0,
+              0,
+              0
+            ],
+            "B": [
+              2,
+              0,
+              0
+            ],
+            "C": [
+              2,
+              2,
+              0
+            ],
+            "D": [
+              0,
+              2,
+              0
+            ],
+            "T": [
+              1,
+              1,
+              4
+            ],
+            "P": [
+              0.25,
+              0.25,
+              1
+            ],
+            "Q": [
+              1.5,
+              0.5,
+              2
+            ],
+            "R": [
+              1.5,
+              1.5,
+              2
+            ],
+            "S": [
+              0.25,
+              1.75,
+              1
+            ],
+            "X": [
+              -1,
+              0,
+              0
+            ],
+            "Y": [
+              -1,
+              2,
+              0
+            ]
+          },
+          "edges": [
+            "AB",
+            "BC",
+            "CD",
+            "DA",
+            "AT",
+            "BT",
+            "CT",
+            "DT"
+          ],
+          "highlights": [
+            "PQ",
+            "QR",
+            "RS",
+            "SP"
+          ],
+          "segments": [
+            {
+              "from": [
+                0.25,
+                0.25,
+                1
+              ],
+              "to": [
+                -1,
+                0,
+                0
+              ],
+              "color": "#ffab66",
+              "dashed": true
+            },
+            {
+              "from": [
+                -1,
+                0,
+                0
+              ],
+              "to": [
+                -1,
+                2,
+                0
+              ],
+              "color": "#66d9ca",
+              "dashed": true
+            },
+            {
+              "from": [
+                -1,
+                2,
+                0
+              ],
+              "to": [
+                1.5,
+                1.5,
+                2
+              ],
+              "color": "#ffab66",
+              "dashed": true
+            },
+            {
+              "from": [
+                0,
+                0,
+                0
+              ],
+              "to": [
+                -1,
+                0,
+                0
+              ],
+              "color": "#66d9ca",
+              "dashed": true
+            },
+            {
+              "from": [
+                0,
+                2,
+                0
+              ],
+              "to": [
+                -1,
+                2,
+                0
+              ],
+              "color": "#66d9ca",
+              "dashed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "l3-oppervlakte",
+      "level": 3,
+      "title": "Basis en loodrechte hoogte",
+      "subtitle": "Bereken een oppervlakte uit de juiste driehoek.",
+      "theory": [
+        {
+          "title": "De hoogte hoort bij een gekozen basis",
+          "text": "Neem AB als basis. De hoogte is de loodrechte afstand van C tot lijn AB: CM. In de gelijkzijdige driehoek loopt die hoogte door het midden M. De zijde AC is langer en is geen hoogte.",
+          "scene": {
+            "caption": "AB = 6 cm, AM = 3 cm; CM ⟂ AB en CM = √27 cm.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                3,
+                5.196152422706632,
+                0
+              ],
+              "M": [
+                3,
+                0,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA"
+            ],
+            "highlights": [
+              "CM"
+            ],
+            "view": "top"
+          }
+        },
+        {
+          "title": "Bereken een ontbrekende hoogte",
+          "text": "Met AB = AC = 6 en AM = 3 geeft Pythagoras CM = √(6² − 3²) = √27. Pas daarna volgt oppervlakte = 1/2 × 6 × √27. Rond pas aan het eind af.",
+          "scene": {
+            "caption": "AB = 6 cm, AM = 3 cm; CM ⟂ AB en CM = √27 cm.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                3,
+                5.196152422706632,
+                0
+              ],
+              "M": [
+                3,
+                0,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA"
+            ],
+            "highlights": [
+              "CM"
+            ],
+            "view": "top"
+          }
+        },
+        {
+          "title": "Het voetpunt mag buiten liggen",
+          "text": "Bij een stomphoekige driehoek kan H op de verlengde AB liggen. Toch is CH de hoogte bij AB. De formule 1/2 × basis × hoogte verandert niet.",
+          "scene": {
+            "caption": "AB = 6 cm. CH = 4 cm en CH ⟂ lijn AB; H ligt op de verlengde AB voorbij A.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                -2,
+                4,
+                0
+              ],
+              "H": [
+                -2,
+                0,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA"
+            ],
+            "highlights": [
+              "CH"
+            ],
+            "segments": [
+              {
+                "from": [
+                  -2,
+                  0,
+                  0
+                ],
+                "to": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#66d9ca",
+                "dashed": true
+              }
+            ],
+            "view": "top"
+          }
+        }
+      ],
+      "questionIds": [
+        "l3-oppervlakte-1",
+        "l3-oppervlakte-2",
+        "l3-oppervlakte-3",
+        "l3-oppervlakte-4"
+      ],
+      "probeIds": [
+        "l3-oppervlakte-p1",
+        "l3-oppervlakte-p2"
+      ],
+      "retestIds": [
+        "l3-oppervlakte-r1",
+        "l3-oppervlakte-r2"
+      ],
+      "misconception": {
+        "label": "Een schuine zijde wordt als loodrechte hoogte gebruikt",
+        "trigger": {
+          "qid": "l3-oppervlakte-1",
+          "wrongAnswer": "c"
+        },
+        "probeWrongAnswers": [
+          "c",
+          "c"
+        ]
+      },
+      "repair": {
+        "title": "Teken eerst de loodlijn",
+        "text": "Kies de basis AB en teken vanuit C een loodlijn op de volledige lijn AB. Het lijnstuk tot het voetpunt is de hoogte. In dit voorbeeld is AC = 6, maar CM = √27. Alleen CM hoort als hoogte bij basis AB.",
+        "scene": {
+          "caption": "AB = 6 cm, AM = 3 cm; CM ⟂ AB en CM = √27 cm.",
+          "showCube": false,
+          "points": {
+            "A": [
+              0,
+              0,
+              0
+            ],
+            "B": [
+              6,
+              0,
+              0
+            ],
+            "C": [
+              3,
+              5.196152422706632,
+              0
+            ],
+            "M": [
+              3,
+              0,
+              0
+            ]
+          },
+          "edges": [
+            "AB",
+            "BC",
+            "CA"
+          ],
+          "highlights": [
+            "CM"
+          ],
+          "view": "top"
+        }
+      }
+    },
+    {
+      "id": "l3-inhoud",
+      "level": 3,
+      "title": "Een ingewikkelde inhoud ontleden",
+      "subtitle": "Vul aan tot een bekend lichaam en trek gecontroleerd af.",
+      "theory": [
+        {
+          "title": "Prisma en piramide hebben verschillende formules",
+          "text": "Voor een prisma is V = B × h. Voor een piramide met dezelfde grondoppervlakte B en loodrechte hoogte h is V = 1/3 × B × h. Een schuine ribbe is niet automatisch de hoogte.",
+          "scene": {
+            "caption": "Piramide met grondvlak 6 × 4 cm en loodrechte hoogte TO = 5 cm.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                6,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                4,
+                0
+              ],
+              "T": [
+                3.0,
+                2.0,
+                5
+              ],
+              "O": [
+                3.0,
+                2.0,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "AT",
+              "BT",
+              "CT",
+              "DT"
+            ],
+            "highlights": [
+              "TO"
+            ]
+          }
+        },
+        {
+          "title": "Maak eerst het volledige prisma",
+          "text": "Het rechthoekige driehoekige grondvlak heeft oppervlakte 1/2 × 3 × 4 = 6 cm². Met hoogte 9 cm is de prisma-inhoud 54 cm³. Bepaal daarna precies welke stukken ontbreken.",
+          "scene": {
+            "caption": "ABC is rechthoekig met AB = 3 en AC = 4 cm. AD = 9 cm. P, Q, R zijn middens van DE, EF, FD. Verwijder de drie hoekpiramides A.DPR, B.EPQ en C.FQR.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                3,
+                0,
+                0
+              ],
+              "C": [
+                0,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                0,
+                9
+              ],
+              "E": [
+                3,
+                0,
+                9
+              ],
+              "F": [
+                0,
+                4,
+                9
+              ],
+              "P": [
+                1.5,
+                0,
+                9
+              ],
+              "Q": [
+                1.5,
+                2.0,
+                9
+              ],
+              "R": [
+                0,
+                2.0,
+                9
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA",
+              "DE",
+              "EF",
+              "FD",
+              "AD",
+              "BE",
+              "CF"
+            ]
+          }
+        },
+        {
+          "title": "Trek zonder dubbel te tellen af",
+          "text": "P, Q en R zijn middens. Iedere bovenste hoekdriehoek heeft 1/4 van de grondoppervlakte. Elke verwijderde piramide heeft inhoud 1/3 × 1,5 × 9 = 4,5 cm³. De drie delen overlappen niet in hun binnenste, dus de rest is 40,5 cm³.",
+          "scene": {
+            "caption": "Overblijvend lichaam ABCPQR. Volledig prisma minus drie niet-overlappende hoekpiramides.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                3,
+                0,
+                0
+              ],
+              "C": [
+                0,
+                4,
+                0
+              ],
+              "P": [
+                1.5,
+                0,
+                9
+              ],
+              "Q": [
+                1.5,
+                2.0,
+                9
+              ],
+              "R": [
+                0,
+                2.0,
+                9
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA",
+              "PQ",
+              "QR",
+              "RP",
+              "AP",
+              "AR",
+              "BP",
+              "BQ",
+              "CQ",
+              "CR"
+            ],
+            "planes": [
+              [
+                "P",
+                "Q",
+                "R"
+              ]
+            ]
+          }
+        }
+      ],
+      "questionIds": [
+        "l3-inhoud-1",
+        "l3-inhoud-2",
+        "l3-inhoud-3",
+        "l3-inhoud-4"
+      ],
+      "probeIds": [
+        "l3-inhoud-p1",
+        "l3-inhoud-p2"
+      ],
+      "retestIds": [
+        "l3-inhoud-r1",
+        "l3-inhoud-r2"
+      ],
+      "misconception": {
+        "label": "Voor een piramide wordt de prismaformule B × h gebruikt",
+        "trigger": {
+          "qid": "l3-inhoud-1",
+          "wrongAnswer": "b"
+        },
+        "probeWrongAnswers": [
+          "b",
+          "b"
+        ]
+      },
+      "repair": {
+        "title": "Het lichaam bepaalt de extra factor",
+        "text": "B × h beschrijft het volledige prisma. De piramide met dezelfde grondoppervlakte en loodrechte hoogte heeft een derde van die inhoud. Bij B = 24 en h = 5 wordt dat 120/3 = 40 cm³. Gebruik dit ook voor ieder piramidedeel dat je aftrekt.",
+        "scene": {
+          "caption": "Piramide met grondvlak 6 × 4 cm en loodrechte hoogte TO = 5 cm.",
+          "showCube": false,
+          "points": {
+            "A": [
+              0,
+              0,
+              0
+            ],
+            "B": [
+              6,
+              0,
+              0
+            ],
+            "C": [
+              6,
+              4,
+              0
+            ],
+            "D": [
+              0,
+              4,
+              0
+            ],
+            "T": [
+              3.0,
+              2.0,
+              5
+            ],
+            "O": [
+              3.0,
+              2.0,
+              0
+            ]
+          },
+          "edges": [
+            "AB",
+            "BC",
+            "CD",
+            "DA",
+            "AT",
+            "BT",
+            "CT",
+            "DT"
+          ],
+          "highlights": [
+            "TO"
+          ]
+        }
+      }
+    },
+    {
+      "id": "l3-goniometrie",
+      "level": 3,
+      "title": "Goniometrie in de juiste driehoek",
+      "subtitle": "Benoem de zijden, kies de verhouding en reken beide kanten op.",
+      "theory": [
+        {
+          "title": "De hoek bepaalt overstaand en aanliggend",
+          "text": "In ABC is B de rechte hoek. Bij hoek A is BC overstaand en AB aanliggend; AC is altijd de schuine zijde. Kies je hoek C, dan wisselen de rollen van AB en BC.",
+          "scene": {
+            "caption": "Rechthoekige driehoek ABC: ∠B = 90°, AB = 4 cm, BC = 3 cm, AC = 5 cm.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                3,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA"
+            ],
+            "view": "top"
+          }
+        },
+        {
+          "title": "Drie verhoudingen, één rechthoekige driehoek",
+          "text": "Bij hoek A geldt sin(A) = BC/AC = 3/5, cos(A) = AB/AC = 4/5 en tan(A) = BC/AB = 3/4. Kies de verhouding waarin je bekende en gezochte grootheden voorkomen.",
+          "scene": {
+            "caption": "Rechthoekige driehoek ABC: ∠B = 90°, AB = 4 cm, BC = 3 cm, AC = 5 cm.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                3,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA"
+            ],
+            "view": "top"
+          }
+        },
+        {
+          "title": "Van lengte naar hoek, en terug",
+          "text": "Met tan(A) = 3/4 vind je A = arctan(3/4) ≈ 36,87°. Andersom: bij A = 30° en AB = 10 geeft BC = 10 × tan(30°). Gebruik gradenmodus en rond pas het eindantwoord af.",
+          "scene": {
+            "caption": "∠B = 90°, ∠A = 30° en AB = 10 cm; BC volgt uit de tangens.",
+            "showCube": false,
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                10,
+                0,
+                0
+              ],
+              "C": [
+                10,
+                5.773502691896258,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA"
+            ],
+            "view": "top"
+          }
+        }
+      ],
+      "questionIds": [
+        "l3-goniometrie-1",
+        "l3-goniometrie-2",
+        "l3-goniometrie-3",
+        "l3-goniometrie-4"
+      ],
+      "probeIds": [
+        "l3-goniometrie-p1",
+        "l3-goniometrie-p2"
+      ],
+      "retestIds": [
+        "l3-goniometrie-r1",
+        "l3-goniometrie-r2"
+      ],
+      "misconception": {
+        "label": "Bij tangens worden overstaande en aanliggende zijde omgedraaid",
+        "trigger": {
+          "qid": "l3-goniometrie-1",
+          "wrongAnswer": "a"
+        },
+        "probeWrongAnswers": [
+          "b",
+          "b"
+        ]
+      },
+      "repair": {
+        "title": "Begin altijd bij de gevraagde hoek",
+        "text": "Markeer A. BC ligt daar tegenover; AB raakt A en is niet de schuine zijde. Daarom tan(A) = BC/AB = 3/4. Bij C worden de rollen omgekeerd: tan(C) = AB/BC. De regel verandert niet, alleen de gekozen hoek.",
+        "scene": {
+          "caption": "Rechthoekige driehoek ABC: ∠B = 90°, AB = 4 cm, BC = 3 cm, AC = 5 cm.",
+          "showCube": false,
+          "points": {
+            "A": [
+              0,
+              0,
+              0
+            ],
+            "B": [
+              4,
+              0,
+              0
+            ],
+            "C": [
+              4,
+              3,
+              0
+            ]
+          },
+          "edges": [
+            "AB",
+            "BC",
+            "CA"
+          ],
+          "view": "top"
+        }
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "l2-hulpvlak-1",
+      "block": "l2-hulpvlak",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Je zoekt AG ∩ vlak BDE. Welk hulpvlak voldoet aan de noodzakelijke voorwaarde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ABCD: het is genoeg dat het hulpvlak het doelvlak snijdt."
+        },
+        {
+          "id": "b",
+          "text": "EFGH: een hulpvlak moet altijd het bovenvlak zijn."
+        },
+        {
+          "id": "c",
+          "text": "ACGE: de gehele lijn AG ligt in dit vlak."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "ACGE bevat AG. Het hulpvlak moet de te onderzoeken lijn bevatten; alleen het doelvlak snijden is onvoldoende.",
+      "hint": "Controleer of beide punten A en G in het gekozen vlak liggen.",
+      "scene": {
+        "caption": "Kubus ABCD.EFGH. Gezocht: het snijpunt van lijn AG met vlak BDE.",
+        "showCube": true,
+        "highlights": [
+          "AG"
+        ],
+        "planes": [
+          [
+            "B",
+            "D",
+            "E"
+          ]
+        ]
+      },
+      "revealScene": {
+        "caption": "ACGE bevat AG. K is het midden van BD; E en K liggen in beide vlakken.",
+        "showCube": true,
+        "points": {
+          "K": [
+            0.5,
+            0.5,
+            0
+          ]
+        },
+        "highlights": [
+          "AG",
+          "EK"
+        ],
+        "planes": [
+          [
+            "A",
+            "C",
+            "G",
+            "E"
+          ],
+          [
+            "B",
+            "D",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-hulpvlak-2",
+      "block": "l2-hulpvlak",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "K is het midden van BD. Selecteer de twee gegeven punten waarmee je de snijlijn van de vlakken ACGE en BDE kunt tekenen.",
+      "answer": [
+        "E",
+        "K"
+      ],
+      "selectCount": 2,
+      "explanation": "E ligt in beide vlakken. K ligt op BD en op AC, dus ook in beide vlakken. Twee verschillende gemeenschappelijke punten bepalen de snijlijn EK.",
+      "hint": "Zoek punten die tegelijk in het hulpvlak én in het doelvlak liggen.",
+      "scene": {
+        "caption": "K is het midden van BD en AC.",
+        "showCube": true,
+        "points": {
+          "K": [
+            0.5,
+            0.5,
+            0
+          ]
+        },
+        "planes": [
+          [
+            "A",
+            "C",
+            "G",
+            "E"
+          ],
+          [
+            "B",
+            "D",
+            "E"
+          ]
+        ]
+      },
+      "revealScene": {
+        "caption": "ACGE bevat AG. K is het midden van BD; E en K liggen in beide vlakken.",
+        "showCube": true,
+        "points": {
+          "K": [
+            0.5,
+            0.5,
+            0
+          ]
+        },
+        "highlights": [
+          "AG",
+          "EK"
+        ],
+        "planes": [
+          [
+            "A",
+            "C",
+            "G",
+            "E"
+          ],
+          [
+            "B",
+            "D",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-hulpvlak-3",
+      "block": "l2-hulpvlak",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "De kubusribbe is 3 cm. S = AG ∩ vlak BDE ligt op een derde van AG, gemeten vanaf A. Bereken AS in cm, op twee decimalen.",
+      "answer": [
+        "1.7320508075688772"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "AG = √(3² + 3² + 3²) = 3√3 cm. AS = ⅓ × AG = √3 ≈ 1,73 cm.",
+      "hint": "Bereken eerst de ruimtediagonaal en pas daarna de verhouding toe.",
+      "scene": {
+        "caption": "S = AG ∩ EK ligt in vlak BDE. De gelijke coördinaten van S zijn elk ⅓ van de kubusribbe.",
+        "showCube": true,
+        "points": {
+          "K": [
+            0.5,
+            0.5,
+            0
+          ],
+          "S": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "highlights": [
+          "AG",
+          "EK"
+        ],
+        "planes": [
+          [
+            "B",
+            "D",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-hulpvlak-4",
+      "block": "l2-hulpvlak",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Met hulpvlak ACGE vind je s = EK en vervolgens S = AG ∩ s. Waarom is S het gevraagde punt?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Omdat elk punt van ACGE ook in BDE ligt."
+        },
+        {
+          "id": "b",
+          "text": "Omdat S op AG ligt en s geheel in vlak BDE ligt."
+        },
+        {
+          "id": "c",
+          "text": "Omdat iedere kruising op de tekening een snijpunt in de ruimte is."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "S ligt op de oorspronkelijke lijn AG én op EK. Omdat EK in BDE ligt, ligt S ook in BDE. De lijn AG ligt niet geheel in BDE, dus dit snijpunt is uniek.",
+      "hint": "Welke twee voorwaarden moet het gezochte punt vervullen?",
+      "scene": {
+        "caption": "S = AG ∩ EK ligt in vlak BDE. De gelijke coördinaten van S zijn elk ⅓ van de kubusribbe.",
+        "showCube": true,
+        "points": {
+          "K": [
+            0.5,
+            0.5,
+            0
+          ],
+          "S": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "highlights": [
+          "AG",
+          "EK"
+        ],
+        "planes": [
+          [
+            "B",
+            "D",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-hulpvlak-p1",
+      "block": "l2-hulpvlak",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Voor BH ∩ vlak ADF kies je een hulpvlak. Welke keuze is bruikbaar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "BDHF, want dit vlak bevat BH."
+        },
+        {
+          "id": "b",
+          "text": "EFGH, want H is een punt van de lijn en één punt is voldoende."
+        },
+        {
+          "id": "c",
+          "text": "ABCD, want dat snijdt ADF; BH hoeft er niet in te liggen."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "BDHF bevat de gehele lijn BH. Eén punt van BH of alleen een snijding met het doelvlak is onvoldoende.",
+      "hint": "Controleer beide eindpunten van de benoemde lijn.",
+      "scene": {
+        "caption": "Onderzoek lijn BH en vlak ADF.",
+        "showCube": true,
+        "highlights": [
+          "BH"
+        ],
+        "planes": [
+          [
+            "A",
+            "D",
+            "F"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-hulpvlak-p2",
+      "block": "l2-hulpvlak",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Q ligt op CT. Welk hulpvlak kies je voor AQ ∩ vlak BDT?",
+      "options": [
+        {
+          "id": "a",
+          "text": "BCT: daarin ligt Q, dus ook AQ."
+        },
+        {
+          "id": "b",
+          "text": "ABCD: elk vlak dat BDT snijdt kan als hulpvlak dienen."
+        },
+        {
+          "id": "c",
+          "text": "ACT: dit vlak bevat A en Q, en daarmee de lijn AQ."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "Omdat Q op CT ligt, ligt Q in ACT. A ligt daar ook, dus AQ ligt geheel in ACT. ABCD bevat Q niet.",
+      "hint": "Een vlak dat twee verschillende punten van een lijn bevat, bevat die hele lijn.",
+      "scene": {
+        "caption": "Vierkante piramide ABCD.T; Q is het midden van CT. Onderzoek AQ ∩ vlak BDT.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            1,
+            0,
+            0
+          ],
+          "C": [
+            1,
+            1,
+            0
+          ],
+          "D": [
+            0,
+            1,
+            0
+          ],
+          "T": [
+            0.5,
+            0.5,
+            1
+          ],
+          "Q": [
+            0.75,
+            0.75,
+            0.5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "AQ"
+        ],
+        "planes": [
+          [
+            "B",
+            "D",
+            "T"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-hulpvlak-r1",
+      "block": "l2-hulpvlak",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Je zoekt EC ∩ vlak ABG. Waarom is ACGE een bruikbaar hulpvlak?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Omdat ACGE zowel E als C bevat."
+        },
+        {
+          "id": "b",
+          "text": "Omdat ieder diagonaalvlak elk gewenst snijpunt bevat."
+        },
+        {
+          "id": "c",
+          "text": "Omdat EC en AG op het scherm ergens kruisen."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "E en C liggen in ACGE; daarom ligt EC in het hulpvlak. De snijlijn met ABG is AG, zodat EC ∩ AG de volgende stap is.",
+      "hint": "Benoem de noodzakelijke eigenschap van het hulpvlak.",
+      "scene": {
+        "caption": "Kubus; onderzoek EC ∩ vlak ABG.",
+        "showCube": true,
+        "highlights": [
+          "EC"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "G"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-hulpvlak-r2",
+      "block": "l2-hulpvlak",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "O is het snijpunt van AC en BD. Voor AQ ∩ vlak BDT gebruik je hulpvlak ACT. Selecteer de twee punten die de snijlijn ACT ∩ BDT bepalen.",
+      "answer": [
+        "O",
+        "T"
+      ],
+      "selectCount": 2,
+      "explanation": "T ligt in beide vlakken. O ligt op AC én BD. Daarom is OT de snijlijn; daarna zoek je AQ ∩ OT.",
+      "hint": "Zoek één gemeenschappelijk toppunt en één gemeenschappelijk punt in het grondvlak.",
+      "scene": {
+        "caption": "Q is het midden van CT; O = AC ∩ BD.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            1,
+            0,
+            0
+          ],
+          "C": [
+            1,
+            1,
+            0
+          ],
+          "D": [
+            0,
+            1,
+            0
+          ],
+          "T": [
+            0.5,
+            0.5,
+            1
+          ],
+          "Q": [
+            0.75,
+            0.75,
+            0.5
+          ],
+          "O": [
+            0.5,
+            0.5,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "AC",
+          "BD",
+          "AQ"
+        ],
+        "planes": [
+          [
+            "A",
+            "C",
+            "T"
+          ],
+          [
+            "B",
+            "D",
+            "T"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-doorsnede-1",
+      "block": "l2-doorsnede",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "P, Q en R bepalen een vlak. Welke uitspraak over de rand van de doorsnede is juist?",
+      "options": [
+        {
+          "id": "a",
+          "text": "PQ en QR zijn zijden in twee zijvlakken; PR loopt door het binnenste en is hier geen randzijde."
+        },
+        {
+          "id": "b",
+          "text": "Je mag nog geen enkel lijnstuk tekenen zolang niet alle hoekpunten bekend zijn."
+        },
+        {
+          "id": "c",
+          "text": "PQ, QR en PR zijn automatisch alle drie zijden, want drie punten bepalen een vlak."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "PQ ligt in voorvlak ABFE en QR in rechtervlak BCGF. P en R delen geen zijvlak; PR is hier een diagonaal binnen de doorsnede. Het vlak wordt door drie punten bepaald, de volledige rand niet.",
+      "hint": "Een randzijde van de doorsnede moet in een zijvlak van de kubus liggen.",
+      "scene": {
+        "caption": "P op AE: AP = ¼ AE. Q is het midden van BF. R op CG: CR = ¾ CG.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.75
+          ]
+        }
+      },
+      "revealScene": {
+        "caption": "PQ ligt in ABFE; QR ligt in BCGF. PR is geen rand in een zijvlak.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.75
+          ]
+        },
+        "highlights": [
+          "PQ",
+          "QR"
+        ]
+      }
+    },
+    {
+      "id": "l2-doorsnede-2",
+      "block": "l2-doorsnede",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Je hebt QR getekend. Hoe bepaal je de snijlijn van hetzelfde doorsnedevlak met het tegenoverliggende vlak ADHE?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Teken door P een lijn evenwijdig aan QR."
+        },
+        {
+          "id": "b",
+          "text": "Verleng QR tot het de ribbe AE raakt."
+        },
+        {
+          "id": "c",
+          "text": "Teken door P een lijn loodrecht op QR."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "BCGF en ADHE zijn evenwijdige vlakken. Als een derde vlak beide snijdt, zijn hun snijlijnen evenwijdig. De gezochte lijn gaat bovendien door P.",
+      "hint": "Gebruik het verband tussen snijlijnen in twee evenwijdige vlakken.",
+      "scene": {
+        "caption": "PQ ligt in ABFE; QR ligt in BCGF. PR is geen rand in een zijvlak.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.75
+          ]
+        },
+        "highlights": [
+          "PQ",
+          "QR"
+        ]
+      },
+      "revealScene": {
+        "caption": "De doorsnede is PQRS; S is het midden van DH. PS ∥ QR en PQ ∥ SR.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.75
+          ],
+          "S": [
+            0,
+            1,
+            0.5
+          ]
+        },
+        "highlights": [
+          "PQ",
+          "QR",
+          "RS",
+          "SP"
+        ],
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R",
+            "S"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-doorsnede-3",
+      "block": "l2-doorsnede",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "De kubusribbe is 8 cm. AP = 2 cm, BQ = 4 cm en CR = 6 cm. De doorsnede ontmoet DH in S. Bereken DS in cm, op twee decimalen.",
+      "answer": [
+        "4"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "Van Q naar R neemt de hoogte met 6 − 4 = 2 cm toe over één kubusdiepte. PS is evenwijdig aan QR, dus ook van P naar S komt er 2 cm bij: DS = 2 + 2 = 4 cm.",
+      "hint": "Vergelijk de gelijke verplaatsingen van voorvlak naar achtervlak.",
+      "scene": {
+        "caption": "PQ ligt in ABFE; QR ligt in BCGF. PR is geen rand in een zijvlak.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.75
+          ]
+        },
+        "highlights": [
+          "PQ",
+          "QR"
+        ]
+      },
+      "revealScene": {
+        "caption": "De doorsnede is PQRS; S is het midden van DH. PS ∥ QR en PQ ∥ SR.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.75
+          ],
+          "S": [
+            0,
+            1,
+            0.5
+          ]
+        },
+        "highlights": [
+          "PQ",
+          "QR",
+          "RS",
+          "SP"
+        ],
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R",
+            "S"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-doorsnede-4",
+      "block": "l2-doorsnede",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Waarom is de doorsnede in dit voorbeeld een vierhoek en geen driehoek?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Omdat in een kubus geen driehoek te tekenen is."
+        },
+        {
+          "id": "b",
+          "text": "Omdat elke kubusdoorsnede vier zijden heeft."
+        },
+        {
+          "id": "c",
+          "text": "Omdat de rand achtereenvolgens vier zijvlakken doorloopt en sluit via S op DH."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "De rand loopt P–Q–R–S–P in vier zijvlakken. De boven- en ondervlakken worden niet geraakt. Andere kubusdoorsneden kunnen wel driehoeken zijn.",
+      "hint": "Loop de rand langs; verbind alleen punten die hetzelfde zijvlak delen.",
+      "scene": {
+        "caption": "De doorsnede is PQRS; S is het midden van DH. PS ∥ QR en PQ ∥ SR.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.75
+          ],
+          "S": [
+            0,
+            1,
+            0.5
+          ]
+        },
+        "highlights": [
+          "PQ",
+          "QR",
+          "RS",
+          "SP"
+        ],
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R",
+            "S"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-doorsnede-p1",
+      "block": "l2-doorsnede",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Welke van de drie verbindingen PQ, QR en PR is in dit voorbeeld geen randzijde van de doorsnede?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Geen: drie gegeven punten moeten met alle drie de verbindingen de rand vormen."
+        },
+        {
+          "id": "b",
+          "text": "PQ: een doorsnede mag het grondvlak niet raken."
+        },
+        {
+          "id": "c",
+          "text": "PR: P en R liggen niet in één zijvlak."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "PQ ligt in het grondvlak en QR in het rechtervlak. PR ligt niet in één zijvlak en is een diagonaal in de doorsnede.",
+      "hint": "Zoek voor ieder lijnstuk een zijvlak dat beide eindpunten bevat.",
+      "scene": {
+        "caption": "P is het midden van AB; Q is het midden van BC; R is het midden van FG.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0.5,
+            0,
+            0
+          ],
+          "Q": [
+            1,
+            0.5,
+            0
+          ],
+          "R": [
+            1,
+            0.5,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2-doorsnede-p2",
+      "block": "l2-doorsnede",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Bij deze prismadoorsnede liggen PQ in ABC en QR in ACFD. Wat kun je zeggen over PR?",
+      "options": [
+        {
+          "id": "a",
+          "text": "PR is geen randzijde, want P en R delen geen zijvlak van dit prisma."
+        },
+        {
+          "id": "b",
+          "text": "PR is ook een randzijde: bij drie gegeven punten is de rand altijd hun driehoek."
+        },
+        {
+          "id": "c",
+          "text": "PR kan helemaal niet in het doorsnedevlak liggen."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "Alle drie punten liggen in het doorsnedevlak, dus PR ook. Maar PR ligt binnen de doorsnede en niet in een zijvlak van het prisma; de rand is groter dan driehoek PQR.",
+      "hint": "Een lijnstuk kan wel in het doorsnedevlak liggen zonder aan de buitenrand te liggen.",
+      "scene": {
+        "caption": "Recht driehoekig prisma ABC.DEF. P ligt op AB; Q op AC; R recht boven Q op DF.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            3
+          ],
+          "E": [
+            2,
+            0,
+            3
+          ],
+          "F": [
+            0,
+            2,
+            3
+          ],
+          "P": [
+            1,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            1,
+            0
+          ],
+          "R": [
+            0,
+            1,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      }
+    },
+    {
+      "id": "l2-doorsnede-r1",
+      "block": "l2-doorsnede",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Bij een kubusdoorsnede heb je een randlijn in ABFE en een gegeven punt U in het tegenoverliggende vlak DCGH. Welke richting heeft de randlijn door U?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Altijd evenwijdig aan AE."
+        },
+        {
+          "id": "b",
+          "text": "Evenwijdig aan de randlijn in ABFE."
+        },
+        {
+          "id": "c",
+          "text": "Loodrecht op de randlijn in ABFE."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "ABFE en DCGH zijn evenwijdig. Hun snijlijnen met hetzelfde doorsnedevlak zijn daarom evenwijdig. De richting volgt uit de reeds getekende randlijn.",
+      "hint": "Noem de twee evenwijdige vlakken.",
+      "scene": {
+        "caption": "P op AE en Q op BF; U ligt op DH.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "U": [
+            0,
+            1,
+            0.5
+          ]
+        },
+        "highlights": [
+          "PQ"
+        ]
+      }
+    },
+    {
+      "id": "l2-doorsnede-r2",
+      "block": "l2-doorsnede",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Een leerling tekent alleen driehoek PQR en noemt dat de complete doorsnede. Welke controle toont de fout?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nagaan of de driehoek op het scherm groot genoeg is."
+        },
+        {
+          "id": "b",
+          "text": "Nagaan of elk getekend randstuk in een zijvlak ligt en de rand alle geraakte zijvlakken doorloopt."
+        },
+        {
+          "id": "c",
+          "text": "Nagaan of twee zijden even lang lijken."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "PR ligt niet in een zijvlak. De rand moet via het vierde punt S op DH lopen, zodat elk randstuk werkelijk een zijde van de doorsnede is.",
+      "hint": "Controleer de ligging van PR.",
+      "scene": {
+        "caption": "P op AE: AP = ¼ AE. Q is het midden van BF. R op CG: CR = ¾ CG.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.75
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2-buiten-1",
+      "block": "l2-buiten",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "M is het midden van AE. De lijnstukken GM en AC raken elkaar niet. Wat geldt voor de volledige lijnen?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ze kunnen niet snijden: het snijpunt zou buiten de kubus liggen."
+        },
+        {
+          "id": "b",
+          "text": "Ze snijden buiten de kubus wanneer je beide lijnen voorbij M respectievelijk A verlengt."
+        },
+        {
+          "id": "c",
+          "text": "Ze zijn evenwijdig, want de zichtbare lijnstukken zijn los van elkaar."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "GM en AC liggen samen in diagonaalvlak ACGE en zijn niet evenwijdig. Ze snijden voorbij A. Een volledige lijn stopt niet bij een kubusrand.",
+      "hint": "Bekijk de lijnen binnen diagonaalvlak ACGE en verleng ze denkbeeldig.",
+      "scene": {
+        "caption": "M is het midden van AE. Onderzoek de volledige lijnen GM en AC.",
+        "showCube": true,
+        "points": {
+          "M": [
+            0,
+            0,
+            0.5
+          ]
+        },
+        "highlights": [
+          "GM",
+          "AC"
+        ]
+      },
+      "revealScene": {
+        "caption": "X ligt buiten de kubus, voorbij A op AC. GM en AC snijden in X.",
+        "showCube": true,
+        "points": {
+          "M": [
+            0,
+            0,
+            0.5
+          ],
+          "X": [
+            -1,
+            -1,
+            0
+          ]
+        },
+        "highlights": [
+          "GM",
+          "AC"
+        ],
+        "segments": [
+          {
+            "from": [
+              0,
+              0,
+              0.5
+            ],
+            "to": [
+              -1.1,
+              -1.1,
+              -0.05
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              -1.1,
+              -1.1,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "l2-buiten-2",
+      "block": "l2-buiten",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Waarom mag je een buiten de kubus gevonden punt X gebruiken om een snijlijn in het grondvlak te construeren?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Omdat X op het doorsnedevlak én op het grondvlak kan liggen, ook buiten het vaste lichaam."
+        },
+        {
+          "id": "b",
+          "text": "Omdat het verlengen van lijnen hun onderlinge ligging verandert."
+        },
+        {
+          "id": "c",
+          "text": "Omdat elk willekeurig punt buiten de kubus in alle vlakken ligt."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "De vlakken lopen onbeperkt door. Een gemeenschappelijk punt buiten het vaste lichaam is bruikbaar om hun snijlijn te bepalen. Alleen het deel van de snijlijn binnen het lichaam kan tot de doorsnederand behoren.",
+      "hint": "Maak onderscheid tussen een vlak en het getekende zijvlak van het lichaam.",
+      "scene": {
+        "caption": "X ligt buiten de kubus, voorbij A op AC. GM en AC snijden in X.",
+        "showCube": true,
+        "points": {
+          "M": [
+            0,
+            0,
+            0.5
+          ],
+          "X": [
+            -1,
+            -1,
+            0
+          ]
+        },
+        "highlights": [
+          "GM",
+          "AC"
+        ],
+        "segments": [
+          {
+            "from": [
+              0,
+              0,
+              0.5
+            ],
+            "to": [
+              -1.1,
+              -1.1,
+              -0.05
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              -1.1,
+              -1.1,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "l2-buiten-3",
+      "block": "l2-buiten",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "De kubusribbe is 6 cm en M is het midden van AE. X = GM ∩ AC ligt voorbij A. Bereken AX in cm, op twee decimalen.",
+      "answer": [
+        "8.485281374238571"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "Binnen vlak ACGE zijn driehoeken XAM en XCG gelijkvormig. AM = 3 en CG = 6, dus XA/XC = 1/2. Omdat XC = XA + AC volgt XA = AC = 6√2 ≈ 8,49 cm.",
+      "hint": "Schrijf XC als XA + AC; A ligt tussen X en C.",
+      "scene": {
+        "caption": "X ligt buiten de kubus, voorbij A op AC. GM en AC snijden in X.",
+        "showCube": true,
+        "points": {
+          "M": [
+            0,
+            0,
+            0.5
+          ],
+          "X": [
+            -1,
+            -1,
+            0
+          ]
+        },
+        "highlights": [
+          "GM",
+          "AC"
+        ],
+        "segments": [
+          {
+            "from": [
+              0,
+              0,
+              0.5
+            ],
+            "to": [
+              -1.1,
+              -1.1,
+              -0.05
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              -1.1,
+              -1.1,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "l2-buiten-4",
+      "block": "l2-buiten",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Je vindt een kruising van twee gestippelde lijnen buiten de figuur. Wat moet je controleren voordat je die kruising als ruimtelijk snijpunt gebruikt?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Of de lijnen in één vlak liggen en daar niet evenwijdig zijn."
+        },
+        {
+          "id": "b",
+          "text": "Of het snijpunt links van de figuur ligt."
+        },
+        {
+          "id": "c",
+          "text": "Alleen of de stippels elkaar op het scherm raken."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "Een projectie kan kruisende ruimtelijke lijnen over elkaar tekenen. Coplanariteit en niet-evenwijdigheid rechtvaardigen een werkelijk, uniek snijpunt. In het voorbeeld liggen GM en AC samen in ACGE.",
+      "hint": "Een getekende kruising is nog geen ruimtelijk bewijs.",
+      "scene": {
+        "caption": "X ligt buiten de kubus, voorbij A op AC. GM en AC snijden in X.",
+        "showCube": true,
+        "points": {
+          "M": [
+            0,
+            0,
+            0.5
+          ],
+          "X": [
+            -1,
+            -1,
+            0
+          ]
+        },
+        "highlights": [
+          "GM",
+          "AC"
+        ],
+        "segments": [
+          {
+            "from": [
+              0,
+              0,
+              0.5
+            ],
+            "to": [
+              -1.1,
+              -1.1,
+              -0.05
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              -1.1,
+              -1.1,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "l2-buiten-p1",
+      "block": "l2-buiten",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "De volledige lijn PQ bereikt de lijn AB voorbij A. Is dat punt een bruikbaar snijpunt?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nee: een lijn door twee punten op verticale ribben is altijd evenwijdig aan AB."
+        },
+        {
+          "id": "b",
+          "text": "Nee: buiten de kubus bestaan de lijn PQ en AB niet meer."
+        },
+        {
+          "id": "c",
+          "text": "Ja: beide volledige lijnen liggen in ABFE en mogen buiten de ribben worden verlengd."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "PQ en AB liggen in hetzelfde voorvlak en zijn niet evenwijdig. Hun snijpunt voorbij A behoort tot de volledige lijnen.",
+      "hint": "Een ribbe is begrensd; de lijn door de eindpunten niet.",
+      "scene": {
+        "caption": "P op AE met AP = ⅓ AE; Q op BF met BQ = ⅔ BF. Onderzoek PQ en AB.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.3333333333333333
+          ],
+          "Q": [
+            1,
+            0,
+            0.6666666666666666
+          ]
+        },
+        "highlights": [
+          "PQ",
+          "AB"
+        ]
+      }
+    },
+    {
+      "id": "l2-buiten-p2",
+      "block": "l2-buiten",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "In zijvlak ABT van een piramide ontmoet de verlengde PQ de verlengde AB buiten het grondvlak. Welke uitspraak klopt?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Het is een snijpunt van de volledige lijnen, maar geen punt op het lijnstuk AB."
+        },
+        {
+          "id": "b",
+          "text": "Het is geen snijpunt, want buiten het getekende lichaam bestaan deze lijnen niet."
+        },
+        {
+          "id": "c",
+          "text": "Het punt ligt automatisch in het binnenste van de piramide."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "De volledige lijnen blijven bestaan buiten de driehoek ABT. Het snijpunt ligt op de lijn AB, maar buiten het lijnstuk AB.",
+      "hint": "Onderscheid lijn en lijnstuk.",
+      "scene": {
+        "caption": "P ligt op AT met AP = ¼ AT; Q is het midden van BT. Onderzoek PQ en AB.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            1,
+            0,
+            0
+          ],
+          "C": [
+            1,
+            1,
+            0
+          ],
+          "D": [
+            0,
+            1,
+            0
+          ],
+          "T": [
+            0.5,
+            0.5,
+            1
+          ],
+          "P": [
+            0.125,
+            0.125,
+            0.25
+          ],
+          "Q": [
+            0.75,
+            0.25,
+            0.5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "PQ",
+          "AB"
+        ]
+      }
+    },
+    {
+      "id": "l2-buiten-r1",
+      "block": "l2-buiten",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Twee reeds geconstrueerde punten X en Y liggen buiten de kubus, maar beide in het grondvlak én in het doorsnedevlak. Wat is je volgende geldige stap?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Verplaats beide punten eerst naar binnen de kubus."
+        },
+        {
+          "id": "b",
+          "text": "Teken XY als snijlijn van de twee vlakken."
+        },
+        {
+          "id": "c",
+          "text": "Negeer ze; alleen ribbepunten mogen een snijlijn bepalen."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "Twee verschillende gemeenschappelijke punten bepalen de snijlijn van de vlakken, ongeacht of ze binnen het lichaam liggen. Zoek daarna waar XY de begrenzing van het grondvlak ontmoet.",
+      "hint": "Wat bepalen twee verschillende punten?",
+      "scene": {
+        "caption": "X en Y liggen in het grondvlak buiten de kubus; beide zijn punten van hetzelfde doorsnedevlak.",
+        "showCube": true,
+        "points": {
+          "X": [
+            -0.5,
+            0,
+            0
+          ],
+          "Y": [
+            1.5,
+            1,
+            0
+          ]
+        },
+        "segments": [
+          {
+            "from": [
+              -0.5,
+              0,
+              0
+            ],
+            "to": [
+              1.5,
+              1,
+              0
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "l2-buiten-r2",
+      "block": "l2-buiten",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "De kubusribbe is 6 cm. M ligt op AE met AM = 2 cm. X = GM ∩ AC ligt voorbij A. Bereken AX in cm, op twee decimalen.",
+      "answer": [
+        "4.242640687119286"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "Door gelijkvormigheid geldt XA/XC = AM/CG = 1/3. Met XC = XA + 6√2 volgt 3XA = XA + 6√2, dus XA = 3√2 ≈ 4,24 cm.",
+      "hint": "Gebruik XA/(XA + AC) = AM/CG.",
+      "scene": {
+        "caption": "Ribbe 6 cm; AM = 2 cm. GM en AC zijn de volledige lijnen.",
+        "showCube": true,
+        "points": {
+          "M": [
+            0,
+            0,
+            0.3333333333333333
+          ]
+        },
+        "highlights": [
+          "GM",
+          "AC"
+        ]
+      },
+      "revealScene": {
+        "caption": "XA = ½ AC. X ligt voorbij A.",
+        "showCube": true,
+        "points": {
+          "M": [
+            0,
+            0,
+            0.3333333333333333
+          ],
+          "X": [
+            -0.5,
+            -0.5,
+            0
+          ]
+        },
+        "highlights": [
+          "GM",
+          "AC"
+        ],
+        "segments": [
+          {
+            "from": [
+              0,
+              0,
+              0.3333333333333333
+            ],
+            "to": [
+              -0.6,
+              -0.6,
+              -0.06666666666666667
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              -0.6,
+              -0.6,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-1",
+      "block": "l2-gelijkvormig",
+      "skill": "rekenen",
+      "type": "choice",
+      "prompt": "Driehoek APQ is gelijkvormig met ABC. AB = 6 cm en AP = 3 cm. Wat is de lengtefactor van ABC naar APQ?",
+      "options": [
+        {
+          "id": "a",
+          "text": "½"
+        },
+        {
+          "id": "b",
+          "text": "¼"
+        },
+        {
+          "id": "c",
+          "text": "2"
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "Van groot naar klein vermenigvuldig je met AP/AB = 3/6 = 1/2. De factor 2 hoort bij de omgekeerde richting.",
+      "hint": "Zet de nieuwe lengte boven de oorspronkelijke lengte.",
+      "scene": {
+        "caption": "AB = 6 cm, AC = 8 cm; P is het midden van AB en PQ ∥ BC.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "P": [
+            3.0,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            4.0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-2",
+      "block": "l2-gelijkvormig",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "AB = 6 cm, AP = 3 cm, AC = 8 cm en PQ ∥ BC. Bereken AQ in cm, op twee decimalen.",
+      "answer": [
+        "4"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "De lengtefactor ABC → APQ is 3/6 = 1/2. Daarom is AQ = 1/2 × 8 = 4 cm.",
+      "hint": "Gebruik dezelfde factor op de overeenkomstige zijde AC.",
+      "scene": {
+        "caption": "AB = 6 cm, AC = 8 cm; P is het midden van AB en PQ ∥ BC.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "P": [
+            3.0,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            4.0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-3",
+      "block": "l2-gelijkvormig",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Welke verhoudingstabel hoort bij de gelijkvormige driehoeken APQ en ABC?",
+      "options": [
+        {
+          "id": "a",
+          "text": "AP/AB = AC/AQ = PQ/BC"
+        },
+        {
+          "id": "b",
+          "text": "AP/AC = AQ/BC = PQ/AB"
+        },
+        {
+          "id": "c",
+          "text": "AP/AB = AQ/AC = PQ/BC"
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "De overeenkomstige hoekpunten zijn A ↔ A, P ↔ B en Q ↔ C. Alle breuken moeten dezelfde richting gebruiken: klein gedeeld door groot.",
+      "hint": "Koppel eerst overeenkomstige hoekpunten en zijden.",
+      "scene": {
+        "caption": "AB = 6 cm, AC = 8 cm; P is het midden van AB en PQ ∥ BC.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "P": [
+            3.0,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            4.0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-4",
+      "block": "l2-gelijkvormig",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In driehoek ABC is AB = 10 cm en BC = 15 cm. P ligt op AB met AP = 6 cm; PQ ∥ BC en Q ligt op AC. Bereken PQ in cm, op twee decimalen.",
+      "answer": [
+        "9"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "AP/AB = 6/10 = 0,6. PQ hoort bij BC, dus PQ = 0,6 × 15 = 9 cm.",
+      "hint": "Kies de factor van ABC naar APQ.",
+      "scene": {
+        "caption": "AB = 10 cm, BC = 15 cm; AP = 6 cm en PQ ∥ BC.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            10,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            11.180339887498949,
+            0
+          ],
+          "P": [
+            6.0,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            6.708203932499369,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-p1",
+      "block": "l2-gelijkvormig",
+      "skill": "rekenen",
+      "type": "choice",
+      "prompt": "Een grote driehoek en een gelijkvormige kleine driehoek hebben overeenkomstige zijden van 12 en 4 cm. Wat is de factor van groot naar klein?",
+      "options": [
+        {
+          "id": "a",
+          "text": "9"
+        },
+        {
+          "id": "b",
+          "text": "⅓"
+        },
+        {
+          "id": "c",
+          "text": "3"
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "De factor is 4/12 = 1/3. De factor 3 hoort bij de stap terug, van klein naar groot.",
+      "hint": "Welke lengte is het resultaat van de verkleining?",
+      "scene": {
+        "caption": "AB = 12 cm en AP = 4 cm; PQ ∥ BC.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            12,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            9,
+            0
+          ],
+          "P": [
+            4.0,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            3.0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-p2",
+      "block": "l2-gelijkvormig",
+      "skill": "rekenen",
+      "type": "choice",
+      "prompt": "Een piramide is op halve hoogte evenwijdig aan het grondvlak gesneden. Van de hele piramide naar de kleine toppiramide: welke lengtefactor geldt?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2"
+        },
+        {
+          "id": "b",
+          "text": "½"
+        },
+        {
+          "id": "c",
+          "text": "¼"
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "De hoogte vanaf T tot het snijvlak is de helft van de totale hoogte. Bij deze gelijkvormige piramides is de lengtefactor dus 1/2.",
+      "hint": "Meet beide hoogtes vanuit hetzelfde toppunt T.",
+      "scene": {
+        "caption": "Vierkante piramide met grondzijde 8 cm en hoogte 6 cm; het snijvlak ligt op halve hoogte.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            4,
+            4,
+            6
+          ],
+          "P": [
+            2,
+            2,
+            3
+          ],
+          "Q": [
+            6,
+            2,
+            3
+          ],
+          "R": [
+            6,
+            6,
+            3
+          ],
+          "S": [
+            2,
+            6,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R",
+            "S"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-r1",
+      "block": "l2-gelijkvormig",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "AB = 15 cm, AP = 9 cm en AC = 20 cm. PQ ∥ BC. Bereken AQ in cm, op twee decimalen.",
+      "answer": [
+        "12"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "De factor ABC → APQ is 9/15 = 0,6. Daarom AQ = 0,6 × 20 = 12 cm.",
+      "hint": "Gebruik klein/groot voor de richting naar APQ.",
+      "scene": {
+        "caption": "AB = 15 cm, AP = 9 cm, AC = 20 cm; PQ ∥ BC.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            15,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            20,
+            0
+          ],
+          "P": [
+            9.0,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            12.0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-r2",
+      "block": "l2-gelijkvormig",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "AP = 4 cm, AB = 10 cm en PQ = 6 cm. PQ ∥ BC. Bereken BC in cm, op twee decimalen.",
+      "answer": [
+        "15"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "Van APQ naar ABC is de factor AB/AP = 10/4 = 2,5. Dus BC = 2,5 × 6 = 15 cm.",
+      "hint": "Nu zoek je een lengte in de grote driehoek; keer de factor passend om.",
+      "scene": {
+        "caption": "AP = 4 cm, AB = 10 cm en PQ = 6 cm; PQ ∥ BC.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            10,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            11.180339887498949,
+            0
+          ],
+          "P": [
+            4.0,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            4.47213595499958,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-1",
+      "block": "l3-ruimtefiguren",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Een leerling wil in deze piramide door R een lijn evenwijdig aan PQ tekenen, met als reden dat ABT en CDT tegenoverliggende zijvlakken zijn. Is die redenering geldig?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nee: de vlakken ABT en CDT bevatten allebei T en zijn niet evenwijdig."
+        },
+        {
+          "id": "b",
+          "text": "Ja: tegenoverliggende zijvlakken zijn bij elk lichaam evenwijdig."
+        },
+        {
+          "id": "c",
+          "text": "Nee: in een piramide mogen nooit evenwijdige lijnen voorkomen."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "De evenwijdigheidsregel vereist twee evenwijdige vlakken. ABT en CDT zijn verschillende vlakken die T gemeen hebben. In dit voorbeeld is de werkelijke doorsnederand door R bovendien niet evenwijdig aan PQ.",
+      "hint": "Controleer eerst de voorwaarde van de regel, niet alleen de naam van de vlakken.",
+      "scene": {
+        "caption": "Vierkante piramide ABCD.T. P op AT: AP = ¼ AT. Q en R zijn de middens van BT en CT.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            2,
+            0
+          ],
+          "T": [
+            1,
+            1,
+            4
+          ],
+          "P": [
+            0.25,
+            0.25,
+            1
+          ],
+          "Q": [
+            1.5,
+            0.5,
+            2
+          ],
+          "R": [
+            1.5,
+            1.5,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "PQ",
+          "QR"
+        ]
+      },
+      "revealScene": {
+        "caption": "De volledige doorsnede is PQRS. S ligt op DT met DS = ¼ DT.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            2,
+            0
+          ],
+          "T": [
+            1,
+            1,
+            4
+          ],
+          "P": [
+            0.25,
+            0.25,
+            1
+          ],
+          "Q": [
+            1.5,
+            0.5,
+            2
+          ],
+          "R": [
+            1.5,
+            1.5,
+            2
+          ],
+          "S": [
+            0.25,
+            1.75,
+            1
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "PQ",
+          "QR",
+          "RS",
+          "SP"
+        ],
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R",
+            "S"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-2",
+      "block": "l3-ruimtefiguren",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "In het prisma ligt P op AB, Q op AC en R op BE. Selecteer de twee gegeven punten waarmee je meteen een randstuk in zijvlak ABED tekent.",
+      "answer": [
+        "P",
+        "R"
+      ],
+      "selectCount": 2,
+      "explanation": "P en R liggen beide in ABED, dus PR is een randstuk in dit zijvlak. Q ligt op AC en niet in ABED.",
+      "hint": "Zoek twee gegeven doorsnedepunten die hetzelfde zijvlak delen.",
+      "scene": {
+        "caption": "Recht driehoekig prisma ABC.DEF. P en Q zijn de middens van AB en AC; R is het midden van BE.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            3
+          ],
+          "E": [
+            2,
+            0,
+            3
+          ],
+          "F": [
+            0,
+            2,
+            3
+          ],
+          "P": [
+            1,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            1,
+            0
+          ],
+          "R": [
+            2,
+            0,
+            1.5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      },
+      "revealScene": {
+        "caption": "De doorsnede is P–R–S–Q. S is het midden van CF. PQ ∥ RS.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            3
+          ],
+          "E": [
+            2,
+            0,
+            3
+          ],
+          "F": [
+            0,
+            2,
+            3
+          ],
+          "P": [
+            1,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            1,
+            0
+          ],
+          "R": [
+            2,
+            0,
+            1.5
+          ],
+          "S": [
+            0,
+            2,
+            1.5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "highlights": [
+          "PR",
+          "RS",
+          "SQ",
+          "QP"
+        ],
+        "planes": [
+          [
+            "P",
+            "R",
+            "S",
+            "Q"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-3",
+      "block": "l3-ruimtefiguren",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Construeer denkbeeldig of op papier de volledige doorsnede door P, Q en R in dit prisma. Welke figuur ontstaat?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Altijd een zeshoek, omdat een prisma zes hoekpunten heeft."
+        },
+        {
+          "id": "b",
+          "text": "Een trapezium met vier hoekpunten P, R, S en Q."
+        },
+        {
+          "id": "c",
+          "text": "Een driehoek, omdat slechts drie punten gegeven waren."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "S is het vierde snijpunt op een ribbe. PQ is evenwijdig aan RS, terwijl PR en QS niet evenwijdig zijn. De doorsnede is een trapezium.",
+      "hint": "Het aantal gegeven punten bepaalt het vlak; volg vervolgens de volledige rand.",
+      "scene": {
+        "caption": "Recht driehoekig prisma ABC.DEF. P en Q zijn de middens van AB en AC; R is het midden van BE.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            3
+          ],
+          "E": [
+            2,
+            0,
+            3
+          ],
+          "F": [
+            0,
+            2,
+            3
+          ],
+          "P": [
+            1,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            1,
+            0
+          ],
+          "R": [
+            2,
+            0,
+            1.5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      },
+      "revealScene": {
+        "caption": "De doorsnede is P–R–S–Q. S is het midden van CF. PQ ∥ RS.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            3
+          ],
+          "E": [
+            2,
+            0,
+            3
+          ],
+          "F": [
+            0,
+            2,
+            3
+          ],
+          "P": [
+            1,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            1,
+            0
+          ],
+          "R": [
+            2,
+            0,
+            1.5
+          ],
+          "S": [
+            0,
+            2,
+            1.5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "highlights": [
+          "PR",
+          "RS",
+          "SQ",
+          "QP"
+        ],
+        "planes": [
+          [
+            "P",
+            "R",
+            "S",
+            "Q"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-4",
+      "block": "l3-ruimtefiguren",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "In de piramide is X = PQ ∩ AB al geconstrueerd. QR is evenwijdig aan grondvlak ABCD. Hoe teken je de snijlijn van het doorsnedevlak met het grondvlak?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Door X evenwijdig aan QR."
+        },
+        {
+          "id": "b",
+          "text": "Door X loodrecht op QR."
+        },
+        {
+          "id": "c",
+          "text": "Door X naar T."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "QR ligt in het doorsnedevlak en is evenwijdig aan het grondvlak. De snijlijn van de twee vlakken is daarom evenwijdig aan QR en loopt door hun gemeenschappelijke punt X.",
+      "hint": "Je kent één punt en de richting van de gezochte grondvlaklijn.",
+      "scene": {
+        "caption": "X = PQ ∩ AB. QR ligt in het doorsnedevlak en is evenwijdig aan BC, dus aan het grondvlak.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            2,
+            0
+          ],
+          "T": [
+            1,
+            1,
+            4
+          ],
+          "P": [
+            0.25,
+            0.25,
+            1
+          ],
+          "Q": [
+            1.5,
+            0.5,
+            2
+          ],
+          "R": [
+            1.5,
+            1.5,
+            2
+          ],
+          "X": [
+            -1,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "PQ",
+          "QR"
+        ],
+        "segments": [
+          {
+            "from": [
+              0.25,
+              0.25,
+              1
+            ],
+            "to": [
+              -1,
+              0,
+              0
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              -1,
+              0,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ]
+      },
+      "revealScene": {
+        "caption": "X = PQ ∩ AB ligt voorbij A. Door X loopt de grondvlak-snijlijn evenwijdig aan QR; Y ligt op de verlengde CD.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            2,
+            0
+          ],
+          "T": [
+            1,
+            1,
+            4
+          ],
+          "P": [
+            0.25,
+            0.25,
+            1
+          ],
+          "Q": [
+            1.5,
+            0.5,
+            2
+          ],
+          "R": [
+            1.5,
+            1.5,
+            2
+          ],
+          "S": [
+            0.25,
+            1.75,
+            1
+          ],
+          "X": [
+            -1,
+            0,
+            0
+          ],
+          "Y": [
+            -1,
+            2,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "PQ",
+          "QR",
+          "RS",
+          "SP"
+        ],
+        "segments": [
+          {
+            "from": [
+              0.25,
+              0.25,
+              1
+            ],
+            "to": [
+              -1,
+              0,
+              0
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              -1,
+              0,
+              0
+            ],
+            "to": [
+              -1,
+              2,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          },
+          {
+            "from": [
+              -1,
+              2,
+              0
+            ],
+            "to": [
+              1.5,
+              1.5,
+              2
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              -1,
+              0,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              2,
+              0
+            ],
+            "to": [
+              -1,
+              2,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-p1",
+      "block": "l3-ruimtefiguren",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Mag je bij een driehoekig prisma aannemen dat de rechthoekige zijvlakken ABED en ACFD evenwijdig zijn?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nee: ze delen de ribbe AD en zijn verschillende vlakken."
+        },
+        {
+          "id": "b",
+          "text": "Ja: rechthoekige vlakken zijn altijd evenwijdig."
+        },
+        {
+          "id": "c",
+          "text": "Ja: alle zijvlakken van een prisma zijn onderling evenwijdig."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "ABED en ACFD snijden elkaar langs AD. In een prisma zijn de twee grondvlakken ABC en DEF wel evenwijdig; dat geldt niet voor alle zijvlakken.",
+      "hint": "Controleer of de twee vlakken een lijn gemeen hebben.",
+      "scene": {
+        "caption": "Driehoekig prisma ABC.DEF; de zijvlakken ABED en ACFD delen AD.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            3
+          ],
+          "E": [
+            2,
+            0,
+            3
+          ],
+          "F": [
+            0,
+            2,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "E",
+            "D"
+          ],
+          [
+            "A",
+            "C",
+            "F",
+            "D"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-p2",
+      "block": "l3-ruimtefiguren",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Bij een vierkante piramide worden de vlakken BCT en ADT tegenoverliggende zijvlakken genoemd. Zijn deze vlakken evenwijdig?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ja: tegenoverliggend betekent bij alle ruimtefiguren evenwijdig."
+        },
+        {
+          "id": "b",
+          "text": "Nee: beide vlakken bevatten T en zijn niet hetzelfde vlak."
+        },
+        {
+          "id": "c",
+          "text": "Ja: BC en AD zijn even lang."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "BC en AD zijn evenwijdig, maar dat maakt de volledige vlakken BCT en ADT niet evenwijdig. De vlakken hebben T gemeen.",
+      "hint": "Onderscheid de ligging van twee ribben en die van de vlakken die ze bevatten.",
+      "scene": {
+        "caption": "Vierkante piramide ABCD.T.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            2,
+            0
+          ],
+          "T": [
+            1,
+            1,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ],
+          [
+            "A",
+            "D",
+            "T"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-r1",
+      "block": "l3-ruimtefiguren",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Een vlak snijdt beide driehoekige grondvlakken ABC en DEF van een prisma in rechte lijnen. Welke eigenschap kun je zeker gebruiken?",
+      "options": [
+        {
+          "id": "a",
+          "text": "De twee snijlijnen zijn loodrecht."
+        },
+        {
+          "id": "b",
+          "text": "De twee snijlijnen zijn evenwijdig, want ABC en DEF zijn evenwijdige vlakken."
+        },
+        {
+          "id": "c",
+          "text": "De twee snijlijnen moeten even lang zijn."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "De snijlijnen van één vlak met twee verschillende evenwijdige vlakken zijn evenwijdig. De begrensde lijnstukken in de driehoeken hoeven niet even lang te zijn.",
+      "hint": "Gebruik een eigenschap van de vlakken, niet van hoe lang de lijnstukken lijken.",
+      "scene": {
+        "caption": "Recht driehoekig prisma ABC.DEF.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            3
+          ],
+          "E": [
+            2,
+            0,
+            3
+          ],
+          "F": [
+            0,
+            2,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C"
+          ],
+          [
+            "D",
+            "E",
+            "F"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-r2",
+      "block": "l3-ruimtefiguren",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "Selecteer de twee hoekpunten die de gemeenschappelijke ribbe van de piramidevlakken ABT en BCT bepalen.",
+      "answer": [
+        "B",
+        "T"
+      ],
+      "selectCount": 2,
+      "explanation": "Beide vlakken bevatten B en T. Hun snijlijn is BT; ze zijn dus niet evenwijdig.",
+      "hint": "Zoek twee verschillende punten in beide vlaknamen.",
+      "scene": {
+        "caption": "Vierkante piramide ABCD.T; onderzoek de vlakken ABT en BCT.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            2,
+            0
+          ],
+          "T": [
+            1,
+            1,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "T"
+          ],
+          [
+            "B",
+            "C",
+            "T"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-oppervlakte-1",
+      "block": "l3-oppervlakte",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Bij basis AB van de gelijkzijdige driehoek: welk lijnstuk is de bijbehorende hoogte?",
+      "options": [
+        {
+          "id": "a",
+          "text": "AM, want M is het midden van de basis."
+        },
+        {
+          "id": "b",
+          "text": "CM, want CM staat loodrecht op AB."
+        },
+        {
+          "id": "c",
+          "text": "AC, want dat is een van de twee andere zijden."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "De hoogte bij AB is de loodrechte afstand van C tot de lijn AB. Dat is CM. De schuine zijde AC is niet de hoogte.",
+      "hint": "Zoek het lijnstuk van de overstaande hoek naar de basislijn onder 90°.",
+      "scene": {
+        "caption": "Gelijkzijdige driehoek ABC met zijde 6 cm. M is het midden van AB.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            5.196152422706632,
+            0
+          ],
+          "M": [
+            3,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      },
+      "revealScene": {
+        "caption": "AB = 6 cm, AM = 3 cm; CM ⟂ AB en CM = √27 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            5.196152422706632,
+            0
+          ],
+          "M": [
+            3,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "highlights": [
+          "CM"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-oppervlakte-2",
+      "block": "l3-oppervlakte",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "De gelijkzijdige driehoek heeft zijden van 6 cm. M is het midden van AB. Bereken de oppervlakte in cm², op twee decimalen.",
+      "answer": [
+        "15.588457268119894"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm²",
+      "working": true,
+      "explanation": "AM = 3 cm. In rechthoekige driehoek AMC geldt CM = √(6² − 3²) = √27. Oppervlakte = 1/2 × 6 × √27 = 9√3 ≈ 15,59 cm².",
+      "hint": "Bereken eerst de loodrechte hoogte met Pythagoras.",
+      "scene": {
+        "caption": "Gelijkzijdige driehoek ABC met zijde 6 cm. M is het midden van AB.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            5.196152422706632,
+            0
+          ],
+          "M": [
+            3,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      },
+      "revealScene": {
+        "caption": "AB = 6 cm, AM = 3 cm; CM ⟂ AB en CM = √27 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            5.196152422706632,
+            0
+          ],
+          "M": [
+            3,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "highlights": [
+          "CM"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-oppervlakte-3",
+      "block": "l3-oppervlakte",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In de stomphoekige driehoek is AB = 6 cm en CH = 4 cm. H ligt buiten het lijnstuk AB en CH ⟂ AB. Bereken de oppervlakte in cm², op twee decimalen.",
+      "answer": [
+        "12"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm²",
+      "working": true,
+      "explanation": "De hoogte bij basis AB is nog steeds CH = 4 cm. Oppervlakte = 1/2 × 6 × 4 = 12 cm². Het voetpunt mag buiten het lijnstuk AB liggen.",
+      "hint": "De hoogte loopt naar de volledige basislijn, niet noodzakelijk naar het basislijnstuk.",
+      "scene": {
+        "caption": "AB = 6 cm. CH = 4 cm en CH ⟂ lijn AB; H ligt op de verlengde AB voorbij A.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            -2,
+            4,
+            0
+          ],
+          "H": [
+            -2,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "highlights": [
+          "CH"
+        ],
+        "segments": [
+          {
+            "from": [
+              -2,
+              0,
+              0
+            ],
+            "to": [
+              0,
+              0,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-oppervlakte-4",
+      "block": "l3-oppervlakte",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Waarom mag je in een driehoek niet zomaar twee zijden invullen in ½ × basis × hoogte?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Omdat de formule uitsluitend voor gelijkzijdige driehoeken geldt."
+        },
+        {
+          "id": "b",
+          "text": "Omdat de langste zijde nooit de basis kan zijn."
+        },
+        {
+          "id": "c",
+          "text": "Omdat de hoogte loodrecht op de gekozen basislijn moet staan; een willekeurige tweede zijde hoeft dat niet te doen."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "Je mag iedere zijde als basis kiezen, maar moet dan de bijbehorende loodrechte hoogte gebruiken. Alleen bij een rechte hoek zijn de twee rechthoekszijden direct een geschikt basis-hoogtepaar.",
+      "hint": "Welke hoekvoorwaarde hoort bij het woord hoogte?",
+      "scene": {
+        "caption": "AB = 6 cm, AM = 3 cm; CM ⟂ AB en CM = √27 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            5.196152422706632,
+            0
+          ],
+          "M": [
+            3,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "highlights": [
+          "CM"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-oppervlakte-p1",
+      "block": "l3-oppervlakte",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Bij basis AB van deze stomphoekige driehoek: welke lengte is de hoogte?",
+      "options": [
+        {
+          "id": "a",
+          "text": "AH, want H ligt op de basislijn."
+        },
+        {
+          "id": "b",
+          "text": "CH, want dit is de loodrechte afstand van C tot lijn AB."
+        },
+        {
+          "id": "c",
+          "text": "AC, want een hoogte is altijd een schuine zijde van de driehoek."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "CH staat loodrecht op de basislijn. De plaats van het voetpunt buiten de driehoek verandert dat niet.",
+      "hint": "Zoek de loodlijn vanuit het overstaande hoekpunt.",
+      "scene": {
+        "caption": "AB = 6 cm. CH = 4 cm en CH ⟂ lijn AB; H ligt op de verlengde AB voorbij A.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            -2,
+            4,
+            0
+          ],
+          "H": [
+            -2,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "highlights": [
+          "CH"
+        ],
+        "segments": [
+          {
+            "from": [
+              -2,
+              0,
+              0
+            ],
+            "to": [
+              0,
+              0,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-oppervlakte-p2",
+      "block": "l3-oppervlakte",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Een driehoekig piramidezijvlak ABT heeft AB = 6 cm en AT = BT = 5 cm. M is het midden van AB; TM = 4 cm. Welke hoogte hoort bij basis AB?",
+      "options": [
+        {
+          "id": "a",
+          "text": "AM = 3 cm, want een halve basis is altijd een hoogte."
+        },
+        {
+          "id": "b",
+          "text": "TM = 4 cm, want TM staat in dit zijvlak loodrecht op AB."
+        },
+        {
+          "id": "c",
+          "text": "AT = 5 cm, want de piramideribbe is de hoogte van het driehoekige zijvlak."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "De hoogte binnen zijvlak ABT is TM. De schuine ribbe AT heeft lengte 5, maar maakt geen rechte hoek met AB.",
+      "hint": "Het gaat om de hoogte van de driehoek bij basis AB.",
+      "scene": {
+        "caption": "Driehoekig zijvlak ABT: AB = 6 cm, AT = BT = 5 cm, TM = 4 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "T": [
+            3,
+            0,
+            4
+          ],
+          "M": [
+            3,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BT",
+          "TA"
+        ],
+        "highlights": [
+          "TM"
+        ]
+      }
+    },
+    {
+      "id": "l3-oppervlakte-r1",
+      "block": "l3-oppervlakte",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Driehoek ABC heeft AB = 10 cm, AC = 5 cm en AM = 3 cm. M ligt op AB en CM ⟂ AB. Bereken de oppervlakte in cm², op twee decimalen.",
+      "answer": [
+        "20"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm²",
+      "working": true,
+      "explanation": "CM = √(AC² − AM²) = √(25 − 9) = 4 cm. Oppervlakte = 1/2 × 10 × 4 = 20 cm².",
+      "hint": "Gebruik eerst rechthoekige driehoek AMC.",
+      "scene": {
+        "caption": "AB = 10 cm, AC = 5 cm, AM = 3 cm; CM ⟂ AB.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            10,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            4,
+            0
+          ],
+          "M": [
+            3,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "highlights": [
+          "CM"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-oppervlakte-r2",
+      "block": "l3-oppervlakte",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "AB = 8 cm. C ligt op loodrechte afstand 3 cm van lijn AB; het voetpunt H ligt buiten AB. Bereken de oppervlakte in cm², op twee decimalen.",
+      "answer": [
+        "12"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm²",
+      "working": true,
+      "explanation": "Bij basis AB is de hoogte CH = 3 cm. Oppervlakte = 1/2 × 8 × 3 = 12 cm², ook met het voetpunt buiten de driehoek.",
+      "hint": "Gebruik de gegeven loodrechte afstand.",
+      "scene": {
+        "caption": "AB = 8 cm en CH = 3 cm; CH ⟂ AB en H ligt voorbij A.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            -2,
+            3,
+            0
+          ],
+          "H": [
+            -2,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "highlights": [
+          "CH"
+        ],
+        "segments": [
+          {
+            "from": [
+              -2,
+              0,
+              0
+            ],
+            "to": [
+              0,
+              0,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-inhoud-1",
+      "block": "l3-inhoud",
+      "skill": "rekenen",
+      "type": "choice",
+      "prompt": "Een piramide heeft grondoppervlakte 24 cm² en loodrechte hoogte 5 cm. Welke inhoud hoort daarbij?",
+      "options": [
+        {
+          "id": "a",
+          "text": "40 cm³"
+        },
+        {
+          "id": "b",
+          "text": "120 cm³"
+        },
+        {
+          "id": "c",
+          "text": "60 cm³"
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "Voor een piramide geldt V = 1/3 × grondoppervlakte × loodrechte hoogte = 1/3 × 24 × 5 = 40 cm³. De uitkomst 120 hoort bij een prisma met dezelfde grondoppervlakte en hoogte.",
+      "hint": "Welk deel van een overeenkomstig prisma vult een piramide?",
+      "scene": {
+        "caption": "Piramide met grondvlak 6 × 4 cm en loodrechte hoogte TO = 5 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "T": [
+            3.0,
+            2.0,
+            5
+          ],
+          "O": [
+            3.0,
+            2.0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "TO"
+        ]
+      }
+    },
+    {
+      "id": "l3-inhoud-2",
+      "block": "l3-inhoud",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Het rechte prisma heeft een rechthoekige driehoek als grondvlak: AB = 3 cm en AC = 4 cm. De prismahoogte is 9 cm. Bereken de inhoud in cm³, op twee decimalen.",
+      "answer": [
+        "54"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm³",
+      "working": true,
+      "explanation": "Grondoppervlakte = 1/2 × 3 × 4 = 6 cm². Prisma-inhoud = 6 × 9 = 54 cm³.",
+      "hint": "Bereken eerst de driehoekige grondoppervlakte; pas daarna de prismahoogte toe.",
+      "scene": {
+        "caption": "Recht prisma ABC.DEF met rechthoekige driehoek ABC: AB = 3 cm, AC = 4 cm en hoogte AD = 9 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            3,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            9
+          ],
+          "E": [
+            3,
+            0,
+            9
+          ],
+          "F": [
+            0,
+            4,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      }
+    },
+    {
+      "id": "l3-inhoud-3",
+      "block": "l3-inhoud",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In hetzelfde prisma zijn P en R middens van DE en DF. Bereken de inhoud van de weggehaalde piramide A.DPR in cm³, op twee decimalen.",
+      "answer": [
+        "4.5"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm³",
+      "working": true,
+      "explanation": "DPR is door middenparallel gelijkvormig met DEF, met lengtefactor 1/2 en oppervlaktefactor 1/4. Oppervlakte DPR = 6/4 = 1,5 cm². De afstand van A tot het bovenvlak is 9 cm. Inhoud = 1/3 × 1,5 × 9 = 4,5 cm³.",
+      "hint": "Neem DPR als grondvlak; de piramidehoogte is de afstand van A tot vlak DEF.",
+      "scene": {
+        "caption": "ABC is rechthoekig met AB = 3 en AC = 4 cm. AD = 9 cm. P, Q, R zijn middens van DE, EF, FD. Verwijder de drie hoekpiramides A.DPR, B.EPQ en C.FQR.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            3,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            9
+          ],
+          "E": [
+            3,
+            0,
+            9
+          ],
+          "F": [
+            0,
+            4,
+            9
+          ],
+          "P": [
+            1.5,
+            0,
+            9
+          ],
+          "Q": [
+            1.5,
+            2.0,
+            9
+          ],
+          "R": [
+            0,
+            2.0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      },
+      "revealScene": {
+        "caption": "Piramide A.DPR: driehoek DPR heeft oppervlakte 1,5 cm²; hoogte AD = 9 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            9
+          ],
+          "P": [
+            1.5,
+            0,
+            9
+          ],
+          "R": [
+            0,
+            2,
+            9
+          ]
+        },
+        "edges": [
+          "DP",
+          "PR",
+          "RD",
+          "AD",
+          "AP",
+          "AR"
+        ]
+      }
+    },
+    {
+      "id": "l3-inhoud-4",
+      "block": "l3-inhoud",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Van het prisma met AB = 3 cm, AC = 4 cm en hoogte 9 cm verwijder je A.DPR, B.EPQ en C.FQR. P, Q en R zijn ribbemiddens. Bereken de resterende inhoud in cm³, op twee decimalen.",
+      "answer": [
+        "40.5"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm³",
+      "working": true,
+      "explanation": "Het prisma heeft inhoud 54 cm³. Iedere hoekpiramide heeft grondoppervlakte 1,5 cm² en hoogte 9 cm, dus inhoud 4,5 cm³. De drie verwijderde delen overlappen niet in hun binnenste. Rest = 54 − 3 × 4,5 = 40,5 cm³.",
+      "hint": "Maak een som: volledig lichaam min precies de drie verwijderde delen.",
+      "scene": {
+        "caption": "ABC is rechthoekig met AB = 3 en AC = 4 cm. AD = 9 cm. P, Q, R zijn middens van DE, EF, FD. Verwijder de drie hoekpiramides A.DPR, B.EPQ en C.FQR.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            3,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            9
+          ],
+          "E": [
+            3,
+            0,
+            9
+          ],
+          "F": [
+            0,
+            4,
+            9
+          ],
+          "P": [
+            1.5,
+            0,
+            9
+          ],
+          "Q": [
+            1.5,
+            2.0,
+            9
+          ],
+          "R": [
+            0,
+            2.0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      },
+      "revealScene": {
+        "caption": "Overblijvend lichaam ABCPQR. Volledig prisma minus drie niet-overlappende hoekpiramides.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            3,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            4,
+            0
+          ],
+          "P": [
+            1.5,
+            0,
+            9
+          ],
+          "Q": [
+            1.5,
+            2.0,
+            9
+          ],
+          "R": [
+            0,
+            2.0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ",
+          "QR",
+          "RP",
+          "AP",
+          "AR",
+          "BP",
+          "BQ",
+          "CQ",
+          "CR"
+        ],
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-inhoud-p1",
+      "block": "l3-inhoud",
+      "skill": "rekenen",
+      "type": "choice",
+      "prompt": "Een piramide heeft een driehoekig grondvlak met oppervlakte 15 cm² en loodrechte hoogte 6 cm. Wat is de inhoud?",
+      "options": [
+        {
+          "id": "a",
+          "text": "30 cm³"
+        },
+        {
+          "id": "b",
+          "text": "90 cm³"
+        },
+        {
+          "id": "c",
+          "text": "45 cm³"
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "Het grondvlak mag elke vorm hebben. Voor een piramide blijft de factor 1/3 nodig: V = 1/3 × 15 × 6 = 30 cm³.",
+      "hint": "De grondoppervlakte is al gegeven; kies nu de formule voor het lichaam.",
+      "scene": {
+        "caption": "Piramide ABC.T: oppervlakte ABC = 15 cm², TO = 6 cm en TO ⟂ vlak ABC.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            5,
+            0
+          ],
+          "T": [
+            2,
+            2,
+            6
+          ],
+          "O": [
+            2,
+            2,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "highlights": [
+          "TO"
+        ]
+      }
+    },
+    {
+      "id": "l3-inhoud-p2",
+      "block": "l3-inhoud",
+      "skill": "rekenen",
+      "type": "choice",
+      "prompt": "Deze schuine piramide heeft grondoppervlakte 24 cm² en loodrechte hoogte 5 cm. Wat is de inhoud?",
+      "options": [
+        {
+          "id": "a",
+          "text": "40 cm³"
+        },
+        {
+          "id": "b",
+          "text": "120 cm³"
+        },
+        {
+          "id": "c",
+          "text": "Dat kan niet worden berekend zonder alle schuine ribben."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "Ook bij een schuine piramide is V = 1/3 × B × h. Met de loodrechte hoogte 5 cm krijg je 40 cm³; de schuine ribben zijn niet nodig.",
+      "hint": "De inhoudsformule gebruikt de loodrechte hoogte en geldt ook bij een schuine topstand.",
+      "scene": {
+        "caption": "Schuine piramide: grondvlak 6 × 4 cm; loodrechte hoogte TO = 5 cm. O ligt buiten het grondvlak.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "T": [
+            10,
+            2.0,
+            5
+          ],
+          "O": [
+            10,
+            2.0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "TO"
+        ]
+      }
+    },
+    {
+      "id": "l3-inhoud-r1",
+      "block": "l3-inhoud",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een piramide heeft grondoppervlakte 18 cm² en loodrechte hoogte 7 cm. Bereken de inhoud in cm³, op twee decimalen.",
+      "answer": [
+        "42"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm³",
+      "working": true,
+      "explanation": "V = 1/3 × 18 × 7 = 42 cm³.",
+      "hint": "Noteer de factor die een piramide onderscheidt van een prisma.",
+      "scene": {
+        "caption": "Piramide: rechthoekig grondvlak 6 × 3 cm en loodrechte hoogte 7 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            3,
+            0
+          ],
+          "D": [
+            0,
+            3,
+            0
+          ],
+          "T": [
+            3.0,
+            1.5,
+            7
+          ],
+          "O": [
+            3.0,
+            1.5,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "TO"
+        ]
+      }
+    },
+    {
+      "id": "l3-inhoud-r2",
+      "block": "l3-inhoud",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een recht driehoekig prisma heeft AB = 6 cm, AC = 8 cm, hoek A = 90° en hoogte 10 cm. P, Q, R zijn middens van de bovenribben. Verwijder de drie hoekpiramides A.DPR, B.EPQ en C.FQR. Bereken de restinhoud in cm³, op twee decimalen.",
+      "answer": [
+        "180"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm³",
+      "working": true,
+      "explanation": "Grondoppervlakte = 1/2 × 6 × 8 = 24 cm²; prisma-inhoud = 240 cm³. Elke hoekpiramide heeft grondoppervlakte 24/4 = 6 cm² en hoogte 10 cm, dus inhoud 20 cm³. Rest = 240 − 3 × 20 = 180 cm³.",
+      "hint": "Gebruik de oppervlaktefactor 1/4 voor iedere hoekdriehoek en daarna de piramidefactor 1/3.",
+      "scene": {
+        "caption": "Recht prisma: AB = 6 cm, AC = 8 cm, AD = 10 cm; P, Q, R zijn ribbemiddens.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            10
+          ],
+          "E": [
+            6,
+            0,
+            10
+          ],
+          "F": [
+            0,
+            8,
+            10
+          ],
+          "P": [
+            3.0,
+            0,
+            10
+          ],
+          "Q": [
+            3.0,
+            4.0,
+            10
+          ],
+          "R": [
+            0,
+            4.0,
+            10
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      },
+      "revealScene": {
+        "caption": "Overblijvend lichaam na verwijderen van de drie hoekpiramides.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "P": [
+            3.0,
+            0,
+            10
+          ],
+          "Q": [
+            3.0,
+            4.0,
+            10
+          ],
+          "R": [
+            0,
+            4.0,
+            10
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ",
+          "QR",
+          "RP",
+          "AP",
+          "AR",
+          "BP",
+          "BQ",
+          "CQ",
+          "CR"
+        ],
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-goniometrie-1",
+      "block": "l3-goniometrie",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "In driehoek ABC is hoek B recht. Welke verhouding is tan(∠A)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "AB / BC"
+        },
+        {
+          "id": "b",
+          "text": "BC / AC"
+        },
+        {
+          "id": "c",
+          "text": "BC / AB"
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "Bij hoek A is BC de overstaande en AB de aanliggende rechthoekszijde. Tangens = overstaand/aanliggend, dus BC/AB.",
+      "hint": "Markeer eerst de gekozen hoek en benoem de twee rechthoekszijden ten opzichte daarvan.",
+      "scene": {
+        "caption": "Rechthoekige driehoek ABC: ∠B = 90°, AB = 4 cm, BC = 3 cm, AC = 5 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-goniometrie-2",
+      "block": "l3-goniometrie",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In de rechthoekige driehoek is AB = 8 cm en BC = 6 cm. Bereken hoek A in graden; rond af op een heel aantal graden.",
+      "answer": [
+        "37"
+      ],
+      "tolerance": 0.6,
+      "decimals": 0,
+      "unit": "°",
+      "working": true,
+      "explanation": "tan(A) = 6/8 = 0,75. A = arctan(0,75) ≈ 36,87°, afgerond 37°. Gebruik gradenmodus.",
+      "hint": "Je kent overstaande en aanliggende zijde; gebruik de inverse tangens.",
+      "scene": {
+        "caption": "∠B = 90°, AB = 8 cm en BC = 6 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-goniometrie-3",
+      "block": "l3-goniometrie",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In driehoek ABC is ∠B = 90°, ∠A = 30° en AB = 10 cm. Bereken BC in cm, op twee decimalen.",
+      "answer": [
+        "5.773502691896258"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "tan(30°) = BC/10, dus BC = 10 × tan(30°) ≈ 5,77 cm.",
+      "hint": "Schrijf eerst de verhouding op; los daarna de vergelijking voor BC op.",
+      "scene": {
+        "caption": "∠B = 90°, ∠A = 30° en AB = 10 cm.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            10,
+            0,
+            0
+          ],
+          "C": [
+            10,
+            5.773502691896258,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-goniometrie-4",
+      "block": "l3-goniometrie",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een ladder AC is 6 m lang en maakt bij A een hoek van 60° met de horizontale grond AB. De muur BC staat loodrecht op de grond. Bereken de hoogte BC in m, op twee decimalen.",
+      "answer": [
+        "5.196152422706632"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "m",
+      "working": true,
+      "explanation": "AC is de schuine zijde en BC staat tegenover hoek A. sin(60°) = BC/6, dus BC = 6 × sin(60°) = 3√3 ≈ 5,20 m.",
+      "hint": "Gebruik de verhouding met overstaande zijde en schuine zijde.",
+      "scene": {
+        "caption": "Ladder AC = 6 m, grond AB horizontaal, muur BC verticaal; ∠A = 60°.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            3,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            0,
+            5.196152422706632
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ]
+      }
+    },
+    {
+      "id": "l3-goniometrie-p1",
+      "block": "l3-goniometrie",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "∠B = 90°, AB = 6 cm en BC = 8 cm. Welke verhouding is tan(∠C)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "AB / BC"
+        },
+        {
+          "id": "b",
+          "text": "BC / AB"
+        },
+        {
+          "id": "c",
+          "text": "AB / AC"
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "Ten opzichte van hoek C is AB overstaand en BC aanliggend. Daarom tan(C) = AB/BC. De rollen wisselen wanneer je de andere scherpe hoek kiest.",
+      "hint": "Benoem de zijden opnieuw vanuit hoek C.",
+      "scene": {
+        "caption": "∠B = 90°, AB = 6 cm en BC = 8 cm; de gevraagde hoek ligt bij C.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            8,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-goniometrie-p2",
+      "block": "l3-goniometrie",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "In driehoek KLM is ∠L = 90°, KL = 12 cm en LM = 5 cm. Welke verhouding is tan(∠K)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "LM / KL"
+        },
+        {
+          "id": "b",
+          "text": "KL / LM"
+        },
+        {
+          "id": "c",
+          "text": "LM / KM"
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "LM ligt tegenover K, KL is de aanliggende rechthoekszijde. Dus tan(K) = LM/KL = 5/12.",
+      "hint": "De verhouding tangens blijft overstaand gedeeld door aanliggend, ongeacht de letters.",
+      "scene": {
+        "caption": "∠L = 90°, KL = 12 cm en LM = 5 cm.",
+        "showCube": false,
+        "points": {
+          "K": [
+            0,
+            0,
+            0
+          ],
+          "L": [
+            12,
+            0,
+            0
+          ],
+          "M": [
+            12,
+            5,
+            0
+          ]
+        },
+        "edges": [
+          "KL",
+          "LM",
+          "MK"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-goniometrie-r1",
+      "block": "l3-goniometrie",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "∠B = 90°, AB = 5 cm en BC = 12 cm. Bereken hoek C in graden; rond af op een heel aantal graden.",
+      "answer": [
+        "23"
+      ],
+      "tolerance": 0.6,
+      "decimals": 0,
+      "unit": "°",
+      "working": true,
+      "explanation": "Bij C is AB de overstaande en BC de aanliggende zijde. tan(C) = 5/12, dus C = arctan(5/12) ≈ 22,62°, afgerond 23°.",
+      "hint": "Kijk vanuit de gevraagde hoek C, niet vanuit A.",
+      "scene": {
+        "caption": "∠B = 90°, AB = 5 cm en BC = 12 cm; bepaal ∠C.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            5,
+            0,
+            0
+          ],
+          "C": [
+            5,
+            12,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-goniometrie-r2",
+      "block": "l3-goniometrie",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In een rechthoekige driehoek is ∠B = 90°, AC = 10 cm en ∠A = 35°. Bereken BC in cm, op twee decimalen.",
+      "answer": [
+        "5.7357643635104605"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "BC ligt tegenover A en AC is de schuine zijde. sin(35°) = BC/10, dus BC = 10 × sin(35°) ≈ 5,74 cm.",
+      "hint": "Kies de verhouding met de gegeven schuine zijde.",
+      "scene": {
+        "caption": "∠B = 90°, AC = 10 cm en ∠A = 35°.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8.191520442889917,
+            0,
+            0
+          ],
+          "C": [
+            8.191520442889917,
+            5.7357643635104605,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l2-hulpvlak-check-1",
+      "block": "l2-hulpvlak",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Je zoekt DF ∩ vlak ACG. Welk hulpvlak is passend?",
+      "options": [
+        {
+          "id": "a",
+          "text": "BDHF, omdat D en F in dat vlak liggen."
+        },
+        {
+          "id": "b",
+          "text": "ABCD, omdat D in dat vlak ligt; één lijnpunt is genoeg."
+        },
+        {
+          "id": "c",
+          "text": "EFGH, omdat een hulpvlak altijd horizontaal moet zijn."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "BDHF bevat de gehele lijn DF. Het snijdt ACG in de lijn door het middelpunt van het grondvlak en het middelpunt van het bovenvlak. DF ontmoet die lijn in het kubusmiddelpunt.",
+      "hint": "Controleer beide punten van de te onderzoeken lijn.",
+      "scene": {
+        "caption": "Kubus ABCD.EFGH; onderzoek DF ∩ vlak ACG.",
+        "showCube": true,
+        "highlights": [
+          "DF"
+        ],
+        "planes": [
+          [
+            "A",
+            "C",
+            "G"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-hulpvlak-check-2",
+      "block": "l2-hulpvlak",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Een hulpvlak H bevat lijn l. H snijdt doelvlak V in s. l snijdt s in precies één punt S. Welke conclusie volgt?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Elk punt van H ligt ook in V."
+        },
+        {
+          "id": "b",
+          "text": "De hele lijn l ligt in V."
+        },
+        {
+          "id": "c",
+          "text": "S ligt op l en in V."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "S ligt op l en op s. Omdat s in V ligt, ligt S in V. Dit bewijst de lijn-vlaksnijding zonder te vertrouwen op de projectie.",
+      "hint": "Gebruik dat de snijlijn in beide vlakken ligt.",
+      "scene": {
+        "caption": "S = AG ∩ EK ligt in vlak BDE. De gelijke coördinaten van S zijn elk ⅓ van de kubusribbe.",
+        "showCube": true,
+        "points": {
+          "K": [
+            0.5,
+            0.5,
+            0
+          ],
+          "S": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "highlights": [
+          "AG",
+          "EK"
+        ],
+        "planes": [
+          [
+            "B",
+            "D",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l2-doorsnede-check-3",
+      "block": "l2-doorsnede",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "In een nieuwe kubusdoorsnede ligt P op AB, Q op BC en R op FG. Welke verbinding is geen randzijde, hoewel zij in het doorsnedevlak ligt?",
+      "options": [
+        {
+          "id": "a",
+          "text": "PR"
+        },
+        {
+          "id": "b",
+          "text": "PQ"
+        },
+        {
+          "id": "c",
+          "text": "QR"
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "PR ligt niet in één kubuszijvlak. Het is een diagonaal binnen de doorsnede; PQ en QR liggen wel in zijvlakken.",
+      "hint": "Toets voor elk lijnstuk of de twee eindpunten een zijvlak delen.",
+      "scene": {
+        "caption": "P is het midden van AB; Q is het midden van BC; R is het midden van FG.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0.5,
+            0,
+            0
+          ],
+          "Q": [
+            1,
+            0.5,
+            0
+          ],
+          "R": [
+            1,
+            0.5,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2-doorsnede-check-4",
+      "block": "l2-doorsnede",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een kubus heeft ribbe 10 cm. P op AE, Q op BF en R op CG hebben hoogtes AP = 2 cm, BQ = 5 cm en CR = 7 cm. Het vlak PQR snijdt DH in S. Bereken DS in cm, op twee decimalen.",
+      "answer": [
+        "4"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "PS ∥ QR. Van Q naar R stijgt de hoogte 7 − 5 = 2 cm over dezelfde diepte als van P naar S. Daarom DS = 2 + 2 = 4 cm.",
+      "hint": "Vergelijk de gelijke richtingen in tegenoverliggende vlakken.",
+      "scene": {
+        "caption": "Ribbe 10 cm; AP = 2 cm, BQ = 5 cm en CR = 7 cm.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.2
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.7
+          ]
+        },
+        "highlights": [
+          "PQ",
+          "QR"
+        ]
+      }
+    },
+    {
+      "id": "l2-buiten-check-5",
+      "block": "l2-buiten",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Je hebt X en Y buiten een balk geconstrueerd. Beide liggen in het doorsnedevlak en het grondvlak. Welke constructiestap is geldig?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Teken geen lijn: buitenpunten tellen niet."
+        },
+        {
+          "id": "b",
+          "text": "Teken XY als snijlijn en bepaal daarna de stukken binnen de balk."
+        },
+        {
+          "id": "c",
+          "text": "Verbind X met een willekeurige bovenhoek om de grondvlak-snijlijn te krijgen."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "Twee verschillende gemeenschappelijke punten bepalen de snijlijn. Hun ligging buiten het vaste lichaam verandert de vlakmeetkundige constructie niet.",
+      "hint": "Een vlak loopt verder dan een getekend zijvlak.",
+      "scene": {
+        "caption": "X en Y zijn twee verschillende gemeenschappelijke punten van grondvlak en doorsnedevlak.",
+        "showCube": true,
+        "points": {
+          "X": [
+            -0.5,
+            0,
+            0
+          ],
+          "Y": [
+            1.5,
+            1,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2-buiten-check-6",
+      "block": "l2-buiten",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "De kubusribbe is 4 cm. M op AE heeft AM = 1 cm. X = GM ∩ AC ligt voorbij A. Bereken AX in cm, op twee decimalen.",
+      "answer": [
+        "1.885618083164127"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "XA/XC = AM/CG = 1/4. AC = 4√2 en XC = XA + AC, dus 4XA = XA + 4√2. Daarom XA = 4√2/3 ≈ 1,89 cm.",
+      "hint": "Gebruik gelijkvormigheid binnen diagonaalvlak ACGE.",
+      "scene": {
+        "caption": "Ribbe 4 cm; AM = 1 cm. Onderzoek de volledige lijnen GM en AC.",
+        "showCube": true,
+        "points": {
+          "M": [
+            0,
+            0,
+            0.25
+          ]
+        },
+        "highlights": [
+          "GM",
+          "AC"
+        ]
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-check-7",
+      "block": "l2-gelijkvormig",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In driehoek ABC is AB = 12 cm en BC = 20 cm. P ligt op AB met AP = 9 cm; PQ ∥ BC. Bereken PQ in cm, op twee decimalen.",
+      "answer": [
+        "15"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "ABC → APQ heeft lengtefactor 9/12 = 3/4. Daarom PQ = 3/4 × 20 = 15 cm.",
+      "hint": "Koppel PQ aan de overeenkomstige zijde BC.",
+      "scene": {
+        "caption": "AB = 12 cm, BC = 20 cm en AP = 9 cm; PQ ∥ BC.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            12,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            16,
+            0
+          ],
+          "P": [
+            9.0,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            12.0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l2-gelijkvormig-check-8",
+      "block": "l2-gelijkvormig",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Een leerling vindt AP/AB = 2/5 en schrijft vervolgens AQ = AC × 5/2. Wat moet worden verbeterd?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Niets: je moet de factor bij iedere volgende zijde omkeren."
+        },
+        {
+          "id": "b",
+          "text": "Gebruik AQ = AC × 2/5; beide lengtes gaan van de grote naar de kleine driehoek."
+        },
+        {
+          "id": "c",
+          "text": "Gebruik AQ = AC × (2/5)², want het gaat om een driehoek."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "AQ en AP horen bij de kleine driehoek, AC en AB bij de grote. Alle lengteverhoudingen moeten dezelfde richting volgen.",
+      "hint": "Schrijf bij beide zijden dezelfde pijl van groot naar klein.",
+      "scene": {
+        "caption": "PQ ∥ BC en AP/AB = 2/5.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            10,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "P": [
+            4.0,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            3.2,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "PQ"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-check-1",
+      "block": "l3-ruimtefiguren",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Welke eigenschap rechtvaardigt het tekenen van evenwijdige snijlijnen?",
+      "options": [
+        {
+          "id": "a",
+          "text": "De twee vlakken liggen aan verschillende kanten van de tekening."
+        },
+        {
+          "id": "b",
+          "text": "De twee betrokken vlakken zijn evenwijdig en worden door hetzelfde derde vlak gesneden."
+        },
+        {
+          "id": "c",
+          "text": "De twee vlakken hebben dezelfde vorm of oppervlakte."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "De regel berust op evenwijdigheid van de vlakken, niet op hun naam, vorm of positie op het scherm.",
+      "hint": "Noem de noodzakelijke voorwaarde voordat je de constructieregel gebruikt.",
+      "scene": {
+        "caption": "Driehoekig prisma ABC.DEF; ABC en DEF zijn evenwijdige vlakken.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            3
+          ],
+          "E": [
+            2,
+            0,
+            3
+          ],
+          "F": [
+            0,
+            2,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C"
+          ],
+          [
+            "D",
+            "E",
+            "F"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-check-2",
+      "block": "l3-ruimtefiguren",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "In het prisma is P het midden van AB, Q het midden van AC en R het midden van BE. Selecteer de twee gegeven punten waarmee je een randstuk in grondvlak ABC tekent.",
+      "answer": [
+        "P",
+        "Q"
+      ],
+      "selectCount": 2,
+      "explanation": "P en Q liggen op ribben van grondvlak ABC. Daarom is PQ de eerste randzijde in dat vlak.",
+      "hint": "Controleer welke twee gegeven punten dezelfde hoogte nul hebben.",
+      "scene": {
+        "caption": "Recht driehoekig prisma ABC.DEF. P en Q zijn de middens van AB en AC; R is het midden van BE.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            3
+          ],
+          "E": [
+            2,
+            0,
+            3
+          ],
+          "F": [
+            0,
+            2,
+            3
+          ],
+          "P": [
+            1,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            1,
+            0
+          ],
+          "R": [
+            2,
+            0,
+            1.5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      }
+    },
+    {
+      "id": "l3-ruimtefiguren-check-3",
+      "block": "l3-ruimtefiguren",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "Bij de piramideconstructie zijn X = PQ ∩ AB en Y = (lijn door X evenwijdig aan QR) ∩ CD gevonden. Hoe vind je het vierde hoekpunt S op DT?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Teken RY en neem S = RY ∩ DT."
+        },
+        {
+          "id": "b",
+          "text": "Neem automatisch het midden van DT."
+        },
+        {
+          "id": "c",
+          "text": "Teken door R altijd een lijn evenwijdig aan PQ."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "R en Y liggen beide in zijvlak CDT én in het doorsnedevlak. Daarom is RY hun snijlijn. Het snijpunt met DT is S.",
+      "hint": "Zoek in zijvlak CDT twee punten die al in het doorsnedevlak liggen.",
+      "scene": {
+        "caption": "P op AT met AP = ¼ AT; Q en R zijn middens van BT en CT. X en Y liggen op de verlengde AB en CD.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            2,
+            0
+          ],
+          "T": [
+            1,
+            1,
+            4
+          ],
+          "P": [
+            0.25,
+            0.25,
+            1
+          ],
+          "Q": [
+            1.5,
+            0.5,
+            2
+          ],
+          "R": [
+            1.5,
+            1.5,
+            2
+          ],
+          "X": [
+            -1,
+            0,
+            0
+          ],
+          "Y": [
+            -1,
+            2,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "PQ",
+          "QR"
+        ],
+        "segments": [
+          {
+            "from": [
+              -1,
+              0,
+              0
+            ],
+            "to": [
+              -1,
+              2,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              -1,
+              0,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              2,
+              0
+            ],
+            "to": [
+              -1,
+              2,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ]
+      },
+      "revealScene": {
+        "caption": "X = PQ ∩ AB ligt voorbij A. Door X loopt de grondvlak-snijlijn evenwijdig aan QR; Y ligt op de verlengde CD.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            2,
+            0
+          ],
+          "T": [
+            1,
+            1,
+            4
+          ],
+          "P": [
+            0.25,
+            0.25,
+            1
+          ],
+          "Q": [
+            1.5,
+            0.5,
+            2
+          ],
+          "R": [
+            1.5,
+            1.5,
+            2
+          ],
+          "S": [
+            0.25,
+            1.75,
+            1
+          ],
+          "X": [
+            -1,
+            0,
+            0
+          ],
+          "Y": [
+            -1,
+            2,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "highlights": [
+          "PQ",
+          "QR",
+          "RS",
+          "SP"
+        ],
+        "segments": [
+          {
+            "from": [
+              0.25,
+              0.25,
+              1
+            ],
+            "to": [
+              -1,
+              0,
+              0
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              -1,
+              0,
+              0
+            ],
+            "to": [
+              -1,
+              2,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          },
+          {
+            "from": [
+              -1,
+              2,
+              0
+            ],
+            "to": [
+              1.5,
+              1.5,
+              2
+            ],
+            "color": "#ffab66",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              -1,
+              0,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          },
+          {
+            "from": [
+              0,
+              2,
+              0
+            ],
+            "to": [
+              -1,
+              2,
+              0
+            ],
+            "color": "#66d9ca",
+            "dashed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "l3-oppervlakte-check-4",
+      "block": "l3-oppervlakte",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een gelijkbenige driehoek heeft basis AB = 10 cm en AC = BC = 13 cm. Bereken de oppervlakte in cm², op twee decimalen.",
+      "answer": [
+        "60"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm²",
+      "working": true,
+      "explanation": "De hoogte naar het midden M van AB is CM = √(13² − 5²) = 12 cm. Oppervlakte = 1/2 × 10 × 12 = 60 cm².",
+      "hint": "Bereken de loodrechte hoogte met een halve basis en Pythagoras.",
+      "scene": {
+        "caption": "AB = 10 cm, AC = BC = 13 cm; M is het midden van AB.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            10,
+            0,
+            0
+          ],
+          "C": [
+            5,
+            12,
+            0
+          ],
+          "M": [
+            5,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      }
+    },
+    {
+      "id": "l3-inhoud-check-5",
+      "block": "l3-inhoud",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een recht prisma heeft een gelijkzijdig driehoekig grondvlak met zijde 6 cm en hoogte 8 cm. P, Q en R zijn middens van DE, EF en FD. Je verwijdert hoekpiramides A.DPR, B.EPQ en C.FQR. Bereken de restinhoud in cm³, op twee decimalen.",
+      "answer": [
+        "93.53074360871936"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm³",
+      "working": true,
+      "explanation": "De driehoekshoogte is √(6² − 3²) = √27. Grondoppervlakte = 3√27. Het prisma bevat 24√27. Iedere hoekpiramide bevat 1/3 × (3√27/4) × 8 = 2√27. Rest = 24√27 − 6√27 = 18√27 = 54√3 ≈ 93,53 cm³.",
+      "hint": "Combineer de driehoekshoogte, oppervlaktefactor 1/4 en de piramideformule.",
+      "scene": {
+        "caption": "Gelijkzijdig grondvlak ABC met zijde 6 cm; prismahoogte 8 cm. P, Q, R zijn ribbemiddens van het bovenvlak.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            5.196152422706632,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            8
+          ],
+          "E": [
+            6,
+            0,
+            8
+          ],
+          "F": [
+            3,
+            5.196152422706632,
+            8
+          ],
+          "P": [
+            3,
+            0,
+            8
+          ],
+          "Q": [
+            4.5,
+            2.598076211353316,
+            8
+          ],
+          "R": [
+            1.5,
+            2.598076211353316,
+            8
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      }
+    },
+    {
+      "id": "l3-inhoud-check-6",
+      "block": "l3-inhoud",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Je berekent een restinhoud als groot lichaam min meerdere kleinere lichamen. Welke controle voorkomt een te kleine uitkomst door dubbel aftrekken?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tel altijd eerst alle ribbelengtes op."
+        },
+        {
+          "id": "b",
+          "text": "Controleer dat de afgetrokken delen precies het verwijderde gebied vormen en niet in hun binnenste overlappen."
+        },
+        {
+          "id": "c",
+          "text": "Controleer alleen dat alle delen piramides heten."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "Een overlap zou twee keer worden afgetrokken. Je moet ook controleren dat er geen te verwijderen deel overblijft of een behouden deel wordt afgetrokken.",
+      "hint": "Vergelijk de geometrische delen voordat je hun inhouden optelt of aftrekt.",
+      "scene": {
+        "caption": "ABC is rechthoekig met AB = 3 en AC = 4 cm. AD = 9 cm. P, Q, R zijn middens van DE, EF, FD. Verwijder de drie hoekpiramides A.DPR, B.EPQ en C.FQR.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            3,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            9
+          ],
+          "E": [
+            3,
+            0,
+            9
+          ],
+          "F": [
+            0,
+            4,
+            9
+          ],
+          "P": [
+            1.5,
+            0,
+            9
+          ],
+          "Q": [
+            1.5,
+            2.0,
+            9
+          ],
+          "R": [
+            0,
+            2.0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ]
+      }
+    },
+    {
+      "id": "l3-goniometrie-check-7",
+      "block": "l3-goniometrie",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een kubus heeft ribbe 4 cm. Driehoek ACG is rechthoekig bij C. Bereken ∠CAG in graden; rond af op een heel aantal graden.",
+      "answer": [
+        "35"
+      ],
+      "tolerance": 0.6,
+      "decimals": 0,
+      "unit": "°",
+      "working": true,
+      "explanation": "AC = √(4² + 4²) = 4√2 cm en CG = 4 cm. tan(∠CAG) = CG/AC = 1/√2. De hoek is ongeveer 35,26°, dus afgerond 35°.",
+      "hint": "Bereken eerst de diagonaal van het grondvlak en werk dan in driehoek ACG.",
+      "scene": {
+        "caption": "Kubusribbe 4 cm; werk in rechthoekige driehoek ACG.",
+        "showCube": true,
+        "highlights": [
+          "AC",
+          "CG",
+          "AG"
+        ],
+        "planes": [
+          [
+            "A",
+            "C",
+            "G"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l3-goniometrie-check-8",
+      "block": "l3-goniometrie",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "In een rechthoekige driehoek ABC is B de rechte hoek. Je kent AC en hoek C en zoekt AB. Welke vergelijking past?",
+      "options": [
+        {
+          "id": "a",
+          "text": "cos(C) = AB / AC"
+        },
+        {
+          "id": "b",
+          "text": "tan(C) = AC / AB"
+        },
+        {
+          "id": "c",
+          "text": "sin(C) = AB / AC"
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "Ten opzichte van C is AB overstaand en AC de schuine zijde. Sinus koppelt precies die twee zijden.",
+      "hint": "Benoem de zijden vanuit hoek C.",
+      "scene": {
+        "caption": "∠B = 90°; AC en hoek C zijn bekend, AB wordt gezocht.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "view": "top"
+      }
+    }
+  ],
+  "checks": {
+    "2": [
+      "l2-hulpvlak-check-1",
+      "l2-hulpvlak-check-2",
+      "l2-doorsnede-check-3",
+      "l2-doorsnede-check-4",
+      "l2-buiten-check-5",
+      "l2-buiten-check-6",
+      "l2-gelijkvormig-check-7",
+      "l2-gelijkvormig-check-8"
+    ],
+    "3": [
+      "l3-ruimtefiguren-check-1",
+      "l3-ruimtefiguren-check-2",
+      "l3-ruimtefiguren-check-3",
+      "l3-oppervlakte-check-4",
+      "l3-inhoud-check-5",
+      "l3-inhoud-check-6",
+      "l3-goniometrie-check-7",
+      "l3-goniometrie-check-8"
+    ]
+  },
+  "papers": {
+    "2": {
+      "title": "Construeer een doorsnede en verantwoord je hulplijnen",
+      "prompt": "Teken een kubus ABCD.EFGH in parallelprojectie. De ribbe is 8 cm. Plaats P op AE met AP = 2 cm, Q op BF met BQ = 4 cm en R op CG met CR = 6 cm. Construeer de volledige doorsnede door P, Q en R met liniaal. Bereken ook de afstand DS van het vierde hoekpunt S tot D.",
+      "steps": [
+        "Maak eerst zelf de kubustekening; geef onzichtbare ribben gestippeld weer.",
+        "Plaats P, Q en R met de opgegeven verhoudingen op de getekende ribben.",
+        "Construeer de volledige doorsnederand en laat de noodzakelijke hulplijnen staan. Schrijf bij elke stap een korte reden.",
+        "Bereken DS en controleer of je uitkomst overeenkomt met de plaats van S op DH. Beoordeel pas daarna met het uitwerkingsmodel."
+      ],
+      "rubric": [
+        "De parallelprojectie en de plaatsing van de drie gegeven punten kloppen met de opgegeven ribbeverhoudingen.",
+        "De constructie gebruikt punten in hetzelfde zijvlak en een terecht toegepaste evenwijdigheidsregel.",
+        "De volledige rand is gesloten; randstukken en eventuele hulplijnen zijn herkenbaar en alle hoekpunten benoemd.",
+        "De berekening en de schriftelijke redenen onderbouwen de plaats van S; eventuele correcties zijn verklaard."
+      ],
+      "solution": [
+        "Verbind P met Q in ABFE en Q met R in BCGF.",
+        "BCGF ∥ ADHE. Teken daarom door P een lijn evenwijdig aan QR en noem het snijpunt met DH S.",
+        "Verbind S met R in DCGH. De gesloten doorsnederand is P–Q–R–S–P. PR is een diagonaal en geen randzijde.",
+        "Van Q naar R is de hoogteverandering 6 − 4 = 2 cm. PS heeft dezelfde richting over dezelfde diepte, dus DS = AP + 2 = 4 cm.",
+        "Controleer als extra onderbouwing dat PQ ∥ SR, omdat de voor- en achtervlakken evenwijdig zijn."
+      ],
+      "scene": {
+        "caption": "P op AE: AP = ¼ AE. Q is het midden van BF. R op CG: CR = ¾ CG.",
+        "showCube": true,
+        "points": {
+          "P": [
+            0,
+            0,
+            0.25
+          ],
+          "Q": [
+            1,
+            0,
+            0.5
+          ],
+          "R": [
+            1,
+            1,
+            0.75
+          ]
+        }
+      }
+    },
+    "3": {
+      "title": "Piramideconstructie met snijpunten buiten de figuur",
+      "prompt": "Teken een vierkante piramide ABCD.T in parallelprojectie, met T recht boven het middelpunt van ABCD. Neem P op AT met AP = ¼ AT; Q en R zijn de middens van BT en CT. Construeer de doorsnede door P, Q en R. Gebruik waar nodig verlengde ribben en verantwoord waarom iedere stap geldig is.",
+      "steps": [
+        "Teken de piramide en plaats de drie gegeven punten met de juiste verhoudingen.",
+        "Teken eerst de randstukken die uit twee punten in hetzelfde zijvlak volgen.",
+        "Construeer het vierde hoekpunt met een snijlijn in het grondvlak; laat buiten de figuur voldoende tekenruimte.",
+        "Sluit de rand, benoem het vierde hoekpunt S en leg uit waarom de evenwijdigheidsregel voor overstaande kubusvlakken hier niet rechtstreeks bruikbaar is."
+      ],
+      "rubric": [
+        "P, Q en R staan correct op de piramideribben; zichtbare en onzichtbare lijnen zijn duidelijk.",
+        "De buitenpunten worden met geldige verlengingen in gemeenschappelijke vlakken geconstrueerd.",
+        "Het vierde hoekpunt wordt afgeleid uit de snijlijn van twee vlakken; de uiteindelijke rand is P–Q–R–S–P.",
+        "De onderbouwing vermeldt waarom iedere gebruikte evenwijdigheid geldt en onderscheidt dit van een ongeldige aanname over piramidezijvlakken."
+      ],
+      "solution": [
+        "PQ ligt in zijvlak ABT en QR in BCT; teken beide. Omdat Q en R middelpunten zijn, is QR ∥ BC en dus evenwijdig aan het grondvlak.",
+        "Verleng PQ en AB tot X. Dit punt ligt buiten de piramide, voorbij A, en is gemeenschappelijk aan doorsnedevlak en grondvlak.",
+        "Teken door X in het grondvlak een lijn evenwijdig aan QR. Deze ontmoet de verlengde CD in Y.",
+        "R en Y liggen beide in CDT en in het doorsnedevlak. Teken daarom RY; het snijpunt met DT is S. Verbind S met P.",
+        "De doorsnede is PQRS; DS = ¼ DT. De vlakken ABT en CDT zijn verschillende vlakken die T bevatten en zijn dus niet evenwijdig. Je mocht de rand door R niet zomaar evenwijdig aan PQ tekenen."
+      ],
+      "scene": {
+        "caption": "Vierkante piramide; P op AT met AP = ¼ AT en Q, R midden op BT en CT.",
+        "showCube": false,
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            2,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            2,
+            0
+          ],
+          "D": [
+            0,
+            2,
+            0
+          ],
+          "T": [
+            1,
+            1,
+            4
+          ],
+          "P": [
+            0.25,
+            0.25,
+            1
+          ],
+          "Q": [
+            1.5,
+            0.5,
+            2
+          ],
+          "R": [
+            1.5,
+            1.5,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "level": 2,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.2 (1).pptx",
+      "slides": "10–13",
+      "coverage": "Lijn-vlaksnijding via een hulpvlak; voorwaarde dat het hulpvlak de lijn bevat; snijlijn construeren en redenering waarom dit werkt. MathML-tekst inclusief alle m:t-nodes herlezen."
+    },
+    {
+      "level": 2,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.2 (1).pptx",
+      "slides": "14–17, 20",
+      "coverage": "Doorsneden: twee punten in een zijvlak verbinden, evenwijdige snijlijnen in evenwijdige vlakken, buiten het lichaam liggende hulpsnijpunten. Nieuwe volledig gespecificeerde voorbeelden."
+    },
+    {
+      "level": 2,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.2 (1).pptx",
+      "slides": "21–23",
+      "coverage": "Gelijkvormigheid en richting van de lengtefactor; voorbereiding op driehoeksoppervlakte en piramide-inhoud."
+    },
+    {
+      "level": 3,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.3 (1).pptx",
+      "slides": "5–9",
+      "coverage": "Complexere doorsneden via de grondvlak-snijlijn en evenwijdigheid; overdracht naar prisma en piramide, ook zelf tekenen op papier."
+    },
+    {
+      "level": 3,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.3 (1).pptx",
+      "slides": "10–11",
+      "coverage": "Driehoekshoogte met Pythagoras, aanvullen tot prisma en drie piramides aftrekken. Apart levelcheckvoorbeeld met gelijkzijdige zijde 6 en prismahoogte 8 geeft 18√27, conform opnieuw uitgelezen formules."
+    },
+    {
+      "level": 3,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.3 (1).pptx",
+      "slides": "12–13",
+      "coverage": "Start hoofdstuk 10: sinus, cosinus, tangens, lengtes berekenen en inverse goniometrie voor hoeken."
+    }
+  ]
+}

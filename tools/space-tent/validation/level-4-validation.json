@@ -1,0 +1,139 @@
+{
+  "level": 4,
+  "status": "passed",
+  "counts": {
+    "blocks": 4,
+    "theoryScenes": 12,
+    "questions": 40,
+    "numericAnswersIndependentlyChecked": 18,
+    "scenesChecked": 86,
+    "planarPolygonsChecked": 68,
+    "advancedFootpointScenesChecked": 3
+  },
+  "numericChecks": [
+    {
+      "question": "l4-cos-q2",
+      "coordinateResult": 78.46304096718453,
+      "storedAnswer": 78.46304096718453,
+      "difference": 0.0
+    },
+    {
+      "question": "l4-cos-q3",
+      "coordinateResult": 5.2915026221291805,
+      "storedAnswer": 5.291502622129181,
+      "difference": 8.881784197001252e-16
+    },
+    {
+      "question": "l4-cos-q4",
+      "coordinateResult": 20.662465970933866,
+      "storedAnswer": 20.662465970933866,
+      "difference": 0.0
+    },
+    {
+      "question": "l4-cos-r1",
+      "coordinateResult": 73.39845040097977,
+      "storedAnswer": 73.39845040097977,
+      "difference": 0.0
+    },
+    {
+      "question": "l4-cos-r2",
+      "coordinateResult": 11.618950038622252,
+      "storedAnswer": 11.61895003862225,
+      "difference": 1.7763568394002505e-15
+    },
+    {
+      "question": "l4-lines-q2",
+      "coordinateResult": 45.00000000000001,
+      "storedAnswer": 45.0,
+      "difference": 7.105427357601002e-15
+    },
+    {
+      "question": "l4-lines-q4",
+      "coordinateResult": 50.768479516407744,
+      "storedAnswer": 50.768479516407744,
+      "difference": 0.0
+    },
+    {
+      "question": "l4-lines-r1",
+      "coordinateResult": 90.0,
+      "storedAnswer": 90.0,
+      "difference": 0.0
+    },
+    {
+      "question": "l4-lines-r2",
+      "coordinateResult": 26.565051177077994,
+      "storedAnswer": 26.56505117707799,
+      "difference": 3.552713678800501e-15
+    },
+    {
+      "question": "l4-plane-q3",
+      "coordinateResult": 35.26438968275466,
+      "storedAnswer": 35.264389682754654,
+      "difference": 7.105427357601002e-15
+    },
+    {
+      "question": "l4-plane-r1",
+      "coordinateResult": 30.963756532073518,
+      "storedAnswer": 30.96375653207352,
+      "difference": 3.552713678800501e-15
+    },
+    {
+      "question": "l4-dihedral-q3",
+      "coordinateResult": 33.69006752597977,
+      "storedAnswer": 33.690067525979785,
+      "difference": 1.4210854715202004e-14
+    },
+    {
+      "question": "l4-dihedral-q4",
+      "coordinateResult": 65.9051574478893,
+      "storedAnswer": 65.9051574478893,
+      "difference": 0.0
+    },
+    {
+      "question": "l4-dihedral-r1",
+      "coordinateResult": 53.13010235415599,
+      "storedAnswer": 53.13010235415598,
+      "difference": 7.105427357601002e-15
+    },
+    {
+      "question": "l4-check-2",
+      "coordinateResult": 9.896535253956145,
+      "storedAnswer": 9.896535253956145,
+      "difference": 0.0
+    },
+    {
+      "question": "l4-check-4",
+      "coordinateResult": 36.86989764584401,
+      "storedAnswer": 36.86989764584402,
+      "difference": 7.105427357601002e-15
+    },
+    {
+      "question": "l4-check-6",
+      "coordinateResult": 67.38013505195958,
+      "storedAnswer": 67.38013505195957,
+      "difference": 1.4210854715202004e-14
+    },
+    {
+      "question": "l4-check-8",
+      "coordinateResult": 60.98285937539848,
+      "storedAnswer": 60.98285937539848,
+      "difference": 0.0
+    }
+  ],
+  "footpointChecks": [
+    "l4-dihedral-theory2",
+    "l4-dihedral-q4-reveal",
+    "l4-check-8-reveal"
+  ],
+  "methods": [
+    "Vector dot products for line angles, independent of cosine-law explanations",
+    "Cross products for triangle areas and plane normals",
+    "Line-plane angle via dot product with a plane normal",
+    "Exact perpendicularity, collinearity and planarity of construction scenes",
+    "IDs, option keys, diagnostic trigger and probe structure, practice/check separation"
+  ],
+  "limitations": [
+    "Automated coordinate checks verify mathematical geometry and numeric targets; they do not measure learning effects or empirically validate diagnosis.",
+    "Paper construction and written method require student self-review or teacher assessment."
+  ]
+}

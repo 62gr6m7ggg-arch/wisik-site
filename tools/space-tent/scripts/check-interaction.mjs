@@ -7,7 +7,7 @@ import {resolve} from 'node:path';
 const site=process.env.SPACE_AUDIT_SITE||process.cwd(),require=createRequire(site+'/package.json');
 const {build}=require('esbuild'),React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
 const learningPath=resolve(site,'app/learning.tsx');
-const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,QUESTIONS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]learning\.tsx$/},args=>{
+const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,QUESTIONS,CHECKS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]learning\.tsx$/},args=>{
  assert.equal(args.path,learningPath);
  let source=readFileSync(args.path,'utf8');
  // Inject only the initial state for SSR, never changing render/feedback logic.
@@ -26,7 +26,7 @@ if(process.argv.includes('--compile')){
 }
 const module={exports:{}};new Function('require','module','exports',result.outputFiles[0].text)(require,module,module.exports);
 /* STANDALONE TESTS */
-const {BANK,QuestionCard,LearningView,QuestionFigure,Geometry,Workbench,G,W,V,R,deriveProgress}=module.exports;
+const {BANK,CHECKS,QuestionCard,LearningView,QuestionFigure,Geometry,Workbench,G,W,V,R,deriveProgress}=module.exports;
 const render=(component,props)=>renderToStaticMarkup(React.createElement(component,props));
 const hasRotation=html=>html.includes('>Onderzoeken in 3D<')||html.includes('>Rondkijken<')||html.includes('class="geometry-stage can-rotate"');
 const assertFinite=(html,id)=>assert.ok(!/(?:NaN|Infinity)/.test(html),id+' contains non-finite coordinates');
@@ -100,12 +100,12 @@ const near=(a,b,message)=>assert.ok(Math.abs(a-b)<1e-7,message||`${a} != ${b}`);
 const p2len=p=>Math.hypot(...p),sub2=(a,b)=>a.map((v,i)=>v-b[i]);
 let projections=0;
 for(const camera of cameras)for(const q of BANK.questions)for(const reveal of [false,true]){
- const data=V.questionGeometry(q,reveal),points={...G.CUBE,...data.points};
+ const data=q.scene?(reveal?(q.revealScene||q.scene):q.scene):V.questionGeometry(q,reveal),points={...(data.showCube===false?{}:G.CUBE),...data.points};
  const before=JSON.stringify(points),values=Object.values(points);
  const project=p=>G.parallelImage(p,'spatial',...camera);
  const ps=values.map(project);assert.ok(ps.flat().every(Number.isFinite),q.id);
  const frame=G.projectionFrame(ps,320,310);assert.ok(Number.isFinite(frame.scale)&&frame.scale>0);
- for(const line of data.highlights){const a=points[line[0]],b=points[line[1]],mid=G.mul(G.add(a,b),.5);const actual=project(mid),expected=G.mul(G.add([...project(a),0],[...project(b),0]),.5);near(actual[0],expected[0]);near(actual[1],expected[1]);}
+ for(const line of data.highlights||[]){const a=points[line[0]],b=points[line[1]],mid=G.mul(G.add(a,b),.5);const actual=project(mid),expected=G.mul(G.add([...project(a),0],[...project(b),0]),.5);near(actual[0],expected[0]);near(actual[1],expected[1]);}
  // Orthographic views cannot make a segment longer than its 3D length.
  for(let i=1;i<values.length;i++)assert.ok(p2len(sub2(ps[i],ps[0]))<=G.distance(values[i],values[0])+1e-7);
  assert.equal(JSON.stringify(points),before,'A camera operation must not change world geometry');projections++;
@@ -116,6 +116,8 @@ for(const variant of [0,1]){
  for(const camera of [[0,0],[90,0],[-90,0],[179,-80],[28,24]]){const html=render(Geometry,{construction:true,camera,points,lines,fitToContent:true,selectable:Object.keys(points)});assertFinite(html,'atelier');}
 }
 // Checkpoint evidence remains silent for all seven partial lengths.
-const checkpoint=BANK.checkpointIds.map((id,i)=>({id:'audit-check-'+i,type:'answer',at:i,payload:{questionId:id,answer:BANK.questions.find(q=>q.id===id).answer,helped:false,context:'check',sessionId:'audit',correct:true}}));
+for(const ids of Object.values(CHECKS)){
+const checkpoint=ids.map((id,i)=>({id:'audit-check-'+i,type:'answer',at:i,payload:{questionId:id,answer:BANK.questions.find(q=>q.id===id).answer,helped:false,context:'check',sessionId:'audit',correct:true}}));
 for(let i=1;i<checkpoint.length;i++){const p=deriveProgress(checkpoint.slice(0,i));assert.equal(p.xp,0);for(const s of Object.values(p.skills)){assert.equal(s.independent,0);assert.equal(s.helped,0);}}
-console.log(`Interaction SSR checks passed: ${cards} question-card states, ${figures} feedback figures, 4 deferred triggers, ${cameras.length} camera movements and ${projections} projected question scenes. Pointer behavior still requires browser QA.`);
+}
+console.log(`Interaction SSR checks passed: ${cards} question-card states, ${figures} feedback figures, ${BANK.blocks.length} deferred triggers, ${cameras.length} camera movements and ${projections} projected question scenes. Pointer behavior still requires browser QA.`);

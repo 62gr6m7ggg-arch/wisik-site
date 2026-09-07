@@ -1,0 +1,15 @@
+{
+  "blocks": 8,
+  "questions": 80,
+  "numeric_keys_independently_verified": 28,
+  "scene_occurrences_checked": 131,
+  "planar_polygons_checked": 48,
+  "complete_sections_verified": 3,
+  "composite_volumes_verified_by_convex_hull": 3,
+  "external_pyramid_construction_verified": true,
+  "correct_option_positions": {
+    "a": 20,
+    "b": 17,
+    "c": 10
+  }
+}

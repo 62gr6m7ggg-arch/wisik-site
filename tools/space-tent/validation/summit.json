@@ -1,0 +1,2512 @@
+{
+  "blocks": [],
+  "questions": [
+    {
+      "id": "l7a-01",
+      "block": "l7a",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "In kubus ABCD.EFGH hebben alle ribben lengte 6 cm. Welke uitspraak over de volledige lijnen AE en BG is juist?",
+      "answer": [
+        "k"
+      ],
+      "explanation": "AE ligt bij x = 0, terwijl elk punt van BG x = 6 heeft: ze snijden niet. Hun richtingen verschillen, dus ze zijn niet evenwijdig. De lijnen kruisen.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus met ribben van 6 cm. Onderzoek AE en BG.",
+        "highlights": [
+          "AE",
+          "BG"
+        ]
+      },
+      "options": [
+        {
+          "id": "s",
+          "text": "Ze snijden als je beide lijnstukken ver genoeg verlengt."
+        },
+        {
+          "id": "k",
+          "text": "Ze kruisen: ze zijn niet evenwijdig en hebben geen gemeenschappelijk punt."
+        },
+        {
+          "id": "e",
+          "text": "Ze zijn evenwijdig, omdat zijvlakken van een kubus evenwijdig zijn."
+        },
+        {
+          "id": "o",
+          "text": "Dat hangt af van de kijkrichting."
+        }
+      ]
+    },
+    {
+      "id": "l7a-02",
+      "block": "l7a",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Een leerling meet in deze parallelprojectie de getekende hoek tussen AB en AD. Mag die gemeten hoek als werkelijke hoek worden gebruikt?",
+      "answer": [
+        "n"
+      ],
+      "explanation": "Een parallelprojectie bewaart evenwijdigheid en verhoudingen op één lijn, maar in het algemeen geen hoeken. Uit het feit dat de figuur een balk is, volgt AB ⟂ AD; meten in de schets bewijst dat niet.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            5
+          ],
+          "F": [
+            6,
+            0,
+            5
+          ],
+          "G": [
+            6,
+            4,
+            5
+          ],
+          "H": [
+            0,
+            4,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Balk ABCD.EFGH, AB = 6 cm, AD = 4 cm en AE = 5 cm.",
+        "highlights": [
+          "AB",
+          "AD"
+        ]
+      },
+      "options": [
+        {
+          "id": "j",
+          "text": "Ja, want parallelprojectie bewaart alle hoeken."
+        },
+        {
+          "id": "n",
+          "text": "Nee; de rechte hoek volgt uit de eigenschappen van een balk."
+        },
+        {
+          "id": "l",
+          "text": "Alleen als de leerling de langste ribbe als basis kiest."
+        },
+        {
+          "id": "d",
+          "text": "Nee, want AB en AD kruisen in de ruimte."
+        }
+      ]
+    },
+    {
+      "id": "l7a-03",
+      "block": "l7a",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "P ligt op AE, Q op BF en R op CG. Je construeert de doorsnede door P, Q en R. Waarom mag je door P in vlak ADHE een lijn evenwijdig aan QR tekenen?",
+      "answer": [
+        "v"
+      ],
+      "explanation": "De zijvlakken ADHE en BCGF zijn evenwijdig. Eén snijdend vlak maakt daarin evenwijdige snijlijnen. QR is de snijlijn in BCGF, dus de snijlijn door P in ADHE is daaraan evenwijdig.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ],
+          "P": [
+            0,
+            0,
+            2
+          ],
+          "Q": [
+            6,
+            0,
+            4
+          ],
+          "R": [
+            6,
+            6,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus met AP = 2 cm, BQ = 4 cm en CR = 5 cm. Alleen gegeven punten en de bestaande verbinding QR.",
+        "highlights": [
+          "QR"
+        ]
+      },
+      "options": [
+        {
+          "id": "p",
+          "text": "Omdat P en Q beide op een verticale ribbe liggen."
+        },
+        {
+          "id": "v",
+          "text": "Omdat hetzelfde doorsnedevlak twee evenwijdige zijvlakken snijdt."
+        },
+        {
+          "id": "r",
+          "text": "Omdat alle lijnen door P evenwijdig zijn aan lijnen door Q."
+        },
+        {
+          "id": "t",
+          "text": "Omdat QR in de tekening schuin omhoog loopt."
+        }
+      ]
+    },
+    {
+      "id": "l7a-04",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een rechte piramide heeft een rechthoekig grondvlak van 8 bij 6 cm en hoogte 12 cm. Een vlak evenwijdig aan het grondvlak ligt 9 cm boven het grondvlak. Bereken de oppervlakte van de doorsnede in cm², op één decimaal.",
+      "answer": [
+        "3"
+      ],
+      "explanation": "Vanaf de top is de afstand tot de doorsnede 3 cm. De lengteschaal is dus 3/12 = 1/4. Oppervlakten schalen met het kwadraat: 48 × (1/4)² = 3,0 cm².",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            -4,
+            -3,
+            0
+          ],
+          "B": [
+            4,
+            -3,
+            0
+          ],
+          "C": [
+            4,
+            3,
+            0
+          ],
+          "D": [
+            -4,
+            3,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            12
+          ],
+          "P": [
+            -1,
+            -0.75,
+            9
+          ],
+          "Q": [
+            1,
+            -0.75,
+            9
+          ],
+          "R": [
+            1,
+            0.75,
+            9
+          ],
+          "S": [
+            -1,
+            0.75,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "caption": "Rechte piramide: grondvlak 8 × 6 cm, hoogte 12 cm; doorsnede op hoogte 9 cm.",
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R",
+            "S"
+          ]
+        ],
+        "highlights": [
+          "PQ",
+          "QR",
+          "RS",
+          "SP"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm²",
+      "working": true
+    },
+    {
+      "id": "l7a-05",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Bij tetraëder ABCT staan AB, AC en AT in A onderling loodrecht. AB = 8 cm, AC = 6 cm en AT = 12 cm. Bereken de inhoud in cm³, op één decimaal.",
+      "answer": [
+        "96"
+      ],
+      "explanation": "Driehoek ABC heeft oppervlakte ½ × 8 × 6 = 24 cm². AT is loodrecht op het grondvlak en is dus de hoogte. De inhoud is ⅓ × 24 × 12 = 96,0 cm³.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            12
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "caption": "Tetraëder met drie onderling loodrechte ribben vanuit A: 8, 6 en 12 cm."
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm³",
+      "working": true
+    },
+    {
+      "id": "l7a-06",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een balk heeft afmetingen AB = 8 cm, AD = 6 cm en AE = 5 cm. Men verwijdert de tetraëder APQE, waarbij AP = 4 cm en AQ = 3 cm en Q op AD ligt. Hoeveel inhoud blijft over? Geef cm³ op één decimaal.",
+      "answer": [
+        "230"
+      ],
+      "explanation": "De balk heeft inhoud 240 cm³. De weggehaalde tetraëder heeft rechthoekige basis APQ met oppervlakte 6 cm² en hoogte 5 cm: inhoud ⅓ × 6 × 5 = 10 cm³. Er blijft 230,0 cm³ over.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            5
+          ],
+          "F": [
+            8,
+            0,
+            5
+          ],
+          "G": [
+            8,
+            6,
+            5
+          ],
+          "H": [
+            0,
+            6,
+            5
+          ],
+          "P": [
+            4,
+            0,
+            0
+          ],
+          "Q": [
+            0,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Balk 8 × 6 × 5 cm. Het hoekstuk APQE wordt verwijderd.",
+        "highlights": [
+          "PQ",
+          "PE",
+          "QE"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm³",
+      "working": true
+    },
+    {
+      "id": "l7a-07",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Bereken de kleinste hoek tussen de volledige lijnen AG en EF van een kubus. Geef het antwoord in graden, op één decimaal.",
+      "answer": [
+        "54.7356103172"
+      ],
+      "explanation": "EF is evenwijdig aan AB, dus de gevraagde hoek is de hoek tussen AG en AB. In de rechthoekige driehoek ABG zijn AB = 6 en AG = 6√3. Daarom cos α = 1/√3 en α ≈ 54,7°.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus met ribben van 6 cm. Gevraagd is de hoek tussen AG en EF.",
+        "highlights": [
+          "AG",
+          "EF"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "°",
+      "working": true
+    },
+    {
+      "id": "l7a-08",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een balk heeft AB = 6 cm, AD = 8 cm en AE = 10 cm. Bereken de hoek tussen AG en vlak ABCD in graden, op één decimaal.",
+      "answer": [
+        "45"
+      ],
+      "explanation": "G projecteert loodrecht op C. De gezochte hoek is GAC. AC = √(6² + 8²) = 10 en CG = 10. Dus tan α = 10/10 = 1 en α = 45,0°.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            8,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            10
+          ],
+          "F": [
+            6,
+            0,
+            10
+          ],
+          "G": [
+            6,
+            8,
+            10
+          ],
+          "H": [
+            0,
+            8,
+            10
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Balk 6 × 8 × 10 cm. Gevraagd is de hoek van AG met het grondvlak.",
+        "highlights": [
+          "AG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "°",
+      "working": true
+    },
+    {
+      "id": "l7a-09",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Dezelfde balk heeft AB = 6 cm, AD = 8 cm en AE = 10 cm. Bereken de kleinste hoek tussen de vlakken ABG en ABCD in graden, op één decimaal.",
+      "answer": [
+        "51.3401917459"
+      ],
+      "explanation": "De snijlijn is AB. Zijvlak BCGF staat loodrecht op AB en is een standvlak. De gevraagde hoek is GBC: BG ligt in ABG en BC ligt in ABCD. Tan α = CG/BC = 10/8, dus α ≈ 51,3°.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            8,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            10
+          ],
+          "F": [
+            6,
+            0,
+            10
+          ],
+          "G": [
+            6,
+            8,
+            10
+          ],
+          "H": [
+            0,
+            8,
+            10
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Balk 6 × 8 × 10 cm. De twee bedoelde vlakken zijn ABG en ABCD.",
+        "planes": [
+          [
+            "A",
+            "B",
+            "G"
+          ],
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "°",
+      "working": true
+    },
+    {
+      "id": "l7a-10",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In een balk is AB = 6 cm en AD = 8 cm. Bereken de afstand van punt B tot de volledige lijn AC in cm, op één decimaal.",
+      "answer": [
+        "4.8"
+      ],
+      "explanation": "In driehoek ABC is AC = 10 cm. De oppervlakte is ½ × 6 × 8 = 24 cm². Met AC als basis geldt 24 = ½ × 10 × d, dus d = 4,8 cm.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            8,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            10
+          ],
+          "F": [
+            6,
+            0,
+            10
+          ],
+          "G": [
+            6,
+            8,
+            10
+          ],
+          "H": [
+            0,
+            8,
+            10
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Balk met AB = 6 cm en AD = 8 cm. B en de lijn AC bepalen de gevraagde afstand.",
+        "highlights": [
+          "AC"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm",
+      "working": true,
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            8,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            10
+          ],
+          "F": [
+            6,
+            0,
+            10
+          ],
+          "G": [
+            6,
+            8,
+            10
+          ],
+          "H": [
+            0,
+            8,
+            10
+          ],
+          "P": [
+            2.16,
+            2.88,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "P is de loodvoet van B op AC. BP staat loodrecht op AC.",
+        "highlights": [
+          "AC",
+          "BP"
+        ]
+      }
+    },
+    {
+      "id": "l7a-11",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Bij tetraëder ABCT staan AB, AC en AT in A onderling loodrecht; hun lengtes zijn 8, 6 en 12 cm. Bereken de afstand van A tot vlak BCT in cm, op één decimaal.",
+      "answer": [
+        "4.45668811625"
+      ],
+      "explanation": "De inhoud is 96 cm³. Neem M als loodvoet van A op BC. Dan BC = 10 en AM = 4,8. Omdat AT loodrecht op het grondvlak staat, is TM = √(12² + 4,8²). BCT heeft oppervlakte ½ × 10 × TM. Met BCT als grondvlak geldt d = 3 × 96 / opp(BCT) ≈ 4,5 cm.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            12
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "caption": "Tetraëder met AB = 8, AC = 6 en AT = 12 cm. Gezocht: afstand van A tot BCT.",
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ]
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm",
+      "working": true
+    },
+    {
+      "id": "l7a-12",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een kubus heeft ribben van 6 cm. Bereken de afstand tussen de volledige lijnen AC en BH in cm, op één decimaal.",
+      "answer": [
+        "2.44948974278"
+      ],
+      "explanation": "Neem het verticale diagonaalvlak DBFH: dit staat loodrecht op AC. M = AC ∩ BD is het middelpunt van het grondvlak. De loodlijn vanuit M op BH staat daardoor loodrecht op beide lijnen. In driehoek MBH is MB = 3√2 en de hoogte vanuit H op MB gelijk aan 6. Dus opp(MBH) = 9√2. BH = 6√3, zodat d = 2 × 9√2/(6√3) = √6 ≈ 2,4 cm.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus met ribben van 6 cm. Gezocht: afstand tussen AC en BH.",
+        "highlights": [
+          "AC",
+          "BH"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm",
+      "working": true
+    },
+    {
+      "id": "l7a-13",
+      "block": "l7a",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Je zoekt de afstand tussen de kruisende lijnen AC en BH. Welke aanpak is geldig?",
+      "answer": [
+        "v"
+      ],
+      "explanation": "Een vlak door BH dat evenwijdig is aan AC heeft overal dezelfde afstand tot AC. In dat vlak kan een evenwijdige verschuiving in de richting van AC het voetpunt op BH brengen. Daarom is de loodrechte punt-vlakafstand gelijk aan de afstand van de kruisende lijnen.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus. De gevraagde afstand hoort bij AC en BH.",
+        "highlights": [
+          "AC",
+          "BH"
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": "Meet de afstand tussen het midden van AC en het midden van BH; middelpunten zijn altijd het dichtst bij elkaar."
+        },
+        {
+          "id": "v",
+          "text": "Neem een vlak door BH dat evenwijdig is aan AC en bereken de loodrechte afstand van A tot dat vlak."
+        },
+        {
+          "id": "b",
+          "text": "Verschuif BH evenwijdig totdat BH de lijn AC snijdt; de afstand verandert dan niet."
+        },
+        {
+          "id": "d",
+          "text": "Meet de afstand tussen de geprojecteerde lijnen in de tekening."
+        }
+      ]
+    },
+    {
+      "id": "l7a-14",
+      "block": "l7a",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een plaat van 60 cm breed en 40 cm lang wordt tot een symmetrische open goot gevouwen. De bodem is 12 cm breed, de opening bovenaan is twee keer zo breed als de bodem. Langs de lengte verandert de dwarsdoorsnede niet. Bereken de inhoud van de goot in cm³, op één decimaal.",
+      "answer": [
+        "16731.2880556"
+      ],
+      "explanation": "Elke opstaande zijkant is (60 − 12)/2 = 24 cm breed. De horizontale uitwijking is (24 − 12)/2 = 6 cm. De hoogte is √(24² − 6²) = √540. De trapeziumoppervlakte is ½(12 + 24)√540 = 18√540. De inhoud is 40 × 18√540 ≈ 16731,3 cm³.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            12,
+            0,
+            0
+          ],
+          "C": [
+            18,
+            0,
+            23.2379000772445
+          ],
+          "D": [
+            -6,
+            0,
+            23.2379000772445
+          ],
+          "E": [
+            0,
+            40,
+            0
+          ],
+          "F": [
+            12,
+            40,
+            0
+          ],
+          "G": [
+            18,
+            40,
+            23.2379000772445
+          ],
+          "H": [
+            -6,
+            40,
+            23.2379000772445
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Open goot: plaatbreedte 60 cm, lengte 40 cm, bodem 12 cm en opening 24 cm. De bovenste verbindingen begrenzen de opening."
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm³",
+      "working": true
+    },
+    {
+      "id": "l7b-01",
+      "block": "l7b",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Een recht driehoekig prisma is ABC.DEF, met AD, BE en CF als opstaande ribben. Welke uitspraak over de volledige lijnen AB en CF is juist?",
+      "answer": [
+        "k"
+      ],
+      "explanation": "AB ligt in het grondvlak. CF snijdt dat grondvlak alleen in C, en C ligt niet op AB. De lijnen snijden dus niet; hun richtingen verschillen. Het zijn kruisende lijnen.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            5
+          ],
+          "E": [
+            6,
+            0,
+            5
+          ],
+          "F": [
+            0,
+            8,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "showCube": false,
+        "caption": "Recht driehoekig prisma met AB = 6, AC = 8 en AD = 5 cm. AB ⟂ AC.",
+        "highlights": [
+          "AB",
+          "CF"
+        ]
+      },
+      "options": [
+        {
+          "id": "s",
+          "text": "Ze snijden buiten het prisma."
+        },
+        {
+          "id": "e",
+          "text": "Ze zijn evenwijdig omdat het een prisma is."
+        },
+        {
+          "id": "k",
+          "text": "Ze kruisen: geen gemeenschappelijk punt en verschillende richtingen."
+        },
+        {
+          "id": "o",
+          "text": "Ze staan in elk aanzicht loodrecht op elkaar, dus ze snijden."
+        }
+      ]
+    },
+    {
+      "id": "l7b-02",
+      "block": "l7b",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "P is het midden van ruimtediagonaal AG van een kubus. Welke eigenschap blijft zeker geldig in een niet-ontaarde parallelprojectie van AG?",
+      "answer": [
+        "m"
+      ],
+      "explanation": "Een parallelprojectie bewaart verhoudingen van lijnstukken op dezelfde lijn. Het beeld van P deelt daarom het beeld van AG in twee gelijke stukken. De werkelijke lengte en hoek hoeven niet bewaard te blijven.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ],
+          "P": [
+            3,
+            3,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "P is het midden van AG. De figuur is een parallelprojectie.",
+        "highlights": [
+          "AG"
+        ]
+      },
+      "options": [
+        {
+          "id": "l",
+          "text": "Het getekende AG heeft dezelfde lengte als het werkelijke AG."
+        },
+        {
+          "id": "h",
+          "text": "Elke hoek met AG behoudt zijn grootte."
+        },
+        {
+          "id": "m",
+          "text": "Het getekende P is het midden van het getekende AG."
+        },
+        {
+          "id": "r",
+          "text": "AG blijft loodrecht op elke ribbe die AG kruist."
+        }
+      ]
+    },
+    {
+      "id": "l7b-03",
+      "block": "l7b",
+      "skill": "construeren",
+      "type": "choice",
+      "prompt": "In piramide ABCDT liggen P, Q en R op respectievelijk TA, TB en TC. Er is vastgesteld dat PQ ∥ AB en QR ∥ BC. Welke conclusie volgt over het vlak PQR?",
+      "answer": [
+        "p"
+      ],
+      "explanation": "PQ en QR zijn twee snijdende lijnen in vlak PQR. Ze zijn evenwijdig aan de snijdende lijnen AB en BC in het grondvlak. Daarmee zijn de vlakken PQR en ABCD evenwijdig. Eén evenwijdig lijnenpaar alleen zou niet voldoende zijn.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            -4,
+            -4,
+            0
+          ],
+          "B": [
+            4,
+            -4,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            -4,
+            4,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            8
+          ],
+          "P": [
+            -2,
+            -2,
+            4
+          ],
+          "Q": [
+            2,
+            -2,
+            4
+          ],
+          "R": [
+            2,
+            2,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "caption": "Vierzijdige piramide. PQ ∥ AB en QR ∥ BC zijn vastgesteld.",
+        "highlights": [
+          "PQ",
+          "QR"
+        ]
+      },
+      "options": [
+        {
+          "id": "e",
+          "text": "De doorsnede moet een driehoek zijn, omdat drie punten gegeven zijn."
+        },
+        {
+          "id": "p",
+          "text": "Vlak PQR is evenwijdig aan het grondvlak ABCD."
+        },
+        {
+          "id": "l",
+          "text": "Vlak PQR staat loodrecht op het grondvlak."
+        },
+        {
+          "id": "n",
+          "text": "Alleen PQ is bruikbaar; de richting van QR zegt niets over het vlak."
+        }
+      ]
+    },
+    {
+      "id": "l7b-04",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT is ABC een rechthoekige driehoek met AB = 6 cm en AC = 8 cm. P ligt op TA met TP : PA = 2 : 1. Een vlak door P evenwijdig aan ABC snijdt de tetraëder. Bereken de oppervlakte van deze doorsnede in cm², op één decimaal.",
+      "answer": [
+        "10.6666666667"
+      ],
+      "explanation": "Vanaf de top is TP/TA = 2/3. De oppervlakte van ABC is 24 cm². De doorsnede heeft oppervlakte 24 × (2/3)² = 32/3 ≈ 10,7 cm².",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            12
+          ],
+          "P": [
+            0,
+            0,
+            4
+          ],
+          "Q": [
+            4,
+            0,
+            4
+          ],
+          "R": [
+            0,
+            5.333333333333333,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "caption": "Tetraëder: AB ⟂ AC, AB = 6 cm, AC = 8 cm, TP : PA = 2 : 1.",
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R"
+          ]
+        ],
+        "highlights": [
+          "PQ",
+          "QR",
+          "RP"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm²",
+      "working": true
+    },
+    {
+      "id": "l7b-05",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een recht prisma ABC.DEF heeft een rechthoekige grondvlakdriehoek ABC met AB = 6 cm en AC = 8 cm. AD = 10 cm. Men verwijdert tetraëder ABCP, met P op AD en AP = 4 cm. Bereken de overblijvende inhoud in cm³, op één decimaal.",
+      "answer": [
+        "208"
+      ],
+      "explanation": "De grondvlakoppervlakte is 24 cm². Het hele prisma heeft inhoud 24 × 10 = 240 cm³. De verwijderde tetraëder heeft inhoud ⅓ × 24 × 4 = 32 cm³. Er blijft 208,0 cm³ over.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            10
+          ],
+          "E": [
+            6,
+            0,
+            10
+          ],
+          "F": [
+            0,
+            8,
+            10
+          ],
+          "P": [
+            0,
+            0,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "showCube": false,
+        "caption": "Recht driehoekig prisma: AB ⟂ AC, AB = 6, AC = 8 en AD = 10 cm; AP = 4 cm.",
+        "highlights": [
+          "BP",
+          "CP"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm³",
+      "working": true
+    },
+    {
+      "id": "l7b-06",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een rechte piramide heeft een vierkant grondvlak met zijde 8 cm en hoogte 9 cm. Een vlak op 3 cm boven het grondvlak, evenwijdig aan dat grondvlak, snijdt de top eraf. Bereken de inhoud van het onderste stuk in cm³, op één decimaal.",
+      "answer": [
+        "135.111111111"
+      ],
+      "explanation": "De hele piramide heeft inhoud ⅓ × 64 × 9 = 192 cm³. De bovenste piramide heeft hoogte 6 cm en lengteschaal 2/3. Inhouden schalen met de derde macht: de top heeft inhoud 192 × (2/3)³. Onder blijft 192 × (1 − 8/27) ≈ 135,1 cm³.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            -4,
+            -4,
+            0
+          ],
+          "B": [
+            4,
+            -4,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            -4,
+            4,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            9
+          ],
+          "P": [
+            -2.6666666666666665,
+            -2.6666666666666665,
+            3
+          ],
+          "Q": [
+            2.6666666666666665,
+            -2.6666666666666665,
+            3
+          ],
+          "R": [
+            2.6666666666666665,
+            2.6666666666666665,
+            3
+          ],
+          "S": [
+            -2.6666666666666665,
+            2.6666666666666665,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "caption": "Vierkante piramide: grondzijde 8 cm, hoogte 9 cm; snijvlak 3 cm boven het grondvlak.",
+        "planes": [
+          [
+            "P",
+            "Q",
+            "R",
+            "S"
+          ]
+        ],
+        "highlights": [
+          "PQ",
+          "QR",
+          "RS",
+          "SP"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm³",
+      "working": true
+    },
+    {
+      "id": "l7b-07",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een rechte piramide heeft een rechthoekig grondvlak van 10 bij 6 cm. De top T ligt 6 cm loodrecht boven het middelpunt van ABCD. Bereken hoek ATB in graden, op één decimaal.",
+      "answer": [
+        "73.398450401"
+      ],
+      "explanation": "De afstand van het grondvlakmiddelpunt tot A en B is √(5² + 3²) = √34. Dus TA = TB = √(34 + 36) = √70. In driehoek ATB geldt cos ∠ATB = (70 + 70 − 100)/(2 × 70) = 2/7. De hoek is ongeveer 73,4°.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            10,
+            0,
+            0
+          ],
+          "C": [
+            10,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            5,
+            3,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "caption": "Rechte piramide: AB = 10 cm, AD = 6 cm en hoogte 6 cm. Gevraagd is hoek ATB.",
+        "highlights": [
+          "AT",
+          "BT"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "°",
+      "working": true
+    },
+    {
+      "id": "l7b-08",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In een recht driehoekig prisma ABC.DEF is AB ⟂ AC, AB = 6 cm, AC = 8 cm en AD = 5 cm. Bereken de hoek tussen BF en vlak ABED in graden, op één decimaal.",
+      "answer": [
+        "45.687615376"
+      ],
+      "explanation": "F projecteert loodrecht op D in vlak ABED; FD = 8 cm. De projectie van BF is BD met lengte √(6² + 5²) = √61. Daarom tan α = 8/√61 en α ≈ 45,7°.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            5
+          ],
+          "E": [
+            6,
+            0,
+            5
+          ],
+          "F": [
+            0,
+            8,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "showCube": false,
+        "caption": "Recht driehoekig prisma: AB = 6, AC = 8 en AD = 5 cm. Gezocht: hoek van BF met ABED.",
+        "highlights": [
+          "BF"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "E",
+            "D"
+          ]
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "°",
+      "working": true
+    },
+    {
+      "id": "l7b-09",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT staan AB, AC en AT in A onderling loodrecht. AB = 6 cm, AC = 8 cm en AT = 6 cm. Bereken de kleinste hoek tussen BCT en ABC in graden, op één decimaal.",
+      "answer": [
+        "51.3401917459"
+      ],
+      "explanation": "Noem de loodvoet van A op BC het punt M. BC = 10 en AM = 6 × 8/10 = 4,8. AT ⟂ ABC; bovendien zijn AM en TM loodrecht op BC. Vlak ATM is dus een standvlak en de gezochte hoek is TMA. Tan α = 6/4,8 = 1,25, dus α ≈ 51,3°.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "caption": "Tetraëder met drie onderling loodrechte ribben vanuit A: 6, 8 en 6 cm.",
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "°",
+      "working": true
+    },
+    {
+      "id": "l7b-10",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT staan AB, AC en AT in A onderling loodrecht, met AB = 6 cm, AC = 8 cm en AT = 6 cm. Bereken de afstand van C tot de volledige lijn BT in cm, op één decimaal.",
+      "answer": [
+        "9.05538513814"
+      ],
+      "explanation": "BC = CT = 10 cm, dus driehoek BCT is gelijkbenig. De loodvoet vanuit C ligt in het midden van BT. BT = 6√2, dus d = √(10² − (3√2)²) = √82 ≈ 9,1 cm.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "caption": "Tetraëder: AB = AT = 6 cm, AC = 8 cm. Gezocht: afstand van C tot BT.",
+        "highlights": [
+          "BT"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm",
+      "working": true,
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            6
+          ],
+          "P": [
+            3,
+            0,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "caption": "P is de loodvoet van C op BT. CP ⟂ BT.",
+        "highlights": [
+          "BT",
+          "CP"
+        ]
+      }
+    },
+    {
+      "id": "l7b-11",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In dezelfde tetraëder ABCT staan AB, AC en AT onderling loodrecht in A. AB = 6 cm, AC = 8 cm en AT = 6 cm. Bereken de afstand van A tot vlak BCT in cm, op één decimaal.",
+      "answer": [
+        "3.74817028533"
+      ],
+      "explanation": "De inhoud is ⅓ × (½ × 6 × 8) × 6 = 48 cm³. Driehoek BCT heeft basis BT = 6√2 en hoogte √82, dus oppervlakte 6√41. Nu is 48 = ⅓ × 6√41 × d. Dit geeft d = 24/√41 ≈ 3,7 cm.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "caption": "Tetraëder: AB = AT = 6 cm en AC = 8 cm. Gezocht: afstand van A tot vlak BCT.",
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ]
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm",
+      "working": true
+    },
+    {
+      "id": "l7b-12",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT staan AB, AC en AT in A onderling loodrecht; AB = 6 cm, AC = 8 cm en AT = 6 cm. Bereken de afstand tussen de volledige lijnen AB en CT in cm, op één decimaal.",
+      "answer": [
+        "4.8"
+      ],
+      "explanation": "Vlak ACT staat loodrecht op AB. De loodlijn vanuit A op CT ligt in ACT en staat daardoor ook loodrecht op AB. In de rechthoekige driehoek ACT is CT = 10 cm en de oppervlakte 24 cm². De hoogte op CT is 2 × 24/10 = 4,8 cm.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "caption": "Tetraëder: AB = 6, AC = 8 en AT = 6 cm. Gezocht: afstand tussen AB en CT.",
+        "highlights": [
+          "AB",
+          "CT"
+        ]
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "cm",
+      "working": true
+    },
+    {
+      "id": "l7b-13",
+      "block": "l7b",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Een student verschuift de kruisende lijn CT evenwijdig totdat deze AB snijdt en gebruikt de nieuwe figuur. Welke bewering is juist?",
+      "answer": [
+        "h"
+      ],
+      "explanation": "Een evenwijdige verschuiving bewaart de richting en daarmee de hoek met AB. De onderlinge afstand kan juist veranderen; na verschuiven tot een snijpunt is die afstand nul. Voor een afstandsvraag moet je een gemeenschappelijke loodlijn of een passend parallelvlak gebruiken.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "caption": "Tetraëder. De volledige lijnen AB en CT kruisen.",
+        "highlights": [
+          "AB",
+          "CT"
+        ]
+      },
+      "options": [
+        {
+          "id": "b",
+          "text": "Zowel de hoek als de afstand tussen de lijnen blijven altijd gelijk."
+        },
+        {
+          "id": "h",
+          "text": "De hoek tussen de lijnen blijft gelijk; de afstand hoeft niet gelijk te blijven."
+        },
+        {
+          "id": "a",
+          "text": "De afstand blijft gelijk; de hoek verandert."
+        },
+        {
+          "id": "g",
+          "text": "De oorspronkelijke lijnen blijken dus toch snijdend te zijn."
+        }
+      ]
+    },
+    {
+      "id": "l7b-14",
+      "block": "l7b",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een open watertank heeft de vorm van een omgekeerde rechte vierkante piramide. De punt is onderaan. De totale hoogte is 9 dm en de bovenzijde is een vierkant van 12 bij 12 dm. Tot welke hoogte vanaf de punt moet het water komen zodat de tank voor de helft van zijn inhoud is gevuld? Geef dm op één decimaal.",
+      "answer": [
+        "7.14330473386"
+      ],
+      "explanation": "Het gevulde deel is gelijkvormig aan de hele piramide. Bij waterhoogte h is de lengteschaal h/9 en de inhoudsverhouding (h/9)³. Dus (h/9)³ = ½, zodat h = 9 × ∛(½) ≈ 7,1 dm. Halve inhoud betekent niet halve hoogte.",
+      "hint": "Bepaal eerst welke gegevens en eigenschappen je uit de ruimtelijke figuur kunt afleiden.",
+      "scene": {
+        "points": {
+          "T": [
+            0,
+            0,
+            0
+          ],
+          "A": [
+            -6,
+            -6,
+            9
+          ],
+          "B": [
+            6,
+            -6,
+            9
+          ],
+          "C": [
+            6,
+            6,
+            9
+          ],
+          "D": [
+            -6,
+            6,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "caption": "Omgekeerde vierkante piramide: totale hoogte 9 dm, bovenzijde 12 × 12 dm."
+      },
+      "tolerance": 0.02,
+      "decimals": 1,
+      "unit": "dm",
+      "working": true
+    }
+  ],
+  "checks": {
+    "7a": [
+      "l7a-01",
+      "l7a-02",
+      "l7a-03",
+      "l7a-04",
+      "l7a-05",
+      "l7a-06",
+      "l7a-07",
+      "l7a-08",
+      "l7a-09",
+      "l7a-10",
+      "l7a-11",
+      "l7a-12",
+      "l7a-13",
+      "l7a-14"
+    ],
+    "7b": [
+      "l7b-01",
+      "l7b-02",
+      "l7b-03",
+      "l7b-04",
+      "l7b-05",
+      "l7b-06",
+      "l7b-07",
+      "l7b-08",
+      "l7b-09",
+      "l7b-10",
+      "l7b-11",
+      "l7b-12",
+      "l7b-13",
+      "l7b-14"
+    ]
+  },
+  "papers": {
+    "7a": {
+      "title": "Examenwerkblad A · kubus en verantwoording",
+      "prompt": "Teken op papier een kubus ABCD.EFGH met ribben van 6 cm in parallelprojectie. Neem P op AE met AP = 2 cm, Q als midden van EH en R als midden van BC. Construeer de volledige doorsnede door P, Q en R. Nummer je constructielijnen en verklaar de twee gebruikte meetkundige principes. Bereken vervolgens de afstand tussen AC en BH in cm, op één decimaal.",
+      "steps": [
+        "Maak eerst zelf een ruime tekening, met plaats buiten de kubus voor hulppunten.",
+        "Construeer de doorsnede; benoem nieuwe punten en nummer de lijnen in de volgorde waarin je werkt.",
+        "Schrijf waarom je hulppunten en evenwijdige lijnen bruikbaar zijn.",
+        "Maak een aparte tekening voor de afstandsvraag en werk je berekening uit voordat je de uitwerking opent."
+      ],
+      "rubric": [
+        "De doorsnede is de zeshoek P–X–R–S–Y–Q, met X op AB, S op CG en Y op GH; alle grenzen liggen in zijvlakken.",
+        "Een correct hulppunt buiten de kubus en de snijlijn in het grondvlak zijn zichtbaar, met verklaarde gemeenschappelijke-vlakredenering.",
+        "Evenwijdige snijlijnen zijn correct gebruikt en gemarkeerd; de constructievolgorde is navolgbaar zonder alleen op de vorm van de schets te vertrouwen.",
+        "De afstand is via een gemeenschappelijke loodlijn bepaald en onderbouwd; d(AC,BH) = √6 ≈ 2,4 cm."
+      ],
+      "solution": [
+        "Teken PQ. Verleng PQ en AD tot hun snijpunt U buiten de kubus.",
+        "Teken UR en noem X het snijpunt met AB.",
+        "Trek door R een evenwijdige aan PQ; die snijdt CG in S.",
+        "Trek door Q een evenwijdige aan UR; die snijdt GH in Y.",
+        "Teken de zes grenslijnstukken PX, XR, RS, SY, YQ en QP.",
+        "Voor de afstand: M = AC ∩ BD. Vlak DBFH staat loodrecht op AC. De hoogte vanuit M op BH is daarom de gemeenschappelijke loodlijn.",
+        "MB = 3√2 en de hoogte vanuit H op MB is 6, zodat opp(MBH) = 9√2. BH = 6√3. De afstand is 2 × 9√2/(6√3) = √6 ≈ 2,4 cm."
+      ],
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ],
+          "P": [
+            0,
+            0,
+            2
+          ],
+          "Q": [
+            0,
+            3,
+            6
+          ],
+          "R": [
+            6,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Papieren werkblad A: kubus met ribben 6 cm; AP = 2 cm; Q en R zijn middens."
+      }
+    },
+    "7b": {
+      "title": "Examenwerkblad B · scheve piramide en transfer",
+      "prompt": "Teken op papier de scheve piramide ABCDT. Het rechthoekige grondvlak heeft AB = 6 cm en AD = 8 cm. De loodrechte hoogte is 9 cm; de loodvoet van T ligt in het grondvlak op 1 cm van AD en 2 cm van AB. P, Q en R zijn de middens van AB, BC en DT. Construeer de volledige doorsnede door P, Q en R, met genummerde hulplijnen en argumenten. Bereken daarna de inhoud van de hele piramide in cm³ en leg uit waarom de lengte van een schuine opstaande ribbe niet de hoogte in de inhoudsformule is.",
+      "steps": [
+        "Maak zelf een ruime parallelprojectie en geef P, Q en R aan.",
+        "Construeer de doorsnede en nummer de gebruikte lijnen; benoem alle nieuwe punten.",
+        "Onderbouw de snijlijnen in twee verschillende zijvlakken.",
+        "Bereken de inhoud met een duidelijk gekozen grondvlak en loodrechte hoogte."
+      ],
+      "rubric": [
+        "De volledige doorsnede is de vijfhoek P–Q–Y–R–X, met X op TA en Y op TC.",
+        "De hulppunten U = PQ ∩ AD en V = PQ ∩ CD staan correct buiten het grondvlak; de constructievolgorde is leesbaar.",
+        "De verbindingen UR en VR worden verantwoord doordat beide punten in het doorsnedevlak én in hetzelfde zijvlak liggen.",
+        "De inhoud is ⅓ × 6 × 8 × 9 = 144 cm³; de hoogte is loodrecht op het grondvlak en is geen schuine opstaande ribbe."
+      ],
+      "solution": [
+        "Teken PQ. Noem U = PQ ∩ AD en V = PQ ∩ CD; beide hulppunten liggen buiten het grondvlak.",
+        "Teken UR; deze lijn ligt in zijvlak TAD. Noem X = UR ∩ TA.",
+        "Teken VR; deze lijn ligt in zijvlak TCD. Noem Y = VR ∩ TC.",
+        "Teken de vijf grenslijnstukken PQ, QY, YR, RX en XP.",
+        "Omdat ABCD een rechthoek is, is de grondvlakoppervlakte 6 × 8 = 48 cm². De loodrechte hoogte is 9 cm. Dus de inhoud is ⅓ × 48 × 9 = 144 cm³.",
+        "Een schuine ribbe van T naar een hoekpunt is niet loodrecht op ABCD en mag daarom niet als hoogte in deze inhoudsformule worden gebruikt."
+      ],
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            1,
+            2,
+            9
+          ],
+          "P": [
+            3,
+            0,
+            0
+          ],
+          "Q": [
+            6,
+            4,
+            0
+          ],
+          "R": [
+            0.5,
+            5,
+            4.5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "caption": "Papieren werkblad B: scheve piramide; grondvlak 6 × 8 cm en loodrechte hoogte 9 cm. P, Q en R zijn middens."
+      }
+    }
+  },
+  "sources": [
+    {
+      "level": 7,
+      "source": "RMa Toets 2018 Basis Ruimtemeetkunde VT en DT 5 november 2018.pdf; Uitwerkingen tentamen Basis RM 5 november 2018.pdf",
+      "slides": "Opgaven 1–5 en beoordelingsopmerkingen AB1–AB13",
+      "coverage": "Nieuwe examenopgaven naar de getoetste vaardigheden: ligging en bewijs, hulpvlak en doorsnede, inhoud, lijn- en vlakhoeken, punt-lijn- en punt-vlakafstand, kruisende lijnen, gelijkvormigheid en formulemodel. Geen kopie van ontbrekende bronfiguren. Papieren constructievolgorde, nieuwe puntnamen en symbolen sluiten aan op de toetsinstructie."
+    },
+    {
+      "level": 7,
+      "source": "Ruimtemeetkunde 2025-2026 lessen 1.1–1.6",
+      "slides": "1.2: 10–22; 1.3: 5–11; 1.4: 5–20; 1.5: 8–14; 1.6: 4–10",
+      "coverage": "Cumulatieve dekking van zes lessen; tweede variant wisselt kubussen en balken af met driehoekige prisma’s, scheve piramides, afgeknotte piramides en een omgekeerd volumemodel."
+    }
+  ]
+}

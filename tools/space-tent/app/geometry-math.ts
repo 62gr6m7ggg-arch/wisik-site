@@ -48,3 +48,12 @@ export function clipProjectedLine(a:number[],b:number[],width:number,height:numb
  }
  return lo>hi?null:[a.map((v,i)=>v+lo*d[i]),a.map((v,i)=>v+hi*d[i])];
 }
+
+/** Convex solid edge visibility from its actual face planes (custom prisms/pyramids). */
+export function edgeIsHidden(edge:string,edges:string[],points:Record<string,V3>,eye:V3){
+ const vertices=[...new Set(edges.join('').split(''))].map(k=>points[k]).filter(Boolean),a=points[edge[0]],b=points[edge[1]];
+ if(!a||!b||vertices.length<4)return false;
+ const u=sub(b,a),normals:V3[]=[];
+ for(const p of vertices){let n=cross(u,sub(p,a));const size=Math.hypot(...n);if(size<1e-8)continue;n=mul(n,1/size);const distances=vertices.map(v=>dot(n,sub(v,a)));if(distances.some(d=>d>1e-7)&&distances.some(d=>d< -1e-7))continue;if(distances.every(d=>Math.abs(d)<1e-7))continue;if(distances.some(d=>d>1e-7))n=mul(n,-1);if(!normals.some(m=>distance(m,n)<1e-7))normals.push(n)}
+ return normals.length>=2&&normals.every(n=>dot(n,eye)< -1e-8);
+}

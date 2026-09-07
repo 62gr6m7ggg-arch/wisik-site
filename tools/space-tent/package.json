@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "node scripts/build-space.mjs",
-    "audit:build": "node scripts/build-audit.mjs && node scripts/check-interaction.mjs --compile",
+    "audit:build": "node scripts/build-audit.mjs && node scripts/build-course-audit.mjs && node scripts/check-interaction.mjs --compile",
     "test": "node scripts/check-learning.mjs && node scripts/check-diagnostic.mjs && node scripts/check-local-progress.mjs && node scripts/check-interaction.mjs"
   },
   "dependencies": {

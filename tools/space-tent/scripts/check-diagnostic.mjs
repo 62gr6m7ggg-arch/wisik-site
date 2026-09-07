@@ -37,14 +37,13 @@ for(const block of M.BANK.blocks){
  assert.equal(D.resumeBlock(block,[trigger,...probes,...retests,closure]).stage,'theory');
  assert.equal(M.visibleEvidenceAnswers([trigger,...probes],M.BANK.checkpointIds).length,1,'Diagnostic answers never affect counters');
 }
-const cps=M.BANK.checkpointIds.map(id=>event(id,M.QUESTIONS[id].answer,'check','check-1'));
-for(let i=1;i<cps.length;i++){
- const shown=M.visibleEvidenceAnswers(cps.slice(0,i),M.BANK.checkpointIds);
- assert.equal(shown.length,0,'No evidence release before the whole check');
- const progress=M.deriveProgress(cps.slice(0,i));
- assert.equal(progress.xp,0);
- for(const skill of Object.values(progress.skills)){assert.equal(skill.independent,0);assert.equal(skill.helped,0);}
+for(const ids of Object.values(M.CHECKS)){
+ const cps=ids.map(id=>event(id,M.QUESTIONS[id].answer,'check','check-1'));
+ for(let i=1;i<cps.length;i++){
+  const shown=M.visibleEvidenceAnswers(cps.slice(0,i),M.BANK.checkpointIds);assert.equal(shown.length,0,'No evidence release before this whole check');
+  const progress=M.deriveProgress(cps.slice(0,i));assert.equal(progress.xp,0);
+  for(const skill of Object.values(progress.skills)){assert.equal(skill.independent,0);assert.equal(skill.helped,0);}
+ }
+ assert.equal(M.visibleEvidenceAnswers(cps,M.BANK.checkpointIds).length,cps.length);
 }
-assert.equal(M.visibleEvidenceAnswers(cps,M.BANK.checkpointIds).length,cps.length);
-assert.equal(M.deriveProgress(M.visibleEvidenceAnswers(cps,M.BANK.checkpointIds)).successfulCheck,true);
-console.log(`Diagnostic proposal passed ${combinations} complete answer combinations, all 4 resume chains, session isolation, forged correctness, and 7 incomplete-check counter states.`);
+console.log(`Diagnostic checks passed: ${combinations} answer combinations, ${M.BANK.blocks.length} resume chains and ${Object.keys(M.CHECKS).length} independent check groups.`);

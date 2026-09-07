@@ -1,0 +1,7011 @@
+{
+  "blocks": [
+    {
+      "id": "l4-cos",
+      "level": 4,
+      "title": "De juiste driehoek",
+      "subtitle": "Cosinusregel en oppervlakte zonder een rechte hoek te veronderstellen.",
+      "theory": [
+        {
+          "title": "Eerst de driehoek, dan de formule",
+          "text": "Een ruimtelijke hoek bereken je in een geschikte vlakke driehoek. Pythagoras en de gebruikelijke verhoudingen sin, cos en tan tussen rechthoekszijden vereisen een rechte hoek. Voor een willekeurige driehoek geldt a² = b² + c² − 2bc cos α, met zijde a tegenover hoek α. Bij α = 90° wordt cos α nul en volgt Pythagoras. De schets bepaalt dus nooit of je de rechthoekige formule mag gebruiken.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                1.0,
+                4.898979485566356,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA"
+            ],
+            "showCube": false,
+            "view": "top",
+            "caption": "Driehoek ABC: AB = 6 cm, AC = 5 cm, BC = 7 cm."
+          }
+        },
+        {
+          "title": "Waarom de cosinusregel klopt",
+          "text": "Laat uit C de loodlijn CD op AB neer. Neem AB = c, AC = b en ∠CAB = α. Dan AD = b cos α en CD = b sin α. Pythagoras in BCD geeft BC² = (c − b cos α)² + (b sin α)² = c² + b² − 2bc cos α. De formule geldt ook bij een stompe hoek; de loodrechte projectie kan dan op het verlengde van AB liggen.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                1.0,
+                4.898979485566356,
+                0
+              ],
+              "D": [
+                1.0,
+                0,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA"
+            ],
+            "showCube": false,
+            "view": "top",
+            "caption": "Hoogtelijn CD staat loodrecht op AB. Deze driehoek heeft AB = 6, AC = 5 en BC = 7 cm.",
+            "segments": [
+              {
+                "from": [
+                  1.0,
+                  4.898979485566356,
+                  0
+                ],
+                "to": [
+                  1.0,
+                  0,
+                  0
+                ],
+                "color": "#72e1b8",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "title": "Van drie zijden naar hoek én oppervlakte",
+          "text": "Bij AB = 6, AC = 5 en BC = 7 is cos A = (6² + 5² − 7²)/(2 × 6 × 5) = 0,2. Dus A ≈ 78,46°. Daarna volgt de oppervlakte met ½ × AB × AC × sin A ≈ 14,70 cm². Bewaar tussentijds de volledige waarde in je rekenmachine. De grootste zijde ligt tegenover de grootste hoek: zo controleer je of de uitkomst aannemelijk is.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                1.0,
+                4.898979485566356,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA"
+            ],
+            "showCube": false,
+            "view": "top",
+            "caption": "De hoek bij A ligt tussen de zijden van 6 en 5 cm. De zijde van 7 cm ligt ertegenover.",
+            "highlights": [
+              "AB",
+              "AC"
+            ]
+          }
+        }
+      ],
+      "questionIds": [
+        "l4-cos-q1",
+        "l4-cos-q2",
+        "l4-cos-q3",
+        "l4-cos-q4"
+      ],
+      "probeIds": [
+        "l4-cos-p1",
+        "l4-cos-p2"
+      ],
+      "retestIds": [
+        "l4-cos-r1",
+        "l4-cos-r2"
+      ],
+      "repair": {
+        "title": "Controleer de rechte hoek vóór Pythagoras",
+        "text": "De tekening kan een hoek rechthoekig laten lijken. Dat is geen bewijs. Met zijden 5, 6 en 7 is 5² + 6² = 61, terwijl 7² = 49. Gebruik daarom de cosinusregel. In een echte 3–4–5-driehoek wordt de cosinusterm bij de rechte hoek precies nul. Pythagoras is dus een bijzonder geval, geen algemene driehoeksregel.",
+        "scene": {
+          "points": {
+            "A": [
+              0,
+              0,
+              0
+            ],
+            "B": [
+              6,
+              0,
+              0
+            ],
+            "C": [
+              1.0,
+              4.898979485566356,
+              0
+            ]
+          },
+          "edges": [
+            "AB",
+            "BC",
+            "CA"
+          ],
+          "showCube": false,
+          "view": "top",
+          "caption": "5² + 6² is niet gelijk aan 7²: deze driehoek is niet rechthoekig."
+        }
+      },
+      "misconception": {
+        "label": "Pythagoras toepassen zonder aangetoonde rechte hoek",
+        "trigger": {
+          "qid": "l4-cos-q1",
+          "wrongAnswer": "d"
+        },
+        "probeWrongAnswers": [
+          "a",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "l4-lines",
+      "level": 4,
+      "title": "Hoeken tussen lijnen",
+      "subtitle": "Kruisende lijnen vergelijken door evenwijdig verschuiven.",
+      "theory": [
+        {
+          "title": "Een hoek hoort bij richtingen",
+          "text": "Voor twee verschillende lijnen gebruiken we de kleinste hoek tussen hun richtingen: van 0° tot en met 90°. Ook kruisende lijnen hebben zo een hoek. Breng ze door evenwijdig verschuiven door één punt. Dit verandert de richtingen en dus hun hoek niet. Twee lijnen die op papier lijken te snijden, hoeven in de ruimte niet te snijden.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                4,
+                0
+              ],
+              "E": [
+                0,
+                0,
+                4
+              ],
+              "F": [
+                4,
+                0,
+                4
+              ],
+              "G": [
+                4,
+                4,
+                4
+              ],
+              "H": [
+                0,
+                4,
+                4
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "caption": "AB en DG kruisen. DG is evenwijdig aan AF; ∠BAF vertegenwoordigt de hoek tussen AB en DG.",
+            "view": "spatial",
+            "highlights": [
+              "AB",
+              "DG"
+            ]
+          }
+        },
+        {
+          "title": "Verplaats beide punten even ver",
+          "text": "I ligt halverwege AE. Om de richting van IB door E te krijgen, schuif je de hele lijn een halve ribbe omhoog: I wordt E en B wordt J, het midden van BF. Daarom is EJ evenwijdig aan IB. Verplaats nooit slechts één eindpunt; dan draai je de lijn en verandert de hoek. Nu kun je in driehoek EJG rekenen.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                4,
+                0
+              ],
+              "E": [
+                0,
+                0,
+                4
+              ],
+              "F": [
+                4,
+                0,
+                4
+              ],
+              "G": [
+                4,
+                4,
+                4
+              ],
+              "H": [
+                0,
+                4,
+                4
+              ],
+              "I": [
+                0,
+                0,
+                2
+              ],
+              "J": [
+                4,
+                0,
+                2
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "caption": "EJ ∥ IB: I verschuift naar E en B naar J. De hoek wordt gemeten in driehoek EJG.",
+            "view": "spatial",
+            "highlights": [
+              "EG",
+              "IB",
+              "EJ",
+              "JG"
+            ]
+          }
+        },
+        {
+          "title": "Kies daarna de passende hoekberekening",
+          "text": "Bij ribbe 4 zijn EG = 4√2 en EJ = JG = √20. De cosinusregel in EJG geeft cos ∠GEJ = (32 + 20 − 20)/(2√32√20) = 2/√10. Dus de hoek tussen EG en IB is ongeveer 50,77°. Levert je driehoek 129,23° op, neem dan de supplementaire hoek 180° − 129,23°: de hoek tussen lijnen is de kleinste.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                4,
+                0
+              ],
+              "E": [
+                0,
+                0,
+                4
+              ],
+              "F": [
+                4,
+                0,
+                4
+              ],
+              "G": [
+                4,
+                4,
+                4
+              ],
+              "H": [
+                0,
+                4,
+                4
+              ],
+              "I": [
+                0,
+                0,
+                2
+              ],
+              "J": [
+                4,
+                0,
+                2
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "caption": "In driehoek EJG: EG = 4√2 cm; EJ = JG = √20 cm. Gezochte hoek bij E.",
+            "view": "spatial",
+            "highlights": [
+              "EG",
+              "IB",
+              "EJ",
+              "JG"
+            ]
+          }
+        }
+      ],
+      "questionIds": [
+        "l4-lines-q1",
+        "l4-lines-q2",
+        "l4-lines-q3",
+        "l4-lines-q4"
+      ],
+      "probeIds": [
+        "l4-lines-p1",
+        "l4-lines-p2"
+      ],
+      "retestIds": [
+        "l4-lines-r1",
+        "l4-lines-r2"
+      ],
+      "repair": {
+        "title": "Niet snijden betekent niet: geen hoek",
+        "text": "Kruisen gaat over de ligging van lijnen; de hoek gaat over hun richtingen. In de kubus kruisen AB en DG. Schuif DG evenwijdig naar AF. Nu lees je dezelfde richtingshoek af in driehoek ABF, waar hij 45° is. Alleen een lijn draaien zou die richting en dus de hoek veranderen.",
+        "scene": {
+          "points": {
+            "A": [
+              0,
+              0,
+              0
+            ],
+            "B": [
+              4,
+              0,
+              0
+            ],
+            "C": [
+              4,
+              4,
+              0
+            ],
+            "D": [
+              0,
+              4,
+              0
+            ],
+            "E": [
+              0,
+              0,
+              4
+            ],
+            "F": [
+              4,
+              0,
+              4
+            ],
+            "G": [
+              4,
+              4,
+              4
+            ],
+            "H": [
+              0,
+              4,
+              4
+            ]
+          },
+          "edges": [
+            "AB",
+            "BC",
+            "CD",
+            "DA",
+            "EF",
+            "FG",
+            "GH",
+            "HE",
+            "AE",
+            "BF",
+            "CG",
+            "DH"
+          ],
+          "showCube": false,
+          "caption": "DG en AF hebben dezelfde richting. De hoek tussen AB en DG is daarom ∠BAF.",
+          "view": "spatial",
+          "highlights": [
+            "AB",
+            "DG",
+            "AF"
+          ]
+        }
+      },
+      "misconception": {
+        "label": "Denken dat kruisende lijnen geen hoek hebben",
+        "trigger": {
+          "qid": "l4-lines-q1",
+          "wrongAnswer": "a"
+        },
+        "probeWrongAnswers": [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "l4-plane",
+      "level": 4,
+      "title": "Van lijn naar vlak",
+      "subtitle": "Loodrecht bewijzen en de juiste projectie construeren.",
+      "theory": [
+        {
+          "title": "Loodrecht op een vlak vraagt twee richtingen",
+          "text": "Om AE loodrecht op vlak ABCD te bewijzen, volstaan AE ⟂ AB en AE ⟂ AD: AB en AD zijn twee snijdende lijnen van het vlak door A. Eén lijn is onvoldoende. De lijn AF staat bijvoorbeeld wel loodrecht op AD, maar niet op het hele grondvlak. Houd bij een bewijs dus bij welke lijnen in het vlak liggen en waar ze elkaar snijden.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                4,
+                0
+              ],
+              "E": [
+                0,
+                0,
+                4
+              ],
+              "F": [
+                4,
+                0,
+                4
+              ],
+              "G": [
+                4,
+                4,
+                4
+              ],
+              "H": [
+                0,
+                4,
+                4
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "caption": "AB en AD snijden in A en liggen in ABCD; AE staat loodrecht op beide.",
+            "view": "spatial",
+            "highlights": [
+              "AE",
+              "AB",
+              "AD"
+            ],
+            "planes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Projecteer loodrecht, punt voor punt",
+          "text": "De hoek tussen een lijn en een vlak is de hoek tussen de lijn en haar loodrechte projectie op het vlak. Voor AG en ABCD blijft A op A en wordt G op C geprojecteerd, want CG ⟂ ABCD. De projectie is dus AC. Een andere lijn door A in het grondvlak, zoals AB, geeft meestal een andere hoek en is niet de definitie.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                4,
+                0
+              ],
+              "E": [
+                0,
+                0,
+                4
+              ],
+              "F": [
+                4,
+                0,
+                4
+              ],
+              "G": [
+                4,
+                4,
+                4
+              ],
+              "H": [
+                0,
+                4,
+                4
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "caption": "G projecteert loodrecht op C; A ligt al in het grondvlak. De gevraagde hoek is ∠GAC.",
+            "view": "spatial",
+            "highlights": [
+              "AG",
+              "AC",
+              "CG"
+            ],
+            "planes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "De hoek wordt een rechthoekige driehoek",
+          "text": "In een kubus met ribbe 4 is AC = 4√2 en CG = 4. In driehoek ACG geldt tan ∠GAC = CG/AC = 1/√2; de lijn–vlakhoek is ongeveer 35,26°. De hoek met de normaal is het complement: 54,74°. Een lijn evenwijdig aan het vlak heeft hoek 0°; een lijn loodrecht op het vlak heeft hoek 90° en projecteert op één punt.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                4,
+                0
+              ],
+              "E": [
+                0,
+                0,
+                4
+              ],
+              "F": [
+                4,
+                0,
+                4
+              ],
+              "G": [
+                4,
+                4,
+                4
+              ],
+              "H": [
+                0,
+                4,
+                4
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "caption": "Driehoek ACG is recht bij C: AC = 4√2 cm en CG = 4 cm.",
+            "view": "spatial",
+            "highlights": [
+              "AG",
+              "AC",
+              "CG"
+            ],
+            "planes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            ]
+          }
+        }
+      ],
+      "questionIds": [
+        "l4-plane-q1",
+        "l4-plane-q2",
+        "l4-plane-q3",
+        "l4-plane-q4"
+      ],
+      "probeIds": [
+        "l4-plane-p1",
+        "l4-plane-p2"
+      ],
+      "retestIds": [
+        "l4-plane-r1",
+        "l4-plane-r2"
+      ],
+      "repair": {
+        "title": "Een projectie is geen willekeurige lijn in het vlak",
+        "text": "Voor AG en ABCD bepaal je eerst de voetpunten: A blijft A en G wordt C omdat CG loodrecht op ABCD staat. Daardoor is AC de enige loodrechte projectielijn. AB ligt wel in het vlak, maar heeft niet de richting van deze projectie. Bij de kubus geeft ∠GAB ongeveer 54,74°, terwijl de echte lijn–vlakhoek ∠GAC ongeveer 35,26° is.",
+        "scene": {
+          "points": {
+            "A": [
+              0,
+              0,
+              0
+            ],
+            "B": [
+              4,
+              0,
+              0
+            ],
+            "C": [
+              4,
+              4,
+              0
+            ],
+            "D": [
+              0,
+              4,
+              0
+            ],
+            "E": [
+              0,
+              0,
+              4
+            ],
+            "F": [
+              4,
+              0,
+              4
+            ],
+            "G": [
+              4,
+              4,
+              4
+            ],
+            "H": [
+              0,
+              4,
+              4
+            ]
+          },
+          "edges": [
+            "AB",
+            "BC",
+            "CD",
+            "DA",
+            "EF",
+            "FG",
+            "GH",
+            "HE",
+            "AE",
+            "BF",
+            "CG",
+            "DH"
+          ],
+          "showCube": false,
+          "caption": "G projecteert loodrecht op C; A ligt al in het grondvlak. De gevraagde hoek is ∠GAC.",
+          "view": "spatial",
+          "highlights": [
+            "AG",
+            "AC",
+            "CG"
+          ],
+          "planes": [
+            [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          ]
+        }
+      },
+      "misconception": {
+        "label": "Een willekeurige vlaklijn gebruiken in plaats van de loodrechte projectie",
+        "trigger": {
+          "qid": "l4-plane-q1",
+          "wrongAnswer": "d"
+        },
+        "probeWrongAnswers": [
+          "d",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "l4-dihedral",
+      "level": 4,
+      "title": "Standhoeken construeren",
+      "subtitle": "Van twee vlakken naar een doorsnede loodrecht op de snijlijn.",
+      "theory": [
+        {
+          "title": "Kijk loodrecht op de scharnierlijn",
+          "text": "Twee snijdende vlakken hebben een gemeenschappelijke snijlijn. Kies in elk vlak een lijn door hetzelfde punt op die snijlijn, beide loodrecht op de snijlijn. Hun hoek is een standhoek. Het vlak door die twee loodlijnen heet een standvlak. Bij ABCD en ABGH is AB de snijlijn: AD en AH voldoen, dus ∠DAH is geschikt. Een willekeurige hoek tussen twee lijnen uit de vlakken is dat niet.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                4,
+                0
+              ],
+              "E": [
+                0,
+                0,
+                4
+              ],
+              "F": [
+                4,
+                0,
+                4
+              ],
+              "G": [
+                4,
+                4,
+                4
+              ],
+              "H": [
+                0,
+                4,
+                4
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "caption": "AD en AH staan beide loodrecht op snijlijn AB. ∠DAH is een standhoek.",
+            "view": "spatial",
+            "highlights": [
+              "AB",
+              "AD",
+              "AH"
+            ],
+            "planes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              [
+                "A",
+                "B",
+                "G",
+                "H"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Een standvlak maakt een vlakke opgave",
+          "text": "In een balk met AD = 6 en AE = 4 is ADHE een standvlak voor ABCD en ABGH. De rechthoekige driehoek ADH geeft tan ∠DAH = DH/AD = 4/6, dus ongeveer 33,69°. AB kan elke lengte hebben: de standhoek verandert daardoor niet. De hoek tussen de vlakken is de kleinste van de twee bijbehorende standhoeken, dus hoogstens 90°.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                5,
+                0,
+                0
+              ],
+              "C": [
+                5,
+                6,
+                0
+              ],
+              "D": [
+                0,
+                6,
+                0
+              ],
+              "E": [
+                0,
+                0,
+                4
+              ],
+              "F": [
+                5,
+                0,
+                4
+              ],
+              "G": [
+                5,
+                6,
+                4
+              ],
+              "H": [
+                0,
+                6,
+                4
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "caption": "ADHE staat loodrecht op snijlijn AB. AD = 6 cm en DH = 4 cm.",
+            "view": "spatial",
+            "highlights": [
+              "AB",
+              "AD",
+              "AH",
+              "DH"
+            ],
+            "planes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              [
+                "A",
+                "B",
+                "G",
+                "H"
+              ],
+              [
+                "A",
+                "D",
+                "H",
+                "E"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Soms moet je het voetpunt eerst construeren",
+          "text": "Neem ribbe 4 en J halverwege BF. De vlakken EJG en ABFE snijden langs EJ. Laat uit F de loodlijn FI op EJ neer. Ook GI staat loodrecht op EJ: FG staat loodrecht op het voorvlak en FI ⟂ EJ. Daarom is FIG een standvlak. Uit de oppervlakte van de rechthoekige driehoek EFJ volgt FI = EF × FJ / EJ = 8/√20. In de rechthoekige driehoek FIG is tan ∠FIG = FG/FI = √5; de standhoek is ongeveer 65,91°.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                4,
+                0,
+                0
+              ],
+              "C": [
+                4,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                4,
+                0
+              ],
+              "E": [
+                0,
+                0,
+                4
+              ],
+              "F": [
+                4,
+                0,
+                4
+              ],
+              "G": [
+                4,
+                4,
+                4
+              ],
+              "H": [
+                0,
+                4,
+                4
+              ],
+              "J": [
+                4,
+                0,
+                2
+              ],
+              "I": [
+                3.2,
+                0,
+                2.4
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "caption": "I is de loodrechte projectie van F op EJ. FI en GI staan loodrecht op EJ; ∠FIG is de standhoek.",
+            "view": "spatial",
+            "highlights": [
+              "EJ",
+              "FI",
+              "GI",
+              "FG"
+            ],
+            "planes": [
+              [
+                "E",
+                "J",
+                "G"
+              ],
+              [
+                "A",
+                "B",
+                "F",
+                "E"
+              ]
+            ]
+          }
+        }
+      ],
+      "questionIds": [
+        "l4-dihedral-q1",
+        "l4-dihedral-q2",
+        "l4-dihedral-q3",
+        "l4-dihedral-q4"
+      ],
+      "probeIds": [
+        "l4-dihedral-p1",
+        "l4-dihedral-p2"
+      ],
+      "retestIds": [
+        "l4-dihedral-r1",
+        "l4-dihedral-r2"
+      ],
+      "repair": {
+        "title": "Een gemeenschappelijk hoekpunt is nog geen standhoek",
+        "text": "Begin bij de snijlijn AB van ABCD en ABGH. Kies door A in elk vlak een lijn loodrecht op AB: AD en AH. Pas dan meet ∠DAH de hoek tussen de vlakken. ∠GAB deelt wel hoekpunt A, maar gebruikt de snijlijn zelf als been en meet daardoor iets anders. De twee loodrechte voorwaarden zijn essentieel.",
+        "scene": {
+          "points": {
+            "A": [
+              0,
+              0,
+              0
+            ],
+            "B": [
+              4,
+              0,
+              0
+            ],
+            "C": [
+              4,
+              4,
+              0
+            ],
+            "D": [
+              0,
+              4,
+              0
+            ],
+            "E": [
+              0,
+              0,
+              4
+            ],
+            "F": [
+              4,
+              0,
+              4
+            ],
+            "G": [
+              4,
+              4,
+              4
+            ],
+            "H": [
+              0,
+              4,
+              4
+            ]
+          },
+          "edges": [
+            "AB",
+            "BC",
+            "CD",
+            "DA",
+            "EF",
+            "FG",
+            "GH",
+            "HE",
+            "AE",
+            "BF",
+            "CG",
+            "DH"
+          ],
+          "showCube": false,
+          "caption": "AD en AH staan beide loodrecht op snijlijn AB. ∠DAH is een standhoek.",
+          "view": "spatial",
+          "highlights": [
+            "AB",
+            "AD",
+            "AH"
+          ],
+          "planes": [
+            [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            [
+              "A",
+              "B",
+              "G",
+              "H"
+            ]
+          ]
+        }
+      },
+      "misconception": {
+        "label": "Een willekeurig lijnenpaar met gedeeld hoekpunt als standhoek kiezen",
+        "trigger": {
+          "qid": "l4-dihedral-q1",
+          "wrongAnswer": "b"
+        },
+        "probeWrongAnswers": [
+          "d",
+          "d"
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "l4-cos-q1",
+      "block": "l4-cos",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "In driehoek ABC is AB = 6 cm, AC = 5 cm en BC = 7 cm. Welke redenering is geldig?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Gebruik de cosinusregel; een rechte hoek is hier niet gegeven en volgt ook niet uit de zijden."
+        },
+        {
+          "id": "b",
+          "text": "De hoeken zijn zonder gradenboog niet te bepalen."
+        },
+        {
+          "id": "c",
+          "text": "Gebruik cos A = 5/6, want dat zijn de twee zijden bij A."
+        },
+        {
+          "id": "d",
+          "text": "Gebruik Pythagoras; die geldt voor elke driehoek die je uit een ruimtelijke figuur haalt."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "Pythagoras vereist een rechte hoek. Hier is 7² niet gelijk aan 5² + 6². De cosinusregel gebruikt de drie bekende zijden zonder een rechte hoek te veronderstellen.",
+      "hint": "Welke voorwaarde hoort bij Pythagoras?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            1.0,
+            4.898979485566356,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "Driehoek ABC: AB = 6 cm, AC = 5 cm, BC = 7 cm."
+      }
+    },
+    {
+      "id": "l4-cos-q2",
+      "block": "l4-cos",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "AB = 6 cm, AC = 5 cm en BC = 7 cm. Bereken ∠CAB in graden. Rond af op twee decimalen.",
+      "answer": [
+        "78.46304096718453"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "cos A = (6² + 5² − 7²)/(2 × 6 × 5) = 0,2. Daarom A = arccos(0,2) ≈ 78,46°. Gebruik de gradenstand.",
+      "hint": "Welke zijde ligt tegenover de gevraagde hoek?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            1.0,
+            4.898979485566356,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "Driehoek ABC: AB = 6 cm, AC = 5 cm, BC = 7 cm."
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            1.0,
+            4.898979485566356,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "Driehoek ABC: AB = 6 cm, AC = 5 cm, BC = 7 cm.",
+        "highlights": [
+          "AB",
+          "AC"
+        ]
+      }
+    },
+    {
+      "id": "l4-cos-q3",
+      "block": "l4-cos",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "AB = 6 cm, AC = 4 cm en ∠CAB = 60°. Bereken BC in cm. Rond af op twee decimalen.",
+      "answer": [
+        "5.291502622129181"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "BC² = 6² + 4² − 2 × 6 × 4 × cos 60° = 28. Dus BC = √28 ≈ 5,29 cm. De zijde en zijn kwadraat zijn verschillende grootheden.",
+      "hint": "Je kent twee zijden en de ingesloten hoek.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            2.0000000000000004,
+            3.4641016151377544,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "AB = 6 cm, AC = 4 cm, ∠CAB = 60°; BC is onbekend."
+      }
+    },
+    {
+      "id": "l4-cos-q4",
+      "block": "l4-cos",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Driehoek ABC heeft AB = 7 cm, AC = 6 cm en BC = 10 cm. Bereken de oppervlakte in cm². Rond pas het eindantwoord af op twee decimalen.",
+      "answer": [
+        "20.662465970933866"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm²",
+      "working": true,
+      "explanation": "cos A = (7² + 6² − 10²)/(2 × 7 × 6) = −5/28. De hoek A is dus stomp. Oppervlakte = ½ × 7 × 6 × sin(arccos(−5/28)) ≈ 20,66 cm². Ook voor een stompe hoek geldt deze oppervlakteformule.",
+      "hint": "Bepaal eerst de hoek tussen twee bekende zijden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            7,
+            0,
+            0
+          ],
+          "C": [
+            -1.0714285714285714,
+            5.9035617059811045,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "Driehoek ABC: AB = 7 cm, AC = 6 cm, BC = 10 cm."
+      }
+    },
+    {
+      "id": "l4-cos-p1",
+      "block": "l4-cos",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "In een driehoek zijn twee zijden 4 en 5 cm. De overstaande zijde van hun ingesloten hoek α is 7 cm. Welke vergelijking hoort erbij?",
+      "options": [
+        {
+          "id": "a",
+          "text": "7² = 4² + 5², want een driehoek heeft altijd een schuine zijde."
+        },
+        {
+          "id": "b",
+          "text": "7² = 4² + 5² − 2 × 4 × 5 × cos α"
+        },
+        {
+          "id": "c",
+          "text": "7 = 4 + 5 − 2 × 4 × 5 × cos α"
+        },
+        {
+          "id": "d",
+          "text": "cos α = 4/5, ongeacht de derde zijde."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "Alleen een rechthoekige driehoek heeft een hypotenusa. Met deze drie zijden is geen rechte hoek aanwezig; de cosinusterm mag daarom niet vervallen.",
+      "hint": "Welke formule blijft geldig zonder een rechte hoek?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            5,
+            0,
+            0
+          ],
+          "C": [
+            -0.8,
+            3.919183588453085,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "Driehoek ABC: AB = 5 cm, AC = 4 cm, BC = 7 cm."
+      }
+    },
+    {
+      "id": "l4-cos-p2",
+      "block": "l4-cos",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Twee zijden van een driehoek zijn 6 en 8 cm en sluiten een hoek van 120° in. Hoe bepaal je het kwadraat van de derde zijde c?",
+      "options": [
+        {
+          "id": "a",
+          "text": "c² = 6² + 8² = 100; ook bij 120° geldt Pythagoras."
+        },
+        {
+          "id": "b",
+          "text": "c² = 8² − 6² = 28."
+        },
+        {
+          "id": "c",
+          "text": "c² = 6² + 8² − 2 × 6 × 8 × cos 120° = 148."
+        },
+        {
+          "id": "d",
+          "text": "c² = (6 + 8)² = 196."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "cos 120° = −½. De correctieterm is daarom positief: c² = 100 + 48 = 148. Bij een stompe ingesloten hoek is de tegenoverliggende zijde langer dan bij 90°.",
+      "hint": "Wat is het teken van cos 120°?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            -2.9999999999999982,
+            5.196152422706633,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "AB = 8 cm, AC = 6 cm; de hoek bij A is 120°."
+      }
+    },
+    {
+      "id": "l4-cos-r1",
+      "block": "l4-cos",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "AB = 8 cm, AC = 7 cm en BC = 9 cm. Bereken ∠CAB in graden, op twee decimalen.",
+      "answer": [
+        "73.39845040097977"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "cos A = (8² + 7² − 9²)/(2 × 8 × 7) = 2/7. Dus A ≈ 73,40°.",
+      "hint": "Koppel de overstaande zijde aan de gevraagde hoek.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            2.0,
+            6.708203932499369,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "Driehoek ABC: AB = 8 cm, AC = 7 cm, BC = 9 cm."
+      }
+    },
+    {
+      "id": "l4-cos-r2",
+      "block": "l4-cos",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Driehoek ABC heeft AB = 6 cm, AC = 4 cm en BC = 8 cm. Bereken de oppervlakte in cm², op twee decimalen.",
+      "answer": [
+        "11.61895003862225"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm²",
+      "working": true,
+      "explanation": "cos A = (6² + 4² − 8²)/(2 × 6 × 4) = −¼. Oppervlakte = ½ × 6 × 4 × sin(arccos(−¼)) ≈ 11,62 cm².",
+      "hint": "Een stompe hoek verhindert het gebruik van de cosinusregel niet.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            -1.0,
+            3.872983346207417,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "Driehoek ABC: AB = 6 cm, AC = 4 cm, BC = 8 cm."
+      }
+    },
+    {
+      "id": "l4-lines-q1",
+      "block": "l4-lines",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "De lijnen EG en IB kruisen; I is het midden van AE. Wat betekent dat voor hun hoek?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Er bestaat geen hoek, omdat de lijnen elkaar niet snijden."
+        },
+        {
+          "id": "b",
+          "text": "De hoek is altijd 90°, omdat de lijnen in verschillende vlakken liggen."
+        },
+        {
+          "id": "c",
+          "text": "Je mag de hoek direct meten in elke perspectieftekening."
+        },
+        {
+          "id": "d",
+          "text": "Die kun je bepalen door één lijn evenwijdig te verschuiven tot beide lijnen een punt gemeen hebben."
+        }
+      ],
+      "answer": [
+        "d"
+      ],
+      "explanation": "Een hoek tussen lijnen wordt bepaald door hun richtingen. Evenwijdig verschuiven brengt deze richtingen bij elkaar, zonder ze te veranderen.",
+      "hint": "Moeten richtingen een gemeenschappelijk beginpunt hebben om ze te vergelijken?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ],
+          "I": [
+            0,
+            0,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus met ribbe 4 cm; I is het midden van AE. Gegeven lijnen: EG en IB.",
+        "view": "spatial",
+        "highlights": [
+          "EG",
+          "IB"
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ],
+          "I": [
+            0,
+            0,
+            2
+          ],
+          "J": [
+            4,
+            0,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "EJ ∥ IB: I verschuift naar E en B naar J. De hoek wordt gemeten in driehoek EJG.",
+        "view": "spatial",
+        "highlights": [
+          "EG",
+          "IB",
+          "EJ",
+          "JG"
+        ]
+      }
+    },
+    {
+      "id": "l4-lines-q2",
+      "block": "l4-lines",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Bereken in een kubus de kleinste hoek tussen AB en DG in graden. Rond af op twee decimalen.",
+      "answer": [
+        "45"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "DG ∥ AF. Daardoor is ∠(AB,DG) gelijk aan ∠BAF. In het vierkant ABFE is AF een diagonaal: ∠BAF = 45°.",
+      "hint": "Welke lijn door A is evenwijdig aan DG?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "DG"
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "DG ∥ AF. In het vierkant ABFE maakt AF een hoek van 45° met AB.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "DG",
+          "AF"
+        ]
+      }
+    },
+    {
+      "id": "l4-lines-q3",
+      "block": "l4-lines",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "I is het midden van AE en J het midden van BF. Selecteer de twee punten die de lijn door E evenwijdig aan IB bepalen.",
+      "answer": [
+        "E",
+        "J"
+      ],
+      "selectCount": 2,
+      "explanation": "Een verschuiving over een halve ribbe omhoog stuurt I naar E en B naar J. De lijn EJ heeft daardoor precies dezelfde richting als IB.",
+      "hint": "Welke gelijke verplaatsing stuurt I naar E en waar komt B dan terecht?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ],
+          "I": [
+            0,
+            0,
+            2
+          ],
+          "J": [
+            4,
+            0,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "I is het midden van AE, J het midden van BF. Ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "EG",
+          "IB"
+        ]
+      },
+      "extraPoints": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          4,
+          0,
+          0
+        ],
+        "C": [
+          4,
+          4,
+          0
+        ],
+        "D": [
+          0,
+          4,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          4
+        ],
+        "F": [
+          4,
+          0,
+          4
+        ],
+        "G": [
+          4,
+          4,
+          4
+        ],
+        "H": [
+          0,
+          4,
+          4
+        ],
+        "I": [
+          0,
+          0,
+          2
+        ],
+        "J": [
+          4,
+          0,
+          2
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ],
+          "I": [
+            0,
+            0,
+            2
+          ],
+          "J": [
+            4,
+            0,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "EJ ∥ IB: I verschuift naar E en B naar J. De hoek wordt gemeten in driehoek EJG.",
+        "view": "spatial",
+        "highlights": [
+          "EG",
+          "IB",
+          "EJ",
+          "JG"
+        ]
+      }
+    },
+    {
+      "id": "l4-lines-q4",
+      "block": "l4-lines",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een kubus heeft ribbe 4 cm; I is het midden van AE. Bereken de kleinste hoek tussen EG en IB in graden, op twee decimalen.",
+      "answer": [
+        "50.768479516407744"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "Verschuif IB naar EJ, met J het midden van BF. In EJG zijn EG² = 32 en EJ² = JG² = 20. Dus cos ∠GEJ = 32/(2√32√20) = 2/√10. De kleinste hoek is 50,77°.",
+      "hint": "Zorg eerst voor twee lijnen door hetzelfde punt.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ],
+          "I": [
+            0,
+            0,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus met ribbe 4 cm; I is het midden van AE. Gegeven lijnen: EG en IB.",
+        "view": "spatial",
+        "highlights": [
+          "EG",
+          "IB"
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ],
+          "I": [
+            0,
+            0,
+            2
+          ],
+          "J": [
+            4,
+            0,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "EJ ∥ IB: I verschuift naar E en B naar J. De hoek wordt gemeten in driehoek EJG.",
+        "view": "spatial",
+        "highlights": [
+          "EG",
+          "IB",
+          "EJ",
+          "JG"
+        ]
+      }
+    },
+    {
+      "id": "l4-lines-p1",
+      "block": "l4-lines",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "AC ligt in het grondvlak en FH in het bovenvlak van een kubus. Wat kun je zeggen over de hoek tussen deze kruisende lijnen?",
+      "options": [
+        {
+          "id": "a",
+          "text": "De hoek is 90°: AC ∥ EG en de diagonalen EG en FH van het bovenvlak staan loodrecht op elkaar."
+        },
+        {
+          "id": "b",
+          "text": "Die hoek bestaat niet, want AC en FH hebben geen gemeenschappelijk punt."
+        },
+        {
+          "id": "c",
+          "text": "De hoek verandert als je de kubus draait."
+        },
+        {
+          "id": "d",
+          "text": "De hoek is 0°, want de grond- en bovenvlakken zijn evenwijdig."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "De evenwijdige vlakken maken de lijnen zelf niet evenwijdig. Verschuif AC naar EG; de twee diagonalen van een vierkant zijn loodrecht.",
+      "hint": "Vergelijk de richtingen in één vlak.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AC",
+          "FH"
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AC",
+          "EG",
+          "FH"
+        ]
+      }
+    },
+    {
+      "id": "l4-lines-p2",
+      "block": "l4-lines",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "In een kubus kruisen BC en ED. Welke uitspraak is juist?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Hun hoek is ongedefinieerd, omdat BC en ED elkaar niet snijden."
+        },
+        {
+          "id": "b",
+          "text": "Hun hoek is 45°: BC ∥ AD en ED maakt in het vierkant ADHE een hoek van 45° met AD."
+        },
+        {
+          "id": "c",
+          "text": "Hun hoek moet uit de schermtekening gemeten worden."
+        },
+        {
+          "id": "d",
+          "text": "Hun hoek is 90°, omdat BC een ribbe en ED een diagonaal is."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "Verschuif de richting van BC naar AD. De hoek tussen een zijde en een diagonaal van het vierkant ADHE is 45°.",
+      "hint": "Welke lijn in ADHE heeft dezelfde richting als BC?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "BC",
+          "ED"
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "BC",
+          "ED",
+          "AD"
+        ]
+      }
+    },
+    {
+      "id": "l4-lines-r1",
+      "block": "l4-lines",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In een kubus zijn de lijnen AC en FH gegeven. Bereken hun kleinste hoek in graden, op twee decimalen.",
+      "answer": [
+        "90"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "AC ∥ EG. De hoek tussen AC en FH is daarom de hoek tussen EG en FH. De diagonalen van het vierkant EFGH staan loodrecht: 90°.",
+      "hint": "Maak door evenwijdig verschuiven twee lijnen in hetzelfde vlak.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            5,
+            0,
+            0
+          ],
+          "C": [
+            5,
+            5,
+            0
+          ],
+          "D": [
+            0,
+            5,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            5
+          ],
+          "F": [
+            5,
+            0,
+            5
+          ],
+          "G": [
+            5,
+            5,
+            5
+          ],
+          "H": [
+            0,
+            5,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 5 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AC",
+          "FH"
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            5,
+            0,
+            0
+          ],
+          "C": [
+            5,
+            5,
+            0
+          ],
+          "D": [
+            0,
+            5,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            5
+          ],
+          "F": [
+            5,
+            0,
+            5
+          ],
+          "G": [
+            5,
+            5,
+            5
+          ],
+          "H": [
+            0,
+            5,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 5 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AC",
+          "EG",
+          "FH"
+        ]
+      }
+    },
+    {
+      "id": "l4-lines-r2",
+      "block": "l4-lines",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een balk heeft AB = 6 cm, AD = 4 cm en AE = 3 cm. Bereken de kleinste hoek tussen AB en DG in graden, op twee decimalen.",
+      "answer": [
+        "26.56505117707799"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "DG ∥ AF. In de rechthoekige driehoek ABF geldt tan ∠BAF = BF/AB = 3/6. De kleinste hoek is dus arctan(½) ≈ 26,57°.",
+      "hint": "Het evenwijdig verschuiven blijft geldig wanneer de kubus een balk wordt.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            3
+          ],
+          "F": [
+            6,
+            0,
+            3
+          ],
+          "G": [
+            6,
+            4,
+            3
+          ],
+          "H": [
+            0,
+            4,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Balk: AB = 6 cm, AD = 4 cm, AE = 3 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "DG"
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            3
+          ],
+          "F": [
+            6,
+            0,
+            3
+          ],
+          "G": [
+            6,
+            4,
+            3
+          ],
+          "H": [
+            0,
+            4,
+            3
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "DG ∥ AF; gebruik de rechthoekige driehoek ABF.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "DG",
+          "AF"
+        ]
+      }
+    },
+    {
+      "id": "l4-plane-q1",
+      "block": "l4-plane",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Welke hoek moet je berekenen voor de hoek tussen AG en het grondvlak ABCD?",
+      "options": [
+        {
+          "id": "a",
+          "text": "∠ABC, omdat die volledig in het grondvlak ligt."
+        },
+        {
+          "id": "b",
+          "text": "∠AGC, want de hoek met de normaal is altijd dezelfde hoek."
+        },
+        {
+          "id": "c",
+          "text": "∠GAC, omdat AC de loodrechte projectie van AG op ABCD is."
+        },
+        {
+          "id": "d",
+          "text": "∠GAB, want elke lijn door A in ABCD is geschikt."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "G wordt langs CG loodrecht op C geprojecteerd; A blijft A. De projectie van AG is AC. Daarom hoort ∠GAC bij de lijn–vlakhoek.",
+      "hint": "Op welk punt van het grondvlak valt G bij loodrecht projecteren?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "AG is de lichaamsdiagonaal; ABCD is het grondvlak. Ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "G projecteert loodrecht op C; A ligt al in het grondvlak. De gevraagde hoek is ∠GAC.",
+        "view": "spatial",
+        "highlights": [
+          "AG",
+          "AC",
+          "CG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-plane-q2",
+      "block": "l4-plane",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Welke gegevens vormen samen een geldig bewijs dat AE loodrecht op vlak ABCD staat?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Alleen AE ⟂ AB; één lijn van het vlak is voldoende."
+        },
+        {
+          "id": "b",
+          "text": "AE ⟂ AB en AE ⟂ DC; twee evenwijdige richtingen zijn voldoende."
+        },
+        {
+          "id": "c",
+          "text": "AE lijkt verticaal op het scherm en ABCD lijkt horizontaal."
+        },
+        {
+          "id": "d",
+          "text": "AE ⟂ AB en AE ⟂ AD; AB en AD snijden in A en liggen in ABCD."
+        }
+      ],
+      "answer": [
+        "d"
+      ],
+      "explanation": "Je hebt twee verschillende snijdende richtingen in het vlak nodig. AB en DC zijn evenwijdig en leveren maar één richting. Een schermoriëntatie levert geen ruimtelijk bewijs.",
+      "hint": "Hoeveel onafhankelijke richtingen in het vlak moet je controleren?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AE"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AE",
+          "AB",
+          "AD"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-plane-q3",
+      "block": "l4-plane",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een kubus heeft ribbe 4 cm. Bereken de hoek tussen AG en ABCD in graden, op twee decimalen.",
+      "answer": [
+        "35.264389682754654"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "De projectie van AG is AC. AC = 4√2 en CG = 4. In de rechthoekige driehoek ACG is tan α = 4/(4√2) = 1/√2. Dus α ≈ 35,26°.",
+      "hint": "Bereken eerst de lengte van de loodrechte projectie.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "AG is de lichaamsdiagonaal; ABCD is het grondvlak. Ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "G projecteert loodrecht op C; A ligt al in het grondvlak. De gevraagde hoek is ∠GAC.",
+        "view": "spatial",
+        "highlights": [
+          "AG",
+          "AC",
+          "CG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-plane-q4",
+      "block": "l4-plane",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "Selecteer de twee eindpunten van de loodrechte projectie van BG op het vlak ADHE.",
+      "answer": [
+        "A",
+        "H"
+      ],
+      "selectCount": 2,
+      "explanation": "B projecteert loodrecht op A en G op H: BA en GH staan loodrecht op vlak ADHE. De geprojecteerde lijn is daarom AH.",
+      "hint": "Projecteer beide eindpunten van BG op het gekozen vlak.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Projecteer BG loodrecht op het zijvlak ADHE.",
+        "view": "spatial",
+        "highlights": [
+          "BG"
+        ],
+        "planes": [
+          [
+            "A",
+            "D",
+            "H",
+            "E"
+          ]
+        ]
+      },
+      "extraPoints": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          4,
+          0,
+          0
+        ],
+        "C": [
+          4,
+          4,
+          0
+        ],
+        "D": [
+          0,
+          4,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          4
+        ],
+        "F": [
+          4,
+          0,
+          4
+        ],
+        "G": [
+          4,
+          4,
+          4
+        ],
+        "H": [
+          0,
+          4,
+          4
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "B → A en G → H langs loodlijnen op ADHE. De projectie van BG is AH.",
+        "view": "spatial",
+        "highlights": [
+          "BG",
+          "BA",
+          "GH",
+          "AH"
+        ],
+        "planes": [
+          [
+            "A",
+            "D",
+            "H",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-plane-p1",
+      "block": "l4-plane",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Welke hoek vertegenwoordigt de hoek tussen AG en het vlak ABFE?",
+      "options": [
+        {
+          "id": "a",
+          "text": "∠GAF, omdat G loodrecht op F projecteert en A al in ABFE ligt."
+        },
+        {
+          "id": "b",
+          "text": "∠AFG, omdat een rechte hoek altijd de lijn–vlakhoek is."
+        },
+        {
+          "id": "c",
+          "text": "∠AGF, omdat de hoek met GF direct de gevraagde hoek is."
+        },
+        {
+          "id": "d",
+          "text": "∠GAB, omdat elke lijn door A in ABFE als projectie mag dienen."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "De projectielijn is AF, omdat GF loodrecht staat op ABFE. Een willekeurige lijn in het vlak, zoals AB, vervangt die projectie niet.",
+      "hint": "Langs welke loodlijn bereikt G het vlak ABFE?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG",
+          "AF",
+          "GF"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-plane-p2",
+      "block": "l4-plane",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Welke hoek vertegenwoordigt de hoek tussen BG en het vlak ADHE?",
+      "options": [
+        {
+          "id": "a",
+          "text": "De kleinste hoek tussen BG en AD; elke lijn in ADHE is geschikt."
+        },
+        {
+          "id": "b",
+          "text": "De kleinste hoek tussen BG en AH; AH is de loodrechte projectie van BG."
+        },
+        {
+          "id": "c",
+          "text": "Altijd 90°, want BG ligt niet in ADHE."
+        },
+        {
+          "id": "d",
+          "text": "De hoek tussen BG en BA; een loodlijn op het vlak geeft altijd de lijn–vlakhoek."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "B projecteert op A en G op H. De projectie is dus AH. Hier is BG evenwijdig aan AH en aan het vlak, zodat de hoek 0° is. Dat BG buiten ADHE ligt, maakt de hoek niet recht.",
+      "hint": "Projecteer zowel B als G; vergelijk daarna de richtingen.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "BG"
+        ],
+        "planes": [
+          [
+            "A",
+            "D",
+            "H",
+            "E"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "BG",
+          "AH",
+          "BA",
+          "GH"
+        ],
+        "planes": [
+          [
+            "A",
+            "D",
+            "H",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-plane-r1",
+      "block": "l4-plane",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een balk heeft AB = 8 cm, AD = 6 cm en AE = 6 cm. Bereken de hoek tussen AG en ABCD in graden, op twee decimalen.",
+      "answer": [
+        "30.96375653207352"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "AC = √(8² + 6²) = 10 cm. CG = 6 cm en AC is de loodrechte projectie. Daarom tan α = 6/10 en α ≈ 30,96°.",
+      "hint": "De projectielengte is een diagonaal van het grondvlak.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            8,
+            0,
+            6
+          ],
+          "G": [
+            8,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "AB = 8 cm, AD = 6 cm, AE = 6 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            8,
+            0,
+            6
+          ],
+          "G": [
+            8,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Projectie AC = 10 cm; loodrechte hoogte CG = 6 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG",
+          "AC",
+          "CG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-plane-r2",
+      "block": "l4-plane",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Een lijn maakt 28° met een normaal op een vlak. Hoe groot is de hoek tussen de lijn en het vlak?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Die hoek is zonder de lengte van de lijn niet te bepalen."
+        },
+        {
+          "id": "b",
+          "text": "28°, want normaal en vlak geven dezelfde hoek."
+        },
+        {
+          "id": "c",
+          "text": "62°, want de normaal staat loodrecht op de projectierichting."
+        },
+        {
+          "id": "d",
+          "text": "90°, want de normaal staat loodrecht op het vlak."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "Lijn–vlakhoek en de kleinste hoek met de normaal vullen elkaar aan tot 90°. De gevraagde hoek is 90° − 28° = 62°.",
+      "hint": "Maak een doorsnede door de lijn en de normaal.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            3,
+            0
+          ],
+          "D": [
+            0,
+            3,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            9.40363232673166
+          ],
+          "F": [
+            4,
+            0,
+            9.40363232673166
+          ],
+          "G": [
+            4,
+            3,
+            9.40363232673166
+          ],
+          "H": [
+            0,
+            3,
+            9.40363232673166
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "CG staat loodrecht op ABCD; de hoek tussen GA en GC is gegeven als 28°.",
+        "view": "spatial",
+        "highlights": [
+          "AG",
+          "CG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-dihedral-q1",
+      "block": "l4-dihedral",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Welke hoek kun je gebruiken als standhoek tussen de vlakken ABCD en ABGH?",
+      "options": [
+        {
+          "id": "a",
+          "text": "∠DAG: iedere diagonaal in het schuine vlak mag als been dienen."
+        },
+        {
+          "id": "b",
+          "text": "∠GAB: twee lijnen uit de vlakken met hetzelfde beginpunt zijn altijd voldoende."
+        },
+        {
+          "id": "c",
+          "text": "∠ABC: elke hoek in het grondvlak is een standhoek."
+        },
+        {
+          "id": "d",
+          "text": "∠DAH: AD en AH liggen in de juiste vlakken en staan beide loodrecht op hun snijlijn AB."
+        }
+      ],
+      "answer": [
+        "d"
+      ],
+      "explanation": "Een standhoek gebruikt in beide vlakken een loodlijn op dezelfde snijlijn, door hetzelfde punt. AD en AH voldoen in A. AB zelf gebruiken als één been levert geen standhoek.",
+      "hint": "Bepaal eerst de snijlijn en controleer beide loodrechte richtingen.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Vlakken ABCD en ABGH snijden langs AB. De standhoek moet nog gekozen worden.",
+        "view": "spatial",
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "B",
+            "G",
+            "H"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "AD en AH staan beide loodrecht op snijlijn AB. ∠DAH is een standhoek.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "AD",
+          "AH"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "B",
+            "G",
+            "H"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-dihedral-q2",
+      "block": "l4-dihedral",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "De vlakken ABCD en ADGF snijden langs AD. Selecteer de drie hoekpunten van de driehoek die een standhoek in A bevat en waarmee je deze hoek kunt berekenen.",
+      "answer": [
+        "A",
+        "B",
+        "F"
+      ],
+      "selectCount": 3,
+      "explanation": "AB ligt in ABCD, AF in ADGF. Beide staan loodrecht op AD. Daardoor is ∠BAF een standhoek en ABF de bijbehorende rechthoekige driehoek.",
+      "hint": "Zoek in elk vlak een loodlijn op AD door A.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Gegeven vlakken ABCD en ADGF; hun snijlijn is AD.",
+        "view": "spatial",
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "D",
+            "G",
+            "F"
+          ]
+        ]
+      },
+      "extraPoints": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          4,
+          0,
+          0
+        ],
+        "C": [
+          4,
+          4,
+          0
+        ],
+        "D": [
+          0,
+          4,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          4
+        ],
+        "F": [
+          4,
+          0,
+          4
+        ],
+        "G": [
+          4,
+          4,
+          4
+        ],
+        "H": [
+          0,
+          4,
+          4
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "AB ⟂ AD en AF ⟂ AD; ∠BAF vertegenwoordigt de vlak–vlakhoek.",
+        "view": "spatial",
+        "highlights": [
+          "AD",
+          "AB",
+          "AF",
+          "BF"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "D",
+            "G",
+            "F"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-dihedral-q3",
+      "block": "l4-dihedral",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een balk heeft AB = 5 cm, AD = 6 cm en AE = 4 cm. Bereken de kleinste hoek tussen ABCD en ABGH in graden, op twee decimalen.",
+      "answer": [
+        "33.690067525979785"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "AB is de snijlijn. In standvlak ADHE is ∠DAH de gevraagde hoek. tan ∠DAH = DH/AD = 4/6. Dus de vlak–vlakhoek is ongeveer 33,69°.",
+      "hint": "Welke rechthoekige doorsnede staat loodrecht op AB?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            5,
+            0,
+            0
+          ],
+          "C": [
+            5,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            5,
+            0,
+            4
+          ],
+          "G": [
+            5,
+            6,
+            4
+          ],
+          "H": [
+            0,
+            6,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Balk: AB = 5 cm, AD = 6 cm, AE = 4 cm.",
+        "view": "spatial",
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "B",
+            "G",
+            "H"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            5,
+            0,
+            0
+          ],
+          "C": [
+            5,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            5,
+            0,
+            4
+          ],
+          "G": [
+            5,
+            6,
+            4
+          ],
+          "H": [
+            0,
+            6,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Standdriehoek ADH: AD = 6 cm, DH = 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AD",
+          "AH",
+          "DH"
+        ],
+        "planes": [
+          [
+            "A",
+            "D",
+            "H",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-dihedral-q4",
+      "block": "l4-dihedral",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een kubus heeft ribbe 4 cm; J is het midden van BF. Bereken de kleinste hoek tussen EJG en ABFE in graden, op twee decimalen.",
+      "answer": [
+        "65.9051574478893"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "Laat FI loodrecht op EJ vallen. EJ = √20 en uit de oppervlakte van EFJ volgt FI = 4 × 2/√20. FG = 4 en driehoek FIG is recht bij F. tan ∠FIG = 4/(8/√20) = √5, dus de hoek is ongeveer 65,91°.",
+      "hint": "Construeer in het voorvlak eerst het voetpunt van F op de snijlijn EJ.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ],
+          "J": [
+            4,
+            0,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus met ribbe 4 cm; J is het midden van BF. Vlakken EJG en ABFE snijden langs EJ.",
+        "view": "spatial",
+        "planes": [
+          [
+            "E",
+            "J",
+            "G"
+          ],
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ],
+          "J": [
+            4,
+            0,
+            2
+          ],
+          "I": [
+            3.2,
+            0,
+            2.4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "I is de loodrechte projectie van F op EJ. FI en GI staan loodrecht op EJ; ∠FIG is de standhoek.",
+        "view": "spatial",
+        "highlights": [
+          "EJ",
+          "FI",
+          "GI",
+          "FG"
+        ],
+        "planes": [
+          [
+            "E",
+            "J",
+            "G"
+          ],
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-dihedral-p1",
+      "block": "l4-dihedral",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "De vlakken ABCD en ADGF snijden langs AD. Welke redenering bepaalt een standhoek?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Neem ∠BAF: AB en AF staan beide loodrecht op AD en vertrekken beide uit A."
+        },
+        {
+          "id": "b",
+          "text": "Neem ∠GAD: omdat G in het schuine vlak ligt, is iedere hoek met G geschikt."
+        },
+        {
+          "id": "c",
+          "text": "Neem ∠BCD: het grondvlak bevat vanzelf de gevraagde hoek."
+        },
+        {
+          "id": "d",
+          "text": "Neem ∠FAD: elk paar lijnen uit de twee vlakken door A is geschikt."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "AD is de snijlijn. Een been langs AD voldoet niet aan de eis loodrecht op AD. AB en AF voldoen wel en vertrekken vanuit hetzelfde punt A.",
+      "hint": "Moeten de benen langs de snijlijn lopen of er loodrecht op staan?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "D",
+            "G",
+            "F"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AD",
+          "AB",
+          "AF"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "D",
+            "G",
+            "F"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-dihedral-p2",
+      "block": "l4-dihedral",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "De vlakken EFGH en ABGH snijden langs GH. Welke hoek is een standhoek tussen deze vlakken?",
+      "options": [
+        {
+          "id": "a",
+          "text": "∠BHG: GH mag als een van de benen dienen omdat het de snijlijn is."
+        },
+        {
+          "id": "b",
+          "text": "∠AHE: HA en HE staan beide loodrecht op GH en liggen elk in een van de vlakken."
+        },
+        {
+          "id": "c",
+          "text": "∠EHG: elke hoek in het bovenvlak voldoet."
+        },
+        {
+          "id": "d",
+          "text": "∠AHG: twee lijnen door H in de vlakken vormen altijd de standhoek."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "explanation": "Kies loodlijnen op GH door H: HE in het bovenvlak en HA in ABGH. Een been langs GH meet de standhoek niet.",
+      "hint": "Zoek door H in elk vlak een richting loodrecht op GH.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "planes": [
+          [
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          [
+            "A",
+            "B",
+            "G",
+            "H"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "GH",
+          "HA",
+          "HE"
+        ],
+        "planes": [
+          [
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          [
+            "A",
+            "B",
+            "G",
+            "H"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-dihedral-r1",
+      "block": "l4-dihedral",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een balk heeft AB = 7 cm, AD = 3 cm en AE = 4 cm. Bereken de kleinste hoek tussen ABCD en ABGH in graden, op twee decimalen.",
+      "answer": [
+        "53.13010235415598"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "Het standvlak ADHE geeft tan ∠DAH = DH/AD = 4/3. Dus de vlak–vlakhoek is 53,13°. De lengte AB speelt in deze standhoek geen rol.",
+      "hint": "Teken een doorsnede loodrecht op de snijlijn AB.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            7,
+            0,
+            0
+          ],
+          "C": [
+            7,
+            3,
+            0
+          ],
+          "D": [
+            0,
+            3,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            7,
+            0,
+            4
+          ],
+          "G": [
+            7,
+            3,
+            4
+          ],
+          "H": [
+            0,
+            3,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "AB = 7 cm, AD = 3 cm, AE = 4 cm.",
+        "view": "spatial",
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "B",
+            "G",
+            "H"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            7,
+            0,
+            0
+          ],
+          "C": [
+            7,
+            3,
+            0
+          ],
+          "D": [
+            0,
+            3,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            7,
+            0,
+            4
+          ],
+          "G": [
+            7,
+            3,
+            4
+          ],
+          "H": [
+            0,
+            3,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 7 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AD",
+          "AH",
+          "DH"
+        ],
+        "planes": [
+          [
+            "A",
+            "D",
+            "H",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-dihedral-r2",
+      "block": "l4-dihedral",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Waarom is vlak ADHE een standvlak bij de vlakken ABCD en ABGH van een kubus?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ADHE bevat de snijlijn AB."
+        },
+        {
+          "id": "b",
+          "text": "Elk zijvlak van de kubus is automatisch geschikt als standvlak bij elk vlakkenpaar."
+        },
+        {
+          "id": "c",
+          "text": "AB is hun snijlijn; AB staat loodrecht op de twee snijdende lijnen AD en AE in ADHE."
+        },
+        {
+          "id": "d",
+          "text": "ADHE maakt in de schermtekening een rechte hoek met het grondvlak."
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "explanation": "Een standvlak staat loodrecht op de snijlijn. AB ⟂ AD en AB ⟂ AE, met AD en AE snijdend in A. Daarom AB ⟂ ADHE. De snijlijnen van dit standvlak met de twee oorspronkelijke vlakken zijn AD en AH.",
+      "hint": "Gebruik het criterium voor een lijn loodrecht op een vlak.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Vlakken ABCD en ABGH snijden langs AB. De standhoek moet nog gekozen worden.",
+        "view": "spatial",
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "B",
+            "G",
+            "H"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "AD",
+          "AE",
+          "AH"
+        ],
+        "planes": [
+          [
+            "A",
+            "D",
+            "H",
+            "E"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-check-1",
+      "block": "l4-cos",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Een driehoek heeft zijden 4, 7 en 9 cm. Welke aanpak is geschikt voor de grootste hoek?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Meet de hoek op de afbeelding; de zijden zijn niet genoeg."
+        },
+        {
+          "id": "b",
+          "text": "Gebruik Pythagoras; de grootste zijde is altijd een hypotenusa."
+        },
+        {
+          "id": "c",
+          "text": "Bereken arccos(4/7), omdat de kleinste twee zijden bekend zijn."
+        },
+        {
+          "id": "d",
+          "text": "Gebruik de cosinusregel voor de hoek tegenover de zijde van 9 cm."
+        }
+      ],
+      "answer": [
+        "d"
+      ],
+      "explanation": "De grootste hoek ligt tegenover de grootste zijde. Omdat 4² + 7² ≠ 9² is de driehoek niet rechthoekig. De cosinusregel is wel geldig.",
+      "hint": "Verbind de grootste hoek met zijn overstaande zijde.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            7,
+            0,
+            0
+          ],
+          "C": [
+            -1.1428571428571428,
+            3.8332593899996397,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "Driehoek ABC: AB = 7 cm, AC = 4 cm, BC = 9 cm."
+      }
+    },
+    {
+      "id": "l4-check-2",
+      "block": "l4-cos",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "AB = 7 cm, AC = 5 cm en ∠CAB = 110°. Bereken BC in cm, op twee decimalen.",
+      "answer": [
+        "9.896535253956145"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "explanation": "BC² = 7² + 5² − 2 × 7 × 5 × cos 110°. Dat geeft BC ≈ 9,90 cm. Het negatieve teken van cos 110° vergroot hier BC².",
+      "hint": "De gegeven hoek ligt tussen de twee bekende zijden.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            7,
+            0,
+            0
+          ],
+          "C": [
+            -1.7101007166283446,
+            4.698463103929542,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA"
+        ],
+        "showCube": false,
+        "view": "top",
+        "caption": "AB = 7 cm, AC = 5 cm en ∠CAB = 110°. BC is onbekend."
+      }
+    },
+    {
+      "id": "l4-check-3",
+      "block": "l4-lines",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "Een kubus bevat de kruisende lijnen AB en DG. Selecteer twee hoekpunten die de lijn door A evenwijdig aan DG bepalen.",
+      "answer": [
+        "A",
+        "F"
+      ],
+      "selectCount": 2,
+      "explanation": "De verplaatsing van D naar G is één ribbe in de richting van AB en één ribbe omhoog. Vanaf A voert dezelfde verplaatsing naar F: AF ∥ DG.",
+      "hint": "Vergelijk de volledige verplaatsing tussen de eindpunten.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 6 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "DG"
+        ]
+      },
+      "extraPoints": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          6,
+          6,
+          0
+        ],
+        "D": [
+          0,
+          6,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          6
+        ],
+        "F": [
+          6,
+          0,
+          6
+        ],
+        "G": [
+          6,
+          6,
+          6
+        ],
+        "H": [
+          0,
+          6,
+          6
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 6 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "DG",
+          "AF"
+        ]
+      }
+    },
+    {
+      "id": "l4-check-4",
+      "block": "l4-lines",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een balk heeft AB = 8 cm, AD = 5 cm en AE = 6 cm. Bereken de kleinste hoek tussen AB en DG in graden, op twee decimalen.",
+      "answer": [
+        "36.86989764584402"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "DG ∥ AF. Daarom is de gevraagde hoek ∠BAF en tan ∠BAF = BF/AB = 6/8. De hoek is 36,87°.",
+      "hint": "Breng de twee richtingen door één punt.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            5,
+            0
+          ],
+          "D": [
+            0,
+            5,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            8,
+            0,
+            6
+          ],
+          "G": [
+            8,
+            5,
+            6
+          ],
+          "H": [
+            0,
+            5,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "AB = 8 cm, AD = 5 cm en AE = 6 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "DG"
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            5,
+            0
+          ],
+          "D": [
+            0,
+            5,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            8,
+            0,
+            6
+          ],
+          "G": [
+            8,
+            5,
+            6
+          ],
+          "H": [
+            0,
+            5,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 8 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AB",
+          "DG",
+          "AF"
+        ]
+      }
+    },
+    {
+      "id": "l4-check-5",
+      "block": "l4-plane",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "Selecteer de twee eindpunten van de loodrechte projectie van AG op vlak DCGH.",
+      "answer": [
+        "D",
+        "G"
+      ],
+      "selectCount": 2,
+      "explanation": "A projecteert langs AD op D; G ligt al in DCGH en blijft G. De projectie is daarom DG. AD staat loodrecht op DC en DH, dus loodrecht op het achtervlak.",
+      "hint": "Projecteer ieder eindpunt afzonderlijk.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG"
+        ],
+        "planes": [
+          [
+            "D",
+            "C",
+            "G",
+            "H"
+          ]
+        ]
+      },
+      "extraPoints": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          4,
+          0,
+          0
+        ],
+        "C": [
+          4,
+          4,
+          0
+        ],
+        "D": [
+          0,
+          4,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          4
+        ],
+        "F": [
+          4,
+          0,
+          4
+        ],
+        "G": [
+          4,
+          4,
+          4
+        ],
+        "H": [
+          0,
+          4,
+          4
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 4 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG",
+          "AD",
+          "DG"
+        ],
+        "planes": [
+          [
+            "D",
+            "C",
+            "G",
+            "H"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-check-6",
+      "block": "l4-plane",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een balk heeft AB = 3 cm, AD = 4 cm en AE = 12 cm. Bereken de hoek tussen AG en ABCD in graden, op twee decimalen.",
+      "answer": [
+        "67.38013505195957"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "De projectie AC heeft lengte √(3² + 4²) = 5 cm. In de rechthoekige driehoek ACG is tan α = CG/AC = 12/5. Dus α ≈ 67,38°.",
+      "hint": "De gevraagde hoek ligt tussen de lijn en zijn loodrechte projectie.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            3,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            12
+          ],
+          "F": [
+            3,
+            0,
+            12
+          ],
+          "G": [
+            3,
+            4,
+            12
+          ],
+          "H": [
+            0,
+            4,
+            12
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "AB = 3 cm, AD = 4 cm, AE = 12 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            3,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            12
+          ],
+          "F": [
+            3,
+            0,
+            12
+          ],
+          "G": [
+            3,
+            4,
+            12
+          ],
+          "H": [
+            0,
+            4,
+            12
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus ABCD.EFGH; ribbe 3 cm.",
+        "view": "spatial",
+        "highlights": [
+          "AG",
+          "AC",
+          "CG"
+        ]
+      }
+    },
+    {
+      "id": "l4-check-7",
+      "block": "l4-dihedral",
+      "skill": "inzicht",
+      "type": "choice",
+      "prompt": "Je wilt de hoek tussen twee snijdende vlakken V en W construeren. Welke werkwijze is altijd geldig?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Kies een punt op de snijlijn en trek door dat punt in elk vlak een loodlijn op de snijlijn."
+        },
+        {
+          "id": "b",
+          "text": "Kies in elk vlak een lijn evenwijdig aan de snijlijn."
+        },
+        {
+          "id": "c",
+          "text": "Meet op het scherm de hoek tussen de zichtbare randen van de twee vlakken."
+        },
+        {
+          "id": "d",
+          "text": "Kies willekeurige lijnen in V en W door een gemeenschappelijk punt."
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "explanation": "De twee loodlijnen bepalen een standvlak en een standhoek. Door loodrecht op de snijlijn te kijken, meet je de opening tussen de vlakken. Bij een stomp resultaat kies je de supplementaire, kleinste hoek.",
+      "hint": "Welke richting moet het standvlak hebben ten opzichte van de snijlijn?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            4,
+            0,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            4,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            4
+          ],
+          "F": [
+            4,
+            0,
+            4
+          ],
+          "G": [
+            4,
+            4,
+            4
+          ],
+          "H": [
+            0,
+            4,
+            4
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "V = ABCD en W = ABGH illustreren twee snijdende vlakken.",
+        "view": "spatial",
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "B",
+            "G",
+            "H"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "l4-check-8",
+      "block": "l4-dihedral",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een kubus heeft ribbe 6 cm. J ligt op BF met BJ = 2 cm. Bereken de kleinste hoek tussen EJG en ABFE in graden, op twee decimalen.",
+      "answer": [
+        "60.98285937539848"
+      ],
+      "tolerance": 0.02,
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "explanation": "De snijlijn is EJ. Laat FI loodrecht op EJ vallen. EF = 6, FJ = 4 en EJ = √52, dus FI = EF × FJ/EJ = 24/√52. FG = 6. De standhoek FIG voldoet aan tan θ = FG/FI = √52/4, zodat θ ≈ 60,98°.",
+      "hint": "Construeer een standvlak door G en een loodlijn op EJ in het voorvlak.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ],
+          "J": [
+            6,
+            0,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Kubus: ribbe 6 cm; BJ = 2 cm. Gegeven vlakken EJG en ABFE.",
+        "view": "spatial",
+        "planes": [
+          [
+            "E",
+            "J",
+            "G"
+          ],
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ]
+        ]
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ],
+          "J": [
+            6,
+            0,
+            2
+          ],
+          "I": [
+            4.153846153846154,
+            0,
+            3.230769230769231
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "FI ⟂ EJ en GI ⟂ EJ. EF = 6, FJ = 4, EJ = √52 cm.",
+        "view": "spatial",
+        "highlights": [
+          "EJ",
+          "FI",
+          "GI",
+          "FG"
+        ],
+        "planes": [
+          [
+            "E",
+            "J",
+            "G"
+          ],
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ]
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "4": [
+      "l4-check-1",
+      "l4-check-2",
+      "l4-check-3",
+      "l4-check-4",
+      "l4-check-5",
+      "l4-check-6",
+      "l4-check-7",
+      "l4-check-8"
+    ]
+  },
+  "papers": {
+    "4": {
+      "title": "Op papier: een standhoek zelf construeren",
+      "prompt": "Teken een kubus ABCD.EFGH met ribbe 6 cm in parallelprojectie. Neem J op BF met BJ = 2 cm. Construeer de standhoek tussen de vlakken EJG en ABFE, bewijs waarom jouw hoek geldig is en bereken hem in graden op twee decimalen. Voeg daarna toe hoe de hoek verandert als J naar F schuift. De schermschets is een ruimtelijke illustratie: construeer benodigde loodlijnen in een hulpfiguur op ware grootte.",
+      "steps": [
+        "Teken de gegeven kubus, plaats J correct en bepaal de snijlijn van de twee vlakken.",
+        "Teken driehoek EFJ op ware grootte. Construeer vanuit F de loodlijn op EJ en noem het voetpunt I. Breng I terug op EJ in je ruimtelijke tekening; teken daar niet zomaar een schermhoek van 90°.",
+        "Teken een geschikte standdriehoek op ware grootte. Noteer bij elke rechte hoek welke ruimtelijke eigenschap haar rechtvaardigt.",
+        "Bereken de vlak–vlakhoek en controleer of de uitkomst tussen 0° en 90° ligt. Onderbouw vervolgens de grenssituatie J → F."
+      ],
+      "rubric": [
+        "Snijlijn EJ correct gekozen; J ligt op BF met BJ = 2 en FJ = 4 cm.",
+        "Voetpunt I met een echte loodrechte constructie in de hulpfiguur gevonden; FI en GI beide loodrecht op EJ onderbouwd.",
+        "Rechthoekige standdriehoek FIG met juiste lengtes gebruikt; berekening leidt tot circa 60,98°.",
+        "Eigen uitleg onderscheidt de standhoek van een willekeurige hoek; bij J → F wordt de hoek 90°."
+      ],
+      "solution": [
+        "E en J liggen in beide vlakken. Hun snijlijn is daarom EJ. In het voorvlak ABFE construeer je FI ⟂ EJ.",
+        "FG staat loodrecht op vlak ABFE en dus op de richtingen FI en EJ. Omdat EJ loodrecht staat op zowel FI als de richting FG, staat EJ loodrecht op vlak FIG. Daarom is ook GI ⟂ EJ en is ∠FIG een standhoek.",
+        "EF = 6 en FJ = 4 geven EJ = √52. De oppervlakte van EFJ is zowel ½ × 6 × 4 als ½ × EJ × FI. Dus FI = 24/√52 cm.",
+        "Driehoek FIG is recht bij F. tan ∠FIG = FG/FI = 6/(24/√52) = √52/4. De kleinste hoek is 60,98°.",
+        "Als J naar F schuift, wordt vlak EJG het bovenvlak EFGH. Dat staat loodrecht op het voorvlak ABFE, dus de hoek wordt 90°. In de tussenliggende constructies wordt FI steeds kleiner; de hoek nadert 90°."
+      ],
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "E": [
+            0,
+            0,
+            6
+          ],
+          "F": [
+            6,
+            0,
+            6
+          ],
+          "G": [
+            6,
+            6,
+            6
+          ],
+          "H": [
+            0,
+            6,
+            6
+          ],
+          "J": [
+            6,
+            0,
+            2
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "caption": "Papieropgave: ribbe 6 cm; J op BF met BJ = 2 cm. Construeer de standhoek zelf.",
+        "view": "spatial",
+        "planes": [
+          [
+            "E",
+            "J",
+            "G"
+          ],
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ]
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "level": 4,
+      "source": "Ruimtemeetkunde 1.4 — 57bcb5d8-80a6-4fe3-ae19-f986b4f699c8.pptx",
+      "slides": "5–10",
+      "coverage": "10.1: herleiding cosinusregel met hoogtelijn; zijden, hoeken en oppervlakte; nieuwe getallenvoorbeelden met onafhankelijke berekening."
+    },
+    {
+      "level": 4,
+      "source": "Ruimtemeetkunde 1.4 — 57bcb5d8-80a6-4fe3-ae19-f986b4f699c8.pptx",
+      "slides": "11–13",
+      "coverage": "10.2: kleinste hoek tussen lijnen, kruisende lijnen evenwijdig verschuiven, kubus met midden van AE; alternatieve balken."
+    },
+    {
+      "level": 4,
+      "source": "Ruimtemeetkunde 1.4 — 57bcb5d8-80a6-4fe3-ae19-f986b4f699c8.pptx",
+      "slides": "15–16",
+      "coverage": "10.3: loodrecht op een vlak via twee snijdende vlaklijnen; loodrechte projectie en lijn–vlakhoek. Noodzakelijke voorwaarden expliciet gemaakt."
+    },
+    {
+      "level": 4,
+      "source": "Ruimtemeetkunde 1.4 — 57bcb5d8-80a6-4fe3-ae19-f986b4f699c8.pptx",
+      "slides": "17–20",
+      "coverage": "10.4: snijlijn, standvlak, standhoek, kubusvoorbeeld EJG/ABFE; ware-grootte-constructie op papier met nieuwe afmetingen."
+    }
+  ]
+}

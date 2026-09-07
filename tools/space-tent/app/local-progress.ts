@@ -1,4 +1,6 @@
-import {BANK, QUESTIONS, correctAnswer, type LearningEvent} from './model';
+import {BANK, COURSE, QUESTIONS, pointsForQuestion, correctAnswer, type LearningEvent} from './model';
+import {CONSTRUCTION_TASKS,verifyConstruction} from './course-construction';
+import {numericValue} from './numeric';
 import {CUBE, distance, type DrawLine, type V3} from './geometry-math';
 import {initialPoints, verifyWorkbench} from './workbench-math';
 
@@ -6,8 +8,8 @@ import {initialPoints, verifyWorkbench} from './workbench-math';
 export const LOCAL_PROGRESS_KEY = 'wisik.space-tent.progress.v1';
 export const LOCAL_PROGRESS_FORMAT = 'wisik-space-tent-progress';
 export const LOCAL_PROGRESS_VERSION = 1;
-export const MAX_PROGRESS_CHARACTERS = 2_000_000;
-export const MAX_PROGRESS_EVENTS = 5_000;
+export const MAX_PROGRESS_CHARACTERS = 8_000_000;
+export const MAX_PROGRESS_EVENTS = 20_000;
 
 export type ProgressStorage = Pick<Storage, 'getItem' | 'setItem'>;
 export type LocalProgressResult = {ok: boolean; events: LearningEvent[]; error?: string};
@@ -29,7 +31,7 @@ const clone = (events: LearningEvent[]): LearningEvent[] => JSON.parse(JSON.stri
 const vector = (v: unknown): v is V3 => Array.isArray(v) && v.length === 3 && v.every(n => typeof n === 'number' && Number.isFinite(n) && Math.abs(n) < 20);
 
 /** Allowlisted fields only: imported names, identifiers or other data are not kept. */
-function normalizeEvent(value: unknown): LearningEvent {
+export function normalizeEvent(value: unknown): LearningEvent {
   if (!record(value) || typeof value.id !== 'string' || !/^[a-zA-Z0-9-]{10,80}$/.test(value.id)
     || typeof value.at !== 'number' || !Number.isSafeInteger(value.at) || value.at < 0 || value.at > 8_640_000_000_000_000
     || !record(value.payload)) fail('Het voortgangsbestand bevat een ongeldige handeling.');
@@ -40,12 +42,13 @@ function normalizeEvent(value: unknown): LearningEvent {
     if (typeof questionId !== 'string' || !own(QUESTIONS, questionId)) fail('Het voortgangsbestand bevat een onbekende vraag.');
     const question = QUESTIONS[questionId];
     if (typeof context !== 'string' || !own(contexts, context) || !contexts[context as keyof typeof contexts].has(questionId)) fail('Een antwoord hoort niet bij deze oefenreeks.');
-    const allowed = question.type === 'choice' ? (question.options || []).map(o => o.id) : [...Object.keys(CUBE), ...Object.keys(question.extraPoints || {})];
+    const allowed = question.type === 'choice' ? (question.options || []).map(o => o.id) : pointsForQuestion(question);
     const answerCount = question.selectCount || (question.type === 'points' ? question.answer.length : 1);
-    if (!Array.isArray(answer) || answer.length !== answerCount || answer.some(v => typeof v !== 'string' || !allowed.includes(v))
+    if (!Array.isArray(answer) || answer.length !== answerCount || answer.some(v => typeof v !== 'string' || (question.type==='numeric'?numericValue(v)===null:!allowed.includes(v)))
       || new Set(answer).size !== answer.length || typeof helped !== 'boolean'
       || typeof sessionId !== 'string' || !/^[a-zA-Z0-9-]{1,80}$/.test(sessionId)) fail('Het voortgangsbestand bevat een ongeldig antwoord.');
-    clean = {questionId, answer: [...answer], helped, context, sessionId, correct: correctAnswer(question, answer)};
+    if(payload.working!==undefined&&(typeof payload.working!=='string'||payload.working.length>2000))fail('De berekening is te lang of ongeldig.');
+    clean = {questionId, answer: [...answer], helped, context, sessionId, correct: correctAnswer(question, answer),...(question.working?{working:String(payload.working||'')}: {})};
   } else if (value.type === 'block') {
     const block = BANK.blocks.find(b => b.id === payload.blockId);
     if (!block) fail('Het voortgangsbestand bevat een onbekend lesblok.');
@@ -53,7 +56,16 @@ function normalizeEvent(value: unknown): LearningEvent {
   } else if (value.type === 'paper') {
     const {checks} = payload;
     if (!Array.isArray(checks) || checks.length > 4 || checks.some(v => typeof v !== 'string' || !paperChecks.includes(v)) || new Set(checks).size !== checks.length) fail('Het voortgangsbestand bevat een ongeldige zelfcontrole.');
-    clean = {checks: paperChecks.filter(check => checks.includes(check)), source: 'self-check'};
+    const level=String(payload.level??1);if(level!=='1'&&!Object.prototype.hasOwnProperty.call(COURSE.papers,level))fail('Onbekend papierwerk.');
+    clean = {checks: paperChecks.filter(check => checks.includes(check)), source: 'self-check',...(level!=='1'?{level}: {})};
+  } else if(value.type==='construction'){
+    const task=CONSTRUCTION_TASKS.find(t=>t.id===payload.taskId);
+    if(!task||typeof payload.submitted!=='boolean'||typeof payload.helped!=='boolean'||typeof payload.reason!=='string'||!Array.isArray(payload.lines)||payload.lines.length>80||!record(payload.points)||Object.keys(payload.points).length>40||Object.values(payload.points).some(p=>!vector(p)))fail('Ongeldige constructieopgave.');
+    const lines:DrawLine[]=payload.lines.map((l,index)=>{if(!record(l)||!vector(l.a)||!vector(l.b)||distance(l.a,l.b)<1e-7)fail('Ongeldige constructielijn.');return {id:typeof l.id==='string'&&/^[a-zA-Z0-9-]{1,80}$/.test(l.id)?l.id:'proof-'+index,name:typeof l.name==='string'&&l.name.length<=100?l.name:'h'+index,a:l.a,b:l.b,infinite:l.infinite===true}});
+    if(Object.keys(payload.points).some(k=>! /^[A-Z]$/.test(k)))fail('Ongeldige puntnaam.');
+    const points=payload.points as Record<string,V3>;
+    if(Object.entries(task.points).some(([k,p])=>!points[k]||distance(p,points[k])>1e-7))fail('Gegeven punten zijn gewijzigd.');
+    clean={taskId:task.id,lines,points,helped:payload.helped,reason:payload.reason,submitted:payload.submitted,drawingLocked:payload.drawingLocked===true||payload.submitted===true,correct:payload.submitted&&verifyConstruction(task,lines,points)&&payload.reason===task.reason.answer};
   } else if (value.type === 'workbench') {
     const {lines, points, variant, helped} = payload;
     if ((variant !== 0 && variant !== 1) || typeof helped !== 'boolean' || !Array.isArray(lines) || lines.length > 60

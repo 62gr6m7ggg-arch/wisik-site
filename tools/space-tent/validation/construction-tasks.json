@@ -1,0 +1,1611 @@
+{
+  "tasks": [
+    {
+      "id": "construct-l2-parallel",
+      "level": 2,
+      "title": "Een doorsnede via evenwijdige vlakken",
+      "prompt": "Construeer de volledige doorsnede van de kubus met vlak PQR. De kubus heeft ribben 6 cm; AP = 2 cm, BQ = 3 cm en CR = 4 cm.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          6,
+          6,
+          0
+        ],
+        "D": [
+          0,
+          6,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          6
+        ],
+        "F": [
+          6,
+          0,
+          6
+        ],
+        "G": [
+          6,
+          6,
+          6
+        ],
+        "H": [
+          0,
+          6,
+          6
+        ],
+        "P": [
+          0,
+          0,
+          2
+        ],
+        "Q": [
+          6,
+          0,
+          3
+        ],
+        "R": [
+          6,
+          6,
+          4
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "EF",
+        "FG",
+        "GH",
+        "HE",
+        "AE",
+        "BF",
+        "CG",
+        "DH"
+      ],
+      "givens": [
+        "P",
+        "Q",
+        "R"
+      ],
+      "targetSegments": [
+        [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            6,
+            0,
+            3
+          ]
+        ],
+        [
+          [
+            6,
+            0,
+            3
+          ],
+          [
+            6,
+            6,
+            4
+          ]
+        ],
+        [
+          [
+            6,
+            6,
+            4
+          ],
+          [
+            0,
+            6,
+            3
+          ]
+        ],
+        [
+          [
+            0,
+            6,
+            3
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      ],
+      "hints": [
+        "Welke twee gegeven punten delen een zijvlak?",
+        "Gebruik de evenwijdige zijvlakken BCGF en ADHE.",
+        "Trek door P een evenwijdige aan QR en bepaal het snijpunt met DH."
+      ],
+      "solution": [
+        "Teken PQ en QR.",
+        "Teken door P de lijn evenwijdig aan QR. Deze snijdt DH in een nieuw punt S.",
+        "Teken de lijnstukken PS en SR. De doorsnede is PQRS."
+      ],
+      "reason": {
+        "prompt": "Waarom is de lijn door P evenwijdig aan QR bruikbaar?",
+        "options": [
+          {
+            "id": "v",
+            "text": "Het doorsnedevlak maakt evenwijdige snijlijnen in de evenwijdige vlakken ADHE en BCGF."
+          },
+          {
+            "id": "a",
+            "text": "Alle zijvlakken van een kubus zijn onderling evenwijdig."
+          },
+          {
+            "id": "p",
+            "text": "Elke lijn door P ligt in vlak PQR."
+          }
+        ],
+        "answer": "v"
+      },
+      "targetPoints": [
+        [
+          0,
+          6,
+          3
+        ]
+      ],
+      "solutionPoints": {
+        "S": [
+          0,
+          6,
+          3
+        ]
+      }
+    },
+    {
+      "id": "construct-l2-six",
+      "level": 2,
+      "title": "Een doorsnede met zes zijden",
+      "prompt": "Construeer de volledige doorsnede van vlak PQR met de kubus. P, Q en R zijn de middens van AB, BC en CG.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          6,
+          6,
+          0
+        ],
+        "D": [
+          0,
+          6,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          6
+        ],
+        "F": [
+          6,
+          0,
+          6
+        ],
+        "G": [
+          6,
+          6,
+          6
+        ],
+        "H": [
+          0,
+          6,
+          6
+        ],
+        "P": [
+          3,
+          0,
+          0
+        ],
+        "Q": [
+          6,
+          3,
+          0
+        ],
+        "R": [
+          6,
+          6,
+          3
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "EF",
+        "FG",
+        "GH",
+        "HE",
+        "AE",
+        "BF",
+        "CG",
+        "DH"
+      ],
+      "givens": [
+        "P",
+        "Q",
+        "R"
+      ],
+      "targetSegments": [
+        [
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            6,
+            3,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            3,
+            0
+          ],
+          [
+            6,
+            6,
+            3
+          ]
+        ],
+        [
+          [
+            6,
+            6,
+            3
+          ],
+          [
+            3,
+            6,
+            6
+          ]
+        ],
+        [
+          [
+            3,
+            6,
+            6
+          ],
+          [
+            0,
+            3,
+            6
+          ]
+        ],
+        [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ]
+      ],
+      "hints": [
+        "De drie gegeven punten zijn nog niet alle hoekpunten van de doorsnede.",
+        "Verleng QR en onderzoek het snijpunt met de volledige lijn BF.",
+        "Verbind dat hulppunt met P. Daarmee vind je het doorsnedepunt op AE; gebruik vervolgens evenwijdige zijvlakken."
+      ],
+      "solution": [
+        "Teken PQ en QR. Noem X het snijpunt van de volledige lijnen QR en BF; X ligt onder B.",
+        "Teken PX. Het snijpunt met AE is U.",
+        "Trek door U een evenwijdige aan QR. Deze snijdt EH in T.",
+        "Trek door T een evenwijdige aan PQ. Deze snijdt GH in S.",
+        "Teken de zes grenslijnstukken PQ, QR, RS, ST, TU en UP."
+      ],
+      "reason": {
+        "prompt": "Waarom mag X = QR ∩ BF buiten de kubus gebruikt worden?",
+        "options": [
+          {
+            "id": "h",
+            "text": "X ligt zowel in het doorsnedevlak als in vlak ABFE; daarom ligt PX in beide vlakken."
+          },
+          {
+            "id": "b",
+            "text": "Elk buitenpunt is automatisch een hoekpunt van de doorsnede."
+          },
+          {
+            "id": "z",
+            "text": "Lijnen die elkaar in de tekening kruisen snijden altijd in de ruimte."
+          }
+        ],
+        "answer": "h"
+      },
+      "targetPoints": [
+        [
+          3,
+          6,
+          6
+        ],
+        [
+          0,
+          3,
+          6
+        ],
+        [
+          0,
+          0,
+          3
+        ]
+      ],
+      "solutionPoints": {
+        "X": [
+          6,
+          0,
+          -3
+        ],
+        "U": [
+          0,
+          0,
+          3
+        ],
+        "T": [
+          0,
+          3,
+          6
+        ],
+        "S": [
+          3,
+          6,
+          6
+        ]
+      }
+    },
+    {
+      "id": "construct-l3-pyramid",
+      "level": 3,
+      "title": "Een schuine doorsnede van een piramide",
+      "prompt": "Construeer de doorsnede van vierzijdige piramide ABCDT met vlak PQR. P en Q zijn de middens van TA en TB; R ligt op TC met CR : RT = 1 : 3.",
+      "points": {
+        "A": [
+          -4,
+          -4,
+          0
+        ],
+        "B": [
+          4,
+          -4,
+          0
+        ],
+        "C": [
+          4,
+          4,
+          0
+        ],
+        "D": [
+          -4,
+          4,
+          0
+        ],
+        "T": [
+          0,
+          0,
+          8
+        ],
+        "P": [
+          -2,
+          -2,
+          4
+        ],
+        "Q": [
+          2,
+          -2,
+          4
+        ],
+        "R": [
+          3,
+          3,
+          2
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "AT",
+        "BT",
+        "CT",
+        "DT"
+      ],
+      "givens": [
+        "P",
+        "Q",
+        "R"
+      ],
+      "targetSegments": [
+        [
+          [
+            -2,
+            -2,
+            4
+          ],
+          [
+            2,
+            -2,
+            4
+          ]
+        ],
+        [
+          [
+            2,
+            -2,
+            4
+          ],
+          [
+            3,
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            3,
+            3,
+            2
+          ],
+          [
+            -3,
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            -3,
+            3,
+            2
+          ],
+          [
+            -2,
+            -2,
+            4
+          ]
+        ]
+      ],
+      "hints": [
+        "Welke eigenschap heeft de middenparallel PQ in driehoek TAB?",
+        "PQ is evenwijdig aan AB en daarmee aan CD. Onderzoek vlak TCD.",
+        "Trek door R de lijn evenwijdig aan PQ en snijd deze met TD."
+      ],
+      "solution": [
+        "Teken PQ en QR. PQ is evenwijdig aan AB en CD.",
+        "Trek door R een evenwijdige aan PQ. Deze ligt in vlak TCD en snijdt TD in S.",
+        "Teken RS en SP. De volledige doorsnede is PQRS."
+      ],
+      "reason": {
+        "prompt": "Waarom ligt de evenwijdige door R aan PQ in vlak TCD?",
+        "options": [
+          {
+            "id": "c",
+            "text": "R ligt in TCD en de richting van PQ is evenwijdig aan de lijn CD in dat vlak."
+          },
+          {
+            "id": "t",
+            "text": "Alle zijvlakken van een piramide zijn evenwijdig."
+          },
+          {
+            "id": "m",
+            "text": "Omdat R altijd het midden van TC is."
+          }
+        ],
+        "answer": "c"
+      },
+      "targetPoints": [
+        [
+          -3,
+          3,
+          2
+        ]
+      ],
+      "solutionPoints": {
+        "S": [
+          -3,
+          3,
+          2
+        ]
+      }
+    },
+    {
+      "id": "construct-l3-prism",
+      "level": 3,
+      "title": "Vier zijden in een driehoekig prisma",
+      "prompt": "Construeer de volledige doorsnede van het rechte driehoekige prisma ABC.DEF met vlak PQR. P, Q en R zijn de middens van AB, BC en CF.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          2,
+          4,
+          0
+        ],
+        "D": [
+          0,
+          0,
+          6
+        ],
+        "E": [
+          6,
+          0,
+          6
+        ],
+        "F": [
+          2,
+          4,
+          6
+        ],
+        "P": [
+          3,
+          0,
+          0
+        ],
+        "Q": [
+          4,
+          2,
+          0
+        ],
+        "R": [
+          2,
+          4,
+          3
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA",
+        "DE",
+        "EF",
+        "FD",
+        "AD",
+        "BE",
+        "CF"
+      ],
+      "givens": [
+        "P",
+        "Q",
+        "R"
+      ],
+      "targetSegments": [
+        [
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            4,
+            2,
+            0
+          ]
+        ],
+        [
+          [
+            4,
+            2,
+            0
+          ],
+          [
+            2,
+            4,
+            3
+          ]
+        ],
+        [
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ]
+      ],
+      "hints": [
+        "Een driehoekig prisma hoeft geen driehoekige doorsnede te hebben.",
+        "De volledige lijnen QR en BE liggen in hetzelfde zijvlak.",
+        "Zoek X = QR ∩ BE. De lijn PX snijdt AD in het ontbrekende hoekpunt."
+      ],
+      "solution": [
+        "Teken PQ en QR. Verleng QR en BE tot hun snijpunt X onder B.",
+        "Teken PX; deze lijn ligt in vlak ABED.",
+        "Het snijpunt U van PX en AD ligt op de doorsnede.",
+        "Teken UP en UR. De volledige doorsnede is PQRU."
+      ],
+      "reason": {
+        "prompt": "Waarom mag je de gevonden punten R en U verbinden?",
+        "options": [
+          {
+            "id": "f",
+            "text": "R en U liggen in het doorsnedevlak én in hetzelfde zijvlak ACFD."
+          },
+          {
+            "id": "n",
+            "text": "Elke twee punten van een prisma liggen op hetzelfde zijvlak."
+          },
+          {
+            "id": "d",
+            "text": "Een doorsnede moet altijd de kleinste driehoek door de gegeven punten zijn."
+          }
+        ],
+        "answer": "f"
+      },
+      "targetPoints": [
+        [
+          0,
+          0,
+          3
+        ]
+      ],
+      "solutionPoints": {
+        "X": [
+          6,
+          0,
+          -3
+        ],
+        "U": [
+          0,
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "id": "construct-l2-lineplane",
+      "level": 2,
+      "title": "Een lijn door een diagonaalvlak",
+      "prompt": "Construeer het snijpunt van de volledige lijn AP met vlak BDH. De kubus heeft ribben 6 cm en P is het midden van FG. Teken ook het lijnstuk van A naar het gevonden punt.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          6,
+          6,
+          0
+        ],
+        "D": [
+          0,
+          6,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          6
+        ],
+        "F": [
+          6,
+          0,
+          6
+        ],
+        "G": [
+          6,
+          6,
+          6
+        ],
+        "H": [
+          0,
+          6,
+          6
+        ],
+        "P": [
+          6,
+          3,
+          6
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "EF",
+        "FG",
+        "GH",
+        "HE",
+        "AE",
+        "BF",
+        "CG",
+        "DH"
+      ],
+      "givens": [
+        "P"
+      ],
+      "targetSegments": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            2,
+            4
+          ]
+        ]
+      ],
+      "hints": [
+        "Een hulpvlak door AP kan verticaal zijn.",
+        "Construeer K als midden van BC. Vlak AKP bevat AP en de verticale lijn KP.",
+        "Snijd AK met BD. Trek door dat snijpunt een evenwijdige aan AE en snijd deze met AP."
+      ],
+      "solution": [
+        "Construeer K, het midden van BC.",
+        "Teken AP, AK en BD. Noem Y = AK ∩ BD.",
+        "Trek door Y een evenwijdige aan AE. Dit is de snijlijn van het hulpvlak AKP en vlak BDH.",
+        "Noem X het snijpunt van die lijn met AP. Teken AX."
+      ],
+      "reason": {
+        "prompt": "Wat garandeert dat het gevonden punt X in vlak BDH ligt?",
+        "options": [
+          {
+            "id": "s",
+            "text": "X ligt op de snijlijn van het hulpvlak AKP met vlak BDH."
+          },
+          {
+            "id": "p",
+            "text": "X ligt ongeveer in het midden van de getekende kubus."
+          },
+          {
+            "id": "b",
+            "text": "Elke lijn door A snijdt vlak BDH in B."
+          }
+        ],
+        "answer": "s"
+      },
+      "targetPoints": [
+        [
+          4,
+          2,
+          4
+        ]
+      ],
+      "solutionPoints": {
+        "K": [
+          6,
+          3,
+          0
+        ],
+        "Y": [
+          4,
+          2,
+          0
+        ],
+        "X": [
+          4,
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "id": "construct-l4-standvlak",
+      "level": 4,
+      "title": "De hoek zichtbaar maken",
+      "prompt": "De top T van de rechte vierkante piramide ligt 6 cm boven het grondvlakmiddelpunt. Het grondvlak heeft zijde 8 cm. Construeer de twee lijnstukken die samen de kleinste hoek tussen vlak BCT en vlak ABCD voorstellen, bij het midden van BC.",
+      "points": {
+        "A": [
+          -4,
+          -4,
+          0
+        ],
+        "B": [
+          4,
+          -4,
+          0
+        ],
+        "C": [
+          4,
+          4,
+          0
+        ],
+        "D": [
+          -4,
+          4,
+          0
+        ],
+        "T": [
+          0,
+          0,
+          6
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "AT",
+        "BT",
+        "CT",
+        "DT"
+      ],
+      "givens": [],
+      "targetSegments": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6
+          ]
+        ]
+      ],
+      "hints": [
+        "De snijlijn van de twee vlakken is BC.",
+        "Maak een vlak loodrecht op BC door het grondvlakmiddelpunt en T.",
+        "Construeer het midden M van BC en het middelpunt O van het grondvlak. De hoek wordt gevormd door MO en MT."
+      ],
+      "solution": [
+        "Construeer M als midden van BC.",
+        "Teken AC en BD en noem hun snijpunt O.",
+        "Teken MO en MT. Beide staan loodrecht op BC; hoek OMT is de gevraagde vlakhoek."
+      ],
+      "reason": {
+        "prompt": "Waarom is hoek OMT de hoek tussen de vlakken?",
+        "options": [
+          {
+            "id": "l",
+            "text": "MO en MT liggen elk in een van de vlakken en staan beide loodrecht op hun snijlijn BC."
+          },
+          {
+            "id": "g",
+            "text": "Elke hoek bij een punt van BC is de vlakhoek."
+          },
+          {
+            "id": "r",
+            "text": "MT en MO zijn even lang."
+          }
+        ],
+        "answer": "l"
+      },
+      "targetPoints": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          0
+        ]
+      ],
+      "solutionPoints": {
+        "M": [
+          4,
+          0,
+          0
+        ],
+        "O": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "construct-l5-foot",
+      "level": 5,
+      "title": "De echte kortste verbinding",
+      "prompt": "Construeer het kortste lijnstuk van B naar de volledige lijn AC in balk ABCD.EFGH. AB = 8 cm, AD = 6 cm en AE = 4 cm.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          8,
+          0,
+          0
+        ],
+        "C": [
+          8,
+          6,
+          0
+        ],
+        "D": [
+          0,
+          6,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          4
+        ],
+        "F": [
+          8,
+          0,
+          4
+        ],
+        "G": [
+          8,
+          6,
+          4
+        ],
+        "H": [
+          0,
+          6,
+          4
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "EF",
+        "FG",
+        "GH",
+        "HE",
+        "AE",
+        "BF",
+        "CG",
+        "DH"
+      ],
+      "givens": [],
+      "targetSegments": [
+        [
+          [
+            8,
+            0,
+            0
+          ],
+          [
+            5.12,
+            3.84,
+            0
+          ]
+        ]
+      ],
+      "hints": [
+        "De afstand tot een lijn meet je loodrecht op die lijn.",
+        "De gevraagde constructie ligt geheel in vlak ABCD.",
+        "Teken AC en construeer de loodvoet van B op AC. Verbind B met deze loodvoet."
+      ],
+      "solution": [
+        "Teken AC.",
+        "Projecteer B loodrecht op de volledige lijn AC; noem de loodvoet P.",
+        "Teken BP. Dit lijnstuk geeft de afstand van B tot AC."
+      ],
+      "reason": {
+        "prompt": "Waarom is BP de afstand van B tot AC?",
+        "options": [
+          {
+            "id": "k",
+            "text": "P ligt op AC en BP staat loodrecht op AC."
+          },
+          {
+            "id": "m",
+            "text": "P ligt altijd in het midden van AC."
+          },
+          {
+            "id": "b",
+            "text": "BP is het kortste getekende lijnstuk op het beeldscherm."
+          }
+        ],
+        "answer": "k"
+      },
+      "targetPoints": [
+        [
+          5.12,
+          3.84,
+          0
+        ]
+      ],
+      "solutionPoints": {
+        "P": [
+          5.12,
+          3.84,
+          0
+        ]
+      }
+    },
+    {
+      "id": "construct-l6-commonfoot",
+      "level": 6,
+      "title": "Een gemeenschappelijke loodlijn",
+      "prompt": "Bij tetraëder ABCT staan AB, AC en AT in A onderling loodrecht. AB = 6 cm, AC = 8 cm en AT = 6 cm. Construeer het kortste verbindingslijnstuk tussen de volledige lijnen AB en CT.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          0,
+          8,
+          0
+        ],
+        "T": [
+          0,
+          0,
+          6
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA",
+        "AT",
+        "BT",
+        "CT"
+      ],
+      "givens": [],
+      "targetSegments": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2.88,
+            3.84
+          ]
+        ]
+      ],
+      "hints": [
+        "Onderzoek welk vlak door CT loodrecht staat op AB.",
+        "Vlak ACT staat loodrecht op AB en snijdt AB in A.",
+        "Construeer in vlak ACT de loodvoet van A op CT. De verbinding met A staat loodrecht op beide lijnen."
+      ],
+      "solution": [
+        "Teken CT en projecteer A loodrecht op CT; noem de loodvoet P.",
+        "Teken AP. AP ligt in vlak ACT en staat daardoor loodrecht op AB; door de constructie is AP ook loodrecht op CT.",
+        "Daarom is AP de gemeenschappelijke loodlijn en de kortste verbinding."
+      ],
+      "reason": {
+        "prompt": "Waarom volstaat een loodlijn vanuit A op CT hier?",
+        "options": [
+          {
+            "id": "v",
+            "text": "AB staat loodrecht op vlak ACT, dus op AP; daarnaast is AP loodrecht op CT."
+          },
+          {
+            "id": "a",
+            "text": "Een loodlijn vanuit een willekeurig punt op AB is altijd de kortste verbinding."
+          },
+          {
+            "id": "p",
+            "text": "AB en CT zijn evenwijdig, omdat zij niet snijden."
+          }
+        ],
+        "answer": "v"
+      },
+      "targetPoints": [
+        [
+          0,
+          2.88,
+          3.84
+        ]
+      ],
+      "solutionPoints": {
+        "P": [
+          0,
+          2.88,
+          3.84
+        ]
+      }
+    },
+    {
+      "id": "construct-l7-a",
+      "level": 7,
+      "title": "Examenconstructie A · buiten de kubus",
+      "prompt": "Construeer de volledige doorsnede van de kubus met vlak PQR. De kubus heeft ribben 6 cm; AP = 2 cm, Q is het midden van EH en R is het midden van BC. Geef ook de reden voor je constructie.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          6,
+          6,
+          0
+        ],
+        "D": [
+          0,
+          6,
+          0
+        ],
+        "E": [
+          0,
+          0,
+          6
+        ],
+        "F": [
+          6,
+          0,
+          6
+        ],
+        "G": [
+          6,
+          6,
+          6
+        ],
+        "H": [
+          0,
+          6,
+          6
+        ],
+        "P": [
+          0,
+          0,
+          2
+        ],
+        "Q": [
+          0,
+          3,
+          6
+        ],
+        "R": [
+          6,
+          3,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "EF",
+        "FG",
+        "GH",
+        "HE",
+        "AE",
+        "BF",
+        "CG",
+        "DH"
+      ],
+      "givens": [
+        "P",
+        "Q",
+        "R"
+      ],
+      "targetSegments": [
+        [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            6,
+            3,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            3,
+            0
+          ],
+          [
+            6,
+            6,
+            4
+          ]
+        ],
+        [
+          [
+            6,
+            6,
+            4
+          ],
+          [
+            4,
+            6,
+            6
+          ]
+        ],
+        [
+          [
+            4,
+            6,
+            6
+          ],
+          [
+            0,
+            3,
+            6
+          ]
+        ],
+        [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      ],
+      "hints": [
+        "Zoek eerst twee gegeven punten in hetzelfde zijvlak.",
+        "Verleng PQ tot de lijn AD om een hulppunt in het grondvlak te vinden.",
+        "Gebruik de grondvlak-snijlijn door dit hulppunt en R, en daarna evenwijdige tegenoverliggende zijvlakken."
+      ],
+      "solution": [
+        "Teken PQ. Verleng PQ en AD tot hun snijpunt U buiten de kubus.",
+        "Teken UR en noem X het snijpunt met AB.",
+        "Trek door R een evenwijdige aan PQ; die snijdt CG in S.",
+        "Trek door Q een evenwijdige aan UR; die snijdt GH in Y.",
+        "Teken de zes grenslijnstukken PX, XR, RS, SY, YQ en QP."
+      ],
+      "reason": {
+        "prompt": "Waarom hoort de lijn UR bij de doorsnede?",
+        "options": [
+          {
+            "id": "g",
+            "text": "U en R liggen zowel in vlak PQR als in het grondvlak."
+          },
+          {
+            "id": "r",
+            "text": "U is het middelpunt van het grondvlak."
+          },
+          {
+            "id": "p",
+            "text": "Elke lijn door R hoort bij het doorsnedevlak."
+          }
+        ],
+        "answer": "g"
+      },
+      "targetPoints": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          6,
+          6,
+          4
+        ],
+        [
+          4,
+          6,
+          6
+        ]
+      ],
+      "exam": "a",
+      "solutionPoints": {
+        "U": [
+          0,
+          -1.5,
+          0
+        ],
+        "X": [
+          2,
+          0,
+          0
+        ],
+        "S": [
+          6,
+          6,
+          4
+        ],
+        "Y": [
+          4,
+          6,
+          6
+        ]
+      }
+    },
+    {
+      "id": "construct-l7-b",
+      "level": 7,
+      "title": "Examenconstructie B · scheve piramide",
+      "prompt": "Construeer de volledige doorsnede van de scheve vierzijdige piramide ABCDT met vlak PQR. ABCD is een rechthoek. P, Q en R zijn de middens van AB, BC en DT. Geef ook de reden voor je constructie.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          6,
+          8,
+          0
+        ],
+        "D": [
+          0,
+          8,
+          0
+        ],
+        "T": [
+          1,
+          2,
+          9
+        ],
+        "P": [
+          3,
+          0,
+          0
+        ],
+        "Q": [
+          6,
+          4,
+          0
+        ],
+        "R": [
+          0.5,
+          5,
+          4.5
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "AT",
+        "BT",
+        "CT",
+        "DT"
+      ],
+      "givens": [
+        "P",
+        "Q",
+        "R"
+      ],
+      "targetSegments": [
+        [
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            6,
+            4,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            4,
+            0
+          ],
+          [
+            4.75,
+            6.5,
+            2.25
+          ]
+        ],
+        [
+          [
+            4.75,
+            6.5,
+            2.25
+          ],
+          [
+            0.5,
+            5,
+            4.5
+          ]
+        ],
+        [
+          [
+            0.5,
+            5,
+            4.5
+          ],
+          [
+            0.25,
+            0.5,
+            2.25
+          ]
+        ],
+        [
+          [
+            0.25,
+            0.5,
+            2.25
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ]
+      ],
+      "hints": [
+        "PQ ligt in het grondvlak, maar R niet.",
+        "Verleng PQ en zoek snijpunten met de volledige lijnen AD en CD.",
+        "Verbind beide gevonden hulppunten met R. In de zijvlakken TAD en TCD vind je zo de ontbrekende doorsnedepunten."
+      ],
+      "solution": [
+        "Teken PQ. Noem U = PQ ∩ AD en V = PQ ∩ CD; beide hulppunten liggen buiten het grondvlak.",
+        "Teken UR; deze lijn ligt in zijvlak TAD. Noem X = UR ∩ TA.",
+        "Teken VR; deze lijn ligt in zijvlak TCD. Noem Y = VR ∩ TC.",
+        "Teken de vijf grenslijnstukken PQ, QY, YR, RX en XP."
+      ],
+      "reason": {
+        "prompt": "Waarom mag je R verbinden met U = PQ ∩ AD?",
+        "options": [
+          {
+            "id": "t",
+            "text": "R en U liggen allebei in vlak PQR én in zijvlak TAD."
+          },
+          {
+            "id": "e",
+            "text": "De zijvlakken TAD en TCD zijn evenwijdig."
+          },
+          {
+            "id": "m",
+            "text": "Omdat alle middens van ribben in één vlak liggen."
+          }
+        ],
+        "answer": "t"
+      },
+      "targetPoints": [
+        [
+          0.25,
+          0.5,
+          2.25
+        ],
+        [
+          4.75,
+          6.5,
+          2.25
+        ]
+      ],
+      "exam": "b",
+      "solutionPoints": {
+        "U": [
+          0,
+          -4,
+          0
+        ],
+        "V": [
+          9,
+          8,
+          0
+        ],
+        "X": [
+          0.25,
+          0.5,
+          2.25
+        ],
+        "Y": [
+          4.75,
+          6.5,
+          2.25
+        ]
+      }
+    }
+  ]
+}

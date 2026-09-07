@@ -110,9 +110,9 @@ invalidImport([stamped(blockEvent, 0), ...block.questionIds.map((id, i) => stamp
 
 // Independent checks need every distinct checkpoint in one unhelped session.
 const check = create();
-for (const [i, id] of M.BANK.checkpointIds.entries()) {
+for (const [i, id] of M.CHECKS['1'].entries()) {
   assert.equal(check.store.append(answer(id, M.QUESTIONS[id].answer, {context: 'check', sessionId: 'check-session'}), 100 + i).ok, true);
-  assert.equal(M.deriveProgress(check.store.load().events).successfulCheck, i === M.BANK.checkpointIds.length - 1);
+  assert.equal(M.deriveProgress(check.store.load().events).successfulCheck, i === M.CHECKS['1'].length - 1);
 }
 assert.equal(M.deriveProgress(check.store.load().events).level1Passed, false);
 const checkEvents = check.store.load().events;
@@ -211,4 +211,4 @@ assert.equal(networkCalls, 0);
 globalThis.fetch = originalFetch;
 const source = readFileSync(localEntry, 'utf8');
 assert.ok(!/\b(fetch|XMLHttpRequest|sendBeacon|WebSocket)\s*\(/.test(source), 'The adapter contains no network sender');
-console.log('Local progress checks passed: all 41 questions, fresh/reloaded storage, scoring and level gates, proof rechecking for both construction variants, duplicate/conflicting IDs, safe import/export, malformed files, quota/security failures, clock reversal and no network calls.');
+console.log('Local progress checks passed: all available questions, fresh/reloaded storage, scoring and level gates, proof rechecking for both construction variants, duplicate/conflicting IDs, safe import/export, malformed files, quota/security failures, clock reversal and no network calls.');

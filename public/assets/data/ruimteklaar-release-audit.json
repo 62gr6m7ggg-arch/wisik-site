@@ -1,42 +1,146 @@
 {
   "product": "Space-tent · Ruimteklaar",
-  "appVersion": "0.3",
-  "siteVersion": "0.1.17",
+  "appVersion": "0.4",
+  "siteVersion": "0.1.18",
   "status": "passed",
   "scope": {
-    "questions": 41,
-    "theory": 16,
-    "diagnosticRoutes": 4,
-    "constructionVariants": 2,
-    "available": "Level 1 en constructieatelier; vervolglevels en toplevel nog niet beschikbaar"
+    "questions": 261,
+    "numeric": 99,
+    "blocks": 23,
+    "theory": 73,
+    "diagnosticRoutes": 23,
+    "constructionTasks": 10,
+    "legacyConstructionVariants": 2,
+    "available": "Alle zes leslevels en het toplevel met proeven A en B en papierwerk"
   },
   "checks": {
-    "diagnosticAnswerCombinations": 144,
-    "questionCardStates": 492,
-    "feedbackFigures": 82,
+    "diagnosticAnswerCombinations": 805,
+    "questionCardStates": 3132,
+    "feedbackFigures": 522,
     "cameraMovements": 140,
-    "projectedScenes": 11480,
-    "externalIntersections": "beide varianten, vier schermbreedtes en drie kijkrichtingen",
-    "storage": "herladen, import/export, ontdubbeling, ongeldige bestanden, opslagfouten, nul netwerkaanroepen"
+    "projectedScenes": 73080,
+    "courseScenes": 376,
+    "planePolygons": 179,
+    "fullRoute": "Alle zeven levels bereikbaar via gevalideerde antwoorden, constructies en zelfcontroles; proef B start minstens 24 uur na geslaagde proef A",
+    "constructionDrafts": "Geen beoordeling of XP vóór expliciet inleveren; hervatten behoudt punten, lijnen en gekozen onderbouwing",
+    "storage": "Herladen, import/export, ontdubbeling, ongeldige bestanden, opslagfouten, oude voortgang behouden, nul netwerkaanroepen"
   },
   "browser": {
     "environment": "Chromium, eigen preview van dezelfde clientbron",
     "verified": [
-      "Lijn QR tekenen en evenwijdige lijn door P toevoegen",
-      "Muisdrag verandert kijkrichting van hele constructie",
-      "Terug naar Construeren behoudt kijkrichting en maakt punten selecteerbaar",
-      "Standaardtekening herstelt oorspronkelijke projectie",
-      "Mobiel iframe 390×844: geen horizontale overloop, punt aantikken, rondkijkstand",
-      "Fout antwoord toont juiste antwoord in groen",
-      "Voortgang blijft na herladen beschikbaar, geen aanmelding nodig"
+      "Open rekenantwoord en schriftelijke aanpak invoeren",
+      "Verkeerd antwoord toont juiste afgeronde uitkomst in groen",
+      "AC tekenen, loodvoet van B op AC en afstandslijn construeren",
+      "Tekening vastleggen zonder inhoudelijke beoordeling",
+      "Onderbouwing kiezen, herladen en keuze hervatten",
+      "Pas expliciet inleveren rondt de constructie af",
+      "Mobiel iframe: alle zeven leveltegels; breedte en scrollbreedte beide 373 px"
     ],
     "limitations": [
       "Geen fysieke iPhone/Safari-test uitgevoerd",
-      "Aanraakcode gebruikt dezelfde Pointer Events; echte vingertest blijft nuttig",
-      "Geen empirische validering van leerwinst of diagnostische foutpositieven",
-      "Geen volledige tentamenvoorbereiding en geen geauthenticeerd toetsbewijs"
+      "Geen empirische validering van leerwinst, moeilijkheid of diagnostische foutpositieven",
+      "Schriftelijke redeneringen en papierconstructies berusten op zelfcontrole",
+      "Topstatus is geen geauthenticeerd toetsbewijs of garantie voor een tentamencijfer"
     ]
   },
+  "sources": [
+    {
+      "level": 2,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.2 (1).pptx",
+      "slides": "10–13",
+      "coverage": "Lijn-vlaksnijding via een hulpvlak; voorwaarde dat het hulpvlak de lijn bevat; snijlijn construeren en redenering waarom dit werkt. MathML-tekst inclusief alle m:t-nodes herlezen."
+    },
+    {
+      "level": 2,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.2 (1).pptx",
+      "slides": "14–17, 20",
+      "coverage": "Doorsneden: twee punten in een zijvlak verbinden, evenwijdige snijlijnen in evenwijdige vlakken, buiten het lichaam liggende hulpsnijpunten. Nieuwe volledig gespecificeerde voorbeelden."
+    },
+    {
+      "level": 2,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.2 (1).pptx",
+      "slides": "21–23",
+      "coverage": "Gelijkvormigheid en richting van de lengtefactor; voorbereiding op driehoeksoppervlakte en piramide-inhoud."
+    },
+    {
+      "level": 3,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.3 (1).pptx",
+      "slides": "5–9",
+      "coverage": "Complexere doorsneden via de grondvlak-snijlijn en evenwijdigheid; overdracht naar prisma en piramide, ook zelf tekenen op papier."
+    },
+    {
+      "level": 3,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.3 (1).pptx",
+      "slides": "10–11",
+      "coverage": "Driehoekshoogte met Pythagoras, aanvullen tot prisma en drie piramides aftrekken. Apart levelcheckvoorbeeld met gelijkzijdige zijde 6 en prismahoogte 8 geeft 18√27, conform opnieuw uitgelezen formules."
+    },
+    {
+      "level": 3,
+      "source": "Ruimtemeetkunde 2025-2026 les 1.3 (1).pptx",
+      "slides": "12–13",
+      "coverage": "Start hoofdstuk 10: sinus, cosinus, tangens, lengtes berekenen en inverse goniometrie voor hoeken."
+    },
+    {
+      "level": 4,
+      "source": "Ruimtemeetkunde 1.4 — 57bcb5d8-80a6-4fe3-ae19-f986b4f699c8.pptx",
+      "slides": "5–10",
+      "coverage": "10.1: herleiding cosinusregel met hoogtelijn; zijden, hoeken en oppervlakte; nieuwe getallenvoorbeelden met onafhankelijke berekening."
+    },
+    {
+      "level": 4,
+      "source": "Ruimtemeetkunde 1.4 — 57bcb5d8-80a6-4fe3-ae19-f986b4f699c8.pptx",
+      "slides": "11–13",
+      "coverage": "10.2: kleinste hoek tussen lijnen, kruisende lijnen evenwijdig verschuiven, kubus met midden van AE; alternatieve balken."
+    },
+    {
+      "level": 4,
+      "source": "Ruimtemeetkunde 1.4 — 57bcb5d8-80a6-4fe3-ae19-f986b4f699c8.pptx",
+      "slides": "15–16",
+      "coverage": "10.3: loodrecht op een vlak via twee snijdende vlaklijnen; loodrechte projectie en lijn–vlakhoek. Noodzakelijke voorwaarden expliciet gemaakt."
+    },
+    {
+      "level": 4,
+      "source": "Ruimtemeetkunde 1.4 — 57bcb5d8-80a6-4fe3-ae19-f986b4f699c8.pptx",
+      "slides": "17–20",
+      "coverage": "10.4: snijlijn, standvlak, standhoek, kubusvoorbeeld EJG/ABFE; ware-grootte-constructie op papier met nieuwe afmetingen."
+    },
+    {
+      "level": 5,
+      "source": "Ruimtemeetkunde 1.5 (c7ab7d89-b3b1-4921-946a-f98c38e61550.pptx)",
+      "slides": "8, 10–14 (alle a:t- en m:t-tekst gelezen)",
+      "coverage": "10.5 punt-lijn via hulpvlak en oppervlakte; 10.6 punt-vlak en inhoudsmethode; 2.5 formules met gelijkvormigheid, voorbeeldwaarden en controle."
+    },
+    {
+      "level": 5,
+      "source": "Toets Basis RuimteMeetkunde, 5 november 2018",
+      "slides": "Opgaven 4d en 5",
+      "coverage": "Afstand tot schuin vlak en variabele vouwbak. De twee bakcontexten, maten en vragen in deze uitbreiding zijn nieuw; het zijn geen letterlijke tentamenvragen."
+    },
+    {
+      "level": 6,
+      "source": "Ruimtemeetkunde 1.6 (aeec9db6-624c-4c01-a9d2-e731e62a8118.pptx)",
+      "slides": "4–8, 10, 12 (alle a:t- en m:t-tekst gelezen)",
+      "coverage": "Herhaling constructies, lijn-vlakhoeken en vlakkenhoeken; punt-vlakafstanden; kruisende lijnen via parallel hulpvlak; zelfstandige methodekeuze."
+    },
+    {
+      "level": 6,
+      "source": "Toets Basis RuimteMeetkunde, 5 november 2018",
+      "slides": "Opgaven 3d–e en 5",
+      "coverage": "Nieuwe toepassingen met kruisende lijnen, afgeknotte balken, standvlakken en fysisch domein van een volumeformule."
+    },
+    {
+      "level": 7,
+      "source": "RMa Toets 2018 Basis Ruimtemeetkunde VT en DT 5 november 2018.pdf; Uitwerkingen tentamen Basis RM 5 november 2018.pdf",
+      "slides": "Opgaven 1–5 en beoordelingsopmerkingen AB1–AB13",
+      "coverage": "Nieuwe examenopgaven naar de getoetste vaardigheden: ligging en bewijs, hulpvlak en doorsnede, inhoud, lijn- en vlakhoeken, punt-lijn- en punt-vlakafstand, kruisende lijnen, gelijkvormigheid en formulemodel. Geen kopie van ontbrekende bronfiguren. Papieren constructievolgorde, nieuwe puntnamen en symbolen sluiten aan op de toetsinstructie."
+    },
+    {
+      "level": 7,
+      "source": "Ruimtemeetkunde 2025-2026 lessen 1.1–1.6",
+      "slides": "1.2: 10–22; 1.3: 5–11; 1.4: 5–20; 1.5: 8–14; 1.6: 4–10",
+      "coverage": "Cumulatieve dekking van zes lessen; tweede variant wisselt kubussen en balken af met driehoekige prisma’s, scheve piramides, afgeknotte piramides en een omgekeerd volumemodel."
+    }
+  ],
   "runs": [
     {
       "file": "check-learning.mjs",
@@ -44,45 +148,57 @@
     },
     {
       "file": "check-diagnostic.mjs",
-      "output": "Diagnostic proposal passed 144 complete answer combinations, all 4 resume chains, session isolation, forged correctness, and 7 incomplete-check counter states."
+      "output": "Diagnostic checks passed: 805 answer combinations, 23 resume chains and 8 independent check groups."
     },
     {
       "file": "check-local-progress.mjs",
-      "output": "Local progress checks passed: all 41 questions, fresh/reloaded storage, scoring and level gates, proof rechecking for both construction variants, duplicate/conflicting IDs, safe import/export, malformed files, quota/security failures, clock reversal and no network calls."
+      "output": "Local progress checks passed: all available questions, fresh/reloaded storage, scoring and level gates, proof rechecking for both construction variants, duplicate/conflicting IDs, safe import/export, malformed files, quota/security failures, clock reversal and no network calls."
     },
     {
       "file": "check-interaction.cjs",
-      "output": "Interaction SSR checks passed: 492 question-card states, 82 feedback figures, 4 deferred triggers, 140 camera movements and 11480 projected question scenes. Pointer behavior still requires browser QA."
+      "output": "Interaction SSR checks passed: 3132 question-card states, 522 feedback figures, 23 deferred triggers, 140 camera movements and 73080 projected question scenes. Pointer behavior still requires browser QA."
+    },
+    {
+      "file": "check-course.mjs",
+      "output": "Course checks passed: 261 questions, 99 numeric answer keys and rounded inputs, 376 scenes, 179 plane polygons, 10 construction tasks, eight assessment groups and a complete seven-level storage roundtrip with delayed summit gate."
     }
   ],
   "sourceFiles": {
     "tools/space-tent/app/construction-insight.tsx": "6b5535f19ea3ee6e2a3f47e32a0483465909eb928ef5da83a61d5470c62eaabc",
+    "tools/space-tent/app/construction-lab.tsx": "d1c23b5470b8e605d0b2fc17b8936fdf0cf3f178b2238b6191a5fb8ed74ce928",
+    "tools/space-tent/app/construction-tasks.json": "dd327e0ca916f5f619818225bccc329fe8063ac13cda8cfa6f88fbce3fb3eb85",
     "tools/space-tent/app/content.json": "5e1d548b05b3e88f79c3957961f93192f1a9a7b396b1139c29b1d1f40cae781a",
+    "tools/space-tent/app/course-construction.ts": "4a29571e5d5bc056d2fb6973c692f15f219d7cb83108a8ede62c517a064f3782",
+    "tools/space-tent/app/course-content.json": "18131c0ea2ad78a4a9bf8bc310a3b348b269a25d94ff11ca0303e9f4ec4fb88a",
+    "tools/space-tent/app/course-figure.tsx": "d0c5a235c43b537b531b15ebc52171c235bd6048504b78cc8eb21abd24ec6f71",
+    "tools/space-tent/app/course-paper.tsx": "8c087f4677d4b0edb0d92f4caf5b42485e7e38ad1eec95482ab44800f0c8d716",
     "tools/space-tent/app/diagnostic.ts": "077888b75522353686c4d3eb2b33100029e73d3ca1e8e3ea271e609289551913",
-    "tools/space-tent/app/geometry-math.ts": "95f258d712435ac433783b09fbb1edf3fc1c503dd0c3bbdbfdc9035d65ff4647",
-    "tools/space-tent/app/geometry.tsx": "f0c9cabfc425c5cbc861af6cb5eb5ceaa0cd56eafb6f0a82516978109f535bd6",
-    "tools/space-tent/app/globals.css": "4a05b1376c161b20d403fd7d3e013cd4fb9876c35317cf6695d11a61341b8e28",
+    "tools/space-tent/app/geometry-math.ts": "3a5a498f44a6903a6727b8cdc7eb5f277f68fe22fc43c0944a5ce030fbd18f3a",
+    "tools/space-tent/app/geometry.tsx": "b03f65095162490eb515cef1258b3ffb07259ed72a422e07042eba87c2381c89",
+    "tools/space-tent/app/globals.css": "464be54d5c965d1ba15a880478fad39bb0dd5ecd41cc83605f4f6ead50021b29",
     "tools/space-tent/app/identity.ts": "85dc95038f97d3ef7b0c5b0c732a7aa3589862736c1e0e3ecac8d2e833be09e6",
     "tools/space-tent/app/insight-figure.tsx": "0c6f930cedc85e0f93681069dc0ff0f52b9e48b7bea704dfd06cd5bd6c7c7488",
     "tools/space-tent/app/insight-scenes.ts": "4ea4cd759dd320a849bc365b8d410b66b991790cfb5d5230666e0cf229a6c49e",
-    "tools/space-tent/app/learning.tsx": "6aa013e089dd42e8a89a0cf0f5601781df55951c169793bddb822ebc4832b344",
+    "tools/space-tent/app/learning.tsx": "66916c4255b6340fd7ba239e27b2ff3dde22bde23a7aaf129c6dc31646f7e313",
     "tools/space-tent/app/line-extension-example.tsx": "874c5900aabb4300640663bee7a1b2e000bb4e6d1748d3e127c48af236a5e9a9",
-    "tools/space-tent/app/local-progress.ts": "db82b254df43cd8a6fd2c99b8856c65b73c920dcf5a9d1da22aa01f92c6bf03e",
-    "tools/space-tent/app/model.ts": "ae4c09b20fe9d596fb2fcc5e334dc3ae71293d3c9955304de568d3daf70268c6",
+    "tools/space-tent/app/local-progress.ts": "0d5b06d6f5298582b148f84e4ea0382cf9f4205d20b2b8ddcee51eb3a425c253",
+    "tools/space-tent/app/model.ts": "472aa470bb7e0d696532af00b5c87695a9b90ac51c480bdeff3f2be8c43cf6fd",
+    "tools/space-tent/app/numeric.ts": "d139de877ca1898fdcb3bfa450fcf2de552df05e1731e3ae76883a36403fbacf",
     "tools/space-tent/app/paper.tsx": "d87018a4db3a463ec7dffee348e5b1f62cdbdd6418dcf9c9eabc90df27844828",
-    "tools/space-tent/app/question-figure.tsx": "4de0e2289965c79510cd9fc40aeb436f651e8b282296cfdd1031bb749d76e397",
+    "tools/space-tent/app/question-figure.tsx": "c2ecc05b835e4cbcb37b67e627d5ebf0d1bde1ef2e7fa5dbc1bb333602605c8c",
     "tools/space-tent/app/question-visuals.ts": "4b0f3780a43a53bdf9b61ae27ef61f5d8e705ae532d1fe5ddee955a1dbf59e17",
     "tools/space-tent/app/rotation.ts": "2c478f06af92bc49e27f9a2d001b13fc675b3a7ffe48b54b863af91d2abc2b2f",
-    "tools/space-tent/app/route-header.tsx": "863892c262676a82103e2db47e3d0578c055a594acf3759388a7166ce949f7a1",
-    "tools/space-tent/app/route-progress.ts": "191815d73a4ebef051ceb5cc6b0505458b07495f8fd242062a1e0bc5dfdf1629",
-    "tools/space-tent/app/ruimteklaar.tsx": "3bc35c863f2e0b121c53f6254be2531b996938826519d182322eadc33338fdaa",
-    "tools/space-tent/app/version.ts": "3e162b1ae0b6ca43cf0d1ae3aba342d85207f08f85b886f04a85c271e08c9553",
+    "tools/space-tent/app/route-header.tsx": "4766e4826951377bdacab210addca6b796f3993c4ff6dd4a03dd031085f48fe0",
+    "tools/space-tent/app/route-progress.ts": "e837e7148651619a0874d072522e09d58f16682ad224f816bb99177ad5e0ac41",
+    "tools/space-tent/app/ruimteklaar.tsx": "e705e9722baef1043ffe17e0fe23f1dbe5e0251bd8183552ebb96ab402c5a341",
+    "tools/space-tent/app/version.ts": "20897f97f3d0583922c9cbfeb6cf4eb69a1f06ae21ac83d0429bf9d91fab6290",
     "tools/space-tent/app/workbench-math.ts": "77c2e882262fa69495b773afbac1e71881e21568d6673791a468d2bb8b81a131",
     "tools/space-tent/app/workbench.tsx": "0d9651e014310b577658511af3d147f7e8702a62195c446c2440babd8f6d8f0c",
-    "tools/space-tent/audit-runtime/check-diagnostic.mjs": "dc88cce20d1317d0bb7b96051344f11cfa23d8cc1aaf05417a6a4170637e4c87",
-    "tools/space-tent/audit-runtime/check-interaction.cjs": "aeca6e9f5be32ef9e0ef6307f43ef7c59f612abb4e1bec0740228a4424f8cfbb",
-    "tools/space-tent/audit-runtime/check-learning.mjs": "4cf93002b3319700821f5e5c839db2b732df372ba78705995774b194a62395e2",
-    "tools/space-tent/audit-runtime/check-local-progress.mjs": "600119a0f7c797a1ea89190e087f6a2c52e1bc344d53b8deb8c6d94e2807a238",
+    "tools/space-tent/audit-runtime/check-course.mjs": "a93ac93295d340b48d260bbabe227b30d0cd4ce62432b2d70641e44d6361a43f",
+    "tools/space-tent/audit-runtime/check-diagnostic.mjs": "83ceec7739e285cd40d37c3465faf54daf04093b477ad77a8d59754b0884fe22",
+    "tools/space-tent/audit-runtime/check-interaction.cjs": "5a0d5555c4cc269c769f9294eeba757414eececc0f6fc28d1e021d182cee051c",
+    "tools/space-tent/audit-runtime/check-learning.mjs": "3658b42ddd0679eafab45353dbaa18831589140e42d02a33118b0718f195ec27",
+    "tools/space-tent/audit-runtime/check-local-progress.mjs": "8b22b5fb85a61cf091b492422edf005fd580b12f9b3f14d42818f6e3cf2fbe35",
     "tools/space-tent/components/ui/button.tsx": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4",
     "tools/space-tent/components/ui/checkbox.tsx": "b23ab9d4deeedf2ac8f512c368361ede681aa383437ef48563a6f9b7dbe95f27",
     "tools/space-tent/components/ui/progress.tsx": "c8c26e8f5f041c3cdf4915347dc1d9c022f9448f149990fadcaf303e952fa57d",
@@ -92,24 +208,41 @@
     "tools/space-tent/components/ui/tabs.tsx": "865d0194331b9b2be36723fa79d3575dc83078b4cb941cafee87cb72fc2cff46",
     "tools/space-tent/lib/utils.ts": "53f3d3d070f0a9082934da25b875f9499855c2b0693868dd28be8c23d8730f68",
     "tools/space-tent/package-lock.json": "9b91987e6c3cdbda4f01c917a2c580ed7afbe77cb3eae066dbbba2afd99f2718",
-    "tools/space-tent/package.json": "0803535e4ac8f8e3e5f105c3ac9966427ef48ab4b069a6a08f31da3a6ed10944",
+    "tools/space-tent/package.json": "2764de1e45b0414e58c2fc0fb1786e2c4e1cc44aaf51b7b180450ee370aa48a5",
     "tools/space-tent/postcss.config.mjs": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde",
-    "tools/space-tent/README.md": "e1057681d44dd47520660ca11b1d242833d7f6b0a15cc851297cb5486ee5f0b9",
+    "tools/space-tent/README.md": "8d53346c3495d47297b73b99335d42b406fd4c3c9b308c2ee931da1b0f9185d1",
     "tools/space-tent/scripts/build-audit.mjs": "71ccce0c2b5d382bf9d4b33869dc6f8795b44c270c3d33efa75efa25aa2af579",
+    "tools/space-tent/scripts/build-course-audit.mjs": "a0da634a6c364edef416936073dd7ad9f07c826bc326c04d70794ea3117b42a4",
     "tools/space-tent/scripts/build-space.mjs": "276258dbb27aed97c9380eb99276fc430d8241d491192c2cc2e55bfbf282f852",
-    "tools/space-tent/scripts/check-diagnostic.mjs": "329d18bfb5b4daa7953647cecd5db28202d5d9c74b831c8575cb74c90d057e0e",
-    "tools/space-tent/scripts/check-interaction.mjs": "291ec1bd1e9f0331f08d0b67304d697a23a3d404966dc1eb4011d58589f20f25",
+    "tools/space-tent/scripts/check-course.mjs": "ecb2b0085950ede0aa7c1929e323e2711357e1447e01e1ee4c8094885872b9fd",
+    "tools/space-tent/scripts/check-diagnostic.mjs": "60f286f803efbc73619f9d13b9bec3d2dcbb33aa82400e011d46ea84ceb298ab",
+    "tools/space-tent/scripts/check-interaction.mjs": "24cbff98997ca167fb3af892d0ab6c23cb1f57a79bacdf551b401ad03fce8d0b",
     "tools/space-tent/scripts/check-learning.mjs": "ed4f4a4fe948abafb6028b654671ffac4927a9b56ad94ab3c58c6c00d639f61a",
-    "tools/space-tent/scripts/check-local-progress.mjs": "77e0c1d50c02147f158166b40384f7f70fb79ad5c4216e305a8c05a610953506",
-    "tools/space-tent/space/index.html": "b2a705e523becd7ad6f5f7b734a258aad897781d69b0f49002c577d9c516127c",
+    "tools/space-tent/scripts/check-local-progress.mjs": "ea10a5e90cac5dbfaa559b28d5be14e60e8d9e655e59736747fddd13e83c63e0",
+    "tools/space-tent/space/index.html": "1859828d6459a78593ed383f6eeedc16cada9ebb03cce382d1ae8e19b712b359",
     "tools/space-tent/space/main.tsx": "208b12a7017044bdfa345874f0a6110822f6a43c8f814da612ac3722bda502bc",
     "tools/space-tent/tsconfig.json": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3",
+    "tools/space-tent/validation/construction-tasks.json": "dd327e0ca916f5f619818225bccc329fe8063ac13cda8cfa6f88fbce3fb3eb85",
+    "tools/space-tent/validation/level-4-validation-notes.md": "bbcdd46b2e036cb3bf1599b93c1229bbbd0f5267466abed1fbb6699a52b483d3",
+    "tools/space-tent/validation/level-4-validation.json": "bd7befdd518974a9400ac9a244c702c423869059f816fdb2a0ddbf3abe978857",
+    "tools/space-tent/validation/level-4.json": "c2f788fa058b0bdae3715c2727b4d30c33043117c227650089d3c10a26e8c7d9",
+    "tools/space-tent/validation/levels-2-3-validation-notes.md": "bd828ae448c0acba3be85f72d3a54734fdf749b66c752749a6fe349e7d4f9b68",
+    "tools/space-tent/validation/levels-2-3-validation.json": "cc691e2db8ee630f90b9096f9b30c67a1ed48b9a1d2d951650c159e4a6919453",
+    "tools/space-tent/validation/levels-2-3.json": "2770a7a3638b6e70c76452c8c48c42f1f650fb30df3e73e676680836e08c8cc2",
+    "tools/space-tent/validation/levels-5-6-validation-notes.md": "b67ad261d474e760d5971caa28501eded182e4864b0784d555310a787188535a",
+    "tools/space-tent/validation/levels-5-6.json": "eca9737cff212674b8eb1e264d05ff2eb30222de47a695c254e2f42767589541",
+    "tools/space-tent/validation/state-audit.md": "a236d64c68ccf40c46572aa998d3dc5813fe3d997d5fa0482f6946040c7e45b1",
+    "tools/space-tent/validation/summit.json": "7a758a4ff94f47ee93d4947c2fb7a1fbd397941e928e8e6fe8c06d75e70743bc",
+    "tools/space-tent/validation/validate_levels_2_3.py": "a2f4b3578e4f5ace14347560e820c67598108f9cded8cfb13923a3a2d06b68cf",
+    "tools/space-tent/validation/validate-level-4.py": "1cd519e604dd10cc38a0f95ca9788a71af8eea892e91fc78a815bcffdfc107de",
+    "tools/space-tent/validation/validate-levels-5-6.py": "e3406fa6d85d3791ca1434dc98e29b2e98cb2e7344f96ca2f6bb99bffb3e273d",
+    "tools/space-tent/validation/verify-summit-assets.py": "7816ee5e22cf72ab99b9b18f9c50c0412fe230058b70773b66b6d5e0cbb3fde1",
     "tools/space-tent/vendor/shadcn-tailwind-4.13.0.css": "bc7d83425702955b4cb67cb14ede9d603f9d912376d57a2d81d661094d2a782a",
     "tools/space-tent/vendor/shadcn-tailwind-4.13.0.LICENSE.md": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
   },
   "publicFiles": {
-    "public/apps/ruimteklaar/assets/index-DfY6jwLo.css": "8d578b4ee98838e69ef38dc85287604bb18ac0b37e6f10ad1fc1f20373724f29",
-    "public/apps/ruimteklaar/assets/index-XYdJ3M6a.js": "30ea7d5bdcae896c7061a9ece0afb40d276914a967d03ada82cf695524c5d4d3",
-    "public/apps/ruimteklaar/index.html": "f460210af6eb454047ef1f207759c2492053c2a25f419595903048947f741aed"
+    "public/apps/ruimteklaar/assets/index-2NbdDzFz.css": "9d6636d786693f69557c8aa2bbbc38a2eb35d5ef86be05f13dd59552434930e9",
+    "public/apps/ruimteklaar/assets/index-CMEj7JUP.js": "405517ea65311b00f2843f376b2521bbf45fed06d4f07bffd733866734c900a5",
+    "public/apps/ruimteklaar/index.html": "7d8da8ad26b260e117e80c14b797436a0f1ec5a68491e307f677f9fe4983c569"
   }
 }
