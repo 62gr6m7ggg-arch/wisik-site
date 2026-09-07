@@ -3,13 +3,13 @@ import {useEffect,useId,useRef,useState,type PointerEvent} from 'react';
 import {Slider} from '@/components/ui/slider';
 import {Button} from '@/components/ui/button';
 import {Rotate3D, PanelTop, RotateCcw} from 'lucide-react';
-import {CUBE,EDGES,parallelImage,constructionBounds,projectionFrame,clipProjectedLine,type ProjectionView,type V3,type DrawLine} from './geometry-math';
+import {CUBE,EDGES,parallelImage,constructionBounds,projectionFrame,edgeIsHidden,clipProjectedLine,type ProjectionView,type V3,type DrawLine} from './geometry-math';
 export * from './geometry-math';
 import {dragCamera,hasDragged} from './rotation';
 const edgeNormals=[[1,-1,2,-1],[0,1,2,-1],[1,1,2,-1],[0,-1,2,-1],[1,-1,2,1],[0,1,2,1],[1,1,2,1],[0,-1,2,1],[0,-1,1,-1],[0,1,1,-1],[0,1,1,1],[0,-1,1,1]];
 export type IllustrationSegment={from:V3;to:V3;color:string;dashed?:boolean;arrow?:boolean};
-export type GeoProps={construction?:boolean;onExplore?:()=>void;view?:ProjectionView;camera?:[number,number];showCube?:boolean;hiddenLabels?:string[];segments?:IllustrationSegment[];fitToContent?:boolean;ariaLabel?:string;points?:Record<string,V3>;highlights?:string[];planes?:string[][];lines?:DrawLine[];selected?:string[];selectable?:string[];onPoint?:(p:string)=>void;fixed?:boolean;compact?:boolean;caption?:string;dimensions?:V3};
-export default function Geometry({construction=false,onExplore,view='spatial',camera=[28,24],showCube=true,hiddenLabels=[],segments=[],fitToContent=false,ariaLabel='Ruimtefiguur met benoemde punten en lijnen. De figuur is een parallelprojectie.',points={},highlights=[],planes=[],lines=[],selected=[],selectable=[],onPoint,fixed=false,compact=false,caption,dimensions=[1,1,1]}:GeoProps){
+export type GeoProps={edges?:string[];construction?:boolean;onExplore?:()=>void;view?:ProjectionView;camera?:[number,number];showCube?:boolean;hiddenLabels?:string[];segments?:IllustrationSegment[];fitToContent?:boolean;ariaLabel?:string;points?:Record<string,V3>;highlights?:string[];planes?:string[][];lines?:DrawLine[];selected?:string[];selectable?:string[];onPoint?:(p:string)=>void;fixed?:boolean;compact?:boolean;caption?:string;dimensions?:V3};
+export default function Geometry({edges=[],construction=false,onExplore,view='spatial',camera=[28,24],showCube=true,hiddenLabels=[],segments=[],fitToContent=false,ariaLabel='Ruimtefiguur met benoemde punten en lijnen. De figuur is een parallelprojectie.',points={},highlights=[],planes=[],lines=[],selected=[],selectable=[],onPoint,fixed=false,compact=false,caption,dimensions=[1,1,1]}:GeoProps){
  const markerId='arrow-'+useId().replaceAll(':','');
  const ref=useRef<HTMLDivElement>(null);const [width,setWidth]=useState(440),[angle,setAngle]=useState(camera[0]),[tilt,setTilt]=useState(camera[1]),[explore,setExplore]=useState(false);
  const drag=useRef<{id:number;x:number;y:number;camera:[number,number];moved:boolean}|null>(null),suppressClick=useRef(false);
@@ -34,6 +34,7 @@ export default function Geometry({construction=false,onExplore,view='spatial',ca
  {showCube&&!planes.length&&<polygon points={['E','F','G','H'].map(k=>pp(all[k])).join(' ')} fill="#56d8cd" fillOpacity=".06"/>}
  {planes.map((p,i)=><polygon key={p.join('')} points={p.filter(k=>all[k]).map(k=>pp(all[k])).join(' ')} fill={['#54dacc','#ffa35e','#aaa2ff'][i%3]} fillOpacity=".16" stroke={['#54dacc','#ffa35e','#aaa2ff'][i%3]} strokeOpacity=".5" strokeWidth="1"/>)}
  {showCube&&EDGES.map((e,i)=>{const [k,s,l,q]=edgeNormals[i],hidden=view==='spatial'&&eye[k]*s<0&&eye[l]*q<0;return <polyline key={e} points={pp(all[e[0]])+' '+pp(all[e[1]])} className="cube-edge" strokeDasharray={hidden?'5 6':undefined}/>})}
+ {edges.filter(s=>s.length===2&&all[s[0]]&&all[s[1]]&&(!showCube||!EDGES.some(e=>e===s||e===s[1]+s[0]))).map(s=><polyline key={'base-'+s} points={pp(all[s[0]])+' '+pp(all[s[1]])} className="cube-edge" strokeDasharray={edgeIsHidden(s,edges,all,eye as V3)?'5 6':undefined}/>)}
  {highlights.filter(s=>s.length===2&&all[s[0]]&&all[s[1]]).map((s,i)=><polyline key={s} points={pp(all[s[0]])+' '+pp(all[s[1]])} className={'highlight-line color-'+i}/>)}
  {lines.map(l=>{const endpoints=l.infinite?clipProjectedLine(project(l.a),project(l.b),width,h):[project(l.a),project(l.b)];return endpoints&&<polyline key={l.id} points={endpoints.map(p=>p.map(v=>v.toFixed(2)).join(',')).join(' ')} className="drawn-line" strokeDasharray={l.infinite?'8 4':undefined}/>})}
  {segments.map((segment,i)=><polyline key={i} points={pp(segment.from)+' '+pp(segment.to)} fill="none" stroke={segment.color} strokeWidth="2.8" strokeLinecap="round" strokeDasharray={segment.dashed?'2 6':undefined} markerEnd={segment.arrow?`url(#${markerId})`:undefined}/>)}

@@ -5,6 +5,7 @@ import {CUBE,type V3} from './geometry-math';
 import {questionGeometry} from './question-visuals';
 import {COLORS} from './insight-scenes';
 import {ExtendedPlane,PlaneHinge,ThreePlanes} from './insight-figure';
+import CourseFigure from './course-figure';
 import type {Question} from './model';
 
 function AngleImage({reveal}:{reveal:boolean}){
@@ -31,6 +32,7 @@ function RotatedCube({reveal}:{reveal:boolean}){
  return <><div className="projection-pair"><div><h3>Stand 1</h3><Geometry fixed compact camera={[12,12]} highlights={['AD']}/></div><div><h3>Stand 2</h3><Geometry fixed compact camera={[70,12]} highlights={['AD']}/></div></div><p className="figure-caption">{reveal?'De werkelijke kubus blijft dezelfde. Alleen de kijkrichting en daarmee de beeldlengte van AD verandert.':'Twee kijkrichtingen op dezelfde vaste kubus. AD wordt langer weergegeven.'}</p></>
 }
 export default function QuestionFigure({question:q,reveal=false,answer=[],selectable=[],onPoint,allowRotate=false,onExplore}:{allowRotate?:boolean;onExplore?:()=>void;question:Question;reveal?:boolean;answer?:string[];selectable?:string[];onPoint?:(point:string)=>void}){
+ if(q.scene)return <CourseFigure scene={reveal?(q.revealScene||q.scene):q.scene} fixed={!allowRotate||!!q.scene.view&&q.scene.view!=='spatial'} selected={answer} selectable={reveal?[]:selectable} onPoint={onPoint} onExplore={onExplore}/>;
  if(q.id==='p3')return <AngleImage reveal={reveal}/>;
  if(q.id==='p4'||q.id==='retest-p2')return <SegmentRatio reveal={reveal} calculation={q.id==='retest-p2'}/>;
  if(q.id==='probe-p2')return <RotatedCube reveal={reveal}/>;
