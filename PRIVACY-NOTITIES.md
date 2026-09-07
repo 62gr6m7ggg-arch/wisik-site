@@ -14,3 +14,6 @@
 - Wisik houdt geen eigen database of blijvende kopie van het bericht bij.
 - Server-, beveiligings-, bezorg- en e-mailrouteringslogs kunnen technische verbindingsgegevens bevatten.
 - Publiceer een gebruikersreactie alleen geanonimiseerd en wanneer het afzonderlijke toestemmingsvak is aangevinkt.
+
+## Space-tent (Ruimteklaar 0.3)
+Antwoorden, hulpgebruik en voortgang worden uitsluitend in de lokale browseropslag bewaard (wisik.space-tent.progress.v1). De app gebruikt geen account, analytics of resultaatendpoint. De gebruiker kan zelf een JSON-bestand downloaden en op een ander apparaat importeren; dit bestand bevat leerresultaten. Browsergegevens wissen verwijdert de lokale voortgang. Voortgang van de eerdere ChatGPT-site verhuist niet automatisch. Normale webhosting verwerkt technische verzoekgegevens volgens het bestaande hostingbeleid. De lokale resultaten zijn geen geauthenticeerd toetsbewijs.

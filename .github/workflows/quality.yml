@@ -30,5 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wisik-vrijgavebewijs
-          path: public/assets/data/pabo-release-audit.json
+          path: |
+            public/assets/data/pabo-release-audit.json
+            public/assets/data/ruimteklaar-release-audit.json
           if-no-files-found: error

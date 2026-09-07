@@ -1,0 +1,1966 @@
+// scripts/check-diagnostic.mjs
+import assert from "node:assert/strict";
+
+// app/content.json
+var content_default = {
+  blocks: [
+    {
+      id: "projection",
+      title: "Kijken in de ruimte",
+      subtitle: "Parallelprojectie en aanzichten",
+      theory: [
+        {
+          title: "Een beeld laat diepte weg",
+          text: "Je scherm heeft twee richtingen; de ruimte heeft er drie. Verschillende punten kunnen op dezelfde beeldplek terechtkomen. Vraag steeds: zie ik iets, of volgt het uit de gegevens?",
+          example: "projection-views"
+        },
+        {
+          title: "Het midden blijft het midden",
+          text: "Punten op \xE9\xE9n rechte blijven op \xE9\xE9n rechte, tenzij die hele lijn tot een punt wordt geprojecteerd. De verhoudingen langs dezelfde richting blijven behouden.",
+          highlights: [
+            "AG"
+          ],
+          example: "midpoint"
+        },
+        {
+          title: "Elke richting heeft haar beeldschaal",
+          text: "Parallelle lijnstukken worden met dezelfde factor weergegeven. Verschillende richtingen kunnen verschillende factoren hebben. Ook rechte hoeken hoeven op het scherm niet recht te lijken.",
+          highlights: [
+            "AB",
+            "AD",
+            "AE"
+          ],
+          example: "direction-scale"
+        },
+        {
+          title: "Een aanzicht kiest wat verdwijnt",
+          text: "Bij het vooraanzicht langs AD valt de diepte weg: A en D vallen samen. Bij het bovenaanzicht langs AE valt de hoogte weg: A en E vallen samen. De gekozen kijkrichting moet altijd gegeven zijn.",
+          highlights: [
+            "AD",
+            "AE"
+          ],
+          example: "projection-views"
+        }
+      ],
+      questionIds: [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      probeIds: [
+        "probe-p1",
+        "probe-p2"
+      ],
+      retestIds: [
+        "retest-p1",
+        "retest-p2"
+      ],
+      repair: {
+        title: "Het object blijft hetzelfde",
+        text: "Vergelijk twee projecties van dezelfde kubus. De ribben lijken langer of korter, maar blijven werkelijk even lang. De richting bepaalt de beeldschaal; de gegevens bepalen de echte maat. Zonder extra projectiegegevens mag je beeldverhoudingen alleen langs dezelfde richting rechtstreeks gebruiken, zolang die richting niet tot een punt wordt geprojecteerd.",
+        highlights: [
+          "AB",
+          "AD",
+          "AE"
+        ],
+        example: "direction-scale"
+      },
+      misconception: {
+        label: "Beeldlengte wordt als werkelijke lengte gelezen",
+        trigger: {
+          qid: "p1",
+          wrongAnswer: "a"
+        },
+        probeWrongAnswers: [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      id: "lines",
+      title: "Lijnen doorgronden",
+      subtitle: "Snijden, evenwijdig of kruisen",
+      theory: [
+        {
+          title: "Eerst een gedeeld vlak zoeken",
+          text: "Twee verschillende lijnen in \xE9\xE9n vlak snijden elkaar of zijn evenwijdig. Dat de getekende stukjes elkaar niet raken, is nog geen bewijs voor evenwijdigheid.",
+          highlights: [
+            "AF",
+            "BE"
+          ],
+          planes: [
+            [
+              "A",
+              "B",
+              "F",
+              "E"
+            ]
+          ],
+          example: "shared-plane"
+        },
+        {
+          title: "De ruimte heeft een derde mogelijkheid",
+          text: "Kruisende lijnen hebben geen gemeenschappelijk punt \xE9n verschillende richtingen. Ze liggen niet samen in \xE9\xE9n vlak.",
+          highlights: [
+            "AB",
+            "CG"
+          ],
+          example: "line-relations"
+        },
+        {
+          title: "Een lijn stopt niet bij de rand",
+          text: "Een lijn loopt aan beide kanten onbeperkt door. Neem M halverwege EA. De lijnstukken GM en AC raken elkaar niet binnen de kubus. Verleng GM voorbij M en AC voorbij A: de lijnen ontmoeten elkaar buiten de kubus in S. Ze liggen allebei in het diagonale vlak ACGE. Het zijn dus snijdende lijnen, ook al ligt hun snijpunt buiten de getekende kubus.",
+          example: "external-intersection"
+        },
+        {
+          title: "Een reden is sterker dan een beeld",
+          text: "Zoek een gedeeld punt, een gedeeld vlak of een geometrisch argument over de richtingen. Alleen een kruising op het scherm bewijst geen ruimtelijk snijpunt.",
+          example: "false-crossing"
+        }
+      ],
+      questionIds: [
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ],
+      probeIds: [
+        "probe-l1",
+        "probe-l2"
+      ],
+      retestIds: [
+        "retest-l1",
+        "retest-l2"
+      ],
+      repair: {
+        title: "Niet snijden is nog niet evenwijdig",
+        text: "Op \xE9\xE9n blad zijn twee verschillende lijnen zonder snijpunt evenwijdig. In de ruimte kun je \xE9\xE9n lijn optillen en van richting veranderen. Dan ontbreekt nog steeds een snijpunt, maar de lijnen zijn kruisend. Controleer altijd ook hun richting of een gemeenschappelijk vlak.",
+        highlights: [
+          "AB",
+          "CG"
+        ],
+        example: "line-relations"
+      },
+      misconception: {
+        label: "Niet snijden wordt gelijkgesteld aan evenwijdigheid",
+        trigger: {
+          qid: "l1",
+          wrongAnswer: "b"
+        },
+        probeWrongAnswers: [
+          "a",
+          "a"
+        ]
+      }
+    },
+    {
+      id: "planes",
+      title: "Vlakken vastleggen",
+      subtitle: "Een vlak bepalen en een snijlijn vinden",
+      theory: [
+        {
+          title: "Drie punten, met \xE9\xE9n voorwaarde",
+          text: "Drie punten bepalen precies \xE9\xE9n vlak als ze niet op \xE9\xE9n lijn liggen. Rond \xE9\xE9n lijn passen juist oneindig veel vlakken.",
+          highlights: [
+            "AB"
+          ],
+          example: "plane-hinge"
+        },
+        {
+          title: "Dezelfde gedachte in andere vormen",
+          text: "Ook \xE9\xE9n lijn en een punt erbuiten, twee snijdende lijnen, of twee verschillende evenwijdige lijnen bepalen precies \xE9\xE9n vlak.",
+          example: "plane-definitions"
+        },
+        {
+          title: "Een vlak loopt buiten de kubus door",
+          text: "Vlak ABC is het hele vlak door A, B en C. Driehoek ABC en vierhoek ABCD zijn slechts delen daarvan.",
+          planes: [
+            [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          ],
+          example: "plane-extension"
+        },
+        {
+          title: "Twee gedeelde punten geven een snijlijn",
+          text: "Twee verschillende vlakken die twee verschillende punten gemeen hebben, bevatten de hele lijn door die punten. Die lijn is hun snijlijn.",
+          example: "plane-intersection"
+        }
+      ],
+      questionIds: [
+        "v1",
+        "v2",
+        "v3",
+        "v4"
+      ],
+      probeIds: [
+        "probe-v1",
+        "probe-v2"
+      ],
+      retestIds: [
+        "retest-v1"
+      ],
+      repair: {
+        title: "Een punt buiten de lijn maakt het verschil",
+        text: "Denk aan een halfdoorzichtig vlak dat om lijn AB draait. Drie punten op AB blijven in elke stand in het vlak. Zet een punt buiten AB vast: nog maar \xE9\xE9n vlak door AB bevat ook dat punt.",
+        highlights: [
+          "AB"
+        ],
+        example: "plane-hinge"
+      },
+      misconception: {
+        label: "De voorwaarde niet op \xE9\xE9n lijn wordt overgeslagen",
+        trigger: {
+          qid: "v1",
+          wrongAnswer: "a"
+        },
+        probeWrongAnswers: [
+          "b",
+          "c"
+        ]
+      }
+    },
+    {
+      id: "threeplanes",
+      title: "Drie vlakken tegelijk",
+      subtitle: "Paarsgewijze en gezamenlijke doorsneden",
+      theory: [
+        {
+          title: "Begin met elk paar",
+          text: "Onderzoek bij drie verschillende vlakken eerst elk paar: evenwijdig, of een snijlijn? Daarna vraag je wat in alle drie ligt.",
+          example: "plane-pairs"
+        },
+        {
+          title: "Een parallel paar",
+          text: "Drie evenwijdige vlakken hebben geen snijlijnen. Zijn precies twee vlakken evenwijdig, dan snijdt het derde ze in twee evenwijdige lijnen.",
+          planes: [
+            [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            [
+              "E",
+              "F",
+              "G",
+              "H"
+            ],
+            [
+              "A",
+              "B",
+              "F",
+              "E"
+            ]
+          ],
+          example: "parallel-planes"
+        },
+        {
+          title: "Elk paar snijdt: drie mogelijkheden",
+          text: "Als elk paar van drie verschillende vlakken snijdt, kunnen de vlakken \xE9\xE9n lijn delen, drie verschillende evenwijdige snijlijnen hebben, of drie verschillende snijlijnen die door hetzelfde punt gaan. Vergelijk hieronder de drie situaties.",
+          example: "three-planes"
+        },
+        {
+          title: "Per paar is nog niet allemaal samen",
+          text: "Drie verticale wanden langs de zijden van een driehoek ontmoeten elkaar per paar. Toch ligt nergens een punt in alle drie wanden.",
+          planes: [
+            [
+              "A",
+              "B",
+              "F",
+              "E"
+            ],
+            [
+              "B",
+              "C",
+              "G",
+              "F"
+            ],
+            [
+              "A",
+              "C",
+              "G",
+              "E"
+            ]
+          ],
+          example: "triangle-walls"
+        }
+      ],
+      questionIds: [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      probeIds: [
+        "probe-d1",
+        "probe-d2"
+      ],
+      retestIds: [
+        "retest-d1",
+        "retest-d2"
+      ],
+      repair: {
+        title: "Zoek wat in alle drie ligt",
+        text: "Vergelijk drie situaties: boekbladen die \xE9\xE9n lijn delen, drie verticale wanden langs een driehoek, en een vloer met twee aangrenzende muren. Zoek eerst de snijlijn van elk paar. Pas daarna bepaal je of alle drie een lijn, \xE9\xE9n punt of niets delen.",
+        planes: [
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ],
+          [
+            "B",
+            "C",
+            "G",
+            "F"
+          ],
+          [
+            "A",
+            "C",
+            "G",
+            "E"
+          ]
+        ],
+        example: "three-planes"
+      },
+      misconception: {
+        label: "Paarsgewijze sneden worden voor \xE9\xE9n gezamenlijke snede gehouden",
+        trigger: {
+          qid: "d4",
+          wrongAnswer: "a"
+        },
+        probeWrongAnswers: [
+          "a",
+          "b"
+        ]
+      }
+    }
+  ],
+  questions: [
+    {
+      id: "p1",
+      block: "projection",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "Een kubus heeft ribben van 6 cm. In een parallelprojectietekening zijn de beeldlengtes AB = 4 cm en AD = 2 cm. Wat volgt daaruit?",
+      options: [
+        {
+          id: "a",
+          text: "AD is in werkelijkheid half zo lang als AB."
+        },
+        {
+          id: "b",
+          text: "De kubus is verkeerd geconstrueerd."
+        },
+        {
+          id: "c",
+          text: "De richtingen AB en AD worden met verschillende factoren weergegeven."
+        },
+        {
+          id: "d",
+          text: "AB en AD staan in werkelijkheid niet loodrecht."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "De kubusgegevens bepalen dat AB en AD even lang zijn. De projectie kan de diepte sterker verkorten dan de horizontale richting.",
+      hint: "Welke lengtes volgen uit het woord kubus?",
+      highlights: [
+        "AB",
+        "AD"
+      ]
+    },
+    {
+      id: "p2",
+      block: "projection",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "M is het midden van AG. De beelden van A en G zijn verschillend. Waar ligt het beeld van M in een parallelprojectie?",
+      options: [
+        {
+          id: "a",
+          text: "In het midden tussen de beelden van A en G."
+        },
+        {
+          id: "b",
+          text: "Dichter bij A, omdat G verder naar achteren ligt."
+        },
+        {
+          id: "c",
+          text: "Dichter bij G, omdat de diepte wordt verkort."
+        },
+        {
+          id: "d",
+          text: "Dat is zonder de kijkrichting niet te bepalen."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "AM en MG hebben dezelfde richting en lengte. Beide worden met dezelfde factor geprojecteerd, dus het midden blijft het midden.",
+      hint: "Vergelijk twee delen van dezelfde rechte.",
+      highlights: [
+        "AG"
+      ],
+      extraPoints: {
+        M: [
+          0.5,
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      id: "p3",
+      block: "projection",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Je kent alleen een parallelprojectietekening van twee ruimtelijke lijnen. Hun beelden maken een hoek van 90\xB0. Wat kun je besluiten?",
+      options: [
+        {
+          id: "a",
+          text: "De ruimtelijke hoek is 90\xB0."
+        },
+        {
+          id: "b",
+          text: "De ruimtelijke hoek is kleiner dan 90\xB0."
+        },
+        {
+          id: "c",
+          text: "De ruimtelijke hoek is groter dan 90\xB0."
+        },
+        {
+          id: "d",
+          text: "Deze beeldhoek is onvoldoende om de ruimtelijke hoek vast te stellen."
+        }
+      ],
+      answer: [
+        "d"
+      ],
+      explanation: "Een algemene parallelprojectie behoudt hoeken niet. Extra ruimtelijke gegevens zijn nodig; de twee lijnen kunnen zelfs kruisend zijn.",
+      hint: "Welke eigenschappen kan een projectie veranderen?"
+    },
+    {
+      id: "p4",
+      block: "projection",
+      skill: "rekenen",
+      type: "choice",
+      prompt: "Twee evenwijdige lijnstukken zijn in werkelijkheid 3 en 5 cm lang. Geen van beide wordt tot een punt geprojecteerd. Wat geldt voor hun beeldlengtes?",
+      options: [
+        {
+          id: "a",
+          text: "Beide worden even lang."
+        },
+        {
+          id: "b",
+          text: "Hun verhouding blijft 3 : 5."
+        },
+        {
+          id: "c",
+          text: "Hun verhouding wordt 3 : 10."
+        },
+        {
+          id: "d",
+          text: "Iedere verhouding is mogelijk."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Omdat de lijnstukken dezelfde richting hebben, geldt voor beide dezelfde schaalfactor. Die valt weg in de verhouding.",
+      hint: "Wat gebeurt er met een verhouding als je beide getallen met dezelfde factor vermenigvuldigt?"
+    },
+    {
+      id: "p5",
+      block: "projection",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "Voor het vooraanzicht kijk je loodrecht op vlak ABFE, langs richting AD. Welke twee hoekpunten vallen in dit aanzicht samen?",
+      options: [
+        {
+          id: "a",
+          text: "A en D."
+        },
+        {
+          id: "b",
+          text: "A en B."
+        },
+        {
+          id: "c",
+          text: "A en E."
+        },
+        {
+          id: "d",
+          text: "A en G."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "A en D liggen achter elkaar in de kijkrichting AD. Hun diepteverschil verdwijnt in het vooraanzicht.",
+      hint: "Welke punten liggen op \xE9\xE9n lijn evenwijdig aan de kijkrichting?",
+      planes: [
+        [
+          "A",
+          "B",
+          "F",
+          "E"
+        ]
+      ]
+    },
+    {
+      id: "p6",
+      block: "projection",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "Voor het bovenaanzicht kijk je loodrecht op vlak ABCD, langs richting AE. Welke twee hoekpunten vallen in dit aanzicht samen?",
+      options: [
+        {
+          id: "a",
+          text: "A en B."
+        },
+        {
+          id: "b",
+          text: "A en D."
+        },
+        {
+          id: "c",
+          text: "A en E."
+        },
+        {
+          id: "d",
+          text: "A en C."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "A en E liggen boven elkaar in richting AE. Het hoogteverschil verdwijnt wanneer je van boven kijkt.",
+      hint: "Welke richting wordt in dit aanzicht weggelaten?",
+      planes: [
+        [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      ]
+    },
+    {
+      id: "probe-p1",
+      block: "projection",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "In een nieuwe tekening van een kubus lijkt AE korter dan AB. Welke informatie bepaalt of deze ribben werkelijk even lang zijn?",
+      options: [
+        {
+          id: "a",
+          text: "De definitie van een kubus: alle ribben zijn even lang."
+        },
+        {
+          id: "b",
+          text: "De gemeten beeldlengtes: AE is echt korter."
+        },
+        {
+          id: "c",
+          text: "De kleur van de ribben."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "De ruimtelijke kubusgegevens bepalen de werkelijke lengtes; beeldlengtes kunnen per richting verschillend zijn.",
+      hint: "Ga uit van de gegeven ruimtefiguur.",
+      highlights: [
+        "AE",
+        "AB"
+      ]
+    },
+    {
+      id: "probe-p2",
+      block: "projection",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "Je draait het beeld van een vaste kubus. Daardoor wordt AD op het scherm langer. Wat is er met de werkelijke lengte van AD gebeurd?",
+      options: [
+        {
+          id: "a",
+          text: "Die is groter geworden."
+        },
+        {
+          id: "b",
+          text: "Die is gelijk gebleven."
+        },
+        {
+          id: "c",
+          text: "Die is niet meer vast te stellen."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Alleen de weergave verandert. Het draaien van de kijkrichting verandert geen ribbe van de kubus.",
+      hint: "Vergelijk het object met de manier waarop je het bekijkt.",
+      highlights: [
+        "AD"
+      ]
+    },
+    {
+      id: "retest-p1",
+      block: "projection",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Een balk heeft AB = 8 cm en AD = 4 cm. In een parallelprojectie zijn beide beeldlengtes 4 cm. Kan dat?",
+      options: [
+        {
+          id: "a",
+          text: "Nee, gelijke beeldlengtes vereisen gelijke echte lengtes."
+        },
+        {
+          id: "b",
+          text: "Ja, AB kan met factor 1/2 en AD met factor 1 worden weergegeven."
+        },
+        {
+          id: "c",
+          text: "Ja, maar alleen als de balk een kubus is."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Bij een algemene parallelprojectie kunnen verschillende richtingen verschillende schaalfactoren hebben. Een balk hoeft in het beeld dus geen maatvaste tekening te zijn.",
+      hint: "Vergelijk de schaalfactor per richting."
+    },
+    {
+      id: "retest-p2",
+      block: "projection",
+      skill: "rekenen",
+      type: "choice",
+      prompt: "Twee evenwijdige lijnstukken zijn 2 en 6 cm lang. Het eerste wordt 1 cm lang getekend; geen van beide valt tot een punt samen. Hoe lang wordt het tweede getekend?",
+      options: [
+        {
+          id: "a",
+          text: "2 cm."
+        },
+        {
+          id: "b",
+          text: "3 cm."
+        },
+        {
+          id: "c",
+          text: "6 cm."
+        },
+        {
+          id: "d",
+          text: "Dat is niet te bepalen."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Beide lijnstukken krijgen dezelfde schaalfactor 1/2. Daarom wordt 6 cm als 3 cm getekend.",
+      hint: "De lijnstukken hebben dezelfde richting."
+    },
+    {
+      id: "l1",
+      block: "lines",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "Wat is de onderlinge ligging van de lijnen AB en CG in de kubus?",
+      options: [
+        {
+          id: "a",
+          text: "Snijdend."
+        },
+        {
+          id: "b",
+          text: "Evenwijdig."
+        },
+        {
+          id: "c",
+          text: "Kruisend."
+        },
+        {
+          id: "d",
+          text: "Samenvallend."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "AB en CG hebben geen gemeenschappelijk punt en hun richtingen verschillen. Ze zijn kruisend: ze liggen niet samen in \xE9\xE9n vlak.",
+      hint: "Onderzoek zowel een gemeenschappelijk punt als de richtingen.",
+      highlights: [
+        "AB",
+        "CG"
+      ]
+    },
+    {
+      id: "l2",
+      block: "lines",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "AF en BE zijn diagonalen van zijvlak ABFE. Welke conclusie is goed onderbouwd?",
+      options: [
+        {
+          id: "a",
+          text: "Ze kruisen, want dit zijn ruimtelijke lijnen."
+        },
+        {
+          id: "b",
+          text: "Ze snijden, want ze zijn diagonalen van hetzelfde vierkant."
+        },
+        {
+          id: "c",
+          text: "Ze zijn evenwijdig, want ze zijn even lang."
+        },
+        {
+          id: "d",
+          text: "Ze snijden uitsluitend als je de kubus van voren bekijkt."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "De diagonalen liggen in \xE9\xE9n vlak en delen het middelpunt van dat vierkant. De kijkrichting verandert dit snijpunt niet.",
+      hint: "Zoek een vlak dat beide lijnen bevat.",
+      highlights: [
+        "AF",
+        "BE"
+      ],
+      planes: [
+        [
+          "A",
+          "B",
+          "F",
+          "E"
+        ]
+      ]
+    },
+    {
+      id: "l3",
+      block: "lines",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Twee verschillende lijnen liggen in hetzelfde vlak en zijn niet evenwijdig. De zichtbare lijnstukken raken elkaar niet. Wat geldt voor de volledige lijnen?",
+      options: [
+        {
+          id: "a",
+          text: "Ze zijn evenwijdig."
+        },
+        {
+          id: "b",
+          text: "Ze zijn kruisend."
+        },
+        {
+          id: "c",
+          text: "De volledige lijnen snijden; daarvoor moet je minstens \xE9\xE9n lijnstuk verlengen."
+        },
+        {
+          id: "d",
+          text: "Ze hebben geen gemeenschappelijk punt."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "In \xE9\xE9n vlak snijden verschillende niet-evenwijdige lijnen elkaar. Een lijn loopt verder dan het stukje dat je tekent.",
+      hint: "Maak onderscheid tussen een lijn en een lijnstuk."
+    },
+    {
+      id: "l4",
+      block: "lines",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Wat bewijst dat AB en HG in de kubus evenwijdig zijn?",
+      options: [
+        {
+          id: "a",
+          text: "Hun lijnstukken raken elkaar niet."
+        },
+        {
+          id: "b",
+          text: "Ze lijken even lang op het scherm."
+        },
+        {
+          id: "c",
+          text: "AB is evenwijdig aan DC en DC is evenwijdig aan HG."
+        },
+        {
+          id: "d",
+          text: "Ze hebben geen gemeenschappelijke letter."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "Tegenoverliggende zijden van de vierkanten ABCD en DCGH zijn evenwijdig. Via DC vergelijk je de richtingen van AB en HG.",
+      hint: "Zoek een ribbe waarmee je beide richtingen kunt vergelijken.",
+      highlights: [
+        "AB",
+        "HG"
+      ]
+    },
+    {
+      id: "probe-l1",
+      block: "lines",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "AE en BC hebben geen gemeenschappelijk punt en hebben verschillende richtingen. Hoe heten deze lijnen?",
+      options: [
+        {
+          id: "a",
+          text: "Evenwijdig."
+        },
+        {
+          id: "b",
+          text: "Kruisend."
+        },
+        {
+          id: "c",
+          text: "Snijdend."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Geen gedeeld punt en verschillende richtingen betekent hier kruisend. Voor evenwijdigheid moet de richting hetzelfde zijn.",
+      hint: "Is alleen het ontbreken van een snijpunt genoeg voor evenwijdigheid?",
+      highlights: [
+        "AE",
+        "BC"
+      ]
+    },
+    {
+      id: "probe-l2",
+      block: "lines",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Twee verschillende lijnen hebben geen gemeenschappelijk punt. Welke extra informatie bewijst dat ze evenwijdig zijn?",
+      options: [
+        {
+          id: "a",
+          text: "Er is geen extra informatie nodig."
+        },
+        {
+          id: "b",
+          text: "Ze liggen in hetzelfde vlak."
+        },
+        {
+          id: "c",
+          text: "Ze hebben dezelfde kleur in de tekening."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Binnen \xE9\xE9n vlak zijn verschillende lijnen zonder snijpunt evenwijdig. Zonder die extra informatie kunnen ze ook kruisend zijn.",
+      hint: "Denk aan het verschil tussen meetkunde in een vlak en in de ruimte."
+    },
+    {
+      id: "retest-l1",
+      block: "lines",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "Welke beschrijving van AD en BF is juist?",
+      options: [
+        {
+          id: "a",
+          text: "Evenwijdig: ze ontmoeten elkaar niet."
+        },
+        {
+          id: "b",
+          text: "Kruisend: geen gedeeld punt en verschillende richtingen."
+        },
+        {
+          id: "c",
+          text: "Snijdend: de lijnstukken zijn ribben van dezelfde kubus."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "AD ligt in het linkervlak, BF in het evenwijdige rechtervlak. Daardoor hebben ze geen gemeenschappelijk punt. AD heeft de diepterichting en BF de hoogterichting: de richtingen verschillen. Dus de lijnen zijn kruisend.",
+      hint: "Onderzoek de twee voorwaarden afzonderlijk.",
+      highlights: [
+        "AD",
+        "BF"
+      ]
+    },
+    {
+      id: "retest-l2",
+      block: "lines",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "En hoe liggen AD en BC ten opzichte van elkaar?",
+      options: [
+        {
+          id: "a",
+          text: "Evenwijdig, want het zijn tegenoverliggende zijden van vierkant ABCD."
+        },
+        {
+          id: "b",
+          text: "Kruisend, want ze hebben geen gedeelde letter."
+        },
+        {
+          id: "c",
+          text: "Snijdend, want ze liggen in hetzelfde vlak."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "Tegenoverliggende zijden van een vierkant hebben dezelfde richting en geen gemeenschappelijk punt.",
+      hint: "Welk zijvlak bevat beide lijnen?",
+      highlights: [
+        "AD",
+        "BC"
+      ]
+    },
+    {
+      id: "v1",
+      block: "planes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "M is het midden van AB. Bepalen A, M en B precies \xE9\xE9n vlak?",
+      options: [
+        {
+          id: "a",
+          text: "Ja, want er zijn drie punten."
+        },
+        {
+          id: "b",
+          text: "Ja, want de punten liggen in een kubus."
+        },
+        {
+          id: "c",
+          text: "Nee, de drie punten liggen op \xE9\xE9n lijn."
+        },
+        {
+          id: "d",
+          text: "Nee, omdat M geen hoekpunt is."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "Elk vlak door lijn AB bevat ook M. Je kunt zulke vlakken om AB draaien; het vlak is niet uniek.",
+      hint: "Welke voorwaarde hoort bij drie punten die \xE9\xE9n vlak bepalen?",
+      highlights: [
+        "AB"
+      ],
+      extraPoints: {
+        M: [
+          0.5,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      id: "v2",
+      block: "planes",
+      skill: "construeren",
+      type: "points",
+      prompt: "Lijn AB is gegeven. Kies \xE9\xE9n ander kubushoekpunt waarmee AB precies \xE9\xE9n vlak bepaalt. Het extra punt moet buiten AB liggen.",
+      answer: [
+        "C"
+      ],
+      selectCount: 1,
+      explanation: "Elk van C, D, E, F, G en H ligt buiten AB en is geldig. De gekozen lijn en het punt erbuiten bepalen \xE9\xE9n vlak.",
+      hint: "Zoek een punt dat niet op de gegeven lijn ligt.",
+      acceptAny: [
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      highlights: [
+        "AB"
+      ]
+    },
+    {
+      id: "v3",
+      block: "planes",
+      skill: "construeren",
+      type: "points",
+      prompt: "Kies twee kubushoekpunten die samen de snijlijn van vlak ABG en vlak ADG bepalen.",
+      answer: [
+        "A",
+        "G"
+      ],
+      selectCount: 2,
+      explanation: "A en G liggen in beide verschillende vlakken. Daarom is de volledige lijn AG hun snijlijn.",
+      hint: "Zoek twee verschillende punten die in beide vlakken liggen.",
+      planes: [
+        [
+          "A",
+          "B",
+          "G",
+          "H"
+        ],
+        [
+          "A",
+          "D",
+          "G",
+          "F"
+        ]
+      ]
+    },
+    {
+      id: "v4",
+      block: "planes",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "T ligt op het verlengde van AB voorbij B. Ligt T in vlak ABC?",
+      options: [
+        {
+          id: "a",
+          text: "Nee, T ligt buiten de kubus."
+        },
+        {
+          id: "b",
+          text: "Ja, de hele lijn AB ligt in vlak ABC."
+        },
+        {
+          id: "c",
+          text: "Alleen als AT kleiner is dan AC."
+        },
+        {
+          id: "d",
+          text: "Dat hangt van de kijkrichting af."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Vlak ABC loopt buiten de kubus door. De getekende vierhoek ABCD toont maar een begrensd stukje van dit vlak.",
+      hint: "Waar eindigt een meetkundig vlak?",
+      highlights: [
+        "AB"
+      ],
+      planes: [
+        [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      ],
+      extraPoints: {
+        T: [
+          1.35,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      id: "probe-v1",
+      block: "planes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "P, Q en R zijn drie verschillende punten op \xE9\xE9n rechte. Kunnen verschillende vlakken alle drie de punten bevatten?",
+      options: [
+        {
+          id: "a",
+          text: "Ja, je kunt een vlak om die rechte draaien."
+        },
+        {
+          id: "b",
+          text: "Nee, drie verschillende punten bepalen altijd \xE9\xE9n vlak."
+        },
+        {
+          id: "c",
+          text: "Nee, geen enkel vlak kan een hele rechte bevatten."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "Alle vlakken door de rechte bevatten P, Q en R. Drie punten op \xE9\xE9n rechte bepalen dus geen uniek vlak.",
+      hint: "Stel je een boek voor waarvan de rug de rechte is."
+    },
+    {
+      id: "probe-v2",
+      block: "planes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Je hebt lijn EF. Welk extra gegeven bepaalt daarmee precies \xE9\xE9n vlak?",
+      options: [
+        {
+          id: "a",
+          text: "Het midden van EF."
+        },
+        {
+          id: "b",
+          text: "Punt C."
+        },
+        {
+          id: "c",
+          text: "Beide gegevens werken."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "C ligt buiten EF en bepaalt samen met EF \xE9\xE9n vlak. Het midden van EF ligt al op de lijn en voegt geen richting toe.",
+      hint: "Ligt het extra punt op of buiten de gegeven lijn?",
+      highlights: [
+        "EF"
+      ]
+    },
+    {
+      id: "retest-v1",
+      block: "planes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "K is het midden van CG. Welke uitspraak is juist?",
+      options: [
+        {
+          id: "a",
+          text: "C, K en G bepalen \xE9\xE9n vlak; C, K en A niet."
+        },
+        {
+          id: "b",
+          text: "Beide drietallen bepalen \xE9\xE9n vlak."
+        },
+        {
+          id: "c",
+          text: "C, K en G bepalen geen uniek vlak; C, K en A wel."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "C, K en G liggen op \xE9\xE9n rechte. A ligt buiten die rechte en maakt het vlak door C, K en A uniek.",
+      hint: "Zoek in elk drietal of de punten op \xE9\xE9n rechte liggen.",
+      highlights: [
+        "CG"
+      ],
+      extraPoints: {
+        K: [
+          1,
+          1,
+          0.5
+        ]
+      }
+    },
+    {
+      id: "d1",
+      block: "threeplanes",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "Bekijk vlak ABC, vlak EFG en vlak ABF. Welke twee snijlijnen levert vlak ABF op?",
+      options: [
+        {
+          id: "a",
+          text: "AB en EF; die zijn evenwijdig."
+        },
+        {
+          id: "b",
+          text: "AB en BF; die snijden in B."
+        },
+        {
+          id: "c",
+          text: "AE en BF; die zijn kruisend."
+        },
+        {
+          id: "d",
+          text: "Er zijn geen snijlijnen omdat ABC en EFG evenwijdig zijn."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "Het ondervlak en bovenvlak zijn evenwijdig. Het voorvlak snijdt ze langs tegenoverliggende ribben AB en EF.",
+      hint: "Bekijk eerst elk paar vlakken afzonderlijk.",
+      planes: [
+        [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        [
+          "A",
+          "B",
+          "F",
+          "E"
+        ]
+      ]
+    },
+    {
+      id: "d2",
+      block: "threeplanes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Wat hebben vlak ABC, vlak ABF en vlak ABG alle drie gemeen?",
+      options: [
+        {
+          id: "a",
+          text: "Alleen punt A."
+        },
+        {
+          id: "b",
+          text: "Alleen de punten A en B."
+        },
+        {
+          id: "c",
+          text: "De hele lijn AB, want alle drie de vlakken bevatten A en B."
+        },
+        {
+          id: "d",
+          text: "Het hele vlak ABC."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "Alle drie bevatten A en B en dus de hele lijn AB. Het zijn drie verschillende vlakken.",
+      hint: "Welke volledige lijn ligt in elk van de drie vlakken?",
+      planes: [
+        [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        [
+          "A",
+          "B",
+          "F",
+          "E"
+        ],
+        [
+          "A",
+          "B",
+          "G",
+          "H"
+        ]
+      ]
+    },
+    {
+      id: "d3",
+      block: "threeplanes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Wat hebben vlak ABC, vlak ABF en vlak ADH alle drie gemeen?",
+      options: [
+        {
+          id: "a",
+          text: "De hele lijn AB."
+        },
+        {
+          id: "b",
+          text: "Precies punt A."
+        },
+        {
+          id: "c",
+          text: "Geen enkel punt."
+        },
+        {
+          id: "d",
+          text: "Drie evenwijdige lijnen."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Onder- en voorvlak delen AB. Van die lijn ligt alleen A in het linkervlak ADH. De gezamenlijke doorsnede is precies A.",
+      hint: "Vind eerst de doorsnede van twee vlakken en vergelijk die met het derde.",
+      planes: [
+        [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        [
+          "A",
+          "B",
+          "F",
+          "E"
+        ],
+        [
+          "A",
+          "D",
+          "H",
+          "E"
+        ]
+      ]
+    },
+    {
+      id: "d4",
+      block: "threeplanes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Vlak ABF, vlak BCG en vlak ACG snijden elkaar paarsgewijs langs BF, CG en AE. Wat geldt voor alle drie de vlakken samen?",
+      options: [
+        {
+          id: "a",
+          text: "Ze hebben \xE9\xE9n gemeenschappelijk punt."
+        },
+        {
+          id: "b",
+          text: "Ze hebben lijn BF gemeen."
+        },
+        {
+          id: "c",
+          text: "Ze hebben geen gemeenschappelijk punt."
+        },
+        {
+          id: "d",
+          text: "Ze vallen samen."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "BF, CG en AE zijn drie verschillende evenwijdige lijnen. Ze ontmoeten elkaar niet; er is geen punt dat in alle drie vlakken ligt.",
+      hint: "Moet een gezamenlijk punt ook op alle paarsgewijze snijlijnen liggen?",
+      planes: [
+        [
+          "A",
+          "B",
+          "F",
+          "E"
+        ],
+        [
+          "B",
+          "C",
+          "G",
+          "F"
+        ],
+        [
+          "A",
+          "C",
+          "G",
+          "E"
+        ]
+      ]
+    },
+    {
+      id: "probe-d1",
+      block: "threeplanes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Drie verschillende vlakken bevatten allemaal dezelfde lijn l. Wat is hun gezamenlijke doorsnede?",
+      options: [
+        {
+          id: "a",
+          text: "Precies \xE9\xE9n punt."
+        },
+        {
+          id: "b",
+          text: "De hele lijn l."
+        },
+        {
+          id: "c",
+          text: "Geen enkel punt."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Alle punten van l liggen in elk van de vlakken. De gezamenlijke doorsnede is de lijn, niet \xE9\xE9n punt.",
+      hint: "Wat betekent dat een heel vlak een lijn bevat?"
+    },
+    {
+      id: "probe-d2",
+      block: "threeplanes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "De drie paarsgewijze snijlijnen van drie vlakken zijn verschillend en evenwijdig. Kan er \xE9\xE9n punt in alle drie vlakken liggen?",
+      options: [
+        {
+          id: "a",
+          text: "Nee; dat punt zou op alle drie de parallelle snijlijnen moeten liggen."
+        },
+        {
+          id: "b",
+          text: "Ja; dat punt ligt dan buiten de tekening."
+        },
+        {
+          id: "c",
+          text: "Ja; drie vlakken delen altijd een punt."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "Verschillende evenwijdige lijnen hebben ook buiten de tekening geen gemeenschappelijk punt. Een punt in alle drie vlakken zou op alle drie snijlijnen liggen.",
+      hint: "Lijnen en vlakken zijn onbegrensd, maar evenwijdigheid blijft gelden."
+    },
+    {
+      id: "retest-d1",
+      block: "threeplanes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Wat hebben vlak EFG, vlak ABF en vlak BCG alle drie gemeen?",
+      options: [
+        {
+          id: "a",
+          text: "Precies punt F."
+        },
+        {
+          id: "b",
+          text: "De hele lijn EF."
+        },
+        {
+          id: "c",
+          text: "De hele lijn FG."
+        },
+        {
+          id: "d",
+          text: "Geen enkel punt."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "Het bovenvlak en voorvlak delen EF. Van die lijn ligt alleen F in het rechtervlak BCG.",
+      hint: "Snijd eerst twee vlakken en betrek daarna het derde.",
+      planes: [
+        [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        [
+          "A",
+          "B",
+          "F",
+          "E"
+        ],
+        [
+          "B",
+          "C",
+          "G",
+          "F"
+        ]
+      ]
+    },
+    {
+      id: "retest-d2",
+      block: "threeplanes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Wat hebben vlak ABC, vlak EFG en vlak BCG alle drie gemeen?",
+      options: [
+        {
+          id: "a",
+          text: "Precies punt C."
+        },
+        {
+          id: "b",
+          text: "De hele lijn CG."
+        },
+        {
+          id: "c",
+          text: "Geen enkel punt."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "Het ondervlak ABC en bovenvlak EFG zijn evenwijdig en verschillend. Geen punt ligt in beide, dus ook niet in alle drie.",
+      hint: "Heeft ieder tweetal in deze opgave een gemeenschappelijk punt?",
+      planes: [
+        [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        [
+          "B",
+          "C",
+          "G",
+          "F"
+        ]
+      ]
+    },
+    {
+      id: "cp-p1",
+      block: "projection",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "N ligt op EH met EN : NH = 1 : 2. E en H vallen in de parallelprojectie niet samen. Welke conclusie is geldig?",
+      options: [
+        {
+          id: "a",
+          text: "Het beeld van N ligt in het midden van EH."
+        },
+        {
+          id: "b",
+          text: "De beeldverhouding EN : NH blijft 1 : 2."
+        },
+        {
+          id: "c",
+          text: "De beeldverhouding wordt 1 : 4."
+        },
+        {
+          id: "d",
+          text: "N kan overal in het beeld liggen."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Beide delen liggen op dezelfde rechte. Ze worden met dezelfde factor weergegeven, dus de verhouding blijft 1 : 2.",
+      hint: "Vergelijk de richting van de twee lijnstukken.",
+      highlights: [
+        "EH"
+      ],
+      extraPoints: {
+        N: [
+          0,
+          0.3333333333333333,
+          1
+        ]
+      }
+    },
+    {
+      id: "cp-p2",
+      block: "projection",
+      skill: "inzicht",
+      type: "choice",
+      prompt: "Je maakt een rechterzijaanzicht door loodrecht op vlak BCGF te kijken, langs richting AB. Welk tweetal valt dan samen?",
+      options: [
+        {
+          id: "a",
+          text: "C en D."
+        },
+        {
+          id: "b",
+          text: "C en G."
+        },
+        {
+          id: "c",
+          text: "B en C."
+        },
+        {
+          id: "d",
+          text: "A en H."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "CD heeft dezelfde richting als AB. C en D liggen dus achter elkaar in deze kijkrichting.",
+      hint: "Zoek twee punten met een verbindingslijn evenwijdig aan AB.",
+      planes: [
+        [
+          "B",
+          "C",
+          "G",
+          "F"
+        ]
+      ]
+    },
+    {
+      id: "cp-l1",
+      block: "lines",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Welke conclusie over AC en FH in de kubus is correct?",
+      options: [
+        {
+          id: "a",
+          text: "Snijdend, omdat de beelden van diagonalen elkaar kunnen kruisen."
+        },
+        {
+          id: "b",
+          text: "Evenwijdig, omdat beide lijnen diagonalen zijn."
+        },
+        {
+          id: "c",
+          text: "Kruisend: ze liggen in verschillende parallelle horizontale vlakken en hebben verschillende richtingen."
+        },
+        {
+          id: "d",
+          text: "Samenvallend, omdat beide lijnen door het midden van een zijvlak gaan."
+        }
+      ],
+      answer: [
+        "c"
+      ],
+      explanation: "AC ligt in het ondervlak, FH in het evenwijdige bovenvlak. Ze delen geen punt. Hun richtingen zijn verschillend, dus ze zijn kruisend.",
+      hint: "Onderzoek eerst de vlakken waarin de lijnen liggen en daarna hun richtingen.",
+      highlights: [
+        "AC",
+        "FH"
+      ]
+    },
+    {
+      id: "cp-l2",
+      block: "lines",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Een student zegt: \u201CAH en BG zijn evenwijdig, want de getekende stukjes raken elkaar niet.\u201D Welke beoordeling klopt?",
+      options: [
+        {
+          id: "a",
+          text: "De conclusie is goed, maar de reden bewijst haar niet: gebruik dat ADHE en BCGF overeenkomstige parallelle vierkanten zijn."
+        },
+        {
+          id: "b",
+          text: "De reden is volledig: niet raken bewijst altijd evenwijdigheid."
+        },
+        {
+          id: "c",
+          text: "De conclusie is fout: AH en BG zijn kruisend."
+        },
+        {
+          id: "d",
+          text: "Er is geen ruimtelijk argument mogelijk."
+        }
+      ],
+      answer: [
+        "a"
+      ],
+      explanation: "AH en BG zijn overeenkomstige diagonalen in parallelle zijvlakken en hebben dezelfde richting. Alleen niet raken is onvoldoende: dat kan ook bij kruisende lijnen.",
+      hint: "Beoordeel de conclusie en de gegeven reden afzonderlijk.",
+      highlights: [
+        "AH",
+        "BG"
+      ]
+    },
+    {
+      id: "cp-v1",
+      block: "planes",
+      skill: "construeren",
+      type: "points",
+      prompt: "Kies twee hoekpunten die de snijlijn bepalen van vlak EFG en vlak BCH.",
+      answer: [
+        "E",
+        "H"
+      ],
+      selectCount: 2,
+      explanation: "E en H liggen in beide verschillende vlakken. Hun snijlijn is daarom EH.",
+      hint: "Welke twee punten van het bovenvlak liggen ook in vlak BCH?",
+      planes: [
+        [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        [
+          "B",
+          "C",
+          "H",
+          "E"
+        ]
+      ]
+    },
+    {
+      id: "cp-v2",
+      block: "planes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Twee verschillende evenwijdige lijnen l en m zijn gegeven. Bepalen zij precies \xE9\xE9n vlak?",
+      options: [
+        {
+          id: "a",
+          text: "Nee, omdat ze geen gemeenschappelijk punt hebben."
+        },
+        {
+          id: "b",
+          text: "Ja: neem twee punten op l en \xE9\xE9n punt op m; die drie punten liggen niet op \xE9\xE9n lijn."
+        },
+        {
+          id: "c",
+          text: "Alleen als de lijnen even lang zijn."
+        },
+        {
+          id: "d",
+          text: "Ja, maar alleen wanneer ze horizontaal getekend zijn."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Twee verschillende evenwijdige lijnen liggen in \xE9\xE9n vlak. Twee punten op de ene lijn en \xE9\xE9n op de andere bepalen dit vlak uniek.",
+      hint: "Vertaal de gegevens naar drie punten die niet op \xE9\xE9n lijn liggen."
+    },
+    {
+      id: "cp-d1",
+      block: "threeplanes",
+      skill: "inzicht",
+      type: "points",
+      prompt: "Vlak EFG, vlak CDH en vlak ADH hebben precies \xE9\xE9n punt gemeen. Kies dat punt.",
+      answer: [
+        "H"
+      ],
+      selectCount: 1,
+      explanation: "Het bovenvlak, achtervlak en linkervlak ontmoeten elkaar precies in H.",
+      hint: "Zoek eerst de snijlijn van twee vlakken en toets welke punten ook in het derde liggen.",
+      planes: [
+        [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        [
+          "C",
+          "D",
+          "H",
+          "G"
+        ],
+        [
+          "A",
+          "D",
+          "H",
+          "E"
+        ]
+      ]
+    },
+    {
+      id: "cp-d2",
+      block: "threeplanes",
+      skill: "onderbouwen",
+      type: "choice",
+      prompt: "Drie verschillende vlakken snijden elkaar paarsgewijs in drie verschillende lijnen. Twee van die snijlijnen zijn evenwijdig. Wat volgt?",
+      options: [
+        {
+          id: "a",
+          text: "De derde snijlijn snijdt de andere twee."
+        },
+        {
+          id: "b",
+          text: "De derde snijlijn is ook evenwijdig aan de andere twee."
+        },
+        {
+          id: "c",
+          text: "De drie vlakken delen precies \xE9\xE9n punt."
+        },
+        {
+          id: "d",
+          text: "De drie vlakken vallen samen."
+        }
+      ],
+      answer: [
+        "b"
+      ],
+      explanation: "Een snijpunt van twee paarsgewijze snijlijnen zou in alle drie vlakken liggen en dus ook op de derde snijlijn. Dat kan niet wanneer twee daarvan verschillend en evenwijdig zijn. De derde lijn is coplanair met elk van de andere en moet dus ook evenwijdig zijn.",
+      hint: "Wat zou een snijpunt van twee snijlijnen betekenen voor het derde vlak?"
+    }
+  ],
+  checkpointIds: [
+    "cp-p1",
+    "cp-p2",
+    "cp-l1",
+    "cp-l2",
+    "cp-v1",
+    "cp-v2",
+    "cp-d1",
+    "cp-d2"
+  ]
+};
+
+// app/model.ts
+var BANK = content_default;
+var QUESTIONS = Object.fromEntries(BANK.questions.map((q) => [q.id, q]));
+var SKILLS = ["inzicht", "construeren", "onderbouwen", "rekenen"];
+function correctAnswer(q, a) {
+  if (new Set(a).size !== a.length) return false;
+  if (q.acceptAny?.length) return a.length === (q.selectCount || 1) && a.every((k) => q.acceptAny.includes(k));
+  return a.length === q.answer.length && [...a].sort().join("|") === [...q.answer].sort().join("|");
+}
+function deriveProgress(events) {
+  const answers = events.filter((e) => e.type === "answer");
+  const evidence = {};
+  for (const e of visibleEvidenceAnswers(events, BANK.checkpointIds)) {
+    const id = e.payload.questionId, q = QUESTIONS[id];
+    if (!q) continue;
+    const old = evidence[id];
+    const ok = correctAnswer(q, e.payload.answer);
+    evidence[id] = { correct: !!old?.correct || ok, independent: !!old?.independent || !old && ok && !e.payload.helped, helped: !!old?.helped || e.payload.helped || !ok, tries: (old?.tries || 0) + 1 };
+  }
+  const complete = [...new Set(events.filter((e) => e.type === "block").map((e) => String(e.payload.blockId)))];
+  const mainIds = BANK.blocks.flatMap((b) => b.questionIds), assessed = [...mainIds, ...BANK.checkpointIds];
+  const skills = Object.fromEntries(SKILLS.map((s) => {
+    const ids = assessed.filter((id) => QUESTIONS[id]?.skill === s);
+    return [s, { total: ids.length, independent: ids.filter((id) => evidence[id]?.independent).length, helped: ids.filter((id) => evidence[id]?.correct && !evidence[id]?.independent).length }];
+  }));
+  const sessions = {};
+  for (const a of answers.filter((e) => e.payload.context === "check" && BANK.checkpointIds.includes(e.payload.questionId))) (sessions[a.payload.sessionId] ??= []).push(a);
+  const successfulCheck = Object.values(sessions).some((es) => es.length === BANK.checkpointIds.length && new Set(es.map((e) => e.payload.questionId)).size === BANK.checkpointIds.length && es.every((e) => correctAnswer(QUESTIONS[e.payload.questionId], e.payload.answer) && !e.payload.helped));
+  const paper = events.filter((e) => e.type === "paper").at(-1);
+  const paperDone = Array.isArray(paper?.payload.checks) && paper.payload.checks.length === 4;
+  const workbench = events.filter((e) => e.type === "workbench" && e.payload.correct === true).at(-1);
+  const rewarded = /* @__PURE__ */ new Set([...mainIds, ...BANK.blocks.flatMap((b) => b.retestIds)]);
+  const xp = Object.entries(evidence).reduce((n2, [id, v]) => n2 + (rewarded.has(id) && v.correct ? v.independent ? 20 : 10 : 0), 0) + complete.length * 30 + (workbench ? 60 : 0) + (paperDone ? 30 : 0) + (successfulCheck ? 100 : 0);
+  return { answers, evidence, complete, skills, successfulCheck, paperDone, workbench, xp, level1Passed: complete.length === 4 && successfulCheck && paperDone };
+}
+function visibleEvidenceAnswers(events, checkpointIds) {
+  const seen = /* @__PURE__ */ new Set();
+  const answers = events.filter((e) => {
+    if (e.type !== "answer" || seen.has(e.id)) return false;
+    seen.add(e.id);
+    return true;
+  }), sessions = /* @__PURE__ */ new Map();
+  for (const e of answers) if (e.payload.context === "check" && checkpointIds.includes(e.payload.questionId)) {
+    const rows = sessions.get(e.payload.sessionId) || [];
+    rows.push(e);
+    sessions.set(e.payload.sessionId, rows);
+  }
+  const complete = new Set([...sessions].filter(([, rows]) => checkpointIds.every((id) => rows.some((e) => e.payload.questionId === id))).map(([id]) => id));
+  return answers.filter((e) => e.payload.context !== "probe" && (e.payload.context !== "check" || complete.has(e.payload.sessionId)));
+}
+
+// app/diagnostic.ts
+function answerEvents(events) {
+  const ids = /* @__PURE__ */ new Set();
+  return events.filter((event2) => {
+    if (event2.type !== "answer" || ids.has(event2.id)) return false;
+    ids.add(event2.id);
+    return true;
+  });
+}
+function exactWrong(questionId, answer, wrong) {
+  const q = QUESTIONS[questionId];
+  return !!q && answer.length === 1 && answer[0] === wrong && !correctAnswer(q, answer);
+}
+function isMisconceptionTrigger(block, questionId, answer) {
+  return questionId === block.misconception.trigger.qid && exactWrong(questionId, answer, block.misconception.trigger.wrongAnswer);
+}
+function supportsMisconception(block, answers) {
+  return answers.length === block.probeIds.length && answers.every((a, i) => exactWrong(block.probeIds[i], a, block.misconception.probeWrongAnswers[i]));
+}
+function getBlockDiagnosis(block, events, sessionId) {
+  const answers = answerEvents(events);
+  const trigger = [...answers].reverse().find((e) => e.payload.context === "practice" && (!sessionId || e.payload.sessionId === sessionId) && isMisconceptionTrigger(block, e.payload.questionId, e.payload.answer));
+  if (!trigger) return null;
+  const subsequent = answers.slice(answers.indexOf(trigger) + 1).filter((e) => e.payload.sessionId === trigger.payload.sessionId);
+  const nextMain = subsequent.findIndex((e) => e.payload.context === "practice" && block.questionIds.includes(e.payload.questionId));
+  const episode = nextMain < 0 ? subsequent : subsequent.slice(0, nextMain);
+  const probes = block.probeIds.map((id) => episode.find((e) => e.payload.context === "probe" && e.payload.questionId === id));
+  const investigated = probes.every(Boolean);
+  const supported = investigated && supportsMisconception(block, probes.map((e) => e.payload.answer));
+  const lastProbe = investigated ? Math.max(...probes.map((e) => episode.indexOf(e))) : -1;
+  const retests = block.retestIds.map((id) => investigated ? episode.slice(lastProbe + 1).find((e) => e.payload.context === "retest" && e.payload.questionId === id) : void 0);
+  const retestSuccess = retests.map((e) => !!e && correctAnswer(QUESTIONS[e.payload.questionId], e.payload.answer));
+  return { trigger, probes, probeAnswers: probes.map((e) => e?.payload.answer || []), investigated, supported, retests, retestSuccess, retested: retests.every(Boolean) && retestSuccess.every(Boolean) };
+}
+function resumeBlock(block, events) {
+  const initial = { stage: "theory", index: 0, probeIndex: 0, probeAnswers: [], retestIndex: 0, retestSuccess: [], supported: false };
+  const main = [...answerEvents(events)].reverse().find((e) => e.payload.context === "practice" && block.questionIds.includes(e.payload.questionId));
+  if (!main) return initial;
+  const completion = [...events].reverse().find((e) => e.type === "block" && e.payload.blockId === block.id);
+  if (completion && events.indexOf(completion) > events.indexOf(main)) return initial;
+  const index = block.questionIds.indexOf(main.payload.questionId);
+  const previousDiagnosis = getBlockDiagnosis(block, events, main.payload.sessionId);
+  const base = { ...initial, index, sessionId: main.payload.sessionId, ...previousDiagnosis ? {
+    probeAnswers: previousDiagnosis.probeAnswers.filter((a) => a.length),
+    supported: previousDiagnosis.supported,
+    retestSuccess: previousDiagnosis.retestSuccess.slice(0, previousDiagnosis.retests.filter(Boolean).length)
+  } : {} };
+  const nextMain = () => index + 1 < block.questionIds.length ? { ...base, stage: "practice", index: index + 1 } : { ...base, stage: "complete" };
+  if (!isMisconceptionTrigger(block, main.payload.questionId, main.payload.answer)) return nextMain();
+  const diagnosis = getBlockDiagnosis(block, events, main.payload.sessionId);
+  const firstMissingProbe = diagnosis.probes.findIndex((e) => !e);
+  if (firstMissingProbe >= 0) return { ...base, stage: "probe", probeIndex: firstMissingProbe, probeAnswers: diagnosis.probeAnswers.slice(0, firstMissingProbe) };
+  const diagnosed = { ...base, probeAnswers: diagnosis.probeAnswers, supported: diagnosis.supported };
+  const firstMissingRetest = diagnosis.retests.findIndex((e) => !e);
+  if (firstMissingRetest === 0) return { ...diagnosed, stage: "repair" };
+  if (firstMissingRetest > 0) return { ...diagnosed, stage: "retest", retestIndex: firstMissingRetest, retestSuccess: diagnosis.retestSuccess.slice(0, firstMissingRetest) };
+  return { ...nextMain(), probeAnswers: diagnosis.probeAnswers, supported: diagnosis.supported, retestSuccess: diagnosis.retestSuccess };
+}
+
+// scripts/check-diagnostic.mjs
+var n = 0;
+var combinations = 0;
+var event = (qid, answer, context = "practice", sessionId = "same") => ({ id: "test-" + String(++n).padStart(6, "0"), type: "answer", at: n, payload: { questionId: qid, answer, helped: false, context, sessionId, correct: true } });
+for (const block of BANK.blocks) {
+  const t = block.misconception.trigger, probeIds = block.probeIds;
+  const trigger = event(t.qid, [t.wrongAnswer]);
+  for (const a of QUESTIONS[t.qid].options) for (const b of QUESTIONS[probeIds[0]].options) for (const c of QUESTIONS[probeIds[1]].options) {
+    const history = [event(t.qid, [a.id]), event(probeIds[0], [b.id], "probe"), event(probeIds[1], [c.id], "probe")];
+    const result = getBlockDiagnosis(block, history);
+    assert.equal(!!result?.supported, a.id === t.wrongAnswer && b.id === block.misconception.probeWrongAnswers[0] && c.id === block.misconception.probeWrongAnswers[1], block.id);
+    combinations++;
+  }
+  const probes = probeIds.map((id, i) => event(id, [block.misconception.probeWrongAnswers[i]], "probe"));
+  assert.equal(getBlockDiagnosis(block, probes), null, "Two errors without a trigger must not label a pattern");
+  assert.equal(getBlockDiagnosis(block, [trigger, probes[0]]).supported, false, "One confirming probe is not sufficient");
+  assert.equal(getBlockDiagnosis(block, [trigger, ...probes.map((e) => ({ ...e, payload: { ...e.payload, sessionId: "other" } }))]).supported, false, "Do not mix sessions");
+  assert.equal(getBlockDiagnosis(block, [...probes, trigger]).supported, false, "Do not use probes preceding the trigger");
+  assert.equal(getBlockDiagnosis(block, [trigger, ...probes]).supported, true);
+  assert.equal(getBlockDiagnosis(block, [trigger, ...probes, probes[1]]).supported, true, "Retrying an event is idempotent");
+  assert.equal(getBlockDiagnosis(block, [trigger, ...probes.map((e) => ({ ...e, payload: { ...e.payload, context: "practice" } }))]).supported, false, "The probe context matters");
+  assert.equal(isMisconceptionTrigger(block, t.qid, [t.wrongAnswer, QUESTIONS[t.qid].answer[0]]), false, "Malformed multi-answer cannot confirm a single-choice error");
+  let r = resumeBlock(block, [trigger]);
+  assert.equal(r.stage, "probe");
+  assert.equal(r.probeIndex, 0);
+  assert.equal(r.sessionId, "same");
+  r = resumeBlock(block, [trigger, probes[0]]);
+  assert.equal(r.stage, "probe");
+  assert.equal(r.probeIndex, 1);
+  assert.deepEqual(r.probeAnswers, [probes[0].payload.answer]);
+  r = resumeBlock(block, [trigger, ...probes]);
+  assert.equal(r.stage, "repair");
+  assert.equal(r.supported, true);
+  const noConfirmation = probeIds.map((id) => event(id, QUESTIONS[id].answer, "probe"));
+  r = resumeBlock(block, [trigger, ...noConfirmation]);
+  assert.equal(r.stage, "repair");
+  assert.equal(r.supported, false, "Unconfirmed suspicion uses neutral repair wording");
+  const retests = block.retestIds.map((id) => event(id, QUESTIONS[id].answer, "retest"));
+  if (retests.length > 1) {
+    r = resumeBlock(block, [trigger, ...probes, retests[0]]);
+    assert.equal(r.stage, "retest");
+    assert.equal(r.retestIndex, 1);
+    assert.deepEqual(r.retestSuccess, [true]);
+  }
+  r = resumeBlock(block, [trigger, ...probes, ...retests]);
+  const index = block.questionIds.indexOf(t.qid);
+  assert.equal(r.stage, index === block.questionIds.length - 1 ? "complete" : "practice");
+  assert.ok(r.retestSuccess.every(Boolean));
+  const wrongRetests = block.retestIds.map((id) => event(id, [], "retest"));
+  assert.equal(getBlockDiagnosis(block, [trigger, ...probes, ...wrongRetests]).retested, false, "Stored payload.correct cannot make a failed repair successful");
+  const closure = { id: "finished-" + block.id, type: "block", at: ++n, payload: { blockId: block.id } };
+  assert.equal(resumeBlock(block, [trigger, ...probes, ...retests, closure]).stage, "theory");
+  assert.equal(visibleEvidenceAnswers([trigger, ...probes], BANK.checkpointIds).length, 1, "Diagnostic answers never affect counters");
+}
+var cps = BANK.checkpointIds.map((id) => event(id, QUESTIONS[id].answer, "check", "check-1"));
+for (let i = 1; i < cps.length; i++) {
+  const shown = visibleEvidenceAnswers(cps.slice(0, i), BANK.checkpointIds);
+  assert.equal(shown.length, 0, "No evidence release before the whole check");
+  const progress = deriveProgress(cps.slice(0, i));
+  assert.equal(progress.xp, 0);
+  for (const skill of Object.values(progress.skills)) {
+    assert.equal(skill.independent, 0);
+    assert.equal(skill.helped, 0);
+  }
+}
+assert.equal(visibleEvidenceAnswers(cps, BANK.checkpointIds).length, cps.length);
+assert.equal(deriveProgress(visibleEvidenceAnswers(cps, BANK.checkpointIds)).successfulCheck, true);
+console.log(`Diagnostic proposal passed ${combinations} complete answer combinations, all 4 resume chains, session isolation, forged correctness, and 7 incomplete-check counter states.`);
