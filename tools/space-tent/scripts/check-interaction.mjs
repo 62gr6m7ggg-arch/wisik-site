@@ -7,7 +7,7 @@ import {resolve} from 'node:path';
 const site=process.env.SPACE_AUDIT_SITE||process.cwd(),require=createRequire(site+'/package.json');
 const {build}=require('esbuild'),React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
 const learningPath=resolve(site,'app/learning.tsx');
-const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,QUESTIONS,CHECKS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]learning\.tsx$/},args=>{
+const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,QUESTIONS,CHECKS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation'; export * as CV from './app/construction-visuals';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]learning\.tsx$/},args=>{
  assert.equal(args.path,learningPath);
  let source=readFileSync(args.path,'utf8');
  // Inject only the initial state for SSR, never changing render/feedback logic.
@@ -121,3 +121,35 @@ const checkpoint=ids.map((id,i)=>({id:'audit-check-'+i,type:'answer',at:i,payloa
 for(let i=1;i<checkpoint.length;i++){const p=deriveProgress(checkpoint.slice(0,i));assert.equal(p.xp,0);for(const s of Object.values(p.skills)){assert.equal(s.independent,0);assert.equal(s.helped,0);}}
 }
 console.log(`Interaction SSR checks passed: ${cards} question-card states, ${figures} feedback figures, ${BANK.blocks.length} deferred triggers, ${cameras.length} camera movements and ${projections} projected question scenes. Pointer behavior still requires browser QA.`);
+
+// Visual identity must survive extension/resume; side-face aids cannot reveal a section.
+{
+ const {CV}=module.exports;
+ const ls=[{id:'one',name:'PQ',a:[0,0,.3],b:[1,0,.5]},{id:'two',name:'QR',a:[1,0,.5],b:[1,1,.7]}];
+ assert.notEqual(CV.lineColor(ls[0],ls),CV.lineColor(ls[1],ls));
+ const extended=JSON.parse(JSON.stringify(ls));extended[0].infinite=true;
+ assert.equal(CV.lineColor(extended[0],extended),CV.lineColor(ls[0],ls));
+ const html=render(Geometry,{construction:true,lines:extended});
+ for(const l of ls)assert.ok(html.includes(CV.lineColor(l,ls)));
+ assert.ok(html.includes('stroke-dasharray="8 4"'));
+ assert.ok(!html.includes('Gearceerd vlak'),'No side face or answer plane appears automatically');
+ const tasks=JSON.parse(readFileSync(resolve(site,'app/construction-tasks.json'),'utf8')).tasks;
+ for(const task of tasks){
+  const faces=CV.boundaryFaces(task.edges,task.points);
+  const section=CV.closedSectionPlane(task.targetSegments,{...task.points,...task.solutionPoints});
+  assert.equal(section.length,task.targetSegments.length>=3?1:0,task.id+' closed solution plane');
+  const vertices=[...new Set(task.edges.join(''))];
+  assert.equal(vertices.length-task.edges.length+faces.length,2,task.id+' Euler boundary');
+  for(const edge of task.edges)assert.equal(faces.filter(f=>f.some((v,i)=>(v===edge[0]&&f[(i+1)%f.length]===edge[1])||(v===edge[1]&&f[(i+1)%f.length]===edge[0]))).length,2,task.id+'/'+edge);
+  for(const face of faces){
+   assert.ok(face.every(v=>vertices.includes(v)),'No given section point becomes a boundary vertex');
+   const [a,b,c]=face.map(v=>task.points[v]),n=G.cross(G.sub(b,a),G.sub(c,a));
+   assert.ok(Math.hypot(...n)>1e-8);
+   for(const key of face)assert.ok(Math.abs(G.dot(n,G.sub(task.points[key],a)))<1e-7);
+  }
+ }
+ const markup=renderToStaticMarkup(React.createElement('div',null,...[1,2].map(key=>React.createElement(Geometry,{key,planes:[['A','B','F','E']]}))));
+ const ids=[...markup.matchAll(/id="([^"]*-hatch-0)"/g)].map(m=>m[1]);assert.equal(ids.length,2);assert.notEqual(ids[0],ids[1]);
+ assert.ok(markup.includes('fill-opacity=".09"'));
+ console.log('Construction visual checks passed: stable line colors, distinct hatch IDs, no automatic answer planes, and complete convex boundary faces for all tasks.');
+}

@@ -1,4 +1,4 @@
-# Space-tent — Ruimteklaar 0.4
+# Space-tent — Ruimteklaar 0.4.1
 
 Public client at /apps/ruimteklaar/. Node 22+: npm ci; npm run build; npm run audit:build. Copy .space-dist to public/apps/ruimteklaar and .audit-dist to audit-runtime before regenerating the root Space audit. Root CI runs committed audit-runtime without dependency installation and binds source and assets by hash.
 
