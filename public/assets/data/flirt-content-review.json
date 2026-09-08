@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-09-06",
+  "reviewedAt": "2026-09-08",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen.",
-    "audio": "De gesproken tekst is beoordeeld via de aangeleverde VTT en transcripten; de audiotrack is niet onafhankelijk beluisterd.",
+    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen.",
+    "audio": "De gesproken tekst is beoordeeld via de aangeleverde VTT en transcripten; de audiotrack is niet onafhankelijk beluisterd. D01 is op 8 september vervangen door de aangeleverde eigen stem: de gedecodeerde spraak is met twee spraakherkenningsmodellen vergeleken met de uitleg, nieuwe woordtijdstippen en figuur. Geen menselijke beluistering.",
     "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
     "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
   },
@@ -782,41 +782,40 @@
       "verdict": "aligned",
       "expectedMisconception": "Het hoogste punt wordt gekozen wanneer de grootste toename tussen opeenvolgende waarden wordt gevraagd.",
       "intendedInsight": "Vergelijk de verschillen: de hoogste eindwaarde hoeft niet na de grootste stijging te liggen.",
-      "observedContent": "Titel, script en één lijngrafiek vergelijken 10→30→35→40. De eerste stap is +20, de volgende zijn +5; de hoogste waarde 40 ligt rechts. Het script benoemt gelijke intervallen van één jaar. De rekenkundige vergelijking klopt.",
+      "observedContent": "De eigen stem vergelijkt 10→30→35→40, met de grootste toename +20 in het eerste jaar en hoogste eindwaarde 40 rechts. De uitleg eindigt op de volledige zin De toename vertelt hoeveel erbij kwam. De niet-ingesloten extra slotzin uit de oude tekst is uit het transcript en de ondertiteling verwijderd.",
       "visualEvidence": [
         {
           "timestamps": [
-            4
+            2
           ],
-          "observation": "Titelkaart ‘Hoogste punt of grootste toename’ met code D01."
+          "observation": "Titelkaart met D01 en Hoogste punt of grootste toename."
         },
         {
           "timestamps": [
             12,
-            21,
-            30,
-            39
+            33,
+            48
           ],
-          "observation": "Vier punten 10, 30, 35, 40; het eerste lijnstuk is gemarkeerd met +20, de volgende met +5. Onderaan: ‘Hoogste punt rechts. Grootste stijging eerder.’"
+          "observation": "Grafiek 10, 30, 35, 40; eerste stap +20, volgende +5. Het kernonderscheid sluit aan op de eigen stem."
         },
         {
           "timestamps": [
-            48.504
+            54
           ],
-          "observation": "Afsluiting verwijst naar de herstelset."
+          "observation": "Bestaande eindkaart na de complete uitleg, zonder de overtollige stilte."
         }
       ],
-      "captionEvidence": "Het laatste punt ligt het hoogst, maar de grootste stijging gebeurde eerder.",
+      "captionEvidence": "Nieuwe cues van 4,50 tot 49,10 s volgen de eigen stem. De volledige gesproken kern eindigt vóór de overgang op 50,52 s; eindkaart tot 56 s.",
       "notes": [],
       "videoId": "wisik-flirt-d01",
       "title": "Hoogste punt of grootste toename",
       "fingerprints": {
         "misconception": "d3831aae0034f225794b0d0696ad4615eb58316d9954eea70ff3cb1c8c2f98fd",
-        "catalogItem": "ffa2d1e22560f5342b48c0b0a448b16874ec52e2a3593fc8514fcf9ad85014b3",
-        "video": "e1400f677da2cca3e0653af04647693a882d1072f00ba69e028c67b694f61e3e",
-        "poster": "90926f71ce4e20fde095e343aa4ba40f20bf521b9e8ca8970538eae594b53a38",
-        "captions": "80b174ef0ff777590a534fadb2646e4bc06b43cf546da62ff3f181ca3a9beee8",
-        "transcript": "76498d392e7e3e5733c6cf9810901c926bd71bca3d7dc06991277b85398fc2be"
+        "catalogItem": "10c36a64bb75e2c69ddc6f6cb485ca0001aa8ac4ee44983ba90245de56b1d5e0",
+        "video": "f6e1e38ec72fc7f8105136354955f6c7f8c04de34763afa2b6006a9038e7dcab",
+        "poster": "4fe45a2347d6727d5461064322f6c8b30a33931e9d772031137e767f26d54ee8",
+        "captions": "d7a9115cd596e2294588c731b55281fcdb695450a608137544480e78c010c811",
+        "transcript": "d0bde027363a218909fb4605cc51b4c44bbf8d1a59a6a9743a00f22c35bb7b9c"
       }
     },
     {

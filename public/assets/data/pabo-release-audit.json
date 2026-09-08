@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "auditVersion": "1.2.0",
-  "siteVersion": "0.1.18",
+  "siteVersion": "0.1.19",
   "tool": "Pabo Rekenklaar",
   "toolVersion": "1.6.2",
-  "generatedAt": "2026-09-07T17:09:38.810Z",
+  "generatedAt": "2026-09-08T14:23:00.662Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -90,12 +90,12 @@
       "withNotes": 11,
       "needsRevision": 0
     },
-    "reviewedAt": "2026-09-06",
+    "reviewedAt": "2026-09-08",
     "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
     "scope": {
       "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-      "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen.",
-      "audio": "De gesproken tekst is beoordeeld via de aangeleverde VTT en transcripten; de audiotrack is niet onafhankelijk beluisterd.",
+      "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen.",
+      "audio": "De gesproken tekst is beoordeeld via de aangeleverde VTT en transcripten; de audiotrack is niet onafhankelijk beluisterd. D01 is op 8 september vervangen door de aangeleverde eigen stem: de gedecodeerde spraak is met twee spraakherkenningsmodellen vergeleken met de uitleg, nieuwe woordtijdstippen en figuur. Geen menselijke beluistering.",
       "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
       "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
     },
@@ -688,31 +688,30 @@
         "verdict": "aligned",
         "expectedMisconception": "Het hoogste punt wordt gekozen wanneer de grootste toename tussen opeenvolgende waarden wordt gevraagd.",
         "intendedInsight": "Vergelijk de verschillen: de hoogste eindwaarde hoeft niet na de grootste stijging te liggen.",
-        "observedContent": "Titel, script en één lijngrafiek vergelijken 10→30→35→40. De eerste stap is +20, de volgende zijn +5; de hoogste waarde 40 ligt rechts. Het script benoemt gelijke intervallen van één jaar. De rekenkundige vergelijking klopt.",
+        "observedContent": "De eigen stem vergelijkt 10→30→35→40, met de grootste toename +20 in het eerste jaar en hoogste eindwaarde 40 rechts. De uitleg eindigt op de volledige zin De toename vertelt hoeveel erbij kwam. De niet-ingesloten extra slotzin uit de oude tekst is uit het transcript en de ondertiteling verwijderd.",
         "visualEvidence": [
           {
             "timestamps": [
-              4
+              2
             ],
-            "observation": "Titelkaart ‘Hoogste punt of grootste toename’ met code D01."
+            "observation": "Titelkaart met D01 en Hoogste punt of grootste toename."
           },
           {
             "timestamps": [
               12,
-              21,
-              30,
-              39
+              33,
+              48
             ],
-            "observation": "Vier punten 10, 30, 35, 40; het eerste lijnstuk is gemarkeerd met +20, de volgende met +5. Onderaan: ‘Hoogste punt rechts. Grootste stijging eerder.’"
+            "observation": "Grafiek 10, 30, 35, 40; eerste stap +20, volgende +5. Het kernonderscheid sluit aan op de eigen stem."
           },
           {
             "timestamps": [
-              48.504
+              54
             ],
-            "observation": "Afsluiting verwijst naar de herstelset."
+            "observation": "Bestaande eindkaart na de complete uitleg, zonder de overtollige stilte."
           }
         ],
-        "captionEvidence": "Het laatste punt ligt het hoogst, maar de grootste stijging gebeurde eerder.",
+        "captionEvidence": "Nieuwe cues van 4,50 tot 49,10 s volgen de eigen stem. De volledige gesproken kern eindigt vóór de overgang op 50,52 s; eindkaart tot 56 s.",
         "notes": [],
         "videoId": "wisik-flirt-d01",
         "title": "Hoogste punt of grootste toename"
@@ -952,7 +951,7 @@
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
     "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "46436c1528a16f3dd2e57897cc8acfa67764a67ad4fc0fd2fd38f993fb0e5b1c"
+    "sha256": "282c946b17159ea2bc2a9bc54feec76e1aedac6657106cd6a06ad881a552b448"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",
