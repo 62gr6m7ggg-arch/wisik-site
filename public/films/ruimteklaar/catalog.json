@@ -1,0 +1,806 @@
+{
+  "version": "0.4.4",
+  "recordedBy": "Eigen docentstem",
+  "items": [
+    {
+      "id": "1.1",
+      "lesson": 1,
+      "blockId": "projection",
+      "title": "Je tekening heeft een dimensie minder",
+      "audio": "/films/ruimteklaar/1.1/uitleg.m4a",
+      "duration": 50.3,
+      "sha256": "276fff5bbb021a03bb29b01f085bf9c284727f517740dd31c53a8ae9cb3a5cdc",
+      "paragraphs": [
+        "Deze lijnen lijken elkaar te raken. Maar zien we een snijpunt, of alleen twee lijnen boven op elkaar?",
+        "Kijk mee terwijl de kubus een kwartslag draait. De ene lijn ligt vooraan; de andere verder naar achteren. Er zit ruimte tussen.",
+        "Een tekening maakt van drie dimensies twee. Daardoor verdwijnt informatie over diepte. Ook een rechte hoek kan schuin in beeld komen.",
+        "De draaiing helpt je de situatie te begrijpen. Voor je redenering gebruik je daarna de eigenschappen van de figuur: waar liggen de lijnen, en delen ze werkelijk een punt?",
+        "Je ziet een afbeelding. Je onderzoekt het ruimtelijke model erachter."
+      ]
+    },
+    {
+      "id": "1.2",
+      "lesson": 1,
+      "blockId": "projection",
+      "title": "Wat parallelprojectie bewaart",
+      "audio": "/films/ruimteklaar/1.2/uitleg.m4a",
+      "duration": 57.4,
+      "sha256": "e9c3a6914348055e545056263214e9d03580cf2f22097d2abf982710618ec032",
+      "paragraphs": [
+        "Wat kun je wél vertrouwen in deze kubustekening? Kijk naar de ribben die dezelfde richting hebben.",
+        "Bij parallelprojectie blijven evenwijdige richtingen evenwijdig in beeld. Daarom lopen deze vier dieptelijnen dezelfde kant op.",
+        "Dit punt deelt de ribbe in twee gelijke delen. Dat blijft ook in de tekening zo. Ook andere verhoudingen op dezelfde lijn blijven behouden.",
+        "Maar vergelijk nu een dieptelijn met de voorste ribbe. Ze zijn even lang in de kubus, terwijl ze anders getekend zijn. Ook hoeken kunnen veranderen.",
+        "Vertrouw op de structuur en de verhoudingen. Bereken de echte maten."
+      ]
+    },
+    {
+      "id": "1.3",
+      "lesson": 1,
+      "blockId": "projection",
+      "title": "Van leeg papier naar ruimtefiguur",
+      "audio": "/films/ruimteklaar/1.3/uitleg.m4a",
+      "duration": 54.2,
+      "sha256": "a346abcc6b3f9f2ae6d718a82fd54c6e6dfd4cd0964a8167a39ca6a5d3e747d8",
+      "paragraphs": [
+        "Een overtuigende ruimtetekening begint met een afspraak. We gebruiken hier de tekenafspraak uit jouw les.",
+        "Teken eerst het voorvlak. De dieptelijnen krijgen ongeveer zestig graden en ongeveer de helft van hun werkelijke lengte op de gekozen schaal.",
+        "Maak alle ribben in dezelfde richting evenwijdig. Verbind overeenkomstige hoekpunten. Zo krijgt de balk een samenhangend achtervlak.",
+        "Onzichtbare ribben teken je gestippeld. Bij een piramide plaats je eerst het grondvlak en de voet van de hoogte, en pas daarna de top.",
+        "De tekenafspraak maakt het beeld leesbaar. De gegeven maten bepalen het rekenen."
+      ]
+    },
+    {
+      "id": "1.4",
+      "lesson": 1,
+      "blockId": "planes",
+      "title": "Wanneer ligt een vlak vast?",
+      "audio": "/films/ruimteklaar/1.4/uitleg.m4a",
+      "duration": 57.4,
+      "sha256": "d9f847da8a2ba63e87d0418271bb8bb374578c896cbc3ed602343771e96bc8e7",
+      "paragraphs": [
+        "Drie punten bepalen een vlak. Maar er ontbreekt één belangrijke voorwaarde. Zie je welke?",
+        "A, B en C liggen eerst op dezelfde lijn. Een doorzichtig vlak kan eromheen blijven draaien. Er is dus nog geen uniek vlak.",
+        "C schuift van de lijn af. Nu ligt het vlak vast. Daarom benoemen we een vlak met drie punten die niet op één lijn liggen.",
+        "Hetzelfde kan met een lijn en een punt erbuiten, twee snijdende lijnen, of twee verschillende evenwijdige lijnen. Steeds ontstaat dezelfde ruimtelijke zekerheid.",
+        "Een vlaknaam is dus ook een kleine controle: liggen de drie punten werkelijk goed?"
+      ]
+    },
+    {
+      "id": "1.5",
+      "lesson": 1,
+      "blockId": "lines",
+      "title": "Snijden, evenwijdig of kruisen?",
+      "audio": "/films/ruimteklaar/1.5/uitleg.m4a",
+      "duration": 63.2,
+      "sha256": "449285e5f5ce1aeba749f008ab871d3378b7f3464d6874041a095639614bbac6",
+      "paragraphs": [
+        "In een vlak ken je twee mogelijkheden. In de ruimte komt er één bij. Welke lijnen passen samen op één vlak?",
+        "AB en AD ontmoeten elkaar in A. Ze snijden. AB en DC liggen ook in hetzelfde vlak, maar hebben geen gemeenschappelijk punt: ze zijn evenwijdig.",
+        "Bekijk nu AB en CG. Deze twee passen niet samen in één vlak. Ze zijn niet evenwijdig en ontmoeten elkaar nergens, ook niet na verlengen.",
+        "Dat noemen we kruisende lijnen. Het gaat dus niet om het kruisje dat hun afbeeldingen toevallig op het scherm maken.",
+        "Vraag eerst naar een gemeenschappelijk vlak. Daarmee onderscheid je kruisen van de andere gevallen."
+      ]
+    },
+    {
+      "id": "1.6",
+      "lesson": 1,
+      "blockId": "lines",
+      "title": "Het snijpunt ligt buiten de kubus",
+      "audio": "/films/ruimteklaar/1.6/uitleg.m4a",
+      "duration": 71.0,
+      "sha256": "7936dc1ff6fa4faab4cc1f59a44568f71f4647c0643a31ba0231bb7380057f03",
+      "paragraphs": [
+        "GM en AC lijken elkaar te missen. M is het midden van AE. Toch snijden hun lijnen elkaar. Waar?",
+        "Het diagonale vlak ACGE licht op. Zowel GM als AC ligt in dit vlak. We kijken er nu recht tegenaan.",
+        "Verleng GM voorbij M en AC voorbij A. Buiten de kubus verschijnt hun gezamenlijke punt S. S ligt op allebei de lijnen, in hetzelfde diagonale vlak.",
+        "De twee zichtbare lijnstukken hadden geen gemeenschappelijk punt. Hun volledige lijnen hebben dat wel. De kubusrand was nooit het einde van een lijn.",
+        "Niet binnen de figuur? Onderzoek ook wat er buiten gebeurt."
+      ]
+    },
+    {
+      "id": "1.7",
+      "lesson": 1,
+      "blockId": "projection",
+      "title": "Twee aanzichten vertellen meer dan één",
+      "audio": "/films/ruimteklaar/1.7/uitleg.m4a",
+      "duration": 58.5,
+      "sha256": "feb8673abcdafdd9d1aac5f72747902cbe5112177097aef43081b1797a012e31",
+      "paragraphs": [
+        "In het vooraanzicht zie je hier maar één punt. Betekent dat dat er in de ruimte ook maar één is?",
+        "De kijkrichting schuift naar de zijkant. Nu zie je twee punten op verschillende dieptes. Ze lagen alleen achter elkaar vanuit het eerste gezichtspunt.",
+        "Vergelijk het vooraanzicht en het bovenaanzicht. De eerste tekening laat breedte en hoogte zien; de tweede breedte en diepte.",
+        "Zo combineer je informatie die in één beeld ontbrak. Gebruik dezelfde puntnamen en koppel de gedeelde richting, zodat je geen punten verwisselt.",
+        "Eén aanzicht verbergt iets. Een tweede kan precies dat ontbrekende stukje onthullen."
+      ]
+    },
+    {
+      "id": "1.8",
+      "lesson": 1,
+      "blockId": "planes",
+      "title": "De snijlijn van twee vlakken",
+      "audio": "/films/ruimteklaar/1.8/uitleg.m4a",
+      "duration": 63.2,
+      "sha256": "aaf1dd6ce7352f30065d470343f69e5eb62727a52a426ca74ac5199426282b47",
+      "paragraphs": [
+        "Twee glasplaten snijden elkaar. Waarom ontstaat een lijn en geen los zwevend punt?",
+        "Zoek eerst een punt dat op beide vlakken ligt. Daarna nog een tweede, verschillend punt. De lijn door die punten behoort tot allebei.",
+        "In onze kubus delen vlak ACG en vlak BCG de punten C en G. Hun snijlijn is daarom CG, ook voorbij de kubusranden.",
+        "Soms liggen de gemeenschappelijke punten buiten het getekende vlakvenster. Dan verleng je de hulplijnen. De randen van het plaatje begrenzen het vlak niet.",
+        "Twee gemeenschappelijke punten geven je de gemeenschappelijke lijn."
+      ]
+    },
+    {
+      "id": "1.9",
+      "lesson": 1,
+      "blockId": "threeplanes",
+      "title": "Drie vlakken, vijf patronen",
+      "audio": "/films/ruimteklaar/1.9/uitleg.m4a",
+      "duration": 64.3,
+      "sha256": "9565db7f7797bd86e94909c54f992e430f7a01f49b30fc01c25aeb55f5f7ffdb",
+      "paragraphs": [
+        "Met drie vlakken ontstaan vijf patronen. Volg alleen de lichtende snijlijnen; dan blijft het overzichtelijk.",
+        "Eerst: drie evenwijdige vlakken, dus geen snijlijn. Daarna: twee evenwijdige vlakken met een derde erdoor. Je ziet twee evenwijdige snijlijnen.",
+        "Nu snijdt elk paar. Alle drie kunnen dezelfde lijn delen. Ze kunnen ook drie verschillende evenwijdige snijlijnen hebben, zoals de zijkanten van een driehoekige koker.",
+        "Ten slotte kunnen de drie snijlijnen door één gemeenschappelijk punt gaan. Denk aan drie wanden die samen één hoek maken.",
+        "Tel de snijlijnen en kijk hoe ze liggen. Zo herken je de configuratie."
+      ]
+    },
+    {
+      "id": "2.1",
+      "lesson": 2,
+      "blockId": "l2-hulpvlak",
+      "title": "Een lijn door een vlak: maak er twee lijnen van",
+      "audio": "/films/ruimteklaar/2.1/uitleg.m4a",
+      "duration": 59.8,
+      "sha256": "d28f4f1ab7213422638a21ee5f93c7d3e7189f4cf8a4b6d8dc13edd36f264997",
+      "paragraphs": [
+        "Waar doorboort deze lijn het vlak? In drie dimensies is dat lastig te zien. We brengen de vraag naar één hulpvlak.",
+        "Kies een hulpvlak H dat de hele lijn l bevat. Laat H vervolgens het gegeven vlak V snijden. Hun snijlijn noemen we s.",
+        "Nu liggen l en s samen in H. Het snijpunt S van die twee lijnen ligt op l én op V. Dat is precies het gezochte punt.",
+        "Kijk hoe de ruimtelijke vraag verandert in een gewone vlakke constructie. De hulpplaat verdwijnt weer, maar S blijft op beide oorspronkelijke objecten liggen.",
+        "Eerst een hulpvlak, dan een snijlijn, dan het snijpunt."
+      ]
+    },
+    {
+      "id": "2.2",
+      "lesson": 2,
+      "blockId": "l2-hulpvlak",
+      "title": "Het beste hulpvlak is het vlak dat je kent",
+      "audio": "/films/ruimteklaar/2.2/uitleg.m4a",
+      "duration": 67.5,
+      "sha256": "07fafff94e6d8ca3ebd565cb73bfb6c01b8b26d17feabf9b962bfe68ec2a5062",
+      "paragraphs": [
+        "Er passen oneindig veel vlakken door deze lijn. Hoe kies je er één waarmee je echt verder komt?",
+        "Vraag welke bekende punten je hulpvlak nog meer bevat. Kun je daarmee twee punten vinden die ook in het andere vlak liggen?",
+        "Neem lijn AG en vlak BDE in een kubus. Hulpvlak ACGE bevat AG. E ligt in beide vlakken; ook O, het snijpunt van AC en BD, ligt in beide.",
+        "De snijlijn is dus EO. Waar EO en AG elkaar snijden, ligt S. Je keuze was goed omdat je de nodige gemeenschappelijke punten kon construeren.",
+        "Een slim hulpvlak maakt onbekende informatie bereikbaar via bekende lijnen."
+      ]
+    },
+    {
+      "id": "2.3",
+      "lesson": 2,
+      "blockId": "l2-doorsnede",
+      "title": "Een doorsnede loopt over de zijvlakken",
+      "audio": "/films/ruimteklaar/2.3/uitleg.m4a",
+      "duration": 57.7,
+      "sha256": "93387a8a8758cff27d6dba29e60d94fed854520c969ba86ede334cb531681081",
+      "paragraphs": [
+        "Daarom benoemen we een vlak met drie punten die niet op één lijn liggen. Betekent dat dat de doorsnede altijd een driehoek is?",
+        "De doorsnede is het deel van dit vlak binnen het lichaam. De rand loopt over de zijvlakken en verandert bij een ribbe van richting.",
+        "Liggen twee gegeven punten op hetzelfde zijvlak, dan kun je het doorsnedestuk daartussen tekenen. Beide punten liggen immers ook in het snijvlak.",
+        "Volg daarna het volgende zijvlak. Zo kan een vierhoek, vijfhoek of zeshoek ontstaan, ook al kreeg je maar drie beginpunten.",
+        "Teken de rand van het hele snijvlak in het lichaam, niet alleen een verbinding van de gegevens."
+      ]
+    },
+    {
+      "id": "2.4",
+      "lesson": 2,
+      "blockId": "l2-doorsnede",
+      "title": "Evenwijdige zijvlakken geven een richting cadeau",
+      "audio": "/films/ruimteklaar/2.4/uitleg.m4a",
+      "duration": 61.7,
+      "sha256": "938d25fa223231011419e13b65c4efb0abc8b11a514cda627a2f50a11bca4cf7",
+      "paragraphs": [
+        "QR is een stuk van de doorsnede in het rechterzijvlak. Hoe vinden we de richting aan de linkerkant?",
+        "De twee zijvlakken zijn evenwijdig. Hetzelfde snijvlak snijdt ze daarom in evenwijdige lijnen. Dat is een eigenschap van de ruimte, niet van het plaatje.",
+        "P ligt op AE in het linkerzijvlak. Teken door P een nieuwe lijn evenwijdig aan QR. Je kiest dus én een richting én een punt.",
+        "De nieuwe lijn raakt DH in S. Nu heb je aan beide kanten een doorsnedestuk. Verbind verder via de voor- en achtervlakken.",
+        "QR verlengen verplaatst de lijn niet. Een evenwijdige lijn door P is een nieuwe lijn."
+      ]
+    },
+    {
+      "id": "2.5",
+      "lesson": 2,
+      "blockId": "l2-buiten",
+      "title": "Buiten het lichaam vind je de ontbrekende hulplijn",
+      "audio": "/films/ruimteklaar/2.5/uitleg.m4a",
+      "duration": 62.3,
+      "sha256": "cae7a5afe00d0d881fe815ce1791f934ae9a65bc637a9e0fa4caed74dbc52125",
+      "paragraphs": [
+        "De doorsnede lijkt vast te lopen bij de rand. Maar het snijvlak en de zijvlakken lopen daar gewoon verder.",
+        "Neem onze punten P, Q en R. Verleng PQ tot de lijn AB: dat geeft X. Verleng QR tot de lijn BC: dat geeft Y.",
+        "X en Y liggen zowel in het snijvlak als in het grondvlak. Daarom is XY de snijlijn van die twee vlakken, ook als hij buiten de kubus ligt.",
+        "Gebruik nu die lijn om andere benodigde snijpunten of richtingen te construeren. Rond de doorsnede af en controleer elk randstuk in zijn eigen zijvlak.",
+        "Een extern hulppunt is geen mislukking. Het kan precies de ontbrekende verbinding leveren."
+      ]
+    },
+    {
+      "id": "2.6",
+      "lesson": 2,
+      "blockId": "l2-gelijkvormig",
+      "title": "Gelijkvormigheid herkennen aan hoeken",
+      "audio": "/films/ruimteklaar/2.6/uitleg.m4a",
+      "duration": 62.0,
+      "sha256": "51529cbaa6f6d1fe98fc8e42afc2f6813421143bc7935ef09d34895a91ebfc3d",
+      "paragraphs": [
+        "Deze twee driehoeken liggen anders in beeld. Toch hebben ze dezelfde vorm. Hoe kun je dat onderbouwen?",
+        "DE is evenwijdig aan AB. Daardoor vind je gelijke hoeken bij de evenwijdige lijnen: denk aan F-hoeken en Z-hoeken.",
+        "Twee gelijke hoeken zijn genoeg. De derde is dan ook gelijk, want de hoeken in elke driehoek tellen op tot honderdtachtig graden.",
+        "Draai het kleine driehoekje rustig naar dezelfde stand. De overeenkomstige hoekpunten komen nu tegenover elkaar te staan. De vorm past; de grootte mag verschillen.",
+        "Eerst de hoeken koppelen. Daarna pas de juiste zijden vergelijken."
+      ]
+    },
+    {
+      "id": "2.7",
+      "lesson": 2,
+      "blockId": "l2-gelijkvormig",
+      "title": "De schaalfactor heeft een richting",
+      "audio": "/films/ruimteklaar/2.7/uitleg.m4a",
+      "duration": 59.3,
+      "sha256": "e3bddf6ef517862052d04b7344fddf282a49ffcdb410a09518989206f8522a6c",
+      "paragraphs": [
+        "Van groot naar klein of van klein naar groot: dezelfde figuren geven twee verschillende vermenigvuldigingsfactoren.",
+        "De grote driehoek heeft zijden zes, acht en tien. De kleine heeft overeenkomstige zijden drie, vier en vijf. Van groot naar klein is de factor een half.",
+        "Zet daarom de overeenkomstige zijden onder elkaar. Alle kolommen moeten dezelfde factor krijgen. Zo controleer je tegelijk of je de zijden goed hebt gekoppeld.",
+        "Terug naar de grote driehoek vermenigvuldig je met twee. Een halve zijde betekent bovendien niet automatisch een halve oppervlakte: die gebruikt twee lengterichtingen.",
+        "Schrijf altijd op van welke figuur naar welke figuur je rekent."
+      ]
+    },
+    {
+      "id": "2.8",
+      "lesson": 2,
+      "blockId": "l2-gelijkvormig",
+      "title": "Pythagoras vindt de ruimtediagonaal",
+      "audio": "/films/ruimteklaar/2.8/uitleg.m4a",
+      "duration": 54.3,
+      "sha256": "c16bb2de02d333eeb298b41f900a5ab59ae01c08737f499ace6cade6d5ecaf48",
+      "paragraphs": [
+        "Hoe lang is de diagonaal dwars door deze balk? Je hebt geen ruimtelijke versie van Pythagoras nodig: twee gewone driehoeken volstaan.",
+        "Begin in het grondvlak. De zijden zijn drie en vier, dus de gronddiagonaal is vijf. De rechte hoek volgt uit de rechthoekige bodem.",
+        "Neem nu de driehoek met die diagonaal en de verticale ribbe van twaalf. Die ribbe staat loodrecht op het hele grondvlak, dus ook op de diagonaal.",
+        "Pythagoras geeft vijf kwadraat plus twaalf kwadraat: de ruimtediagonaal is dertien. We hebben de ruimte telkens teruggebracht tot één vlakke driehoek.",
+        "Zoek de driehoek. Motiveer de rechte hoek. Reken dan pas."
+      ]
+    },
+    {
+      "id": "3.1",
+      "lesson": 3,
+      "blockId": "l3-ruimtefiguren",
+      "title": "Dezelfde doorsnedelogica, een ander lichaam",
+      "audio": "/films/ruimteklaar/3.1/uitleg.m4a",
+      "duration": 60.9,
+      "sha256": "69798f484033798d6e45624e551d977a952e5891baa464733dfc24502964c403",
+      "paragraphs": [
+        "Je kent de doorsnede in een kubus. Wat blijft daarvan bruikbaar als de figuur een prisma of piramide wordt?",
+        "De hoofdregel blijft gelijk: twee punten in hetzelfde zijvlak geven daar een doorsnedelijn. Volg de rand van vlak naar vlak.",
+        "Evenwijdige zijvlakken geven een richting cadeau. Maar let op: een piramide heeft geen twee evenwijdige grondvlakken zoals een prisma.",
+        "Wat je wel kunt kopiëren is de redenering. Vind gemeenschappelijke punten, verleng waar nodig, en controleer of elk nieuw punt op het juiste vlak ligt.",
+        "De vorm verandert. De redenen achter je constructiestappen blijven bruikbaar."
+      ]
+    },
+    {
+      "id": "3.2",
+      "lesson": 3,
+      "blockId": "l3-oppervlakte",
+      "title": "De hoogte hoort bij de gekozen basis",
+      "audio": "/films/ruimteklaar/3.2/uitleg.m4a",
+      "duration": 65.8,
+      "sha256": "8823812ae8c849f44e654b21a57e748b10b1f966c8da4bc85ab3117b52938410",
+      "paragraphs": [
+        "Welke lijn is de hoogte van deze driehoek? Dat kun je pas zeggen als je eerst de basis kiest.",
+        "Neem AB als basis. Vanuit C daalt de loodlijn naar de lijn AB. Het lijnstuk van C naar de voet H is de bijbehorende hoogte.",
+        "Schuif C nu opzij terwijl de loodrechte hoogte gelijk blijft. De vorm verandert, maar de oppervlakte blijft een half keer basis keer hoogte.",
+        "De voet kan zelfs buiten het lijnstuk AB terechtkomen. De hoogte blijft geldig, want hij staat loodrecht op de lijn van de gekozen basis.",
+        "Basis en hoogte zijn een paar. Een schuine zijde is niet vanzelf een hoogte."
+      ]
+    },
+    {
+      "id": "3.3",
+      "lesson": 3,
+      "blockId": "l3-inhoud",
+      "title": "Een prisma is een stapel gelijke doorsneden",
+      "audio": "/films/ruimteklaar/3.3/uitleg.m4a",
+      "duration": 65.2,
+      "sha256": "ae9c08f4f4e4408af3f0974e35f2a561ddcee2c75423348cc8fe5dc5b11f162a",
+      "paragraphs": [
+        "Stel je dit prisma voor als een stapel dunne, gelijke plakken. Welke twee gegevens bepalen de totale inhoud?",
+        "Elke plak heeft dezelfde oppervlakte als het grondvlak. Het aantal plakken wordt bepaald door de afstand tussen de twee evenwijdige eindvlakken.",
+        "Daarom is de inhoud grondoppervlakte keer hoogte. Bij een driehoekig grondvlak bereken je eerst die driehoeksoppervlakte; pas daarna vermenigvuldig je met de prismahoogte.",
+        "Schuif het bovenvlak opzij. Het prisma wordt scheef, maar zolang grondoppervlakte en loodrechte hoogte gelijk blijven, verandert de inhoud niet.",
+        "De hoogte is de afstand tussen de grondvlakken. Bij een scheef prisma is dat niet de schuine ribbe."
+      ]
+    },
+    {
+      "id": "3.4",
+      "lesson": 3,
+      "blockId": "l3-inhoud",
+      "title": "Waarom heeft een piramide de factor een derde?",
+      "audio": "/films/ruimteklaar/3.4/uitleg.m4a",
+      "duration": 61.6,
+      "sha256": "8bae141afdec35f4b1691e1d69f31c87cace96f9e6ee241f3b13bf72a4055203",
+      "paragraphs": [
+        "Een piramide met dezelfde bodem en hoogte als een prisma heeft maar een derde van de inhoud. Waar zie je die factor?",
+        "Bekijk deze kubus. Vanuit één hoekpunt verdelen we hem in drie piramiden, met de drie tegenoverliggende vierkante zijvlakken als grondvlakken.",
+        "De drie delen vullen de kubus precies en zijn door symmetrie even groot. Elk deel heeft daarom een derde van de kubusinhoud.",
+        "Dit model maakt de factor zichtbaar. De algemene piramideregel geeft eveneens: een derde keer grondoppervlakte keer loodrechte hoogte, ook als de top niet boven het midden staat.",
+        "Kies een grondvlak. Zoek de echte hoogte. Vergeet de factor een derde niet."
+      ]
+    },
+    {
+      "id": "3.5",
+      "lesson": 3,
+      "blockId": "l3-inhoud",
+      "title": "Een ingewikkeld lichaam opdelen",
+      "audio": "/films/ruimteklaar/3.5/uitleg.m4a",
+      "duration": 51.8,
+      "sha256": "c0cf114c2b89a977451c4611470ab1fb3fa9958f30cee78540d3b65f3d559f3b",
+      "paragraphs": [
+        "Deze dakvorm lijkt geen bekende inhoudsformule te hebben. Maar misschien hebben de stukken die formule wel.",
+        "Zet twee verticale snijvlakken door de uiteinden van de nok. In het midden ontstaat een driehoekig prisma; aan beide kanten een piramide.",
+        "Bereken elk deel met zijn eigen grondvlak en loodrechte hoogte. Houd dezelfde lengteeenheid aan en zet de uitkomsten daarna bij elkaar.",
+        "De kleurvlakken laten zien dat de delen elkaar alleen op hun grens raken. Zo tel je geen volume dubbel en vergeet je geen verborgen hoek.",
+        "Een lastige vorm wordt overzichtelijk als je hem opdeelt in lichamen die je al kent."
+      ]
+    },
+    {
+      "id": "3.6",
+      "lesson": 3,
+      "blockId": "l3-inhoud",
+      "title": "Aanvullen en het teveel weghalen",
+      "audio": "/films/ruimteklaar/3.6/uitleg.m4a",
+      "duration": 57.6,
+      "sha256": "d97c059b2dabaa727ef786a67df213907defe94072afa14956465bf374883dce",
+      "paragraphs": [
+        "Soms is optellen omslachtig. Dan helpt het om de figuur juist groter te maken. Welk bekend lichaam past eromheen?",
+        "We vullen deze afgeknotte vorm aan tot een balk van vier bij drie bij twee. De hele balk heeft inhoud vierentwintig.",
+        "Wat hebben we toegevoegd? Eén piramide met top G en grondvlak EFB. Die driehoek heeft oppervlakte vier; de loodrechte hoogte naar G is drie.",
+        "De toegevoegde inhoud is dus een derde keer vier keer drie: vier. Trek die van vierentwintig af. Voor het oorspronkelijke lichaam blijft twintig over.",
+        "Eerst benoemen wat je toevoegt. Dan weet je precies wat je moet aftrekken."
+      ]
+    },
+    {
+      "id": "3.7",
+      "lesson": 3,
+      "blockId": "l3-oppervlakte",
+      "title": "Buitenoppervlakte: wat blijft aan de buitenkant?",
+      "audio": "/films/ruimteklaar/3.7/uitleg.m4a",
+      "duration": 52.9,
+      "sha256": "4988b354a19f3c2fa614ce945672aa683948171385796b1a9f83e4bf1b26d36a",
+      "paragraphs": [
+        "Als je een hoek van een balk afsnijdt, verandert de inhoud. Maar wat gebeurt er met de buitenoppervlakte?",
+        "Drie stukken van de oude buitenkant verdwijnen. Tegelijk komt er een nieuw schuin vlak bij. Alleen aftrekken geeft daarom het verkeerde oppervlak.",
+        "Kleur elk echt buitenvlak één keer. Vouw die vlakken denkbeeldig open, zodat je ziet welke rechthoeken en driehoeken je moet berekenen.",
+        "Bij samengevoegde lichamen verdwijnen juist de contactvlakken aan de binnenkant. Ook die tel je niet mee als buitenoppervlak.",
+        "Vraag steeds: kan de buitenwereld dit vlak raken? Tel de echte buitenkant, vlak voor vlak."
+      ]
+    },
+    {
+      "id": "3.8",
+      "lesson": 3,
+      "blockId": "l3-goniometrie",
+      "title": "Sinus, cosinus en tangens terug in beeld",
+      "audio": "/films/ruimteklaar/3.8/uitleg.m4a",
+      "duration": 59.4,
+      "sha256": "67b268c943d26f7a3f37da497d4b45e110daa300455473e961c8d581402910c0",
+      "paragraphs": [
+        "Je hebt de goede driehoek gevonden. Welke verhouding verbindt nu precies de hoek met de lengtes die je kent?",
+        "Kies eerst de hoek. De schuine zijde ligt tegenover de rechte hoek. Daarna krijgen de andere zijden hun naam: overstaand en aanliggend bij jouw gekozen hoek.",
+        "Sinus is overstaand gedeeld door schuin; cosinus aanliggend gedeeld door schuin; tangens overstaand gedeeld door aanliggend. De kleurparen wijzen mee.",
+        "Bij overstaand drie en aanliggend vier is de tangens driekwart. De inverse tangens geeft ongeveer zevenendertig graden. Voor een lengte herschik je dezelfde verhouding.",
+        "Eerst de rechte hoek en jouw hoek aanwijzen. Dan pas de verhouding kiezen."
+      ]
+    },
+    {
+      "id": "4.1",
+      "lesson": 4,
+      "blockId": "l4-cos",
+      "title": "Haal de juiste driehoek uit de ruimte",
+      "audio": "/films/ruimteklaar/4.1/uitleg.m4a",
+      "duration": 51.4,
+      "sha256": "29d188cc40a33d3f17cdb8ad15148bc567dee0a848c34da99e69a7be63bc3a03",
+      "paragraphs": [
+        "Deze hoek zit ergens in een kubus. De eerste vraag is niet welke formule je nodig hebt, maar welke driehoek de hoek bevat.",
+        "Kleur de twee lijnen die de gevraagde hoek maken. Zoek een derde zijde waarmee een driehoek ontstaat en waarvan je de lengte kunt vinden.",
+        "Laat die driehoek uit de kubus komen en draai hem frontaal. Alle puntnamen en lengtes blijven gelijk: alleen ons gezichtspunt verandert.",
+        "Controleer nu de rechte hoek. Is die aangetoond, dan helpen Pythagoras en de goniometrische verhoudingen. Anders kan de cosinusregel nodig zijn.",
+        "Een ruimtevraag wordt rekenbaar wanneer je de juiste vlakke figuur zichtbaar maakt."
+      ]
+    },
+    {
+      "id": "4.2",
+      "lesson": 4,
+      "blockId": "l4-cos",
+      "title": "De cosinusregel: Pythagoras met een correctie",
+      "audio": "/films/ruimteklaar/4.2/uitleg.m4a",
+      "duration": 55.0,
+      "sha256": "1a07cc5769da193598ad4a73c359e6810f0385cc732b87cee4e6f8bcb290b39f",
+      "paragraphs": [
+        "Twee zijden blijven even lang, maar de hoek ertussen gaat open. Wat gebeurt er met de derde zijde?",
+        "Bij een rechte hoek herken je Pythagoras. Bij een kleinere hoek komen de uiteinden dichter bij elkaar. Bij een grotere hoek juist verder uit elkaar.",
+        "De cosinusregel beschrijft die verandering: a kwadraat is b kwadraat plus c kwadraat, min twee b c maal cosinus alfa.",
+        "De projectie van één zijde op de andere maakt die correctie zichtbaar. Bij negentig graden is de cosinus nul en verdwijnt de correctieterm helemaal.",
+        "Pythagoras past dus precies binnen de cosinusregel, op het moment dat de hoek recht is."
+      ]
+    },
+    {
+      "id": "4.3",
+      "lesson": 4,
+      "blockId": "l4-cos",
+      "title": "De cosinusregel goed invullen",
+      "audio": "/films/ruimteklaar/4.3/uitleg.m4a",
+      "duration": 61.5,
+      "sha256": "196ca9df0cb59fc386d835956f50cb4924efc9aefa0ac82e67d930e54e68bdd0",
+      "paragraphs": [
+        "Drie zijden zijn bekend. Welke hoek kun je daarmee vinden? Elke hoek, zolang je de tegenoverliggende zijde goed kiest.",
+        "We zoeken alfa tussen de zijden elf en dertien. De zijde ertegenover is zeven. Daarom komt zeven kwadraat alleen links van de vergelijking.",
+        "Deel na herschrijven door twee keer elf keer dertien. Zo vind je cosinus alfa: elf kwadraat plus dertien kwadraat min zeven kwadraat, gedeeld door dat product.",
+        "De inverse cosinus geeft ongeveer tweeëndertig komma achtenvijftig graden. Bewaar de volledige rekenwaarde wanneer je met deze hoek verder rekent.",
+        "De overstaande zijde bepaalt de plek in de formule. De hoek zit tussen de andere twee."
+      ]
+    },
+    {
+      "id": "4.4",
+      "lesson": 4,
+      "blockId": "l4-cos",
+      "title": "Drie zijden, toch een oppervlakte",
+      "audio": "/films/ruimteklaar/4.4/uitleg.m4a",
+      "duration": 56.3,
+      "sha256": "dfcdb83be1e4be43cbba07e9ce17209a44624a3c16b1685b36e9c4e17a8d6a0e",
+      "paragraphs": [
+        "Je kent de zijden vijf, acht en elf. Maar voor de oppervlakte ontbreekt de hoogte. Hoe maak je die bereikbaar?",
+        "Kies elf als basis. Zoek met de cosinusregel de hoek alfa tussen acht en elf. Die hoek is ongeveer vierentwintig komma tweeënzestig graden.",
+        "Laat vanuit de overstaande top de loodlijn op de basis vallen. In het kleine rechthoekige driehoekje is de hoogte acht maal sinus alfa.",
+        "De oppervlakte wordt een half keer elf keer die hoogte. Met de ongeronde rekenwaarden krijg je ongeveer achttien komma drieëndertig vierkante eenheden.",
+        "De hoek was een tussenstap. Hij maakte precies de ontbrekende hoogte vindbaar."
+      ]
+    },
+    {
+      "id": "4.5",
+      "lesson": 4,
+      "blockId": "l4-lines",
+      "title": "Kruisende lijnen hebben ook een hoek",
+      "audio": "/films/ruimteklaar/4.5/uitleg.m4a",
+      "duration": 57.2,
+      "sha256": "85d6fba38da9a1ffd900e23ee15949aa04399234a55583f6eb3a7074ca92283f",
+      "paragraphs": [
+        "EG en IB snijden elkaar niet. Toch kunnen we hun richtingen vergelijken en dus een hoek bepalen.",
+        "I is het midden van AE in een kubus met ribbe vijf. Schuif een kopie van IB omhoog tot de lijn door E loopt. De richting verandert niet.",
+        "De kopie heet EJ, met J het midden van BF. Nu ontstaat driehoek EJG. Daarin kun je alle zijden vinden met Pythagoras.",
+        "Met de cosinusregel krijg je voor de kleinere hoek ongeveer vijftig komma zevenenzeventig graden. Een draaiing van de tekening zou die hoek niet betrouwbaar laten meten.",
+        "Voor een hoek mag de plaats veranderen, zolang de richting gelijk blijft."
+      ]
+    },
+    {
+      "id": "4.6",
+      "lesson": 4,
+      "blockId": "l4-plane",
+      "title": "Loodrecht op een heel vlak aantonen",
+      "audio": "/films/ruimteklaar/4.6/uitleg.m4a",
+      "duration": 52.5,
+      "sha256": "1afb475f8530fdebfa02d0e98d3e3435071a789c65feb4bc40717cc1750a3888",
+      "paragraphs": [
+        "Eén rechte hoek is nog niet genoeg om te zeggen dat een lijn loodrecht op een heel vlak staat.",
+        "Een lijn kan loodrecht op AB staan en toch schuin over het grondvlak lopen. Er blijft dan nog een kantelrichting over.",
+        "Bij het snijpunt met het vlak controleer je daarom twee snijdende lijnen in dat vlak. Staat jouw lijn op beide loodrecht, dan staat hij loodrecht op het hele vlak.",
+        "In de kubus staat AE loodrecht op AB én AD. Omdat die twee het grondvlak bepalen, is AE een echte normaal op dat vlak.",
+        "Twee onafhankelijke richtingen zetten de loodrechte stand vast. Eén richting laat nog ruimte over."
+      ]
+    },
+    {
+      "id": "4.7",
+      "lesson": 4,
+      "blockId": "l4-plane",
+      "title": "Projecteer loodrecht, niet naar beneden op je scherm",
+      "audio": "/films/ruimteklaar/4.7/uitleg.m4a",
+      "duration": 56.1,
+      "sha256": "e724fa24b135c045e152c98617c65898442cbab0d2768a09944e679e1f6dd2d4",
+      "paragraphs": [
+        "De schaduw van een lijn is niet automatisch de projectie die we voor een hoekberekening nodig hebben.",
+        "Bij loodrechte projectie lopen alle projectielijnen loodrecht op het doelvlak. Het maakt niet uit wat op je scherm boven of beneden is.",
+        "Projecteer twee punten van de lijn en verbind hun beelden. Zo vind je de projectielijn. Een punt dat al in het vlak ligt, blijft op zijn plaats.",
+        "Bij ruimtediagonaal AG en grondvlak ABCD blijft A liggen. G gaat loodrecht naar C. De projectie van AG ligt dus op AC.",
+        "Bepaal de loodrichting vanuit het vlak. Dan verschijnt de juiste projectie."
+      ]
+    },
+    {
+      "id": "4.8",
+      "lesson": 4,
+      "blockId": "l4-plane",
+      "title": "De hoek tussen een lijn en een vlak",
+      "audio": "/films/ruimteklaar/4.8/uitleg.m4a",
+      "duration": 58.9,
+      "sha256": "f1d58b9f3a039842148f4715d54409cb205ca7d0c03d4a54b4f7c5eae3d08f19",
+      "paragraphs": [
+        "Welke van alle lijnen in het grondvlak moet je vergelijken met AG? Je kiest de loodrechte projectie: AC.",
+        "De gezochte hoek ligt tussen AG en AC, dus bij A in driehoek ACG. Hij meet hoe steil AG ten opzichte van het vlak loopt.",
+        "Bij een kubus is GC één ribbe en AC wortel twee keer een ribbe. De tangens van de hoek is daarom één gedeeld door wortel twee.",
+        "Dat geeft ongeveer vijfendertig komma zesentwintig graden. De hoek met de verticale ribbe is een andere hoek: samen zijn ze negentig graden.",
+        "Evenwijdig aan het vlak geeft nul graden. Loodrecht erop geeft negentig."
+      ]
+    },
+    {
+      "id": "4.9",
+      "lesson": 4,
+      "blockId": "l4-dihedral",
+      "title": "Kies een standvlak loodrecht op de snijlijn",
+      "audio": "/films/ruimteklaar/4.9/uitleg.m4a",
+      "duration": 54.4,
+      "sha256": "75341237b928d1309c479fa2493c304a42befe37b0c57a7299e9e65d77189071",
+      "paragraphs": [
+        "Twee vlakken vormen een hoek. Maar vanuit een schuin camerastandpunt ziet die hoek er steeds anders uit.",
+        "Zoek hun snijlijn. Die werkt als een scharnier. Kies één punt op dat scharnier en maak een standvlak dat er loodrecht op staat.",
+        "Het standvlak snijdt elk van de twee oorspronkelijke vlakken in een lijn. Beide lijnen staan in hetzelfde scharnierpunt loodrecht op de snijlijn.",
+        "Kijk recht op dit standvlak. De hoek tussen die twee snijlijnen is nu de gezochte vlakhoek. Een willekeurige schuine doorsnede zou een andere hoek laten zien.",
+        "Vind het scharnier. Snijd er loodrecht op. Meet de hoek in die doorsnede."
+      ]
+    },
+    {
+      "id": "4.10",
+      "lesson": 4,
+      "blockId": "l4-dihedral",
+      "title": "Een standhoek echt uitrekenen",
+      "audio": "/films/ruimteklaar/4.10/uitleg.m4a",
+      "duration": 75.5,
+      "sha256": "5372e4c8513fef0e3eb4c2ec790349b4be36a77783628e0ed17b5ca0f4cad8f8",
+      "paragraphs": [
+        "We zoeken de hoek tussen EJG en het voorvlak van deze kubus. J ligt halverwege BF. De ribben zijn vier.",
+        "Hun snijlijn is EJ. Laat vanuit F de loodlijn op EJ vallen; de voet heet I. Ook GI staat loodrecht op EJ, dus FIG is het standvlak.",
+        "In de voorvlakdriehoek EFJ vind je FI. De oppervlakte op twee manieren geeft FI gelijk aan vier gedeeld door wortel vijf.",
+        "Driehoek FIG is recht bij F. De tangens van de hoek bij I is FG gedeeld door FI: dat is wortel vijf. De vlakhoek is ongeveer vijfenzestig komma eenennegentig graden.",
+        "Elke hulplijn had een taak: eerst de standhoek vinden, dan zijn driehoek berekenen."
+      ]
+    },
+    {
+      "id": "5.1",
+      "lesson": 5,
+      "blockId": "l5-point-line",
+      "title": "Afstand tot een lijn: zoek de kortste verbinding",
+      "audio": "/films/ruimteklaar/5.1/uitleg.m4a",
+      "duration": 53.5,
+      "sha256": "123bd045f3e16f33536269a3eeff159f22fd7a731a730c8ac6d411358c4b464e",
+      "paragraphs": [
+        "Welk lijnstuk van P naar deze lijn is het kortst? Laat het eindpunt langs de lijn bewegen en kijk naar de lengte.",
+        "De schuine verbinding wordt korter, bereikt één minimum en wordt daarna weer langer. Bij dat minimum staat de verbinding loodrecht op de lijn.",
+        "Het voetpunt noemen we H. De afstand van P tot de lijn is de lengte PH. Eerst moet je dus H vinden, niet zomaar een zichtbaar hoekpunt kiezen.",
+        "H kan buiten het getekende lijnstuk vallen. Voor de afstand tot de hele lijn is dat toegestaan. Voor een begrensd lijnstuk kan de uitkomst anders zijn.",
+        "Afstand betekent hier: de kortst mogelijke verbinding met de volledige lijn."
+      ]
+    },
+    {
+      "id": "5.2",
+      "lesson": 5,
+      "blockId": "l5-point-line",
+      "title": "Punt en lijn bepalen je hulpdriehoek",
+      "audio": "/films/ruimteklaar/5.2/uitleg.m4a",
+      "duration": 72.4,
+      "sha256": "1ed72f7fdc1be7340c68f429f09cc0e52daea8b3521fd255c9d8bbb56b968b7b",
+      "paragraphs": [
+        "P ligt midden op HF. We zoeken zijn afstand tot EB. Welke driehoek bevat zowel het punt als de lijn?",
+        "In de kubus ligt P ook op de diagonaal EG. Daarom kunnen we werken in driehoek EBG. Die heeft drie even lange zijden: allemaal vlakdiagonalen.",
+        "Elk van zijn hoeken is dus zestig graden. De loodlijn vanuit P naar EB geeft het gezochte afstandslijnstuk PP-accent.",
+        "Bij ribbe vier is EP twee wortel twee. Vermenigvuldig dat met sinus zestig graden. De afstand is wortel zes, ongeveer twee komma vijfenveertig.",
+        "Het ruimtelijke inzicht zat in de keuze van driehoek EBG. Daarna volgde een gewone vlakke berekening."
+      ]
+    },
+    {
+      "id": "5.3",
+      "lesson": 5,
+      "blockId": "l5-point-line",
+      "title": "Eén oppervlakte, twee keuzes van basis",
+      "audio": "/films/ruimteklaar/5.3/uitleg.m4a",
+      "duration": 61.9,
+      "sha256": "bc5bccc495bd0d1278c87b0a3235b42d7389742601897e1817a26cdf7ad0c8b8",
+      "paragraphs": [
+        "Deze hoogte lijkt lastig uit te rekenen. Maar de oppervlakte van de driehoek kennen we eigenlijk al.",
+        "Driehoek AST is recht bij S, met rechthoekszijden vier en zes. De oppervlakte is dus een half keer vier keer zes: twaalf.",
+        "Kies nu AT als basis. Die is wortel tweeënvijftig. De bijbehorende hoogte is precies de gezochte afstand van S tot de lijn AT.",
+        "Dezelfde oppervlakte is ook een half keer wortel tweeënvijftig keer die hoogte. Gelijkstellen geeft vierentwintig gedeeld door wortel tweeënvijftig, ongeveer drie komma drieëndertig.",
+        "De driehoek bleef dezelfde. Een andere basis maakte de onbekende hoogte bereikbaar."
+      ]
+    },
+    {
+      "id": "5.4",
+      "lesson": 5,
+      "blockId": "l5-point-plane",
+      "title": "Afstand tot een vlak via een loodrecht hulpvlak",
+      "audio": "/films/ruimteklaar/5.4/uitleg.m4a",
+      "duration": 65.4,
+      "sha256": "d30aba29d1fedd772ed428f6071ad2d849e0fe609fb7d2656697d095bd8c8982",
+      "paragraphs": [
+        "Van een punt naar een vlak is de kortste verbinding loodrecht op dat vlak. Maar waar teken je die loodlijn?",
+        "Kies een hulpvlak door het punt dat loodrecht op het doelvlak staat. De twee vlakken snijden elkaar in een lijn.",
+        "Werk nu in het hulpvlak. Laat vanuit het punt de loodlijn op die snijlijn vallen. Deze lijn staat ook loodrecht op het doelvlak en geeft de gezochte afstand.",
+        "Bij E en vlak AFH van deze balk gebruiken we hulpvlak ACGE. De snijlijn is AI, met I het midden van FH. We berekenen dus de afstand van E tot AI.",
+        "Een zorgvuldig gekozen hulpvlak verandert de vlakafstand in een bekende lijnafstand."
+      ]
+    },
+    {
+      "id": "5.5",
+      "lesson": 5,
+      "blockId": "l5-volume",
+      "title": "Dezelfde piramide onthult een onbekende afstand",
+      "audio": "/films/ruimteklaar/5.5/uitleg.m4a",
+      "duration": 63.2,
+      "sha256": "e87b5ac53c5cf97f95a3c5129bfacdeb08990791497dcabeea27050a1f679a55",
+      "paragraphs": [
+        "We zoeken de afstand van F tot het schuine vlak BGE. Zie je dat die afstand ook een piramidehoogte is?",
+        "Neem de piramide met hoekpunten B, G, E en F. Met driehoek FGE als grondvlak en B als top is de hoogte BF eenvoudig bekend.",
+        "De kubusribbe is vier. Zo vind je de inhoud: een derde keer acht keer vier, dus tweeëndertig derde.",
+        "Kies nu BGE als grondvlak en F als top. Het blijft dezelfde piramide. Deel driemaal de inhoud door de nieuwe grondoppervlakte acht wortel drie. De hoogte is vier gedeeld door wortel drie.",
+        "Die hoogte is de gezochte afstand: ongeveer twee komma eenendertig."
+      ]
+    },
+    {
+      "id": "5.6",
+      "lesson": 5,
+      "blockId": "l5-model",
+      "title": "Een formule begint met één bewegende maat",
+      "audio": "/films/ruimteklaar/5.6/uitleg.m4a",
+      "duration": 56.7,
+      "sha256": "58dd2c36780ee5183d7349d071bd9605e5a9df7916f0897afd485b751a434cef",
+      "paragraphs": [
+        "Een formule is een verhaal over wat verandert. Kies daarom eerst één maat die mag bewegen.",
+        "We vullen een kubus met ribbe acht tot hoogte h. De ribben blijven acht; alleen de waterhoogte verandert. h kan hier van nul tot acht lopen.",
+        "Vraag vervolgens welke maat je nodig hebt. Voor de wateroppervlakte zijn lengte en breedte beide acht. Dus die oppervlakte blijft vierenzestig, hoe hoog het water ook staat.",
+        "Voor de inhoud onder het wateroppervlak telt h wél mee: vierenzestig maal h. Dezelfde situatie geeft dus verschillende formules voor verschillende grootheden.",
+        "Benoem wat h betekent, wat je berekent en welke waarden fysiek mogelijk zijn."
+      ]
+    },
+    {
+      "id": "5.7",
+      "lesson": 5,
+      "blockId": "l5-model",
+      "title": "Waarom een wateroppervlak kwadratisch kan krimpen",
+      "audio": "/films/ruimteklaar/5.7/uitleg.m4a",
+      "duration": 59.1,
+      "sha256": "ff9ec205639e404fe7cbd8235bcfad7726d34851d712ef7a17785330d84c7a7a",
+      "paragraphs": [
+        "Het water stijgt, maar het wateroppervlak wordt kleiner. Hoe kan dat in deze piramide?",
+        "De piramide heeft hoogte acht en een vierkante bodem met zijde acht. Op hoogte h blijft tot de top nog acht min h over.",
+        "Door gelijkvormigheid is de zijde van de horizontale doorsnede daarom ook acht min h. Maar de oppervlakte gebruikt die zijde twee keer.",
+        "Dus O van h is acht min h in het kwadraat. Bij hoogte twee is de zijde zes en de oppervlakte zesendertig. Bij hoogte vijf zijn dat drie en negen.",
+        "De lengte krimpt lineair. De oppervlakte krimpt kwadratisch."
+      ]
+    },
+    {
+      "id": "5.8",
+      "lesson": 5,
+      "blockId": "l5-model",
+      "title": "Een passende balk krijgt een inhoudsfunctie",
+      "audio": "/films/ruimteklaar/5.8/uitleg.m4a",
+      "duration": 57.9,
+      "sha256": "23179635b404301c0faa49a35eee3d88c346f9dcf175c5c786bd382b545b260c",
+      "paragraphs": [
+        "Deze balk past precies in een piramide. Maak je hem hoger, dan moet hij smaller worden. Hoe leg je die wisselwerking vast?",
+        "De piramide heeft hoogte tien en een vierkante bodem met zijde twintig. De balk rust op de bodem en krijgt hoogte h.",
+        "Door gelijkvormigheid is zijn vierkante bovenzijde twintig min twee h. Lengte en breedte zijn allebei diezelfde maat.",
+        "De inhoud is dus h maal twintig min twee h in het kwadraat. Bij h nul is er geen hoogte; bij h tien geen breedte. Tussen die grenzen zit een grootste inhoud.",
+        "Laat de figuur vertellen hoe de maten samen veranderen. Daarna volgt de formule."
+      ]
+    },
+    {
+      "id": "5.9",
+      "lesson": 5,
+      "blockId": "l5-model",
+      "title": "De grafiek beantwoorden in de echte wereld",
+      "audio": "/films/ruimteklaar/5.9/uitleg.m4a",
+      "duration": 49.6,
+      "sha256": "8dac15d8cabef9bf53109e6734856686f5d1ee42b720f40e7e45068f2cbd6db6",
+      "paragraphs": [
+        "De formule staat er. Nu willen we een balk met inhoud minstens vijfhonderdtwaalf. Welke hoogten kunnen dan?",
+        "Teken de inhoudsfunctie h maal twintig min twee h in het kwadraat, samen met de horizontale lijn op vijfhonderdtwaalf.",
+        "Zoek de snijpunten binnen het fysieke domein van nul tot tien. Je vindt h twee en ongeveer vier komma achtentachtig.",
+        "Tussen deze hoogten ligt de inhoudsgrafiek boven de grenslijn. Daarom voldoet het hele interval ertussen, inclusief de twee grenswaarden.",
+        "Een snijpunt geeft een grens. De vraag “minstens” vraagt om het gebied dat voldoet."
+      ]
+    },
+    {
+      "id": "6.1",
+      "lesson": 6,
+      "blockId": "l6-common-perpendicular",
+      "title": "Een hoek mag je verschuiven; een afstand niet zomaar",
+      "audio": "/films/ruimteklaar/6.1/uitleg.m4a",
+      "duration": 49.5,
+      "sha256": "66c31bd4dba37d24d49e64b9905a813677debbc3992330377e187c1590f62945",
+      "paragraphs": [
+        "Voor de hoek mocht je een lijn evenwijdig verplaatsen. Werkt dat ook als je de afstand zoekt?",
+        "Neem HF en AC in een kubus. Hun richtingen staan loodrecht op elkaar, maar de lijnen liggen op verschillende hoogten.",
+        "Schuif een kopie van HF naar het grondvlak. De hoek blijft negentig graden. Maar de kopie snijdt AC nu, dus de afstand is nul geworden.",
+        "De oorspronkelijke lijnen hadden wel degelijk een positieve afstand. Een verplaatsing kan die veranderen, ook als de richting precies hetzelfde blijft.",
+        "Bij een hoek vergelijk je richtingen. Bij een afstand telt ook de plaats mee."
+      ]
+    },
+    {
+      "id": "6.2",
+      "lesson": 6,
+      "blockId": "l6-common-perpendicular",
+      "title": "De kortste verbinding staat op beide lijnen loodrecht",
+      "audio": "/films/ruimteklaar/6.2/uitleg.m4a",
+      "duration": 52.5,
+      "sha256": "eed07cf4f26c664bbeca6b5adb8ea7f9c42c76f2cbb1536db2410a0374150918",
+      "paragraphs": [
+        "Twee scheve rails, één verbindingsstuk. Hoe plaats je dat stukje zo dat het zo kort mogelijk wordt?",
+        "Laat eerst één eindpunt langs zijn rail schuiven. Een schuine verbinding kan nog korter worden. Doe hetzelfde aan de andere kant.",
+        "Bij de kortste verbinding staat het lijnstuk loodrecht op beide rails. Als één van die rechte hoeken ontbreekt, kun je nog een stukje lengte winnen.",
+        "Voor twee kruisende lijnen bestaat precies één zo’n verbindingsstuk. Zijn eindpunten liggen werkelijk op de twee lijnen, eventueel buiten de getekende stukken.",
+        "Twee rechte hoeken, één kortste verbinding. Dat is de afstand van de kruisende lijnen."
+      ]
+    },
+    {
+      "id": "6.3",
+      "lesson": 6,
+      "blockId": "l6-parallel-plane",
+      "title": "Van twee kruisende lijnen naar punt en vlak",
+      "audio": "/films/ruimteklaar/6.3/uitleg.m4a",
+      "duration": 58.1,
+      "sha256": "111a67ce8f2401ddc25eed6c9e11a513ae653eabbf55c87a7361cec694c4ee02",
+      "paragraphs": [
+        "De afstand van kruisende lijnen kun je ook vinden met een vlak. Zo gebruik je de afstandsmethode die je al kent.",
+        "Neem een vlak V door de ene lijn m, evenwijdig aan de richting van de andere lijn l. De hele lijn l loopt nu op vaste afstand van V.",
+        "Kies daarom een willekeurig punt P op l en bereken zijn loodrechte afstand tot V. Die waarde is ook de afstand tussen l en m.",
+        "Maar let op: het voetpunt van dit willekeurige P hoeft niet op m te liggen. De lengte is juist; het getekende stukje is niet automatisch hun echte kortste verbinding.",
+        "Voor de afstand volstaat elk P. Voor het verbindingsstuk moet je de juiste eindpunten vinden."
+      ]
+    },
+    {
+      "id": "6.4",
+      "lesson": 6,
+      "blockId": "l6-common-perpendicular",
+      "title": "De gemeenschappelijke loodlijn construeren",
+      "audio": "/films/ruimteklaar/6.4/uitleg.m4a",
+      "duration": 67.6,
+      "sha256": "d198e2dcfb942fac7d4ef950f3604a16397b288ec7c6e1462ecbb4eac000c395",
+      "paragraphs": [
+        "We zoeken de kortste verbinding tussen HF en AG in een kubus met ribbe tien. Begin bij het midden M van HF.",
+        "Het diagonale vlak ACGE staat loodrecht op HF en bevat AG. Ook M ligt erin. Daarmee hebben we het goede vlak om verder te construeren.",
+        "Laat in dit vlak de loodlijn vanuit M op AG vallen. De voet noemen we Q. MQ staat loodrecht op AG én, door de vlakstand, op HF.",
+        "Driehoek AGM beslaat de helft van driehoek AEG. Met zijn oppervlakte en basis AG volgt de hoogte MQ: tien gedeeld door wortel zes, ongeveer vier komma nul acht.",
+        "Je hebt dus niet alleen de afstand, maar ook het juiste verbindingsstuk geconstrueerd."
+      ]
+    },
+    {
+      "id": "6.5",
+      "lesson": 6,
+      "blockId": "l6-method",
+      "title": "Welke vraag stelt de opgave eigenlijk?",
+      "audio": "/films/ruimteklaar/6.5/uitleg.m4a",
+      "duration": 53.7,
+      "sha256": "c649dddcf30d014188168c917238786583a45ce086f9a03337f0c4a09bf67d71",
+      "paragraphs": [
+        "Er staan veel lijnen in de figuur. Welke daarvan heb je nodig? Begin bij de grootheid die de opgave vraagt.",
+        "Bij een snijpunt zoek je gemeenschappelijke punten en vaak een hulpvlak. Bij een doorsnede volg je de snijlijnen over de zijvlakken.",
+        "Bij een hoek zoek je twee passende richtingen: via een verschuiving, loodrechte projectie of standvlak. Daarna ontstaat de driehoek waarin je rekent.",
+        "Bij een afstand zoek je een loodrechte, kortste verbinding. Een hulpvlak, een oppervlakte of een andere piramidehoogte kan die bereikbaar maken.",
+        "Eerst benoemen wat je zoekt. Dan kiezen wat je construeert. De formule komt daarna."
+      ]
+    },
+    {
+      "id": "6.6",
+      "lesson": 6,
+      "blockId": "l6-method",
+      "title": "Van mooi inzicht naar een controleerbare tentamenconstructie",
+      "audio": "/films/ruimteklaar/6.6/uitleg.m4a",
+      "duration": 53.9,
+      "sha256": "52c1ce828245c2111070083aa430179009572ebbe122e2e627297f1275ced957",
+      "paragraphs": [
+        "Een draaiend model hielp je het te zien. Op het tentamen moet iemand anders je redenering uit je tekening kunnen volgen.",
+        "Zet het model daarom stil in de voorgeschreven projectie. Nummer hulplijnen in de volgorde waarin je ze construeert en geef nieuwe punten eigen namen.",
+        "Gebruik paralleltekens en recht-hoektekens alleen waar je ze kunt verantwoorden. Laat externe hulppunten zichtbaar en onderscheid hulplijnen van het uiteindelijke antwoord.",
+        "Controleer daarna je resultaat: liggen punten werkelijk op de genoemde lijnen en vlakken, is de doorsnede gesloten, en heb je de gevraagde hoek of afstand gemarkeerd?",
+        "Een goede constructie laat zien wat je deed én waarom het resultaat geldig is."
+      ]
+    }
+  ]
+}
