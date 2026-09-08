@@ -35,6 +35,14 @@
                 "D",
                 "E"
               ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "G",
+                "E"
+              ]
             ]
           }
         },
@@ -67,6 +75,14 @@
                 "D",
                 "E"
               ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "G",
+                "E"
+              ]
             ]
           }
         },
@@ -96,6 +112,14 @@
               [
                 "B",
                 "D",
+                "E"
+              ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "G",
                 "E"
               ]
             ]
@@ -155,6 +179,14 @@
               "D",
               "E"
             ]
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "C",
+              "G",
+              "E"
+            ]
           ]
         }
       }
@@ -191,6 +223,20 @@
             "highlights": [
               "PQ",
               "QR"
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "F",
+                "E"
+              ],
+              [
+                "B",
+                "C",
+                "G",
+                "F"
+              ]
             ]
           }
         },
@@ -235,6 +281,20 @@
                 "R",
                 "S"
               ]
+            ],
+            "studyPlanes": [
+              [
+                "B",
+                "C",
+                "G",
+                "F"
+              ],
+              [
+                "A",
+                "D",
+                "H",
+                "E"
+              ]
             ]
           }
         },
@@ -278,6 +338,26 @@
                 "Q",
                 "R",
                 "S"
+              ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "F",
+                "E"
+              ],
+              [
+                "B",
+                "C",
+                "G",
+                "F"
+              ],
+              [
+                "A",
+                "D",
+                "H",
+                "E"
               ]
             ]
           }
@@ -349,6 +429,26 @@
               "R",
               "S"
             ]
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "F",
+              "E"
+            ],
+            [
+              "B",
+              "C",
+              "G",
+              "F"
+            ],
+            [
+              "A",
+              "D",
+              "H",
+              "E"
+            ]
           ]
         }
       }
@@ -410,6 +510,14 @@
                 "color": "#66d9ca",
                 "dashed": true
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "G",
+                "E"
+              ]
             ]
           }
         },
@@ -464,6 +572,14 @@
                 "color": "#66d9ca",
                 "dashed": true
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "G",
+                "E"
+              ]
             ]
           }
         },
@@ -518,6 +634,14 @@
                 "color": "#66d9ca",
                 "dashed": true
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "G",
+                "E"
+              ]
             ]
           }
         }
@@ -598,6 +722,14 @@
               "color": "#66d9ca",
               "dashed": true
             }
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "C",
+              "G",
+              "E"
+            ]
           ]
         }
       }
@@ -894,6 +1026,20 @@
                 "S",
                 "Q"
               ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "E",
+                "D"
+              ],
+              [
+                "A",
+                "C",
+                "F",
+                "D"
+              ]
             ]
           }
         },
@@ -972,6 +1118,18 @@
                 "Q",
                 "R",
                 "S"
+              ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "T"
+              ],
+              [
+                "B",
+                "C",
+                "T"
               ]
             ]
           }
@@ -1126,6 +1284,19 @@
                 "color": "#66d9ca",
                 "dashed": true
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "T"
+              ],
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
             ]
           }
         }
@@ -1305,6 +1476,19 @@
               "color": "#66d9ca",
               "dashed": true
             }
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "T"
+            ],
+            [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
           ]
         }
       }
@@ -1570,6 +1754,14 @@
             ],
             "highlights": [
               "TO"
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
             ]
           }
         },
@@ -1636,6 +1828,18 @@
               "AD",
               "BE",
               "CF"
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C"
+              ],
+              [
+                "D",
+                "E",
+                "F"
+              ]
             ]
           }
         },
@@ -1696,6 +1900,13 @@
                 "P",
                 "Q",
                 "R"
+              ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C"
               ]
             ]
           }
@@ -1776,6 +1987,14 @@
           ],
           "highlights": [
             "TO"
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
           ]
         }
       }
@@ -2191,6 +2410,13 @@
             "highlights": [
               "AB",
               "DG"
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "F"
+              ]
             ]
           }
         },
@@ -2272,6 +2498,13 @@
               "IB",
               "EJ",
               "JG"
+            ],
+            "studyPlanes": [
+              [
+                "E",
+                "J",
+                "G"
+              ]
             ]
           }
         },
@@ -2353,6 +2586,13 @@
               "IB",
               "EJ",
               "JG"
+            ],
+            "studyPlanes": [
+              [
+                "E",
+                "J",
+                "G"
+              ]
             ]
           }
         }
@@ -2438,6 +2678,13 @@
             "AB",
             "DG",
             "AF"
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "F"
+            ]
           ]
         }
       },
@@ -2534,6 +2781,20 @@
                 "C",
                 "D"
               ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "F",
+                "E"
+              ],
+              [
+                "A",
+                "D",
+                "H",
+                "E"
+              ]
             ]
           }
         },
@@ -2612,6 +2873,13 @@
                 "C",
                 "D"
               ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "G"
+              ]
             ]
           }
         },
@@ -2689,6 +2957,13 @@
                 "B",
                 "C",
                 "D"
+              ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "G"
               ]
             ]
           }
@@ -2783,6 +3058,13 @@
               "C",
               "D"
             ]
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "C",
+              "G"
+            ]
           ]
         }
       },
@@ -2805,8 +3087,8 @@
       "subtitle": "Van twee vlakken naar een doorsnede loodrecht op de snijlijn.",
       "theory": [
         {
-          "title": "Kijk loodrecht op de scharnierlijn",
-          "text": "Twee snijdende vlakken hebben een gemeenschappelijke snijlijn. Kies in elk vlak een lijn door hetzelfde punt op die snijlijn, beide loodrecht op de snijlijn. Hun hoek is een standhoek. Het vlak door die twee loodlijnen heet een standvlak. Bij ABCD en ABGH is AB de snijlijn: AD en AH voldoen, dus ∠DAH is geschikt. Een willekeurige hoek tussen twee lijnen uit de vlakken is dat niet.",
+          "title": "Kies een vlak loodrecht op de scharnierlijn",
+          "text": "Twee snijdende vlakken hebben een gemeenschappelijke snijlijn. Kies in elk vlak een lijn door hetzelfde punt op die snijlijn, beide loodrecht op de snijlijn. Hun hoek is een standhoek. Het vlak door die twee loodlijnen heet een standvlak. Bij ABCD en ABGH is AB de snijlijn: AD en AH voldoen, dus ∠DAH is geschikt. Een willekeurige hoek tussen twee lijnen uit de vlakken is dat niet. Bekijk standvlak ADHE loodrecht: je kijkt dan evenwijdig aan de scharnierlijn AB. De standhoek DAH verschijnt daardoor zonder hoekvervorming.",
           "scene": {
             "points": {
               "A": [
@@ -2884,6 +3166,14 @@
                 "B",
                 "G",
                 "H"
+              ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "D",
+                "H",
+                "E"
               ]
             ]
           }
@@ -2970,6 +3260,14 @@
                 "G",
                 "H"
               ],
+              [
+                "A",
+                "D",
+                "H",
+                "E"
+              ]
+            ],
+            "studyPlanes": [
               [
                 "A",
                 "D",
@@ -3070,6 +3368,13 @@
                 "F",
                 "E"
               ]
+            ],
+            "studyPlanes": [
+              [
+                "F",
+                "I",
+                "G"
+              ]
             ]
           }
         }
@@ -3169,6 +3474,14 @@
               "G",
               "H"
             ]
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "D",
+              "H",
+              "E"
+            ]
           ]
         }
       },
@@ -3265,7 +3578,7 @@
               "EB"
             ],
             "planes": [],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+            "caption": "Kubusribbe 6 cm. In voorvlak ABFE is M het midden van EB; FM staat loodrecht op EB.",
             "segments": [
               {
                 "from": [
@@ -3281,6 +3594,14 @@
                 "color": "#65d6af",
                 "dashed": false
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "F",
+                "E"
+              ]
             ]
           }
         },
@@ -3303,6 +3624,11 @@
                 0,
                 4,
                 0
+              ],
+              "N": [
+                1.8461538461538463,
+                2.769230769230769,
+                0
               ]
             },
             "edges": [
@@ -3313,7 +3639,7 @@
             "showCube": false,
             "highlights": [],
             "planes": [],
-            "caption": "Rechthoekige driehoek ABP: AB = 6 cm, AP = 4 cm en AP ⟂ AB.",
+            "caption": "Rechthoekige driehoek ABP: AB = 6 cm, AP = 4 cm. N ligt op BP; AN staat loodrecht op BP en is de gezochte hoogte.",
             "segments": [
               {
                 "from": [
@@ -3489,7 +3815,7 @@
             "EB"
           ],
           "planes": [],
-          "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+          "caption": "Kubusribbe 6 cm. Vergelijk FE met de loodrechte verbinding FM naar lijn EB.",
           "segments": [
             {
               "from": [
@@ -3505,6 +3831,14 @@
               "color": "#65d6af",
               "dashed": false
             }
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "F",
+              "E"
+            ]
           ]
         }
       },
@@ -3605,7 +3939,21 @@
                 "E"
               ]
             ],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben."
+            "caption": "In de kubus: AB ⟂ AD én AB ⟂ AE. Beide richtingen liggen in vlak ADHE.",
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              [
+                "A",
+                "B",
+                "F",
+                "E"
+              ]
+            ]
           }
         },
         {
@@ -3690,7 +4038,7 @@
                 "E"
               ]
             ],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+            "caption": "Kubusribbe 6 cm. M = AC ∩ BD. Bekijk grondvlak ABCD om BM ⟂ AC te herkennen.",
             "segments": [
               {
                 "from": [
@@ -3706,6 +4054,14 @@
                 "color": "#65d6af",
                 "dashed": false
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
             ]
           }
         },
@@ -3801,7 +4157,7 @@
                 "E"
               ]
             ],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+            "caption": "Kubusribbe 6 cm. I is het midden van FH; N ligt op AI. In hulpdriehoek AEI staat EN loodrecht op AI.",
             "segments": [
               {
                 "from": [
@@ -3817,6 +4173,13 @@
                 "color": "#65d6af",
                 "dashed": false
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "E",
+                "I"
+              ]
             ]
           }
         }
@@ -3915,7 +4278,21 @@
               "E"
             ]
           ],
-          "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben."
+          "caption": "Vergelijk AB en AC ten opzichte van AD en AE in vlak ADHE. De projectietekening alleen bewijst geen loodrechte stand.",
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            [
+              "A",
+              "B",
+              "F",
+              "E"
+            ]
+          ]
         }
       },
       "misconception": {
@@ -3973,7 +4350,19 @@
             "showCube": false,
             "highlights": [],
             "planes": [],
-            "caption": "Tetraëder ABCT: AB = 6 cm, AC = 3 cm, AT = 6 cm; AB, AC en AT zijn onderling loodrecht."
+            "caption": "Tetraëder ABCT: AB = 6 cm, AC = 3 cm, AT = 6 cm; AB, AC en AT zijn onderling loodrecht.",
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C"
+              ],
+              [
+                "B",
+                "C",
+                "T"
+              ]
+            ]
           }
         },
         {
@@ -4029,6 +4418,13 @@
                 "color": "#65d6af",
                 "dashed": false
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C"
+              ]
             ]
           }
         },
@@ -4115,7 +4511,7 @@
                 "E"
               ]
             ],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+            "caption": "Kubusribbe 6 cm. Dezelfde tetraëder F.BGE heeft grondvlak FGE met hoogte FB, of grondvlak BGE met hoogte FN.",
             "segments": [
               {
                 "from": [
@@ -4131,6 +4527,18 @@
                 "color": "#65d6af",
                 "dashed": false
               }
+            ],
+            "studyPlanes": [
+              [
+                "F",
+                "G",
+                "E"
+              ],
+              [
+                "B",
+                "G",
+                "E"
+              ]
             ]
           }
         }
@@ -4202,6 +4610,13 @@
               "color": "#65d6af",
               "dashed": false
             }
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "C"
+            ]
           ]
         }
       },
@@ -4313,7 +4728,15 @@
                 "S"
               ]
             ],
-            "caption": "Rechte open bak van 10 dm lang. Trapeziumdoorsnede: bodem 2 dm, bovenkant 6 dm, verticale hoogte 4 dm. Symmetrische schuine wanden."
+            "caption": "Rechte open bak van 10 dm lang. Trapeziumdoorsnede: bodem 2 dm, bovenkant 6 dm, verticale hoogte 4 dm. Symmetrische schuine wanden.",
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            ]
           }
         },
         {
@@ -4406,7 +4829,15 @@
                 "S"
               ]
             ],
-            "caption": "Rechte open bak van 10 dm lang. Trapeziumdoorsnede: bodem 2 dm, bovenkant 6 dm, verticale hoogte 4 dm. Symmetrische schuine wanden."
+            "caption": "Rechte open bak van 10 dm lang. Trapeziumdoorsnede: bodem 2 dm, bovenkant 6 dm, verticale hoogte 4 dm. Symmetrische schuine wanden.",
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            ]
           }
         },
         {
@@ -4472,7 +4903,15 @@
             "showCube": false,
             "highlights": [],
             "planes": [],
-            "caption": "Oorspronkelijke vouwbak: plaatbreedte 60 cm, baklengte 40 cm, bodem x = 12 cm en bovenopening 2x = 24 cm. De twee schuine wanden zijn even breed. Hoogte h is onbekend."
+            "caption": "Oorspronkelijke vouwbak: plaatbreedte 60 cm, baklengte 40 cm, bodem x = 12 cm en bovenopening 2x = 24 cm. De twee schuine wanden zijn even breed. Hoogte h is onbekend.",
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            ]
           }
         }
       ],
@@ -4580,7 +5019,15 @@
               "S"
             ]
           ],
-          "caption": "Rechte open bak van 10 dm lang. Trapeziumdoorsnede: bodem 2 dm, bovenkant 6 dm, verticale hoogte 4 dm. Symmetrische schuine wanden."
+          "caption": "Rechte open bak van 10 dm lang. Trapeziumdoorsnede: bodem 2 dm, bovenkant 6 dm, verticale hoogte 4 dm. Symmetrische schuine wanden.",
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          ]
         }
       },
       "misconception": {
@@ -4672,7 +5119,7 @@
               "CG"
             ],
             "planes": [],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+            "caption": "Kubusribbe 6 cm. BC verbindt AB met CG en staat op beide lijnen loodrecht.",
             "segments": [
               {
                 "from": [
@@ -4688,6 +5135,20 @@
                 "color": "#65d6af",
                 "dashed": false
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              [
+                "B",
+                "C",
+                "G",
+                "F"
+              ]
             ]
           }
         },
@@ -4762,7 +5223,7 @@
               "CG"
             ],
             "planes": [],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+            "caption": "Kubusribbe 6 cm. AC verbindt A met CG; door A over AB te verschuiven krijg je de kortere verbinding BC.",
             "segments": [
               {
                 "from": [
@@ -4792,6 +5253,20 @@
                 "color": "#65d6af",
                 "dashed": false
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              [
+                "B",
+                "C",
+                "G",
+                "F"
+              ]
             ]
           }
         },
@@ -4876,7 +5351,7 @@
               "FH"
             ],
             "planes": [],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+            "caption": "O is het midden van AC, I het midden van FH. Van boven vallen O en I samen; ruimtelijk zijn ze door de verticale lijn OI gescheiden.",
             "segments": [
               {
                 "from": [
@@ -4892,6 +5367,20 @@
                 "color": "#65d6af",
                 "dashed": false
               }
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              [
+                "A",
+                "C",
+                "G",
+                "E"
+              ]
             ]
           }
         }
@@ -4981,7 +5470,7 @@
             "CG"
           ],
           "planes": [],
-          "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+          "caption": "Bij AB en CG mogen beide eindpunten verschuiven. BC is loodrecht op AB én CG.",
           "segments": [
             {
               "from": [
@@ -5011,6 +5500,20 @@
               "color": "#65d6af",
               "dashed": false
             }
+          ],
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            [
+              "B",
+              "C",
+              "G",
+              "F"
+            ]
           ]
         }
       },
@@ -5121,7 +5624,15 @@
                 "T"
               ]
             ],
-            "caption": "Voorbeeld l = AC en m = BH. V is het hulpvlak ACUT: het bevat AC en AT ∥ BH. De vlakvulling toont V; BH ligt erbuiten."
+            "caption": "Voorbeeld l = AC en m = BH. V is het hulpvlak ACUT: het bevat AC en AT ∥ BH. De vlakvulling toont V; BH ligt erbuiten.",
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "U",
+                "T"
+              ]
+            ]
           }
         },
         {
@@ -5213,7 +5724,15 @@
                 "T"
               ]
             ],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben."
+            "caption": "Vlak ACUT bevat AC en AT ∥ BH. Het grondvlak bevat AC, maar is niet evenwijdig aan BH.",
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "U",
+                "T"
+              ]
+            ]
           }
         },
         {
@@ -5306,7 +5825,7 @@
                 "F"
               ]
             ],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben.",
+            "caption": "O is het midden van AC. N ligt op BH en ON ⟂ BH. Driehoek OBH ligt in het standvlak BDHF.",
             "segments": [
               {
                 "from": [
@@ -5322,6 +5841,13 @@
                 "color": "#65d6af",
                 "dashed": false
               }
+            ],
+            "studyPlanes": [
+              [
+                "O",
+                "B",
+                "H"
+              ]
             ]
           }
         }
@@ -5419,7 +5945,15 @@
               "E"
             ]
           ],
-          "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben."
+          "caption": "Vlak ABFE bevat AB en BF ∥ CG. Het grondvlak ABCD bevat AB, maar is niet evenwijdig aan CG.",
+          "studyPlanes": [
+            [
+              "A",
+              "B",
+              "F",
+              "E"
+            ]
+          ]
         }
       },
       "misconception": {
@@ -5519,7 +6053,14 @@
                 "D"
               ]
             ],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben."
+            "caption": "AG projecteert op AC in grondvlak ABCD. Bekijk hulpdriehoek ACG loodrecht om ∠GAC te herkennen.",
+            "studyPlanes": [
+              [
+                "A",
+                "C",
+                "G"
+              ]
+            ]
           }
         },
         {
@@ -5611,13 +6152,33 @@
                 "E"
               ],
               [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              [
                 "B",
                 "D",
                 "H",
                 "F"
               ]
             ],
-            "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben."
+            "caption": "O = AC ∩ BD; I ligt recht boven O. In standvlak BDHF zie je OI en BD loodrecht; dit bepaalt de hoek tussen ACGE en ABCD.",
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              [
+                "B",
+                "D",
+                "H",
+                "F"
+              ]
+            ]
           }
         },
         {
@@ -5690,7 +6251,21 @@
                 "H"
               ]
             ],
-            "caption": "Afgeknotte balk: rechthoekig grondvlak 6 × 4 cm. Hoogtes AE = DH = 5 cm en BF = CG = 2 cm; EFGH is een vlak."
+            "caption": "Afgeknotte balk: rechthoekig grondvlak 6 × 4 cm. Hoogtes AE = DH = 5 cm en BF = CG = 2 cm; EFGH is een vlak.",
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              [
+                "A",
+                "B",
+                "F",
+                "E"
+              ]
+            ]
           }
         }
       ],
@@ -5787,7 +6362,14 @@
               "D"
             ]
           ],
-          "caption": "AB = 6 cm, AD = 6 cm en AE = 6 cm. Alle ribben van de balk staan volgens de gebruikelijke bouw loodrecht op aangrenzende ribben."
+          "caption": "In hulpdriehoek ACG geldt ∠GAC + ∠AGC = 90°; één hoek hoort bij het grondvlak, de andere bij de normaalrichting.",
+          "studyPlanes": [
+            [
+              "A",
+              "C",
+              "G"
+            ]
+          ]
         }
       },
       "misconception": {

@@ -1,0 +1,2569 @@
+{
+  "version": "0.4.3",
+  "scope": "Broninhoud, meetkundige modellen en gerenderde React-toestanden; geen nieuwe browser- of fysieke apparaattest.",
+  "policy": {
+    "theory": "Kijkrichting en besproken vlakken mogen het inzicht ondersteunen.",
+    "practice": "Alleen al gegeven vlakken of een al vlakke figuur; een gekozen ander aanzicht telt als hulp.",
+    "diagnosis_and_checks": "Geen extra kijkhulp of nieuwe vlakken voor of tijdens het beantwoorden.",
+    "construction": "Kijkrichting in oefenatelier, zonder automatische keuze van een doorsnede of werkvlak. Topconstructies behouden een vaste figuur.",
+    "paper": "Zelfstandig tekenwerk krijgt geen extra bediening.",
+    "feedback": "Kijkhulp beschikbaar nadat feedback mag verschijnen."
+  },
+  "instructionStates": 96,
+  "explicitStudyViews": 80,
+  "blocks": [
+    {
+      "id": "projection",
+      "level": 1,
+      "title": "Kijken in de ruimte",
+      "review": "Bestaande projectieles behouden; bij de rechte beeldhoek een werkelijk bovenaanzicht toegevoegd. Het vergelijkingspaar gebruikt één schermschaal.",
+      "instructionStates": 5,
+      "studyPlanes": []
+    },
+    {
+      "id": "lines",
+      "level": 1,
+      "title": "Lijnen doorgronden",
+      "review": "Kijkrichting bij ruimtelijke lijnrelaties; gezamenlijk hulpvlak bij het uitgewerkte externe snijpunt. Vlakke schemas blijven vlak.",
+      "instructionStates": 5,
+      "studyPlanes": []
+    },
+    {
+      "id": "planes",
+      "level": 1,
+      "title": "Vlakken vastleggen",
+      "review": "Kijkrichting en herkenbare vlaklegenda; alleen benoemde, reeds gegeven vlakken als loodrecht aanzicht.",
+      "instructionStates": 5,
+      "studyPlanes": []
+    },
+    {
+      "id": "threeplanes",
+      "level": 1,
+      "title": "Drie vlakken tegelijk",
+      "review": "Dezelfde kijkhulp bij drie vlakken en hun snijlijnen; punt, lijn en lege doorsnede blijven onderscheiden.",
+      "instructionStates": 5,
+      "studyPlanes": []
+    },
+    {
+      "id": "l2-hulpvlak",
+      "level": 2,
+      "title": "Een lijn ontmoet een vlak",
+      "review": "ACGE apart loodrecht bekijken: gemeenschappelijke lijn en gezochte doorsnijding blijven in hetzelfde hulpvlak.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ACGE"
+      ]
+    },
+    {
+      "id": "l2-doorsnede",
+      "level": 2,
+      "title": "De rand van een doorsnede",
+      "review": "ABFE, BCGF en ADHE als besproken zijvlakken vergelijken; geen extra oplossing vooraf tekenen.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABFE",
+        "ADHE",
+        "BCGF"
+      ]
+    },
+    {
+      "id": "l2-buiten",
+      "level": 2,
+      "title": "Verder dan de kubusrand",
+      "review": "Externe snijpunten passen met hun lijnen in het kader; ACGE als vlakke uitwerking beschikbaar.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ACGE"
+      ]
+    },
+    {
+      "id": "l2-gelijkvormig",
+      "level": 2,
+      "title": "Gelijkvormigheid als meetgereedschap",
+      "review": "Bestaande metrische bovenaanzichten behouden met een korte aanduiding dat de figuur loodrecht wordt bekeken.",
+      "instructionStates": 4,
+      "studyPlanes": []
+    },
+    {
+      "id": "l3-ruimtefiguren",
+      "level": 3,
+      "title": "Dezelfde regels, andere lichamen",
+      "review": "Kijkrichting volgt het werkelijke prisma of de piramide; besproken zijvlakken en grondvlak apart bekijken.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABCD",
+        "ABED",
+        "ABT",
+        "ACFD",
+        "BCT"
+      ]
+    },
+    {
+      "id": "l3-oppervlakte",
+      "level": 3,
+      "title": "Basis en loodrechte hoogte",
+      "review": "Bestaande vlakke hoogtedriehoeken behouden; onnodige 3D hulpmiddelen weggelaten.",
+      "instructionStates": 4,
+      "studyPlanes": []
+    },
+    {
+      "id": "l3-inhoud",
+      "level": 3,
+      "title": "Een ingewikkelde inhoud ontleden",
+      "review": "Werkelijk lichaam in de kijkhulp; besproken grondvlakken loodrecht bekijken zonder automatisch een hoogte te construeren.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABC",
+        "ABCD",
+        "DEF"
+      ]
+    },
+    {
+      "id": "l3-goniometrie",
+      "level": 3,
+      "title": "Goniometrie in de juiste driehoek",
+      "review": "Vlakke rechthoekige driehoeken behouden; kijkrichting bij ruimtelijke toepassingen.",
+      "instructionStates": 4,
+      "studyPlanes": []
+    },
+    {
+      "id": "l4-cos",
+      "level": 4,
+      "title": "De juiste driehoek",
+      "review": "Bestaande metrische vlakke driehoeken behouden; geen extra antwoordaanwijzingen.",
+      "instructionStates": 4,
+      "studyPlanes": []
+    },
+    {
+      "id": "l4-lines",
+      "level": 4,
+      "title": "Hoeken tussen lijnen",
+      "review": "ABF en EJG loodrecht bekijken nadat de parallelle richting in de uitleg is gekozen.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABF",
+        "EJG"
+      ]
+    },
+    {
+      "id": "l4-plane",
+      "level": 4,
+      "title": "Van lijn naar vlak",
+      "review": "ACG als hulpdriehoek; afzonderlijk de twee richtingen voor loodrechte stand op een vlak bekijken.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABFE",
+        "ACG",
+        "ADHE"
+      ]
+    },
+    {
+      "id": "l4-dihedral",
+      "level": 4,
+      "title": "Standhoeken construeren",
+      "review": "Misleidende kijkformulering gecorrigeerd; standvlakken ADHE en FIG orthografisch bekijken.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ADHE",
+        "FIG"
+      ]
+    },
+    {
+      "id": "l5-point-line",
+      "level": 5,
+      "title": "Punt tot lijn",
+      "review": "Voorvlak en loodrechte hoogte zichtbaar; ontbrekende puntnaam N in de uitgewerkte hoogtedriehoek toegevoegd.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABFE"
+      ]
+    },
+    {
+      "id": "l5-point-plane",
+      "level": 5,
+      "title": "Punt tot vlak",
+      "review": "ABCD en AEI als gekozen hulpvlakken; onderschriften koppelen de tekening aan de loodrechte afstand.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABCD",
+        "ABFE",
+        "AEI"
+      ]
+    },
+    {
+      "id": "l5-volume",
+      "level": 5,
+      "title": "Afstand via inhoud",
+      "review": "Dezelfde tetraëder met verschillende besproken grondvlakken bekijken.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABC",
+        "BCT",
+        "BGE",
+        "FGE"
+      ]
+    },
+    {
+      "id": "l5-model",
+      "level": 5,
+      "title": "Van figuur naar formule",
+      "review": "De trapeziumdoorsnede ABCD recht van voren bekijken; water- en bakvlak herkenbaar benoemen.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABCD"
+      ]
+    },
+    {
+      "id": "l6-common-perpendicular",
+      "level": 6,
+      "title": "Kruisende lijnen meten",
+      "review": "Beide loodrechte voorwaarden bekijken; grondvlak en verticaal hulpvlak onderscheiden schijnbaar samenvallende punten.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABCD",
+        "ACGE",
+        "BCGF"
+      ]
+    },
+    {
+      "id": "l6-parallel-plane",
+      "level": 6,
+      "title": "Van twee lijnen naar één vlak",
+      "review": "ACUT en driehoek OBH als reeds uitgelegde hulpvlakken loodrecht bekijken.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABFE",
+        "ACUT",
+        "OBH"
+      ]
+    },
+    {
+      "id": "l6-method",
+      "level": 6,
+      "title": "Zelf de methode kiezen",
+      "review": "Keuze van projectie- of standvlak expliciet; genoemd grondvlak toegevoegd aan de standhoekillustratie.",
+      "instructionStates": 4,
+      "studyPlanes": [
+        "ABCD",
+        "ABFE",
+        "ACG",
+        "BDHF"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "p1",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "p2",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "p3",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": true
+    },
+    {
+      "id": "p4",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "p5",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABFE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "p6",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "probe-p1",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "probe-p2",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "fixed-comparison-scale",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "retest-p1",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "retest-p2",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l1",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABFE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "probe-l1",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "probe-l2",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "retest-l1",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "retest-l2",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "v1",
+      "block": "planes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "v2",
+      "block": "planes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "v3",
+      "block": "planes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABGH",
+        "ADGF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "v4",
+      "block": "planes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "probe-v1",
+      "block": "planes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "probe-v2",
+      "block": "planes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "retest-v1",
+      "block": "planes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "d1",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD",
+        "EFGH",
+        "ABFE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "d2",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD",
+        "ABFE",
+        "ABGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "d3",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD",
+        "ABFE",
+        "ADHE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "d4",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABFE",
+        "BCGF",
+        "ACGE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "probe-d1",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "probe-d2",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "retest-d1",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "EFGH",
+        "ABFE",
+        "BCGF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "retest-d2",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD",
+        "EFGH",
+        "BCGF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "cp-p1",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "cp-p2",
+      "block": "projection",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BCGF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "cp-l1",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "cp-l2",
+      "block": "lines",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "cp-v1",
+      "block": "planes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "EFGH",
+        "BCHE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "cp-v2",
+      "block": "planes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "cp-d1",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "EFGH",
+        "CDHG",
+        "ADHE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "cp-d2",
+      "block": "threeplanes",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-1",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BDE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-2",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ACGE",
+        "BDE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-3",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BDE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-4",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BDE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-p1",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ADF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-p2",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BDT"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-r1",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABG"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-r2",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ACT",
+        "BDT"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-1",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-2",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-3",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-4",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "PQRS"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-p1",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-p2",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-r1",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-r2",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-1",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-2",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-3",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-4",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-p1",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-p2",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-r1",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-r2",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-1",
+      "block": "l2-gelijkvormig",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-2",
+      "block": "l2-gelijkvormig",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-3",
+      "block": "l2-gelijkvormig",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-4",
+      "block": "l2-gelijkvormig",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-p1",
+      "block": "l2-gelijkvormig",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-p2",
+      "block": "l2-gelijkvormig",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "PQRS"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-r1",
+      "block": "l2-gelijkvormig",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-r2",
+      "block": "l2-gelijkvormig",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-1",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-2",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-3",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-4",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-p1",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABED",
+        "ACFD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-p2",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BCT",
+        "ADT"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-r1",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABC",
+        "DEF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-r2",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABT",
+        "BCT"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-oppervlakte-1",
+      "block": "l3-oppervlakte",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-oppervlakte-2",
+      "block": "l3-oppervlakte",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-oppervlakte-3",
+      "block": "l3-oppervlakte",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-oppervlakte-4",
+      "block": "l3-oppervlakte",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-oppervlakte-p1",
+      "block": "l3-oppervlakte",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-oppervlakte-p2",
+      "block": "l3-oppervlakte",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-oppervlakte-r1",
+      "block": "l3-oppervlakte",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-oppervlakte-r2",
+      "block": "l3-oppervlakte",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-1",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-2",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-3",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-4",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-p1",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-p2",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-r1",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-r2",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-1",
+      "block": "l3-goniometrie",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-2",
+      "block": "l3-goniometrie",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-3",
+      "block": "l3-goniometrie",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-4",
+      "block": "l3-goniometrie",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-p1",
+      "block": "l3-goniometrie",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-p2",
+      "block": "l3-goniometrie",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-r1",
+      "block": "l3-goniometrie",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-r2",
+      "block": "l3-goniometrie",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-check-1",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ACG"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-hulpvlak-check-2",
+      "block": "l2-hulpvlak",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BDE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-check-3",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-doorsnede-check-4",
+      "block": "l2-doorsnede",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-check-5",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-buiten-check-6",
+      "block": "l2-buiten",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-check-7",
+      "block": "l2-gelijkvormig",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l2-gelijkvormig-check-8",
+      "block": "l2-gelijkvormig",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-check-1",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABC",
+        "DEF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-check-2",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-ruimtefiguren-check-3",
+      "block": "l3-ruimtefiguren",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-oppervlakte-check-4",
+      "block": "l3-oppervlakte",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-check-5",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-inhoud-check-6",
+      "block": "l3-inhoud",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-check-7",
+      "block": "l3-goniometrie",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ACG"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l3-goniometrie-check-8",
+      "block": "l3-goniometrie",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-cos-q1",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-cos-q2",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-cos-q3",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-cos-q4",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-cos-p1",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-cos-p2",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-cos-r1",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-cos-r2",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-lines-q1",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-lines-q2",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-lines-q3",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-lines-q4",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-lines-p1",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-lines-p2",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-lines-r1",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-lines-r2",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-plane-q1",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-plane-q2",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-plane-q3",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-plane-q4",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ADHE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-plane-p1",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABFE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-plane-p2",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ADHE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-plane-r1",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-plane-r2",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-dihedral-q1",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD",
+        "ABGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-dihedral-q2",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD",
+        "ADGF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-dihedral-q3",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD",
+        "ABGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-dihedral-q4",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "EJG",
+        "ABFE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-dihedral-p1",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD",
+        "ADGF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-dihedral-p2",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "EFGH",
+        "ABGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-dihedral-r1",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD",
+        "ABGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-dihedral-r2",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD",
+        "ABGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-check-1",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-check-2",
+      "block": "l4-cos",
+      "sourceView": "top",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-check-3",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-check-4",
+      "block": "l4-lines",
+      "sourceView": "spatial",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-check-5",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "DCGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-check-6",
+      "block": "l4-plane",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-check-7",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "ABCD",
+        "ABGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l4-check-8",
+      "block": "l4-dihedral",
+      "sourceView": "spatial",
+      "givenPlanes": [
+        "EJG",
+        "ABFE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-line-q1",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-line-q2",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-line-q3",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-line-q4",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-line-p1",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-line-p2",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-line-r1",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-line-r2",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-plane-q1",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ADHE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-plane-q2",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ACGE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-plane-q3",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ACGE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-plane-q4",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "AFH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-plane-p1",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BCGF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-plane-p2",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-plane-r1",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ACGE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-point-plane-r2",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-volume-q1",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-volume-q2",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BGE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-volume-q3",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BGE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-volume-q4",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-volume-p1",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-volume-p2",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-volume-r1",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-volume-r2",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "AFH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-model-q1",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-model-q2",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-model-q3",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-model-q4",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-model-p1",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-model-p2",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-model-r1",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-model-r2",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-common-perpendicular-q1",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-common-perpendicular-q2",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-common-perpendicular-q3",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-common-perpendicular-q4",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-common-perpendicular-p1",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-common-perpendicular-p2",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-common-perpendicular-r1",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-common-perpendicular-r2",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-parallel-plane-q1",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-parallel-plane-q2",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-parallel-plane-q3",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BDHF"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-parallel-plane-q4",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-parallel-plane-p1",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-parallel-plane-p2",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "EFGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-parallel-plane-r1",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-parallel-plane-r2",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-method-q1",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-method-q2",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-method-q3",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "EFGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-method-q4",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-method-p1",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-method-p2",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-method-r1",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-method-r2",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "AFH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-check-1",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-check-2",
+      "block": "l5-point-line",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-check-3",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-check-4",
+      "block": "l5-point-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ACGE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-check-5",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BGE"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-check-6",
+      "block": "l5-volume",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-check-7",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l5-check-8",
+      "block": "l5-model",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-check-1",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-check-2",
+      "block": "l6-common-perpendicular",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-check-3",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-check-4",
+      "block": "l6-parallel-plane",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-check-5",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-check-6",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "EFGH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-check-7",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l6-check-8",
+      "block": "l6-method",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "AFH"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-01",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-02",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-03",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-04",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "PQRS"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-05",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-06",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-07",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-08",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-09",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABG",
+        "ABCD"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-10",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-11",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BCT"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-12",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-13",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7a-14",
+      "block": "l7a",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-01",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-02",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-03",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-04",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "PQR"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-05",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-06",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "PQRS"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-07",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-08",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "ABED"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-09",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BCT",
+        "ABC"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-10",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-11",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [
+        "BCT"
+      ],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-12",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-13",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    },
+    {
+      "id": "l7b-14",
+      "block": "l7b",
+      "sourceView": "spatial-or-special-example",
+      "givenPlanes": [],
+      "primaryFigureChange": "preserved",
+      "extraFeedbackExample": false
+    }
+  ],
+  "constructionTasks": [
+    "construct-l2-parallel",
+    "construct-l2-six",
+    "construct-l3-pyramid",
+    "construct-l3-prism",
+    "construct-l2-lineplane",
+    "construct-l4-standvlak",
+    "construct-l5-foot",
+    "construct-l6-commonfoot",
+    "construct-l7-a",
+    "construct-l7-b"
+  ],
+  "paperTasks": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7a",
+    "7b"
+  ]
+}

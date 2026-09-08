@@ -5,7 +5,7 @@ import constructionData from './construction-tasks.json';
 import {numericValue} from './numeric';
 import type {V3} from './geometry-math';
 export type Skill='inzicht'|'construeren'|'onderbouwen'|'rekenen';
-export type Scene={points?:Record<string,V3>;edges?:string[];showCube?:boolean;highlights?:string[];planes?:string[][];segments?:{from:V3;to:V3;color:string;dashed?:boolean}[];caption:string;view?:'spatial'|'front'|'top'|'side'|'right';dimensions?:V3;hiddenLabels?:string[]};
+export type Scene={studyPlanes?:string[][];points?:Record<string,V3>;edges?:string[];showCube?:boolean;highlights?:string[];planes?:string[][];segments?:{from:V3;to:V3;color:string;dashed?:boolean}[];caption:string;view?:'spatial'|'front'|'top'|'side'|'right';dimensions?:V3;hiddenLabels?:string[]};
 export type Question={id:string;block:string;skill:Skill;type:'choice'|'points'|'numeric';prompt:string;options?:{id:string;text:string}[];answer:string[];explanation:string;hint:string;highlights?:string[];planes?:string[][];extraPoints?:Record<string,V3>;selectCount?:number;acceptAny?:string[];tolerance?:number;decimals?:number;unit?:string;working?:boolean;scene?:Scene;revealScene?:Scene};
 export type Theory={title:string;text:string;example?:ExampleId;highlights?:string[];planes?:string[][];scene?:Scene};
 export type Block={id:string;level?:number;title:string;subtitle:string;theory:Theory[];questionIds:string[];probeIds:string[];retestIds:string[];repair:Theory;misconception:{label:string;trigger:{qid:string;wrongAnswer:string};probeWrongAnswers:string[]}};

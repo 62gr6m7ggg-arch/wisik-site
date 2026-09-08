@@ -7,7 +7,12 @@ import {resolve} from 'node:path';
 const site=process.env.SPACE_AUDIT_SITE||process.cwd(),require=createRequire(site+'/package.json');
 const {build}=require('esbuild'),React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
 const learningPath=resolve(site,'app/learning.tsx');
-const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,QUESTIONS,CHECKS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation'; export * as CV from './app/construction-visuals'; export * as PM from './app/projection-lesson-math'; export {ProjectionLessonFrame,ViewingCue} from './app/projection-lesson';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]learning\.tsx$/},args=>{
+const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,COURSE,QUESTIONS,CHECKS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation'; export * as CV from './app/construction-visuals'; export * as PM from './app/projection-lesson-math'; export * as VM from './app/viewing-math'; export {default as CourseFigure} from './app/course-figure'; export {default as InsightFigure} from './app/insight-figure'; export {default as ConstructionLab} from './app/construction-lab'; export {default as CoursePaper} from './app/course-paper'; export {default as Paper} from './app/paper'; export {ProjectionLessonFrame,ViewingCue} from './app/projection-lesson';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]geometry\.tsx$/},args=>{
+ let source=readFileSync(args.path,'utf8');const anchor="[planeFocus,setPlaneFocus]=useState('')";
+ assert.equal(source.split(anchor).length,2);
+ source=source.replace(anchor,"[planeFocus,setPlaneFocus]=useState(globalThis.__planeFixture||'')");
+ return {contents:source,loader:'tsx',resolveDir:resolve(site,'app')};
+});b.onLoad({filter:/[/\\]app[/\\]learning\.tsx$/},args=>{
  assert.equal(args.path,learningPath);
  let source=readFileSync(args.path,'utf8');
  // Inject only the initial state for SSR, never changing render/feedback logic.
@@ -40,6 +45,7 @@ for(const question of BANK.questions){
    assertFinite(html,`${question.id}/${context}/${submitted}`);
    const hidden=!submitted||context==='check'||context==='probe';
    if(hidden)assert.ok(!html.includes('answer-correct')&&!html.includes('class="correct-answer"'),`${question.id}/${context} leaks correctness`);
+   if(context==='check'||context==='probe')assert.ok(!html.includes('data-viewing-guide'),'Extra viewing aids stay hidden during assessment and diagnosis');
    if(context==='check'||context==='probe'||question.block==='projection')assert.equal(hasRotation(html),false,`${question.id}/${context} must have a fixed view`);
    if(submitted&&(context==='probe'||context==='check'))assert.ok(html.includes('Antwoord vastgelegd.')&&!html.includes('Bekijk de redenering.'),`${question.id}/${context} must defer feedback`);
    if(!submitted&&question.id==='p2')assert.ok(!/>M<|>M<\/span>/.test(html),'p2 must not draw the hidden midpoint');
@@ -191,11 +197,85 @@ console.log(`Interaction SSR checks passed: ${cards} question-card states, ${fig
   assert.ok(html.includes('Beeld AB:')&&html.includes('Beeld AD:')&&html.includes('Beeld AE:'),'Image lengths must be visibly distinguished from real lengths');
   assert.ok(html.includes(position===1?'Je kijkt recht van voren.':'Je kijkt schuin van voren, van rechts en van boven.'));
  }
- const old=JSON.parse(readFileSync(resolve(site,'validation/projection-regression-041.json'),'utf8')),actual={};
- const digest=html=>require('node:crypto').createHash('sha256').update(html).digest('hex');
- for(const q of BANK.questions)if(!['p1','probe-p1','retest-p1'].includes(q.id))for(const reveal of [false,true])actual[q.id+'/'+reveal]=digest(render(QuestionFigure,{question:q,reveal}));
- for(const variant of [{},{construction:true},{camera:[-40,30]},{view:'front'},{view:'top'},{view:'right'}])actual['geometry/'+JSON.stringify(variant)]=digest(render(Geometry,variant));
- actual.workbench=digest(render(Workbench,{save:async()=>true,onBack:()=>{}}));
- assert.deepEqual(actual,old,'Unrelated figure output changed since version 0.4.1');
- console.log('Projection checks passed: 201 valid intermediate projections, consistent rays/planes/lengths, four viewport sizes, and 523 unchanged figure states identical to 0.4.1.');
+ console.log('Projection checks passed: 201 valid intermediate projections, consistent rays/planes/lengths, and four viewport sizes.');
+}
+
+// Whole-tool viewing review: match the active projection, preserve flat metrics,
+// retain assessment independence and compare unchanged primary SVGs with 0.4.2.
+{
+ const {VM,PM,COURSE,CourseFigure,InsightFigure,ConstructionLab,CoursePaper,Paper}=module.exports;
+ const digest=value=>require('node:crypto').createHash('sha256').update(value).digest('hex');
+ function firstSvg(html){const begin=html.indexOf('<svg');if(begin<0)return '';let depth=0;for(const m of html.slice(begin).matchAll(/<\/?svg\b[^>]*>/g)){depth+=m[0].startsWith('</')?-1:1;if(depth===0)return html.slice(begin,begin+m.index+m[0].length).replace(/id="[^"]+"/g,'id="ID"').replace(/url\(#[^)]+\)/g,'url(#ID)');}throw Error('Unclosed SVG');}
+ const old=JSON.parse(readFileSync(resolve(site,'validation/visual-regression-042.json'),'utf8'));
+ let preserved=0;
+ for(const question of BANK.questions)for(const reveal of [false,true]){
+  const key=question.id+'/'+reveal,actual=digest(firstSvg(render(QuestionFigure,{question,reveal})));
+  if(question.id==='probe-p2')assert.notEqual(actual,old[key],'The paired-camera comparison deliberately gets one fixed scale');
+  else{assert.equal(actual,old[key],key+' original main figure must stay intact');preserved++;}
+ }
+ const q3=render(QuestionFigure,{question:BANK.questions.find(q=>q.id==='p3'),reveal:true});
+ assert.ok(q3.includes('Van boven: 90°')&&q3.includes('A / E')&&q3.includes('B / F'),'The counterexample really includes the top view');
+ const q3Before=render(QuestionFigure,{question:BANK.questions.find(q=>q.id==='p3')});
+ assert.ok(!q3Before.includes('Van boven: 90°')&&!q3Before.includes('In de ruimte: 60°'),'No counterexample is taught before answering');
+ let rays=0;
+ for(const view of ['front','top','right','scaled','equal-image','spatial'])for(const a of [-175,-90,-28,0,28,90,175])for(const t of [-80,-24,0,24,80]){
+  const b=VM.viewingBasis(view,a,t);near(G.dot(b.eye,b.eye),1);near(Math.hypot(...PM.projectLessonPoint(b.eye,b)),0);
+  for(const p of Object.values(G.CUBE)){const expected=G.parallelImage(p,view,a,t),actual=PM.projectLessonPoint(p,b);near(expected[0],actual[0]);near(expected[1],actual[1]);}
+  const ray=G.parallelImage(b.eye,'spatial',...VM.referenceCamera(b.eye));assert.ok(Math.hypot(...ray)>.6,'The overview arrow must remain visible');rays++;
+ }
+ assert.equal(VM.eyeLabel([0,-1,0]),'Je kijkt van voren.');
+ assert.equal(VM.eyeLabel([-1,0,0]),'Je kijkt van links.');
+ assert.equal(VM.eyeLabel([0,0,-1]),'Je kijkt van onderen.');
+ assert.equal(VM.planeBasis(['A','B','C','G'],G.CUBE,[1,-1,1]),null,'A noncoplanar set is not a study plane');
+ assert.equal(VM.planeBasis(['A','B','Z'],G.CUBE,[1,-1,1]),null);
+ assert.equal(VM.planeBasis(['A','B','M'],{...G.CUBE,M:[.5,0,0]},[1,-1,1]),null);
+ // Independent distances in a non-cubic solid must also survive a plane view.
+ for(const dimensions of [[1,1,1],[5,6,4],[8,3,12]]){
+  const points=Object.fromEntries(Object.entries(G.CUBE).map(([k,p])=>[k,p.map((v,i)=>v*dimensions[i])]));
+  for(const names of ['ADHE','ACGE','ABGH','ABF']){
+   const b=VM.planeBasis([...names],points,[1,-1,1]);assert.ok(b);
+   near(G.dot(b.right,b.up),0);near(G.dot(b.eye,b.right),0);near(G.dot(b.eye,b.up),0);
+   near(G.dot(b.right,b.right),1);near(G.dot(b.up,b.up),1);
+   for(const a of names)for(const c of names)near(Math.hypot(...sub2(PM.projectLessonPoint(points[a],b),PM.projectLessonPoint(points[c],b))),G.distance(points[a],points[c]));
+  }
+ }
+ let instructions=0,studyViews=0;
+ for(const block of BANK.blocks)for(const entry of [...block.theory,block.repair]){
+  const html=entry.scene?render(CourseFigure,{scene:entry.scene}):entry.example?render(InsightFigure,{example:entry.example}):render(Geometry,entry);
+  assertFinite(html,block.id+'/'+entry.title);instructions++;
+  if(!entry.scene)continue;
+  const scene=entry.scene,dimensions=scene.dimensions||[1,1,1],points=Object.fromEntries(Object.entries({...scene.showCube===false?{}:G.CUBE,...scene.points}).map(([k,p])=>[k,p.map((v,i)=>(v-.5)*dimensions[i])]));
+  for(const names of scene.studyPlanes||[]){
+   const basis=VM.planeBasis(names,points,[1,-1,1]);assert.ok(basis,block.id+'/'+names.join('')+' must be a real plane');
+   for(const a of names)for(const b of names)near(Math.hypot(...sub2(PM.projectLessonPoint(points[a],basis),PM.projectLessonPoint(points[b],basis))),G.distance(points[a],points[b]));
+   globalThis.__planeFixture=names.join('');
+   const focused=render(CourseFigure,{scene});assertFinite(focused,block.id+'/'+names.join(''));
+   assert.ok(focused.includes('Je kijkt loodrecht op vlak '+names.join(''))&&focused.includes('Terug naar de ruimtelijke tekening'),block.id+' must show an active plane and a way back');
+   assert.equal(hasRotation(focused),false,'Plane views must not offer an ineffective camera drag');
+   delete globalThis.__planeFixture;studyViews++;
+  }
+ }
+ const fixedBefore=firstSvg(render(Geometry,{guidance:false,planes:[['A','B','C','D']]}));
+ globalThis.__planeFixture='ABCD';
+ assert.equal(firstSvg(render(Geometry,{guidance:false,planes:[['A','B','C','D']]})),fixedBefore,'A leftover practice plane choice must never change an assessment projection');
+ delete globalThis.__planeFixture;
+ const tasks=JSON.parse(readFileSync(resolve(site,'app/construction-tasks.json'),'utf8')).tasks;
+ for(const task of tasks){
+  const html=render(ConstructionLab,{task,events:[],save:async()=>true,onBack:()=>{}});assertFinite(html,task.id);
+  assert.equal(html.includes('data-viewing-guide'),!task.exam,task.id+' assessment independence');
+  assert.ok(!html.includes('plane-view-controls'),'Construction point interaction remains separate from plane inspection');
+  assert.ok(!html.includes('Gearceerd vlak'),'No automatically inferred answer plane in a construction attempt');
+ }
+ for(const paperKey of Object.keys(COURSE.papers))assert.ok(!render(CoursePaper,{paperKey,save:async()=>true,onBack:()=>{},alreadyDone:false}).includes('data-viewing-guide'),'Independent paper task '+paperKey);
+ assert.ok(!render(Paper,{save:async()=>true,onBack:()=>{},alreadyDone:false}).includes('data-viewing-guide'));
+ assert.match(geometrySource,/onExplore\?\.\(\);setPlaneFocus\(name\)/,'A practice plane view records support');
+ assert.match(geometrySource,/function reset\(\)\{drag.current=null;setPlaneFocus\(''\)/,'Reset clears the active plane');
+ const oldContract=JSON.parse(readFileSync(resolve(site,'validation/learning-contract-042.json'),'utf8'));
+ const currentContract={questions:BANK.questions,blocks:BANK.blocks.map(({theory,repair,...rest})=>rest),checks:CHECKS,papers:COURSE.papers,constructions:tasks};
+ assert.deepEqual(currentContract,oldContract,'Questions, answers, diagnoses, checks, paper tasks and construction data stay intact');
+ const ledger=JSON.parse(readFileSync(resolve(site,'validation/viewing-review-043.json'),'utf8'));
+ assert.deepEqual(ledger.questions.map(q=>q.id).sort(),BANK.questions.map(q=>q.id).sort());
+ assert.deepEqual(ledger.blocks.map(b=>b.id).sort(),BANK.blocks.map(b=>b.id).sort());
+ assert.equal(ledger.instructionStates,instructions);assert.equal(ledger.explicitStudyViews,studyViews);
+ console.log(`Whole-tool viewing checks passed: ${instructions} instruction/repair states, ${studyViews} explicit study-plane views, ${rays} matching view/ray models, ${preserved} unchanged primary SVGs, all ${tasks.length} construction tasks and ${Object.keys(COURSE.papers).length+1} paper tasks. All grading and diagnosis data match 0.4.2.`);
 }

@@ -18,7 +18,7 @@ const segments:IllustrationSegment[]=[
 
 export default function LineExtensionExample(){
  return <div className="line-extension-example">
-  <Geometry points={{M,S}} segments={segments} fitToContent
+  <Geometry studyPlanes={[["A","C","G","E"]]} points={{M,S}} segments={segments} fitToContent
    ariaLabel="Kubus ABCD.EFGH met M halverwege EA. De oranje lijn GM en de groene lijn AC lopen buiten de kubus gestippeld door. Ze snijden elkaar in S, voorbij M en voorbij A."
    caption="M ligt halverwege EA. Het snijpunt S ligt buiten de kubus. Ook voorbij S lopen de lijnen verder."/>
   <div className="extension-legend"><span style={{color:orange}}>Lijn GM</span><span style={{color:teal}}>Lijn AC</span><span>Gestippeld: buiten de kubus</span></div>
