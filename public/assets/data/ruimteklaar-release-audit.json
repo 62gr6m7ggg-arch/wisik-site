@@ -191,7 +191,7 @@
     "tools/space-tent/app/numeric.ts": "d139de877ca1898fdcb3bfa450fcf2de552df05e1731e3ae76883a36403fbacf",
     "tools/space-tent/app/paper.tsx": "d87018a4db3a463ec7dffee348e5b1f62cdbdd6418dcf9c9eabc90df27844828",
     "tools/space-tent/app/projection-lesson-math.ts": "9efdd6b16b9dde9e221e4603a56e74b4e10beca11dd33d9d57e6b85ed7324354",
-    "tools/space-tent/app/projection-lesson.tsx": "14a1525b6df19d1593d3dfa8b723210c423c783d782c13e2182e11e0e7e79c65",
+    "tools/space-tent/app/projection-lesson.tsx": "7422ff72935aa9af9ca5fafe22a6cc1d23f31b95cbc8d679c09d4e862ba10be9",
     "tools/space-tent/app/question-figure.tsx": "f63223c8a97cbbd19a59e040a77a0521966b1134294b09ae3e438a5ce3634630",
     "tools/space-tent/app/question-visuals.ts": "311362c6e8b2294f411003616c8bfbbe6c321c64cddfc86b5d31d8ae87b63704",
     "tools/space-tent/app/rotation.ts": "2c478f06af92bc49e27f9a2d001b13fc675b3a7ffe48b54b863af91d2abc2b2f",
@@ -203,7 +203,7 @@
     "tools/space-tent/app/workbench.tsx": "3375abce19e8cb713ad74eb353300534e9ba30b08a6297c3cad9520b2327c3e4",
     "tools/space-tent/audit-runtime/check-course.mjs": "72230359880a4d09ff20019515d0c357ad72cfd91c8c070eeace3e4062e71414",
     "tools/space-tent/audit-runtime/check-diagnostic.mjs": "83ceec7739e285cd40d37c3465faf54daf04093b477ad77a8d59754b0884fe22",
-    "tools/space-tent/audit-runtime/check-interaction.cjs": "c5906f7658e98434cf531eb24ce494e600ecb1060ae744f946c2229cf2efed6a",
+    "tools/space-tent/audit-runtime/check-interaction.cjs": "b0f2cb7c6d004fde4bbee868a598a5ff08936f14ff02e90410101193b0cc7231",
     "tools/space-tent/audit-runtime/check-learning.mjs": "0cf93fedc1b5f0dd286a43b5817e9a1c89180de038ce3a2c92c28cdd23df06ff",
     "tools/space-tent/audit-runtime/check-local-progress.mjs": "8b22b5fb85a61cf091b492422edf005fd580b12f9b3f14d42818f6e3cf2fbe35",
     "tools/space-tent/components/ui/button.tsx": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4",
@@ -223,7 +223,7 @@
     "tools/space-tent/scripts/build-space.mjs": "276258dbb27aed97c9380eb99276fc430d8241d491192c2cc2e55bfbf282f852",
     "tools/space-tent/scripts/check-course.mjs": "ecb2b0085950ede0aa7c1929e323e2711357e1447e01e1ee4c8094885872b9fd",
     "tools/space-tent/scripts/check-diagnostic.mjs": "60f286f803efbc73619f9d13b9bec3d2dcbb33aa82400e011d46ea84ceb298ab",
-    "tools/space-tent/scripts/check-interaction.mjs": "34edd25c74ef0de497516c037779c5da78c9718267441f5d45b772372e54973b",
+    "tools/space-tent/scripts/check-interaction.mjs": "54b568b606d4d6b65e233b369b767424d287c2a93ced401262da3e695e838c15",
     "tools/space-tent/scripts/check-learning.mjs": "9009f50c5e19c28554ca2c4d123a0567853a1a2146e81f1f840e5ad220a9e9a2",
     "tools/space-tent/scripts/check-local-progress.mjs": "ea10a5e90cac5dbfaa559b28d5be14e60e8d9e655e59736747fddd13e83c63e0",
     "tools/space-tent/space/index.html": "127f5e4b10a477655dfd45ba4958e7e9437ce20a05b1807f3904a7a5f9ea10a2",
@@ -250,7 +250,7 @@
   },
   "publicFiles": {
     "public/apps/ruimteklaar/assets/index-8BJOxdk2.css": "43340a4f521bca55b2606a99763892cd16b1a7907247d45c277df449a49832b4",
-    "public/apps/ruimteklaar/assets/index-i-C-WZbg.js": "2d67ae76d3a3ab55718581660e1da9fcbe5cd29606ec8a52d5b1f592163a7265",
-    "public/apps/ruimteklaar/index.html": "92b28f2df11185aa2501ee8c6a8ac04d53599a5cb8fffc49597b54000a3b651d"
+    "public/apps/ruimteklaar/assets/index-REDPULSp.js": "18f53a7ee67cb308e1e85207c4f147327efd078a1009feb37f0a34fd019edbd2",
+    "public/apps/ruimteklaar/index.html": "aafbf58ae54efa87df995149f9720f4f79256fd1711578916e4019b647287469"
   }
 }
