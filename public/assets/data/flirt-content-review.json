@@ -1054,7 +1054,7 @@
       "verdict": "aligned-with-notes",
       "expectedMisconception": "Alleen de verandering per eenheid wordt gebruikt en het vaste startbedrag wordt vergeten.",
       "intendedInsight": "De ritprijs bestaat uit een eenmalig beginbedrag plus afstandskosten: 4 + 6 × 2,50 = 19; bij 0 km is er al €4.",
-      "observedContent": "Titel en taxiverhaal confronteren de onvolledige uitkomst €15 met het instaptarief €4. Eén schema en een lijn met een positieve startwaarde laten correct zien waarom de totale prijs €19 is. De startwaarde wordt expliciet gekoppeld aan nul kilometer.",
+      "observedContent": "Titel en taxiverhaal confronteren de onvolledige uitkomst €15 met het instaptarief €4. Eén schema en een lijn met een positieve startwaarde laten correct zien waarom de totale prijs €19 is. De startwaarde wordt expliciet gekoppeld aan nul kilometer. De interne productienotities zijn bij de afrondende controle uit het openbare transcript verwijderd; de gesproken uitleg en ondertiteling blijven gelijk.",
       "visualEvidence": [
         {
           "timestamps": [
@@ -1080,8 +1080,7 @@
       ],
       "captionEvidence": "maar de ritprijs begint hier al bij €4.",
       "notes": [
-        "Het schema ondersteunt de wiskunde, maar de verwijzing ‘Kijk naar de teller voordat de taxi vertrekt’ correspondeert met een formule/grafiek in plaats van een getoonde taxiteller. Dit is een niet-blokkerend redactioneel verschil.",
-        "Het volledige transcript bevat na de inhoud PRODUCTIENOTITIES, waaronder een opmerking over D05. Dat is redactionele bijvangst in de publieksversie; de inhoudelijke D07-uitleg en de VTT blijven correct."
+        "Het schema ondersteunt de wiskunde, maar de verwijzing ‘Kijk naar de teller voordat de taxi vertrekt’ correspondeert met een formule/grafiek in plaats van een getoonde taxiteller. Dit is een niet-blokkerend redactioneel verschil."
       ],
       "videoId": "wisik-flirt-d07",
       "title": "De startwaarde niet vergeten",
@@ -1091,7 +1090,7 @@
         "video": "6958c8616c76903c5404b4aa25b55c33b1c9ed675da59c76f7589981c23d01c9",
         "poster": "db6ee3d3d5ba89680a3a62d9a23f91f34e05957706eec5b2038106b98ba2d1e3",
         "captions": "363299812a84d32e968d3abe14227eebd927d0b00ce1c3ab7c2df4253f1c6387",
-        "transcript": "da4350307897b7bcff5049159636249729b9a2ae295336d8d95c810cb8f11b44"
+        "transcript": "3061453e19a08858feae5ae5d6d2ad92c3f218ce2fc4ab3302653ecb11d438f3"
       }
     }
   ]
