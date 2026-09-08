@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123b5d">
-<title>Pabo Rekenklaar 1.6.2 – rubricgestuurd oefenen met diagnostische foutpatronen</title>
+<title>Pabo Rekenklaar 1.6.3 – rubricgestuurd oefenen met diagnostische foutpatronen</title>
 <style>
 :root{
   --navy:#123b5d;
@@ -495,8 +495,8 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 </style>
   <link rel="stylesheet" href="./wisik-bridge.css?v=1.1.0">
   <script src="./wisik-bridge.js?v=1.1.0" defer></script>
-  <script src="/assets/js/site-data.js?v=0.1.19" defer></script>
-  <script src="/assets/js/grabbelton-core.js?v=0.1.19" defer></script>
+  <script src="/assets/js/site-data.js?v=0.1.20" defer></script>
+  <script src="/assets/js/grabbelton-core.js?v=0.1.20" defer></script>
 </head>
 <body>
 <div class="app-shell">
@@ -520,7 +520,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
     <section id="view-home" class="view active" aria-labelledby="homeTitle">
       <div class="hero">
         <div class="hero-copy">
-          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.6.2</span></button></div>
+          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.6.3</span></button></div>
           <h1 id="homeTitle"><span id="heroGreeting">Klaar om rekenen weer vanzelfsprekend te maken?</span></h1>
           <p>Leer per onderdeel, oefen adaptief en bouw de officiële toetsopzet na. De uitleg start rond havo 3 en groeit door naar het overwegend 3F-niveau van de toets.</p>
           <div class="button-row">
@@ -717,7 +717,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 
 <script>
 "use strict";
-const APP_VERSION = "1.6.2";
+const APP_VERSION = "1.6.3";
 const STORAGE_KEY = "pabo-rekenklaar-state-v1";
 const WISIK_TERRAIN_URL = "https://wisik.nl/";
 const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
@@ -733,7 +733,7 @@ const RWT_SOURCE = Object.freeze({
   title:"Handreiking Landelijke reken- en wiskundetoets voor de pabo (RWT)",
   version:"2.2",
   date:"januari 2026",
-  verifiedOn:"2 september 2026",
+  verifiedOn:"8 september 2026",
   landingUrl:"https://cito.nl/onderwijs/hoger-onderwijs/landelijke-reken-en-wiskundetoets-voor-pabo/voor-hogescholen/",
   pdfUrl:"https://cito.nl/media/ygnbm2sy/rwt-handreiking_22.pdf"
 });
@@ -772,6 +772,11 @@ const MISCONCEPTION_CATALOG = Object.freeze({
 const DIAGNOSTIC_DEFAULT_STATE = Object.freeze({schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0});
 
 const RELEASE_NOTES = [
+  {version:"1.6.3",date:"8 september 2026",title:"Voorwaarde bij kansberekening",items:[
+    "De kansuitleg vermeldt nu expliciet dat gunstige uitkomsten tellen alleen rechtstreeks werkt bij even waarschijnlijke uitkomsten.",
+    "Het toetskader is opnieuw vergeleken met de actuele Cito-handreiking RWT 2.2.",
+    "De vragenbank, puntentelling en lokale voortgang werken zoals voorheen."
+  ]},
   {version:"1.6.2",date:"5 september 2026",title:"Veilige Moshpit-ingang",items:[
     "De nieuwe Moshpit-ingang zet de bestaande 60-seconden-sprint klaar zonder een tweede vragenbank te maken.",
     "De klok start pas na een bewuste klik in Pabo Rekenklaar en gebruikt verstreken tijd, ook wanneer een mobiel tabblad tijdelijk op de achtergrond raakt.",
@@ -1004,7 +1009,7 @@ const LESSONS = {
         <p>Bij een verhouding verander je beide kanten met dezelfde factor. In een verhoudingstabel mag je vermenigvuldigen, delen, optellen en combineren zolang de koppeling gelijk blijft.</p>
         <div class="lesson-example"><strong>Voorbeeld verhouding</strong><br>Siroop : water = 1 : 7. Bij 50 ml siroop hoort 50 × 7 = 350 ml water.</div>
         <p>Schaal 1 : 50.000 betekent: 1 cm op de kaart is 50.000 cm = 500 m in werkelijkheid.</p>
-        <p>Promille betekent per duizend: 2‰ = 0,2%. Bij kans geldt <span class="formula">gunstige uitkomsten / alle mogelijke uitkomsten</span>.</p>
+        <p>Promille betekent per duizend: 2‰ = 0,2%. Bij even waarschijnlijke uitkomsten geldt: <span class="formula">kans = aantal gunstige uitkomsten / aantal mogelijke uitkomsten</span>. Zijn de uitkomsten niet even waarschijnlijk, dan kun je deze telregel niet rechtstreeks gebruiken.</p>
         <div class="pitfall"><strong>Valkuil:</strong> bij schaal moet je eerst eenheden gelijk maken.</div>
       </div>`}
   ],

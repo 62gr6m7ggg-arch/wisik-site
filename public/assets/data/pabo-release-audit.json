@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "auditVersion": "1.2.0",
-  "siteVersion": "0.1.19",
+  "siteVersion": "0.1.20",
   "tool": "Pabo Rekenklaar",
-  "toolVersion": "1.6.2",
-  "generatedAt": "2026-09-08T14:23:00.662Z",
+  "toolVersion": "1.6.3",
+  "generatedAt": "2026-09-08T22:31:15.371Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -912,7 +912,7 @@
         "verdict": "aligned-with-notes",
         "expectedMisconception": "Alleen de verandering per eenheid wordt gebruikt en het vaste startbedrag wordt vergeten.",
         "intendedInsight": "De ritprijs bestaat uit een eenmalig beginbedrag plus afstandskosten: 4 + 6 × 2,50 = 19; bij 0 km is er al €4.",
-        "observedContent": "Titel en taxiverhaal confronteren de onvolledige uitkomst €15 met het instaptarief €4. Eén schema en een lijn met een positieve startwaarde laten correct zien waarom de totale prijs €19 is. De startwaarde wordt expliciet gekoppeld aan nul kilometer.",
+        "observedContent": "Titel en taxiverhaal confronteren de onvolledige uitkomst €15 met het instaptarief €4. Eén schema en een lijn met een positieve startwaarde laten correct zien waarom de totale prijs €19 is. De startwaarde wordt expliciet gekoppeld aan nul kilometer. De interne productienotities zijn bij de afrondende controle uit het openbare transcript verwijderd; de gesproken uitleg en ondertiteling blijven gelijk.",
         "visualEvidence": [
           {
             "timestamps": [
@@ -938,8 +938,7 @@
         ],
         "captionEvidence": "maar de ritprijs begint hier al bij €4.",
         "notes": [
-          "Het schema ondersteunt de wiskunde, maar de verwijzing ‘Kijk naar de teller voordat de taxi vertrekt’ correspondeert met een formule/grafiek in plaats van een getoonde taxiteller. Dit is een niet-blokkerend redactioneel verschil.",
-          "Het volledige transcript bevat na de inhoud PRODUCTIENOTITIES, waaronder een opmerking over D05. Dat is redactionele bijvangst in de publieksversie; de inhoudelijke D07-uitleg en de VTT blijven correct."
+          "Het schema ondersteunt de wiskunde, maar de verwijzing ‘Kijk naar de teller voordat de taxi vertrekt’ correspondeert met een formule/grafiek in plaats van een getoonde taxiteller. Dit is een niet-blokkerend redactioneel verschil."
         ],
         "videoId": "wisik-flirt-d07",
         "title": "De startwaarde niet vergeten"
@@ -951,7 +950,7 @@
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
     "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "282c946b17159ea2bc2a9bc54feec76e1aedac6657106cd6a06ad881a552b448"
+    "sha256": "5d6a8e65689d1172c8e5a7d8c52cb3f72979951d0f83bc193952f5263aef49f8"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",
