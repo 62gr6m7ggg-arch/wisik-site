@@ -188,6 +188,7 @@ console.log(`Interaction SSR checks passed: ${cards} question-card states, ${fig
  for(const position of [0,.5,1,1.5,2]){
   const html=render(ProjectionLessonFrame,{position});assertFinite(html,'projection lesson '+position);
   assert.ok(html.includes('marker-end="url(#look-')&&html.includes('het blauwe kader is het tekenvlak'));
+  assert.ok(html.includes('Beeld AB:')&&html.includes('Beeld AD:')&&html.includes('Beeld AE:'),'Image lengths must be visibly distinguished from real lengths');
   assert.ok(html.includes(position===1?'Je kijkt recht van voren.':'Je kijkt schuin van voren, van rechts en van boven.'));
  }
  const old=JSON.parse(readFileSync(resolve(site,'validation/projection-regression-041.json'),'utf8')),actual={};
