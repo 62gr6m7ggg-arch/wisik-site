@@ -1,0 +1,29 @@
+{
+  "appVersion": "0.4.4",
+  "browser": {
+    "environment": "Chromium 149, lokale productiebundel",
+    "status": "passed",
+    "examples": 50,
+    "widths": [
+      320,
+      390,
+      1280
+    ],
+    "renders": 150,
+    "playedLessons": 6,
+    "errors": []
+  },
+  "audio": {
+    "decodedFiles": 50,
+    "integratedLoudnessLufs": [
+      -20.32,
+      -19.09
+    ],
+    "maximumTruePeakDbtp": -1.06
+  },
+  "limits": [
+    "Geen menselijke beluistering",
+    "Geen fysieke iPhone/Safari-test",
+    "Eigen voorbeeldfiguren; geen op de stem gemonteerde animatiefilms"
+  ]
+}

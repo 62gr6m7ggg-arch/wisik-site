@@ -200,3 +200,6 @@ html{scroll-padding-top:150px}
 .compact .viewing-guide{padding:9px 11px;font-size:.8rem}
 @media(max-width:600px){.viewing-guide-detail{flex-direction:column;align-items:flex-start;gap:0}.viewing-guide-detail>svg{align-self:center}.plane-view-controls>div>button{flex:1 1 auto}.viewing-guide{padding:11px 12px}}
 @media print{.viewing-guide{display:none!important}}
+/* Keep the route tabs inside the narrowest supported phone viewport. */
+@media(max-width:360px){.subnav [data-slot=tabs-trigger]{font-size:.75rem;padding:8px 4px}}
+@media(max-width:360px){.overview-grid{grid-template-columns:minmax(0,1fr)}.overview-grid>*{min-width:0}.block-text,.finishing-tasks button>span:first-child{min-width:0}.finishing-tasks strong{overflow-wrap:anywhere}}

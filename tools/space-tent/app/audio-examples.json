@@ -1,0 +1,1999 @@
+{
+  "1.1": {
+    "scene": {
+      "caption": "AB en CG hebben geen gemeenschappelijk punt. Draai de kubus om het diepteverschil te onderzoeken.",
+      "highlights": [
+        "AB",
+        "CG"
+      ],
+      "planes": [],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "1.2": {
+    "scene": {
+      "caption": "BC ∥ AD ∥ FG ∥ EH. M is het midden van BC. Verhoudingen op één lijn blijven behouden.",
+      "highlights": [
+        "BC",
+        "AD",
+        "FG",
+        "EH"
+      ],
+      "planes": [],
+      "points": {
+        "M": [
+          1,
+          0.5,
+          0
+        ]
+      },
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "1.3": {
+    "scene": {
+      "caption": "Teken eerst het voorvlak, daarna de evenwijdige dieptelijnen en het achtervlak.",
+      "highlights": [],
+      "planes": [],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": [
+      "De tekenafspraak in deze uitleg: dieptelijnen onder 60°, met halve tekenlengte. Dit is een tekenafspraak, geen werkelijke hoek of lengte."
+    ]
+  },
+  "1.4": {
+    "scene": {
+      "showCube": false,
+      "caption": "Drie punten die niet op één lijn liggen bepalen één vlak.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          1,
+          0,
+          0
+        ],
+        "C": [
+          0.3,
+          1,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA"
+      ],
+      "highlights": [],
+      "planes": [
+        [
+          "A",
+          "B",
+          "C"
+        ]
+      ]
+    },
+    "notes": []
+  },
+  "1.5": {
+    "scene": {
+      "caption": "AB en AD snijden; AB en DC zijn evenwijdig; AB en CG kruisen.",
+      "highlights": [
+        "AB",
+        "AD",
+        "DC",
+        "CG"
+      ],
+      "planes": [],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "1.6": {
+    "scene": {
+      "caption": "M is het midden van AE. De lijnen GM en AC snijden in S buiten de kubus.",
+      "highlights": [
+        "GM",
+        "AC",
+        "MS",
+        "AS"
+      ],
+      "planes": [
+        [
+          "A",
+          "C",
+          "G",
+          "E"
+        ]
+      ],
+      "points": {
+        "M": [
+          0,
+          0,
+          0.5
+        ],
+        "S": [
+          -1,
+          -1,
+          0
+        ]
+      },
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "1.7": {
+    "scene": {
+      "caption": "A en D vallen in vooraanzicht samen. In een andere kijkrichting zie je het verschil.",
+      "highlights": [
+        "AD"
+      ],
+      "planes": [],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "1.8": {
+    "scene": {
+      "caption": "De vlakken BCGF en DCGH delen de lijn CG.",
+      "highlights": [
+        "CG"
+      ],
+      "planes": [
+        [
+          "B",
+          "C",
+          "G",
+          "F"
+        ],
+        [
+          "D",
+          "C",
+          "G",
+          "H"
+        ]
+      ],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "1.9": {
+    "notes": [
+      "Drie verschillende vlakken: nul snijlijnen als ze alle evenwijdig zijn; twee als twee evenwijdige vlakken door het derde worden gesneden; één bij een gedeelde scharnierlijn; drie evenwijdige snijlijnen; of drie snijlijnen door één punt."
+    ]
+  },
+  "2.1": {
+    "scene": {
+      "showCube": false,
+      "caption": "H bevat de lijn l. Zoek s = H ∩ V. Het snijpunt van l en s ligt ook op V.",
+      "points": {
+        "A": [
+          -1,
+          -1,
+          0
+        ],
+        "B": [
+          1,
+          -1,
+          0
+        ],
+        "C": [
+          1,
+          1,
+          0
+        ],
+        "D": [
+          -1,
+          1,
+          0
+        ],
+        "E": [
+          -1,
+          0,
+          -1
+        ],
+        "F": [
+          1,
+          0,
+          1
+        ],
+        "G": [
+          1,
+          0,
+          -1
+        ],
+        "H": [
+          -1,
+          0,
+          1
+        ],
+        "S": [
+          0,
+          0,
+          0
+        ],
+        "P": [
+          -1,
+          0,
+          0
+        ],
+        "Q": [
+          1,
+          0,
+          0
+        ]
+      },
+      "edges": [
+        "EF",
+        "PQ"
+      ],
+      "highlights": [
+        "EF",
+        "PQ"
+      ],
+      "planes": [
+        [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        [
+          "E",
+          "G",
+          "F",
+          "H"
+        ]
+      ]
+    },
+    "notes": []
+  },
+  "2.2": {
+    "scene": {
+      "caption": "Hulpvlak ACGE: O = AC ∩ BD en S = AG ∩ EO. S ligt in het vlak EBD.",
+      "highlights": [
+        "AG",
+        "AC",
+        "BD",
+        "EO"
+      ],
+      "planes": [
+        [
+          "A",
+          "C",
+          "G",
+          "E"
+        ],
+        [
+          "E",
+          "B",
+          "D"
+        ]
+      ],
+      "points": {
+        "O": [
+          0.5,
+          0.5,
+          0
+        ],
+        "S": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ]
+      },
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "2.3": {
+    "scene": {
+      "caption": "Dit snijvlak geeft een zeshoek: volg de rand per zijvlak.",
+      "highlights": [],
+      "planes": [
+        [
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U"
+        ]
+      ],
+      "points": {
+        "P": [
+          1,
+          0.5,
+          0
+        ],
+        "Q": [
+          0.5,
+          1,
+          0
+        ],
+        "R": [
+          0,
+          1,
+          0.5
+        ],
+        "S": [
+          0,
+          0.5,
+          1
+        ],
+        "T": [
+          0.5,
+          0,
+          1
+        ],
+        "U": [
+          1,
+          0,
+          0.5
+        ]
+      },
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "2.4": {
+    "scene": {
+      "caption": "P, Q en R bepalen de doorsnede PQRS. PS ∥ QR omdat ADHE ∥ BCGF.",
+      "highlights": [
+        "PQ",
+        "QR",
+        "RS",
+        "SP"
+      ],
+      "planes": [
+        [
+          "P",
+          "Q",
+          "R",
+          "S"
+        ]
+      ],
+      "points": {
+        "P": [
+          0,
+          0,
+          0.25
+        ],
+        "Q": [
+          1,
+          0,
+          0.5
+        ],
+        "R": [
+          1,
+          1,
+          0.75
+        ],
+        "S": [
+          0,
+          1,
+          0.5
+        ]
+      },
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "2.5": {
+    "scene": {
+      "caption": "X = PQ ∩ AB en Y = QR ∩ BC liggen buiten de kubus. XY is de snijlijn met het grondvlak.",
+      "highlights": [
+        "PQ",
+        "QR",
+        "RS",
+        "SP",
+        "XP",
+        "YQ",
+        "XY"
+      ],
+      "planes": [
+        [
+          "P",
+          "Q",
+          "R",
+          "S"
+        ]
+      ],
+      "points": {
+        "P": [
+          0,
+          0,
+          0.25
+        ],
+        "Q": [
+          1,
+          0,
+          0.5
+        ],
+        "R": [
+          1,
+          1,
+          0.75
+        ],
+        "S": [
+          0,
+          1,
+          0.5
+        ],
+        "X": [
+          -1,
+          0,
+          0
+        ],
+        "Y": [
+          1,
+          -2,
+          0
+        ]
+      },
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "2.6": {
+    "scene": {
+      "showCube": false,
+      "caption": "DE ∥ AB geeft gelijke hoeken: C ↔ C, D ↔ A, E ↔ B.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          0,
+          4,
+          0
+        ],
+        "D": [
+          0,
+          2,
+          0
+        ],
+        "E": [
+          3,
+          2,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA",
+        "DE"
+      ],
+      "highlights": [
+        "DE",
+        "AB"
+      ],
+      "planes": []
+    },
+    "notes": []
+  },
+  "2.7": {
+    "scene": {
+      "showCube": false,
+      "caption": "Van groot naar klein: × ½. Terug: × 2. Oppervlakte: × ¼.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          4,
+          0,
+          0
+        ],
+        "C": [
+          0,
+          3,
+          0
+        ],
+        "D": [
+          6,
+          0,
+          0
+        ],
+        "E": [
+          8,
+          0,
+          0
+        ],
+        "F": [
+          6,
+          1.5,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA",
+        "DE",
+        "EF",
+        "FD"
+      ],
+      "highlights": [],
+      "planes": []
+    },
+    "notes": []
+  },
+  "2.8": {
+    "scene": {
+      "caption": "Balk 3 × 4 × 12: AC = 5 en AG = 13.",
+      "highlights": [
+        "AC",
+        "CG",
+        "AG"
+      ],
+      "planes": [
+        [
+          "A",
+          "C",
+          "G"
+        ]
+      ],
+      "points": {},
+      "dimensions": [
+        3,
+        4,
+        12
+      ]
+    },
+    "notes": [
+      "AC² = 3² + 4² = 25. AG² = 5² + 12² = 169."
+    ]
+  },
+  "3.1": {
+    "notes": [
+      "Een doorsnedelijn ligt op een zijvlak. Verbind punten pas als ze op hetzelfde zijvlak liggen.",
+      "Bij een prisma zijn grond- en bovenvlak evenwijdig. Bij een piramide kun je dat niet aannemen."
+    ]
+  },
+  "3.2": {
+    "scene": {
+      "showCube": false,
+      "caption": "CH staat loodrecht op de lijn AB. De hoogtevoet mag buiten het lijnstuk AB liggen.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          4,
+          0,
+          0
+        ],
+        "C": [
+          5,
+          3,
+          0
+        ],
+        "H": [
+          5,
+          0,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA",
+        "BH"
+      ],
+      "highlights": [
+        "AB",
+        "CH"
+      ],
+      "planes": []
+    },
+    "notes": [
+      "O = ½ · basis · bijbehorende loodrechte hoogte."
+    ]
+  },
+  "3.3": {
+    "scene": {
+      "showCube": false,
+      "caption": "Driehoekig prisma: grondvlak ½ × 6 × 4 = 12 cm²; loodrechte prismahoogte 8 cm.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0,
+          0
+        ],
+        "C": [
+          0,
+          4,
+          0
+        ],
+        "D": [
+          0,
+          0,
+          8
+        ],
+        "E": [
+          6,
+          0,
+          8
+        ],
+        "F": [
+          0,
+          4,
+          8
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA",
+        "DE",
+        "EF",
+        "FD",
+        "AD",
+        "BE",
+        "CF"
+      ],
+      "highlights": [],
+      "planes": [
+        [
+          "A",
+          "B",
+          "C"
+        ],
+        [
+          "D",
+          "E",
+          "F"
+        ]
+      ]
+    },
+    "notes": [
+      "I = G · h = 12 × 8 = 96 cm³."
+    ]
+  },
+  "3.4": {
+    "scene": {
+      "caption": "Drie piramiden met top A en de drie tegenoverliggende kubusvlakken als grondvlak vullen samen de kubus.",
+      "highlights": [
+        "AG",
+        "AF",
+        "AH"
+      ],
+      "planes": [
+        [
+          "B",
+          "C",
+          "G",
+          "F"
+        ],
+        [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        [
+          "D",
+          "C",
+          "G",
+          "H"
+        ]
+      ],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": [
+      "Voor elke piramide: I = ⅓ · G · h. h is de loodrechte afstand tot het grondvlak."
+    ]
+  },
+  "3.5": {
+    "scene": {
+      "showCube": false,
+      "caption": "Dak: grondvlak 10 × 10, hoogte 5, gecentreerde nok van 5.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          10,
+          0,
+          0
+        ],
+        "C": [
+          10,
+          10,
+          0
+        ],
+        "D": [
+          0,
+          10,
+          0
+        ],
+        "P": [
+          2.5,
+          5,
+          5
+        ],
+        "Q": [
+          7.5,
+          5,
+          5
+        ],
+        "E": [
+          2.5,
+          0,
+          0
+        ],
+        "F": [
+          2.5,
+          10,
+          0
+        ],
+        "G": [
+          7.5,
+          0,
+          0
+        ],
+        "H": [
+          7.5,
+          10,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "AP",
+        "DP",
+        "PQ",
+        "BQ",
+        "CQ",
+        "EF",
+        "GH"
+      ],
+      "highlights": [],
+      "planes": [
+        [
+          "A",
+          "E",
+          "F",
+          "D"
+        ],
+        [
+          "G",
+          "B",
+          "C",
+          "H"
+        ]
+      ]
+    },
+    "notes": [
+      "Middenprisma: (½ × 10 × 5) × 5 = 125.",
+      "Elk uiteinde: horizontaal grondvlak 2½ × 10 = 25; loodrechte hoogte 5. Inhoud ⅓ × 25 × 5 = 41⅔.",
+      "Totaal: 125 + 2 × 41⅔ = 208⅓."
+    ]
+  },
+  "3.6": {
+    "scene": {
+      "caption": "Balk 4 × 3 × 2, met hoekpiramide G.EFB verwijderd. EBG is het nieuwe buitenvlak.",
+      "highlights": [
+        "EB",
+        "BG",
+        "GE"
+      ],
+      "planes": [
+        [
+          "E",
+          "B",
+          "G"
+        ]
+      ],
+      "points": {},
+      "dimensions": [
+        4,
+        3,
+        2
+      ]
+    },
+    "notes": [
+      "Hele balk: 24 dm³. Piramide: ⅓ × (½ × 4 × 2) × 3 = 4 dm³. Over: 20 dm³."
+    ]
+  },
+  "3.7": {
+    "scene": {
+      "caption": "Balk 4 × 3 × 2, met hoekpiramide G.EFB verwijderd. EBG is het nieuwe buitenvlak.",
+      "highlights": [
+        "EB",
+        "BG",
+        "GE"
+      ],
+      "planes": [
+        [
+          "E",
+          "B",
+          "G"
+        ]
+      ],
+      "points": {},
+      "dimensions": [
+        4,
+        3,
+        2
+      ]
+    },
+    "notes": [
+      "Tel alleen de buitenvlakken. EBG komt erbij; de verdwenen driehoeken EFB, EFG en BFG tellen niet mee."
+    ]
+  },
+  "3.8": {
+    "scene": {
+      "showCube": false,
+      "caption": "Rechte hoek bij B. Voor hoek A: overstaand BC = 3, aanliggend AB = 4, schuin AC = 5.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          4,
+          0,
+          0
+        ],
+        "C": [
+          4,
+          3,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA"
+      ],
+      "highlights": [],
+      "planes": []
+    },
+    "notes": [
+      "sin α = 3/5; cos α = 4/5; tan α = 3/4; α ≈ 36,87°."
+    ]
+  },
+  "4.1": {
+    "scene": {
+      "caption": "Voor hoek EAG gebruik je driehoek AEG. De rechte hoek ligt bij E.",
+      "highlights": [
+        "AE",
+        "EG",
+        "AG"
+      ],
+      "planes": [
+        [
+          "A",
+          "E",
+          "G"
+        ]
+      ],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "4.2": {
+    "scene": {
+      "showCube": false,
+      "caption": "Hoek α ligt bij A, tussen AB en AC.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          4,
+          0,
+          0
+        ],
+        "C": [
+          0,
+          5.0,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA"
+      ],
+      "highlights": [],
+      "planes": []
+    },
+    "notes": [
+      "a² = b² + c² − 2bc cos α. Bij α = 90° is de correctieterm nul."
+    ]
+  },
+  "4.3": {
+    "scene": {
+      "showCube": false,
+      "caption": "Hoek α ligt bij A, tussen AB en AC.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          11,
+          0,
+          0
+        ],
+        "C": [
+          10.954545454545455,
+          6.999852418751234,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA"
+      ],
+      "highlights": [],
+      "planes": []
+    },
+    "notes": [
+      "AB = 11, AC = 13, BC = 7. cos α = (11² + 13² − 7²) / (2 × 11 × 13). α ≈ 32,58°."
+    ]
+  },
+  "4.4": {
+    "scene": {
+      "showCube": false,
+      "caption": "Hoek α ligt bij A, tussen AB en AC.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          11,
+          0,
+          0
+        ],
+        "C": [
+          7.2727272727272725,
+          3.332782323604248,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CA"
+      ],
+      "highlights": [],
+      "planes": []
+    },
+    "notes": [
+      "AB = 11, AC = 8, BC = 5. cos α = 10/11. h = 8 sin α. O = 4√21 ≈ 18,33."
+    ]
+  },
+  "4.5": {
+    "scene": {
+      "caption": "Kubus met ribbe 5. I is midden AE, J midden BF. EJ ∥ IB; bereken hoek JEG.",
+      "highlights": [
+        "EG",
+        "IB",
+        "EJ",
+        "JG"
+      ],
+      "planes": [
+        [
+          "E",
+          "J",
+          "G"
+        ]
+      ],
+      "points": {
+        "I": [
+          0,
+          0,
+          0.5
+        ],
+        "J": [
+          1,
+          0,
+          0.5
+        ]
+      },
+      "dimensions": [
+        5,
+        5,
+        5
+      ]
+    },
+    "notes": [
+      "cos ε = √(2/5); ε ≈ 50,77°."
+    ]
+  },
+  "4.6": {
+    "scene": {
+      "caption": "AE ⟂ AB én AE ⟂ AD. AB en AD snijden in A en liggen in ABCD. Dus AE ⟂ ABCD.",
+      "highlights": [
+        "AE",
+        "AB",
+        "AD"
+      ],
+      "planes": [
+        [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      ],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "4.7": {
+    "scene": {
+      "caption": "GC staat loodrecht op ABCD: G projecteert op C, A blijft A. De projectie van AG is AC.",
+      "highlights": [
+        "AG",
+        "AC",
+        "CG"
+      ],
+      "planes": [
+        [
+          "A",
+          "C",
+          "G"
+        ]
+      ],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": []
+  },
+  "4.8": {
+    "scene": {
+      "caption": "GC staat loodrecht op ABCD: G projecteert op C, A blijft A. De projectie van AG is AC.",
+      "highlights": [
+        "AG",
+        "AC",
+        "CG"
+      ],
+      "planes": [
+        [
+          "A",
+          "C",
+          "G"
+        ]
+      ],
+      "points": {},
+      "dimensions": [
+        1,
+        1,
+        1
+      ]
+    },
+    "notes": [
+      "tan α = CG/AC = 1/√2; α ≈ 35,26°."
+    ]
+  },
+  "4.9": {
+    "scene": {
+      "showCube": false,
+      "caption": "De snijlijn is s = AB. IP en IQ staan beide loodrecht op s. Hoek PIQ is de standhoek.",
+      "points": {
+        "A": [
+          0,
+          0,
+          -1
+        ],
+        "B": [
+          0,
+          0,
+          1
+        ],
+        "I": [
+          0,
+          0,
+          0
+        ],
+        "P": [
+          1,
+          0,
+          0
+        ],
+        "Q": [
+          0.5,
+          0.866,
+          0
+        ],
+        "C": [
+          1,
+          0,
+          -1
+        ],
+        "D": [
+          1,
+          0,
+          1
+        ],
+        "E": [
+          0.5,
+          0.866,
+          -1
+        ],
+        "F": [
+          0.5,
+          0.866,
+          1
+        ]
+      },
+      "edges": [
+        "AB",
+        "IP",
+        "IQ"
+      ],
+      "highlights": [
+        "IP",
+        "IQ"
+      ],
+      "planes": [
+        [
+          "A",
+          "C",
+          "D",
+          "B"
+        ],
+        [
+          "A",
+          "E",
+          "F",
+          "B"
+        ],
+        [
+          "I",
+          "P",
+          "Q"
+        ]
+      ]
+    },
+    "notes": []
+  },
+  "4.10": {
+    "scene": {
+      "caption": "Kubus met ribbe 4. J midden BF; I is de loodvoet van F op EJ. Hoek FIG is de standhoek.",
+      "highlights": [
+        "EJ",
+        "FI",
+        "GI",
+        "FG"
+      ],
+      "planes": [
+        [
+          "E",
+          "J",
+          "G"
+        ],
+        [
+          "A",
+          "B",
+          "F",
+          "E"
+        ]
+      ],
+      "points": {
+        "J": [
+          1,
+          0,
+          0.5
+        ],
+        "I": [
+          0.8,
+          0,
+          0.6
+        ]
+      },
+      "dimensions": [
+        4,
+        4,
+        4
+      ]
+    },
+    "notes": [
+      "FI = 4/√5; FG = 4. tan φ = √5; φ ≈ 65,91°."
+    ]
+  },
+  "5.1": {
+    "scene": {
+      "showCube": false,
+      "caption": "P = (3,2), A = (0,0), B = (1,0), H = (3,0). PH staat loodrecht op de lijn AB.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          1,
+          0,
+          0
+        ],
+        "P": [
+          3,
+          2,
+          0
+        ],
+        "H": [
+          3,
+          0,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "BH",
+        "BP"
+      ],
+      "highlights": [
+        "PH"
+      ],
+      "planes": []
+    },
+    "notes": [
+      "Afstand tot de lijn: 2. Afstand tot het begrensde lijnstuk AB: √8. De loodvoet H ligt buiten AB."
+    ]
+  },
+  "5.2": {
+    "scene": {
+      "caption": "Kubus met ribbe 4. P is midden EG. Q is de loodvoet P′ op EB.",
+      "highlights": [
+        "EB",
+        "EG",
+        "BG",
+        "PQ"
+      ],
+      "planes": [
+        [
+          "E",
+          "B",
+          "G"
+        ]
+      ],
+      "points": {
+        "P": [
+          0.5,
+          0.5,
+          1
+        ],
+        "Q": [
+          0.25,
+          0,
+          0.75
+        ]
+      },
+      "dimensions": [
+        4,
+        4,
+        4
+      ]
+    },
+    "notes": [
+      "EBG is gelijkzijdig. PP′ = 2√2 · sin 60° = √6 ≈ 2,45 cm."
+    ]
+  },
+  "5.3": {
+    "scene": {
+      "showCube": false,
+      "caption": "AST is rechthoekig bij S. H is de loodvoet S′ op AT.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "S": [
+          4,
+          0,
+          0
+        ],
+        "T": [
+          4,
+          6,
+          0
+        ],
+        "H": [
+          1.2307692307692308,
+          1.8461538461538463,
+          0
+        ]
+      },
+      "edges": [
+        "AS",
+        "ST",
+        "TA"
+      ],
+      "highlights": [
+        "SH"
+      ],
+      "planes": []
+    },
+    "notes": [
+      "O = ½ × 4 × 6 = 12. AT = √52. SS′ = 24/√52 ≈ 3,33."
+    ]
+  },
+  "5.4": {
+    "scene": {
+      "caption": "Balk 6 × 6 × 4. I is midden FH. Q is de loodvoet E′ op AI en op het vlak AFH.",
+      "highlights": [
+        "AI",
+        "EQ",
+        "FH"
+      ],
+      "planes": [
+        [
+          "A",
+          "F",
+          "H"
+        ],
+        [
+          "A",
+          "C",
+          "G",
+          "E"
+        ]
+      ],
+      "points": {
+        "I": [
+          0.5,
+          0.5,
+          1
+        ],
+        "Q": [
+          0.23529411764705882,
+          0.23529411764705882,
+          0.47058823529411764
+        ]
+      },
+      "dimensions": [
+        6,
+        6,
+        4
+      ]
+    },
+    "notes": [
+      "AE = 4; EI = 3√2. EE′ = 12/√17 ≈ 2,91."
+    ]
+  },
+  "5.5": {
+    "scene": {
+      "caption": "Kubus met ribbe 4. Q is de loodvoet van F op BGE. Gebruik dezelfde tetraëder BGEF met twee grondvlakken.",
+      "highlights": [
+        "FQ"
+      ],
+      "planes": [
+        [
+          "B",
+          "G",
+          "E"
+        ],
+        [
+          "F",
+          "G",
+          "E"
+        ]
+      ],
+      "points": {
+        "Q": [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      },
+      "dimensions": [
+        4,
+        4,
+        4
+      ]
+    },
+    "notes": [
+      "I = ⅓ × 8 × 4 = 32/3. Ook I = ⅓ × 8√3 × d. Dus d = 4/√3 ≈ 2,31 cm."
+    ]
+  },
+  "5.6": {
+    "scene": {
+      "caption": "Kubus met ribbe 8; hier h = 4. Het wateroppervlak is 8 × 8.",
+      "highlights": [
+        "AP"
+      ],
+      "planes": [
+        [
+          "P",
+          "Q",
+          "R",
+          "S"
+        ]
+      ],
+      "points": {
+        "P": [
+          0,
+          0,
+          0.5
+        ],
+        "Q": [
+          1,
+          0,
+          0.5
+        ],
+        "R": [
+          1,
+          1,
+          0.5
+        ],
+        "S": [
+          0,
+          1,
+          0.5
+        ]
+      },
+      "dimensions": [
+        8,
+        8,
+        8
+      ]
+    },
+    "notes": [
+      "I(h) = 64h voor 0 ≤ h ≤ 8. O(h) = 64 cm² bij een positief waterniveau; bij h = 0 is de kubus leeg."
+    ]
+  },
+  "5.7": {
+    "scene": {
+      "showCube": false,
+      "caption": "Piramide: vierkante basis 8 × 8, hoogte 8. Getoond niveau h = 2.00.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          8,
+          0,
+          0
+        ],
+        "C": [
+          8,
+          8,
+          0
+        ],
+        "D": [
+          0,
+          8,
+          0
+        ],
+        "T": [
+          4.0,
+          4.0,
+          8
+        ],
+        "P": [
+          1.0,
+          1.0,
+          2
+        ],
+        "Q": [
+          7.0,
+          1.0,
+          2
+        ],
+        "R": [
+          7.0,
+          7.0,
+          2
+        ],
+        "S": [
+          1.0,
+          7.0,
+          2
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "AT",
+        "BT",
+        "CT",
+        "DT",
+        "PQ",
+        "QR",
+        "RS",
+        "SP"
+      ],
+      "highlights": [],
+      "planes": [
+        [
+          "P",
+          "Q",
+          "R",
+          "S"
+        ]
+      ]
+    },
+    "notes": [
+      "Zijde z = 8 − h. Oppervlakte O(h) = (8 − h)², 0 ≤ h ≤ 8. O(2) = 36; O(5) = 9."
+    ]
+  },
+  "5.8": {
+    "scene": {
+      "showCube": false,
+      "caption": "Piramide: vierkante basis 20 × 20, hoogte 10. Getoond niveau h = 3.33.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          20,
+          0,
+          0
+        ],
+        "C": [
+          20,
+          20,
+          0
+        ],
+        "D": [
+          0,
+          20,
+          0
+        ],
+        "T": [
+          10.0,
+          10.0,
+          10
+        ],
+        "P": [
+          3.3333333333333335,
+          3.3333333333333335,
+          3.3333333333333335
+        ],
+        "Q": [
+          16.666666666666668,
+          3.3333333333333335,
+          3.3333333333333335
+        ],
+        "R": [
+          16.666666666666668,
+          16.666666666666668,
+          3.3333333333333335
+        ],
+        "S": [
+          3.3333333333333335,
+          16.666666666666668,
+          3.3333333333333335
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "AT",
+        "BT",
+        "CT",
+        "DT",
+        "PQ",
+        "QR",
+        "RS",
+        "SP"
+      ],
+      "highlights": [],
+      "planes": [
+        [
+          "P",
+          "Q",
+          "R",
+          "S"
+        ]
+      ]
+    },
+    "notes": [
+      "Zijde b = 20 − 2h; grondvlak b². Inhoud I(h) = h(20 − 2h)², met 0 ≤ h ≤ 10."
+    ]
+  },
+  "5.9": {
+    "scene": {
+      "showCube": false,
+      "caption": "Piramide: vierkante basis 20 × 20, hoogte 10. Getoond niveau h = 2.00.",
+      "points": {
+        "A": [
+          0,
+          0,
+          0
+        ],
+        "B": [
+          20,
+          0,
+          0
+        ],
+        "C": [
+          20,
+          20,
+          0
+        ],
+        "D": [
+          0,
+          20,
+          0
+        ],
+        "T": [
+          10.0,
+          10.0,
+          10
+        ],
+        "P": [
+          2.0,
+          2.0,
+          2
+        ],
+        "Q": [
+          18.0,
+          2.0,
+          2
+        ],
+        "R": [
+          18.0,
+          18.0,
+          2
+        ],
+        "S": [
+          2.0,
+          18.0,
+          2
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "AT",
+        "BT",
+        "CT",
+        "DT",
+        "PQ",
+        "QR",
+        "RS",
+        "SP"
+      ],
+      "highlights": [],
+      "planes": [
+        [
+          "P",
+          "Q",
+          "R",
+          "S"
+        ]
+      ]
+    },
+    "notes": [
+      "Zijde b = 20 − 2h; grondvlak b². Inhoud I(h) = h(20 − 2h)², met 0 ≤ h ≤ 10.",
+      "I(h) ≥ 512 voor 2 ≤ h ≤ 9 − √17. De bovengrens is ongeveer 4,88. De oplossing 9 + √17 ligt buiten het domein."
+    ]
+  },
+  "6.1": {
+    "scene": {
+      "caption": "Kubus met ribbe 8. HF en AC hebben loodrechte richtingen en liggen 8 uit elkaar. BD is de verschoven kopie van HF in het grondvlak.",
+      "highlights": [
+        "HF",
+        "AC",
+        "BD",
+        "PQ"
+      ],
+      "planes": [],
+      "points": {
+        "P": [
+          0.5,
+          0.5,
+          0
+        ],
+        "Q": [
+          0.5,
+          0.5,
+          1
+        ]
+      },
+      "dimensions": [
+        8,
+        8,
+        8
+      ]
+    },
+    "notes": [
+      "De hoek tussen de richtingen is 90°. Verplaatsen verandert de afstand, niet die hoek."
+    ]
+  },
+  "6.2": {
+    "scene": {
+      "showCube": false,
+      "caption": "Twee kruisende rails. PQ is de gemeenschappelijke loodlijn.",
+      "points": {
+        "A": [
+          -2,
+          0,
+          0
+        ],
+        "B": [
+          2,
+          0,
+          0
+        ],
+        "C": [
+          0,
+          -2,
+          1
+        ],
+        "D": [
+          0,
+          2,
+          1
+        ],
+        "P": [
+          0,
+          0,
+          0
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ]
+      },
+      "edges": [
+        "AB",
+        "CD"
+      ],
+      "highlights": [
+        "PQ"
+      ],
+      "planes": []
+    },
+    "notes": []
+  },
+  "6.3": {
+    "scene": {
+      "showCube": false,
+      "caption": "V bevat m = CD en is evenwijdig aan l = AB. Projecteer l op V; het snijpunt met m levert Q en de bijbehorende voet P op l.",
+      "points": {
+        "A": [
+          -2,
+          0,
+          1
+        ],
+        "B": [
+          2,
+          0,
+          1
+        ],
+        "C": [
+          0,
+          -2,
+          0
+        ],
+        "D": [
+          0,
+          2,
+          0
+        ],
+        "E": [
+          -2,
+          -2,
+          0
+        ],
+        "F": [
+          2,
+          -2,
+          0
+        ],
+        "G": [
+          2,
+          2,
+          0
+        ],
+        "H": [
+          -2,
+          2,
+          0
+        ],
+        "P": [
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0
+        ],
+        "R": [
+          -2,
+          0,
+          0
+        ],
+        "S": [
+          2,
+          0,
+          0
+        ]
+      },
+      "edges": [
+        "AB",
+        "CD",
+        "RS"
+      ],
+      "highlights": [
+        "PQ"
+      ],
+      "planes": [
+        [
+          "E",
+          "F",
+          "G",
+          "H"
+        ]
+      ]
+    },
+    "notes": [
+      "De loodvoet van een willekeurig punt op l hoeft niet op m te liggen. Kies de punten via het snijpunt van de projectie met m."
+    ]
+  },
+  "6.4": {
+    "scene": {
+      "caption": "Kubus met ribbe 10. M is midden HF. Q = (20/3, 20/3, 20/3) ligt op AG; MQ staat loodrecht op AG én HF.",
+      "highlights": [
+        "HF",
+        "AG",
+        "MQ",
+        "AM"
+      ],
+      "planes": [
+        [
+          "A",
+          "G",
+          "M"
+        ]
+      ],
+      "points": {
+        "M": [
+          0.5,
+          0.5,
+          1
+        ],
+        "Q": [
+          0.6666666666666666,
+          0.6666666666666666,
+          0.6666666666666666
+        ]
+      },
+      "dimensions": [
+        10,
+        10,
+        10
+      ]
+    },
+    "notes": [
+      "O(AGM) = 25√2; AG = 10√3. MQ = 10/√6 ≈ 4,08."
+    ]
+  },
+  "6.5": {
+    "notes": [
+      "Lijn–lijn: verschuif een richting voor een hoek; zoek voor afstand een gemeenschappelijke loodlijn.",
+      "Lijn–vlak: projecteer voor de hoek; zoek voor afstand de normaal.",
+      "Vlak–vlak: bepaal eerst de snijlijn en dan een standvlak. Kies vervolgens een geschikte hulpdriehoek."
+    ]
+  },
+  "6.6": {
+    "notes": [
+      "Benoem de figuur en de gegeven punten. Teken eerst de benodigde hulpvlakken en hulppunten.",
+      "Onderbouw evenwijdigheid of loodrechtheid vóór je rekent. Controleer ligging, eenheden en afronding."
+    ]
+  }
+}

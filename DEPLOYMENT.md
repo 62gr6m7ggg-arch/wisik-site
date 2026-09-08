@@ -140,3 +140,36 @@ Voor volledige afdwinging zijn beide externe instellingen nodig:
 2. stel in Cloudflare Pages de build command in op `npm run build`.
 
 Controleer na structurele wijzigingen ook mobiel Safari, een desktopbrowser, het `www`-redirect en een echte Kladblokinlevering.
+
+## Ruimteklaar: eigen stem bij de lessen (0.4.4)
+
+De zes aangeleverde lesopnamen zijn verdeeld in 50 luistervoorbeelden. De canonieke
+catalogus staat in `public/films/ruimteklaar/catalog.json`; elk fragment heeft het
+vaste pad `/films/ruimteklaar/<les.fragment>/uitleg.m4a`. De speler gebruikt de
+mediavingerafdruk als cacheparameter, laadt geluid pas na een keuze en start nooit
+automatisch. Sluiten, wisselen en vertrek uit de uitleg stoppen het geluid.
+
+De luisterlijst staat in het lesoverzicht en gefilterd bij het bijbehorende
+uitlegblok. Oefeningen, diagnoses en proeven bevatten geen speler. Voortgang en
+beoordeling zijn ongewijzigd. De eigen voorbeeldfiguren gebruiken de maten en
+puntnamen uit deze opnamen; de oorspronkelijke oefenfiguren blijven intact.
+Leestekst is een inhoudelijke tekstversie, geen woordelijk tijdgecodeerd ondertitelbestand.
+De voorbeelden zijn zelfstandig te onderzoeken; dit zijn nog geen 50 gemonteerde
+animatiefilms met beeldwisselingen op de stem.
+
+`tools/space-tent/scripts/audio/prepare.py` beschrijft het knippen, de montage van
+bestaande zinnen en de volumenormalisatie. `edits.json` bevat de bronvingerafdrukken
+en kniptijden. De oorspronkelijke volledige opnamen worden niet gepubliceerd.
+Twee inhoudelijke correcties zijn gemonteerd met volledige bestaande zinnen uit
+andere lessen: niet-collineaire punten in 2.3 en evenwijdige zijvlakken in 3.1.
+Het dakvoorbeeld 3.5 gebruikt per eindpiramide grondvlak 25 en loodrechte hoogte 5.
+
+`node scripts/check-space-audio.mjs` controleert alle 50 bestanden, leskoppelingen,
+figuurreferenties en de numerieke loodvoeten. Het algemene vrijgavebewijs bindt
+ook de catalogus en de audiobestanden aan de versie.
+
+Beperking van de inhoudscontrole: automatische spraakherkenning en meetwaarden
+vervangen geen beluistering door een mens. Onzekere herkenningen om nog na te
+luisteren: 4.1 formule/familie, 4.6 AB en AD, 5.1 de openingsvraag, 6.1 AC/AZ en
+6.6 hulppunten/hulpmiddelen. De leestekst en bijbehorende figuren geven de juiste
+begrippen; er is geen synthetische vervanging van de docentstem gebruikt.
