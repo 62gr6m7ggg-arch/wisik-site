@@ -1,14 +1,16 @@
 import type {Question} from './model';
 import {CUBE,type V3} from './geometry-math';
+import {LESSON_CAMERA} from './projection-lesson-math';
 import {lineExtensions} from './insight-scenes';
 
 export function questionGeometry(q:Question,reveal=false,answer:string[]=[]){
  let points:Record<string,V3>={...(q.extraPoints||{})},highlights=[...(q.highlights||[])],planes=(q.planes||[]).map(p=>[...p]);
  let selected:string[]=[],segments:ReturnType<typeof lineExtensions>=[];
  let view:'spatial'|'front'|'top'|'right'|'scaled'|'equal-image'='spatial';
- let dimensions:V3=[1,1,1];
+ let dimensions:V3=[1,1,1],camera:[number,number]=[28,24];
  if(!reveal){if(q.id==='p2')delete points.M;if(q.id==='cp-p1')delete points.N;}
- if(q.id==='p1'||q.id==='probe-p1')view='scaled';
+ if(q.id==='p1')view='scaled';
+ if(q.id==='probe-p1'){view='spatial';camera=LESSON_CAMERA;}
  if(q.id==='retest-p1'){view='equal-image';dimensions=[8,4,4];highlights=['AB','AD'];}
  if(q.id==='v4')segments=[{from:CUBE.B,to:points.T,color:'#ffa35e',dashed:true}];
  if(q.id==='probe-v2')points={M:[.5,0,1]};
@@ -28,5 +30,5 @@ export function questionGeometry(q:Question,reveal=false,answer:string[]=[]){
   if(q.id==='p5')view='front';if(q.id==='p6')view='top';if(q.id==='cp-p2')view='right';
   if(['v3','cp-v1','d1','d2','d3','d4','retest-d1','retest-d2','cp-d1','l2','cp-l1','cp-l2'].includes(q.id))segments=lineExtensions(highlights,{...CUBE,...points});
  }
- return {points,highlights,planes,selected,segments,view,dimensions};
+ return {points,highlights,planes,selected,segments,view,dimensions,camera};
 }

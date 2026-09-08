@@ -32163,8 +32163,8 @@ function parallelImage([x, y, z], view = "spatial", angle = 28, tilt = 24) {
   if (view === "front") return [x, -z];
   if (view === "top") return [x, -y];
   if (view === "right") return [y, -z];
-  if (view === "scaled") return [4 * x + y, -Math.sqrt(3) * y - 3 * z];
-  if (view === "equal-image") return [0.5 * x + 0.5 * y, -Math.sqrt(3) / 2 * y - 0.75 * z];
+  if (view === "scaled") return [4 * x + y, -Math.sqrt(3) * y - 4 * z];
+  if (view === "equal-image") return [0.5 * x + 0.5 * y, -Math.sqrt(3) / 2 * y - 0.5 * z];
   const a2 = angle * Math.PI / 180, t = tilt * Math.PI / 180;
   return [Math.cos(a2) * x + Math.sin(a2) * y, Math.sin(t) * (Math.sin(a2) * x - Math.cos(a2) * y) - Math.cos(t) * z];
 }

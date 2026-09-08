@@ -4,8 +4,9 @@ export function parallelImage([x,y,z]:V3,view:ProjectionView='spatial',angle=28,
  if(view==='front')return [x,-z];
  if(view==='top')return [x,-y];
  if(view==='right')return [y,-z];
- if(view==='scaled')return [4*x+y,-Math.sqrt(3)*y-3*z];
- if(view==='equal-image')return [.5*x+.5*y,-Math.sqrt(3)/2*y-.75*z];
+ // Familiar oblique drawing: the front face has one uniform image scale.
+ if(view==='scaled')return [4*x+y,-Math.sqrt(3)*y-4*z];
+ if(view==='equal-image')return [.5*x+.5*y,-Math.sqrt(3)/2*y-.5*z];
  const a=angle*Math.PI/180,t=tilt*Math.PI/180;
  return [Math.cos(a)*x+Math.sin(a)*y,Math.sin(t)*(Math.sin(a)*x-Math.cos(a)*y)-Math.cos(t)*z];
 }
