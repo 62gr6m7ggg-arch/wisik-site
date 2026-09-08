@@ -26,7 +26,7 @@ export function ViewingCue({projection:b}:{projection:LessonProjection}){
 export function ProjectionLessonFrame({position}:{position:number}){
  const b=lessonProjection(position),lengths=lessonImageLengths(b),front=Math.abs(position-1)<1e-6,oblique=position<1;
  return <div className="projection-lesson-frame" data-projection={b.kind}>
-  <Geometry fixed projectionBasis={b} frameBounds={LESSON_FRAME} highlights={['AB','AD','AE']} ariaLabel="Dezelfde kubus ABCD.EFGH, weergegeven vanuit de aangegeven kijkrichting." caption="Werkelijk: AB = AD = AE = 6 cm."/>
+  <Geometry guidance={false} fixed projectionBasis={b} frameBounds={LESSON_FRAME} highlights={['AB','AD','AE']} ariaLabel="Dezelfde kubus ABCD.EFGH, weergegeven vanuit de aangegeven kijkrichting." caption="Werkelijk: AB = AD = AE = 6 cm."/>
   <div className="projection-orientation"><ViewingCue projection={b}/><div><p className="projection-kind">{oblique?'Schuine parallelprojectie':'Loodrechte parallelprojectie'}</p><p className="view-direction">{front?'Je kijkt recht van voren.':'Je kijkt schuin van voren, van rechts en van boven.'}</p><p className="projection-plane">{oblique||front?'Het tekenvlak is evenwijdig aan voorvlak ABFE.':'Het tekenvlak staat loodrecht op de kijkrichting. Voorvlak ABFE is daar nu niet evenwijdig aan.'}</p></div></div>
   <div className="insight-facts projection-measures" aria-label="Beeldlengtes in de voorbeeldtekening">{Object.entries(lengths).map(([name,value],i)=><span key={name} style={{color:COLORS[i]}}>Beeld {name}: {centimeter(value)} cm</span>)}</div>
   <p className="projection-scale-note">Vaste tekenschaal: een ribbe van 6 cm zonder projectieverkorting wordt als 4 cm getekend. Op je scherm schaalt de hele tekening mee.</p>
