@@ -1,0 +1,318 @@
+{
+  "reviewedAt": "2026-09-08",
+  "method": "Volledige audiosporen gedecodeerd naar PCM; exacte nulmonsters, pieken en spraakherkenning gecontroleerd. Vier beeldmomenten per film bekeken. Extra medium-modelcontrole van de zes films met spraak.",
+  "limitations": "Automatische tekstcontrole, geen menselijke beluistering. Beeldsteekproef, geen beoordeling van ieder afzonderlijk frame.",
+  "archives": {
+    "Wisik_flirts_domein_C_eigenstem.zip": "797f85ce080b5c669242b8bd050641d0ca9215fa91ea15adadec8c285e3f281f",
+    "Wisik_flirts_domein_D_eigenstem.zip": "c8a616544bb3433442cb6fcc213960d7d38c659c90190d17e0f56a57b3a96d6f",
+    "Wisik_flirts_domein_B_eigenstem.zip": "4ae4c4fd61a5205cd65db16238b12d7db6a66f1b2fc8282cf04144ca49aa7f73",
+    "Wisik_flirts_domein_A_eigenstem.zip": "ccb13790ab71c636a0a6d08f4b5ab1d0e7def78bb97793adabee49e458776349"
+  },
+  "replaced": [
+    "D01"
+  ],
+  "retained": 29,
+  "silentFiles": 24,
+  "results": [
+    {
+      "code": "A01",
+      "decodedSamples": 995300,
+      "nonzeroSamples": 643295,
+      "peakAmplitude": 0.5687547922134399,
+      "firstSignal": 4.4978125,
+      "lastSignal": 44.6888125,
+      "decision": "retain-existing",
+      "reason": "Opening begint midden in een zin (in 4072); slot van het bronscript ontbreekt."
+    },
+    {
+      "code": "A02",
+      "decodedSamples": 1046570,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "A03",
+      "decodedSamples": 952204,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "A04",
+      "decodedSamples": 915424,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "A05",
+      "decodedSamples": 1046570,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "A06",
+      "decodedSamples": 1014619,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "A07",
+      "decodedSamples": 1272082,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "A08",
+      "decodedSamples": 1032081,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "B01",
+      "decodedSamples": 1200007,
+      "nonzeroSamples": 912275,
+      "peakAmplitude": 0.5440738201141357,
+      "firstSignal": 4.498375,
+      "lastSignal": 61.4755625,
+      "decision": "retain-existing",
+      "reason": "Eindigt midden in de zin: Bij één stuk van hetzelfde geheel…"
+    },
+    {
+      "code": "B02",
+      "decodedSamples": 1280256,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "B03",
+      "decodedSamples": 1133134,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "B04",
+      "decodedSamples": 1368306,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "B05",
+      "decodedSamples": 1248305,
+      "nonzeroSamples": 910418,
+      "peakAmplitude": 0.6937352418899536,
+      "firstSignal": 4.49525,
+      "lastSignal": 61.36175,
+      "decision": "retain-existing",
+      "reason": "Begint met kost iets 72 euro; kortingcontext ontbreekt. Eindigt met De weg terug begint…"
+    },
+    {
+      "code": "B06",
+      "decodedSamples": 1120131,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "B07",
+      "decodedSamples": 1208181,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "B08",
+      "decodedSamples": 1008303,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "C01",
+      "decodedSamples": 1136106,
+      "nonzeroSamples": 816052,
+      "peakAmplitude": 0.5608946084976196,
+      "firstSignal": 4.499875,
+      "lastSignal": 55.4696875,
+      "decision": "retain-existing",
+      "reason": "Beeld toont een 10×10-raster bij de bewering 100×100 = 10.000 cm². Eerdere rastercorrectie ontbreekt."
+    },
+    {
+      "code": "C02",
+      "decodedSamples": 1088180,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "C03",
+      "decodedSamples": 1184032,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "C04",
+      "decodedSamples": 1024279,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "C05",
+      "decodedSamples": 1136106,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "C06",
+      "decodedSamples": 1024279,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "C07",
+      "decodedSamples": 992328,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "D01",
+      "decodedSamples": 1056229,
+      "nonzeroSamples": 720200,
+      "peakAmplitude": 0.5434319376945496,
+      "firstSignal": 4.499625,
+      "lastSignal": 49.46975,
+      "decision": "replace-after-timing-fix",
+      "reason": "Uitleg eindigt op een volledige zin en behandelt het juiste onderscheid. 10 seconden overtollige eindstilte verwijderen."
+    },
+    {
+      "code": "D02",
+      "decodedSamples": 1024279,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "D03",
+      "decodedSamples": 1024279,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "D04",
+      "decodedSamples": 992328,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "D05",
+      "decodedSamples": 1104155,
+      "nonzeroSamples": 939605,
+      "peakAmplitude": 0.5582495927810669,
+      "firstSignal": 4.5019375,
+      "lastSignal": 63.1465625,
+      "decision": "retain-existing",
+      "reason": "Na de montage volgt Het gemiddelde van deze vier waarden direct door De drie lege plekken…; is dus vijf ontbreekt."
+    },
+    {
+      "code": "D06",
+      "decodedSamples": 848179,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    },
+    {
+      "code": "D07",
+      "decodedSamples": 960006,
+      "nonzeroSamples": 0,
+      "peakAmplitude": 0.0,
+      "firstSignal": null,
+      "lastSignal": null,
+      "decision": "retain-existing",
+      "reason": "Volledig digitale stilte in de gedecodeerde audiotrack."
+    }
+  ]
+}

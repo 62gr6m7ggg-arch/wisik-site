@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06",
+  "updatedAt": "2026-09-08",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -520,7 +520,7 @@
       "status": "published",
       "title": "Hoogste punt of grootste toename",
       "summary": "Waarom het hoogste punt niet hetzelfde hoeft te zijn als de grootste toename.",
-      "durationSeconds": 50,
+      "durationSeconds": 56,
       "wristbands": [
         "PABO"
       ],
@@ -535,7 +535,7 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D01"
       },
-      "release": "festival-v1"
+      "release": "eigenstem-2026-09-08"
     },
     {
       "id": "wisik-flirt-d02",

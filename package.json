@@ -1,8 +1,8 @@
 {
   "name": "wisik-site",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "private": true,
-  "description": "Wisik.nl \u2014 festivalterrein voor rekenen en wiskunde",
+  "description": "Wisik.nl — festivalterrein voor rekenen en wiskunde",
   "scripts": {
     "audit:update": "node scripts/audit-pabo-release.mjs --write",
     "audit:verify": "node scripts/audit-pabo-release.mjs",
