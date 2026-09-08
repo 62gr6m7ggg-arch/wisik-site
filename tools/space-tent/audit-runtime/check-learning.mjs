@@ -32161,8 +32161,8 @@ function parallelImage([x, y, z], view = "spatial", angle = 28, tilt = 24) {
   if (view === "front") return [x, -z];
   if (view === "top") return [x, -y];
   if (view === "right") return [y, -z];
-  if (view === "scaled") return [4 * x + y, -Math.sqrt(3) * y - 3 * z];
-  if (view === "equal-image") return [0.5 * x + 0.5 * y, -Math.sqrt(3) / 2 * y - 0.75 * z];
+  if (view === "scaled") return [4 * x + y, -Math.sqrt(3) * y - 4 * z];
+  if (view === "equal-image") return [0.5 * x + 0.5 * y, -Math.sqrt(3) / 2 * y - 0.5 * z];
   const a = angle * Math.PI / 180, t = tilt * Math.PI / 180;
   return [Math.cos(a) * x + Math.sin(a) * y, Math.sin(t) * (Math.sin(a) * x - Math.cos(a) * y) - Math.cos(t) * z];
 }
@@ -32266,17 +32266,24 @@ var THREE_CASES = {
 };
 var WORKED_SECTION = { P: [0, 0, 0.25], Q: [1, 0, 0.5], R: [1, 1, 0.75], S: [0, 1, 0.5] };
 
+// app/projection-lesson-math.ts
+var LESSON_CAMERA = [28, 35];
+
 // app/question-visuals.ts
 function questionGeometry(q, reveal = false, answer = []) {
   let points = { ...q.extraPoints || {} }, highlights = [...q.highlights || []], planes = (q.planes || []).map((p2) => [...p2]);
   let selected = [], segments = [];
   let view = "spatial";
-  let dimensions = [1, 1, 1];
+  let dimensions = [1, 1, 1], camera = [28, 24];
   if (!reveal) {
     if (q.id === "p2") delete points.M;
     if (q.id === "cp-p1") delete points.N;
   }
-  if (q.id === "p1" || q.id === "probe-p1") view = "scaled";
+  if (q.id === "p1") view = "scaled";
+  if (q.id === "probe-p1") {
+    view = "spatial";
+    camera = LESSON_CAMERA;
+  }
   if (q.id === "retest-p1") {
     view = "equal-image";
     dimensions = [8, 4, 4];
@@ -32303,7 +32310,7 @@ function questionGeometry(q, reveal = false, answer = []) {
     if (q.id === "cp-p2") view = "right";
     if (["v3", "cp-v1", "d1", "d2", "d3", "d4", "retest-d1", "retest-d2", "cp-d1", "l2", "cp-l1", "cp-l2"].includes(q.id)) segments = lineExtensions(highlights, { ...CUBE, ...points });
   }
-  return { points, highlights, planes, selected, segments, view, dimensions };
+  return { points, highlights, planes, selected, segments, view, dimensions, camera };
 }
 
 // scripts/check-learning.mjs
@@ -32379,7 +32386,7 @@ for (const [view, pairs] of [["front", ["AD", "BC", "EH", "FG"]], ["top", ["AE",
 }
 near(length2(pi(CUBE.B, "scaled")), 4);
 near(length2(pi(CUBE.D, "scaled")), 2);
-near(length2(pi(CUBE.E, "scaled")), 3);
+near(length2(pi(CUBE.E, "scaled")), 4);
 near(length2(pi([8, 0, 0], "equal-image")), 4);
 near(length2(pi([0, 4, 0], "equal-image")), 4);
 near(dot(CUBE.F, CUBE.H) / distance(CUBE.A, CUBE.F) / distance(CUBE.A, CUBE.H), 0.5);

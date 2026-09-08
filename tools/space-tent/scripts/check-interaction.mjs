@@ -7,7 +7,7 @@ import {resolve} from 'node:path';
 const site=process.env.SPACE_AUDIT_SITE||process.cwd(),require=createRequire(site+'/package.json');
 const {build}=require('esbuild'),React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
 const learningPath=resolve(site,'app/learning.tsx');
-const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,QUESTIONS,CHECKS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation'; export * as CV from './app/construction-visuals';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]learning\.tsx$/},args=>{
+const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,QUESTIONS,CHECKS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation'; export * as CV from './app/construction-visuals'; export * as PM from './app/projection-lesson-math'; export {ProjectionLessonFrame,ViewingCue} from './app/projection-lesson';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]learning\.tsx$/},args=>{
  assert.equal(args.path,learningPath);
  let source=readFileSync(args.path,'utf8');
  // Inject only the initial state for SSR, never changing render/feedback logic.
@@ -152,4 +152,49 @@ console.log(`Interaction SSR checks passed: ${cards} question-card states, ${fig
  const ids=[...markup.matchAll(/id="([^"]*-hatch-0)"/g)].map(m=>m[1]);assert.equal(ids.length,2);assert.notEqual(ids[0],ids[1]);
  assert.ok(markup.includes('fill-opacity=".09"'));
  console.log('Construction visual checks passed: stable line colors, distinct hatch IDs, no automatic answer planes, and complete convex boundary faces for all tasks.');
+}
+
+// Every animated position must describe one real parallel projection, with its
+// ray, image plane and numerical lengths derived from that same geometry.
+{
+ const {PM,ProjectionLessonFrame}=module.exports;
+ const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
+ assert.deepEqual(PM.lessonImageLengths(PM.lessonProjection(0)),{AB:4,AD:2,AE:4});
+ assert.deepEqual(PM.lessonImageLengths(PM.lessonProjection(1)),{AB:4,AD:0,AE:4});
+ for(let i=0;i<=200;i++){
+  const position=i/100,b=PM.lessonProjection(position),normal=G.cross(b.planeRight,b.planeUp),toward=G.mul(b.eye,-1);
+  near(G.dot(b.planeRight,b.planeUp),0);near(G.dot(b.planeRight,b.planeRight),1);near(G.dot(b.planeUp,b.planeUp),1);near(G.dot(b.eye,b.eye),1);
+  assert.ok(Math.abs(G.dot(normal,toward))>.1,'Ray is not parallel to its image plane');
+  near(Math.hypot(...PM.projectLessonPoint(toward,b)),0,'The viewing direction disappears in its own projection');
+  for(const point of Object.values(G.CUBE)){
+   // Independently intersect the ray with the plane through the origin.
+   const t=-G.dot(normal,point)/G.dot(normal,toward),hit=G.add(point,G.mul(toward,t));
+   const expected=[G.dot(hit,b.planeRight),-G.dot(hit,b.planeUp)],actual=PM.projectLessonPoint(point,b);
+   near(actual[0],expected[0]);near(actual[1],expected[1]);
+  }
+  if(position<1){assert.ok(b.eye[0]>0&&b.eye[1]<0&&b.eye[2]>0);near(PM.lessonImageLengths(b).AB,PM.lessonImageLengths(b).AE);}
+  if(position>1){assert.ok(b.eye[0]>0&&b.eye[1]<0&&b.eye[2]>0);for(const [j,name]of ['AB','AD','AE'].entries())near(PM.lessonImageLengths(b)[name],4*Math.sqrt(1-b.eye[j]**2));}
+  for(const width of [280,320,440,800]){
+   const height=width<390?310:390,{center,scale}=G.projectionFrame(PM.LESSON_FRAME,width,height);
+   for(const p of Object.values(G.CUBE)){const raw=PM.projectLessonPoint(G.sub(p,[.5,.5,.5]),b),x=width/2+(raw[0]-center[0])*scale,y=height/2+(raw[1]-center[1])*scale;assert.ok(x>=40&&x<=width-40&&y>=40&&y<=height-40,'Animated corner remains inside the figure');}
+  }
+ }
+ for(const p of Object.values(G.CUBE)){
+  const a=G.parallelImage(p,'scaled'),b=PM.projectLessonPoint(p,PM.lessonProjection(0));near(a[0],4*b[0]);near(a[1],4*b[1]);
+ }
+ const probe=V.questionGeometry(BANK.questions.find(q=>q.id==='probe-p1'));
+ const project=p=>G.parallelImage(p,probe.view,...probe.camera);
+ assert.ok(Math.hypot(...project(G.CUBE.E))<Math.hypot(...project(G.CUBE.B)),'The diagnostic AE-shorter-than-AB premise still holds');
+ for(const position of [0,.5,1,1.5,2]){
+  const html=render(ProjectionLessonFrame,{position});assertFinite(html,'projection lesson '+position);
+  assert.ok(html.includes('marker-end="url(#look-')&&html.includes('het blauwe kader is het tekenvlak'));
+  assert.ok(html.includes(position===1?'Je kijkt recht van voren.':'Je kijkt schuin van voren, van rechts en van boven.'));
+ }
+ const old=JSON.parse(readFileSync(resolve(site,'validation/projection-regression-041.json'),'utf8')),actual={};
+ const digest=html=>require('node:crypto').createHash('sha256').update(html).digest('hex');
+ for(const q of BANK.questions)if(!['p1','probe-p1','retest-p1'].includes(q.id))for(const reveal of [false,true])actual[q.id+'/'+reveal]=digest(render(QuestionFigure,{question:q,reveal}));
+ for(const variant of [{},{construction:true},{camera:[-40,30]},{view:'front'},{view:'top'},{view:'right'}])actual['geometry/'+JSON.stringify(variant)]=digest(render(Geometry,variant));
+ actual.workbench=digest(render(Workbench,{save:async()=>true,onBack:()=>{}}));
+ assert.deepEqual(actual,old,'Unrelated figure output changed since version 0.4.1');
+ console.log('Projection checks passed: 201 valid intermediate projections, consistent rays/planes/lengths, four viewport sizes, and 523 unchanged figure states identical to 0.4.1.');
 }

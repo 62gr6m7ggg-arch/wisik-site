@@ -1,6 +1,6 @@
 {
   "product": "Space-tent · Ruimteklaar",
-  "appVersion": "0.4.1",
+  "appVersion": "0.4.2",
   "siteVersion": "0.1.18",
   "status": "passed",
   "scope": {
@@ -14,6 +14,8 @@
     "available": "Alle zes leslevels en het toplevel met proeven A en B en papierwerk"
   },
   "checks": {
+    "projectionLesson": "201 tussenstanden: snijpunten van projectiestralen met het tekenvlak onafhankelijk vergeleken met de getoonde projectie; kijkrichting, vlakstand en beeldlengten kloppen bij elkaar; alle hoekpunten passen op vier schermbreedten",
+    "unaffectedFigures": "523 weergaven buiten de gewijzigde projectieopgaven exact gelijk aan vrijgave 0.4.1",
     "constructionVisuals": "Vaste lijnkleuren bij verlengen en hervatten, unieke SVG-arceringen, gesloten antwoordvlakken en correcte zijvlakken voor alle tien taken; geen automatisch zichtbaar antwoordvlak",
     "diagnosticAnswerCombinations": 805,
     "questionCardStates": 3132,
@@ -27,7 +29,7 @@
     "storage": "Herladen, import/export, ontdubbeling, ongeldige bestanden, opslagfouten, oude voortgang behouden, nul netwerkaanroepen"
   },
   "browser": {
-    "evidenceVersion": "0.4 — eerdere vrijgave; geen nieuwe browsercontrole voor 0.4.1",
+    "evidenceVersion": "0.4 — eerdere vrijgave; geen nieuwe browsercontrole voor 0.4.2",
     "environment": "Chromium, eigen preview van de clientbron uit versie 0.4",
     "verified": [
       "Open rekenantwoord en schriftelijke aanpak invoeren",
@@ -158,7 +160,7 @@
     },
     {
       "file": "check-interaction.cjs",
-      "output": "Interaction SSR checks passed: 3132 question-card states, 522 feedback figures, 23 deferred triggers, 140 camera movements and 73080 projected question scenes. Pointer behavior still requires browser QA.\nConstruction visual checks passed: stable line colors, distinct hatch IDs, no automatic answer planes, and complete convex boundary faces for all tasks."
+      "output": "Interaction SSR checks passed: 3132 question-card states, 522 feedback figures, 23 deferred triggers, 140 camera movements and 73080 projected question scenes. Pointer behavior still requires browser QA.\nConstruction visual checks passed: stable line colors, distinct hatch IDs, no automatic answer planes, and complete convex boundary faces for all tasks.\nProjection checks passed: 201 valid intermediate projections, consistent rays/planes/lengths, four viewport sizes, and 523 unchanged figure states identical to 0.4.1."
     },
     {
       "file": "check-course.mjs",
@@ -176,11 +178,11 @@
     "tools/space-tent/app/course-figure.tsx": "d0c5a235c43b537b531b15ebc52171c235bd6048504b78cc8eb21abd24ec6f71",
     "tools/space-tent/app/course-paper.tsx": "8c087f4677d4b0edb0d92f4caf5b42485e7e38ad1eec95482ab44800f0c8d716",
     "tools/space-tent/app/diagnostic.ts": "077888b75522353686c4d3eb2b33100029e73d3ca1e8e3ea271e609289551913",
-    "tools/space-tent/app/geometry-math.ts": "3a5a498f44a6903a6727b8cdc7eb5f277f68fe22fc43c0944a5ce030fbd18f3a",
-    "tools/space-tent/app/geometry.tsx": "e6f21135439885bb058868c8b271d1bc2fbdfb2c17c98fb1f90105e3e5399547",
-    "tools/space-tent/app/globals.css": "6faba57d6a9f825a0362a76db57fab36e2afaea6830285d024826b0d9f4dedae",
+    "tools/space-tent/app/geometry-math.ts": "317dee39509458e1220e25b9a8206671574b265758663db11723fa67cdda57ac",
+    "tools/space-tent/app/geometry.tsx": "0c99cedd4ba9549d63fc192c539bd0141a44377be3d8e2665dd1d4ee9f76e7a9",
+    "tools/space-tent/app/globals.css": "d88919107f63d10e321d99bdf0b0bf58dc7350aaa91e80121791ed3dc9922af4",
     "tools/space-tent/app/identity.ts": "85dc95038f97d3ef7b0c5b0c732a7aa3589862736c1e0e3ecac8d2e833be09e6",
-    "tools/space-tent/app/insight-figure.tsx": "0c6f930cedc85e0f93681069dc0ff0f52b9e48b7bea704dfd06cd5bd6c7c7488",
+    "tools/space-tent/app/insight-figure.tsx": "60dc6a29c16365e12d3c59a5424c83843d9725b837edffd56119a45f9bf83079",
     "tools/space-tent/app/insight-scenes.ts": "4ea4cd759dd320a849bc365b8d410b66b991790cfb5d5230666e0cf229a6c49e",
     "tools/space-tent/app/learning.tsx": "66916c4255b6340fd7ba239e27b2ff3dde22bde23a7aaf129c6dc31646f7e313",
     "tools/space-tent/app/line-extension-example.tsx": "874c5900aabb4300640663bee7a1b2e000bb4e6d1748d3e127c48af236a5e9a9",
@@ -188,19 +190,21 @@
     "tools/space-tent/app/model.ts": "472aa470bb7e0d696532af00b5c87695a9b90ac51c480bdeff3f2be8c43cf6fd",
     "tools/space-tent/app/numeric.ts": "d139de877ca1898fdcb3bfa450fcf2de552df05e1731e3ae76883a36403fbacf",
     "tools/space-tent/app/paper.tsx": "d87018a4db3a463ec7dffee348e5b1f62cdbdd6418dcf9c9eabc90df27844828",
-    "tools/space-tent/app/question-figure.tsx": "c2ecc05b835e4cbcb37b67e627d5ebf0d1bde1ef2e7fa5dbc1bb333602605c8c",
-    "tools/space-tent/app/question-visuals.ts": "4b0f3780a43a53bdf9b61ae27ef61f5d8e705ae532d1fe5ddee955a1dbf59e17",
+    "tools/space-tent/app/projection-lesson-math.ts": "9efdd6b16b9dde9e221e4603a56e74b4e10beca11dd33d9d57e6b85ed7324354",
+    "tools/space-tent/app/projection-lesson.tsx": "14a1525b6df19d1593d3dfa8b723210c423c783d782c13e2182e11e0e7e79c65",
+    "tools/space-tent/app/question-figure.tsx": "f63223c8a97cbbd19a59e040a77a0521966b1134294b09ae3e438a5ce3634630",
+    "tools/space-tent/app/question-visuals.ts": "311362c6e8b2294f411003616c8bfbbe6c321c64cddfc86b5d31d8ae87b63704",
     "tools/space-tent/app/rotation.ts": "2c478f06af92bc49e27f9a2d001b13fc675b3a7ffe48b54b863af91d2abc2b2f",
     "tools/space-tent/app/route-header.tsx": "4766e4826951377bdacab210addca6b796f3993c4ff6dd4a03dd031085f48fe0",
     "tools/space-tent/app/route-progress.ts": "e837e7148651619a0874d072522e09d58f16682ad224f816bb99177ad5e0ac41",
     "tools/space-tent/app/ruimteklaar.tsx": "e705e9722baef1043ffe17e0fe23f1dbe5e0251bd8183552ebb96ab402c5a341",
-    "tools/space-tent/app/version.ts": "49d99bb40a1294d17edde92c1c0c47ff1b80c2ab6b897122c470cbfac95147f9",
+    "tools/space-tent/app/version.ts": "4e84df85d3a7cbab53f471c5376d325619a771e3831032307e6606b21dc6fe52",
     "tools/space-tent/app/workbench-math.ts": "77c2e882262fa69495b773afbac1e71881e21568d6673791a468d2bb8b81a131",
     "tools/space-tent/app/workbench.tsx": "3375abce19e8cb713ad74eb353300534e9ba30b08a6297c3cad9520b2327c3e4",
-    "tools/space-tent/audit-runtime/check-course.mjs": "a93ac93295d340b48d260bbabe227b30d0cd4ce62432b2d70641e44d6361a43f",
+    "tools/space-tent/audit-runtime/check-course.mjs": "72230359880a4d09ff20019515d0c357ad72cfd91c8c070eeace3e4062e71414",
     "tools/space-tent/audit-runtime/check-diagnostic.mjs": "83ceec7739e285cd40d37c3465faf54daf04093b477ad77a8d59754b0884fe22",
-    "tools/space-tent/audit-runtime/check-interaction.cjs": "67155d2741f24b95d2ecb5eb307422a2edc9f958bfe6d2bc75952b80ed03b81a",
-    "tools/space-tent/audit-runtime/check-learning.mjs": "3658b42ddd0679eafab45353dbaa18831589140e42d02a33118b0718f195ec27",
+    "tools/space-tent/audit-runtime/check-interaction.cjs": "c5906f7658e98434cf531eb24ce494e600ecb1060ae744f946c2229cf2efed6a",
+    "tools/space-tent/audit-runtime/check-learning.mjs": "0cf93fedc1b5f0dd286a43b5817e9a1c89180de038ce3a2c92c28cdd23df06ff",
     "tools/space-tent/audit-runtime/check-local-progress.mjs": "8b22b5fb85a61cf091b492422edf005fd580b12f9b3f14d42818f6e3cf2fbe35",
     "tools/space-tent/components/ui/button.tsx": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4",
     "tools/space-tent/components/ui/checkbox.tsx": "b23ab9d4deeedf2ac8f512c368361ede681aa383437ef48563a6f9b7dbe95f27",
@@ -213,16 +217,16 @@
     "tools/space-tent/package-lock.json": "9b91987e6c3cdbda4f01c917a2c580ed7afbe77cb3eae066dbbba2afd99f2718",
     "tools/space-tent/package.json": "2764de1e45b0414e58c2fc0fb1786e2c4e1cc44aaf51b7b180450ee370aa48a5",
     "tools/space-tent/postcss.config.mjs": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde",
-    "tools/space-tent/README.md": "627b0b1276c3601517bd5667d9ee2291bab6ca892903117f15991e3e8fc95c36",
+    "tools/space-tent/README.md": "0ba7b0d38a75fa015bf1547958f6d862ee32019f2fa365adbd1ba50baae3bd14",
     "tools/space-tent/scripts/build-audit.mjs": "71ccce0c2b5d382bf9d4b33869dc6f8795b44c270c3d33efa75efa25aa2af579",
     "tools/space-tent/scripts/build-course-audit.mjs": "a0da634a6c364edef416936073dd7ad9f07c826bc326c04d70794ea3117b42a4",
     "tools/space-tent/scripts/build-space.mjs": "276258dbb27aed97c9380eb99276fc430d8241d491192c2cc2e55bfbf282f852",
     "tools/space-tent/scripts/check-course.mjs": "ecb2b0085950ede0aa7c1929e323e2711357e1447e01e1ee4c8094885872b9fd",
     "tools/space-tent/scripts/check-diagnostic.mjs": "60f286f803efbc73619f9d13b9bec3d2dcbb33aa82400e011d46ea84ceb298ab",
-    "tools/space-tent/scripts/check-interaction.mjs": "9ec0ab425c60f5c50255069378f41b83f7d85199be8521d911e73ed76212b4a7",
-    "tools/space-tent/scripts/check-learning.mjs": "ed4f4a4fe948abafb6028b654671ffac4927a9b56ad94ab3c58c6c00d639f61a",
+    "tools/space-tent/scripts/check-interaction.mjs": "34edd25c74ef0de497516c037779c5da78c9718267441f5d45b772372e54973b",
+    "tools/space-tent/scripts/check-learning.mjs": "9009f50c5e19c28554ca2c4d123a0567853a1a2146e81f1f840e5ad220a9e9a2",
     "tools/space-tent/scripts/check-local-progress.mjs": "ea10a5e90cac5dbfaa559b28d5be14e60e8d9e655e59736747fddd13e83c63e0",
-    "tools/space-tent/space/index.html": "8ceb45aaebe2cde66196324edae40ee6a5e64d5ec4f591ab429b1f020cd276f0",
+    "tools/space-tent/space/index.html": "127f5e4b10a477655dfd45ba4958e7e9437ce20a05b1807f3904a7a5f9ea10a2",
     "tools/space-tent/space/main.tsx": "208b12a7017044bdfa345874f0a6110822f6a43c8f814da612ac3722bda502bc",
     "tools/space-tent/tsconfig.json": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3",
     "tools/space-tent/validation/construction-tasks.json": "dd327e0ca916f5f619818225bccc329fe8063ac13cda8cfa6f88fbce3fb3eb85",
@@ -234,6 +238,7 @@
     "tools/space-tent/validation/levels-2-3.json": "2770a7a3638b6e70c76452c8c48c42f1f650fb30df3e73e676680836e08c8cc2",
     "tools/space-tent/validation/levels-5-6-validation-notes.md": "b67ad261d474e760d5971caa28501eded182e4864b0784d555310a787188535a",
     "tools/space-tent/validation/levels-5-6.json": "eca9737cff212674b8eb1e264d05ff2eb30222de47a695c254e2f42767589541",
+    "tools/space-tent/validation/projection-regression-041.json": "6764f6e419fc7d5f94005fb49af0e808415a0d52bf3e2c50dc5a976c28320f18",
     "tools/space-tent/validation/state-audit.md": "a236d64c68ccf40c46572aa998d3dc5813fe3d997d5fa0482f6946040c7e45b1",
     "tools/space-tent/validation/summit.json": "7a758a4ff94f47ee93d4947c2fb7a1fbd397941e928e8e6fe8c06d75e70743bc",
     "tools/space-tent/validation/validate_levels_2_3.py": "a2f4b3578e4f5ace14347560e820c67598108f9cded8cfb13923a3a2d06b68cf",
@@ -244,8 +249,8 @@
     "tools/space-tent/vendor/shadcn-tailwind-4.13.0.LICENSE.md": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
   },
   "publicFiles": {
-    "public/apps/ruimteklaar/assets/index-CUqbRRcd.css": "72026f542d45bd211c60cc649df81f6df7b4406fd51af7435ea5906300123d59",
-    "public/apps/ruimteklaar/assets/index-DxpBNRTi.js": "28e6857a863f2954c24cb3a50250b437ffb0a9807f9758b0e5b92aa7c6a658d7",
-    "public/apps/ruimteklaar/index.html": "f089f48017cb1d2d2d6e06921bb3dd3e1a1a77bbcb6354d5fe54fddc749779e5"
+    "public/apps/ruimteklaar/assets/index-8BJOxdk2.css": "43340a4f521bca55b2606a99763892cd16b1a7907247d45c277df449a49832b4",
+    "public/apps/ruimteklaar/assets/index-i-C-WZbg.js": "2d67ae76d3a3ab55718581660e1da9fcbe5cd29606ec8a52d5b1f592163a7265",
+    "public/apps/ruimteklaar/index.html": "92b28f2df11185aa2501ee8c6a8ac04d53599a5cb8fffc49597b54000a3b651d"
   }
 }

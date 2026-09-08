@@ -7,6 +7,7 @@ import Geometry,{type IllustrationSegment} from './geometry';
 import {CUBE,type V3} from './geometry-math';
 import {COLORS,THREE_CASES,lineExtensions,type ExampleId} from './insight-scenes';
 import LineExtensionExample from './line-extension-example';
+import ProjectionLesson from './projection-lesson';
 
 export function Choices({items,value,onChange,label}:{items:[string,string][];value:string;onChange:(value:string)=>void;label:string}){
  return <div className="insight-choices" role="group" aria-label={label}>{items.map(([id,text])=><Button key={id} variant={value===id?'default':'outline'} aria-pressed={value===id} onClick={()=>onChange(id)}>{text}</Button>)}</div>
@@ -50,10 +51,8 @@ export function FalseCrossing(){
  const points:Record<string,V3>={K:[.5,.5,0],L:[.5,.5,1]};
  return <><div className="projection-pair"><div><h3>Van boven</h3><Geometry fixed compact view="top" highlights={['BD','EG']} points={points} caption="K en L hebben hetzelfde beeld."/></div><div><h3>In de ruimte</h3><Geometry fixed compact highlights={['BD','EG']} points={points} segments={[{from:points.K,to:points.L,color:'#bed0dc',dashed:true}]} caption="K ligt onder L: het zijn twee punten."/></div></div><p className="insight-explanation">De beelden van BD en EG kruisen. BD ligt echter in het ondervlak en EG in het bovenvlak. De ruimtelijke lijnen hebben verschillende richtingen en geen gedeeld punt.</p></>
 }
-export function DirectionScale(){
- const [which,setWhich]=useState('scaled');
- return <><Choices items={[["scaled","Vaste beeldmaten"],["turn","Andere kijkrichting"]]} value={which} onChange={setWhich} label="Vergelijk projecties van dezelfde kubus"/><Geometry fixed view={which==='scaled'?'scaled':'spatial'} camera={[70,18]} highlights={['AB','AD','AE']} caption="Werkelijk: AB = AD = AE = 6 cm."/><div className="insight-facts">{which==='scaled'?<><span>Beeld AB: 4 cm</span><span>Beeld AD: 2 cm</span><span>Beeld AE: 3 cm</span></>:<span>De kijkrichting verandert; de echte ribben blijven 6 cm.</span>}</div><p className="insight-explanation">{which==='scaled'?'Elke richting heeft haar eigen beeldschaal: 4/6, 2/6 en 3/6. De rechte hoek BAD wordt in dit beeld 60°. De figuur schaalt mee met je scherm.':'Ook een tweede geldige parallelprojectie kan dezelfde kubus anders weergeven. Gebruik de gegevens van het object om echte lengtes te bepalen.'}</p></>
-}
+export function DirectionScale(){return <ProjectionLesson/>;}
+
 function ParallelPlanes(){
  const [third,setThird]=useState('cut');
  const points:Record<string,V3>={I:[0,0,.5],J:[1,0,.5],K:[1,1,.5],L:[0,1,.5]};

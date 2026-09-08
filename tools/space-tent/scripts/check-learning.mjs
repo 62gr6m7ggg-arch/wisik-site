@@ -36,7 +36,7 @@ const pi=(p,view)=>G.parallelImage(p,view);
 for(const [view,pairs] of [['front',['AD','BC','EH','FG']],['top',['AE','BF','CG','DH']],['right',['AB','CD','EF','GH']]]){
  for(const pair of pairs)assert.deepEqual(pi(G.CUBE[pair[0]],view),pi(G.CUBE[pair[1]],view));
 }
-near(length2(pi(G.CUBE.B,'scaled')),4);near(length2(pi(G.CUBE.D,'scaled')),2);near(length2(pi(G.CUBE.E,'scaled')),3);
+near(length2(pi(G.CUBE.B,'scaled')),4);near(length2(pi(G.CUBE.D,'scaled')),2);near(length2(pi(G.CUBE.E,'scaled')),4);
 near(length2(pi([8,0,0],'equal-image')),4);near(length2(pi([0,4,0],'equal-image')),4);
 near(G.dot(G.CUBE.F,G.CUBE.H)/G.distance(G.CUBE.A,G.CUBE.F)/G.distance(G.CUBE.A,G.CUBE.H),.5);
 for(const scene of Object.values(S.THREE_CASES))for(const plane of scene.planes){

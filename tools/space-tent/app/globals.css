@@ -176,3 +176,10 @@ html{scroll-padding-top:150px}
 .line-key button{display:flex;align-items:center;gap:8px;text-align:left;max-width:100%;overflow-wrap:anywhere}.line-key svg{flex-shrink:0}
 .line-key button[aria-pressed=true],.face-key button[aria-pressed=true]{border-color:#d9e9f3;box-shadow:inset 0 0 0 1px #d9e9f3}
 .face-key button:disabled{opacity:.4}.clear-faces{margin:0 4px 10px;background:transparent}
+
+/* The projection lesson keeps one world model and one display scale. */
+.projection-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.projection-steps button{white-space:normal;min-height:52px;height:auto;line-height:1.3;padding:10px}
+.projection-orientation{display:grid;grid-template-columns:150px minmax(0,1fr);align-items:center;gap:12px;padding:8px 0 14px;border-block:1px solid var(--border)}
+.viewing-cue{display:block;width:100%;margin:0}.viewing-cue svg{display:block;width:100%;height:auto}.viewing-cue figcaption{font-size:13px;line-height:1.4;text-align:center;color:#a9bdcb}.projection-kind{color:#ffa35e;font-size:.875rem;font-weight:600;margin-bottom:6px}.view-direction{font-size:1rem;margin:0 0 8px;color:#edf4f8}.projection-plane{font-size:.875rem;color:#a9bdcb;margin:0;line-height:1.5}
+.projection-measures{font-variant-numeric:tabular-nums;gap:12px}.projection-scale-note{font-size:.875rem;color:#a9bdcb;margin:10px 4px 18px}.projection-playback{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.projection-slider{flex:1;min-width:190px;font-size:.875rem;display:grid;gap:16px;padding:12px 0}.projection-takeaway{color:#d9e9f3;font-size:1rem;border-left:3px solid #56d8cd;padding-left:14px;margin:20px 0 0}
+@media(max-width:500px){.projection-steps{grid-template-columns:1fr}.projection-steps button{min-height:44px}.projection-orientation{grid-template-columns:112px minmax(0,1fr);gap:8px}.projection-measures{font-size:1rem}.projection-playback{gap:8px}}
