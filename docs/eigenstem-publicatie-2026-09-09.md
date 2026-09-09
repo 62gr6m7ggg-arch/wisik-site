@@ -2,11 +2,11 @@
 
 ## Status
 
-De code, segmenttijden, D01-ondertiteling en technische audit staan op deze branch. **Niet mergen voordat het audiobestand hieronder op de branch staat.** De live site blijft daardoor intussen ongewijzigd.
+De code, segmenttijden, D01-ondertiteling, technische audit én het audiobestand staan op deze branch. De binaire upload is byte-voor-byte gecontroleerd; de live site blijft ongewijzigd tot de kwaliteitscontrole groen is en deze PR wordt gemerged.
 
-## Nog toe te voegen bestand
+## Gecontroleerd audiobestand
 
-Upload exact dit bestand:
+Het volgende bestand is aanwezig en gecontroleerd:
 
 - repositorypad: `public/assets/audio/flirts-eigenstem-2026-09-09.m4a`
 - bestandsgrootte: `7.229.573 bytes`
@@ -28,8 +28,8 @@ Upload exact dit bestand:
 
 ## Controle vóór merge
 
-1. Controleer dat het bestand op exact het genoemde repositorypad staat.
-2. Vergelijk de SHA-256 met de waarde hierboven.
-3. Test minimaal A01, B05, C01, C04, D05 en D07 op mobiel en desktop.
+1. De repositorylocatie, bestandsgrootte en Git-blobhash zijn gecontroleerd.
+2. De automatische kwaliteitscontrole moet groen zijn.
+3. Test minimaal A01, B05, C01, C04, D05 en D07 na deployment op mobiel en desktop.
 4. Controleer pauzeren, hervatten en slepen in de tijdlijn.
-5. Merge pas daarna naar `main`.
+5. Bij een regressie: release terugdraaien; anders blijft de eigenstemrelease actief.

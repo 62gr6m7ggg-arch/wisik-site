@@ -10,6 +10,10 @@
 
   const asText = (value) => String(value ?? "").trim();
   const asArray = (value) => Array.isArray(value) ? value : [];
+  const BrowserVideoElement = globalThis.HTMLVideoElement || class {};
+  const BrowserElement = globalThis.Element || class {};
+  const BrowserAudio = globalThis.Audio || class {};
+  const BrowserMutationObserver = globalThis.MutationObserver || class { observe() {} };
 
   function isAllowedAssetUrl(value, baseUrl = "https://wisik.nl/") {
     if (typeof value !== "string") return false;
@@ -153,7 +157,7 @@
   }
 
   function attachOwnVoice(player) {
-    if (!(player instanceof HTMLVideoElement) || player.dataset.wisikOwnVoice === "1") return;
+    if (!(player instanceof BrowserVideoElement) || player.dataset.wisikOwnVoice === "1") return;
     const code = codeFromVideo(player);
     const config = OWN_VOICE[code];
     if (!config) return;
@@ -161,7 +165,7 @@
     player.dataset.wisikOwnVoiceRelease = OWN_VOICE_RELEASE;
     player.muted = true;
     player.defaultMuted = true;
-    const audio = new Audio(versionedAssetUrl(config.src, globalThis.WISIK_SITE_VERSION || OWN_VOICE_RELEASE));
+    const audio = new BrowserAudio(versionedAssetUrl(config.src, globalThis.WISIK_SITE_VERSION || OWN_VOICE_RELEASE));
     audio.preload = "auto";
     audio.crossOrigin = "anonymous";
     audio.setAttribute("aria-hidden", "true");
@@ -239,16 +243,16 @@
   }
 
   function scanForOwnVoice(root = document) {
-    if (root instanceof HTMLVideoElement) attachOwnVoice(root);
+    if (root instanceof BrowserVideoElement) attachOwnVoice(root);
     root.querySelectorAll?.('video[src*="/films/rekenklaar/"]').forEach(attachOwnVoice);
   }
 
   function initializeOwnVoice() {
     scanForOwnVoice(document);
-    new MutationObserver((records) => {
+    new BrowserMutationObserver((records) => {
       for (const record of records) {
         for (const node of record.addedNodes) {
-          if (node instanceof Element) scanForOwnVoice(node);
+          if (node instanceof BrowserElement) scanForOwnVoice(node);
         }
       }
     }).observe(document.documentElement, { childList: true, subtree: true });
