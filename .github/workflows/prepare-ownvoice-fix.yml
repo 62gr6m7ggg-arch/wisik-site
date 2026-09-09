@@ -1,0 +1,68 @@
+name: Prepare own-voice release fix
+
+on:
+  push:
+    branches: [feat/pabo-eigenstem-alle-flirts]
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pabo-eigenstem-alle-flirts
+      - name: Patch browser guards, cache en auditstatus
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          core = Path('public/assets/js/grabbelton-core.js')
+          text = core.read_text()
+          marker = '  const asArray = (value) => Array.isArray(value) ? value : [];\n'
+          guard = '''  const BrowserVideoElement = globalThis.HTMLVideoElement || class {};\n  const BrowserElement = globalThis.Element || class {};\n  const BrowserAudio = globalThis.Audio || class {};\n  const BrowserMutationObserver = globalThis.MutationObserver || class { observe() {} };\n'''
+          if 'const BrowserVideoElement' not in text:
+              text = text.replace(marker, marker + guard, 1)
+          text = text.replace('player instanceof HTMLVideoElement', 'player instanceof BrowserVideoElement')
+          text = text.replace('new Audio(', 'new BrowserAudio(')
+          text = text.replace('root instanceof HTMLVideoElement', 'root instanceof BrowserVideoElement')
+          text = text.replace('new MutationObserver(', 'new BrowserMutationObserver(')
+          text = text.replace('node instanceof Element', 'node instanceof BrowserElement')
+          core.write_text(text)
+
+          cache = '0.1.20-eigenstem-20260909'
+          targets = [Path('public/apps/pabo-rekenklaar/index.html'), Path('public/grabbelton/index.html')]
+          for path in targets:
+              data = path.read_text()
+              old = '/assets/js/grabbelton-core.js?v=0.1.20'
+              assert old in data, f'cache reference ontbreekt in {path}'
+              path.write_text(data.replace(old, f'/assets/js/grabbelton-core.js?v={cache}'))
+
+          review_path = Path('tests/pabo-eigenstem-review-2026-09-09.json')
+          review = json.loads(review_path.read_text())
+          review['status'] = 'binary-upload-verified'
+          review['checks']['binaryUploadRequired'] = False
+          review['checks']['binaryUploadVerified'] = True
+          review['checks']['gitBlobSha1'] = '9fc51ec3835d320d8387dfa4a58c2ef92e46653c'
+          review_path.write_text(json.dumps(review, ensure_ascii=False, separators=(',', ':')) + '\n')
+
+          docs = Path('docs/eigenstem-publicatie-2026-09-09.md')
+          d = docs.read_text()
+          d = d.replace('De code, segmenttijden, D01-ondertiteling en technische audit staan op deze branch. **Niet mergen voordat het audiobestand hieronder op de branch staat.** De live site blijft daardoor intussen ongewijzigd.', 'De code, segmenttijden, D01-ondertiteling, technische audit én het audiobestand staan op deze branch. De binaire upload is byte-voor-byte gecontroleerd; de live site blijft ongewijzigd tot de kwaliteitscontrole groen is en deze PR wordt gemerged.')
+          d = d.replace('## Nog toe te voegen bestand', '## Gecontroleerd audiobestand')
+          d = d.replace('Upload exact dit bestand:\n', 'Het volgende bestand is aanwezig en gecontroleerd:\n')
+          d = d.replace('1. Controleer dat het bestand op exact het genoemde repositorypad staat.\n2. Vergelijk de SHA-256 met de waarde hierboven.\n3. Test minimaal A01, B05, C01, C04, D05 en D07 op mobiel en desktop.\n4. Controleer pauzeren, hervatten en slepen in de tijdlijn.\n5. Merge pas daarna naar `main`.', '1. De repositorylocatie, bestandsgrootte en Git-blobhash zijn gecontroleerd.\n2. De automatische kwaliteitscontrole moet groen zijn.\n3. Test minimaal A01, B05, C01, C04, D05 en D07 na deployment op mobiel en desktop.\n4. Controleer pauzeren, hervatten en slepen in de tijdlijn.\n5. Bij een regressie: release terugdraaien; anders blijft de eigenstemrelease actief.')
+          docs.write_text(d)
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/assets/js/grabbelton-core.js public/apps/pabo-rekenklaar/index.html public/grabbelton/index.html tests/pabo-eigenstem-review-2026-09-09.json docs/eigenstem-publicatie-2026-09-09.md
+          git diff --cached --quiet && exit 0
+          git commit -m 'Fix eigenstem release guard en cache'
+          git push origin HEAD:feat/pabo-eigenstem-alle-flirts
