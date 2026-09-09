@@ -2,7 +2,8 @@ name: Build Grabbelton vervolgroute
 
 on:
   push:
-    branches: [feat/grabbelton-verder-oefenen]
+    branches:
+      - feat/grabbelton-verder-oefenen
 
 permissions:
   contents: write
@@ -19,93 +20,10 @@ jobs:
         with:
           node-version: 22
       - name: Bouw klikbare eindkaart en deep-link
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import json
-
-          # Siteversie voor harde cacheverversing.
-          package_path = Path('package.json')
-          package = json.loads(package_path.read_text())
-          package['version'] = '0.1.23'
-          if 'test-grabbelton-cta.mjs' not in package['scripts']['check']:
-              package['scripts']['check'] = package['scripts']['check'].replace(
-                  'node scripts/test-festival-venues.mjs',
-                  'node scripts/test-grabbelton-cta.mjs && node scripts/test-festival-venues.mjs'
-              )
-          package_path.write_text(json.dumps(package, ensure_ascii=False, indent=2) + '\n')
-
-          # Vervang sitebrede cache-/versieverwijzingen.
-          for path in Path('public').rglob('*'):
-              if not path.is_file() or path.suffix.lower() not in {'.html','.js','.json','.css','.webmanifest','.txt'}:
-                  continue
-              try:
-                  text = path.read_text()
-              except UnicodeDecodeError:
-                  continue
-              updated = text.replace('0.1.22', '0.1.23')
-              if updated != text:
-                  path.write_text(updated)
-
-          # Grabbelton: echte eindkaart boven het ingebakken oude slotbeeld.
-          path = Path('public/assets/js/grabbelton.js')
-          text = path.read_text()
-          old = '''    player.append(track);\n    const note = document.createElement("p");'''
-          new = '''    player.append(track);\n\n    const playerWrap = document.createElement("div");\n    playerWrap.className = "grabbelton-player-wrap";\n    Object.assign(playerWrap.style, { position: "relative", width: "100%" });\n    playerWrap.append(player);\n\n    const endCard = document.createElement("div");\n    endCard.className = "grabbelton-end-card";\n    endCard.hidden = true;\n    Object.assign(endCard.style, {\n      position: "absolute", inset: "0", zIndex: "3", display: "none",\n      alignItems: "center", justifyContent: "center", flexDirection: "column",\n      gap: "14px", padding: "24px", textAlign: "center", borderRadius: "16px",\n      background: "#14344d", color: "#fff"\n    });\n    const endTitle = document.createElement("strong");\n    endTitle.textContent = "Verder oefenen?";\n    endTitle.style.fontSize = "clamp(1.45rem, 4vw, 2.25rem)";\n    const endCopy = document.createElement("span");\n    endCopy.textContent = "Ga verder met dit denkpatroon in Pabo Rekenklaar.";\n    endCopy.style.fontSize = "1.02rem";\n    const endLink = document.createElement("a");\n    endLink.className = "btn coral";\n    endLink.href = `/apps/pabo-rekenklaar/?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton`;\n    endLink.textContent = "Open Pabo Rekenklaar";\n    endCard.append(endTitle, endCopy, endLink);\n    playerWrap.append(endCard);\n    const showEndCard = () => { endCard.hidden = false; endCard.style.display = "flex"; };\n    const hideEndCard = () => { endCard.hidden = true; endCard.style.display = "none"; };\n    player.addEventListener("ended", showEndCard);\n    player.addEventListener("play", hideEndCard);\n\n    const note = document.createElement("p");'''
-          assert old in text, 'invoegpunt voor eindkaart niet gevonden'
-          text = text.replace(old, new, 1)
-          old = '''    practice.href = "/apps/pabo-rekenklaar/";\n    practice.textContent = "Verder oefenen in Pabo Rekenklaar";'''
-          new = '''    practice.href = `/apps/pabo-rekenklaar/?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton`;\n    practice.textContent = "Verder oefenen in Pabo Rekenklaar";'''
-          assert old in text, 'bestaande oefenlink niet gevonden'
-          text = text.replace(old, new, 1)
-          old = '    result.append(eyebrow, heading, summary, player, note, links);'
-          new = '    result.append(eyebrow, heading, summary, playerWrap, note, links);'
-          assert old in text, 'resultaatopbouw niet gevonden'
-          text = text.replace(old, new, 1)
-          path.write_text(text)
-
-          # Publieke uitleg: geen onverklaard jargon in de Grabbelton.
-          path = Path('public/grabbelton/index.html')
-          text = path.read_text()
-          text = text.replace(
-              'Verdere uitleg, herstelsets en rubric blijven in Pabo Rekenklaar.',
-              'Verdere uitleg, gerichte oefening en rubric blijven in Pabo Rekenklaar.'
-          )
-          path.write_text(text)
-
-          # Pabo Rekenklaar: ondersteunde deep-link naar precies het foutpatroon.
-          path = Path('public/apps/pabo-rekenklaar/index.html')
-          text = path.read_text()
-          old = 'const URL_FLAGS = new URLSearchParams(window.location.search);\nconst ADMIN_MODE'
-          new = 'const URL_FLAGS = new URLSearchParams(window.location.search);\nconst WISIK_MISCONCEPT_ENTRY = String(URL_FLAGS.get("misconcept")||"").toUpperCase();\nconst ADMIN_MODE'
-          assert old in text, 'URL_FLAGS-invoegpunt niet gevonden'
-          text = text.replace(old, new, 1)
-          old = '  if(DIAGNOSTIC_DIRECT_MODE)setTimeout(openDiagnosticRegister,120);else if(RELEASE_CHECK_MODE)setTimeout(runVisibleReleaseCheck,120);else if(WISIK_ENTRY_MODE==="moshpit-sprint")setTimeout(openMoshpitEntrance,120);else if(!state.profile.name)setTimeout(()=>openSettings(true),450);'
-          new = '  if(DIAGNOSTIC_DIRECT_MODE)setTimeout(openDiagnosticRegister,120);else if(RELEASE_CHECK_MODE)setTimeout(runVisibleReleaseCheck,120);else if(WISIK_ENTRY_MODE==="moshpit-sprint")setTimeout(openMoshpitEntrance,120);else if(MISCONCEPTION_CATALOG[WISIK_MISCONCEPT_ENTRY])setTimeout(()=>openDiagnosticPattern(WISIK_MISCONCEPT_ENTRY),120);else if(!state.profile.name)setTimeout(()=>openSettings(true),450);'
-          assert old in text, 'init-route niet gevonden'
-          text = text.replace(old, new, 1)
-          path.write_text(text)
-
-          # Gerichte regressietest.
-          test = r'''import fs from "node:fs";
-const fail = message => { throw new Error(message); };
-const grab = fs.readFileSync("public/assets/js/grabbelton.js", "utf8");
-const pabo = fs.readFileSync("public/apps/pabo-rekenklaar/index.html", "utf8");
-const page = fs.readFileSync("public/grabbelton/index.html", "utf8");
-if (!grab.includes('endTitle.textContent = "Verder oefenen?"')) fail("klikbare eindkaart ontbreekt");
-if (!grab.includes('player.addEventListener("ended", showEndCard)')) fail("eindkaart verschijnt niet na afloop");
-if (!grab.includes('player.addEventListener("play", hideEndCard)')) fail("eindkaart verdwijnt niet bij opnieuw afspelen");
-if (!grab.includes('?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton')) fail("gerichte Pabo-link ontbreekt");
-if (!pabo.includes('const WISIK_MISCONCEPT_ENTRY = String(URL_FLAGS.get("misconcept")||"").toUpperCase()')) fail("Pabo deep-link parser ontbreekt");
-if (!pabo.includes('MISCONCEPTION_CATALOG[WISIK_MISCONCEPT_ENTRY]')) fail("Pabo opent het misconcept niet gericht");
-if (page.includes('Verdere uitleg, herstelsets en rubric')) fail("Grabbelton gebruikt nog herstelsetjargon");
-console.log("Grabbelton-vervolgroute geslaagd: klikbare eindkaart en gerichte Pabo-deeplink aanwezig.");
-'''
-          Path('scripts/test-grabbelton-cta.mjs').write_text(test)
-          PY
+        run: python scripts/build-grabbelton-cta.py
       - name: Vernieuw Pabo-auditbewijs
         run: npm run audit:update
-      - name: Vernieuw Ruimteklaar-auditbewijs voor siteversie
+      - name: Vernieuw Ruimteklaar-auditbewijs
         run: node scripts/audit-space-release.mjs --write
       - name: Controleer volledige release
         run: npm run check
@@ -113,7 +31,7 @@ console.log("Grabbelton-vervolgroute geslaagd: klikbare eindkaart en gerichte Pa
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add package.json public scripts/test-grabbelton-cta.mjs
+          git add package.json public scripts/test-grabbelton-cta.mjs scripts/build-grabbelton-cta.py
           git diff --cached --quiet && exit 0
           git commit -m 'Maak flirt-eindkaart klikbaar naar gericht oefenen'
           git push origin HEAD:feat/grabbelton-verder-oefenen
