@@ -51,9 +51,16 @@ jobs:
               new_play = '''      activeBinding = { player, audio };\n      const aligned = syncAudio(true);\n      pendingInitialSync = !aligned;\n      audio.volume = aligned ? player.volume : 0;\n      try { await audio.play(); }'''
               assert old_play in core, 'verwachte play-code niet gevonden'
               core = core.replace(old_play, new_play, 1)
-              core_path.write_text(core)
           elif 'let pendingInitialSync = false;' not in core:
               raise AssertionError('verwachte syncAudio-code niet gevonden')
+
+          old_document = '''  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initializeOwnVoice, { once: true });\n  else initializeOwnVoice();'''
+          new_document = '''  if (globalThis.document) {\n    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initializeOwnVoice, { once: true });\n    else initializeOwnVoice();\n  }'''
+          if old_document in core:
+              core = core.replace(old_document, new_document, 1)
+          elif 'if (globalThis.document)' not in core:
+              raise AssertionError('verwachte document-initialisatie niet gevonden')
+          core_path.write_text(core)
 
           package_path = Path('package.json')
           package = json.loads(package_path.read_text())
