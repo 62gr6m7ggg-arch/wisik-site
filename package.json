@@ -6,7 +6,7 @@
   "scripts": {
     "audit:update": "node scripts/audit-pabo-release.mjs --write",
     "audit:verify": "node scripts/audit-pabo-release.mjs",
-    "check": "npm run audit:verify && node scripts/check-site.mjs && node scripts/test-feedback.mjs && node scripts/test-pabo-navigation.mjs && node scripts/test-pabo-flirts.mjs && node scripts/test-festival-venues.mjs && node scripts/test-backstage-roadie.mjs && node scripts/test-backstage-audit.mjs && node scripts/audit-space-release.mjs",
+    "check": "npm run audit:verify && node scripts/check-site.mjs && node scripts/test-feedback.mjs && node scripts/test-pabo-navigation.mjs && node scripts/test-pabo-flirts.mjs && node scripts/test-ownvoice-release.mjs && node scripts/test-festival-venues.mjs && node scripts/test-backstage-roadie.mjs && node scripts/test-backstage-audit.mjs && node scripts/audit-space-release.mjs",
     "build": "npm run check",
     "preview": "npx wrangler pages dev public",
     "predeploy": "npm run check",
