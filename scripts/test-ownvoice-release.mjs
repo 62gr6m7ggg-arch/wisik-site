@@ -32,7 +32,7 @@ if (!core.includes(`const OWN_VOICE_RELEASE = "${review.release}"`)) fail("relea
 
 for (const page of ["public/grabbelton/index.html", "public/apps/pabo-rekenklaar/index.html"]) {
   const html = fs.readFileSync(path.join(root, page), "utf8");
-  if (!html.includes("grabbelton-core.js?v=0.1.20-eigenstem-20260909")) fail(`${page} mist de eigenstem-cacheversie`);
+  if (!html.includes("grabbelton-core.js?v=0.1.21")) fail(`${page} mist de eigenstem-cacheversie`);
 }
 
 console.log(`Eigenstem-releasecontrole geslaagd: ${prepared.length} codes, ${bytes.length} bytes, SHA-256 ${sha}.`);

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "auditVersion": "1.2.0",
-  "siteVersion": "0.1.20",
+  "siteVersion": "0.1.21",
   "tool": "Pabo Rekenklaar",
   "toolVersion": "1.6.3",
-  "generatedAt": "2026-09-08T22:31:15.371Z",
+  "generatedAt": "2026-09-09T08:56:36.715Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -90,12 +90,12 @@
       "withNotes": 11,
       "needsRevision": 0
     },
-    "reviewedAt": "2026-09-08",
+    "reviewedAt": "2026-09-09",
     "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
     "scope": {
       "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
       "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen.",
-      "audio": "De gesproken tekst is beoordeeld via de aangeleverde VTT en transcripten; de audiotrack is niet onafhankelijk beluisterd. D01 is op 8 september vervangen door de aangeleverde eigen stem: de gedecodeerde spraak is met twee spraakherkenningsmodellen vergeleken met de uitleg, nieuwe woordtijdstippen en figuur. Geen menselijke beluistering.",
+      "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon.",
       "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
       "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
     },
@@ -688,7 +688,7 @@
         "verdict": "aligned",
         "expectedMisconception": "Het hoogste punt wordt gekozen wanneer de grootste toename tussen opeenvolgende waarden wordt gevraagd.",
         "intendedInsight": "Vergelijk de verschillen: de hoogste eindwaarde hoeft niet na de grootste stijging te liggen.",
-        "observedContent": "De eigen stem vergelijkt 10→30→35→40, met de grootste toename +20 in het eerste jaar en hoogste eindwaarde 40 rechts. De uitleg eindigt op de volledige zin De toename vertelt hoeveel erbij kwam. De niet-ingesloten extra slotzin uit de oude tekst is uit het transcript en de ondertiteling verwijderd.",
+        "observedContent": "De eigen stem vergelijkt 10→30→35→40: de grootste toename is +20 in het eerste jaar, terwijl de hoogste eindwaarde 40 rechts ligt. De volledige slotconclusie maakt expliciet dat waar je het hoogst uitkomt niet automatisch de plaats van de grootste stijging is. Dit sluit aan op het canonieke denkpatroon.",
         "visualEvidence": [
           {
             "timestamps": [
@@ -711,7 +711,7 @@
             "observation": "Bestaande eindkaart na de complete uitleg, zonder de overtollige stilte."
           }
         ],
-        "captionEvidence": "Nieuwe cues van 4,50 tot 49,10 s volgen de eigen stem. De volledige gesproken kern eindigt vóór de overgang op 50,52 s; eindkaart tot 56 s.",
+        "captionEvidence": "De Nederlandse cues volgen de volledige eigen stem en bevatten nu ook de slotconclusie dat waar je het hoogst uitkomt niet automatisch is waar je het hardst bent gestegen.",
         "notes": [],
         "videoId": "wisik-flirt-d01",
         "title": "Hoogste punt of grootste toename"
@@ -950,7 +950,7 @@
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
     "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "5d6a8e65689d1172c8e5a7d8c52cb3f72979951d0f83bc193952f5263aef49f8"
+    "sha256": "1e08f17ce83da09dfbc28cea7c29b5bffee7458de545e0400466b53d4a1240b6"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",

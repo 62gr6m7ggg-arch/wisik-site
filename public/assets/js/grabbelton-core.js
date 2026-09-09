@@ -173,13 +173,26 @@
     let syncing = false;
     const clipEnd = config.start + config.duration;
     const targetAudioTime = () => config.start + Math.max(0, player.currentTime / Math.max(rate, 0.01));
+    let pendingInitialSync = false;
     const syncAudio = (force = false) => {
-      if (!Number.isFinite(audio.duration) || !Number.isFinite(player.currentTime)) return;
+      if (!Number.isFinite(audio.duration) || !Number.isFinite(player.currentTime)) return false;
       const target = Math.min(clipEnd - 0.04, targetAudioTime());
       if (force || Math.abs(audio.currentTime - target) > 0.22) {
-        try { audio.currentTime = target; } catch {}
+        try { audio.currentTime = target; } catch { return false; }
       }
+      return true;
     };
+    const finishInitialSync = () => {
+      if (!pendingInitialSync) return;
+      pendingInitialSync = false;
+      audio.volume = player.volume;
+      if (!player.paused) audio.play().catch(() => player.pause());
+    };
+    audio.addEventListener("loadedmetadata", () => {
+      if (!pendingInitialSync || !syncAudio(true)) return;
+      if (audio.seeking) audio.addEventListener("seeked", finishInitialSync, { once: true });
+      else finishInitialSync();
+    });
     const configure = () => {
       if (!Number.isFinite(player.duration) || player.duration <= 0) return;
       rate = Math.min(2, Math.max(0.35, player.duration / config.duration));
@@ -204,8 +217,9 @@
         activeBinding.audio.pause();
       }
       activeBinding = { player, audio };
-      syncAudio(true);
-      audio.volume = player.volume;
+      const aligned = syncAudio(true);
+      pendingInitialSync = !aligned;
+      audio.volume = aligned ? player.volume : 0;
       try { await audio.play(); }
       catch (error) {
         player.pause();
@@ -273,6 +287,8 @@
     validWristbands: Object.freeze([...VALID_WRISTBANDS])
   });
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initializeOwnVoice, { once: true });
-  else initializeOwnVoice();
+  if (globalThis.document) {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initializeOwnVoice, { once: true });
+    else initializeOwnVoice();
+  }
 })();

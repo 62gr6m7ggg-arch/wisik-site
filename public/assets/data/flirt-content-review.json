@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-09-08",
+  "reviewedAt": "2026-09-09",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
     "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen.",
-    "audio": "De gesproken tekst is beoordeeld via de aangeleverde VTT en transcripten; de audiotrack is niet onafhankelijk beluisterd. D01 is op 8 september vervangen door de aangeleverde eigen stem: de gedecodeerde spraak is met twee spraakherkenningsmodellen vergeleken met de uitleg, nieuwe woordtijdstippen en figuur. Geen menselijke beluistering.",
+    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon.",
     "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
     "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
   },
@@ -782,7 +782,7 @@
       "verdict": "aligned",
       "expectedMisconception": "Het hoogste punt wordt gekozen wanneer de grootste toename tussen opeenvolgende waarden wordt gevraagd.",
       "intendedInsight": "Vergelijk de verschillen: de hoogste eindwaarde hoeft niet na de grootste stijging te liggen.",
-      "observedContent": "De eigen stem vergelijkt 10→30→35→40, met de grootste toename +20 in het eerste jaar en hoogste eindwaarde 40 rechts. De uitleg eindigt op de volledige zin De toename vertelt hoeveel erbij kwam. De niet-ingesloten extra slotzin uit de oude tekst is uit het transcript en de ondertiteling verwijderd.",
+      "observedContent": "De eigen stem vergelijkt 10→30→35→40: de grootste toename is +20 in het eerste jaar, terwijl de hoogste eindwaarde 40 rechts ligt. De volledige slotconclusie maakt expliciet dat waar je het hoogst uitkomt niet automatisch de plaats van de grootste stijging is. Dit sluit aan op het canonieke denkpatroon.",
       "visualEvidence": [
         {
           "timestamps": [
@@ -805,7 +805,7 @@
           "observation": "Bestaande eindkaart na de complete uitleg, zonder de overtollige stilte."
         }
       ],
-      "captionEvidence": "Nieuwe cues van 4,50 tot 49,10 s volgen de eigen stem. De volledige gesproken kern eindigt vóór de overgang op 50,52 s; eindkaart tot 56 s.",
+      "captionEvidence": "De Nederlandse cues volgen de volledige eigen stem en bevatten nu ook de slotconclusie dat waar je het hoogst uitkomt niet automatisch is waar je het hardst bent gestegen.",
       "notes": [],
       "videoId": "wisik-flirt-d01",
       "title": "Hoogste punt of grootste toename",
@@ -814,8 +814,8 @@
         "catalogItem": "10c36a64bb75e2c69ddc6f6cb485ca0001aa8ac4ee44983ba90245de56b1d5e0",
         "video": "f6e1e38ec72fc7f8105136354955f6c7f8c04de34763afa2b6006a9038e7dcab",
         "poster": "4fe45a2347d6727d5461064322f6c8b30a33931e9d772031137e767f26d54ee8",
-        "captions": "d7a9115cd596e2294588c731b55281fcdb695450a608137544480e78c010c811",
-        "transcript": "d0bde027363a218909fb4605cc51b4c44bbf8d1a59a6a9743a00f22c35bb7b9c"
+        "captions": "5dee9aacc5e3607a5cf835f645148bc27315626fcf58b84736490037d796a324",
+        "transcript": "f32db02596541dc6ec596e30dde3f2cd4ab5b9adf2e8e247f7b618883f1e4cdf"
       }
     },
     {
