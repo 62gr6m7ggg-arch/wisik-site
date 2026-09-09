@@ -137,6 +137,38 @@
     track.src = core.versionedAssetUrl(video.captionsSrc, globalThis.WISIK_SITE_VERSION);
     track.default = true;
     player.append(track);
+
+    const playerWrap = document.createElement("div");
+    playerWrap.className = "grabbelton-player-wrap";
+    Object.assign(playerWrap.style, { position: "relative", width: "100%" });
+    playerWrap.append(player);
+
+    const endCard = document.createElement("div");
+    endCard.className = "grabbelton-end-card";
+    endCard.hidden = true;
+    Object.assign(endCard.style, {
+      position: "absolute", inset: "0", zIndex: "3", display: "none",
+      alignItems: "center", justifyContent: "center", flexDirection: "column",
+      gap: "14px", padding: "24px", textAlign: "center", borderRadius: "16px",
+      background: "#14344d", color: "#fff"
+    });
+    const endTitle = document.createElement("strong");
+    endTitle.textContent = "Verder oefenen?";
+    endTitle.style.fontSize = "clamp(1.45rem, 4vw, 2.25rem)";
+    const endCopy = document.createElement("span");
+    endCopy.textContent = "Ga verder met dit denkpatroon in Pabo Rekenklaar.";
+    endCopy.style.fontSize = "1.02rem";
+    const endLink = document.createElement("a");
+    endLink.className = "btn coral";
+    endLink.href = `/apps/pabo-rekenklaar/?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton`;
+    endLink.textContent = "Open Pabo Rekenklaar";
+    endCard.append(endTitle, endCopy, endLink);
+    playerWrap.append(endCard);
+    const showEndCard = () => { endCard.hidden = false; endCard.style.display = "flex"; };
+    const hideEndCard = () => { endCard.hidden = true; endCard.style.display = "none"; };
+    player.addEventListener("ended", showEndCard);
+    player.addEventListener("play", hideEndCard);
+
     const note = document.createElement("p");
     note.className = "muted";
     note.textContent = reason === "misconception"
@@ -150,12 +182,12 @@
     transcript.textContent = "Lees het transcript";
     const practice = document.createElement("a");
     practice.className = "btn primary small";
-    practice.href = "/apps/pabo-rekenklaar/";
+    practice.href = `/apps/pabo-rekenklaar/?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton`;
     practice.textContent = "Verder oefenen in Pabo Rekenklaar";
     const links = document.createElement("div");
     links.className = "button-row";
     links.append(transcript, practice);
-    result.append(eyebrow, heading, summary, player, note, links);
+    result.append(eyebrow, heading, summary, playerWrap, note, links);
     rememberVideo(video.id);
   }
 

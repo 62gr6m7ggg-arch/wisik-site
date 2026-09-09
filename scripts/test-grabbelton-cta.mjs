@@ -1,0 +1,13 @@
+import fs from "node:fs";
+const fail = message => { throw new Error(message); };
+const grab = fs.readFileSync("public/assets/js/grabbelton.js", "utf8");
+const pabo = fs.readFileSync("public/apps/pabo-rekenklaar/index.html", "utf8");
+const page = fs.readFileSync("public/grabbelton/index.html", "utf8");
+if (!grab.includes('endTitle.textContent = "Verder oefenen?"')) fail("klikbare eindkaart ontbreekt");
+if (!grab.includes('player.addEventListener("ended", showEndCard)')) fail("eindkaart verschijnt niet na afloop");
+if (!grab.includes('player.addEventListener("play", hideEndCard)')) fail("eindkaart verdwijnt niet bij opnieuw afspelen");
+if (!grab.includes('?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton')) fail("gerichte Pabo-link ontbreekt");
+if (!pabo.includes('const WISIK_MISCONCEPT_ENTRY = String(URL_FLAGS.get("misconcept")||"").toUpperCase()')) fail("Pabo deep-link parser ontbreekt");
+if (!pabo.includes('MISCONCEPTION_CATALOG[WISIK_MISCONCEPT_ENTRY]')) fail("Pabo opent het misconcept niet gericht");
+if (page.includes('Verdere uitleg, herstelsets en rubric')) fail("Grabbelton gebruikt nog herstelsetjargon");
+console.log("Grabbelton-vervolgroute geslaagd: klikbare eindkaart en gerichte Pabo-deeplink aanwezig.");
