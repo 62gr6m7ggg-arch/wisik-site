@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "auditVersion": "1.2.0",
-  "siteVersion": "0.1.23",
+  "siteVersion": "0.1.24",
   "tool": "Pabo Rekenklaar",
   "toolVersion": "1.6.3",
-  "generatedAt": "2026-09-09T09:43:16.213Z",
+  "generatedAt": "2026-09-09T12:22:07.651Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -94,8 +94,8 @@
     "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
     "scope": {
       "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-      "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen.",
-      "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon.",
+      "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd.",
+      "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden.",
       "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
       "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
     },
@@ -109,7 +109,7 @@
         "visualEvidence": [
           {
             "timestamps": "4,000 s; 48,744 s",
-            "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+            "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
           },
           {
             "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -130,7 +130,7 @@
         "visualEvidence": [
           {
             "timestamps": "4,000 s; 46,560 s",
-            "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+            "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
           },
           {
             "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -151,7 +151,7 @@
         "visualEvidence": [
           {
             "timestamps": "4,000 s; 44,016 s",
-            "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+            "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
           },
           {
             "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -172,7 +172,7 @@
         "visualEvidence": [
           {
             "timestamps": "4,000 s; 45,120 s",
-            "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+            "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
           },
           {
             "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -193,7 +193,7 @@
         "visualEvidence": [
           {
             "timestamps": "4,000 s; 46,896 s",
-            "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+            "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
           },
           {
             "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -216,7 +216,7 @@
         "visualEvidence": [
           {
             "timestamps": "4,000 s; 47,616 s",
-            "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+            "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
           },
           {
             "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -237,7 +237,7 @@
         "visualEvidence": [
           {
             "timestamps": "4,000 s; 50,880 s",
-            "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+            "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
           },
           {
             "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -258,7 +258,7 @@
         "visualEvidence": [
           {
             "timestamps": "4,000 s; 46,728 s",
-            "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+            "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
           },
           {
             "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -950,7 +950,7 @@
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
     "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "db8b558238eaa5dd450223643ae79997c2a76fc8b90dfb4e86b86eebbc390191"
+    "sha256": "df297404b5baa76f4c95fee1a3ade196fb22f69a702780decf997b14c3913703"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",

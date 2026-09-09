@@ -4,8 +4,8 @@
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen.",
-    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon.",
+    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd.",
+    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden.",
     "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
     "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
   },
@@ -19,7 +19,7 @@
       "visualEvidence": [
         {
           "timestamps": "4,000 s; 48,744 s",
-          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
         },
         {
           "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -33,7 +33,7 @@
       "fingerprints": {
         "misconception": "d9a69f8afdd497028a153c954c390cfa3c2114ac0798da1557e668b804ca5f54",
         "catalogItem": "21142340628d39c245e60d1c3dcb37777639872f221c9a0ed97acc8f0ae2106f",
-        "video": "d225986d1e3c5275a2960c1f89dc1d71c7c2424b58b0d7fa90b14ce17a1697f9",
+        "video": "c4d856ba53ca9154764a6894a04f72855d9566030ab872814135b8294a547802",
         "poster": "c274d380cdbd4d07c7d779e95f7c76e463170574a979c098cc8920ed9aaebccd",
         "captions": "6ca08c35858f13dad1e69813942be9585e0e29d06c70befebcfbb63008b7fe88",
         "transcript": "b43b2302108b8358366854a9eddb6e13ed866ba645e5f87c6b4eadedea9bd29f"
@@ -48,7 +48,7 @@
       "visualEvidence": [
         {
           "timestamps": "4,000 s; 46,560 s",
-          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
         },
         {
           "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -62,7 +62,7 @@
       "fingerprints": {
         "misconception": "f2ad79e4c81167024f2b0af00c713785b0c25935023f52d6a1bf77af4efa88b7",
         "catalogItem": "f8d4b9e9b8a3d289ccf3a72c1ad289afc4e2de57644401252bd2cd5db0afe52c",
-        "video": "d6460883e0624bbfbf61daf03812af6b8addd4dba75bf606de1af408a38ff8fc",
+        "video": "2ebb598f8b029e0224e0f01b3d45b04f6659e028f20c54a39ca2868d735e0592",
         "poster": "938478be953df065b8ef3dcbde98390305f4890df2af45ec61db38d3253e007f",
         "captions": "1a1716cc579a3c89e04d7be9dcbb5c45b159c33538980f6b4168f8ef8602288c",
         "transcript": "01770ae4b4731c939101b2d1fe9ee86afa0f6486a5ec9f261d2228e1193690b6"
@@ -77,7 +77,7 @@
       "visualEvidence": [
         {
           "timestamps": "4,000 s; 44,016 s",
-          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
         },
         {
           "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -91,7 +91,7 @@
       "fingerprints": {
         "misconception": "78d3d9004e20cc6d6d874424f5aadd945e89ea833079976a02c615937174bb82",
         "catalogItem": "acf27d2fe5c9068576fbedff75238b8fae8ba11b7eb05bdfc5646f7d6048b8ac",
-        "video": "c8e613165f993e2776c53c7961a9d67db927b3cf01cf73b654ab5e14aaf40d87",
+        "video": "4b84d0ae48463af90cb3f59f6558b4c726b7d542b482188c1a302ea1a8188191",
         "poster": "78cac0b46991d756ac778208022c11cd7902aaade2a3fa3e8c950a4fab6c15b2",
         "captions": "aaa3105b8cdf91d6fd822283eb788161a2273f9289417116daa35b2ef10be867",
         "transcript": "ec21b72f641c52b1ccb11de7ae03d6e094d6a08dabf1a5318cfca29d899fed08"
@@ -106,7 +106,7 @@
       "visualEvidence": [
         {
           "timestamps": "4,000 s; 45,120 s",
-          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
         },
         {
           "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -120,7 +120,7 @@
       "fingerprints": {
         "misconception": "717942f4470f1c98a390f3af587792c1db895ae15ab6907f328d303a92fe9850",
         "catalogItem": "fe374a1fe87a7a4d7ffc9c80aa506e17edc29023ca0b626b35d91d19009d160b",
-        "video": "a0f9ce394bc2d2b5cf048bd00ba86bfd8069750cc772010cde3988459e2e519e",
+        "video": "9e4ecc5196ef112ce48ac5d79e0ce3952ef5fc732ae54c066a67d81ebb86511f",
         "poster": "3e36aa596d47073956968aeeb2d8c3d87a76237b3c9fa1506e8269e580fd0f6f",
         "captions": "52e9287d540110b49589cd61a5661006f103e111ed20fe57fb2d54846ae2543e",
         "transcript": "6f7c4704a0d7b8707fc92f90a5c2576da5ebb732b72c64cdf08b2b35545ab372"
@@ -135,7 +135,7 @@
       "visualEvidence": [
         {
           "timestamps": "4,000 s; 46,896 s",
-          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
         },
         {
           "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -151,7 +151,7 @@
       "fingerprints": {
         "misconception": "5278a12df05e9204efa6b45c0925ea02e704ab4adedfabdf56ef8e7be5ed5600",
         "catalogItem": "1cb54eb1d6756a54229d578f264df835376325ecccc6877d3b86e6f01171036a",
-        "video": "33591b62fe55644a9f38f73749f1a35ae189cea7a58212d57960c3d5dc7181fa",
+        "video": "944bba58a1bfa21a46d102713c2c27f08c3ea0688672b9cc2572e59f353e2076",
         "poster": "8cbaa7f9fa6cfba40bc85ef1280915615c10f1b73077222e4a862bb216ab694f",
         "captions": "46d5b58c0a81a2045e2b8588044326fc988a20aa5902c20b6dd7acdaab399540",
         "transcript": "6cf52c0c875cc6b887f6f5ef69e545902aae35475978680f1a047cc785e4148e"
@@ -166,7 +166,7 @@
       "visualEvidence": [
         {
           "timestamps": "4,000 s; 47,616 s",
-          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
         },
         {
           "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -180,7 +180,7 @@
       "fingerprints": {
         "misconception": "b96a02e59ca791ac00dcd54c58a19d5e0d23576024d6bc017d35c786e208a383",
         "catalogItem": "c60f49c0afebdd4830fd94a1d5168e1d9bf7da1f9431dde898df57e75517a079",
-        "video": "a1a4732f3776f1f850bb41935b038e4c4d704d8e86f3063d3ab60b7ab3fa9085",
+        "video": "12bbfc16079b0ae570c8be57cb29b248d90fcb8618e5ee16d3e0a96617dd0c9d",
         "poster": "581df7aaf0124f6a8fae754b72d4cbfbd6bf7a4b80141adc63a5a94f63b8ba44",
         "captions": "5db5d449de47df53d69e20a15fadbf6072545f4b2c710f84ffbefb0bb6c9b5de",
         "transcript": "4f42684149f22f7d6a67ef42bfb1756af6d0d9e75e400d13a61e445a7b6bcce1"
@@ -195,7 +195,7 @@
       "visualEvidence": [
         {
           "timestamps": "4,000 s; 50,880 s",
-          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
         },
         {
           "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -209,7 +209,7 @@
       "fingerprints": {
         "misconception": "a756dc9935764c39c55e1d95d586a0c2592387a7a2be1e1289dba190e3888e23",
         "catalogItem": "70014082903886978389c063fa78f577648ded5381efe590a37bf2828604b35d",
-        "video": "a7814233f9aed90724990ab770e8dc87cfc13276a038fc28e9ed879d5a7315f2",
+        "video": "2c69ca4d051f7dcab0a2e9489d14ac582f7373b3e76503c7a8a4c549d61c87fc",
         "poster": "74fb15cafe1291bc3c9ca5fb2509a4973a417af5e0e12b1c84769d7eb64b1818",
         "captions": "782685d31a799ea2cb84c98d4514243cd4ed2ed5cd9c38372cebf2661b76fada",
         "transcript": "7b43b97d3f3d0db3fd8d2e6fbf64ef6bca3fe3e11de6efb8d7f8e147321f303a"
@@ -224,7 +224,7 @@
       "visualEvidence": [
         {
           "timestamps": "4,000 s; 46,728 s",
-          "observation": "Intro met juiste titel en code; outro verwijst naar de herstelset."
+          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
         },
         {
           "timestamps": "12,000; 21,000; 30,000; 39,000 s",
@@ -238,7 +238,7 @@
       "fingerprints": {
         "misconception": "ed88acd3df52221f1e7a290a226cb8181d8556c3fb5cfa1a98445f73c15df550",
         "catalogItem": "fe38e96e27618769f52f07228b0ec64dd9d2c2704ef4f2c9a13de4c198b63e32",
-        "video": "02193be4930deee4624246050326eb24cf9b356670cac5bfe53ed90e04d04c7c",
+        "video": "7c540b321e5cba64c5c73497bc8b20f2d3ea172e229d32856380362c6cd9af6d",
         "poster": "1729530fea26e47d0825a8775c46bd1b2a91ce34b37ca2ec2ff56c95f5bc4975",
         "captions": "583731bfd3e108bc09ea9e8fa32a130cec5abd16165a38c832ebbb67ee4aab0e",
         "transcript": "8abe922db5fde1525c69ed314bb4edfcc56f4198b335b45c8ee03c1ae89bb321"
@@ -262,7 +262,7 @@
       "fingerprints": {
         "misconception": "dbd8dcfa82086fd64ef40910c6a33d42b461f83b9c6e40afe2853d619484f152",
         "catalogItem": "be2cbbb3ecfaa0d5ce6c38f73c67934473e40976d0eae61e0e11fb0f363921a3",
-        "video": "40bbc703767d44027e9b708522a106e45c60db2f29a9080e630ebd66dce67a89",
+        "video": "b66d525b081dd79696ed5a55c70f8e138ed6c5dc24f44923394916237829b753",
         "poster": "3f4e039d54ecdf6f91d906b1f152d80dd9da6a3d0e9965eb208b12e37226f9d1",
         "captions": "64d41055cfa0d1b5dd95c7618cea4cc3cfa93a5dacfffc3b25fbe34aa066071e",
         "transcript": "c4efd8e246dad2823ba16ede5de3900193ee6b47ec9068fd3b4e1d753754eb2f"
@@ -286,7 +286,7 @@
       "fingerprints": {
         "misconception": "d82854f66e2e0a8c3b29b3e8b5b3959a733fe4099eb74c18b92e27ccb5db4c5a",
         "catalogItem": "25cb49a9e37ea385f32f8d853f858caef3a2b783a047543fb62a1413ae424bc6",
-        "video": "1b9c253cb2e89e1322346e11fc80821169bad8c692750aad0436e288de0b10f8",
+        "video": "21554227eee16f442809f0a2df752abeaacfebb5d7fe662623ac5c3716097fae",
         "poster": "b63092d19e5f29a6f436c7ba8125df6f733b4115c1cd6dc4fd41f7eebd5b0bb7",
         "captions": "75a158abe97b90beab2a2add5fe9c8d4d1de4108b84d20653f041f071e09e9fe",
         "transcript": "1a2b5c12e3acab124303a5a0e45ca430469e871c376089ee49a6009f66a976f7"
@@ -310,7 +310,7 @@
       "fingerprints": {
         "misconception": "f07e640cbacd409393e29ee09cfb8511ed8a4ec413304cf6c969748f6d0ac957",
         "catalogItem": "6e893c217b48508f73b58692abbea4c6ac034b83ab0b9ff91479d346b5e002c2",
-        "video": "2838bd6202ecbe7c8cd4d9b761d8979809ce4016cf4c9d6cbcf67d20bf803e4d",
+        "video": "f2473924d844e9a38239a930b79b30d43c69fe56271c1c489f6ec4b2c5fb889d",
         "poster": "236406c9651282341bf59a0c3a5c5ef30722bdb07eabcd03a6ff9c0e4bfb6c0c",
         "captions": "54438da1b58f7891c3b8f0cd0488a0d09567b3c6fba545310128bdc53307921b",
         "transcript": "185842c078f56e4c6fb404fd0a881976f8910ec80eb98e1b92d4629acd379638"
@@ -337,7 +337,7 @@
       "fingerprints": {
         "misconception": "ad998fa1c5534bf9bea8675540435ca99ce8ffa85d2bae22fa1b027101e2dcf8",
         "catalogItem": "5d244ca645026e684a163635c79d51d28b527dd9ea8cb1ea41a1be82223e4d3a",
-        "video": "5cce4d79bf34d32d6938914dd19a9ac2e03efc37efe3d5570c7bf52f4c230ff4",
+        "video": "7c5a461031ff7ac4a3201b6452899ff1ce8dbc6ed17d2ece5b3ec84e102827cd",
         "poster": "48da16c90e6e730daf7eddfcc91bd313ae91caeac4540f6e6832d60e9e618982",
         "captions": "48f3051774003e6a85fedf1eae0e3644df2502f1ff60ee3a6c6137a154aa1025",
         "transcript": "de19fd40cce99c34b21d090c21341fb4163a665fcf42e62a89466249b1675a9f"
@@ -361,7 +361,7 @@
       "fingerprints": {
         "misconception": "4df99ffe17321aa6a993ea8c49bb890b0408056cda90ae973fefe925703ee895",
         "catalogItem": "c2f5682f378f126abb346802ed6eac7ec5e77cebea40a68ec75ee8a7bf9410d2",
-        "video": "f8450ddace0184ff2f8c8a05d34515eff0da5912944a3fcb70f1652f6fa0675f",
+        "video": "12805d0e6ecdfbcd8d4677875c9c10d102c4dc3670449a167f9a81342b0b3ea1",
         "poster": "8ace993ab4b04f6ad5f4929ffec85a42d19ff6df07d57f259d4e5696269abe60",
         "captions": "b35d42fea73e33cb54bc0a00d6c0b498e5c6bdc8ffa2f95756cfbd150fc91c74",
         "transcript": "5f92072cb21cafa8341f8d42096a7f170998338f3927019433d13e2a2bfd33c8"
@@ -388,7 +388,7 @@
       "fingerprints": {
         "misconception": "f6e08bf7f2f921e248073f90a37566c802fc4e68aec4ed0be18efaa51bef4165",
         "catalogItem": "a10aafcd2e322da841fdb9607066580fd496a15b2d52a1fc3d0892d905c740ca",
-        "video": "3decdafb5ec86e1263ffc1320b220dc4e741dcaf92acdf641484bccf05bab6d0",
+        "video": "5dc84ad4bf5c99135d8172b21e80283cc2f2f5b17334402be82710387b014b9c",
         "poster": "809925fb10bd5ebf4c62478df659651d7fd0098ca4498d51081f1091da746325",
         "captions": "a45caf14fe3478b837ac71d48e7321c9cf6e49ac40f7ec6131f838703f3fc092",
         "transcript": "07ed5904f52bbb31e4449f397d51efea878a38a0b7f4506b0fbcd34de1fa0c1e"
@@ -412,7 +412,7 @@
       "fingerprints": {
         "misconception": "627bb5eb0ad314cf480a15d69dbc6a35dbd7df62f58dc8bdb2c6111aa454a1ba",
         "catalogItem": "1de659b5b6d03c39b5662b391ad9211532d0fd96c6b47f426c29083cc48253e7",
-        "video": "7f0231df340da9acf99fe06e75b9af03067f5f1ff295a0c9d5ec7ec547d8f12a",
+        "video": "8a6d6c202fdc5d5ee0a8e05e46c9ed3e76eca2c2107f8793aa9874f8ec3e9a07",
         "poster": "f3e1a36a9c9cf38e0f34dc62f313a827c60f3c5b30a14be7cd93c43413712a1e",
         "captions": "88b8d4801a128b06627d19b2d27e6a11ff4f64be20448f301f8e81fca53e5329",
         "transcript": "40774b8b308d9b02975bbf4e90d3f72b03e66904dc4a10ccc8a711b0ff14edf0"
@@ -439,7 +439,7 @@
       "fingerprints": {
         "misconception": "53f5fda2e449ac020dfa395daab85a76744d6258f41552e7f14c56c8fdd03b18",
         "catalogItem": "88d2eb00c8e553d2e7446c354ce0636e2c6de97bd8ce0b40e716d29d0c4d25db",
-        "video": "902b5536a0819eac9652771c3a63c817cba2f4f0a1e5a5983d9e105b8749a253",
+        "video": "02772798ab4d1f1910c35f608c711b9e4d314f1457ae99f30bed820e89e7f463",
         "poster": "4c4a7d8061c631fcd4d4e650bab5255c383cab54cfa4c8ff82fcadf26b8e1e37",
         "captions": "4a0e51b762dde52e6cf954fea52e4ff2c9c4369961ac095394d49a858d4ea889",
         "transcript": "af0a47762ed204363f6062000927f4cf164b4cd17fbab0a8126fea915abe4b3e"
@@ -481,7 +481,7 @@
       "fingerprints": {
         "misconception": "116432efe2dd92622d6a938520f6be9d21be2c13a3a9efadc9a9d024a4b0d972",
         "catalogItem": "3e568f81475e33575b53215c0a7959a57b3ca1d25df8120cd5a1ed2a7b7cf887",
-        "video": "c530c34ef838018ce023d71fd1eb7b04def6075fdc5ab9a237626f008c71664c",
+        "video": "acfab61375e1fab7a03e965dd2a980e8256c7cabbe4cb5b41f79fb5cb53d0a83",
         "poster": "4a6a2d095fe29543673b80ef43d21ef32c40321150adc50f048b976f23dd07ec",
         "captions": "b7cfb27506681bbecdaa046f91adcf3ac2ab0c96520de79c4526a3c42311b4be",
         "transcript": "3b4b28ecdc505eaefb9378b647167ceaef4cf6c8492d070db58590ec41ca65be"
@@ -551,7 +551,7 @@
       "fingerprints": {
         "misconception": "aa8c767fbc70ebfbe242366b00ff537a3ff901efe900f6fdc5ca18753814dca9",
         "catalogItem": "603873a33df23efcaf177e3fbec77e7c7fb60a881ab68d9ea9090f40164cebd1",
-        "video": "c0238aca698c458eb29d81b6e23684623f8c0f4baf9db7912d83b08a487c601d",
+        "video": "efb24f5f49c3de1c0d42d5d7c6a8ce57d5bce2cdcb37aeaddb6c3f470aa1c150",
         "poster": "964b651d5d382016aa513e7a92ea1bdedb932ea6406a47b0f740f45290fd25c6",
         "captions": "813e32f03241eb0ba9204075e752ada5daf4a141488741f271c279ea367c97df",
         "transcript": "4a6510e12884e1a5b0020b09b14bf017ec04606f648e8967fbb14f240be76368"
@@ -588,7 +588,7 @@
       "fingerprints": {
         "misconception": "acb68ae51f0615ba40a6c386c1a35dfcae0d9e01b7b332398a1f989a85ca04a7",
         "catalogItem": "68848198ee1cf8639ecdd4b5b745937da04d5b6fc92709016786431d239e56f1",
-        "video": "d6f420e7ce6ad47392ec3ebb425f9ea81299b65b6492b8817682a732800fa8e3",
+        "video": "1eeffa9a79cba3e0d9074469ec11f6b2221ea877e3f29386938eeab832a7982a",
         "poster": "cb8f52bf73593f6b1bee0f327516c665683e1f267ae994de7910a7d603c66e7e",
         "captions": "4edb171831eed02c70021888e08d81a2154eb1a882b81c3ca97421810e3d9373",
         "transcript": "a494ba3a76b362e617d68d0ab90ba93781960bb8521e7d726ec74a5cf5adde39"
@@ -631,7 +631,7 @@
       "fingerprints": {
         "misconception": "44ec3215613b97452d8e7c6d3f59294d8f4d0397f87286b3c06f0907e224063a",
         "catalogItem": "a354e41d8766e7ad93884e8523678e559e19521828892730f9503fa44c9bbc8d",
-        "video": "628951efca6d0c53b177c144183dc10d1145748f7bc8bf7630859b6a747b5e70",
+        "video": "6ed88b712158de564f8418404a2dd1d7187e923df092c399b7ef3d36f7a03b2a",
         "poster": "b284f8db613a4f37ac55f27452ddb91be334dda12f21cd98d9000073c4dcb05c",
         "captions": "94e034db1c83ef285758169120e7088348b0eae2cac8599f3a17fbcf6ec9510f",
         "transcript": "92c18a28df6e6207f8bd27b4c4ccf3512550e4794a81ff186ec5f0575f0fb3d1"
@@ -695,7 +695,7 @@
       "fingerprints": {
         "misconception": "7cff2e8d2de303b4a67af96bb9467aa0d2fc758e22e8b70bd1d2f1718960c597",
         "catalogItem": "ea4e31528a2a961e960be196949b95430503d94c993b473fce3562993f616f2f",
-        "video": "8241395a1e087189cecb99b459e38970f4ae3509e20ee87c768620ad114aa72e",
+        "video": "fd8202edb8b9bd9ac545f5fe4ec7c73f71a3845b4f1bbcc6eef31922dff4c76d",
         "poster": "3120024e59c17fde4a1c899391dbe754830a731ef07ba71caf5765dd4d1630fc",
         "captions": "3b5cc3fc2baed247201818ff72cae26481ec4aebc1020ebe09b647c4de9a6491",
         "transcript": "427eecc6761c70871b600f18562f9b36dc153a6f0fd2b9841c90976f4c9901b1"
@@ -734,7 +734,7 @@
       "fingerprints": {
         "misconception": "fa384a100de4137fbf2ee05dea5ac414adeac898773fc29f08d553c64025315b",
         "catalogItem": "680da73c0d8ad749d6835c0172b01d48106a6378f2845133f1a372b67566a37f",
-        "video": "aeb25cd2bde11a72b79545a1ce83513e37f377338aec1f2a995c5f8aec6e7bc4",
+        "video": "8f9b8a6a591e437bdbec82ed2d3f141316cef39946dbd52ea1d04aefea6cd6bb",
         "poster": "00fc36d312e6e056700a178eda1bd1bf0beefe4169ae4543083e0fee08c3368a",
         "captions": "7b45aad3f8c127e0fdc116aed9a2ba01ba2074b750178054a7183a40312ad2fa",
         "transcript": "13c0c5f651138a7db0ad1d84e80a7840ce9ee95bf7c2e6319f3b784a33c342f2"
@@ -771,7 +771,7 @@
       "fingerprints": {
         "misconception": "d4440e974ba3fabe1f488b71ecb8e5dc9fdc8efb40698553529e5a27af0074ae",
         "catalogItem": "fd78b9004ce1d5a7962b7bf8be824f0bd4d01852d1a3215fb10cfe83cb43c34e",
-        "video": "c6f11911a5976fd74f4cdef68099596d6c64b80f55227dd9a2b078465e70e61c",
+        "video": "03cde76d1f312403b0deac98c123cccf02f946227064f739ee44e8097126b391",
         "poster": "1865b08493002e80409cd9b6cd3963a534e3a1da996efbc3558493f1d9c6fab2",
         "captions": "d1cecdc22165ec3756bce54cb7505a0598ed0a5b8d9ea6de5ba576e879760fdf",
         "transcript": "22fad23b3f2c1b283219fad9309fda99cdf53779016dcb50b567eb89e4ec2e24"
@@ -812,7 +812,7 @@
       "fingerprints": {
         "misconception": "d3831aae0034f225794b0d0696ad4615eb58316d9954eea70ff3cb1c8c2f98fd",
         "catalogItem": "10c36a64bb75e2c69ddc6f6cb485ca0001aa8ac4ee44983ba90245de56b1d5e0",
-        "video": "f6e1e38ec72fc7f8105136354955f6c7f8c04de34763afa2b6006a9038e7dcab",
+        "video": "ce8b0095c7e25e4fbbb2276b71c7be875361588699d6968f1fc4f8785dd8e36c",
         "poster": "4fe45a2347d6727d5461064322f6c8b30a33931e9d772031137e767f26d54ee8",
         "captions": "5dee9aacc5e3607a5cf835f645148bc27315626fcf58b84736490037d796a324",
         "transcript": "f32db02596541dc6ec596e30dde3f2cd4ab5b9adf2e8e247f7b618883f1e4cdf"
@@ -854,7 +854,7 @@
       "fingerprints": {
         "misconception": "16f98e6812a752fb79ab0ff807fccccae1b7ae5ec06d2babf889f718f899fbe2",
         "catalogItem": "5ea334cd80ccbb015badff4b03bbebed3c62e240493740c69be2cbef474b888b",
-        "video": "1867eb9d416f44a359fc6b74295e7206ff4b0cd3b60f3bfe3f421f83d6e97575",
+        "video": "d5910cb72e00b61f85d71de1dd6df82722ab937accc87262dd634fef3345d1d1",
         "poster": "50772a77ef367a3b8f66e0fe0b3b0a71ad4dbc70e668847c388df51369efb27f",
         "captions": "aee73d73e27927820cb0607d49bb12bfe31aa774255ead1f8bbb53280b6e03f4",
         "transcript": "7035448f256a028f6cfce981aadd685981dd18cf4eb0887ab929037332582c7a"
@@ -905,7 +905,7 @@
       "fingerprints": {
         "misconception": "8e1a98a3c87b80bebfa9ff2d7c2a17b7a2986eac281d1a8d41236320a0822c42",
         "catalogItem": "ce9c2fb325ba914fc1fa33c53af8b9e76c4be59d6bad32011d6fb0bef6d02bb9",
-        "video": "220cef2a3b3d63db52a0f1a65b24c251891cf36e2ec42e1e4ca51f9f9b6e9d51",
+        "video": "55c5f03e0e3eb2a0a02c1c8c19df57451643007168eff5d8e7ca208b622cb090",
         "poster": "0bb6176e2b57bb2296f52a375aaac00cc83e537dc8d2be7647d0a68c444e1f7b",
         "captions": "c0bd415747e576473a969aa8258ab21a6b2ad63cda32bd53d80f2518d5e972dc",
         "transcript": "b4c04ff9684a8a15609b827cdf2453bcc74ea72719bb54dbd6d2b45e6de4f13c"
@@ -947,7 +947,7 @@
       "fingerprints": {
         "misconception": "21938cd7e7f4abbb542de6cc640191c5022a45d0bafa6c50a8cd9b4414c91e18",
         "catalogItem": "3f0f32fc2cc3ac91aae4f448fd76a3a6ea33951afa02788c8a948521d0508896",
-        "video": "03f30b58e03057c80937b2531b11a5bdc39f17cf274617e885e23fcc0d41b0cc",
+        "video": "ae98ba7b0388cdcd3f1d217e316cfadf8b563ba94cb9564ad64256cf3f12a4b3",
         "poster": "863421b580c28e3883d813b8ecacf076fbe42cabcb0519d8297adb907012998e",
         "captions": "d0b56ced8f2138874db90f36b7777dabda7b678d97384878f96966f4e2f1810b",
         "transcript": "7c3195c4abcc0c1328880b0ad45cb9c8a084dd567b4b70fcc35e003775b28bdd"
@@ -999,7 +999,7 @@
       "fingerprints": {
         "misconception": "97145a3b26919f9dafc5cbaf2de8ff450f7bad6dfcad7ecf9644ac083e6273d5",
         "catalogItem": "8850a99d5fb5eda868f3d33d7d7eff479e9917f13e17b7231fc79fe3463043a4",
-        "video": "2c2196a9675610e4b00944c33239a131b456d900de7e3806bb2750deaf9f46e9",
+        "video": "0f17025b1a2674807a40f35a51ae571f8cf350f92f1403a18f632abfc88c6d78",
         "poster": "7af51b189048d9b67bddbe3308e2f53da3f992d07207d7b4ce7df0d279fcc0ed",
         "captions": "82edb8c6c2d8ec66859b0470f746de5a9592a369c31cf253cd575903c8799a99",
         "transcript": "30b1c95bacd775ef6a0c66fc351fc43dfd35309b4138ec44c3aadde1c12e6bd6"
@@ -1043,7 +1043,7 @@
       "fingerprints": {
         "misconception": "b55953f551beec82508007c5aa8b097f8933722e22fd6c9cc1666180f618b6ba",
         "catalogItem": "13c4994a79ed55533d4fc9e9b31ae70237d360d65dffd2fb309ee010377e944f",
-        "video": "f9f8b1099cf91c76052ceffa38288a878ad13e201c8a2e010b7423ade96ee7a1",
+        "video": "c21adcfeb763b025bfd8190425278ff753201603349b0d022da0a03a4e03056f",
         "poster": "ea21bd638985e09847de20854ecf3b133833d4eebe817096cf4db59eed69f5d0",
         "captions": "082eda9a3506455db316851d2aa49fa3d3a109bf1b09fd284edcdbff0939b4d6",
         "transcript": "df73708d419f11411bb689a8c7f144288abb73f2967e47ebc44fa190660697f5"
@@ -1087,7 +1087,7 @@
       "fingerprints": {
         "misconception": "347a8ef39a2d3fc5b0aeef5623b542205f273caea5200a74a377c5b1a6fd8c2f",
         "catalogItem": "a9416bcd26c52dae81d46ffd26300cdcc223f6169d83f6c0555aaa7ca87d5f17",
-        "video": "6958c8616c76903c5404b4aa25b55c33b1c9ed675da59c76f7589981c23d01c9",
+        "video": "dc1f7be8ddc39f4e8cfdb4cf016f69715671e68bc6373ae296d7296d62be1e3e",
         "poster": "db6ee3d3d5ba89680a3a62d9a23f91f34e05957706eec5b2038106b98ba2d1e3",
         "captions": "363299812a84d32e968d3abe14227eebd927d0b00ce1c3ab7c2df4253f1c6387",
         "transcript": "3061453e19a08858feae5ae5d6d2ad92c3f218ce2fc4ab3302653ecb11d438f3"
