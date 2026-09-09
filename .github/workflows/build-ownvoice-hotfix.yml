@@ -19,8 +19,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Controleer ffmpeg
-        run: ffmpeg -version && ffprobe -version
+      - name: Installeer en controleer ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version
+          ffprobe -version
       - name: Maak 30 losse eigenstembestanden en patch speler
         run: python scripts/build-ownvoice-hotfix.py
       - name: Vernieuw Pabo-auditbewijs
