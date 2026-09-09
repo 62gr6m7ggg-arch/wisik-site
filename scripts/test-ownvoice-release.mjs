@@ -40,6 +40,6 @@ if (core.includes('player.addEventListener("timeupdate"')) fail("continue resync
 if (core.includes("config.start +")) fail("speler probeert nog midden in masteraudio te seeken");
 for (const page of ["public/grabbelton/index.html", "public/apps/pabo-rekenklaar/index.html"]) {
   const html = fs.readFileSync(path.join(root, page), "utf8");
-  if (!html.includes("grabbelton-core.js?v=0.1.22")) fail(`${page} mist cacheversie 0.1.22`);
+  if (!html.includes("grabbelton-core.js?v=0.1.23")) fail(`${page} mist cacheversie 0.1.23`);
 }
 console.log(`Eigenstem-releasecontrole geslaagd: 30 losse M4A-bestanden, geen master-seeking, bronhash ${review.output.sha256}.`);
