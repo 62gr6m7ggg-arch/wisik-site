@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Werk D01-review en Safari-startsynchronisatie bij
+      - name: Werk review, Safari-sync en siteversie 0.1.21 bij
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -54,16 +54,38 @@ jobs:
               core_path.write_text(core)
           elif 'let pendingInitialSync = false;' not in core:
               raise AssertionError('verwachte syncAudio-code niet gevonden')
+
+          package_path = Path('package.json')
+          package = json.loads(package_path.read_text())
+          package['version'] = '0.1.21'
+          package_path.write_text(json.dumps(package, ensure_ascii=False, indent=2) + '\n')
+
+          for path in Path('public').rglob('*'):
+              if not path.is_file() or path.suffix.lower() not in {'.html','.js','.json','.css','.webmanifest','.txt'}:
+                  continue
+              try:
+                  text = path.read_text()
+              except UnicodeDecodeError:
+                  continue
+              updated = text.replace('0.1.20-eigenstem-20260909', '0.1.21').replace('0.1.20', '0.1.21')
+              if updated != text:
+                  path.write_text(updated)
+
+          test_path = Path('scripts/test-ownvoice-release.mjs')
+          test = test_path.read_text().replace('grabbelton-core.js?v=0.1.20-eigenstem-20260909', 'grabbelton-core.js?v=0.1.21')
+          test_path.write_text(test)
           PY
       - name: Werk openbaar Pabo-auditbewijs bij
         run: npm run audit:update
+      - name: Werk Ruimteklaar-auditbewijs bij voor siteversie
+        run: node scripts/audit-space-release.mjs --write
       - name: Controleer volledige release
         run: npm run check
-      - name: Commit gecontroleerde review en audit
+      - name: Commit gecontroleerde release
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/assets/data/flirt-content-review.json public/assets/data/pabo-release-audit.json public/assets/js/grabbelton-core.js
+          git add package.json public scripts/test-ownvoice-release.mjs
           git diff --cached --quiet && exit 0
-          git commit -m 'Herbeoordeel D01 en finaliseer eigenstemsynchronisatie'
+          git commit -m 'Finaliseer eigenstemrelease als Wisik 0.1.21'
           git push origin HEAD:feat/pabo-eigenstem-alle-flirts
