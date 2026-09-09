@@ -22,6 +22,10 @@ for path in Path('public').rglob('*'):
     if updated != text:
         path.write_text(updated)
 
+ownvoice_test = Path('scripts/test-ownvoice-release.mjs')
+if ownvoice_test.exists():
+    ownvoice_test.write_text(ownvoice_test.read_text().replace('0.1.22', '0.1.23'))
+
 path = Path('public/assets/js/grabbelton.js')
 text = path.read_text()
 old = '    player.append(track);\n    const note = document.createElement("p");'
