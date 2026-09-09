@@ -6,7 +6,7 @@
   const VALID_WRISTBANDS = new Set(["ALL", "VO", "PABO", "HBO"]);
   const MEDIA_HOST = "media.wisik.nl";
   const OWN_VOICE_RELEASE = "eigenstem-2026-09-09";
-  const OWN_VOICE = Object.freeze({"A01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":0.0,"duration":60.05,"contentStart":4.5,"contentDuration":54.05},"A02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":60.8,"duration":60.996,"contentStart":4.5,"contentDuration":54.996},"A03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":122.546,"duration":54.803,"contentStart":4.5,"contentDuration":48.803},"A04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":178.099,"duration":53.35,"contentStart":4.5,"contentDuration":47.35},"A05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":232.199,"duration":61.648,"contentStart":4.5,"contentDuration":55.648},"A06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":294.597,"duration":61.291,"contentStart":4.5,"contentDuration":55.291},"A07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":356.638,"duration":75.297,"contentStart":4.5,"contentDuration":69.297},"A08":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":432.685,"duration":60.197,"contentStart":4.5,"contentDuration":54.197},"B01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":494.382,"duration":65.604,"contentStart":4.5,"contentDuration":59.604},"B02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":560.736,"duration":72.192,"contentStart":4.5,"contentDuration":66.192},"B03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":633.678,"duration":64.578,"contentStart":4.5,"contentDuration":58.578},"B04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":699.006,"duration":75.865,"contentStart":4.5,"contentDuration":69.865},"B05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":775.621,"duration":74.9,"contentStart":4.5,"contentDuration":68.9},"B06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":851.271,"duration":63.447,"contentStart":4.5,"contentDuration":57.447},"B07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":915.468,"duration":67.186,"contentStart":4.5,"contentDuration":61.186},"B08":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":983.404,"duration":59.481,"contentStart":4.5,"contentDuration":53.481},"C01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1044.385,"duration":67.822,"contentStart":4.5,"contentDuration":61.822},"C02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1112.957,"duration":64.902,"contentStart":4.5,"contentDuration":58.902},"C03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1178.609,"duration":70.359,"contentStart":4.5,"contentDuration":64.359},"C04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1249.718,"duration":61.615,"contentStart":4.5,"contentDuration":55.615},"C05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1312.083,"duration":60.922,"contentStart":4.5,"contentDuration":54.922},"C06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1373.755,"duration":63.88,"contentStart":4.5,"contentDuration":57.88},"C07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1438.385,"duration":58.0,"contentStart":4.5,"contentDuration":52.0},"D01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1497.885,"duration":59.287,"contentStart":4.5,"contentDuration":53.287},"D02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1557.922,"duration":62.762,"contentStart":4.5,"contentDuration":56.762},"D03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1621.434,"duration":57.452,"contentStart":4.5,"contentDuration":51.452},"D04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1679.636,"duration":60.524,"contentStart":4.5,"contentDuration":54.524},"D05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1740.91,"duration":61.287,"contentStart":4.5,"contentDuration":55.287},"D06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1802.947,"duration":51.916,"contentStart":4.5,"contentDuration":45.916},"D07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1855.613,"duration":68.91,"contentStart":4.5,"contentDuration":62.91}});
+  const OWN_VOICE = Object.freeze({"A01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":0.0,"duration":60.05,"contentStart":4.5,"contentDuration":54.05},"A02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":60.8,"duration":60.996,"contentStart":4.5,"contentDuration":54.996},"A03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":122.546,"duration":54.803,"contentStart":4.5,"contentDuration":48.803},"A04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":178.099,"duration":53.35,"contentStart":4.5,"contentDuration":47.35},"A05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":232.199,"duration":61.648,"contentStart":4.5,"contentDuration":55.648},"A06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":294.597,"duration":61.291,"contentStart":4.5,"contentDuration":55.291},"A07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":356.638,"duration":75.297,"contentStart":4.5,"contentDuration":69.297},"A08":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":432.685,"duration":60.197,"contentStart":4.5,"contentDuration":54.197},"B01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":494.382,"duration":65.604,"contentStart":4.5,"contentDuration":59.604},"B02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":560.736,"duration":72.192,"contentStart":4.5,"contentDuration":66.192},"B03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":633.678,"duration":64.578,"contentStart":4.5,"contentDuration":58.578},"B04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":699.006,"duration":75.865,"contentStart":4.5,"contentDuration":69.865},"B05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":775.621,"duration":74.9,"contentStart":4.5,"contentDuration":68.9},"B06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":851.271,"duration":63.447,"contentStart":4.5,"contentDuration":57.447},"B07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":915.468,"duration":67.186,"contentStart":4.5,"contentDuration":61.186},"B08":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":983.404,"duration":59.481,"contentStart":4.5,"contentDuration":53.481},"C01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1044.385,"duration":67.822,"contentStart":4.5,"contentDuration":61.822},"C02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1112.957,"duration":64.902,"contentStart":4.5,"contentDuration":58.902},"C03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1178.609,"duration":70.359,"contentStart":4.5,"contentDuration":64.359},"C04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1249.718,"duration":61.615,"contentStart":4.5,"contentDuration":55.615},"C05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1312.083,"duration":60.922,"contentStart":4.5,"contentDuration":54.922},"C06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1373.755,"duration":63.88,"contentStart":4.5,"contentDuration":57.88},"C07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1438.385,"duration":58.0,"contentStart":4.5,"contentDuration":52.0},"D01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1497.885,"duration":59.287,"contentStart":4.5,"contentDuration":53.287},"D02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1557.922,"duration":62.762,"contentStart":4.5,"contentDuration":56.762},"D03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1621.434,"duration":57.452,"contentStart":4.5,"contentDuration":51.452},"D04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1679.636,"duration":60.524,"contentStart":4.5,"contentDuration":54.524},"D05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1740.91,"duration":61.287,"contentStart":4.5,"contentDuration":55.287},"D06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1802.947,"duration":51.916,"contentStart":4.5,"contentDuration":45.916},"D07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1855.613,"duration":68.91,"contentStart":4.5,"contentDuration":62.91}});
 
   const asText = (value) => String(value ?? "").trim();
   const asArray = (value) => Array.isArray(value) ? value : [];
@@ -47,9 +47,7 @@
     if (!catalog || typeof catalog !== "object") return ["Catalogus ontbreekt of is geen object."];
     if (requireKnownTargets && (!tools.size || !codes.size || !asText(expectedCanonicalToolId))) errors.push("De canonieke tool-, bron- of misconceptlijst ontbreekt.");
     if (catalog.schemaVersion !== 1) errors.push("Alleen catalogusschema 1 wordt ondersteund.");
-    if (!Number.isInteger(catalog.series?.targetMinimum) || catalog.series.targetMinimum < 30) {
-      errors.push("De videoserie moet op minstens 30 publicaties zijn voorbereid.");
-    }
+    if (!Number.isInteger(catalog.series?.targetMinimum) || catalog.series.targetMinimum < 30) errors.push("De videoserie moet op minstens 30 publicaties zijn voorbereid.");
     if (!Array.isArray(catalog.videos)) return [...errors, "Catalogusveld videos moet een array zijn."];
     const canonicalToolId = asText(catalog.series?.canonicalToolId);
     if (!canonicalToolId || (tools.size && !tools.has(canonicalToolId))) errors.push("De catalogus mist een bekende canonieke brontool.");
@@ -62,14 +60,11 @@
       const wristbands = asArray(video?.wristbands);
       const toolId = asText(video?.target?.toolId);
       const code = asText(video?.target?.misconceptionCode);
-
       if (!/^[a-z0-9][a-z0-9-]{2,80}$/.test(id)) errors.push(`${at} heeft geen geldige id.`);
       if (seenIds.has(id)) errors.push(`${at} gebruikt een dubbele id: ${id}.`);
       if (id) seenIds.add(id);
       if (!VALID_STATUSES.has(status)) errors.push(`${at} heeft een onbekende status.`);
-      if (!wristbands.length || wristbands.some((band) => !VALID_WRISTBANDS.has(asText(band).toUpperCase()))) {
-        errors.push(`${at} heeft geen geldige polsbandselectie.`);
-      }
+      if (!wristbands.length || wristbands.some((band) => !VALID_WRISTBANDS.has(asText(band).toUpperCase()))) errors.push(`${at} heeft geen geldige polsbandselectie.`);
       if (!toolId || (tools.size && !tools.has(toolId))) errors.push(`${at} verwijst naar een onbekende brontool.`);
       if (canonicalToolId && toolId !== canonicalToolId) errors.push(`${at} verwijst niet naar de canonieke brontool.`);
       if (!code || (codes.size && !codes.has(code))) errors.push(`${at} verwijst naar een onbekende misconceptcode.`);
@@ -78,12 +73,8 @@
         const sourceUrl = asText(video?.source?.url);
         if (asText(video?.title).length < 4) errors.push(`${at} mist een duidelijke titel.`);
         if (asText(video?.summary).length < 20) errors.push(`${at} mist een bruikbare samenvatting.`);
-        if (!Number.isInteger(video?.durationSeconds) || video.durationSeconds < 15 || video.durationSeconds > 600) {
-          errors.push(`${at} heeft geen geldige duur van 15 tot 600 seconden.`);
-        }
-        if (video?.source?.kind !== "self-hosted" || !isAllowedAssetUrl(sourceUrl)) {
-          errors.push(`${at} heeft geen toegestane zelfgehoste videobron.`);
-        }
+        if (!Number.isInteger(video?.durationSeconds) || video.durationSeconds < 15 || video.durationSeconds > 600) errors.push(`${at} heeft geen geldige duur van 15 tot 600 seconden.`);
+        if (video?.source?.kind !== "self-hosted" || !isAllowedAssetUrl(sourceUrl)) errors.push(`${at} heeft geen toegestane zelfgehoste videobron.`);
         if (seenSources.has(sourceUrl)) errors.push(`${at} gebruikt een dubbele videobron.`);
         if (sourceUrl) seenSources.add(sourceUrl);
         if (video?.posterSrc !== undefined && !isAllowedAssetUrl(video.posterSrc)) errors.push(`${at} heeft geen toegestane posterbron.`);
@@ -91,7 +82,6 @@
         if (!isAllowedAssetUrl(video?.transcriptUrl)) errors.push(`${at} mist een transcript op een toegestane bron.`);
       }
     });
-
     return errors;
   }
 
@@ -111,16 +101,13 @@
   function chooseVideo(catalog, { wristband = "ALL", preferredCodes = [], recentIds = [], random = Math.random } = {}) {
     let candidates = publishedForWristband(catalog, wristband);
     if (!candidates.length) return null;
-
     const recent = new Set(normalizeRecentIds(recentIds));
     const fresh = candidates.filter((video) => !recent.has(asText(video?.id)));
     if (fresh.length) candidates = fresh;
-
     const preferred = new Set(asArray(preferredCodes).map(asText));
     const preferredMatches = candidates.filter((video) => preferred.has(asText(video?.target?.misconceptionCode)));
     const reason = preferredMatches.length ? "misconception" : wristband === "ALL" ? "open" : "wristband";
     if (preferredMatches.length) candidates = preferredMatches;
-
     const raw = Number(typeof random === "function" ? random() : Math.random());
     const bounded = Number.isFinite(raw) ? Math.min(Math.max(raw, 0), 0.999999999) : 0;
     return { video: candidates[Math.floor(bounded * candidates.length)], reason };
@@ -174,16 +161,13 @@
     player.dataset.wisikOwnVoiceRelease = OWN_VOICE_RELEASE;
     player.muted = true;
     player.defaultMuted = true;
-
     const audio = new Audio(versionedAssetUrl(config.src, globalThis.WISIK_SITE_VERSION || OWN_VOICE_RELEASE));
     audio.preload = "auto";
     audio.crossOrigin = "anonymous";
     audio.setAttribute("aria-hidden", "true");
-
     let rate = 1;
     let syncing = false;
     const clipEnd = config.start + config.duration;
-
     const targetAudioTime = () => config.start + Math.max(0, player.currentTime / Math.max(rate, 0.01));
     const syncAudio = (force = false) => {
       if (!Number.isFinite(audio.duration) || !Number.isFinite(player.currentTime)) return;
@@ -192,7 +176,6 @@
         try { audio.currentTime = target; } catch {}
       }
     };
-
     const configure = () => {
       if (!Number.isFinite(player.duration) || player.duration <= 0) return;
       rate = Math.min(2, Math.max(0.35, player.duration / config.duration));
@@ -202,10 +185,8 @@
       syncing = false;
       retimeCaptions(player, config, rate);
     };
-
     player.addEventListener("loadedmetadata", configure);
     if (player.readyState >= 1) configure();
-
     player.addEventListener("ratechange", () => {
       if (!syncing && Math.abs(player.playbackRate - rate) > 0.001) {
         syncing = true;
@@ -213,7 +194,6 @@
         syncing = false;
       }
     });
-
     player.addEventListener("play", async () => {
       if (activeBinding && activeBinding.player !== player) {
         activeBinding.player.pause();
@@ -222,9 +202,8 @@
       activeBinding = { player, audio };
       syncAudio(true);
       audio.volume = player.volume;
-      try {
-        await audio.play();
-      } catch (error) {
+      try { await audio.play(); }
+      catch (error) {
         player.pause();
         player.dataset.wisikAudioError = "1";
         console.error("De eigen stem kon niet worden gestart.", error);
