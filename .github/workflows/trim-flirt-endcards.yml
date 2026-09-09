@@ -27,6 +27,8 @@ jobs:
           python -m pip install --disable-pip-version-check pillow
       - name: Detecteer en vervang oude statische eindkaarten
         run: python scripts/trim-flirt-endcards.py
+      - name: Herbind inhoudsreview aan gecontroleerde slotbeeldcorrectie
+        run: node scripts/refresh-flirt-review-after-endcard-fix.mjs
       - name: Vernieuw Pabo-auditbewijs
         run: npm run audit:update
       - name: Vernieuw Ruimteklaar-auditbewijs
@@ -37,7 +39,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add package.json public scripts/test-ownvoice-release.mjs scripts/test-flirt-endcards.mjs tests/flirt-endcard-replacement-2026-09-09.json
+          git add package.json public scripts/test-ownvoice-release.mjs scripts/test-flirt-endcards.mjs scripts/refresh-flirt-review-after-endcard-fix.mjs tests/flirt-endcard-replacement-2026-09-09.json tests/flirt-endcard-speech-analysis-2026-09-09.json
           git diff --cached --quiet && exit 0
           git commit -m 'Vervang ingebakken herstelset-slotkaart zonder voice-over af te snijden'
           git push origin HEAD:fix/flirt-slotbeeld-zonder-herstelset
