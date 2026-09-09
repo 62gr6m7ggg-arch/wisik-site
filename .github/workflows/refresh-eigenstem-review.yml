@@ -30,7 +30,7 @@ jobs:
           review['scope']['audio'] = ('De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. '
             'Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. '
             'De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. '
-            'Geen onafhankelijke menselijke tweede beluisteraar.')
+            'De audiotrack is niet onafhankelijk beluisterd door een tweede persoon.')
           entry = next(item for item in review['entries'] if item['code'] == 'D01')
           entry['observedContent'] = ('De eigen stem vergelijkt 10→30→35→40: de grootste toename is +20 in het eerste jaar, '
             'terwijl de hoogste eindwaarde 40 rechts ligt. De volledige slotconclusie maakt expliciet dat waar je het hoogst '
