@@ -1,4 +1,4 @@
-name: Trim oude flirt-slotkaarten
+name: Vervang oude flirt-slotkaarten
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
           python -m pip install --disable-pip-version-check pillow
-      - name: Detecteer en verwijder oude statische eindkaarten
+      - name: Detecteer en vervang oude statische eindkaarten
         run: python scripts/trim-flirt-endcards.py
       - name: Vernieuw Pabo-auditbewijs
         run: npm run audit:update
@@ -37,7 +37,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add package.json public scripts/test-ownvoice-release.mjs scripts/test-flirt-endcards.mjs tests/flirt-endcard-trim-2026-09-09.json
+          git add package.json public scripts/test-ownvoice-release.mjs scripts/test-flirt-endcards.mjs tests/flirt-endcard-replacement-2026-09-09.json
           git diff --cached --quiet && exit 0
-          git commit -m 'Verwijder ingebakken herstelset-slotkaart uit alle 30 flirts'
+          git commit -m 'Vervang ingebakken herstelset-slotkaart zonder voice-over af te snijden'
           git push origin HEAD:fix/flirt-slotbeeld-zonder-herstelset
