@@ -1,0 +1,39 @@
+name: Build own-voice hotfix
+
+on:
+  push:
+    branches: [hotfix/eigenstem-losse-audio]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: hotfix/eigenstem-losse-audio
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Controleer ffmpeg
+        run: ffmpeg -version && ffprobe -version
+      - name: Maak 30 losse eigenstembestanden en patch speler
+        run: python scripts/build-ownvoice-hotfix.py
+      - name: Vernieuw Pabo-auditbewijs
+        run: npm run audit:update
+      - name: Vernieuw Ruimteklaar-auditbewijs voor siteversie
+        run: node scripts/audit-space-release.mjs --write
+      - name: Controleer volledige Wisik-release
+        run: npm run check
+      - name: Commit gecontroleerde hotfix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add package.json package-lock.json public tests/pabo-eigenstem-review-2026-09-09.json scripts/test-ownvoice-release.mjs scripts/build-ownvoice-hotfix.py
+          git diff --cached --quiet && exit 0
+          git commit -m 'Hotfix eigenstem: 30 losse audiobestanden'
+          git push origin HEAD:hotfix/eigenstem-losse-audio
