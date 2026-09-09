@@ -37,7 +37,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add package.json package-lock.json public tests/pabo-eigenstem-review-2026-09-09.json scripts/test-ownvoice-release.mjs scripts/build-ownvoice-hotfix.py
+          git add package.json public tests/pabo-eigenstem-review-2026-09-09.json scripts/test-ownvoice-release.mjs scripts/build-ownvoice-hotfix.py
           git diff --cached --quiet && exit 0
           git commit -m 'Hotfix eigenstem: 30 losse audiobestanden'
           git push origin HEAD:hotfix/eigenstem-losse-audio
