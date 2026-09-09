@@ -1,0 +1,71 @@
+{
+  "reviewedAt": "2026-09-09",
+  "release": "eigenstem-2026-09-09",
+  "status": "prepared-awaiting-binary-upload",
+  "scope": {
+    "audio": "Vier lange domeinopnamen A–D volledig gesegmenteerd; losse tweede verbetering van B05 heeft voorrang.",
+    "visuals": "Bestaande, reeds gecorrigeerde livebeelden blijven leidend; daardoor keren de oude C01- en C04-beeldfouten niet terug.",
+    "captions": "Bestaande Nederlandse VTT-cues worden bij afspelen proportioneel op de nieuwe stem getimed; D01 is aangevuld met de volledige slotzin.",
+    "limitations": "Automatische transcriptie en technische signaalcontrole; geen onafhankelijke menselijke tweede beluisteraar."
+  },
+  "sources": {
+    "A": {"filename":"Deel A Pabo Rekenklaar.m4a","sha256":"d0e006b344a9504a52ff4d49f21a0329b9ac80a8fb79439c7e4723c697f72371","bytes":4495969},
+    "B": {"filename":"Deel B Pabo Rekenklaar(1).m4a","sha256":"ed4b6a48f6ee0b9d57efd4a3760db8429dc7715f804a6d2274edecd953a72d57","bytes":4925588},
+    "C": {"filename":"Deel C Pabo Rekenklaar(1).m4a","sha256":"d2ece2630181bd64c024444153f6a093573f0189d2a1ede28454b211161cc4e2","bytes":4101483},
+    "D": {"filename":"Deel D Pabo Rekenklaar(1).m4a","sha256":"e6eff0caa153a7a1dad4801cc26845d262717e7b97c91eb4edeb37f6e3afc814","bytes":3919898},
+    "B05x": {"filename":"2e verbetering B05.m4a","sha256":"bed37ada7c3470b209d6372b3bea5075270827a687780e5d0a519302ea605ffe","bytes":677911}
+  },
+  "output": {
+    "path": "public/assets/audio/flirts-eigenstem-2026-09-09.webm",
+    "codec": "Opus in WebM, mono, 16 kHz, circa 5 kbit/s",
+    "durationSeconds": 1924.531,
+    "sha256": "6e2afd7e9c958c5978c35724119a4ac59102e3656e52cb0cfcbe237bd9ac134d",
+    "bytes": 1132435
+  },
+  "edits": {
+    "B05": "Losse opname ‘2e verbetering B05.m4a’ gebruikt in plaats van het B05-fragment uit Deel B.",
+    "D05": "Verspreking ‘de drie lege bakjes, de drie, herstel’ verwijderd; correcte zin en conclusie ‘is dus vijf’ behouden.",
+    "D07": "Eerste afgebroken poging inclusief ‘vijftien kilometer’ verwijderd; alleen de volledige herstart gebruikt.",
+    "C01_C04": "Geen oude zipbeelden teruggeplaatst; de reeds gecorrigeerde livebeelden blijven behouden."
+  },
+  "clips": {
+    "A01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":0.0,"duration":60.05,"contentStart":4.5,"contentDuration":54.05},
+    "A02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":60.8,"duration":60.996,"contentStart":4.5,"contentDuration":54.996},
+    "A03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":122.546,"duration":54.803,"contentStart":4.5,"contentDuration":48.803},
+    "A04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":178.099,"duration":53.35,"contentStart":4.5,"contentDuration":47.35},
+    "A05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":232.199,"duration":61.648,"contentStart":4.5,"contentDuration":55.648},
+    "A06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":294.597,"duration":61.291,"contentStart":4.5,"contentDuration":55.291},
+    "A07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":356.638,"duration":75.297,"contentStart":4.5,"contentDuration":69.297},
+    "A08":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":432.685,"duration":60.197,"contentStart":4.5,"contentDuration":54.197},
+    "B01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":494.382,"duration":65.604,"contentStart":4.5,"contentDuration":59.604},
+    "B02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":560.736,"duration":72.192,"contentStart":4.5,"contentDuration":66.192},
+    "B03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":633.678,"duration":64.578,"contentStart":4.5,"contentDuration":58.578},
+    "B04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":699.006,"duration":75.865,"contentStart":4.5,"contentDuration":69.865},
+    "B05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":775.621,"duration":74.9,"contentStart":4.5,"contentDuration":68.9},
+    "B06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":851.271,"duration":63.447,"contentStart":4.5,"contentDuration":57.447},
+    "B07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":915.468,"duration":67.186,"contentStart":4.5,"contentDuration":61.186},
+    "B08":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":983.404,"duration":59.481,"contentStart":4.5,"contentDuration":53.481},
+    "C01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1044.385,"duration":67.822,"contentStart":4.5,"contentDuration":61.822},
+    "C02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1112.957,"duration":64.902,"contentStart":4.5,"contentDuration":58.902},
+    "C03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1178.609,"duration":70.359,"contentStart":4.5,"contentDuration":64.359},
+    "C04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1249.718,"duration":61.615,"contentStart":4.5,"contentDuration":55.615},
+    "C05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1312.083,"duration":60.922,"contentStart":4.5,"contentDuration":54.922},
+    "C06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1373.755,"duration":63.88,"contentStart":4.5,"contentDuration":57.88},
+    "C07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1438.385,"duration":58.0,"contentStart":4.5,"contentDuration":52.0},
+    "D01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1497.885,"duration":59.287,"contentStart":4.5,"contentDuration":53.287},
+    "D02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1557.922,"duration":62.762,"contentStart":4.5,"contentDuration":56.762},
+    "D03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1621.434,"duration":57.452,"contentStart":4.5,"contentDuration":51.452},
+    "D04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1679.636,"duration":60.524,"contentStart":4.5,"contentDuration":54.524},
+    "D05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1740.91,"duration":61.287,"contentStart":4.5,"contentDuration":55.287},
+    "D06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1802.947,"duration":51.916,"contentStart":4.5,"contentDuration":45.916},
+    "D07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.webm","start":1855.613,"duration":68.91,"contentStart":4.5,"contentDuration":62.91}
+  },
+  "checks": {
+    "codesExpected": 30,
+    "codesPrepared": 30,
+    "allCodesPresent": true,
+    "nodeSyntaxCheck": "passed",
+    "audioProbe": "passed",
+    "binaryUploadRequired": true
+  }
+}
