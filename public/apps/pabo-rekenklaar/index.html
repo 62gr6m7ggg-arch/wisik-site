@@ -495,8 +495,8 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 </style>
   <link rel="stylesheet" href="./wisik-bridge.css?v=1.1.0">
   <script src="./wisik-bridge.js?v=1.1.0" defer></script>
-  <script src="/assets/js/site-data.js?v=0.1.22" defer></script>
-  <script src="/assets/js/grabbelton-core.js?v=0.1.22" defer></script>
+  <script src="/assets/js/site-data.js?v=0.1.23" defer></script>
+  <script src="/assets/js/grabbelton-core.js?v=0.1.23" defer></script>
 </head>
 <body>
 <div class="app-shell">
@@ -724,6 +724,7 @@ const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
 
 const DIAGNOSTIC_SCHEMA_VERSION = 1;
 const URL_FLAGS = new URLSearchParams(window.location.search);
+const WISIK_MISCONCEPT_ENTRY = String(URL_FLAGS.get("misconcept")||"").toUpperCase();
 const ADMIN_MODE = URL_FLAGS.get("beheer")==="1" || URL_FLAGS.get("diagnostiek")==="1";
 const RELEASE_CHECK_MODE = URL_FLAGS.get("releasecheck")==="1";
 const DIAGNOSTIC_DIRECT_MODE = URL_FLAGS.get("diagnostiek")==="1";
@@ -3459,7 +3460,7 @@ function init(){
   if(state.dailyDate!==todayKey()){state.dailyDate=todayKey();state.dailyCorrect=0}
   saveState();rememberWisikContext();
   applySettings();bindEvents();renderHome();renderLearn();renderPracticeSetup();renderStats();updateTopStats();
-  if(DIAGNOSTIC_DIRECT_MODE)setTimeout(openDiagnosticRegister,120);else if(RELEASE_CHECK_MODE)setTimeout(runVisibleReleaseCheck,120);else if(WISIK_ENTRY_MODE==="moshpit-sprint")setTimeout(openMoshpitEntrance,120);else if(!state.profile.name)setTimeout(()=>openSettings(true),450);
+  if(DIAGNOSTIC_DIRECT_MODE)setTimeout(openDiagnosticRegister,120);else if(RELEASE_CHECK_MODE)setTimeout(runVisibleReleaseCheck,120);else if(WISIK_ENTRY_MODE==="moshpit-sprint")setTimeout(openMoshpitEntrance,120);else if(MISCONCEPTION_CATALOG[WISIK_MISCONCEPT_ENTRY])setTimeout(()=>openDiagnosticPattern(WISIK_MISCONCEPT_ENTRY),120);else if(!state.profile.name)setTimeout(()=>openSettings(true),450);
 }
 
 document.addEventListener("DOMContentLoaded",init);
