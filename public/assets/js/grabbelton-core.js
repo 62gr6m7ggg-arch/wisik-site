@@ -5,8 +5,8 @@
   const VALID_STATUSES = new Set(["planned", "draft", "published"]);
   const VALID_WRISTBANDS = new Set(["ALL", "VO", "PABO", "HBO"]);
   const MEDIA_HOST = "media.wisik.nl";
-  const OWN_VOICE_RELEASE = "eigenstem-2026-09-09";
-  const OWN_VOICE = Object.freeze({"A01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":0.0,"duration":60.05,"contentStart":4.5,"contentDuration":54.05},"A02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":60.8,"duration":60.996,"contentStart":4.5,"contentDuration":54.996},"A03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":122.546,"duration":54.803,"contentStart":4.5,"contentDuration":48.803},"A04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":178.099,"duration":53.35,"contentStart":4.5,"contentDuration":47.35},"A05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":232.199,"duration":61.648,"contentStart":4.5,"contentDuration":55.648},"A06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":294.597,"duration":61.291,"contentStart":4.5,"contentDuration":55.291},"A07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":356.638,"duration":75.297,"contentStart":4.5,"contentDuration":69.297},"A08":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":432.685,"duration":60.197,"contentStart":4.5,"contentDuration":54.197},"B01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":494.382,"duration":65.604,"contentStart":4.5,"contentDuration":59.604},"B02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":560.736,"duration":72.192,"contentStart":4.5,"contentDuration":66.192},"B03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":633.678,"duration":64.578,"contentStart":4.5,"contentDuration":58.578},"B04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":699.006,"duration":75.865,"contentStart":4.5,"contentDuration":69.865},"B05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":775.621,"duration":74.9,"contentStart":4.5,"contentDuration":68.9},"B06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":851.271,"duration":63.447,"contentStart":4.5,"contentDuration":57.447},"B07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":915.468,"duration":67.186,"contentStart":4.5,"contentDuration":61.186},"B08":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":983.404,"duration":59.481,"contentStart":4.5,"contentDuration":53.481},"C01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1044.385,"duration":67.822,"contentStart":4.5,"contentDuration":61.822},"C02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1112.957,"duration":64.902,"contentStart":4.5,"contentDuration":58.902},"C03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1178.609,"duration":70.359,"contentStart":4.5,"contentDuration":64.359},"C04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1249.718,"duration":61.615,"contentStart":4.5,"contentDuration":55.615},"C05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1312.083,"duration":60.922,"contentStart":4.5,"contentDuration":54.922},"C06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1373.755,"duration":63.88,"contentStart":4.5,"contentDuration":57.88},"C07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1438.385,"duration":58.0,"contentStart":4.5,"contentDuration":52.0},"D01":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1497.885,"duration":59.287,"contentStart":4.5,"contentDuration":53.287},"D02":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1557.922,"duration":62.762,"contentStart":4.5,"contentDuration":56.762},"D03":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1621.434,"duration":57.452,"contentStart":4.5,"contentDuration":51.452},"D04":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1679.636,"duration":60.524,"contentStart":4.5,"contentDuration":54.524},"D05":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1740.91,"duration":61.287,"contentStart":4.5,"contentDuration":55.287},"D06":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1802.947,"duration":51.916,"contentStart":4.5,"contentDuration":45.916},"D07":{"src":"/assets/audio/flirts-eigenstem-2026-09-09.m4a","start":1855.613,"duration":68.91,"contentStart":4.5,"contentDuration":62.91}});
+  const OWN_VOICE_RELEASE = "eigenstem-2026-09-09-r2";
+  const OWN_VOICE = Object.freeze({"A01":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A01.m4a","duration":60.05,"contentStart":4.5,"contentDuration":54.05},"A02":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A02.m4a","duration":60.996,"contentStart":4.5,"contentDuration":54.996},"A03":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A03.m4a","duration":54.803,"contentStart":4.5,"contentDuration":48.803},"A04":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A04.m4a","duration":53.35,"contentStart":4.5,"contentDuration":47.35},"A05":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A05.m4a","duration":61.648,"contentStart":4.5,"contentDuration":55.648},"A06":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A06.m4a","duration":61.291,"contentStart":4.5,"contentDuration":55.291},"A07":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A07.m4a","duration":75.297,"contentStart":4.5,"contentDuration":69.297},"A08":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A08.m4a","duration":60.197,"contentStart":4.5,"contentDuration":54.197},"B01":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B01.m4a","duration":65.604,"contentStart":4.5,"contentDuration":59.604},"B02":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B02.m4a","duration":72.192,"contentStart":4.5,"contentDuration":66.192},"B03":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B03.m4a","duration":64.578,"contentStart":4.5,"contentDuration":58.578},"B04":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B04.m4a","duration":75.865,"contentStart":4.5,"contentDuration":69.865},"B05":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B05.m4a","duration":74.9,"contentStart":4.5,"contentDuration":68.9},"B06":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B06.m4a","duration":63.447,"contentStart":4.5,"contentDuration":57.447},"B07":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B07.m4a","duration":67.186,"contentStart":4.5,"contentDuration":61.186},"B08":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B08.m4a","duration":59.481,"contentStart":4.5,"contentDuration":53.481},"C01":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C01.m4a","duration":67.822,"contentStart":4.5,"contentDuration":61.822},"C02":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C02.m4a","duration":64.902,"contentStart":4.5,"contentDuration":58.902},"C03":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C03.m4a","duration":70.359,"contentStart":4.5,"contentDuration":64.359},"C04":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C04.m4a","duration":61.615,"contentStart":4.5,"contentDuration":55.615},"C05":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C05.m4a","duration":60.922,"contentStart":4.5,"contentDuration":54.922},"C06":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C06.m4a","duration":63.88,"contentStart":4.5,"contentDuration":57.88},"C07":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C07.m4a","duration":58.0,"contentStart":4.5,"contentDuration":52.0},"D01":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D01.m4a","duration":59.287,"contentStart":4.5,"contentDuration":53.287},"D02":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D02.m4a","duration":62.762,"contentStart":4.5,"contentDuration":56.762},"D03":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D03.m4a","duration":57.452,"contentStart":4.5,"contentDuration":51.452},"D04":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D04.m4a","duration":60.524,"contentStart":4.5,"contentDuration":54.524},"D05":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D05.m4a","duration":61.287,"contentStart":4.5,"contentDuration":55.287},"D06":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D06.m4a","duration":51.916,"contentStart":4.5,"contentDuration":45.916},"D07":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D07.m4a","duration":68.91,"contentStart":4.5,"contentDuration":62.91}});
 
   const asText = (value) => String(value ?? "").trim();
   const asArray = (value) => Array.isArray(value) ? value : [];
@@ -170,39 +170,33 @@
     audio.crossOrigin = "anonymous";
     audio.setAttribute("aria-hidden", "true");
     let rate = 1;
+    let voiceDuration = config.duration;
     let syncing = false;
-    const clipEnd = config.start + config.duration;
-    const targetAudioTime = () => config.start + Math.max(0, player.currentTime / Math.max(rate, 0.01));
-    let pendingInitialSync = false;
+    const targetAudioTime = () => Math.max(0, Math.min(Math.max(0, voiceDuration - 0.04), player.currentTime / Math.max(rate, 0.01)));
     const syncAudio = (force = false) => {
-      if (!Number.isFinite(audio.duration) || !Number.isFinite(player.currentTime)) return false;
-      const target = Math.min(clipEnd - 0.04, targetAudioTime());
-      if (force || Math.abs(audio.currentTime - target) > 0.22) {
+      if (!Number.isFinite(player.currentTime)) return false;
+      const target = targetAudioTime();
+      const current = Number.isFinite(audio.currentTime) ? audio.currentTime : 0;
+      if (force || Math.abs(current - target) > 0.8) {
         try { audio.currentTime = target; } catch { return false; }
       }
       return true;
     };
-    const finishInitialSync = () => {
-      if (!pendingInitialSync) return;
-      pendingInitialSync = false;
-      audio.volume = player.volume;
-      if (!player.paused) audio.play().catch(() => player.pause());
-    };
-    audio.addEventListener("loadedmetadata", () => {
-      if (!pendingInitialSync || !syncAudio(true)) return;
-      if (audio.seeking) audio.addEventListener("seeked", finishInitialSync, { once: true });
-      else finishInitialSync();
-    });
     const configure = () => {
       if (!Number.isFinite(player.duration) || player.duration <= 0) return;
-      rate = Math.min(2, Math.max(0.35, player.duration / config.duration));
+      if (Number.isFinite(audio.duration) && audio.duration > 0) voiceDuration = audio.duration;
+      rate = Math.min(2, Math.max(0.35, player.duration / voiceDuration));
       syncing = true;
       player.defaultPlaybackRate = rate;
       player.playbackRate = rate;
       syncing = false;
-      retimeCaptions(player, config, rate);
+      retimeCaptions(player, { ...config, duration: voiceDuration }, rate);
     };
     player.addEventListener("loadedmetadata", configure);
+    audio.addEventListener("loadedmetadata", () => {
+      configure();
+      if (player.currentTime > 0.25) syncAudio(true);
+    });
     if (player.readyState >= 1) configure();
     player.addEventListener("ratechange", () => {
       if (!syncing && Math.abs(player.playbackRate - rate) > 0.001) {
@@ -217,9 +211,8 @@
         activeBinding.audio.pause();
       }
       activeBinding = { player, audio };
-      const aligned = syncAudio(true);
-      pendingInitialSync = !aligned;
-      audio.volume = aligned ? player.volume : 0;
+      syncAudio(false);
+      audio.volume = player.volume;
       try { await audio.play(); }
       catch (error) {
         player.pause();
@@ -232,23 +225,17 @@
       audio.pause();
       if (activeBinding?.player === player) activeBinding = null;
     });
-    player.addEventListener("seeking", () => syncAudio(true));
+    player.addEventListener("seeking", () => audio.pause());
     player.addEventListener("seeked", () => {
       syncAudio(true);
       if (!player.paused) audio.play().catch(() => player.pause());
-    });
-    player.addEventListener("timeupdate", () => {
-      if (!player.paused) syncAudio(false);
     });
     player.addEventListener("volumechange", () => {
       audio.volume = player.volume;
       player.muted = true;
     });
-    audio.addEventListener("timeupdate", () => {
-      if (audio.currentTime >= clipEnd - 0.05) {
-        audio.pause();
-        if (!player.ended) player.currentTime = player.duration;
-      }
+    audio.addEventListener("ended", () => {
+      if (!player.ended && !player.paused) player.currentTime = player.duration;
     });
     audio.addEventListener("error", () => {
       player.pause();
