@@ -1,0 +1,110 @@
+name: Refresh own-voice review
+
+on:
+  push:
+    branches: [feat/pabo-eigenstem-alle-flirts]
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pabo-eigenstem-alle-flirts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Werk D01-review, synchronisatie en releasecontrole bij
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+
+          # 1. Herbeoordeel alleen de werkelijk gewijzigde D01-tekstbronnen.
+          review_path = Path('public/assets/data/flirt-content-review.json')
+          review = json.loads(review_path.read_text())
+          review['reviewedAt'] = '2026-09-09'
+          review['scope']['audio'] = ('De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. '
+            'Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. '
+            'De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. '
+            'Geen onafhankelijke menselijke tweede beluisteraar.')
+          entry = next(item for item in review['entries'] if item['code'] == 'D01')
+          entry['observedContent'] = ('De eigen stem vergelijkt 10→30→35→40: de grootste toename is +20 in het eerste jaar, '
+            'terwijl de hoogste eindwaarde 40 rechts ligt. De volledige slotconclusie maakt expliciet dat waar je het hoogst '
+            'uitkomt niet automatisch de plaats van de grootste stijging is. Dit sluit aan op het canonieke denkpatroon.')
+          entry['captionEvidence'] = ('De Nederlandse cues volgen de volledige eigen stem en bevatten nu ook de slotconclusie dat '
+            'waar je het hoogst uitkomt niet automatisch is waar je het hardst bent gestegen.')
+          def sha256(path):
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+          entry['fingerprints']['captions'] = sha256('public/films/rekenklaar/D01/captions.vtt')
+          entry['fingerprints']['transcript'] = sha256('public/films/rekenklaar/D01/transcript.html')
+          review_path.write_text(json.dumps(review, ensure_ascii=False, indent=2) + '\n')
+
+          # 2. Maak starten op verre fragmenten robuust als Safari de audiometadata nog niet heeft.
+          core_path = Path('public/assets/js/grabbelton-core.js')
+          core = core_path.read_text()
+          old = '''    const syncAudio = (force = false) => {\n      if (!Number.isFinite(audio.duration) || !Number.isFinite(player.currentTime)) return;\n      const target = Math.min(clipEnd - 0.04, targetAudioTime());\n      if (force || Math.abs(audio.currentTime - target) > 0.22) {\n        try { audio.currentTime = target; } catch {}\n      }\n    };'''
+          new = '''    let pendingInitialSync = false;\n    const syncAudio = (force = false) => {\n      if (!Number.isFinite(audio.duration) || !Number.isFinite(player.currentTime)) return false;\n      const target = Math.min(clipEnd - 0.04, targetAudioTime());\n      if (force || Math.abs(audio.currentTime - target) > 0.22) {\n        try { audio.currentTime = target; } catch { return false; }\n      }\n      return true;\n    };\n    const finishInitialSync = () => {\n      if (!pendingInitialSync) return;\n      pendingInitialSync = false;\n      audio.volume = player.volume;\n      if (!player.paused) audio.play().catch(() => player.pause());\n    };\n    audio.addEventListener("loadedmetadata", () => {\n      if (!pendingInitialSync || !syncAudio(true)) return;\n      if (audio.seeking) audio.addEventListener("seeked", finishInitialSync, { once: true });\n      else finishInitialSync();\n    });'''
+          assert old in core, 'verwachte syncAudio-code niet gevonden'
+          core = core.replace(old, new, 1)
+          old_play = '''      activeBinding = { player, audio };\n      syncAudio(true);\n      audio.volume = player.volume;\n      try { await audio.play(); }'''
+          new_play = '''      activeBinding = { player, audio };\n      const aligned = syncAudio(true);\n      pendingInitialSync = !aligned;\n      audio.volume = aligned ? player.volume : 0;\n      try { await audio.play(); }'''
+          assert old_play in core, 'verwachte play-code niet gevonden'
+          core_path.write_text(core.replace(old_play, new_play, 1))
+
+          # 3. Permanente releasecheck voor masteraudio en segmentmapping.
+          test = r'''import fs from "node:fs";
+import path from "node:path";
+import { createHash } from "node:crypto";
+import { fileURLToPath } from "node:url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const review = JSON.parse(fs.readFileSync(path.join(root, "tests/pabo-eigenstem-review-2026-09-09.json"), "utf8"));
+const audioPath = path.join(root, review.output.path);
+const fail = message => { console.error(`Eigenstem-releasecontrole MISLUKT: ${message}`); process.exit(1); };
+if (!fs.existsSync(audioPath)) fail("masteraudio ontbreekt");
+const bytes = fs.readFileSync(audioPath);
+if (bytes.length !== review.output.bytes) fail(`bestandsgrootte ${bytes.length} wijkt af van ${review.output.bytes}`);
+const sha = createHash("sha256").update(bytes).digest("hex");
+if (sha !== review.output.sha256) fail("SHA-256 van masteraudio wijkt af");
+const expected = ["A01","A02","A03","A04","A05","A06","A07","A08","B01","B02","B03","B04","B05","B06","B07","B08","C01","C02","C03","C04","C05","C06","C07","D01","D02","D03","D04","D05","D06","D07"];
+const prepared = Object.keys(review.clips).sort();
+if (JSON.stringify(prepared) !== JSON.stringify([...expected].sort())) fail("segmentmapping dekt niet exact alle 30 codes");
+const core = fs.readFileSync(path.join(root, "public/assets/js/grabbelton-core.js"), "utf8");
+const match = core.match(/const OWN_VOICE = Object\.freeze\((\{[^\n]+\})\);/);
+if (!match) fail("OWN_VOICE-mapping ontbreekt in grabbelton-core.js");
+const mapped = JSON.parse(match[1]);
+if (JSON.stringify(mapped) !== JSON.stringify(review.clips)) fail("spelermapping wijkt af van het gecontroleerde segmentoverzicht");
+if (!core.includes(`const OWN_VOICE_RELEASE = "${review.release}"`)) fail("release-id in speler wijkt af");
+for (const page of ["public/grabbelton/index.html", "public/apps/pabo-rekenklaar/index.html"]) {
+  const html = fs.readFileSync(path.join(root, page), "utf8");
+  if (!html.includes("grabbelton-core.js?v=0.1.20-eigenstem-20260909")) fail(`${page} mist de eigenstem-cacheversie`);
+}
+console.log(`Eigenstem-releasecontrole geslaagd: ${prepared.length} codes, ${bytes.length} bytes, SHA-256 ${sha}.`);
+'''
+          Path('scripts/test-ownvoice-release.mjs').write_text(test)
+
+          package_path = Path('package.json')
+          package = json.loads(package_path.read_text())
+          command = package['scripts']['check']
+          if 'test-ownvoice-release.mjs' not in command:
+              command = command.replace('node scripts/test-pabo-flirts.mjs', 'node scripts/test-pabo-flirts.mjs && node scripts/test-ownvoice-release.mjs')
+          package['scripts']['check'] = command
+          package_path.write_text(json.dumps(package, ensure_ascii=False, indent=2) + '\n')
+          PY
+      - name: Werk openbaar Pabo-auditbewijs bij
+        run: npm run audit:update
+      - name: Controleer de volledige release
+        run: npm run check
+      - name: Commit gecontroleerde review en audit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/assets/data/flirt-content-review.json public/assets/data/pabo-release-audit.json public/assets/js/grabbelton-core.js scripts/test-ownvoice-release.mjs package.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Herbeoordeel D01 en borg eigenstemrelease'
+          git push origin HEAD:feat/pabo-eigenstem-alle-flirts
