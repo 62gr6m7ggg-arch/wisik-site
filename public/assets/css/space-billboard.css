@@ -1,0 +1,174 @@
+/* The future-programme board is independent of Wisik's tools and navigation. */
+.space-billboard {
+  margin: 0;
+  width: min(100%, 310px);
+  text-align: center;
+}
+.space-billboard-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+  -webkit-tap-highlight-color: transparent;
+}
+.space-billboard-trigger:focus-visible {
+  outline: 4px solid var(--navy, #163f58);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+/* Crop the generated canvas to the wooden board and its two feet. */
+.space-billboard-art {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 968 / 1086;
+  overflow: hidden;
+}
+.space-billboard-art img {
+  display: block;
+  width: 149.586777%;
+  max-width: none;
+  height: auto;
+  margin-left: -24.793388%;
+  clip-path: polygon(16.72% .82%, 83.22% .82%, 83.22% 91.72%, 78.58% 91.72%, 78.58% 99.05%, 74.18% 99.05%, 73.55% 98.1%, 73.55% 91.72%, 26.27% 91.72%, 26.27% 97.82%, 25.42% 99.24%, 21.24% 99.24%, 21.24% 91.72%, 16.72% 91.72%);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.space-billboard figcaption {
+  margin-top: 6px;
+  color: var(--navy, #163f58);
+  font-size: .875rem;
+  line-height: 1.4;
+}
+.space-billboard figcaption strong { display: block; }
+.space-billboard-map {
+  position: absolute;
+  z-index: 11;
+  left: calc(8% + 48px);
+  bottom: 2%;
+  width: 150px;
+}
+.space-billboard-map figcaption {
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #fff9dd;
+}
+.festival-map--space-billboard .zone-rafel { bottom: 29%; }
+.festival-map--space-billboard .keiblij-sign { left: 30%; bottom: 5%; }
+.space-tent-with-billboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(240px, 1fr);
+  align-items: center;
+  gap: 28px;
+}
+.space-tent-with-billboard > .space-billboard { justify-self: center; }
+.space-billboard-preview {
+  position: fixed;
+  z-index: 1200;
+  left: 50%;
+  top: 50%;
+  width: min(860px, calc(100vw - 40px), calc((100vh - 48px) * .89134));
+  width: min(860px, calc(100vw - 40px), calc((100dvh - 48px) * .89134));
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 12px 35px #07152199);
+  pointer-events: none;
+}
+.space-billboard-preview[hidden] { display: none; }
+.space-billboard-dialog {
+  width: min(980px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
+  max-height: calc(100dvh - 24px);
+  margin: auto;
+  padding: 12px;
+  border: 0;
+  border-radius: 16px;
+  color: #fff9ed;
+  background: #102633;
+  box-shadow: 0 20px 80px #0006;
+}
+.space-billboard-dialog::backdrop { background: #071521c9; }
+.space-billboard-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.space-billboard-dialog-head p { margin: 0; font-size: 1rem; font-weight: 700; }
+.space-billboard-close {
+  flex: 0 0 auto;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 7px 12px;
+  border: 1px solid #fff8;
+  border-radius: 9px;
+  color: #102633;
+  background: #fff9ed;
+  font: inherit;
+  font-size: .875rem;
+  cursor: pointer;
+}
+.space-billboard-close:focus-visible { outline: 3px solid #ffb84d; outline-offset: 3px; }
+.space-billboard-viewport {
+  max-height: calc(100vh - 120px);
+  max-height: calc(100dvh - 120px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.space-billboard-viewport .space-billboard-art {
+  width: min(100%, calc((100vh - 126px) * .89134));
+  width: min(100%, calc((100dvh - 126px) * .89134));
+  margin: auto;
+}
+.space-billboard-mobile-note { display: none; }
+body.space-billboard-open { overflow: hidden; }
+
+@media (max-width: 1000px) {
+  .festival-map--space-billboard {
+    min-height: auto;
+    padding: 86px 18px 40px;
+    display: grid;
+    gap: 16px;
+  }
+  .festival-map--space-billboard .map-paths,
+  .festival-map--space-billboard .map-pond,
+  .festival-map--space-billboard .keiblij-sign,
+  .festival-map--space-billboard .map-legend { display: none; }
+  .festival-map--space-billboard .map-zone { position: static; width: auto; transform: none; }
+  .festival-map--space-billboard .zone-pabo { order: 1; }
+  .festival-map--space-billboard .zone-vo { order: 2; }
+  .festival-map--space-billboard .zone-hbo { order: 3; }
+  .festival-map--space-billboard .zone-rafel { order: 4; }
+  .festival-map--space-billboard .zone-backstage { order: 5; }
+  .festival-map--space-billboard .zone-kladblok { order: 6; }
+  .space-billboard-map {
+    position: static;
+    order: 4;
+    width: min(64%, 250px);
+    justify-self: center;
+    margin-bottom: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .space-tent-with-billboard { grid-template-columns: minmax(0, 1fr); }
+  .space-tent-with-billboard > .space-billboard { width: min(80%, 300px); }
+}
+@media (max-width: 600px) {
+  .space-billboard-dialog { padding: 10px; }
+  .space-billboard-dialog-head p { font-size: .875rem; }
+  .space-billboard-viewport {
+    max-height: calc(100vh - 150px);
+    max-height: calc(100dvh - 150px);
+  }
+  .space-billboard-viewport .space-billboard-art { width: 680px; margin: 0; }
+  .space-billboard-mobile-note { display: block; margin: 8px 0 0; font-size: .875rem; }
+}
+@media print {
+  .space-billboard-preview, .space-billboard-dialog { display: none !important; }
+}

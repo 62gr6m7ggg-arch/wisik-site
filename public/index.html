@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="/assets/css/styles.css?v=0.1.24">
   <script src="/assets/js/site-data.js?v=0.1.24" defer></script>
   <script src="/assets/js/site.js?v=0.1.24" defer></script>
+
+  <link rel="stylesheet" href="/assets/css/space-billboard.css?v=0.1.24">
+  <script src="/assets/js/space-billboard.js?v=0.1.24" defer></script>
 </head>
 <body data-route="terrein">
 <a class="skip-link" href="#main">Ga naar de inhoud</a>
@@ -77,8 +80,8 @@
       <h2 id="map-title">Waar wil je vandaag heen?</h2>
       <p class="lead">Op ieder bord staat voor welke opleiding, fase en niveau de attractie is. De plek op het terrein vertelt hoe ver de ontwikkeling is.</p>
     </div>
-    <p class="sr-only">De plattegrond bevat het Pabo-plein met Pabo Rekenklaar, een VO-veld in aanleg, een HBO-werkplaats, de Rafelrand, Backstage, het Wisik-Kladblok en de zijpodia Moshpit en Grabbelton.</p>
-    <div class="festival-map">
+    <p class="sr-only">De plattegrond bevat het Pabo-plein met Pabo Rekenklaar, een VO-veld in aanleg, een HBO-werkplaats, de Rafelrand, Backstage, het Wisik-Kladblok en de zijpodia Moshpit en Grabbelton. Bij de Rafelrand staat een vergrootbaar toekomstbord voor de Space-tent.</p>
+    <div class="festival-map festival-map--space-billboard">
       <span class="map-sky-label">Wisik Festivalterrein · seizoen 0.1</span>
       <div class="map-legend" aria-hidden="true"><span><i class="legend-chip"></i>MainStage</span><span><i class="legend-chip build"></i>Bouwplaats</span><span><i class="legend-chip edge"></i>Rafelrand</span></div>
       <svg class="map-paths" viewBox="0 0 1200 810" preserveAspectRatio="none" aria-hidden="true">
@@ -101,6 +104,11 @@
       <a class="map-zone zone-rafel" href="/rafelrand/">
         <div class="zone-card"><span class="zone-marker" aria-hidden="true">✎</span><span class="zone-badge">proeftenten</span><h3>De Rafelrand</h3><p>Prototypes, pilots en ideeën die nog mogen schuren. Je ziet wat al werkt én wat nog niet betrouwbaar genoeg is.</p></div>
       </a>
+
+      <figure class="space-billboard space-billboard-map">
+        <button class="space-billboard-trigger" type="button" data-space-billboard aria-label="Vergroot het toekomstbord van de Space-tent"><span class="space-billboard-art"><img src="/assets/img/space-tent-toekomst-v1.webp" width="1448" height="1086" alt="" loading="lazy" decoding="async" draggable="false"></span></button>
+        <figcaption>Toekomstmuziek</figcaption>
+      </figure>
 
       <a class="map-zone zone-backstage" href="/backstage/#vrijgavecontrole">
         <div class="zone-card"><span class="zone-marker" aria-hidden="true">⚙</span><span class="zone-badge">kwaliteit · live bewijs</span><h3>Backstage</h3><p>Bekijk direct of de nieuwste versie alle verplichte controles heeft doorstaan, plus rubrics, bronnen, beperkingen en privacy.</p></div>
