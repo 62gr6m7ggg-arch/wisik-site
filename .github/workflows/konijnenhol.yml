@@ -1,0 +1,35 @@
+name: Konijnenhol - zelfstandige controle
+on:
+  pull_request:
+    paths:
+      - public/rafelrand/konijnenhol/**
+      - scripts/*konijnenhol*
+      - .github/workflows/konijnenhol*.yml
+      - public/index.html
+      - public/rafelrand/index.html
+      - public/rafelrand/space-tent/index.html
+  push:
+    branches: [main, feat/konijnenhol]
+    paths:
+      - public/rafelrand/konijnenhol/**
+      - scripts/*konijnenhol*
+      - .github/workflows/konijnenhol*.yml
+      - public/index.html
+      - public/rafelrand/index.html
+      - public/rafelrand/space-tent/index.html
+permissions:
+  contents: read
+concurrency:
+  group: konijnenhol-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  standalone:
+    name: Zelfstandige film, navigatie en publicatiebestand
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/test-konijnenhol.mjs --media
