@@ -1,0 +1,78 @@
+name: Konijnenhol - live publicatiecontrole
+on:
+  push:
+    branches: [main]
+    paths:
+      - public/rafelrand/konijnenhol/**
+      - public/index.html
+      - public/rafelrand/index.html
+      - public/rafelrand/space-tent/index.html
+      - .github/workflows/konijnenhol-live.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: konijnenhol-live
+  cancel-in-progress: true
+jobs:
+  live:
+    name: Gepubliceerde pagina en film op wisik.nl
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Controleer pagina, ingangen, filmidentiteit en deelverzoeken
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib, time, urllib.request
+          root = pathlib.Path('public/rafelrand/konijnenhol')
+          manifest = json.loads((root / 'media.json').read_text())
+          origin = 'https://wisik.nl'
+          route = '/rafelrand/konijnenhol/'
+          def get(path, extra=None):
+              headers = {'User-Agent': 'Wisik-Konijnenhol-publicatiecontrole/1.0', 'Accept-Encoding': 'identity', 'Cache-Control': 'no-cache'}
+              headers.update(extra or {})
+              with urllib.request.urlopen(urllib.request.Request(origin + path, headers=headers), timeout=30) as response:
+                  return response.status, response.headers, response.read()
+          for attempt in range(30):
+              try:
+                  status, headers, data = get(route)
+                  html = data.decode('utf-8')
+                  assert status == 200
+                  assert '<h1>' + manifest['title'] + '</h1>' in html
+                  assert manifest['subtitle'] in html
+                  assert 'Waarschuwing: dit is een konijnenhol.' in html
+                  assert 'data-module-version="' + manifest['moduleVersion'] + '"' in html
+                  assert './' + manifest['mediaFile'] in html
+                  for page in ['/', '/rafelrand/', '/rafelrand/space-tent/']:
+                      code, _, body = get(page)
+                      assert code == 200 and ('href="' + route + '"').encode() in body, page + ': ingang nog niet gepubliceerd'
+                  break
+              except Exception as error:
+                  print(f'Wacht op publicatie ({attempt + 1}/30): {error}', flush=True)
+                  if attempt == 29:
+                      raise
+                  time.sleep(5)
+          _, _, css = get(route + 'konijnenhol.css?v=' + manifest['moduleVersion'])
+          assert hashlib.sha256(css).digest() == hashlib.sha256((root / 'konijnenhol.css').read_bytes()).digest(), 'Live CSS wijkt af'
+          media_route = route + manifest['mediaFile']
+          status, headers, media = get(media_route)
+          assert status == 200
+          assert headers.get_content_type() == 'video/mp4', 'Onjuist mediatype'
+          assert len(media) == manifest['expectedBytes'], 'Live film heeft onjuiste lengte'
+          digest = hashlib.sha256(media).hexdigest()
+          assert digest == manifest['sha256'], 'Live film wijkt af van gecontroleerde upload'
+          for start in [0, len(media) - 1024]:
+              end = start + 1023
+              status, headers, body = get(media_route, {'Range': f'bytes={start}-{end}'})
+              assert status == 206, 'Server ondersteunt het gevraagde deelverzoek niet'
+              assert headers.get('Content-Range') == f'bytes {start}-{end}/{len(media)}'
+              assert body == media[start:end + 1], 'Deelverzoek levert verkeerde bytes'
+          message = (f'Konijnenhol {manifest["moduleVersion"]}: live pagina, gekozen subtitel en waarschuwing, '
+                     f'drie ingangen, CSS, video/mp4, {len(media)} bytes, SHA-256 {digest} '
+                     'en HTTP 206 aan begin en einde bevestigd. '
+                     'Dit is een HTTP-/bestandscontrole, geen volledige afspeeltest op een echte iPhone.')
+          print(message, flush=True)
+          pathlib.Path(os.environ['GITHUB_STEP_SUMMARY']).write_text(message + '\n')
+          PY
