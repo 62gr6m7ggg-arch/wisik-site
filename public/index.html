@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="/assets/css/space-billboard.css?v=0.1.24">
   <script src="/assets/js/space-billboard.js?v=0.1.24" defer></script>
 <link rel="stylesheet" href="/rafelrand/konijnenhol/konijnenhol.css?v=1.0.0">
+  <link rel="stylesheet" href="/assets/css/mobile-terrein.css?v=1.0.0">
+  <script src="/assets/js/mobile-terrein.js?v=0.1.24" defer></script>
 </head>
 <body data-route="terrein">
 <a class="skip-link" href="#main">Ga naar de inhoud</a>
@@ -48,6 +50,7 @@
       <div class="hero-copy">
         <span class="kicker">Gratis toegang · zonder account · rekenen en wiskunde</span>
         <h1 id="hero-title">Wiskunde hoeft niet stil te zitten.</h1>
+        <p class="terrain-mobile">Kies je polsbandje en ontdek het terrein.</p>
         <p class="lead">Welkom op Wisik: een festivalterrein met doordachte tools, proeftenten en onverwachte omwegen die rekenen en wiskunde begrijpelijker én leuker maken. Kies je opleiding, volg een route of dwaal gewoon even rond.</p>
         <div class="hero-actions">
           <button class="btn coral" type="button" data-open-route-dialog>Kies je polsbandje</button>
@@ -63,15 +66,15 @@
     </div>
   </section>
 
-  <section class="section" aria-labelledby="wristband-title">
+  <section class="section home-route-choice" aria-labelledby="wristband-title">
     <div class="section-head">
       <div><span class="kicker">Routekeuze</span><h2 id="wristband-title">Kies je polsbandje</h2><p class="lead">De festivalvorm maakt ontdekken leuk; de labels maken kiezen helder.</p></div>
     </div>
     <div class="wristbands">
-      <a class="wristband vo" href="/vo/"><span class="wristband-code">VO</span><h3>VO-veld</h3><p>Van onderbouw tot examen. Straks met duidelijke routes voor vmbo, havo en vwo.</p><span class="status-line"><span class="status-dot"></span> Terrein wordt ingericht</span></a>
-      <a class="wristband pabo" href="/pabo/"><span class="wristband-code">PA</span><h3>Pabo-plein</h3><p>Rekenen, toetsvertrouwen en later ook de stap naar rekendidactiek.</p><span class="status-line"><span class="status-dot live"></span> Eerste MainStage openingsklaar</span></a>
-      <a class="wristband hbo" href="/hbo/"><span class="wristband-code">HBO</span><h3>HBO-werkplaats</h3><p>Wiskunde voor opleiding en beroep, waaronder instroom voor Bouwkunde.</p><span class="status-line"><span class="status-dot build"></span> Eerste bouwplaats zichtbaar</span></a>
-      <a class="wristband all" href="#vandaag-open"><span class="wristband-code">∞</span><h3>Vrij rondlopen</h3><p>Bekijk MainStages, bouwplaatsen en rafelranden door elkaar.</p><span class="status-line"><span class="status-dot live"></span> Geen route verplicht</span></a>
+      <a class="wristband vo" href="/vo/"><span class="wristband-code">VO</span><h3><span class="route-wide">VO-veld</span><span class="route-short">VO</span></h3><p>Van onderbouw tot examen. Straks met duidelijke routes voor vmbo, havo en vwo.</p><span class="status-line"><span class="status-dot"></span> Terrein wordt ingericht</span></a>
+      <a class="wristband pabo" href="/pabo/"><span class="wristband-code">PA</span><h3><span class="route-wide">Pabo-plein</span><span class="route-short">Pabo</span></h3><p>Rekenen, toetsvertrouwen en later ook de stap naar rekendidactiek.</p><span class="status-line"><span class="status-dot live"></span> Eerste MainStage openingsklaar</span></a>
+      <a class="wristband hbo" href="/hbo/"><span class="wristband-code">HBO</span><h3><span class="route-wide">HBO-werkplaats</span><span class="route-short">HBO</span></h3><p>Wiskunde voor opleiding en beroep, waaronder instroom voor Bouwkunde.</p><span class="status-line"><span class="status-dot build"></span> Eerste bouwplaats zichtbaar</span></a>
+      <a class="wristband all" href="#vandaag-open"><span class="wristband-code">∞</span><h3><span class="route-wide">Vrij rondlopen</span><span class="route-short">Vrij</span></h3><p>Bekijk MainStages, bouwplaatsen en rafelranden door elkaar.</p><span class="status-line"><span class="status-dot live"></span> Geen route verplicht</span></a>
     </div>
   </section>
 
@@ -80,6 +83,7 @@
       <span class="kicker">Terreinplattegrond</span>
       <h2 id="map-title">Waar wil je vandaag heen?</h2>
       <p class="lead">Op ieder bord staat voor welke opleiding, fase en niveau de attractie is. De plek op het terrein vertelt hoe ver de ontwikkeling is.</p>
+      <a class="terrain-mobile terrain-list-link" href="#vandaag-open">Liever een lijst?</a>
     </div>
     <p class="sr-only">De plattegrond bevat het Pabo-plein met Pabo Rekenklaar, een VO-veld in aanleg, een HBO-werkplaats, de Rafelrand, Backstage, het Wisik-Kladblok en de zijpodia Moshpit en Grabbelton. Bij de Rafelrand staat een vergrootbaar toekomstbord voor de Space-tent.</p>
     <div class="festival-map festival-map--space-billboard">
@@ -91,22 +95,26 @@
       </svg>
 
       <a class="map-zone zone-vo" href="/vo/">
-        <div class="zone-card"><span class="zone-marker" aria-hidden="true">VO</span><span class="zone-badge">terrein in aanleg</span><h3>VO-veld</h3><p>Onderbouw, vmbo, havo, vwo en examenterrein. Attracties verschijnen pas wanneer ze werkelijk bruikbaar zijn.</p></div>
+        <span class="terrain-art terrain-art--vo" aria-hidden="true"></span><div class="zone-card"><span class="zone-marker" aria-hidden="true">VO</span><span class="zone-badge"><span class="terrain-wide">terrein in aanleg</span><span class="terrain-mobile">In aanleg · VO</span></span><h3>VO-veld</h3><p>Onderbouw, vmbo, havo, vwo en examenterrein. Attracties verschijnen pas wanneer ze werkelijk bruikbaar zijn.</p><p class="terrain-short">Hier groeit het VO-veld.</p></div>
       </a>
 
-      <a class="map-zone zone-hbo" href="/hbo/">
-        <div class="zone-card"><span class="zone-marker" aria-hidden="true">△</span><span class="zone-badge">HBO · bouwplaats</span><h3>HBO-werkplaats</h3><p>Bouwkunde &amp; Civiele Techniek · instroom/jaar 1. Hier krijgt de Summer Course straks vorm.</p></div>
+      <a class="map-zone zone-hbo terrain-turn" href="/hbo/">
+        <span class="terrain-art terrain-art--hbo" aria-hidden="true"></span><div class="zone-card"><span class="zone-marker" aria-hidden="true">△</span><span class="zone-badge"><span class="terrain-wide">HBO · bouwplaats</span><span class="terrain-mobile">In opbouw · HBO</span></span><h3>HBO-werkplaats</h3><p>Bouwkunde &amp; Civiele Techniek · instroom/jaar 1. Hier krijgt de Summer Course straks vorm.</p><p class="terrain-short">Wiskunde voor bouwers.</p></div>
       </a>
 
-      <a class="map-zone zone-pabo" href="/pabo/pabo-rekenklaar/">
-        <div class="zone-card"><span class="zone-marker" aria-hidden="true">∑</span><span class="zone-badge">PABO · MainStage</span><h3>Pabo Rekenklaar</h3><p>Instroom en eerste studiefase · overwegend 3F / RWT-voorbereiding · versie 1.6.3.</p></div>
+      <a class="map-zone zone-pabo" data-terrain-tool="pabo-rekenklaar" href="/pabo/pabo-rekenklaar/">
+        <span class="terrain-art terrain-art--pabo" aria-hidden="true"></span><div class="zone-card"><span class="zone-marker" aria-hidden="true">∑</span><span class="zone-badge"><span class="terrain-wide">PABO · MainStage</span><span class="terrain-mobile">Open · Pabo</span></span><h3>Pabo Rekenklaar</h3><p>Instroom en eerste studiefase · overwegend 3F / RWT-voorbereiding · versie 1.6.3.</p><p class="terrain-short">Oefen rekenen op jouw niveau.</p></div>
       </a>
 
       <a class="map-zone zone-rafel" href="/rafelrand/">
         <div class="zone-card"><span class="zone-marker" aria-hidden="true">✎</span><span class="zone-badge">proeftenten</span><h3>De Rafelrand</h3><p>Prototypes, pilots en ideeën die nog mogen schuren. Je ziet wat al werkt én wat nog niet betrouwbaar genoeg is.</p></div>
       </a>
 
-      <a id="konijnenhol" class="kh-entry kh-entry--map" href="/rafelrand/konijnenhol/" aria-label="Konijnenhol bij de Space-tent: Hoogstaand Diepgaan"><span class="kh-burrow" aria-hidden="true"><span class="kh-ears"></span></span><span class="kh-entry-copy"><strong>Konijnenhol</strong><small>Waarschuwing: dit is een konijnenhol.</small><em>Hoogstaand Diepgaan · Wiskundig-high door diep te gaan</em></span></a>
+      <a class="map-zone zone-space terrain-turn" data-terrain-tool="ruimteklaar" href="/apps/ruimteklaar/">
+        <span class="terrain-art terrain-art--space" aria-hidden="true"></span><div class="zone-card"><span class="zone-badge">Proeftent · HBO</span><h3>Space-tent</h3><p class="terrain-short">Kijk, draai en ontdek meetkunde.</p></div>
+      </a>
+
+      <a id="konijnenhol" class="kh-entry kh-entry--map" href="/rafelrand/konijnenhol/" aria-label="Konijnenhol bij de Space-tent: Hoogstaand Diepgaan"><span class="terrain-art terrain-art--konijnenhol" aria-hidden="true"></span><span class="kh-burrow" aria-hidden="true"><span class="kh-ears"></span></span><span class="kh-entry-copy"><span class="terrain-state">Een onverwachte omweg</span><strong>Konijnenhol</strong><small class="terrain-short">Hoogstaand Diepgaan: de film.</small><small>Waarschuwing: dit is een konijnenhol.</small><em>Hoogstaand Diepgaan · Wiskundig-high door diep te gaan</em></span></a>
 
       <figure class="space-billboard space-billboard-map">
         <button class="space-billboard-trigger" type="button" data-space-billboard aria-label="Vergroot het toekomstbord van de Space-tent"><span class="space-billboard-art"><img src="/assets/img/space-tent-toekomst-v1.webp" width="1448" height="1086" alt="" loading="lazy" decoding="async" draggable="false"></span></button>
@@ -114,23 +122,26 @@
       </figure>
 
       <a class="map-zone zone-backstage" href="/backstage/#vrijgavecontrole">
-        <div class="zone-card"><span class="zone-marker" aria-hidden="true">⚙</span><span class="zone-badge">kwaliteit · live bewijs</span><h3>Backstage</h3><p>Bekijk direct of de nieuwste versie alle verplichte controles heeft doorstaan, plus rubrics, bronnen, beperkingen en privacy.</p></div>
+        <span class="terrain-art terrain-art--backstage" aria-hidden="true"></span><div class="zone-card"><span class="zone-marker" aria-hidden="true">⚙</span><span class="zone-badge"><span class="terrain-wide">kwaliteit · live bewijs</span><span class="terrain-mobile">Achter de schermen</span></span><h3>Backstage</h3><p>Bekijk direct of de nieuwste versie alle verplichte controles heeft doorstaan, plus rubrics, bronnen, beperkingen en privacy.</p><p class="terrain-short">Bekijk onze kwaliteitscontrole.</p></div>
       </a>
 
-      <a class="map-zone zone-kladblok" href="/kladblok/">
-        <div class="zone-card"><span class="zone-marker" aria-hidden="true">📝</span><span class="zone-badge">ervaringen &amp; tips</span><h3>Wisik-Kladblok</h3><p>Schrijf wat werkt, wat schuurt of wat er volgens jou nog op het terrein ontbreekt.</p></div>
+      <a class="map-zone zone-kladblok terrain-turn" href="/kladblok/">
+        <span class="terrain-art terrain-art--kladblok" aria-hidden="true"></span><div class="zone-card"><span class="zone-marker" aria-hidden="true">📝</span><span class="zone-badge"><span class="terrain-wide">ervaringen &amp; tips</span><span class="terrain-mobile">Ervaringen &amp; tips</span></span><h3>Wisik-Kladblok</h3><p>Schrijf wat werkt, wat schuurt of wat er volgens jou nog op het terrein ontbreekt.</p><p class="terrain-short">Laat weten wat je opvalt.</p></div>
       </a>
 
       <div class="map-pond" aria-hidden="true"></div>
       <div class="keiblij-sign" aria-hidden="true">KEIBLIJWEIDE</div>
     </div>
     <nav class="side-stage-strip" aria-label="Zijpodia op het Wisik-terrein">
-      <a class="side-stage-card moshpit" href="/moshpit/"><span class="side-stage-icon" aria-hidden="true">⚡</span><span class="side-stage-copy"><strong>Moshpit</strong><small>60 seconden hoofdrekenen met de bestaande Pabo-oefenbank · open</small></span><span class="side-stage-arrow" aria-hidden="true">→</span></a>
-      <a class="side-stage-card grabbelton" href="/grabbelton/"><span class="side-stage-icon" aria-hidden="true">?</span><span class="side-stage-copy"><strong>Grabbelton</strong><small>30 Wisik-flirts over rekenmisconcepten · festivalversie v1</small></span><span class="side-stage-arrow" aria-hidden="true">→</span></a>
+      <a class="side-stage-card moshpit terrain-turn" href="/moshpit/"><span class="terrain-art terrain-art--moshpit" aria-hidden="true"></span><span class="side-stage-icon" aria-hidden="true">⚡</span><span class="side-stage-copy"><span class="terrain-state">Open · Pabo</span><strong>Moshpit</strong><small>60 seconden hoofdrekenen met de bestaande Pabo-oefenbank · open</small><small class="terrain-short">60 seconden hoofdrekenen.</small></span><span class="side-stage-arrow" aria-hidden="true">→</span></a>
+      <a class="side-stage-card grabbelton" href="/grabbelton/"><span class="terrain-art terrain-art--grabbelton" aria-hidden="true"></span><span class="side-stage-icon" aria-hidden="true">?</span><span class="side-stage-copy"><span class="terrain-state">Open · Pabo</span><strong>Grabbelton</strong><small>30 Wisik-flirts over rekenmisconcepten · festivalversie v1</small><small class="terrain-short">Trek een verrassende rekenflirt.</small></span><span class="side-stage-arrow" aria-hidden="true">→</span></a>
     </nav>
   </section>
 
-  <section class="section" id="vandaag-open" aria-labelledby="open-title">
+  <section class="section home-directory-section" id="vandaag-open" aria-labelledby="open-title">
+    <details class="terrain-directory" data-terrain-directory open><summary>Alle attracties in een lijst</summary>
+    <ul class="terrain-directory-walk" data-terrain-walk-list hidden></ul>
+    <div class="terrain-directory-tools">
     <div class="section-head">
       <div><span class="kicker">Lijstweergave</span><h2 id="open-title">Vandaag open en in opbouw</h2><p class="lead">Ook zonder plattegrond vind je hier meteen opleiding, niveau, status en versie.</p></div>
     </div>
@@ -141,9 +152,11 @@
       <button class="filter-chip" type="button" data-filter-route="HBO">HBO</button>
     </div>
     <div class="cards-grid" id="allToolsGrid" data-tools-grid data-route="ALL"></div>
+    </div>
+    </details>
   </section>
 
-  <section class="split-band" aria-labelledby="backstage-title">
+  <section class="split-band home-background-info" aria-labelledby="backstage-title">
     <div class="section">
       <div><span class="kicker">Backstage</span><h2 id="backstage-title">Achter een leuke attractie hoort degelijk bouwwerk.</h2><p class="lead">Wisik laat niet alleen zien wat een tool kan, maar ook waarop die is gebaseerd, wat is getest en welke beperkingen nog bestaan.</p><a class="btn light" href="/backstage/#vrijgavecontrole">Bekijk de live vrijgavecontrole</a></div>
       <div class="backstage-grid">
@@ -155,7 +168,7 @@
     </div>
   </section>
 
-  <section class="kladblok-section" id="kladblok" aria-labelledby="kladblok-title">
+  <section class="kladblok-section home-feedback-info" id="kladblok" aria-labelledby="kladblok-title">
     <div class="section">
       <div class="kladblok-grid">
         <div class="notepad-illustration">

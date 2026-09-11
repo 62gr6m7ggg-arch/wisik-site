@@ -1,0 +1,244 @@
+/* Wisik mobile festival walk 1.0.0 — © Edwin van der Plas.
+   Uses the existing links and one illustration atlas; learning tools own their state. */
+.terrain-art, .terrain-short, .terrain-mobile, .terrain-state, .route-short,
+.map-zone.zone-space, .terrain-list-button { display: none; }
+.side-stage-copy .terrain-short, .kh-entry-copy .terrain-short { display: none; }
+.terrain-directory > summary { display: none; }
+.terrain-directory-walk { display: none; }
+
+@media (max-width: 1000px) {
+  body[data-route="terrein"] { background: #edf4e6; }
+  body[data-route="terrein"] .hero {
+    min-height: 0;
+    background: #edf4e6;
+    overflow: visible;
+  }
+  body[data-route="terrein"] .hero-inner { padding: 24px 0 8px; display: block; }
+  body[data-route="terrein"] .hero-copy { max-width: 42rem; margin: auto; }
+  body[data-route="terrein"] .hero h1 {
+    font-size: clamp(1.9rem, 7.8vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -.035em;
+    margin: 0 0 10px;
+  }
+  body[data-route="terrein"] .hero .terrain-mobile {
+    display: block;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #345247;
+  }
+  body[data-route="terrein"] .hero::before,
+  body[data-route="terrein"] .hero::after,
+  body[data-route="terrein"] .hero .kicker,
+  body[data-route="terrein"] .hero .lead,
+  body[data-route="terrein"] .hero-actions,
+  body[data-route="terrein"] .hero-note,
+  body[data-route="terrein"] .entrance-arch { display: none; }
+
+  body[data-route="terrein"] .home-route-choice { padding: 10px 0 20px; }
+  .home-route-choice .section-head { margin: 0; }
+  .home-route-choice .section-head .kicker,
+  .home-route-choice .section-head .lead { display: none; }
+  .home-route-choice h2 { font-size: .875rem; margin: 0 0 8px; letter-spacing: 0; }
+  .home-route-choice .wristbands { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .home-route-choice .wristband {
+    min-height: 48px;
+    padding: 10px 3px;
+    border-radius: 10px;
+    border-width: 2px;
+    box-shadow: 0 3px 0 #17324322;
+    text-align: center;
+    transform: none;
+    overflow-wrap: anywhere;
+  }
+  .home-route-choice .wristband::before,
+  .home-route-choice .wristband::after,
+  .home-route-choice .wristband-code,
+  .home-route-choice .wristband p,
+  .home-route-choice .wristband .status-line,
+  .home-route-choice .route-wide { display: none; }
+  .home-route-choice .route-short { display: inline; }
+  .home-route-choice .wristband h3 { font-size: 1rem; line-height: 1.5; margin: 0; }
+
+  body[data-route="terrein"] .map-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: min(100% - 20px, 680px);
+    margin: 0 auto;
+    padding: 0 0 32px;
+    overflow: visible;
+    isolation: isolate;
+  }
+  /* A wayfinding line connects the real navigation stops. */
+  body[data-route="terrein"] .map-wrap::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    top: 100px;
+    bottom: 80px;
+    left: 50%;
+    width: 130px;
+    transform: translateX(-50%);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 280'%3E%3Cpath d='M65 0C8 42 8 98 65 140S122 238 65 280' fill='none' stroke='%23c5a471' stroke-width='31'/%3E%3Cpath d='M65 0C8 42 8 98 65 140S122 238 65 280' fill='none' stroke='%23f3d6a0' stroke-width='25'/%3E%3Cpath d='M65 0C8 42 8 98 65 140S122 238 65 280' fill='none' stroke='%23d2b782' stroke-width='2' stroke-dasharray='3 12' stroke-linecap='round'/%3E%3C/svg%3E") center top / 130px 280px repeat-y;
+  }
+  .map-wrap .map-intro { width: 100%; order: 0; margin: 0 0 4px; }
+  .map-wrap .map-intro .kicker { font-size: .75rem; letter-spacing: .08em; }
+  .map-wrap .map-intro h2 { font-size: 1.45rem; line-height: 1.2; margin: 5px 0 10px; }
+  .map-wrap .map-intro .lead { display: none; }
+  .terrain-mobile.terrain-list-link { display: inline-flex; min-height: 44px; align-items: center; font-size: .875rem; font-weight: 750; text-underline-offset: 4px; }
+  .map-wrap .festival-map,
+  .map-wrap .side-stage-strip { display: contents; }
+  .map-wrap .map-sky-label,
+  .map-wrap .map-paths,
+  .map-wrap .map-pond,
+  .map-wrap .keiblij-sign,
+  .map-wrap .map-legend,
+  .map-wrap .map-zone.zone-rafel { display: none; }
+
+  .map-wrap .map-zone,
+  .map-wrap .side-stage-card,
+  .map-wrap .kh-entry--map {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    min-height: 188px;
+    margin: 0;
+    padding: 8px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #173243;
+    text-decoration: none;
+    transform: none !important;
+    filter: none;
+  }
+  .map-wrap .map-zone:hover,
+  .map-wrap .side-stage-card:hover,
+  .map-wrap .kh-entry--map:hover { transform: none !important; background: transparent; }
+  .map-wrap .map-zone:focus-visible,
+  .map-wrap .side-stage-card:focus-visible,
+  .map-wrap .kh-entry--map:focus-visible { outline: 4px solid #163f58; outline-offset: 2px; border-radius: 14px; }
+  .map-wrap .terrain-art {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    max-width: 240px;
+    aspect-ratio: 1;
+    background-image: url("/assets/img/terrein-attracties-v1.webp");
+    background-repeat: no-repeat;
+    background-size: 300% 300%;
+    justify-self: center;
+    pointer-events: none;
+  }
+  .terrain-art--pabo { background-position: 0 0; }
+  .terrain-art--moshpit { background-position: 50% 0; }
+  .terrain-art--grabbelton { background-position: 100% 0; }
+  .terrain-art--space { background-position: 0 50%; }
+  .terrain-art--konijnenhol { background-position: 50% 50%; }
+  .terrain-art--vo { background-position: 100% 50%; }
+  .terrain-art--hbo { background-position: 0 100%; }
+  .terrain-art--backstage { background-position: 50% 100%; }
+  .terrain-art--kladblok { background-position: 100% 100%; }
+
+  .map-wrap .zone-card,
+  .map-wrap .side-stage-copy,
+  .map-wrap .kh-entry-copy {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    width: auto;
+    padding: 13px 12px;
+    margin: 0;
+    border: 1px solid #cdb98d;
+    border-bottom: 4px solid #b29157;
+    border-radius: 12px;
+    background: #fff8e4;
+    box-shadow: 0 3px 0 #17324312;
+    color: #173243;
+    text-align: left;
+    transform: none;
+    overflow-wrap: anywhere;
+  }
+  .map-wrap .zone-card::before,
+  .map-wrap .zone-card::after,
+  .map-wrap .zone-marker,
+  .map-wrap .side-stage-icon,
+  .map-wrap .side-stage-arrow,
+  .map-wrap .kh-burrow,
+  .map-wrap .zone-card > p:not(.terrain-short),
+  .map-wrap .side-stage-copy > small:not(.terrain-short),
+  .map-wrap .kh-entry-copy > small:not(.terrain-short),
+  .map-wrap .kh-entry-copy > em { display: none; }
+  .map-wrap .zone-card h3,
+  .map-wrap .side-stage-copy > strong,
+  .map-wrap .kh-entry-copy > strong { display: block; font-size: 1.125rem; line-height: 1.2; margin: 5px 0; color: #163f58; letter-spacing: -.015em; }
+  .map-wrap .zone-badge,
+  .map-wrap .terrain-state { display: block; width: fit-content; position: static; padding: 0; margin: 0 0 5px; background: none; color: #416649; font-size: .875rem; line-height: 1.3; font-weight: 700; letter-spacing: 0; text-transform: none; border: 0; transform: none; }
+  .map-wrap .zone-badge .terrain-wide { display: none; }
+  .map-wrap .zone-badge .terrain-mobile { display: inline; }
+  .map-wrap .terrain-short,
+  .map-wrap .kh-entry-copy .terrain-short { display: block; margin: 6px 0 0; color: #345044; font-size: 1rem; line-height: 1.35; font-weight: 450; }
+  .map-wrap .side-stage-copy .terrain-short { opacity: 1; }
+  .map-wrap .terrain-turn .terrain-art { grid-column: 2; }
+  .map-wrap .terrain-turn .zone-card,
+  .map-wrap .terrain-turn .side-stage-copy,
+  .map-wrap .terrain-turn .kh-entry-copy { grid-column: 1; }
+  .map-wrap .zone-pabo { order: 1; }
+  .map-wrap .moshpit { order: 2; }
+  .map-wrap .grabbelton { order: 3; }
+  .map-wrap .zone-space { order: 4; }
+  .map-wrap .kh-entry--map { order: 5; }
+  .map-wrap .space-billboard-map { order: 6; position: relative; width: 160px; margin: 12px auto 25px; }
+  .map-wrap .zone-vo { order: 7; }
+  .map-wrap .zone-hbo { order: 8; }
+  .map-wrap .zone-backstage { order: 9; }
+  .map-wrap .zone-kladblok { order: 10; }
+  .map-wrap .zone-vo .zone-badge,
+  .map-wrap .zone-hbo .zone-badge { color: #7c5724; }
+  .map-wrap .space-billboard-map figcaption { font-size: .875rem; }
+
+  .home-directory-section { padding-top: 0; padding-bottom: 28px; }
+  .terrain-directory { border: 2px solid #c7d5bf; border-radius: 16px; padding: 0 16px; background: #fffdf4; }
+  .terrain-directory > summary { display: list-item; padding: 18px 0; cursor: pointer; font-size: 1rem; line-height: 1.4; font-weight: 800; }
+  .terrain-directory > summary:focus-visible { outline: 3px solid #163f58; outline-offset: 3px; }
+  .terrain-directory[open] > summary { border-bottom: 1px solid #d4ddce; margin-bottom: 18px; }
+  .terrain-directory .section-head { display: none; }
+  .terrain-directory .cards-grid { padding-bottom: 18px; }
+  .terrain-directory-walk:not([hidden]) { display: block; padding: 0; margin: 0; list-style: none; }
+  .terrain-directory-walk:not([hidden]) + .terrain-directory-tools { display: none; }
+  .terrain-directory-walk a { display: block; min-height: 48px; padding: 14px 0; border-bottom: 1px solid #d4ddce; color: #163f58; text-decoration: none; }
+  .terrain-directory-walk li:last-child a { border-bottom: 0; }
+  .terrain-directory-walk a:focus-visible { outline: 3px solid #163f58; outline-offset: 2px; }
+  .terrain-directory-walk strong, .terrain-directory-walk span { display: block; }
+  .terrain-directory-walk span { margin-top: 3px; color: #345044; font-size: .9375rem; }
+  body[data-route="terrein"] .home-background-info,
+  body[data-route="terrein"] .home-feedback-info { display: none; }
+}
+
+@media (min-width: 591px) and (max-width: 1000px) {
+  .home-route-choice .wristbands { max-width: 540px; }
+  .map-wrap .map-zone, .map-wrap .side-stage-card, .map-wrap .kh-entry--map { width: min(100%, 560px); align-self: center; }
+  .map-wrap .zone-card, .map-wrap .side-stage-copy, .map-wrap .kh-entry-copy { padding: 18px; }
+}
+
+@media (max-width: 359px) {
+  .map-wrap .zone-card, .map-wrap .side-stage-copy, .map-wrap .kh-entry-copy { padding: 10px 8px; }
+  .map-wrap .zone-card h3, .map-wrap .side-stage-copy > strong, .map-wrap .kh-entry-copy > strong { font-size: 1rem; }
+}
+
+@media print {
+  .terrain-art, .terrain-list-link { display: none !important; }
+}
