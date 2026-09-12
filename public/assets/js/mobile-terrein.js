@@ -5,7 +5,7 @@
   if (!directory) return;
   const smallScreen = window.matchMedia("(max-width: 1000px)");
   const map = document.querySelector("#terrein");
-  const sequence = [".zone-pabo", ".side-stage-card.moshpit", ".side-stage-card.grabbelton", ".zone-space", ".kh-entry--map", ".space-billboard-map", ".zone-vo", ".zone-hbo", ".zone-backstage", ".zone-kladblok"];
+  const sequence = [".zone-pabo", ".side-stage-card.moshpit", ".side-stage-card.grabbelton", ".zone-stoicheia", ".zone-space", ".kh-entry--map", ".space-billboard-map", ".zone-vo", ".zone-hbo", ".zone-backstage", ".zone-kladblok"];
   const stops = map ? sequence.map(selector => map.querySelector(selector)).filter(Boolean).map(node => {
     const marker = document.createComment("terrain-stop");
     node.parentNode.insertBefore(marker, node);

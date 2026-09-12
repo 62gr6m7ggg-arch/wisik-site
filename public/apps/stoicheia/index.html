@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#742b3c">
+<title>Στοιχεῖα · Stoicheia · Visueel naslagwerk</title>
+<meta name="description" content="De oorspronkelijke meetkundelijst in volgorde, met bewegende figuren. Een visueel naslagwerk in de tent Στοιχεῖα.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="at-tent">
+<section id="tent-entrance" aria-label="De tent Στοιχεῖα"><div class="entrance-layout"><div id="stoicheia-tent-preview">
+<style>
+#stoicheia-tent-preview{font-family:Georgia,'Times New Roman',serif;color:#352819;max-width:780px;margin:auto}
+#stoicheia-tent-preview .tent-art{position:relative;width:100%;aspect-ratio:1;overflow:hidden;border-radius:12px;background:#fff9ec}
+#stoicheia-tent-preview .tent-art>img{display:block;width:100%;height:100%;object-fit:contain}
+#stoicheia-tent-preview .tent-art>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#stoicheia-tent-preview .tent-toolbar{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding:12px 2px;color:light-dark(#513329,#f1dcc5);font-family:Arial,sans-serif}
+#stoicheia-tent-preview .tent-toolbar button{font:inherit;border:1px solid light-dark(#ac9373,#b8a18a);border-radius:8px;background:light-dark(#fff7e9,#33292a);color:light-dark(#722c37,#ffe4d8);padding:10px 16px;min-height:44px;cursor:pointer}
+#stoicheia-tent-preview .live-sums{display:flex;flex-wrap:wrap;gap:8px 24px;font-family:Arial,sans-serif;font-variant-numeric:tabular-nums;color:light-dark(#513329,#f1dcc5);padding:0 2px 12px}
+#stoicheia-tent-preview svg text{font-family:Georgia,'Times New Roman',serif;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:#fff8e8;stroke-width:5;stroke-linejoin:round}
+</style>
+<div class="tent-art">
+<img src="/assets/img/stoicheia-tent-v1.webp" alt="Bordeauxrode en crèmekleurige festivaltent. Onder de grote ronde houten ring hangt het bord: Στοιχεῖα, Stoicheia. De meetkunde beweegt. Jij ontdekt wat blijft.">
+<svg viewBox="0 0 1254 1254" role="img" aria-label="Een gesloten koordenvierhoek met vier langzaam bewegende hoekpunten op één cirkel. Beide paren overstaande hoeken blijven samen 180 graden.">
+<defs>
+<linearGradient id="stoicheia-cord" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d2a056"/><stop offset=".5" stop-color="#ffdf9a"/><stop offset="1" stop-color="#b07e38"/></linearGradient>
+<radialGradient id="stoicheia-brass"><stop offset="0" stop-color="#fff0b0"/><stop offset=".65" stop-color="#ddb36c"/><stop offset="1" stop-color="#865021"/></radialGradient>
+</defs>
+<circle cx="627" cy="332" r="278" fill="none" stroke="#b18b4a" stroke-opacity=".65" stroke-width="2"/>
+<polygon data-shape="outer" points="399.28,172.55 839.96,153.29 846.07,503.16 437.4,535.32" fill="#a4434a" fill-opacity=".065" stroke="#752a37" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon data-shape="inner" points="399.28,172.55 839.96,153.29 846.07,503.16 437.4,535.32" fill="none" stroke="url(#stoicheia-cord)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<g data-angle-marks></g>
+<g data-vertices></g>
+<g data-equations>
+<text x="627" y="313" fill="#8b243b" data-center-label>A + C = 180°</text>
+<text x="627" y="356" fill="#9b450b" data-center-label>B + D = 180°</text>
+</g>
+</svg>
+<button id="tent-door" class="tent-door">Meet Eclides &amp; Friends</button>
+</div>
+<div class="tent-toolbar"><span>Vier hoekpunten · één gesloten vierhoek</span><button type="button" data-pause aria-pressed="false">Pauzeer beweging</button></div>
+<div class="live-sums" aria-label="Actuele hoeksommen"><span data-sum-ac>A + C = 180°</span><span data-sum-bd>B + D = 180°</span></div>
+<script>
+(()=>{
+const root=document.getElementById('stoicheia-tent-preview');
+const svg=root.querySelector('svg'),poly=root.querySelector('[data-shape="outer"]'),cord=root.querySelector('[data-shape="inner"]'),angleLayer=root.querySelector('[data-angle-marks]'),vertices=root.querySelector('[data-vertices]'),button=root.querySelector('[data-pause]');
+const ns='http://www.w3.org/2000/svg',o={x:627,y:332},r=278,base=[-145,-40,38,133].map(x=>x*Math.PI/180),amp=[.18,.21,.17,.20],phases=[0,.9,2.0,2.8],colors=['#8b243b','#aa4d0b','#8b243b','#aa4d0b'];
+const node=(name,attrs,parent)=>{const n=document.createElementNS(ns,name);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));parent.appendChild(n);return n;};
+const marks=[],labels=[],points=[];
+for(let i=0;i<4;i++){
+marks.push(node('path',{fill:colors[i],'fill-opacity':'.16',stroke:colors[i],'stroke-width':2},angleLayer));
+const group=node('g',{},vertices),disc=node('circle',{r:17,fill:'url(#stoicheia-brass)',stroke:'#744522','stroke-width':2},group),dot=node('circle',{r:10,fill:colors[i],stroke:'#fff2ce','stroke-width':1.8},group),letter=node('text',{fill:colors[i]},vertices),degrees=node('text',{fill:colors[i]},vertices);
+letter.textContent='ABCD'[i];points.push({disc,dot,letter,degrees});
+}
+let active=!window.matchMedia('(prefers-reduced-motion: reduce)').matches,time=0,last=0,raf=0,lastText=-1;
+const f=n=>n.toLocaleString('nl-NL',{minimumFractionDigits:1,maximumFractionDigits:1});
+function draw(){
+const scale=Math.max(.24,root.getBoundingClientRect().width/1254),font=Math.max(25,12/scale),small=Math.max(24,11/scale),cornerRadius=Math.max(29,11/scale);
+const angles=base.map((b,i)=>b+amp[i]*Math.sin(time*2*Math.PI/42+phases[i]));
+const p=angles.map(a=>({x:o.x+r*Math.cos(a),y:o.y+r*Math.sin(a)}));
+const coords=p.map(a=>a.x+','+a.y).join(' ');poly.setAttribute('points',coords);cord.setAttribute('points',coords);
+const values=p.map((v,i)=>{const a=p[(i+3)%4],b=p[(i+1)%4],u={x:a.x-v.x,y:a.y-v.y},w={x:b.x-v.x,y:b.y-v.y};return Math.acos(Math.max(-1,Math.min(1,(u.x*w.x+u.y*w.y)/(Math.hypot(u.x,u.y)*Math.hypot(w.x,w.y)))))*180/Math.PI;});
+const shown=[Math.round(values[0]*10)/10,Math.round(values[1]*10)/10,0,0];shown[2]=180-shown[0];shown[3]=180-shown[1];
+p.forEach((v,i)=>{
+const a=p[(i+3)%4],b=p[(i+1)%4],start=Math.atan2(a.y-v.y,a.x-v.x),end=Math.atan2(b.y-v.y,b.x-v.x),sweep=((end-start+3*Math.PI)%(2*Math.PI))-Math.PI;
+const a1={x:v.x+cornerRadius*Math.cos(start),y:v.y+cornerRadius*Math.sin(start)},a2={x:v.x+cornerRadius*Math.cos(start+sweep),y:v.y+cornerRadius*Math.sin(start+sweep)};
+marks[i].setAttribute('d',`M${v.x},${v.y} L${a1.x},${a1.y} A${cornerRadius},${cornerRadius} 0 0 ${sweep>0?1:0} ${a2.x},${a2.y} Z`);
+const {disc,dot,letter,degrees}=points[i];for(const n of [disc,dot]){n.setAttribute('cx',v.x);n.setAttribute('cy',v.y);}
+// Name labels sit inside the ring, away from the wooden rim.
+const inward=angles[i]+Math.PI,side=angles[i]+Math.PI/2;
+letter.setAttribute('x',v.x+Math.cos(angles[i])*30);letter.setAttribute('y',v.y+Math.sin(angles[i])*30);letter.setAttribute('font-size',font);
+const middle=start+sweep/2,offset=cornerRadius+small*.9;
+degrees.setAttribute('x',v.x+Math.cos(middle)*offset);degrees.setAttribute('y',v.y+Math.sin(middle)*offset);degrees.setAttribute('font-size',small);degrees.textContent=f(shown[i])+'°';
+});
+root.querySelectorAll('[data-center-label]').forEach(n=>n.setAttribute('font-size',Math.max(29,11/scale)));
+if(time-lastText>.2||lastText<0){root.querySelector('[data-sum-ac]').textContent=`A + C = ${f(shown[0])}° + ${f(shown[2])}° = 180°`;root.querySelector('[data-sum-bd]').textContent=`B + D = ${f(shown[1])}° + ${f(shown[3])}° = 180°`;lastText=time;}
+}
+function tick(now){if(last&&active&&!document.hidden)time+=Math.min((now-last)/1000,.08);last=now;draw();if(active)raf=requestAnimationFrame(tick);}
+function sync(){button.textContent=active?'Pauzeer beweging':'Start beweging';button.setAttribute('aria-pressed',String(!active));}
+button.addEventListener('click',()=>{active=!active;sync();cancelAnimationFrame(raf);last=0;if(active)raf=requestAnimationFrame(tick);else draw();});
+new ResizeObserver(()=>draw()).observe(root);document.addEventListener('visibilitychange',()=>{last=0;});
+sync();draw();if(active)raf=requestAnimationFrame(tick);
+})();
+</script>
+</div>
+<div class="entrance-copy"><a class="wisik-return" href="/#terrein">← Terug naar het Wisik-terrein</a><span class="eyebrow">HET MEETKUNDIGE NASLAGWERK</span><h1 lang="el">Στοιχεῖα</h1><p class="entrance-latin">Stoicheia</p><p class="entrance-motto">De meetkunde beweegt.<br>Jij ontdekt wat blijft.</p><p>Stap binnen bij de definities en stellingen uit de oorspronkelijke meetkundelijst. Bekijk de figuren, beweeg de punten en ontdek de samenhang.</p><button id="enter-reference" class="entrance-primary">Meet Eclides &amp; Friends</button><button id="enter-cyclic" class="entrance-secondary">Bekijk de koordenvierhoek</button><p class="entrance-footnote">85 uitspraken · de volgorde van de bron<br>Vijf pistes om snel je hoofdstuk te vinden</p></div></div></section>
+<header class="topbar"><a class="soft-button wisik-return" href="/#terrein">← Terrein</a><a class="brand" href="#regel-01"><span class="brand-mark">Σ</span><span><span lang="el">Στοιχεῖα</span><em>Stoicheia · visueel naslagwerk</em></span></a><button id="open-tent" class="soft-button">De tent 🎪</button><span class="top-note">De meetkunde beweegt. Jij ontdekt wat blijft.</span><button id="menu" class="menu-button" aria-expanded="false" aria-controls="sidebar">Inhoudsopgave ☰</button></header>
+<div class="app-layout">
+<aside id="sidebar"><div class="nav-intro"><span class="eyebrow">DE OORSPRONKELIJKE LIJST</span><p>Inhoudsopgave</p><label class="search-label" for="reference-search">Zoek een begrip of volgnummer</label><input id="reference-search" type="search" placeholder="Bijv. koorde, ZHZ of 22"><p id="search-status" class="search-status" role="status"></p></div><nav id="catalog" aria-label="Stellingen"></nav><div class="source-note">Bron: CEVO · 5 pagina’s.<br>De volgnummers 1–85 zijn toegevoegd voor het opzoeken; de bron heeft geen stellingnummers.<br><a href="stellingen.pdf" target="_blank" rel="noopener">Bekijk de oorspronkelijke lijst ↗</a></div></aside>
+<main id="main"><details id="piste-menu" class="piste-menu"><summary>Vijf pistes · dezelfde hoofdstukken</summary><div id="pistes" class="pistes"></div></details>
+<div class="topic-heading"><div><p id="breadcrumb" class="eyebrow"></p><h1 id="title" tabindex="-1"></h1></div><span class="topic-index" id="index"></span></div>
+<section class="source-rule" aria-label="Uit de oorspronkelijke lijst"><div class="source-rule-heading"><span class="eyebrow">BRONTEKST</span><a id="page" class="page-badge" href="stellingen.pdf" target="_blank" rel="noopener"></a></div><div id="theory" class="theory"></div><p id="source-note" class="source-correction" hidden></p></section><div id="variants" class="variants"></div><div class="workspace">
+<section class="figure-panel" aria-label="Interactieve meetkundige figuur"><div class="figure-toolbar"><span class="live-label"><span class="drag-icon">✥</span> Ontdek door te bewegen</span><div><button id="play" class="soft-button" aria-pressed="false">▷ Beweeg</button><button id="reset" class="icon-button" aria-label="Herstel de beginfiguur" title="Herstel">↺</button></div></div><div class="drawing-wrap"><svg id="drawing" viewBox="0 0 640 480" role="group" aria-label="Interactieve figuur"></svg></div><div id="congruence-action" class="congruence-action" hidden><button id="show-consequence" class="soft-button" aria-pressed="false" aria-controls="drawing readout consequence-note">Toon het gevolg</button><span><b class="given-key">Donkerrood: gegeven</b><b id="consequence-key" class="consequence-key" hidden>Blauw: gevolg</b></span><p id="consequence-note" aria-live="polite"></p></div><div id="controls" class="controls"></div><p id="interaction-hint" class="interaction-hint"></p></section>
+<section class="results-panel" aria-label="Waarden en inzicht"><span class="eyebrow">DIT BLIJFT GELDEN</span><h2 id="result-title"></h2><div id="readout" class="readout"></div><div class="notice"><span class="eyebrow">TOELICHTING BIJ DE FIGUUR</span><div id="insight" class="insight"></div></div><p id="precision" class="precision">Waarden afgerond; de meetkundige relatie geldt exact.</p></section>
+</div>
+
+<footer class="topic-footer"><button id="previous" class="soft-button">← Vorige uitspraak</button><span>Een bewegend voorbeeld geeft inzicht. Een bewijs verklaart waarom het altijd geldt.</span><button id="next" class="soft-button">Volgende uitspraak →</button></footer>
+</main></div>
+<script src="content.js"></script><script src="reference.js"></script><script src="geometry.js"></script><script src="app.js"></script>
+</body></html>
