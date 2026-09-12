@@ -8,6 +8,16 @@ window.WISIK_MISCONCEPTION_CODES = Object.freeze([
 ]);
 window.WISIK_TOOLS = Object.freeze([
   Object.freeze({
+    id: "stoicheia", title: "Meet Eclides & Friends · Στοιχεῖα", route: "VO",
+    programme: "Vwo · ook bruikbaar bij de lerarenopleiding Wiskunde",
+    phase: "Bovenbouw · vlakke meetkunde", level: "Vwo wiskunde B · meetkundig naslagwerk",
+    subject: "Hoeken, driehoeken, vierhoeken en cirkels", venue: "Festivalterrein · Στοιχεῖα",
+    maturity: "mainstage", status: "open", statusLabel: "Open · naslagwerk", version: "1.0.0",
+    summary: "85 uitspraken in de volgorde van de oorspronkelijke lijst, met interactieve figuren en de brontekst ernaast.",
+    productUrl: "/apps/stoicheia/", appUrl: "/apps/stoicheia/", icon: "◯", accent: "coral", featured: true,
+    tags: Object.freeze(["meetkunde", "naslagwerk", "stellingen"])
+  }),
+  Object.freeze({
     id: "ruimteklaar",
     title: "Space-tent · Ruimteklaar",
     route: "HBO",

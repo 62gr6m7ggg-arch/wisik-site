@@ -54,7 +54,7 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
     return link;
   });
   const find = className => anchors.find(link => (link.getAttribute("class") || "").split(" ").includes(className));
-  const stops = ["zone-vo", "zone-hbo", "zone-pabo", "zone-rafel", "zone-space", "kh-entry--map", "zone-backstage", "zone-kladblok"].map(find);
+  const stops = ["zone-vo", "zone-hbo", "zone-pabo", "zone-rafel", "zone-stoicheia", "zone-space", "kh-entry--map", "zone-backstage", "zone-kladblok"].map(find);
   assert(stops.every(Boolean), "A terrain destination is missing from the real homepage");
   stops.forEach(stop => festival.appendChild(stop));
   const board = festival.appendChild(new Node("FIGURE"));
@@ -94,11 +94,11 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
 }
 
 const page = setup();
-const order = ["zone-pabo", "moshpit", "grabbelton", "zone-space", "kh-entry--map", "zone-vo", "zone-hbo", "zone-backstage", "zone-kladblok"];
+const order = ["zone-pabo", "moshpit", "grabbelton", "zone-stoicheia", "zone-space", "kh-entry--map", "zone-vo", "zone-hbo", "zone-backstage", "zone-kladblok"];
 assert.equal(page.directory.open, false, "The long alternative should start collapsed on mobile");
 assert.deepEqual(page.map.children.filter(node => node.tagName === "A"), order.map(page.find), "Keyboard order must follow the walk");
 assert.equal(page.walkList.hidden, false);
-assert.equal(page.walkList.children.length, 9, "The list must include every walk destination");
+assert.equal(page.walkList.children.length, 10, "The list must include every walk destination");
 const listLinks = page.walkList.children.map(item => item.children[0]);
 order.forEach((name, index) => {
   assert.equal(listLinks[index].getAttribute("href"), page.find(name).getAttribute("href"));
@@ -119,7 +119,7 @@ for (let round = 0; round < 3; round++) {
   assert.equal(page.find("zone-pabo").getAttribute("href"), "/pabo/pabo-rekenklaar/");
   page.resize(true);
   assert.deepEqual(page.map.children.filter(node => node.tagName === "A"), order.map(page.find));
-  assert.equal(page.walkList.children.length, 9, "Rotating/resizing must not duplicate the list");
+  assert.equal(page.walkList.children.length, 10, "Rotating/resizing must not duplicate the list");
   assert.equal(listLinks[0].getAttribute("href"), "/apps/pabo-rekenklaar/");
 }
 page.window.location.hash = "#vandaag-open";

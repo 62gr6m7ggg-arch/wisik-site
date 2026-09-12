@@ -34,3 +34,6 @@
 
 /films/ruimteklaar/*
   Cache-Control: no-cache, max-age=0, must-revalidate
+
+/apps/stoicheia/*
+  Cache-Control: no-cache, max-age=0, must-revalidate
