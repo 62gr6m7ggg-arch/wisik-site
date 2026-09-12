@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const siteVersion = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).version;
 const review = JSON.parse(fs.readFileSync(path.join(root, "tests/pabo-eigenstem-review-2026-09-09.json"), "utf8"));
 const fail = message => { console.error(`Eigenstem-releasecontrole MISLUKT: ${message}`); process.exit(1); };
 const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
@@ -40,6 +41,6 @@ if (core.includes('player.addEventListener("timeupdate"')) fail("continue resync
 if (core.includes("config.start +")) fail("speler probeert nog midden in masteraudio te seeken");
 for (const page of ["public/grabbelton/index.html", "public/apps/pabo-rekenklaar/index.html"]) {
   const html = fs.readFileSync(path.join(root, page), "utf8");
-  if (!html.includes("grabbelton-core.js?v=0.1.24")) fail(`${page} mist cacheversie 0.1.24`);
+  if (!html.includes(`grabbelton-core.js?v=${siteVersion}`)) fail(`${page} mist cacheversie ${siteVersion}`);
 }
 console.log(`Eigenstem-releasecontrole geslaagd: 30 losse M4A-bestanden, geen master-seeking, bronhash ${review.output.sha256}.`);
