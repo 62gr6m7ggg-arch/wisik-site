@@ -8,7 +8,7 @@ window.WISIK_MISCONCEPTION_CODES = Object.freeze([
 ]);
 window.WISIK_TOOLS = Object.freeze([
   Object.freeze({
-    id: "stoicheia", title: "Meet Eclides & Friends · Στοιχεῖα", route: "VO",
+    id: "stoicheia", title: "Meet Euclides & Friends · Στοιχεῖα", route: "VO",
     programme: "Vwo · ook bruikbaar bij de lerarenopleiding Wiskunde",
     phase: "Bovenbouw · vlakke meetkunde", level: "Vwo wiskunde B · meetkundig naslagwerk",
     subject: "Hoeken, driehoeken, vierhoeken en cirkels", venue: "Festivalterrein · Στοιχεῖα",
