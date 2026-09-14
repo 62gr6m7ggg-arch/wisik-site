@@ -34,6 +34,9 @@ jobs:
             node scripts/apply-space-artist-entrance.mjs
             rm scripts/apply-space-artist-entrance.mjs
           fi
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';const p='scripts/check-space-artist-entrance-browser.mjs';let s=fs.readFileSync(p,'utf8');s=s.replace("if(!file.startsWith(path.join(root,'public')+path.sep))", "if(file!==path.join(root,'public')&&!file.startsWith(path.join(root,'public')+path.sep))");fs.writeFileSync(p,s);
+          NODE
       - name: Navigation, registry and authentication checks
         run: |
           node scripts/test-mobile-terrein.mjs
