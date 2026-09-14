@@ -1,0 +1,105 @@
+name: Ruimteklaar 0.4.5 publicatiecontrole
+on:
+  push:
+    branches: [ruimteklaar-045-live-verification]
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare production files with tested release
+        run: |
+          mkdir -p /tmp/ruimteklaar-live
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import {createHash} from 'node:crypto';
+          import assert from 'node:assert/strict';
+          const hash=x=>createHash('sha256').update(x).digest('hex');
+          const base='https://wisik.nl';
+          const html=fs.readFileSync('public/apps/ruimteklaar/index.html','utf8');
+          const assets=[...html.matchAll(/(?:src|href)="(\/apps\/ruimteklaar\/assets\/[^"?#]+)"/g)].map(x=>x[1]);
+          assert.ok(assets.length>=2);
+          const paths=['/apps/ruimteklaar/',...assets,'/assets/data/ruimteklaar-release-audit.json','/films/ruimteklaar/catalog.json'];
+          const file=p=>'public'+(p.endsWith('/')?p+'index.html':p);
+          let report;
+          for(let attempt=0;attempt<30;attempt++){
+            try{
+              const results=[];
+              for(const p of paths){
+                for(const suffix of ['', '?release-check='+Date.now()]){
+                  const r=await fetch(base+p+suffix,{cache:'no-store',signal:AbortSignal.timeout(20000)});
+                  assert.equal(r.status,200,p);
+                  const actual=Buffer.from(await r.arrayBuffer()),expected=fs.readFileSync(file(p));
+                  assert.equal(hash(actual),hash(expected),'Live file differs: '+p+suffix);
+                  results.push({path:p,canonical:suffix==='',status:r.status,sha256:hash(actual),contentType:r.headers.get('content-type')});
+                }
+              }
+              report={status:'passed',release:'0.4.5',productionCommit:'bdbe79f15530fa2b5d56b8c02549405becb375be',checkedAt:new Date().toISOString(),results};
+              break;
+            }catch(error){console.log('Awaiting production release:',error.message);if(attempt===29)throw error;await new Promise(r=>setTimeout(r,20000));}
+          }
+          fs.writeFileSync('/tmp/ruimteklaar-live/production-files.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
+          JS
+      - name: Install browser verification tools
+        run: |
+          npm install --prefix /tmp/live-browser --no-save playwright@1.56.1
+          /tmp/live-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Exercise selection on actual public domain
+        run: |
+          cat > /tmp/live-browser/check.mjs <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {chromium,webkit} from 'playwright';
+          const results=[];
+          const configurations=[['chromium-desktop',chromium,{viewport:{width:1280,height:900}}],['chromium-mobile',chromium,{viewport:{width:390,height:844},isMobile:true,hasTouch:true}],['webkit-mobile',webkit,{viewport:{width:390,height:844},isMobile:true,hasTouch:true}]];
+          for(const [name,engine,options] of configurations){
+            const browser=await engine.launch();
+            try{
+              const context=await browser.newContext(options);
+              const page=await context.newPage();page.setDefaultTimeout(15000);
+              const errors=[];page.on('pageerror',e=>errors.push(e.message));
+              const response=await page.goto('https://wisik.nl/apps/ruimteklaar/',{waitUntil:'networkidle'});
+              assert.equal(response.status(),200);assert.match(await page.title(),/0\.4\.5/);
+              await page.getByRole('button',{name:'Open het oefenatelier'}).click();
+              await page.getByRole('heading',{name:'Jij kiest de lijnen.',exact:true}).waitFor();
+              const count=()=>page.locator('.geometry-stage .drawn-line').count();
+              const point=n=>page.locator('.point-tray').getByRole('button',{name:n,exact:true});
+              const click=async locator=>options.hasTouch?locator.tap():locator.click();
+              assert.equal(await count(),0);
+              await click(point('A'));await click(point('B'));
+              assert.equal(await count(),0,'Selection must not draw');
+              const caption=await page.locator('.selection-caption').innerText();assert.match(caption,/AB/);
+              await click(page.getByRole('button',{name:'Verlengen',exact:true}));
+              await page.waitForFunction(()=>document.querySelectorAll('.geometry-stage .drawn-line').length===1);
+              assert.equal(await page.getByRole('button',{name:'Uitvoeren',exact:true}).count(),0);
+              await click(point('B'));await click(point('A'));
+              assert.equal(await page.getByRole('button',{name:'Al verlengd',exact:true}).isDisabled(),true);
+              const stage=await page.locator('.geometry-stage').first().boundingBox();
+              const controls=await page.locator('.selection-controls').boundingBox();
+              assert.ok(controls.y-stage.y-stage.height<30,'Controls directly below figure');
+              assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow');
+              await page.screenshot({path:'/tmp/ruimteklaar-live/'+name+'.png',fullPage:true});
+              await click(page.locator('.drawing-footer').getByRole('button'));
+              await page.waitForFunction(()=>document.querySelectorAll('.geometry-stage .drawn-line').length===0);
+              assert.deepEqual(errors,[]);
+              results.push({environment:name,status:'passed',checks:['canonical live app 0.4.5','normal route to exercise','A B selection without drawing','one-click extension','reverse selection and duplicate guard','controls beside figure','undo','no page errors','no horizontal overflow']});
+              await context.close();
+            }finally{await browser.close();}
+          }
+          const report={status:'passed',checkedAt:new Date().toISOString(),productionCommit:'bdbe79f15530fa2b5d56b8c02549405becb375be',results,limitations:['Automated Linux browsers, not a physical iPhone or Safari session.']};
+          fs.writeFileSync('/tmp/ruimteklaar-live/live-browser.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          JS
+          node /tmp/live-browser/check.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruimteklaar-045-production-evidence
+          path: /tmp/ruimteklaar-live/
+          retention-days: 14
