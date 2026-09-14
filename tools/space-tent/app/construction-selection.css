@@ -18,3 +18,5 @@
 @media(min-width:761px){.selection-studio{grid-template-columns:minmax(0,1fr) minmax(220px,.46fr)}}
 @media(max-width:760px){.selection-studio{grid-template-columns:minmax(0,1fr)}.selection-studio .drawing-panel{padding:10px}}
 @media print{.selection-controls,.line-pick-options{display:none}}
+
+.selection-studio .tool-panel{align-self:start}

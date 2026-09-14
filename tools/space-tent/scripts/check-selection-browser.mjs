@@ -17,7 +17,7 @@ const results=[],errors=[];let browser;
 const configurations=[{name:'chromium-desktop',engine:chromium,width:1280,height:900,mobile:false},{name:'chromium-mobile',engine:chromium,width:390,height:844,mobile:true},{name:'webkit-mobile',engine:webkit,width:390,height:844,mobile:true}];
 try{
 for(const config of configurations){
- browser=await config.engine.launch({headless:true});const context=await browser.newContext({viewport:{width:config.width,height:config.height},isMobile:config.mobile,hasTouch:config.mobile});const page=await context.newPage();page.on('pageerror',e=>errors.push(config.name+': '+e.message));
+ browser=await config.engine.launch({headless:true});const context=await browser.newContext({viewport:{width:config.width,height:config.height},isMobile:config.mobile,hasTouch:config.mobile});const page=await context.newPage();page.setDefaultTimeout(12000);page.on('pageerror',e=>errors.push(config.name+': '+e.message));
  const point=n=>page.locator('.selection-controls .point-tray').getByRole('button',{name:n,exact:true});
  const tap=async n=>{if(config.mobile)await point(n).tap();else await point(n).click();};
  const pair=async(a,b)=>{await tap(a);await tap(b);};
@@ -25,7 +25,7 @@ for(const config of configurations){
  const settle=()=>page.waitForFunction(()=>!document.querySelector('.selection-controls .point-tray button:disabled'));
  const chosen=()=>page.locator('.selection-caption').innerText();
  const drawn=()=>page.locator('.drawing-panel svg .drawn-line').count();
- const open=async task=>{await page.goto(base+'/test?task='+task);await page.evaluate(()=>localStorage.clear());await page.reload();await point('A').waitFor();};
+ const open=async task=>{await page.goto(base+'/test?task='+task);await page.evaluate(()=>localStorage.clear());await page.reload();await point('A').waitFor();const stage=await page.locator('.geometry-stage').first().boundingBox(),controls=await page.locator('.selection-controls').boundingBox();assert.ok(controls.y-(stage.y+stage.height)<30,'Controls must follow the figure directly');};
  const lineByName=async text=>{await page.locator('.selection-line-list summary').click();await page.locator('.selection-line-list').getByRole('button',{name:text}).click();};
  const undo=async()=>{await page.locator('.drawing-footer').getByRole('button').click();await settle();};
  const screenshot=async label=>{await page.screenshot({path:path.join(out,config.name+'-'+label+'.png'),fullPage:true});};
@@ -64,7 +64,7 @@ for(const config of configurations){
  await pair('P','Q');await action('intersect').click();await pair('A','B');await settle();assert.match(await page.locator('.drawing-panel .status-message').innerText(),/Verleng/);assert.equal(await point('S').count(),0);
  await page.getByRole('button',{name:'Selectie wissen',exact:true}).click();await pair('P','Q');await action('extend').click();await settle();await pair('A','B');await action('extend').click();await settle();
  await pair('P','Q');await action('intersect').click();await pair('A','B');await settle();await point('S').waitFor();await screenshot('exterior-intersection');
- await page.getByRole('button',{name:'Selectie wissen',exact:true}).click().catch(()=>{});
+ if(await page.getByRole('button',{name:'Selectie wissen',exact:true}).isEnabled())await page.getByRole('button',{name:'Selectie wissen',exact:true}).click();
  // Crossing in a projection is not an intersection in space; parallel carriers also fail.
  await pair('A','B');await action('intersect').click();await pair('C','G');await settle();assert.match(await page.locator('.drawing-panel .status-message').innerText(),/geen uniek/);
  results.push({environment:config.name,task:'geometric-guards',checks:'explicit extension before exterior intersection; skew lines rejected'});

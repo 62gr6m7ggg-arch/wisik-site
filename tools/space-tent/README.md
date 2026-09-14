@@ -40,3 +40,5 @@ production-bundle smoke test. The browser harness and dependencies are not
 published. Committed results are in `validation/selection-first-045.json`.
 These are automated Linux browser tests, not a physical iPhone/Safari trial or
 an empirical usability/learning-effect study.
+
+The point/action controls, status and undo now sit immediately below the drawing, before optional viewing controls. Browser tests enforce this placement.
