@@ -473,7 +473,7 @@
     "tools/space-tent/scripts/check-local-progress.mjs": "ea10a5e90cac5dbfaa559b28d5be14e60e8d9e655e59736747fddd13e83c63e0",
     "tools/space-tent/scripts/check-review-browser.mjs": "37cd78eb3e692b25940bbdd48f3f59a609c17e5b1ba9ac4f1e50f02c9feb030d",
     "tools/space-tent/scripts/check-selection-browser.mjs": "727822268c02e2e1d831e6d3e6e0fdb16987ab9745ed9306edabf67a5f449bb7",
-    "tools/space-tent/space/index.html": "b2bde2c3ca3415000d4d8f25edb457d54522a09173efd9af4c1c4d0be8bf21c7",
+    "tools/space-tent/space/index.html": "686378c51f4784d7bf14cf6be3a1e97996879ef3da49f71610e10c987983e34d",
     "tools/space-tent/space/main.tsx": "4c910cca557bbcd17ff52106745936290d08914ebd4b55941911f55597519974",
     "tools/space-tent/tsconfig.json": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3",
     "tools/space-tent/validation/audio-0.4.4.json": "39ae25931d1f61500bf2ca1e6e4eeecc1381bbc92fe7d99032108099b2b900e7",
@@ -504,7 +504,7 @@
   "publicFiles": {
     "public/apps/ruimteklaar/assets/index-BUan78Cv.js": "1ee0594e421d2ca86289d5341aab5e8d6709f76d657543ec50a0349b76174ae8",
     "public/apps/ruimteklaar/assets/index-COW77pqg.css": "1e76788d66b8ffebb071ee530815617e6767208571007c0ad3877a7b2393b66e",
-    "public/apps/ruimteklaar/index.html": "40bb38653ed13a2a7000d5fb4de0140b42719dde5c7801ea89684c5e43af3d52",
+    "public/apps/ruimteklaar/index.html": "3b2748d02d09a74ea5cf41fd898440e93e817fb9f89f1228e689bfd457939e74",
     "public/films/ruimteklaar/1.1/uitleg.m4a": "276fff5bbb021a03bb29b01f085bf9c284727f517740dd31c53a8ae9cb3a5cdc",
     "public/films/ruimteklaar/1.2/uitleg.m4a": "e9c3a6914348055e545056263214e9d03580cf2f22097d2abf982710618ec032",
     "public/films/ruimteklaar/1.3/uitleg.m4a": "a346abcc6b3f9f2ae6d718a82fd54c6e6dfd4cd0964a8167a39ca6a5d3e747d8",
