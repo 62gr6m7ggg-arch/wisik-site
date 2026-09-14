@@ -1,0 +1,70 @@
+name: Ruimteklaar 0.4.5 livecontrole
+on:
+  push:
+    branches: [ruimteklaar-live-045]
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser
+        run: |
+          npm install --prefix /tmp/live-browser --no-save playwright@1.56.1
+          /tmp/live-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Check deployed bytes and real site interaction
+        run: |
+          mkdir -p /tmp/live-evidence
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          import {chromium} from '/tmp/live-browser/node_modules/playwright/index.mjs';
+          const origin='https://wisik.nl',route='/apps/ruimteklaar/';
+          const hash=b=>createHash('sha256').update(b).digest('hex');
+          const local=fs.readFileSync('public/apps/ruimteklaar/index.html','utf8');
+          const files=['/apps/ruimteklaar/index.html',...Array.from(local.matchAll(/(?:src|href)="(\/apps\/ruimteklaar\/assets\/[^"?]+)"/g),m=>m[1])];
+          const evidence={version:'0.4.5',releaseCommit:'bdbe79f15530fa2b5d56b8c02549405becb375be',checkedAt:new Date().toISOString(),assets:[],browser:[],errors:[]};
+          let ready=false,lastError;
+          for(let attempt=1;attempt<=18;attempt++){
+            try{
+              const response=await fetch(origin+route,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)});assert.equal(response.status,200);const html=await response.text();assert.ok(html.includes('0.4.5'),'Published entry is not yet 0.4.5');assert.equal(hash(html),hash(local),'Entry differs from tested build');
+              const assets=[];for(const file of files){const url=file.endsWith('index.html')?route:file;const r=await fetch(origin+url,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)});assert.equal(r.status,200,file);const bytes=Buffer.from(await r.arrayBuffer()),expected=hash(fs.readFileSync('public'+file));assert.equal(hash(bytes),expected,file);assets.push({file,sha256:expected,status:200})}
+              const report=await fetch(origin+'/assets/data/ruimteklaar-release-audit.json',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)});assert.equal(report.status,200);const audit=await report.json();assert.equal(audit.appVersion,'0.4.5');assert.equal(audit.browser.selectionFirst.status,'passed');assert.equal(audit.browser.selectionFirst.results.length,42);
+              evidence.assets=assets;ready=true;break;
+            }catch(e){lastError=e;console.log('Waiting for tested release, attempt '+attempt+': '+e.message);await new Promise(r=>setTimeout(r,10000))}
+          }
+          assert.ok(ready,lastError?.message||'Release not published');
+          const browser=await chromium.launch({headless:true});
+          try{
+            for(const mobile of [false,true]){
+              const context=await browser.newContext({viewport:{width:mobile?390:1280,height:mobile?844:900},isMobile:mobile,hasTouch:mobile});const page=await context.newPage();page.setDefaultTimeout(15000);page.on('pageerror',e=>evidence.errors.push(e.message));
+              try{
+                await page.goto(origin+route);await page.getByRole('button',{name:'Open het oefenatelier',exact:false}).click();await page.locator('[data-selection-first="true"]').waitFor();
+                const point=n=>page.locator('.selection-controls .point-tray').getByRole('button',{name:n,exact:true});
+                for(const p of ['A','B']){if(mobile)await point(p).tap();else await point(p).click()}
+                assert.match(await page.locator('.selection-caption').innerText(),/AB/);assert.equal(await page.locator('.drawing-panel .drawn-line').count(),0);
+                await page.locator('[data-action="extend"]').click();await page.waitForFunction(()=>document.querySelectorAll('.drawing-panel .drawn-line').length===1);
+                assert.equal(await page.getByRole('button',{name:'Uitvoeren',exact:false}).count(),0);
+                for(const p of ['B','A']){if(mobile)await point(p).tap();else await point(p).click()}
+                assert.equal(await page.getByRole('button',{name:'Al verlengd',exact:true}).isDisabled(),true);assert.equal(await page.locator('.drawing-panel .drawn-line').count(),1);
+                await page.locator('.geometry-stage').first().scrollIntoViewIfNeeded();await page.screenshot({path:'/tmp/live-evidence/'+(mobile?'mobile':'desktop')+'.png',fullPage:true});
+                await page.locator('.drawing-footer').getByRole('button').click();assert.equal(await page.locator('.drawing-panel .drawn-line').count(),0);
+                assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+                evidence.browser.push({environment:mobile?'Chromium mobile 390px':'Chromium desktop 1280px',status:'passed',checks:'live entry; selection without drawing; A-B-extend; reverse selection; no duplicate; no extra execute; undo; no horizontal overflow'});
+              }catch(e){await page.screenshot({path:'/tmp/live-evidence/failure.png',fullPage:true});throw e}finally{await context.close()}
+            }
+            assert.deepEqual(evidence.errors,[]);evidence.status='passed';fs.writeFileSync('/tmp/live-evidence/results.json',JSON.stringify(evidence,null,2));console.log(JSON.stringify(evidence,null,2));
+          }finally{await browser.close()}
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruimteklaar-045-livebewijs
+          path: /tmp/live-evidence/
+          retention-days: 7
