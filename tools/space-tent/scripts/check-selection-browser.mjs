@@ -25,7 +25,7 @@ for(const config of configurations){
  const settle=()=>page.waitForFunction(()=>!document.querySelector('.selection-controls .point-tray button:disabled'));
  const chosen=()=>page.locator('.selection-caption').innerText();
  const drawn=()=>page.locator('.drawing-panel svg .drawn-line').count();
- const open=async task=>{await page.goto(base+'/test?task='+task);await page.evaluate(()=>localStorage.clear());await page.reload();await point('A').waitFor();const stage=await page.locator('.geometry-stage').first().boundingBox(),controls=await page.locator('.selection-controls').boundingBox();assert.ok(controls.y-(stage.y+stage.height)<30,'Controls must follow the figure directly');};
+ const open=async task=>{await page.goto(base+'/test?task='+task);await page.evaluate(()=>localStorage.clear());await page.reload();await point('A').waitFor();const stage=await page.locator('.geometry-stage').first().boundingBox(),controls=await page.locator('.selection-controls').boundingBox();if(config.width>=1000){assert.ok(controls.x>=stage.x+stage.width,'Desktop controls beside figure');assert.ok(controls.y<stage.y+stage.height,'Desktop controls and figure overlap vertically')}else assert.ok(controls.y>=stage.y+stage.height-1&&controls.y-(stage.y+stage.height)<60,'Narrow screen controls follow figure');};
  const lineByName=async text=>{await page.locator('.selection-line-list summary').click();await page.locator('.selection-line-list').getByRole('button',{name:text}).click();};
  const undo=async()=>{await page.locator('.drawing-footer').getByRole('button').click();await settle();};
  const screenshot=async label=>{await page.screenshot({path:path.join(out,config.name+'-'+label+'.png'),fullPage:true});};
@@ -41,7 +41,7 @@ for(const config of configurations){
   await undo();assert.equal(await drawn(),0);
   await pair(a,b);await action('parallel').click();assert.ok((await chosen()).includes('blijft geselecteerd'));await page.getByRole('button',{name:'Actie annuleren',exact:true}).click();assert.ok((await chosen()).includes(task.edges[0]));assert.equal(await drawn(),0);
   await action('extend').click();await settle();await page.reload();assert.equal(await drawn(),1);assert.ok((await chosen()).includes('Nog niets'));
-  await page.getByRole('button',{name:'Tekening vastleggen',exact:false}).click();await page.waitForFunction(()=>document.querySelector('.selection-controls .point-tray button')?.disabled);assert.equal(await page.locator('.drawing-panel [data-line-id]').count(),0);
+  await page.getByRole('button',{name:'Tekening vastleggen',exact:false}).click();await page.waitForFunction(()=>document.querySelector('.geometry-stage .point-hit')?.disabled);assert.equal(await page.locator('.drawing-panel [data-line-id]').count(),0);
   assert.ok((await page.evaluate(()=>window.__selectionEvents)).every(e=>!e.payload.submitted));
   if(task.exam)assert.equal(await page.getByRole('button',{name:'Rondkijken',exact:true}).count(),0);
   results.push({environment:config.name,task:task.id,checks:'pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support'});

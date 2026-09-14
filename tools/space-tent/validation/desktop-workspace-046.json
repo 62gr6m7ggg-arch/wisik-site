@@ -1,0 +1,439 @@
+{
+  "version": "0.4.6",
+  "status": "passed",
+  "results": [
+    {
+      "environment": "laptop-short",
+      "task": "construct-l2-parallel",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop-short",
+      "task": "construct-l2-six",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop-short",
+      "task": "construct-l3-pyramid",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop-short",
+      "task": "construct-l3-prism",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop-short",
+      "task": "construct-l2-lineplane",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop-short",
+      "task": "construct-l4-standvlak",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop-short",
+      "task": "construct-l5-foot",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop-short",
+      "task": "construct-l6-commonfoot",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop-short",
+      "task": "construct-l7-a",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop-short",
+      "task": "construct-l7-b",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l2-parallel",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l2-six",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l3-pyramid",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l3-prism",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l2-lineplane",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l4-standvlak",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l5-foot",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l6-commonfoot",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l7-a",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "laptop",
+      "task": "construct-l7-b",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l2-parallel",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l2-six",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l3-pyramid",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l3-prism",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l2-lineplane",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l4-standvlak",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l5-foot",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l6-commonfoot",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l7-a",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "small-desktop",
+      "task": "construct-l7-b",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l2-parallel",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l2-six",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l3-pyramid",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l3-prism",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l2-lineplane",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l4-standvlak",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l5-foot",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l6-commonfoot",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l7-a",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "monitor",
+      "task": "construct-l7-b",
+      "sideBySide": true,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l2-parallel",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l2-six",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l3-pyramid",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l3-prism",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l2-lineplane",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l4-standvlak",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l5-foot",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l6-commonfoot",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l7-a",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile",
+      "task": "construct-l7-b",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l2-parallel",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l2-six",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l3-pyramid",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l3-prism",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l2-lineplane",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l4-standvlak",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l5-foot",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l6-commonfoot",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l7-a",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-narrow",
+      "task": "construct-l7-b",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l2-parallel",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l2-six",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l3-pyramid",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l3-prism",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l2-lineplane",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l4-standvlak",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l5-foot",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l6-commonfoot",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l7-a",
+      "sideBySide": false,
+      "editUndo": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "task": "construct-l7-b",
+      "sideBySide": false,
+      "editUndo": true
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "100% browser zoom / device scale 1",
+    "All ten tasks: full figure, edit buttons and drawing submission together on desktop",
+    "1366×680, 1280×720, 1024×768, 1920×1080",
+    "Line extension and undo",
+    "Mobile widths 320/390 and resize",
+    "Sticky figure with line names open"
+  ],
+  "limitations": [
+    "Automated Linux browsers, not a physical laptop or iPhone.",
+    "Human ease of use to be assessed by students."
+  ]
+}

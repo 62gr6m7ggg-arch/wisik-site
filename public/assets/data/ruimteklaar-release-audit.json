@@ -1,6 +1,6 @@
 {
   "product": "Space-tent · Ruimteklaar",
-  "appVersion": "0.4.5",
+  "appVersion": "0.4.6",
   "siteVersion": "0.1.26",
   "status": "passed",
   "scope": {
@@ -31,6 +31,445 @@
     "storage": "Herladen, import/export, ontdubbeling, ongeldige bestanden, opslagfouten, oude voortgang behouden, nul netwerkaanroepen"
   },
   "browser": {
+    "desktopWorkspace": {
+      "version": "0.4.6",
+      "status": "passed",
+      "results": [
+        {
+          "environment": "laptop-short",
+          "task": "construct-l2-parallel",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop-short",
+          "task": "construct-l2-six",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop-short",
+          "task": "construct-l3-pyramid",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop-short",
+          "task": "construct-l3-prism",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop-short",
+          "task": "construct-l2-lineplane",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop-short",
+          "task": "construct-l4-standvlak",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop-short",
+          "task": "construct-l5-foot",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop-short",
+          "task": "construct-l6-commonfoot",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop-short",
+          "task": "construct-l7-a",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop-short",
+          "task": "construct-l7-b",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l2-parallel",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l2-six",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l3-pyramid",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l3-prism",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l2-lineplane",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l4-standvlak",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l5-foot",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l6-commonfoot",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l7-a",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "laptop",
+          "task": "construct-l7-b",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l2-parallel",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l2-six",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l3-pyramid",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l3-prism",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l2-lineplane",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l4-standvlak",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l5-foot",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l6-commonfoot",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l7-a",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "small-desktop",
+          "task": "construct-l7-b",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l2-parallel",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l2-six",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l3-pyramid",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l3-prism",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l2-lineplane",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l4-standvlak",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l5-foot",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l6-commonfoot",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l7-a",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "monitor",
+          "task": "construct-l7-b",
+          "sideBySide": true,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l2-parallel",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l2-six",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l3-pyramid",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l3-prism",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l2-lineplane",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l4-standvlak",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l5-foot",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l6-commonfoot",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l7-a",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile",
+          "task": "construct-l7-b",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l2-parallel",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l2-six",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l3-pyramid",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l3-prism",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l2-lineplane",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l4-standvlak",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l5-foot",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l6-commonfoot",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l7-a",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-narrow",
+          "task": "construct-l7-b",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l2-parallel",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l2-six",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l3-pyramid",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l3-prism",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l2-lineplane",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l4-standvlak",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l5-foot",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l6-commonfoot",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l7-a",
+          "sideBySide": false,
+          "editUndo": true
+        },
+        {
+          "environment": "mobile-webkit",
+          "task": "construct-l7-b",
+          "sideBySide": false,
+          "editUndo": true
+        }
+      ],
+      "errors": [],
+      "checks": [
+        "100% browser zoom / device scale 1",
+        "All ten tasks: full figure, edit buttons and drawing submission together on desktop",
+        "1366×680, 1280×720, 1024×768, 1920×1080",
+        "Line extension and undo",
+        "Mobile widths 320/390 and resize",
+        "Sticky figure with line names open"
+      ],
+      "limitations": [
+        "Automated Linux browsers, not a physical laptop or iPhone.",
+        "Human ease of use to be assessed by students."
+      ]
+    },
     "selectionFirst": {
       "evidenceVersion": "0.4.5",
       "status": "passed",
@@ -398,9 +837,9 @@
   "sourceFiles": {
     "tools/space-tent/app/audio-examples.json": "35930b3b2597ecd0afe4eafbea16ed2ae8d769aa897fc4b9f973397eb9ede7be",
     "tools/space-tent/app/construction-insight.tsx": "6b5535f19ea3ee6e2a3f47e32a0483465909eb928ef5da83a61d5470c62eaabc",
-    "tools/space-tent/app/construction-lab.tsx": "a8040c118c1e60f2a7f6c8d2b1bb83fce51dec4bedb1e5d5a9a37fed2326a39c",
+    "tools/space-tent/app/construction-lab.tsx": "6944abc24dfc85f2e12e719d2454451353693f47ee07fca33892ceb5b62a5df2",
     "tools/space-tent/app/construction-selection-math.ts": "f2a31ed167e8963c001426c5eebcb6ef3859855e8cdcb4500eeb3da7bcd19529",
-    "tools/space-tent/app/construction-selection.css": "5bc465652714d8b9f0aa9d2e388eef97d6512f5a391782db6eaf19caca09886c",
+    "tools/space-tent/app/construction-selection.css": "980c275de6114a14b51e8d43f2e9036457550ffc93607680799c9440515fa706",
     "tools/space-tent/app/construction-selection.tsx": "2ad37c1021e4599d2c82b13d3643a86c34ccac4346c63a5f60b263cfdd617b07",
     "tools/space-tent/app/construction-tasks.json": "dd327e0ca916f5f619818225bccc329fe8063ac13cda8cfa6f88fbce3fb3eb85",
     "tools/space-tent/app/construction-visuals.ts": "4f1d73afbf838a9ae58e3459192c546135936104db8a378e3b4c12aef3a6b19c",
@@ -414,7 +853,7 @@
     "tools/space-tent/app/explanation-audio.tsx": "c7deb2f05ec0397038f6992ac2455477f9d0f515e5850820369749863b852a49",
     "tools/space-tent/app/figure-guidance.tsx": "d6c3bac460363142fe716643566ad5573c34dddfafefbb205a7705520251de9d",
     "tools/space-tent/app/geometry-math.ts": "317dee39509458e1220e25b9a8206671574b265758663db11723fa67cdda57ac",
-    "tools/space-tent/app/geometry.tsx": "7dcba55c8545db2f715f3fbd3a8d0ca0c0ae176d435f9382ffa57c19e1240260",
+    "tools/space-tent/app/geometry.tsx": "6167fdae70a975237dc40f323d09e417bdb7d92f9e46f217112941cfd3d9ba6f",
     "tools/space-tent/app/globals.css": "f365a00ee4bad402111bc916c864b6059a8fe479c2ff10cb1d5eae195ce89cac",
     "tools/space-tent/app/identity.ts": "85dc95038f97d3ef7b0c5b0c732a7aa3589862736c1e0e3ecac8d2e833be09e6",
     "tools/space-tent/app/insight-figure.tsx": "60dc6a29c16365e12d3c59a5424c83843d9725b837edffd56119a45f9bf83079",
@@ -432,15 +871,15 @@
     "tools/space-tent/app/rotation.ts": "2c478f06af92bc49e27f9a2d001b13fc675b3a7ffe48b54b863af91d2abc2b2f",
     "tools/space-tent/app/route-header.tsx": "4766e4826951377bdacab210addca6b796f3993c4ff6dd4a03dd031085f48fe0",
     "tools/space-tent/app/route-progress.ts": "e837e7148651619a0874d072522e09d58f16682ad224f816bb99177ad5e0ac41",
-    "tools/space-tent/app/ruimteklaar.tsx": "0231dce9fa5fd24f5ecb319f7b358579c6f0a4e737b612b76873e9ca1d1caca6",
-    "tools/space-tent/app/version.ts": "38c713297f8ccdb551bd166af1cfc7bb84cb93f9e9b88938f72c7c2e01db3dee",
+    "tools/space-tent/app/ruimteklaar.tsx": "74c839df9016e50d057a2aacdf1f34557e7286250d6c99a8f73d9da6cf6afa8b",
+    "tools/space-tent/app/version.ts": "8dc4ba04ac83da664b29918457cf1b3d0b4bc6e690baa2ba5be94c3cae8ef3e6",
     "tools/space-tent/app/viewing-guide.tsx": "3726e67aa01bc0be52b4f6228f8f18ec10dce7070ad793be6ea7aca133e82ec0",
     "tools/space-tent/app/viewing-math.ts": "44e659c2fc56dc95825af5cfc2ecfe9ed361ddec1917cae25d777fb1d944f528",
     "tools/space-tent/app/workbench-math.ts": "77c2e882262fa69495b773afbac1e71881e21568d6673791a468d2bb8b81a131",
-    "tools/space-tent/app/workbench.tsx": "4bb237e59580eb16e67ba42c3b466f0fbd3d35a80a3f7f6c1412dfa818c9c1e0",
+    "tools/space-tent/app/workbench.tsx": "95f0e2f947be95e6b486de6b38fa898a4959b003058143dff9578121bad392de",
     "tools/space-tent/audit-runtime/check-course.mjs": "05b5923bf2fa3ff15271849f39d57ccacf55a3bfbaafedc0b6b1999313d02903",
     "tools/space-tent/audit-runtime/check-diagnostic.mjs": "797c20d2a88915ee960f3caba84642002f7580ea9cc7c5fb27ead5466d0ace98",
-    "tools/space-tent/audit-runtime/check-interaction.cjs": "d728be029c6943e660855042c3eee624295123733414e6daa5e6454babf74d41",
+    "tools/space-tent/audit-runtime/check-interaction.cjs": "605436b16d1005bf56bdcd2934a282feeba242e579256113d6164035aa89ddbe",
     "tools/space-tent/audit-runtime/check-learning.mjs": "a15ef006e534e26b68aa61bab722a1c5551fa18a07a8f1c0756cd524df4f2d38",
     "tools/space-tent/audit-runtime/check-local-progress.mjs": "7efec8346f2d27dc8d1db7495a7232e0a8937ffe267bd778890de73313eb94e3",
     "tools/space-tent/components/ui/button.tsx": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4",
@@ -468,17 +907,19 @@
     "tools/space-tent/scripts/build-space.mjs": "276258dbb27aed97c9380eb99276fc430d8241d491192c2cc2e55bfbf282f852",
     "tools/space-tent/scripts/check-construction-next-browser.mjs": "6ef77c07960f69e7aad409a4db65ea94e4220c3420390a2825134d41f5cf766d",
     "tools/space-tent/scripts/check-course.mjs": "ecb2b0085950ede0aa7c1929e323e2711357e1447e01e1ee4c8094885872b9fd",
+    "tools/space-tent/scripts/check-desktop-workspace.mjs": "d3e9acadb10fb121074984ee39a34352cfa70f01a7112845b32fac99b22f11ce",
     "tools/space-tent/scripts/check-diagnostic.mjs": "60f286f803efbc73619f9d13b9bec3d2dcbb33aa82400e011d46ea84ceb298ab",
     "tools/space-tent/scripts/check-interaction.mjs": "44c641beb3339ab8ed9e4c1aad7409d7b6854302e258f475fcfb7cd393aab146",
     "tools/space-tent/scripts/check-learning.mjs": "9009f50c5e19c28554ca2c4d123a0567853a1a2146e81f1f840e5ad220a9e9a2",
     "tools/space-tent/scripts/check-local-progress.mjs": "ea10a5e90cac5dbfaa559b28d5be14e60e8d9e655e59736747fddd13e83c63e0",
     "tools/space-tent/scripts/check-review-browser.mjs": "37cd78eb3e692b25940bbdd48f3f59a609c17e5b1ba9ac4f1e50f02c9feb030d",
-    "tools/space-tent/scripts/check-selection-browser.mjs": "727822268c02e2e1d831e6d3e6e0fdb16987ab9745ed9306edabf67a5f449bb7",
-    "tools/space-tent/space/index.html": "a100e8657f9cd54c4bced21bab84dc46a4fabd2ca239ee08c665168698e3dbf3",
+    "tools/space-tent/scripts/check-selection-browser.mjs": "84bfb6b94a8da88de1147aeab552d69b12dcae63eec7492c5743da7d71c746fa",
+    "tools/space-tent/space/index.html": "8595f4c535155f544752429a9a3101f1ea4a461dcb03b7fcfe9086b47b3119a6",
     "tools/space-tent/space/main.tsx": "4c910cca557bbcd17ff52106745936290d08914ebd4b55941911f55597519974",
     "tools/space-tent/tsconfig.json": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3",
     "tools/space-tent/validation/audio-0.4.4.json": "39ae25931d1f61500bf2ca1e6e4eeecc1381bbc92fe7d99032108099b2b900e7",
     "tools/space-tent/validation/construction-tasks.json": "dd327e0ca916f5f619818225bccc329fe8063ac13cda8cfa6f88fbce3fb3eb85",
+    "tools/space-tent/validation/desktop-workspace-046.json": "92b3c266d9d085194194fc7592e28deb1fe5ed1521c3df35db3357f0300caa5c",
     "tools/space-tent/validation/learning-contract-042.json": "e722a032533bd034c302f6e6a5eac3c17ca76d5372902c52c3499c7367534b4a",
     "tools/space-tent/validation/level-4-validation-notes.md": "bbcdd46b2e036cb3bf1599b93c1229bbbd0f5267466abed1fbb6699a52b483d3",
     "tools/space-tent/validation/level-4-validation.json": "bd7befdd518974a9400ac9a244c702c423869059f816fdb2a0ddbf3abe978857",
@@ -503,9 +944,9 @@
     "tools/space-tent/vendor/shadcn-tailwind-4.13.0.LICENSE.md": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
   },
   "publicFiles": {
-    "public/apps/ruimteklaar/assets/index-BaPSHN5B.js": "357c2b250bd32c596b824d535816362a866075c3179032e6d073e8a8ad734c1a",
-    "public/apps/ruimteklaar/assets/index-COW77pqg.css": "1e76788d66b8ffebb071ee530815617e6767208571007c0ad3877a7b2393b66e",
-    "public/apps/ruimteklaar/index.html": "5051080241b5093de1b68d9febf4e5b6eb86b707f47a9a2b4c8452ae8bf3d559",
+    "public/apps/ruimteklaar/assets/index-BSfHrtrQ.css": "a2d8e7f7b8adaa003bffbfe165a4afd2412e917ff91da8e10b496098a1ef8f42",
+    "public/apps/ruimteklaar/assets/index-DlOcaPjP.js": "d99bebb69c345663d70c7cd62460822fb3b05053f6a66b22a682a4ae84b46d1f",
+    "public/apps/ruimteklaar/index.html": "65f977d689653899cc80fcb9628ebd970366f1d79c7e1d31c46d10b1aeacbcc3",
     "public/films/ruimteklaar/1.1/uitleg.m4a": "276fff5bbb021a03bb29b01f085bf9c284727f517740dd31c53a8ae9cb3a5cdc",
     "public/films/ruimteklaar/1.2/uitleg.m4a": "e9c3a6914348055e545056263214e9d03580cf2f22097d2abf982710618ec032",
     "public/films/ruimteklaar/1.3/uitleg.m4a": "a346abcc6b3f9f2ae6d718a82fd54c6e6dfd4cd0964a8167a39ca6a5d3e747d8",
@@ -556,6 +997,6 @@
     "public/films/ruimteklaar/6.4/uitleg.m4a": "d198e2dcfb942fac7d4ef950f3604a16397b288ec7c6e1462ecbb4eac000c395",
     "public/films/ruimteklaar/6.5/uitleg.m4a": "c649dddcf30d014188168c917238786583a45ce086f9a03337f0c4a09bf67d71",
     "public/films/ruimteklaar/6.6/uitleg.m4a": "52c1ce828245c2111070083aa430179009572ebbe122e2e627297f1275ced957",
-    "public/films/ruimteklaar/catalog.json": "02551fc3e9a2bc005a3772b4af77abb8f6b988a49c81198fdeb2549c389b1184"
+    "public/films/ruimteklaar/catalog.json": "75f6ed4b9f325c789f0fc985041c5cd6e90850a6b77dcbcc75a767c0216bf3e3"
   }
 }

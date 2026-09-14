@@ -20,3 +20,80 @@
 @media print{.selection-controls,.line-pick-options{display:none}}
 
 .selection-studio .tool-panel{align-self:start}
+
+/* The same figure and controls form one workspace at every screen size. */
+.construction-workspace .selection-studio{display:block}
+.construction-geometry{display:flex;flex-direction:column}
+.construction-geometry .geometry-visual{display:contents}
+.construction-geometry .geometry-canvas{order:0;min-width:0}
+.construction-geometry .geometry-tools{order:1;min-width:0}
+.construction-geometry .geometry-view-settings{order:2;min-width:0}
+.geometry-tools>.eyebrow{display:none}
+.geometry-tools>.wide-button{margin-top:12px}
+.geometry-tools .reason-panel{margin:16px 0 0;padding:16px}
+.geometry-tools .reason-panel h2{font-size:1.2rem}
+.geometry-tools .reason-panel>button{height:auto;white-space:normal;margin-top:10px}
+.drawing-footer[hidden]{display:none}
+
+@media(min-width:1000px){
+ .app-shell.construction-active,.app-shell.reviewer:has(.construction-workspace){max-width:1760px;padding-left:28px;padding-right:28px}
+ .construction-active .masthead{min-height:48px}
+ .construction-active .brand{font-size:1.1rem}
+ .construction-active .brand>svg{width:24px;height:24px}
+ .construction-active .brand-edition{display:inline;margin-left:10px;font-size:.7rem}
+ .construction-active .route-hud{grid-template-columns:210px minmax(0,1fr) auto;padding:9px 14px;margin:0 -14px;gap:20px}
+ .construction-active .route-number{width:36px;height:36px;font-size:1.1rem}
+ .construction-active .route-location strong{font-size:.875rem}
+ .construction-active .route-kicker{font-size:.6875rem}
+ .construction-active .route-goal,.construction-active .route-celebration{display:none}
+ .construction-active .route-meter-heading{margin-bottom:4px;font-size:.8125rem}
+ .construction-active .route-fill[data-slot=progress]{height:8px}
+ .construction-active .subnav{min-height:44px;padding-top:0}
+ .construction-active .subnav [data-slot=tabs-trigger]{padding:5px 12px}
+ .construction-workspace .section-top{margin:8px 0;min-height:36px}
+ .construction-workspace .section-top button{min-height:36px}
+ .construction-workspace>.page-title{font-size:1.7rem;line-height:1.2;margin:8px 0;max-width:none}
+ .construction-workspace>.intro{font-size:.9375rem;line-height:1.45;margin-bottom:8px;max-width:1200px}
+ .construction-workspace>.muted{font-size:.8125rem;line-height:1.4;margin-bottom:8px}
+ .construction-workspace .studio-layout{margin:16px 0 24px}
+ .construction-workspace .drawing-panel{padding:0;border:0;border-radius:0;background:none}
+ .construction-geometry{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,410px);gap:24px;align-items:start}
+ .construction-geometry .geometry-visual{display:block;position:sticky;top:78px;min-width:0;padding:12px;border:1px solid #345267;border-radius:18px;background:#0e2233}
+ .construction-geometry .geometry-tools{padding:16px;border:1px solid #345267;border-radius:18px;background:#0c2030}
+ .construction-geometry .geometry-stage{min-height:0}
+ .geometry-tools>.eyebrow{display:block;font-size:.75rem;margin-bottom:8px}
+ .geometry-tools .selection-controls{border-top:0;padding-top:0;margin-top:0}
+ .geometry-tools .selection-instruction{line-height:1.4;margin-bottom:8px}
+ .geometry-tools .selection-controls .point-tray{display:flex;flex-wrap:wrap;gap:5px;padding:0;margin:8px 0;border:0;justify-content:flex-start}
+ .geometry-tools .point-tag{width:40px;min-height:40px;height:40px;padding:0}
+ .geometry-tools .selection-caption{margin-bottom:8px;font-size:.8125rem}
+ .geometry-tools .selection-actions{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .geometry-tools .selection-actions button{min-height:44px;font-size:.8125rem;padding:6px}
+ .geometry-tools .selection-controls>button{min-height:36px}
+ .geometry-tools .selection-line-list{margin-top:4px;padding-top:4px}
+ .geometry-tools .selection-line-list summary{min-height:36px;padding:6px 0}
+ .geometry-tools .drawing-footer{margin:4px 0;padding:0;gap:8px;font-size:.75rem}
+ .geometry-tools .drawing-footer button{min-height:36px}
+ .geometry-tools .status-message:empty{display:none}
+ .geometry-tools .status-message{font-size:.8125rem;line-height:1.4}
+ .geometry-tools .reason-panel{border:0;background:none;padding:0}
+ .geometry-tools .reason-panel .answer-option{padding:10px;font-size:.875rem;line-height:1.4}
+ .geometry-view-settings{display:flex;flex-direction:column}
+ .geometry-view-settings>.view-controls{order:-2;padding:8px 0;gap:4px}
+ .geometry-view-settings>.rotation-controls{order:-1;padding:12px 8px;gap:20px}
+ .geometry-view-settings .view-controls>span{display:none}
+ .geometry-view-settings .figure-caption{font-size:.75rem;margin:6px 0}
+ .geometry-view-settings .viewing-guide{margin:6px 0;padding:8px 10px}
+ .geometry-view-settings .construction-appearance{padding:0;margin:0}
+ .geometry-view-settings .construction-appearance summary{min-height:36px;padding:6px 0}
+ .reviewer .geometry-visual{top:16px}
+}
+.construction-brief .page-title{font-size:1.75rem;line-height:1.2;margin:4px 0 10px}
+.construction-brief .intro{font-size:.9375rem;line-height:1.45;margin:0 0 12px}
+.construction-brief>.muted{font-size:.8125rem;line-height:1.4;margin-bottom:10px}
+@media(min-width:1000px){
+ .construction-workspace .studio-layout{scroll-margin-top:78px}
+ .construction-brief{padding:4px 8px 0}
+ .construction-brief .page-title{font-size:1.45rem;margin:0 0 6px}
+ .construction-brief .intro{font-size:.875rem;margin-bottom:6px}
+}
