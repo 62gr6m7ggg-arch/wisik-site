@@ -71,7 +71,7 @@
     const home = document.createElement("a");
     home.className = "wisik-exit-link wisik-exit-home";
     home.href = WISIK_HOME;
-    home.innerHTML = '<span class="wisik-exit-mark" aria-hidden="true">√</span><span class="wisik-exit-label"><strong>Wisik</strong><small>Terug naar terrein</small></span>';
+    home.innerHTML = '<img class="wisik-exit-mark" src="/assets/icons/wisik-20260914-192.png" width="26" height="26" alt="" aria-hidden="true"><span class="wisik-exit-label"><strong>Wisik</strong><small>Terug naar terrein</small></span>';
     home.setAttribute("aria-label", "Terug naar het Wisik-terrein");
     home.addEventListener("click", (event) => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
