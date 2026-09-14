@@ -1,0 +1,19 @@
+name: Spacetent artiesten-ingang
+on:
+  push:
+    branches: [wisik-space-artiesteningang]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source snapshot
+        run: tar --exclude=.git --exclude=node_modules --exclude=public/films --exclude=docs/screenshots -czf /tmp/space-entrance-source.tar.gz .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: space-entrance-source
+          path: /tmp/space-entrance-source.tar.gz
+          retention-days: 3
