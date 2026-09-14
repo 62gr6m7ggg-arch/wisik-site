@@ -1,0 +1,102 @@
+name: Ruimteklaar factorisatie-toegang
+on:
+  push:
+    branches: [ruimteklaar-factor-login, main]
+    paths:
+      - 'server/ruimteklaar-factor-code.mjs'
+      - 'server/ruimteklaar-test-auth.mjs'
+      - 'scripts/*factor*'
+      - 'scripts/test-ruimteklaar-review-auth.mjs'
+      - '.github/workflows/ruimteklaar-factor-login.yml'
+permissions:
+  contents: read
+concurrency:
+  group: factor-login-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Update existing browser and audit assertions
+        run: |
+          if test -f scripts/prepare-factor-login-tests.mjs; then
+            node scripts/prepare-factor-login-tests.mjs
+            rm scripts/prepare-factor-login-tests.mjs
+          fi
+      - name: Independent arithmetic and server checks
+        run: |
+          mkdir -p /tmp/factor-evidence
+          node scripts/test-ruimteklaar-review-auth.mjs | tee /tmp/factor-evidence/server-tests.json
+      - run: npm ci
+        working-directory: tools/space-tent
+      - name: Ordinary learner regression checks
+        run: npm run build && npm run audit:build && npm test
+        working-directory: tools/space-tent
+      - name: Install browser checks
+        run: |
+          npm install --prefix /tmp/factor-browser --no-save playwright@1.56.1
+          /tmp/factor-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Native input and all existing review entries
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/factor-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-review-browser.mjs
+      - name: Compile Pages Function and bind new evidence
+        run: |
+          node tools/space-tent/node_modules/wrangler/bin/wrangler.js pages functions build functions --outdir=/tmp/factor-worker
+          cp tools/space-tent/.review-browser/results.json tools/space-tent/validation/review-mode-100.json
+          node scripts/audit-ruimteklaar-review.mjs --write
+          node scripts/audit-space-release.mjs --write
+          npm run build
+          git diff --exit-code 0813470ceff00dc84b6f3f7e8a56941e77850391 -- public/apps/ruimteklaar tools/space-tent/app tools/space-tent/review server/ruimteklaar-test-assets.mjs
+      - name: Commit verified evidence to isolated branch
+        run: |
+          test "$(git ls-remote origin refs/heads/ruimteklaar-factor-login | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          if ! git diff --cached --quiet; then
+            git commit -m 'Verify factorisation access and preserve all learner/review components'
+            git push origin HEAD:ruimteklaar-factor-login
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruimteklaar-factor-login-browserbewijs
+          path: |
+            /tmp/factor-evidence/
+            tools/space-tent/.review-browser/*.png
+            tools/space-tent/.review-browser/results.json
+          include-hidden-files: true
+          retention-days: 14
+  live:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser checks
+        run: |
+          npm install --prefix /tmp/factor-browser --no-save playwright@1.56.1
+          /tmp/factor-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Verify actual published access and learner isolation
+        env:
+          PLAYWRIGHT_MODULE: /tmp/factor-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-ruimteklaar-factor-live.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruimteklaar-factor-login-livebewijs
+          path: /tmp/factor-live-evidence/
+          retention-days: 14
