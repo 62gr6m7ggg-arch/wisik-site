@@ -12,8 +12,8 @@ import type {LearningEvent} from './model';
 import ConstructionInsight from './construction-insight';
 export type SaveEvent=(type:LearningEvent['type'],payload:Record<string,unknown>)=>Promise<boolean>;
 
-export default function Workbench({onBack,save}:{onBack:()=>void;save:SaveEvent}){
- const [variant,setVariant]=useState(0),[points,setPoints]=useState<Record<string,V3>>(initialPoints(0)),[lines,setLines]=useState<DrawLine[]>([]),[selected,setSelected]=useState<string[]>([]),[message,setMessage]=useState(''),[history,setHistory]=useState<{points:Record<string,V3>;lines:DrawLine[]}[]>([]),[hint,setHint]=useState(0),[helped,setHelped]=useState(false),[valid,setValid]=useState(false),[reason,setReason]=useState(''),[reasonReviewed,setReasonReviewed]=useState(false),[done,setDone]=useState(false),[busy,setBusy]=useState(false);
+export default function Workbench({onBack,save,initialVariant=0}:{onBack:()=>void;save:SaveEvent;initialVariant?:0|1}){
+ const [variant,setVariant]=useState<number>(initialVariant),[points,setPoints]=useState<Record<string,V3>>(initialPoints(initialVariant)),[lines,setLines]=useState<DrawLine[]>([]),[selected,setSelected]=useState<string[]>([]),[message,setMessage]=useState(''),[history,setHistory]=useState<{points:Record<string,V3>;lines:DrawLine[]}[]>([]),[hint,setHint]=useState(0),[helped,setHelped]=useState(false),[valid,setValid]=useState(false),[reason,setReason]=useState(''),[reasonReviewed,setReasonReviewed]=useState(false),[done,setDone]=useState(false),[busy,setBusy]=useState(false);
  const edges:DrawLine[]=EDGES.map(e=>({id:'edge-'+e,name:e,a:CUBE[e[0]],b:CUBE[e[1]]}));const allLines:DrawLine[]=[...edges,...lines];
  const selection=useConstructionSelection({points,lines:allLines,selected,setSelected,disabled:done||busy,atLimit:lines.length>=45,execute});
  function edit(p:Record<string,V3>,l:DrawLine[]){setHistory(h=>[...h,{points,lines}]);setPoints(p);setLines(l);setSelected([]);setValid(false);setDone(false);setMessage('Constructiestap toegevoegd.');}

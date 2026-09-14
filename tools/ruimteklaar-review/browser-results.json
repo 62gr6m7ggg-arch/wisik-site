@@ -1,0 +1,116 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "environment": "chromium-desktop",
+      "scope": "all questions",
+      "count": 261,
+      "checks": "free selection; original prompt; no automatic answer reveal; no prerequisite route"
+    },
+    {
+      "environment": "chromium-desktop",
+      "scope": "all constructions",
+      "count": 12,
+      "checks": "free choice including both atelier variants and summit; point selection; direct extend; undo; no learner save"
+    },
+    {
+      "environment": "chromium-desktop",
+      "scope": "block",
+      "count": 23,
+      "checks": "all original components accessible without route or waiting period"
+    },
+    {
+      "environment": "chromium-desktop",
+      "scope": "check",
+      "count": 8,
+      "checks": "all original components accessible without route or waiting period"
+    },
+    {
+      "environment": "chromium-desktop",
+      "scope": "paper",
+      "count": 8,
+      "checks": "all original components accessible without route or waiting period"
+    },
+    {
+      "environment": "chromium-desktop",
+      "scope": "isolation and access",
+      "checks": "wrong password; login; manual reveal; original check feedback; filters; deep link; logout; no-store; disabled mode; unchanged localStorage; no answer requests; narrow layout"
+    },
+    {
+      "environment": "chromium-mobile",
+      "scope": "all questions",
+      "count": 261,
+      "checks": "free selection; original prompt; no automatic answer reveal; no prerequisite route"
+    },
+    {
+      "environment": "chromium-mobile",
+      "scope": "all constructions",
+      "count": 12,
+      "checks": "free choice including both atelier variants and summit; point selection; direct extend; undo; no learner save"
+    },
+    {
+      "environment": "chromium-mobile",
+      "scope": "block",
+      "count": 23,
+      "checks": "all original components accessible without route or waiting period"
+    },
+    {
+      "environment": "chromium-mobile",
+      "scope": "check",
+      "count": 8,
+      "checks": "all original components accessible without route or waiting period"
+    },
+    {
+      "environment": "chromium-mobile",
+      "scope": "paper",
+      "count": 8,
+      "checks": "all original components accessible without route or waiting period"
+    },
+    {
+      "environment": "chromium-mobile",
+      "scope": "isolation and access",
+      "checks": "wrong password; login; manual reveal; original check feedback; filters; deep link; logout; no-store; disabled mode; unchanged localStorage; no answer requests; narrow layout"
+    },
+    {
+      "environment": "webkit-mobile",
+      "scope": "all questions",
+      "count": 261,
+      "checks": "free selection; original prompt; no automatic answer reveal; no prerequisite route"
+    },
+    {
+      "environment": "webkit-mobile",
+      "scope": "all constructions",
+      "count": 12,
+      "checks": "free choice including both atelier variants and summit; point selection; direct extend; undo; no learner save"
+    },
+    {
+      "environment": "webkit-mobile",
+      "scope": "block",
+      "count": 23,
+      "checks": "all original components accessible without route or waiting period"
+    },
+    {
+      "environment": "webkit-mobile",
+      "scope": "check",
+      "count": 8,
+      "checks": "all original components accessible without route or waiting period"
+    },
+    {
+      "environment": "webkit-mobile",
+      "scope": "paper",
+      "count": 8,
+      "checks": "all original components accessible without route or waiting period"
+    },
+    {
+      "environment": "webkit-mobile",
+      "scope": "isolation and access",
+      "checks": "wrong password; login; manual reveal; original check feedback; filters; deep link; logout; no-store; disabled mode; unchanged localStorage; no answer requests; narrow layout"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Browser automation, not a physical iPhone test.",
+    "Turnstile success/failure responses and widget simulated in browser tests; real activation requires Cloudflare settings.",
+    "No empirical usability study or independent penetration test."
+  ]
+}
