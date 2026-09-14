@@ -3,7 +3,7 @@ import {assets} from '../server/ruimteklaar-test-assets.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');process.chdir(root);
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const walk=p=>fs.readdirSync(p,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name)).flatMap(e=>e.isDirectory()?walk(path.join(p,e.name)):[path.join(p,e.name)]);
-const files=[...walk('tools/space-tent/app'),...walk('tools/space-tent/review'),'tools/space-tent/scripts/build-review.mjs','tools/space-tent/scripts/check-review-browser.mjs','tools/space-tent/package-lock.json','server/ruimteklaar-test-auth.mjs','functions/apps/ruimteklaar/test/[[path]].js','public/_routes.json','scripts/test-ruimteklaar-review-auth.mjs','scripts/audit-ruimteklaar-review.mjs'];
+const files=[...walk('tools/space-tent/app'),...walk('tools/space-tent/review'),'tools/space-tent/scripts/build-review.mjs','tools/space-tent/scripts/check-review-browser.mjs','tools/space-tent/package-lock.json','server/ruimteklaar-test-auth.mjs','server/ruimteklaar-factor-code.mjs','functions/apps/ruimteklaar/test/[[path]].js','public/_routes.json','scripts/test-ruimteklaar-review-auth.mjs','scripts/audit-ruimteklaar-review.mjs'];
 assert.equal(fs.existsSync('public/apps/ruimteklaar/test'),false,'Protected files must never be put in the static public tree');
 const routing=JSON.parse(fs.readFileSync('public/_routes.json'));assert.deepEqual(routing,{version:1,include:['/apps/ruimteklaar/test','/apps/ruimteklaar/test/*'],exclude:[]});
 assert.equal(fs.existsSync('public/server'),false);
@@ -14,6 +14,6 @@ for(const a of Object.values(assets))assert.doesNotMatch(a.body,/test-only-long-
 const html=assets['index.html'].body;for(const [,name] of html.matchAll(/(?:src|href)="\/apps\/ruimteklaar\/test\/([^"?]+)"/g))assert.ok(assets[name],name);
 const evidence=JSON.parse(fs.readFileSync('tools/space-tent/validation/review-mode-100.json'));assert.equal(evidence.status,'passed');assert.equal(evidence.results.length,3);assert.deepEqual(evidence.errors,[]);assert.ok(evidence.results.every(r=>r.directEntries===311&&r.questions===261&&r.constructions===10));
 const auth=JSON.parse(execFileSync(process.execPath,['scripts/test-ruimteklaar-review-auth.mjs'],{encoding:'utf8'}));assert.equal(auth.status,'passed');
-const report={version:'1.0',learnerVersion:'0.4.5',status:'passed',auth,sourceFiles:Object.fromEntries(files.map(f=>[f,hash(fs.readFileSync(f))])),privateAssets:Object.fromEntries(Object.entries(assets).map(([f,a])=>[f,hash(a.body)])),browserEvidence:evidence};
+const report={version:'1.1-factor-gate',learnerVersion:'0.4.5',status:'passed',auth,sourceFiles:Object.fromEntries(files.map(f=>[f,hash(fs.readFileSync(f))])),privateAssets:Object.fromEntries(Object.entries(assets).map(([f,a])=>[f,hash(a.body)])),browserEvidence:evidence};
 const dest='server/ruimteklaar-test-manifest.json';if(process.argv.includes('--write'))fs.writeFileSync(dest,JSON.stringify(report,null,2)+'\n');else assert.deepEqual(JSON.parse(fs.readFileSync(dest)),report,'Review source, private build or test evidence differs');
-console.log('Ruimteklaar testmodus: bron/bundelbinding, gesloten toegang, 62 serverchecks en 933 vrije onderdeelweergaven geslaagd.');
+console.log('Ruimteklaar testmodus: bron/bundelbinding, servercontrole van factorisatiecodes, reken- en toegangschecks en 933 vrije onderdeelweergaven geslaagd.');

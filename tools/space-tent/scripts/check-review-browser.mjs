@@ -8,13 +8,13 @@ import {assets} from '../../../server/ruimteklaar-test-assets.mjs';
 const {chromium,webkit}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const root=process.cwd(),repo=path.resolve(root,'../..'),out=path.join(root,'.review-browser');fs.mkdirSync(out,{recursive:true});
 execFileSync('openssl',['req','-x509','-newkey','rsa:2048','-nodes','-days','1','-subj','/CN=localhost','-keyout',path.join(out,'key.pem'),'-out',path.join(out,'cert.pem')],{stdio:'ignore'});
-const env={RUIMTEKLAAR_TEST_PASSWORD:'test-only-long-passphrase-never-installed-in-production',RUIMTEKLAAR_TEST_SESSION_SECRET:'test-only-key-012345678901234567890123456789'};
-let active=false,now=Date.now();
+const env={};
+let now=Date.now();
 const server=https.createServer({key:fs.readFileSync(path.join(out,'key.pem')),cert:fs.readFileSync(path.join(out,'cert.pem'))},async(req,res)=>{
  try{const origin='https://'+req.headers.host,url=new URL(req.url,origin);let response;
  if(url.pathname===R.slice(0,-1)||url.pathname.startsWith(R)){
   const chunks=[];for await(const c of req)chunks.push(c);
-  response=await handleReview(new Request(url,{method:req.method,headers:req.headers,body:['GET','HEAD'].includes(req.method)?undefined:Buffer.concat(chunks)}),active?env:{},assets,()=>now);
+  response=await handleReview(new Request(url,{method:req.method,headers:req.headers,body:['GET','HEAD'].includes(req.method)?undefined:Buffer.concat(chunks)}),env,assets,()=>now);
  }else{
   let file=path.resolve(repo,'public','.'+decodeURIComponent(url.pathname));if(!file.startsWith(path.join(repo,'public')+path.sep))throw new Error('outside public');if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');
   response=fs.existsSync(file)?new Response(fs.readFileSync(file),{headers:{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.json')?'application/json':'text/html'}}):new Response('Not found',{status:404});
@@ -29,10 +29,15 @@ const results=[],errors=[];let browser;
 try{
 for(const config of [{name:'chromium-desktop',engine:chromium,width:1280,height:900,mobile:false},{name:'chromium-mobile',engine:chromium,width:390,height:844,mobile:true},{name:'webkit-mobile',engine:webkit,width:390,height:844,mobile:true}]){
  browser=await config.engine.launch({headless:true});const context=await browser.newContext({ignoreHTTPSErrors:true,viewport:{width:config.width,height:config.height},isMobile:config.mobile,hasTouch:config.mobile});const page=await context.newPage();page.setDefaultTimeout(12000);page.on('pageerror',e=>errors.push(config.name+': '+e.message));const requests=[];page.on('request',r=>requests.push({method:r.method(),url:r.url()}));
- await page.goto(base+R);active=false;await page.reload();assert.equal(await page.locator('input[type=password]').count(),0);assert.ok((await page.innerText('body')).includes('nog niet geactiveerd'));
- const js=Object.keys(assets).find(k=>k.endsWith('.js'));assert.equal((await context.request.get(base+R+js)).status(),503);
- active=true;await page.reload();await page.getByLabel('Wachtwoord',{exact:true}).fill('wrong');await page.getByRole('button',{name:'Open de testmodus',exact:true}).click();await page.getByRole('alert').waitFor();assert.equal(await page.locator('[data-review-mode]').count(),0);
- await page.getByLabel('Wachtwoord',{exact:true}).fill(env.RUIMTEKLAAR_TEST_PASSWORD);await page.getByRole('button',{name:'Open de testmodus',exact:true}).click();await page.locator('[data-review-mode=true]').waitFor();
+ await page.goto(base+R);await page.getByLabel('Wachtwoord',{exact:true}).waitFor();
+ assert.equal(await page.locator('input:visible').count(),1);assert.equal(await page.getByRole('button').count(),0);assert.equal(await page.innerText('body'),'');
+ assert.doesNotMatch(await page.content(),/priem|factor|ontbind|exponent|rekensom|voorbeeld|placeholder=/i);
+ await page.screenshot({path:path.join(out,config.name+'-login.png'),fullPage:true});
+ const js=Object.keys(assets).find(k=>k.endsWith('.js'));assert.equal((await context.request.get(base+R+js)).status(),401);
+ await page.getByLabel('Wachtwoord',{exact:true}).fill('12 4 3');await page.getByLabel('Wachtwoord',{exact:true}).press('Enter');await page.locator('input[aria-invalid=true]').waitFor();assert.equal(await page.locator('[data-review-mode]').count(),0);
+ assert.doesNotMatch(await page.content(),/priem|factor|ontbind|exponent|rekensom|voorbeeld/i);
+ const credential=config.name==='chromium-desktop'?'12 2 2 3':config.name==='chromium-mobile'?'72 2^3 3^2':'360 2³ 3² 5';
+ await page.getByLabel('Wachtwoord',{exact:true}).fill(credential);await page.getByLabel('Wachtwoord',{exact:true}).press('Enter');await page.locator('[data-review-mode=true]').waitFor();
  await page.evaluate(()=>{localStorage.setItem('review-learner-sentinel','unchanged-existing-progress');sessionStorage.setItem('review-tab-sentinel','unchanged-existing-context');window.__reviewSnapshot={local:{...localStorage},session:{...sessionStorage}}});
  assert.ok(!(await page.evaluate(()=>document.cookie)).includes('__Host-wisik-ruimteklaar-test'),'Session cookie must be HttpOnly');
  const snapshot=await page.evaluate(()=>window.__reviewSnapshot);
@@ -61,12 +66,12 @@ for(const config of [{name:'chromium-desktop',engine:chromium,width:1280,height:
  // Deep link after reload selects the item but carries no test attempts over.
  await page.reload();await page.locator('[data-review-mode=true]').waitFor();assert.equal(await page.locator('[data-review-code]').getAttribute('data-review-code'),tasks[0].id);assert.equal(await page.locator('.drawing-panel .drawn-line').count(),0);
  await page.getByRole('button',{name:'Uitloggen',exact:true}).click();await page.getByLabel('Wachtwoord',{exact:true}).waitFor();assert.equal((await context.request.get(base+R+js)).status(),401);
- await page.getByLabel('Wachtwoord',{exact:true}).fill(env.RUIMTEKLAAR_TEST_PASSWORD);await page.getByRole('button',{name:'Open de testmodus',exact:true}).click();await page.locator('[data-review-mode=true]').waitFor();
+ await page.getByLabel('Wachtwoord',{exact:true}).fill('360 2^3 3² 5');await page.getByLabel('Wachtwoord',{exact:true}).press('Enter');await page.locator('[data-review-mode=true]').waitFor();
  now+=3601000;await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));await page.getByLabel('Wachtwoord',{exact:true}).waitFor();assert.equal(await page.locator('[data-review-mode]').count(),0);
  await page.goto(base+'/apps/ruimteklaar/');await page.getByRole('button',{name:'Open het oefenatelier',exact:false}).waitFor();assert.equal(await page.locator('[data-review-mode]').count(),0);
- results.push({environment:config.name,status:'passed',directEntries:ids.length,questions:questions.length,constructions:tasks.length,lessonBlocks:blocks.length,checks:Object.keys(checks).length,papers:8,checksPerformed:'closed before secrets; wrong/right password; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route'});
+ results.push({environment:config.name,status:'passed',directEntries:ids.length,questions:questions.length,constructions:tasks.length,lessonBlocks:blocks.length,checks:Object.keys(checks).length,papers:8,checksPerformed:'one field without hints; native Enter; rejected composite factors; accepted repeat/caret/superscript codes; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route'});
  await context.close();await browser.close();browser=null;
 }
 assert.deepEqual(errors,[]);
-fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:'passed',results,errors,limitations:['Automated browsers on Linux; no physical iPhone test.','No professional penetration test; per-isolate attempt throttling is not global.']},null,2));console.log(JSON.stringify({status:'passed',environments:results.length,directEntriesPerEnvironment:ids.length}));
+fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:'passed',results,errors,limitations:['Automated browsers on Linux; no physical iPhone test.','Mathematical access gate, not identity authentication. No professional penetration test; per-isolate throttling is not global.']},null,2));console.log(JSON.stringify({status:'passed',environments:results.length,directEntriesPerEnvironment:ids.length}));
 }finally{if(browser)await browser.close();server.close();fs.rmSync(path.join(out,'key.pem'),{force:true});fs.rmSync(path.join(out,'cert.pem'),{force:true})}

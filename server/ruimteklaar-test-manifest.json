@@ -1,11 +1,13 @@
 {
-  "version": "1.0",
+  "version": "1.1-factor-gate",
   "learnerVersion": "0.4.5",
   "status": "passed",
   "auth": {
     "status": "passed",
-    "requests": 62,
-    "checks": "closed before configuration; POST/Origin/body guards; HMAC session; expiry; tampering; duplicate cookies; host binding; secret rotation; attempt throttle; logout; private assets and no-store; path boundaries"
+    "requests": 69,
+    "mathematicalChecks": 16086,
+    "checks": "exact BigInt factorisations; repeated primes, caret and superscripts; independent small-number oracle; 64-bit pseudoprimes and limits; server-side credential revalidation; one input without hints; native form; HTTPS/Origin/body checks; no credential flag bypass; protected assets; duplicate/invalid cookies; host/timeout checks; throttle and logout; no learner writes",
+    "limitation": "Mathematical puzzle gate, not identity authentication. Credential envelope unsigned; timeout renewable by anyone with a valid factorisation."
   },
   "sourceFiles": {
     "tools/space-tent/app/audio-examples.json": "35930b3b2597ecd0afe4eafbea16ed2ae8d769aa897fc4b9f973397eb9ede7be",
@@ -56,13 +58,14 @@
     "tools/space-tent/review/review.css": "202b2a4bddcdd4b0ee083658e815d492403f4aa47c1d834df204408c0650fe0f",
     "tools/space-tent/review/review.tsx": "98178c40baf95c2d77c024d678c9dc32880e3513279ff25779d91d90125e4348",
     "tools/space-tent/scripts/build-review.mjs": "51d7b3e277941e49e5039094bc54518d9d9b05d4ebce802d7cf53bd06af421b6",
-    "tools/space-tent/scripts/check-review-browser.mjs": "cb275bbea59ed06250edec9ff371152dfc78e4e827c7f5b900aa1f40885ed81f",
+    "tools/space-tent/scripts/check-review-browser.mjs": "37cd78eb3e692b25940bbdd48f3f59a609c17e5b1ba9ac4f1e50f02c9feb030d",
     "tools/space-tent/package-lock.json": "9b91987e6c3cdbda4f01c917a2c580ed7afbe77cb3eae066dbbba2afd99f2718",
-    "server/ruimteklaar-test-auth.mjs": "0598692a6f8b3f921b8aefcdacb6227476ff651691d6a88a2be24f40bb395bcd",
+    "server/ruimteklaar-test-auth.mjs": "c314362566482b547efcc67b87c290cdb1bc171ad7cb7fb2172ff97ca828efa9",
+    "server/ruimteklaar-factor-code.mjs": "015597ec8b5db3c8c2a80600b8850d91d2aa1464998d8bc34d49000d438538da",
     "functions/apps/ruimteklaar/test/[[path]].js": "e99d9283206b2078f5afc27f9a0954a3b46ea788034bbc7f89c36495026f9884",
     "public/_routes.json": "fed6017a6a74270f6da437aa7f472de729d33e8c508a33ce83e013198b0c5f67",
-    "scripts/test-ruimteklaar-review-auth.mjs": "9afc32414da58759e4f8fc3717a84e63592e236282e3c3d217ca65f4d962de60",
-    "scripts/audit-ruimteklaar-review.mjs": "28e84a2692ee7703ce04bcf4cf05006e9f7f1ee81d76f0d0c51a8925e5a09f80"
+    "scripts/test-ruimteklaar-review-auth.mjs": "e131f792fd84bd25493405859b77c2a988b22c2e43bfd308b70069dfea9d6a71",
+    "scripts/audit-ruimteklaar-review.mjs": "a78b91ab665a0c4907b90b35feca2fbf80bd5492bd07d0a3a2d098407c48615e"
   },
   "privateAssets": {
     "index.html": "da71611606cd10c151f6a46cbfcf60e51503632f6962e8a1263c31803dae7438",
@@ -81,7 +84,7 @@
         "lessonBlocks": 23,
         "checks": 8,
         "papers": 8,
-        "checksPerformed": "closed before secrets; wrong/right password; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
+        "checksPerformed": "one field without hints; native Enter; rejected composite factors; accepted repeat/caret/superscript codes; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
       },
       {
         "environment": "chromium-mobile",
@@ -92,7 +95,7 @@
         "lessonBlocks": 23,
         "checks": 8,
         "papers": 8,
-        "checksPerformed": "closed before secrets; wrong/right password; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
+        "checksPerformed": "one field without hints; native Enter; rejected composite factors; accepted repeat/caret/superscript codes; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
       },
       {
         "environment": "webkit-mobile",
@@ -103,13 +106,13 @@
         "lessonBlocks": 23,
         "checks": 8,
         "papers": 8,
-        "checksPerformed": "closed before secrets; wrong/right password; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
+        "checksPerformed": "one field without hints; native Enter; rejected composite factors; accepted repeat/caret/superscript codes; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
       }
     ],
     "errors": [],
     "limitations": [
       "Automated browsers on Linux; no physical iPhone test.",
-      "No professional penetration test; per-isolate attempt throttling is not global."
+      "Mathematical access gate, not identity authentication. No professional penetration test; per-isolate throttling is not global."
     ]
   }
 }
