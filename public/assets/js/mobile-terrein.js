@@ -6,10 +6,11 @@
   const smallScreen = window.matchMedia("(max-width: 1000px)");
   const map = document.querySelector("#terrein");
   const sequence = [".zone-pabo", ".side-stage-card.moshpit", ".side-stage-card.grabbelton", ".zone-stoicheia", ".zone-space", ".kh-entry--map", ".space-billboard-map", ".zone-vo", ".zone-hbo", ".zone-backstage", ".zone-kladblok"];
-  const stops = map ? sequence.map(selector => map.querySelector(selector)).filter(Boolean).map(node => {
+  const stops = map ? sequence.map(selector => map.querySelector(selector)).filter(Boolean).map(link => {
+    const node = link.closest("[data-terrain-group]") || link;
     const marker = document.createComment("terrain-stop");
     node.parentNode.insertBefore(marker, node);
-    return { node, marker };
+    return { node, marker, link };
   }) : [];
   const toolLinks = [...document.querySelectorAll("[data-terrain-tool]")].map(link => ({
     link,
@@ -18,7 +19,7 @@
   }));
   // Build the compact alternative from the same stops, so its labels and routes cannot drift.
   const walkList = document.querySelector("[data-terrain-walk-list]");
-  const listLinks = walkList ? stops.filter(({node}) => node.tagName === "A").map(({node}) => {
+  const listLinks = walkList ? stops.filter(({link}) => link.tagName === "A").map(({link: node}) => {
     const item = document.createElement("li");
     const link = document.createElement("a");
     const title = document.createElement("strong");

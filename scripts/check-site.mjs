@@ -77,7 +77,10 @@ for (const file of htmlFiles) {
     if (!clean || clean === "/") continue;
     const target = path.join(publicDir, clean.replace(/^\//, ""));
     const candidates = [target, path.join(target, "index.html"), `${target}.html`];
-    if (!candidates.some((candidate) => fs.existsSync(candidate))) fail(`${rel(file)} verwijst naar ontbrekend pad ${href}`);
+    const isReviewRoute = clean === "/apps/ruimteklaar/test/"
+      && fs.existsSync(path.join(root, "functions/apps/ruimteklaar/test/[[path]].js"))
+      && JSON.parse(fs.readFileSync(path.join(publicDir, "_routes.json"), "utf8")).include.includes("/apps/ruimteklaar/test/*");
+    if (!isReviewRoute && !candidates.some((candidate) => fs.existsSync(candidate))) fail(`${rel(file)} verwijst naar ontbrekend pad ${href}`);
   }
 }
 

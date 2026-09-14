@@ -35,6 +35,11 @@ class Node {
   addEventListener(name, callback) { (this.listeners[name] ||= []).push(callback); }
   emit(name) { this.listeners[name]?.forEach(callback => callback()); }
   querySelector(selector) { return this.queries?.[selector] || null; }
+  closest(selector) {
+    assert.equal(selector, "[data-terrain-group]");
+    for (let node = this; node; node = node.parentNode) if (node.getAttribute("data-terrain-group") !== null) return node;
+    return null;
+  }
 }
 
 function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
@@ -56,7 +61,13 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
   const find = className => anchors.find(link => (link.getAttribute("class") || "").split(" ").includes(className));
   const stops = ["zone-vo", "zone-hbo", "zone-pabo", "zone-rafel", "zone-stoicheia", "zone-space", "kh-entry--map", "zone-backstage", "zone-kladblok"].map(find);
   assert(stops.every(Boolean), "A terrain destination is missing from the real homepage");
-  stops.forEach(stop => festival.appendChild(stop));
+  const venue = new Node("DIV", {"data-terrain-group": "", "data-venue-id": "ruimteklaar"});
+  const bell = anchors.find(link => link.getAttribute("data-artist-entrance") === "ruimteklaar");
+  assert(bell, "The actual homepage must contain an artist entrance");
+  stops.forEach(stop => {
+    if (stop === find("zone-space")) { festival.appendChild(venue); venue.appendChild(stop); venue.appendChild(bell); }
+    else festival.appendChild(stop);
+  });
   const board = festival.appendChild(new Node("FIGURE"));
   [find("moshpit"), find("grabbelton")].forEach(stop => sideStages.appendChild(stop));
   const originalFestival = [...festival.children];
@@ -88,7 +99,7 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
   if (withRegistry) vm.runInContext(registry, context);
   vm.runInContext(runtime, context);
   return {
-    map, festival, sideStages, board, originalFestival, originalSideStages, directory, walkList, window, find, anchors,
+    map, festival, sideStages, board, venue, bell, originalFestival, originalSideStages, directory, walkList, window, find, anchors,
     resize(mobile) { media.matches = mobile; media.emit("change"); },
   };
 }
@@ -96,7 +107,7 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
 const page = setup();
 const order = ["zone-pabo", "moshpit", "grabbelton", "zone-stoicheia", "zone-space", "kh-entry--map", "zone-vo", "zone-hbo", "zone-backstage", "zone-kladblok"];
 assert.equal(page.directory.open, false, "The long alternative should start collapsed on mobile");
-assert.deepEqual(page.map.children.filter(node => node.tagName === "A"), order.map(page.find), "Keyboard order must follow the walk");
+assert.deepEqual(page.map.children.filter(node => node.tagName === "A" || node === page.venue).map(node => node === page.venue ? page.find("zone-space") : node), order.map(page.find), "Keyboard order must follow the walk");
 assert.equal(page.walkList.hidden, false);
 assert.equal(page.walkList.children.length, 10, "The list must include every walk destination");
 const listLinks = page.walkList.children.map(item => item.children[0]);
@@ -118,8 +129,11 @@ for (let round = 0; round < 3; round++) {
   assert.equal(page.directory.open, true);
   assert.equal(page.find("zone-pabo").getAttribute("href"), "/pabo/pabo-rekenklaar/");
   page.resize(true);
-  assert.deepEqual(page.map.children.filter(node => node.tagName === "A"), order.map(page.find));
+  assert.deepEqual(page.map.children.filter(node => node.tagName === "A" || node === page.venue).map(node => node === page.venue ? page.find("zone-space") : node), order.map(page.find));
   assert.equal(page.walkList.children.length, 10, "Rotating/resizing must not duplicate the list");
+  assert.equal(page.bell.parentNode, page.venue, "The bell must travel with the tent");
+  assert.equal(page.find("zone-space").parentNode, page.venue);
+  assert.equal(page.bell.getAttribute("href"), "/apps/ruimteklaar/test/");
   assert.equal(listLinks[0].getAttribute("href"), "/apps/pabo-rekenklaar/");
 }
 page.window.location.hash = "#vandaag-open";
