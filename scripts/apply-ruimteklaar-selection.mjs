@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const base='tools/space-tent/';
+const edit=(file,fn)=>{const p=base+file,s=fs.readFileSync(p,'utf8'),t=fn(s);assert.notEqual(t,s,file);fs.writeFileSync(p,t)};
+edit('app/geometry.tsx',s=>s.replace('type PointerEvent}', 'type PointerEvent,type ReactNode}').replace('export type GeoProps={','export type GeoProps={constructionControls?:ReactNode;').replace('export default function Geometry({','export default function Geometry({constructionControls,').replace(' {construction&&<div className="construction-appearance">',' {constructionControls}\n {construction&&<div className="construction-appearance">'));
+for(const file of ['app/workbench.tsx','app/construction-lab.tsx'])edit(file,s=>{const start=s.indexOf('{selection.controls}'),end=s.indexOf('</div></div><div className="tool-panel">',start)+6;assert.ok(start>0&&end>start);const controls=s.slice(start,end);s=s.slice(0,start)+s.slice(end);return s.replace('<Geometry ',`<Geometry constructionControls={<>${controls}</>} `)});
+edit('space/main.tsx',s=>s.replace("import '../app/construction-selection.css';\n",'').replace("import '../app/globals.css';","import '../app/globals.css';\nimport '../app/construction-selection.css';"));
+edit('app/construction-selection.css',s=>s+'\n.selection-studio .tool-panel{align-self:start}\n');
+edit('scripts/check-selection-browser.mjs',s=>s.replace('const page=await context.newPage();','const page=await context.newPage();page.setDefaultTimeout(12000);').replace("await page.getByRole('button',{name:'Selectie wissen',exact:true}).click().catch(()=>{});","if(await page.getByRole('button',{name:'Selectie wissen',exact:true}).isEnabled())await page.getByRole('button',{name:'Selectie wissen',exact:true}).click();").replace("await point('A').waitFor();};","await point('A').waitFor();const stage=await page.locator('.geometry-stage').first().boundingBox(),controls=await page.locator('.selection-controls').boundingBox();assert.ok(controls.y-(stage.y+stage.height)<30,'Controls must follow the figure directly');};"));
+edit('README.md',s=>s+'\nThe point/action controls, status and undo now sit immediately below the drawing, before optional viewing controls. Browser tests enforce this placement.\n');
+console.log('Placed construction controls immediately below the figure; all checks must rerun.');
