@@ -4,3 +4,5 @@ node_modules/
 *.tsbuildinfo
 
 .selection-browser/
+.review-dist/
+.review-browser/

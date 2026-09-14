@@ -1,0 +1,93 @@
+name: Ruimteklaar beveiligde testmodus
+on:
+  push:
+    branches: [ruimteklaar-protected-review]
+permissions:
+  contents: write
+concurrency:
+  group: ruimteklaar-protected-review
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply checksum-verified reviewed source
+        run: |
+          if test -d scripts/review-stage; then
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {gunzipSync} from 'node:zlib';import {createHash} from 'node:crypto';
+          const hash=x=>createHash('sha256').update(x).digest('hex');
+          const payload=[0,1,2].map(n=>fs.readFileSync('scripts/review-stage/part-'+n+'.txt','utf8').trim()).join('');
+          assert.equal(hash(payload),'74f7d044ff154b065f5c6b86beda0229cbd146587f039a44c76db2ffbd9b0c74');
+          const changes=JSON.parse(gunzipSync(Buffer.from(payload,'base64')));
+          const newFunction=changes.find(c=>c.path==='functions/apps/ruimteklaar/test/[[path]].js');assert.equal(newFunction.before,hash(''));newFunction.before=null;
+          for(const c of changes){assert.ok(!c.path.includes('..')&&/^(docs\/ruimteklaar-testmodus.md|functions\/apps\/ruimteklaar\/test\/|public\/_routes.json|scripts\/(audit-ruimteklaar-review|test-ruimteklaar-review-auth).mjs|server\/ruimteklaar-test-auth.mjs|tools\/space-tent\/|package.json)/.test(c.path));assert.equal(fs.existsSync(c.path)?hash(fs.readFileSync(c.path)):null,c.before,'Source changed: '+c.path)}
+          for(const c of changes){fs.mkdirSync(path.dirname(c.path),{recursive:true});fs.writeFileSync(c.path,c.content)}
+          const authPath='server/ruimteklaar-test-auth.mjs';const auth=fs.readFileSync(authPath,'utf8');assert.ok(auth.includes("'Referrer-Policy':'no-referrer'"));fs.writeFileSync(authPath,auth.replace("'Referrer-Policy':'no-referrer'","'Referrer-Policy':'same-origin'"));
+          const viewPath='tools/space-tent/review/review.tsx';let view=fs.readFileSync(viewPath,'utf8');const oldHistory="history.replaceState(null,'',ROOT+'#'+encodeURIComponent(e.id));";assert.ok(view.includes(oldHistory));view=view.replace(oldHistory,'');const before=' function choose(e:Entry)';assert.ok(view.includes(before));view=view.replace(before," // Coalesce rapid navigation so WebKit does not exceed its History API quota.\n useEffect(()=>{const timer=window.setTimeout(()=>{try{history.replaceState(null,'',ROOT+'#'+encodeURIComponent(entry.id))}catch{setMessage('De vraag is geopend. De browser kon de bronlink nog niet bijwerken.')}},500);return()=>window.clearTimeout(timer)},[entry.id]);\n"+before);fs.writeFileSync(viewPath,view);
+          const testPath='tools/space-tent/scripts/check-review-browser.mjs';let test=fs.readFileSync(testPath,'utf8');const marker=' // Deep link after reload selects the item but carries no test attempts over.';assert.ok(test.includes(marker));test=test.replace(marker," await page.waitForFunction(id=>decodeURIComponent(location.hash.slice(1))===id,'constructie:'+tasks[0].id);\n"+marker);fs.writeFileSync(testPath,test);
+          fs.rmSync('scripts/review-stage',{recursive:true});console.log('Applied '+changes.length+' reviewed files.');
+          NODE
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/space-tent/package-lock.json
+      - run: npm ci
+        working-directory: tools/space-tent
+      - name: Server security regression checks
+        run: node scripts/test-ruimteklaar-review-auth.mjs
+      - name: Build shared components and private review bundle
+        working-directory: tools/space-tent
+        run: npm run build && npm run audit:build && npm test && node scripts/build-review.mjs
+      - name: Install isolated browser tooling
+        run: |
+          npm install --prefix /tmp/review-browser --no-save playwright@1.56.1
+          /tmp/review-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Authenticated navigation and learner isolation checks
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/review-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-review-browser.mjs
+      - name: Compile actual Pages Function
+        run: node tools/space-tent/node_modules/wrangler/bin/wrangler.js pages functions build functions --outdir=/tmp/review-worker
+      - name: Bind verified evidence and run complete Wisik release gate
+        run: |
+          cp tools/space-tent/.review-browser/results.json tools/space-tent/validation/review-mode-100.json
+          node scripts/audit-ruimteklaar-review.mjs --write
+          node scripts/audit-space-release.mjs --write
+          npm run build
+          git diff --exit-code -- public/apps/ruimteklaar
+      - name: Commit verified source and private bundle to isolated branch
+        run: |
+          test "$(git ls-remote origin refs/heads/ruimteklaar-protected-review | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          git add tools/space-tent/review tools/space-tent/scripts/build-review.mjs tools/space-tent/scripts/check-review-browser.mjs tools/space-tent/validation/review-mode-100.json server functions public/_routes.json scripts/audit-ruimteklaar-review.mjs scripts/test-ruimteklaar-review-auth.mjs docs/ruimteklaar-testmodus.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Ruimteklaar: password-gated review mode, isolated progress and verified private assets'
+            git push origin HEAD:ruimteklaar-protected-review
+          fi
+      - name: Evidence snapshot
+        if: always()
+        run: |
+          tar --exclude=.git --exclude=node_modules --exclude=public/films --exclude='*.pem' --exclude=.wrangler -czf /tmp/review-source.tar.gz .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruimteklaar-review-source
+          path: /tmp/review-source.tar.gz
+          retention-days: 3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruimteklaar-review-browserbewijs
+          path: |
+            tools/space-tent/.review-browser/*.png
+            tools/space-tent/.review-browser/results.json
+          include-hidden-files: true
+          retention-days: 7
