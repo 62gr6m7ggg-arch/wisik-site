@@ -2,3 +2,5 @@ node_modules/
 .space-dist/
 .audit-dist/
 *.tsbuildinfo
+
+.selection-browser/

@@ -3,4 +3,5 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import Ruimteklaar from '../app/ruimteklaar';
 import '../app/globals.css';
+import '../app/construction-selection.css';
 createRoot(document.getElementById('root')!).render(<Ruimteklaar local/>);

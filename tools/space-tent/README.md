@@ -17,3 +17,28 @@ No supplemental viewing aid appears during diagnostic questions, level checks, s
 Release checks cover 3,132 question-card states, 80 explicit plane views, 210 view/ray models, 201 intermediate projection-lesson states, ten construction tasks and eight paper tasks. The first main SVG of 520 question states remains identical to 0.4.2; the two deliberately reframed comparison states are separately checked. This is not a claim that all surrounding teaching markup stayed identical. validation/viewing-review-043.json records coverage; validation/learning-contract-042.json preserves the grading data. The previous 0.4.2 projection lesson and its checks are retained.
 
 No new browser or physical-device testing is claimed for 0.4.3. Pointer interaction and real-screen readability have only the earlier 0.4 browser evidence; this release uses source, mathematical and React rendering checks.
+
+## 0.4.5 — selection first
+
+All ten course constructions and both legacy workbench variants share
+`useConstructionSelection`: select two named points or an existing line, then
+perform an action directly. Parallel lines and feet ask for the remaining point;
+intersections ask for the other line. Selection itself does not draw, grade, save
+or mark support. A reference remains highlighted during the follow-up choice.
+
+Line picking uses the real world geometry for identity and the current projection
+only for pointer hit-testing. Overlapping screen lines produce an explicit choice.
+An infinite extension and its original edge share selection identity. Drawing
+locks, save-in-flight guards and the existing mathematical construction checks
+remain in place. Existing question, answer, diagnostic and progress contracts
+are unchanged.
+
+`npm run audit:build` includes forward/reverse selection checks for all 99 course
+edges. `scripts/check-selection-browser.mjs` runs the actual construction
+components in Chromium desktop/mobile and WebKit mobile emulation, plus a public
+production-bundle smoke test. The browser harness and dependencies are not
+published. Committed results are in `validation/selection-first-045.json`.
+These are automated Linux browser tests, not a physical iPhone/Safari trial or
+an empirical usability/learning-effect study.
+
+The point/action controls, status and undo now sit immediately below the drawing, before optional viewing controls. Browser tests enforce this placement.

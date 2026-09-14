@@ -1,0 +1,76 @@
+name: Ruimteklaar selectiecontrole
+on:
+  push:
+    branches: [ruimteklaar-selection-first]
+permissions:
+  contents: write
+concurrency:
+  group: ruimteklaar-selection-first
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply reviewed selection source changes
+        run: |
+          if test -f scripts/apply-ruimteklaar-selection.mjs; then
+            node scripts/apply-ruimteklaar-selection.mjs
+            rm scripts/apply-ruimteklaar-selection.mjs
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/space-tent/package-lock.json
+      - run: npm ci
+        working-directory: tools/space-tent
+      - run: npm run build && npm run audit:build && npm test
+        working-directory: tools/space-tent
+      - name: Install isolated browser test tools
+        run: |
+          npm install --prefix /tmp/selection-browser --no-save playwright@1.56.1
+          /tmp/selection-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Browser interaction checks
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/selection-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-selection-browser.mjs
+      - name: Bind tested source, assets and evidence
+        run: |
+          cp tools/space-tent/.selection-browser/results.json tools/space-tent/validation/selection-first-045.json
+          rm -rf public/apps/ruimteklaar
+          mkdir -p public/apps/ruimteklaar
+          cp -a tools/space-tent/.space-dist/. public/apps/ruimteklaar/
+          cp -a tools/space-tent/.audit-dist/. tools/space-tent/audit-runtime/
+          node --input-type=module -e "import fs from 'node:fs';const p='public/films/ruimteklaar/catalog.json';const c=JSON.parse(fs.readFileSync(p));c.version='0.4.5';fs.writeFileSync(p,JSON.stringify(c,null,2)+'\\n')"
+          node scripts/audit-space-release.mjs --write
+          npm run build
+      - name: Commit only verified release files to the isolated branch
+        run: |
+          test "$(git ls-remote origin refs/heads/ruimteklaar-selection-first | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          git add tools/space-tent scripts/audit-space-release.mjs public/apps/ruimteklaar public/films/ruimteklaar/catalog.json public/assets/data/ruimteklaar-release-audit.json public/assets/js/site-data.js public/rafelrand/space-tent/index.html public/backstage/space-tent/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Ruimteklaar 0.4.5: selection-first controls and verified production assets'
+            git push origin HEAD:ruimteklaar-selection-first
+          fi
+      - name: Source and browser evidence snapshot
+        if: always()
+        run: tar --exclude=.git --exclude=node_modules --exclude=public/films --exclude=source.tar.gz -czf /tmp/source.tar.gz .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruimteklaar-source
+          path: /tmp/source.tar.gz
+          retention-days: 3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruimteklaar-browser-evidence
+          path: tools/space-tent/.selection-browser/
+          include-hidden-files: true
+          retention-days: 7

@@ -1,0 +1,22 @@
+.selection-controls{border-top:1px solid #345267;padding-top:14px;margin-top:10px;min-width:0}
+.selection-instruction,.selection-caption{font-size:.875rem;line-height:1.5;margin:0 0 10px;color:#d9e9f3;overflow-wrap:anywhere}
+.selection-caption{color:#ffd1aa;min-height:1.5em}
+.drawing-panel .selection-controls .point-tray{border:0;padding:0;margin:12px 0;justify-content:flex-start}
+.selection-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:8px}
+.selection-actions button{min-height:44px;height:auto;white-space:normal;overflow-wrap:anywhere;padding:9px 10px;line-height:1.35}
+.selection-controls>button,.selection-line-list button,.line-pick-options button{min-height:44px;height:auto;white-space:normal}
+.selection-line-list{border-top:1px solid #345267;margin-top:10px;padding-top:8px}
+.selection-line-list summary,.line-pick-options summary{min-height:44px;cursor:pointer;padding:10px 0;font-size:.875rem}
+.selection-line-list p,.selection-notice,.line-pick-options p{font-size:.8125rem;line-height:1.5;color:#d9e9f3;overflow-wrap:anywhere}
+.selection-line-list .line-key{display:flex;flex-wrap:wrap;gap:8px}
+.selection-line-list button,.line-pick-options button{display:flex;align-items:center;gap:8px;max-width:100%;border:1px solid #476478;background:#132c3d;border-radius:9px;padding:8px 12px;text-align:left}
+.selection-line-list button[aria-pressed=true]{border-color:#ffa35e}
+.line-pick-options{padding:12px;border:1px solid #476478;border-radius:10px;margin:8px 0}
+.line-pick-options>div{display:flex;flex-wrap:wrap;gap:8px}
+.line-pick-target{cursor:pointer;pointer-events:stroke}
+.selection-studio .status-message{margin:8px 0;overflow-wrap:anywhere}
+@media(min-width:761px){.selection-studio{grid-template-columns:minmax(0,1fr) minmax(220px,.46fr)}}
+@media(max-width:760px){.selection-studio{grid-template-columns:minmax(0,1fr)}.selection-studio .drawing-panel{padding:10px}}
+@media print{.selection-controls,.line-pick-options{display:none}}
+
+.selection-studio .tool-panel{align-self:start}
