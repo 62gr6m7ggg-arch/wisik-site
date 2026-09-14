@@ -1,0 +1,85 @@
+name: Spacetent afgeschermde testmodus
+on:
+  push:
+    branches: [ruimteklaar-password-review]
+permissions:
+  contents: write
+concurrency:
+  group: ruimteklaar-password-review
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply reviewed source
+        run: |
+          if test -f scripts/apply-ruimteklaar-review.mjs; then
+            node scripts/apply-ruimteklaar-review.mjs
+            rm scripts/apply-ruimteklaar-review.mjs
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/space-tent/package-lock.json
+      - run: npm ci
+        working-directory: tools/space-tent
+      - name: Normal app build and regression checks
+        run: npm run build && npm run audit:build && npm test
+        working-directory: tools/space-tent
+      - name: Build protected assets and test access controls
+        run: |
+          node tools/ruimteklaar-review/build.mjs
+          node tools/ruimteklaar-review/test-auth.mjs | tee /tmp/review-auth-results.json
+      - name: Compile actual Pages Functions
+        run: tools/space-tent/node_modules/.bin/wrangler pages functions build functions --outdir /tmp/review-functions
+      - name: Install isolated browser tools
+        run: |
+          npm install --prefix /tmp/review-browser --no-save playwright@1.56.1
+          /tmp/review-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Free navigation and learner isolation browser tests
+        env:
+          PLAYWRIGHT_MODULE: /tmp/review-browser/node_modules/playwright/index.mjs
+        run: node tools/ruimteklaar-review/test-browser.mjs
+      - name: Bind tested source and evidence
+        run: |
+          cp tools/ruimteklaar-review/.browser/results.json tools/ruimteklaar-review/browser-results.json
+          rm -rf public/apps/ruimteklaar
+          mkdir -p public/apps/ruimteklaar
+          cp -a tools/space-tent/.space-dist/. public/apps/ruimteklaar/
+          cp -a tools/space-tent/.audit-dist/. tools/space-tent/audit-runtime/
+          node scripts/audit-space-release.mjs --write
+          npm run build
+      - name: Commit only verified files to isolated branch
+        run: |
+          test "$(git ls-remote origin refs/heads/ruimteklaar-password-review | cut -f1)" = "$GITHUB_SHA"
+          test ! -f scripts/apply-ruimteklaar-review.mjs
+          test ! -f scripts/review-source-1.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          git add tools/ruimteklaar-review functions public/_routes.json tools/space-tent public/apps/ruimteklaar public/assets/data/ruimteklaar-release-audit.json package.json .gitignore .github/workflows/ruimteklaar-review.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Spacetent: protected reviewer with free navigation and isolated test work'
+            git push origin HEAD:ruimteklaar-password-review
+          fi
+      - name: Source and browser evidence snapshot
+        if: always()
+        run: tar --exclude=.git --exclude=node_modules --exclude=public/films --exclude='.env*' --exclude='.dev.vars*' -czf /tmp/review-source.tar.gz .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spacetent-review-source
+          path: /tmp/review-source.tar.gz
+          retention-days: 3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spacetent-review-evidence
+          path: |
+            tools/ruimteklaar-review/.browser/
+            /tmp/review-auth-results.json
+          include-hidden-files: true
+          retention-days: 14
