@@ -1,0 +1,31 @@
+name: Ruimteklaar selectiecontrole
+on:
+  push:
+    branches: [ruimteklaar-selection-first]
+permissions:
+  contents: read
+concurrency:
+  group: ruimteklaar-selection-first
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source snapshot for review
+        run: tar --exclude=.git --exclude=node_modules --exclude=public/films --exclude=source.tar.gz -czf /tmp/source.tar.gz .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ruimteklaar-source
+          path: /tmp/source.tar.gz
+          retention-days: 3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/space-tent/package-lock.json
+      - run: npm ci
+        working-directory: tools/space-tent
+      - run: npm run build && npm run audit:build && npm test
+        working-directory: tools/space-tent
