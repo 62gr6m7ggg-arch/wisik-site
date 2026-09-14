@@ -81,6 +81,25 @@ for (const file of htmlFiles) {
   }
 }
 
+// Standalone tents need their own icon declarations; they do not inherit the festival head.
+for (const entry of fs.readdirSync(path.join(publicDir, "apps"), { withFileTypes: true })) {
+  if (!entry.isDirectory()) continue;
+  const file = path.join(publicDir, "apps", entry.name, "index.html");
+  if (!fs.existsSync(file)) continue;
+  const head = fs.readFileSync(file, "utf8").split(/<\/head>/i)[0];
+  for (const relation of ["icon", "apple-touch-icon"]) {
+    const links = [...head.matchAll(/<link\b[^>]*>/gi)].map(match => match[0])
+      .filter(link => new RegExp(`\\brel=["']${relation}["']`, "i").test(link));
+    if (!links.length) fail(`${rel(file)} mist een expliciet ${relation} voor de zelfstandige tent`);
+    if (!links.some(link => {
+      const href = link.match(/\bhref=["']([^"']+)["']/i)?.[1];
+      if (!href?.startsWith("/") || href.startsWith("//")) return false;
+      const target = path.join(publicDir, href.split(/[?#]/)[0]);
+      return fs.existsSync(target) && /\.(?:png|ico|svg)$/i.test(target);
+    })) fail(`${rel(file)} heeft geen beschikbaar lokaal ${relation}`);
+  }
+}
+
 const formLocations = htmlFiles.flatMap((file) => {
   const count = (fs.readFileSync(file, "utf8").match(/<form\b/gi) || []).length;
   return Array.from({ length: count }, () => rel(file));
