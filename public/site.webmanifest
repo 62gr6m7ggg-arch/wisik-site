@@ -7,6 +7,17 @@
   "theme_color": "#163f58",
   "description": "Een festivalterrein met doordachte rekentools en wiskundige leerattracties.",
   "icons": [
-    {"src":"/assets/img/wisik-mark.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+    {
+      "src": "/assets/icons/wisik-20260914-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/wisik-20260914-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }
