@@ -1,0 +1,106 @@
+name: Spacetent artiesten-ingang controle
+on:
+  push:
+    branches: [wisik-space-artiesteningang-release, main]
+    paths:
+      - 'scripts/*space-artist-entrance*'
+      - '.github/workflows/space-artist-entrance.yml'
+permissions:
+  contents: read
+concurrency:
+  group: space-artist-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply isolated entrance component
+        run: |
+          if test -f scripts/complete-space-artist-entrance.mjs; then
+            node scripts/complete-space-artist-entrance.mjs
+            rm scripts/complete-space-artist-entrance.mjs
+          fi
+          if test -f scripts/apply-space-artist-entrance.mjs; then
+            node scripts/apply-space-artist-entrance.mjs
+            rm scripts/apply-space-artist-entrance.mjs
+          fi
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';const p='scripts/check-space-artist-entrance-browser.mjs';let s=fs.readFileSync(p,'utf8');s=s.replace("if(!file.startsWith(path.join(root,'public')+path.sep))", "if(file!==path.join(root,'public')&&!file.startsWith(path.join(root,'public')+path.sep))");fs.writeFileSync(p,s);
+          NODE
+      - name: Navigation, registry and authentication checks
+        run: |
+          node scripts/test-mobile-terrein.mjs
+          node scripts/test-space-artist-entrance.mjs
+          node scripts/test-ruimteklaar-review-auth.mjs
+      - name: Install isolated browsers
+        run: |
+          npm install --prefix /tmp/entrance-browser --no-save playwright@1.56.1
+          /tmp/entrance-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Test full entrance and movable group
+        env:
+          PLAYWRIGHT_MODULE: /tmp/entrance-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-space-artist-entrance-browser.mjs
+      - name: Preserve apps and refresh version-bound site evidence
+        run: |
+          git diff --exit-code f3f3d25601c8521c0dd818cc003b637bd2d14929 -- public/apps/ruimteklaar public/apps/stoicheia tools/space-tent server functions public/_routes.json
+          node --input-type=module -e "import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';const before=execFileSync('git',['show','f3f3d25601c8521c0dd818cc003b637bd2d14929:public/apps/pabo-rekenklaar/index.html'],{encoding:'utf8'});assert.equal(fs.readFileSync('public/apps/pabo-rekenklaar/index.html','utf8'),before.replaceAll('?v=0.1.25','?v=0.1.26'));"
+          node scripts/audit-pabo-release.mjs --write
+          node scripts/audit-space-release.mjs --write
+          npm run build
+      - name: Commit verified release only to working branch
+        run: |
+          test "$(git ls-remote origin refs/heads/wisik-space-artiesteningang-release | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          git add scripts/test-space-artist-entrance.mjs scripts/check-space-artist-entrance-browser.mjs docs/space-artiesteningang.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Spacetent: portable artist doorbell, tested navigation and version 0.1.26'
+            git push origin HEAD:wisik-space-artiesteningang-release
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: space-artist-entrance-browser-proof
+          path: /tmp/space-entrance-evidence/
+          retention-days: 7
+  live:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browsers
+        run: |
+          npm install --prefix /tmp/entrance-browser --no-save playwright@1.56.1
+          /tmp/entrance-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Wait for reviewed deployment
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';let ready=false;
+          for(let attempt=0;attempt<18;attempt++){try{const r=await fetch('https://wisik.nl/',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)}),html=await r.text();if(r.status===200&&html.includes('class="space-venue"')&&html.includes('/assets/css/styles.css?v=0.1.26')){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,10000))}assert.ok(ready,'Reviewed entrance deployment not visible');
+          NODE
+      - name: Actual live entrance and learner isolation
+        env:
+          PLAYWRIGHT_MODULE: /tmp/entrance-browser/node_modules/playwright/index.mjs
+          LIVE_ORIGIN: https://wisik.nl
+        run: node scripts/check-space-artist-entrance-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: space-artist-entrance-live-proof
+          path: /tmp/space-entrance-evidence/
+          retention-days: 7

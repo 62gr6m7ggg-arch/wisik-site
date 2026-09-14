@@ -30,6 +30,9 @@
     const primary = tool.appUrl
       ? `<a class="btn primary small" href="${escapeHtml(tool.productUrl)}">Bekijk attractie</a>`
       : `<a class="btn ghost small" href="${escapeHtml(tool.productUrl)}">Bekijk bouwplaats</a>`;
+    const artistEntrance = tool.artistEntrance
+      ? `<div class="space-artist-mount"><a class="space-artist-entry" data-artist-entrance="${escapeHtml(tool.id)}" href="${escapeHtml(tool.artistEntrance.url)}" aria-label="Artiesten-ingang van de Spacetent"><span class="space-doorbell" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 9a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9Z"/><path d="M10 21h4M12 1v2"/></svg></span><span>${escapeHtml(tool.artistEntrance.label)}</span></a></div>`
+      : "";
     return `<article class="tool-card" data-accent="${escapeHtml(tool.accent)}" data-route="${escapeHtml(tool.route)}" data-status="${escapeHtml(tool.status)}">
       <div class="tool-card-icon" aria-hidden="true">${escapeHtml(tool.icon)}</div>
       <div class="label-row">
@@ -47,6 +50,7 @@
         <dt>Versie</dt><dd>${escapeHtml(tool.version)}</dd>
       </dl>
       <div class="tool-actions">${primary}</div>
+      ${artistEntrance}
     </article>`;
   };
 

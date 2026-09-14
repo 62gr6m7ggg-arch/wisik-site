@@ -1,5 +1,5 @@
 /* Wisik.nl — centrale attractieregistratie. */
-window.WISIK_SITE_VERSION = "0.1.25";
+window.WISIK_SITE_VERSION = "0.1.26";
 window.WISIK_MISCONCEPTION_CODES = Object.freeze([
   "A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08",
   "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08",
@@ -33,6 +33,7 @@ window.WISIK_TOOLS = Object.freeze([
     summary: "Zes leslevels met visuele uitleg, adaptief oefenen en construeren. Het toplevel verbindt de stof in twee gemengde proeven en papierwerk.",
     productUrl: "/rafelrand/space-tent/",
     appUrl: "/apps/ruimteklaar/",
+    artistEntrance: Object.freeze({ label: "artiesten-ingang", url: "/apps/ruimteklaar/test/" }),
     icon: "◇",
     accent: "blue",
     featured: false,
