@@ -3,3 +3,7 @@ node_modules/
 .dev.vars*
 .env*
 .DS_Store
+
+# Server-side test-access secrets
+.env*
+.dev.vars*
