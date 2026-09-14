@@ -1,0 +1,55 @@
+name: Ruimteklaar testmodus gesloten publicatiecontrole
+on:
+  push:
+    branches: [ruimteklaar-review-live-100]
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser
+        run: |
+          npm install --prefix /tmp/review-live --no-save playwright@1.56.1
+          /tmp/review-live/node_modules/.bin/playwright install --with-deps chromium
+      - name: Verify closed production function and ordinary learning route
+        run: |
+          mkdir -p /tmp/review-live-proof
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+          import {assets} from './server/ruimteklaar-test-assets.mjs';
+          import {chromium} from '/tmp/review-live/node_modules/playwright/index.mjs';
+          const origin='https://wisik.nl',root='/apps/ruimteklaar/test/',hash=b=>createHash('sha256').update(b).digest('hex');
+          const report={release:'0813470ceff00dc84b6f3f7e8a56941e77850391',checkedAt:new Date().toISOString(),testMode:'1.0',learner:'0.4.5',http:[],browsers:[],errors:[],passwordConfigured:false};
+          const get=(url,options={})=>fetch(origin+url,{...options,headers:{'Cache-Control':'no-cache',...options.headers},signal:AbortSignal.timeout(15000)});
+          let ready=false;
+          for(let i=0;i<18;i++){try{const r=await get(root),s=await r.text();if(r.status===503&&s.includes('nog niet geactiveerd')){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,10000))}
+          assert.ok(ready,'Expected fail-closed test mode has not been deployed');
+          for(const route of [root.slice(0,-1),root,root+'index.html',root+'session',...Object.keys(assets).filter(x=>x!=='index.html').map(x=>root+x)]){
+            const r=await get(route),body=await r.text();assert.equal(r.status,503,route);assert.match(r.headers.get('Cache-Control')||'',/no-store/);assert.match(r.headers.get('X-Robots-Tag')||'',/noindex/);assert.ok(body.includes('niet geactiveerd'),route);assert.ok(body.length<6000,'No private bundle may be delivered');report.http.push({route,status:r.status,closed:true})
+          }
+          const login=await get(root+'login',{method:'POST',headers:{Origin:origin,'Content-Type':'application/x-www-form-urlencoded'},body:'password=not-a-production-password'});assert.equal(login.status,503);assert.equal(login.headers.get('set-cookie'),null);report.http.push({route:root+'login',method:'POST',status:503,sessionIssued:false});
+          const forged=await get(root,{headers:{Cookie:'__Host-wisik-ruimteklaar-test=invalid.invalid'}});assert.equal(forged.status,503);
+          const css=await get(root+'login.css');assert.equal(css.status,200);
+          const html=fs.readFileSync('public/apps/ruimteklaar/index.html','utf8'),files=['/apps/ruimteklaar/',...Array.from(html.matchAll(/(?:src|href)="(\/apps\/ruimteklaar\/assets\/[^"?]+)"/g),m=>m[1])];
+          for(const file of files){const r=await get(file);assert.equal(r.status,200,file);const bytes=Buffer.from(await r.arrayBuffer()),expected=fs.readFileSync('public'+file+(file.endsWith('/')?'index.html':''));assert.equal(hash(bytes),hash(expected),file);report.http.push({route:file,status:200,sha256:hash(bytes),matchesUnchangedLearner:true})}
+          const browser=await chromium.launch({headless:true});
+          try{for(const mobile of [false,true]){const context=await browser.newContext({viewport:{width:mobile?390:1280,height:mobile?844:900},isMobile:mobile,hasTouch:mobile}),page=await context.newPage();page.setDefaultTimeout(15000);page.on('pageerror',e=>report.errors.push(e.message));
+            await page.goto(origin+root);await page.getByRole('heading',{name:'Ruimteklaar testen',exact:true}).waitFor();assert.equal(await page.locator('input[type=password]').count(),0);assert.equal(await page.locator('[data-review-mode]').count(),0);assert.equal(await page.locator('script[src]').count(),0);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:'/tmp/review-live-proof/'+(mobile?'mobile':'desktop')+'-closed.png',fullPage:true});
+            await page.getByRole('link',{name:'Naar de gewone leerroute',exact:true}).click();await page.getByRole('button',{name:'Open het oefenatelier',exact:false}).click();await page.locator('[data-selection-first=true]').waitFor();
+            for(const p of ['A','B']){const b=page.locator('.selection-controls .point-tray').getByRole('button',{name:p,exact:true});if(mobile)await b.tap();else await b.click()}
+            assert.equal(await page.locator('.drawing-panel .drawn-line').count(),0);await page.locator('[data-action=extend]').click();await page.waitForFunction(()=>document.querySelectorAll('.drawing-panel .drawn-line').length===1);await page.locator('.drawing-footer button').click();await page.waitForFunction(()=>document.querySelectorAll('.drawing-panel .drawn-line').length===0);assert.equal(await page.locator('[data-review-mode]').count(),0);await page.screenshot({path:'/tmp/review-live-proof/'+(mobile?'mobile':'desktop')+'-learner.png',fullPage:true});
+            report.browsers.push({environment:mobile?'Chromium mobile 390px':'Chromium desktop 1280px',status:'passed',checks:'closed test page; no password field until activation; no private script; no overflow; ordinary learner route; selection without drawing; extension; undo'});await context.close();}
+          assert.deepEqual(report.errors,[]);report.status='passed';fs.writeFileSync('/tmp/review-live-proof/results.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));}finally{await browser.close()}
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruimteklaar-testmodus-gesloten-livebewijs
+          path: /tmp/review-live-proof/
+          retention-days: 14
