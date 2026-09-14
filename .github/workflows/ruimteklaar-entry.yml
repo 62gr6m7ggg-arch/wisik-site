@@ -1,0 +1,17 @@
+name: Ruimteklaar toegangscontrole
+on:
+  push:
+    branches: [ruimteklaar-code-entry]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: tar --exclude=.git --exclude=node_modules --exclude=public/films -czf /tmp/entry-source.tar.gz .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: entry-source
+          path: /tmp/entry-source.tar.gz
+          retention-days: 3
