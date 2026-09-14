@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "environment": "chromium-desktop",
+      "status": "passed",
+      "directEntries": 311,
+      "questions": 261,
+      "constructions": 10,
+      "lessonBlocks": 23,
+      "checks": 8,
+      "papers": 8,
+      "checksPerformed": "closed before secrets; wrong/right password; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
+    },
+    {
+      "environment": "chromium-mobile",
+      "status": "passed",
+      "directEntries": 311,
+      "questions": 261,
+      "constructions": 10,
+      "lessonBlocks": 23,
+      "checks": 8,
+      "papers": 8,
+      "checksPerformed": "closed before secrets; wrong/right password; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
+    },
+    {
+      "environment": "webkit-mobile",
+      "status": "passed",
+      "directEntries": 311,
+      "questions": 261,
+      "constructions": 10,
+      "lessonBlocks": 23,
+      "checks": 8,
+      "papers": 8,
+      "checksPerformed": "closed before secrets; wrong/right password; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Automated browsers on Linux; no physical iPhone test.",
+    "No professional penetration test; per-isolate attempt throttling is not global."
+  ]
+}
