@@ -1,0 +1,220 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l2-parallel",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l2-six",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l3-pyramid",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l3-prism",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l2-lineplane",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l4-standvlak",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l5-foot",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l6-commonfoot",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l7-a",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "construct-l7-b",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "legacy-0",
+      "checks": "complete independent construction and final verification"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "legacy-1",
+      "checks": "complete independent construction and final verification"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "geometric-guards",
+      "checks": "explicit extension before exterior intersection; skew lines rejected"
+    },
+    {
+      "environment": "chromium-desktop",
+      "task": "interaction",
+      "checks": "midpoint, foot, real point/line hits, drag separation, keyboard, 44px actions, no horizontal overflow"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l2-parallel",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l2-six",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l3-pyramid",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l3-prism",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l2-lineplane",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l4-standvlak",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l5-foot",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l6-commonfoot",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l7-a",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "construct-l7-b",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "legacy-0",
+      "checks": "complete independent construction and final verification"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "legacy-1",
+      "checks": "complete independent construction and final verification"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "geometric-guards",
+      "checks": "explicit extension before exterior intersection; skew lines rejected"
+    },
+    {
+      "environment": "chromium-mobile",
+      "task": "interaction",
+      "checks": "midpoint, foot, real point/line hits, drag separation, keyboard, 44px actions, no horizontal overflow"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l2-parallel",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l2-six",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l3-pyramid",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l3-prism",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l2-lineplane",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l4-standvlak",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l5-foot",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l6-commonfoot",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l7-a",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "construct-l7-b",
+      "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "legacy-0",
+      "checks": "complete independent construction and final verification"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "legacy-1",
+      "checks": "complete independent construction and final verification"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "geometric-guards",
+      "checks": "explicit extension before exterior intersection; skew lines rejected"
+    },
+    {
+      "environment": "webkit-mobile",
+      "task": "interaction",
+      "checks": "midpoint, foot, real point/line hits, drag separation, keyboard, 44px actions, no horizontal overflow"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Browser automation on Linux, not a physical iPhone or Safari session.",
+    "Not an empirical usability or learning-effect study."
+  ]
+}

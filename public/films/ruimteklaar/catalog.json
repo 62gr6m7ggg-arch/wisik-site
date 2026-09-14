@@ -1,5 +1,5 @@
 {
-  "version": "0.4.4",
+  "version": "0.4.5",
   "recordedBy": "Eigen docentstem",
   "items": [
     {
@@ -88,7 +88,7 @@
       "blockId": "lines",
       "title": "Het snijpunt ligt buiten de kubus",
       "audio": "/films/ruimteklaar/1.6/uitleg.m4a",
-      "duration": 71.0,
+      "duration": 71,
       "sha256": "7936dc1ff6fa4faab4cc1f59a44568f71f4647c0643a31ba0231bb7380057f03",
       "paragraphs": [
         "GM en AC lijken elkaar te missen. M is het midden van AE. Toch snijden hun lijnen elkaar. Waar?",
@@ -232,7 +232,7 @@
       "blockId": "l2-gelijkvormig",
       "title": "Gelijkvormigheid herkennen aan hoeken",
       "audio": "/films/ruimteklaar/2.6/uitleg.m4a",
-      "duration": 62.0,
+      "duration": 62,
       "sha256": "51529cbaa6f6d1fe98fc8e42afc2f6813421143bc7935ef09d34895a91ebfc3d",
       "paragraphs": [
         "Deze twee driehoeken liggen anders in beeld. Toch hebben ze dezelfde vorm. Hoe kun je dat onderbouwen?",
@@ -424,7 +424,7 @@
       "blockId": "l4-cos",
       "title": "De cosinusregel: Pythagoras met een correctie",
       "audio": "/films/ruimteklaar/4.2/uitleg.m4a",
-      "duration": 55.0,
+      "duration": 55,
       "sha256": "1a07cc5769da193598ad4a73c359e6810f0385cc732b87cee4e6f8bcb290b39f",
       "paragraphs": [
         "Twee zijden blijven even lang, maar de hoek ertussen gaat open. Wat gebeurt er met de derde zijde?",

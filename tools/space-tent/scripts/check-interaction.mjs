@@ -7,7 +7,7 @@ import {resolve} from 'node:path';
 const site=process.env.SPACE_AUDIT_SITE||process.cwd(),require=createRequire(site+'/package.json');
 const {build}=require('esbuild'),React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
 const learningPath=resolve(site,'app/learning.tsx');
-const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,COURSE,QUESTIONS,CHECKS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation'; export * as CV from './app/construction-visuals'; export * as PM from './app/projection-lesson-math'; export * as VM from './app/viewing-math'; export {default as CourseFigure} from './app/course-figure'; export {default as InsightFigure} from './app/insight-figure'; export {default as ConstructionLab} from './app/construction-lab'; export {default as CoursePaper} from './app/course-paper'; export {default as Paper} from './app/paper'; export {ProjectionLessonFrame,ViewingCue} from './app/projection-lesson';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]geometry\.tsx$/},args=>{
+const result=await build({stdin:{contents:`export * as React from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {BANK,COURSE,QUESTIONS,CHECKS,deriveProgress} from './app/model'; export {QuestionCard,LearningView} from './app/learning'; export {default as QuestionFigure} from './app/question-figure'; export {default as Geometry} from './app/geometry'; export {default as Workbench} from './app/workbench'; export * as G from './app/geometry-math'; export * as SelectionMath from './app/construction-selection-math'; export * as W from './app/workbench-math'; export * as V from './app/question-visuals'; export * as R from './app/rotation'; export * as CV from './app/construction-visuals'; export * as PM from './app/projection-lesson-math'; export * as VM from './app/viewing-math'; export {default as CourseFigure} from './app/course-figure'; export {default as InsightFigure} from './app/insight-figure'; export {default as ConstructionLab} from './app/construction-lab'; export {default as CoursePaper} from './app/course-paper'; export {default as Paper} from './app/paper'; export {ProjectionLessonFrame,ViewingCue} from './app/projection-lesson';`,resolveDir:site},absWorkingDir:site,tsconfig:resolve(site,'tsconfig.json'),bundle:true,platform:'node',format:'cjs',minify:process.argv.includes('--compile'),define:{'process.env.NODE_ENV':'"production"'},packages:process.argv.includes('--compile')?'bundle':'external',write:false,plugins:[{name:'question-state-fixture',setup(b){b.onLoad({filter:/[/\\]app[/\\]geometry\.tsx$/},args=>{
  let source=readFileSync(args.path,'utf8');const anchor="[planeFocus,setPlaneFocus]=useState('')";
  assert.equal(source.split(anchor).length,2);
  source=source.replace(anchor,"[planeFocus,setPlaneFocus]=useState(globalThis.__planeFixture||'')");
@@ -94,7 +94,7 @@ const geometrySource=readFileSync(resolve(site,'app/geometry.tsx'),'utf8');
 assert.match(geometrySource,/onPointerCancel=\{pointerEnd\}/,'Canceled touches must end the gesture');
 assert.match(geometrySource,/onLostPointerCapture=/,'Lost pointer capture must clear gesture state');
 assert.match(geometrySource,/onClickCapture=/,'A drag must not accidentally click a point');
-assert.match(geometrySource,/disabled=\{construction&&explore\}/,'Point selection on the rotating figure is disabled in look mode');
+assert.match(geometrySource,/disabled=\{selectionDisabled\|\|\(construction&&explore\)\}/,'Point selection on the rotating figure is disabled in look mode');
 
 // Camera limits, wrap-around, and drag threshold, including negative elevations.
 assert.equal(R.hasDragged(3,4),false);assert.equal(R.hasDragged(6,0),true);assert.equal(R.hasDragged(0,-6),true);
@@ -278,4 +278,35 @@ console.log(`Interaction SSR checks passed: ${cards} question-card states, ${fig
  assert.deepEqual(ledger.blocks.map(b=>b.id).sort(),BANK.blocks.map(b=>b.id).sort());
  assert.equal(ledger.instructionStates,instructions);assert.equal(ledger.explicitStudyViews,studyViews);
  console.log(`Whole-tool viewing checks passed: ${instructions} instruction/repair states, ${studyViews} explicit study-plane views, ${rays} matching view/ray models, ${preserved} unchanged primary SVGs, all ${tasks.length} construction tasks and ${Object.keys(COURSE.papers).length+1} paper tasks. All grading and diagnosis data match 0.4.2.`);
+}
+
+// Selection-first contract: resolve actual geometry, never projected crossings.
+{
+ const S=module.exports.SelectionMath;
+ const tasks=JSON.parse(readFileSync(resolve(site,'app/construction-tasks.json'),'utf8')).tasks;
+ let pairs=0;
+ for(const task of tasks){
+  const lines=task.edges.map(e=>({id:'edge-'+e,name:e,a:task.points[e[0]],b:task.points[e[1]]}));
+  for(const e of task.edges){
+   const forward=S.lineThroughPair([...e],task.points,lines),reverse=S.lineThroughPair([...e].reverse(),task.points,lines);
+   assert.ok(forward,task.id+'/'+e);assert.equal(forward.id,reverse.id);pairs+=2;
+   assert.equal(S.lineThroughPair([e[0],e[0]],task.points,lines),undefined);
+   const extended={...forward,id:'extended-'+e,infinite:true};
+   assert.equal(S.lineThroughPair([...e],task.points,[...lines,extended]).id,extended.id);
+   assert.equal(S.distinctLines([...lines,extended]).filter(l=>S.sameCarrier(l,extended)).length,1);
+  }
+  const html=render(module.exports.ConstructionLab,{task,events:[],save:async()=>true,onBack:()=>{}});
+  assert.ok(html.includes('data-selection-first="true"'));
+  assert.ok(!html.includes('>Uitvoeren')&&!html.includes('Kies een lijn</span>'));
+  assert.ok(html.includes('Lijn op naam kiezen'));
+ }
+ const l={id:'ab',name:'AB',a:[0,0,0],b:[1,0,0]},p={A:l.a,B:l.b,C:[.5,0,0],D:[2,0,0],E:[.5,0,1]};
+ assert.equal(S.lineThroughPair(['A','C'],p,[l]).id,l.id);
+ assert.equal(S.lineThroughPair(['A','D'],p,[l]),undefined);
+ assert.equal(S.lineThroughPair(['A','D'],p,[{...l,infinite:true}]).id,l.id);
+ assert.equal(S.lineThroughPair(['A','E'],p,[l]),undefined);
+ assert.equal(S.lineThroughPair(['A','B'],p,[]),undefined,'Selection must not create a phantom line');
+ assert.equal(S.screenSegmentDistance([5,4],[0,0],[10,0]),4);
+ assert.equal(S.screenSegmentDistance([13,4],[0,0],[10,0]),5);
+ console.log(`Selection-first checks passed: ${tasks.length} course tasks, ${pairs} forward/reverse edge selections, idempotent extensions and world-coordinate guards.`);
 }
