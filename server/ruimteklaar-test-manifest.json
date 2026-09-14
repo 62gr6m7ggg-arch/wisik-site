@@ -52,7 +52,7 @@
     "tools/space-tent/app/viewing-math.ts": "44e659c2fc56dc95825af5cfc2ecfe9ed361ddec1917cae25d777fb1d944f528",
     "tools/space-tent/app/workbench-math.ts": "77c2e882262fa69495b773afbac1e71881e21568d6673791a468d2bb8b81a131",
     "tools/space-tent/app/workbench.tsx": "4bb237e59580eb16e67ba42c3b466f0fbd3d35a80a3f7f6c1412dfa818c9c1e0",
-    "tools/space-tent/review/index.html": "d0f549019a07aa5a219a6ddd37b516942caba67b67de0ae944303c930e75c625",
+    "tools/space-tent/review/index.html": "d812a96c4acfddf0611a0046bb3a5a86a17dd28f0d0a3b9b1aa1cf1a122ba71a",
     "tools/space-tent/review/inventory.ts": "4ee3f2482f0fe52db931d81ce30ed6febb87a8866da5b1f18429c4b945f7d96c",
     "tools/space-tent/review/main.tsx": "059fe1379db761acdc32d5461002de5f662149c3539b24eb3ca383f4a9549c78",
     "tools/space-tent/review/review.css": "202b2a4bddcdd4b0ee083658e815d492403f4aa47c1d834df204408c0650fe0f",
@@ -60,7 +60,7 @@
     "tools/space-tent/scripts/build-review.mjs": "51d7b3e277941e49e5039094bc54518d9d9b05d4ebce802d7cf53bd06af421b6",
     "tools/space-tent/scripts/check-review-browser.mjs": "37cd78eb3e692b25940bbdd48f3f59a609c17e5b1ba9ac4f1e50f02c9feb030d",
     "tools/space-tent/package-lock.json": "9b91987e6c3cdbda4f01c917a2c580ed7afbe77cb3eae066dbbba2afd99f2718",
-    "server/ruimteklaar-test-auth.mjs": "c314362566482b547efcc67b87c290cdb1bc171ad7cb7fb2172ff97ca828efa9",
+    "server/ruimteklaar-test-auth.mjs": "96a162ccb3b0c4e75497e3e20e8d8d80d524508a994ce92d7a2d018f5ad54c60",
     "server/ruimteklaar-factor-code.mjs": "015597ec8b5db3c8c2a80600b8850d91d2aa1464998d8bc34d49000d438538da",
     "functions/apps/ruimteklaar/test/[[path]].js": "e99d9283206b2078f5afc27f9a0954a3b46ea788034bbc7f89c36495026f9884",
     "public/_routes.json": "fed6017a6a74270f6da437aa7f472de729d33e8c508a33ce83e013198b0c5f67",
@@ -68,7 +68,7 @@
     "scripts/audit-ruimteklaar-review.mjs": "a78b91ab665a0c4907b90b35feca2fbf80bd5492bd07d0a3a2d098407c48615e"
   },
   "privateAssets": {
-    "index.html": "da71611606cd10c151f6a46cbfcf60e51503632f6962e8a1263c31803dae7438",
+    "index.html": "4a65232011e48d55ca286a92926e39583b2afa35ceb67c1dac9c1571b5b33316",
     "assets/index-DFfurRR-.css": "b034f9ffb57a98fe533710fdb073f1e550532779df02d3f72e54ccabf692b3fc",
     "assets/index-DYWpEXM3.js": "4b5409f7df4d84dc4493b12d1bcac39c8d195563438aa77dbf025f6eafd42075"
   },
