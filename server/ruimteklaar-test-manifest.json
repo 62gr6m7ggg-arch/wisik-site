@@ -12,7 +12,7 @@
   "sourceFiles": {
     "tools/space-tent/app/audio-examples.json": "35930b3b2597ecd0afe4eafbea16ed2ae8d769aa897fc4b9f973397eb9ede7be",
     "tools/space-tent/app/construction-insight.tsx": "6b5535f19ea3ee6e2a3f47e32a0483465909eb928ef5da83a61d5470c62eaabc",
-    "tools/space-tent/app/construction-lab.tsx": "ab245ebb46fadfe5aa87ea55a7bdc2f0563e17fde89d6a840f13e0c54f13d555",
+    "tools/space-tent/app/construction-lab.tsx": "a8040c118c1e60f2a7f6c8d2b1bb83fce51dec4bedb1e5d5a9a37fed2326a39c",
     "tools/space-tent/app/construction-selection-math.ts": "f2a31ed167e8963c001426c5eebcb6ef3859855e8cdcb4500eeb3da7bcd19529",
     "tools/space-tent/app/construction-selection.css": "5bc465652714d8b9f0aa9d2e388eef97d6512f5a391782db6eaf19caca09886c",
     "tools/space-tent/app/construction-selection.tsx": "2ad37c1021e4599d2c82b13d3643a86c34ccac4346c63a5f60b263cfdd617b07",
@@ -46,7 +46,7 @@
     "tools/space-tent/app/rotation.ts": "2c478f06af92bc49e27f9a2d001b13fc675b3a7ffe48b54b863af91d2abc2b2f",
     "tools/space-tent/app/route-header.tsx": "4766e4826951377bdacab210addca6b796f3993c4ff6dd4a03dd031085f48fe0",
     "tools/space-tent/app/route-progress.ts": "e837e7148651619a0874d072522e09d58f16682ad224f816bb99177ad5e0ac41",
-    "tools/space-tent/app/ruimteklaar.tsx": "6435c3c4d5a7e19febc642e235c0eeaf6eec48dc46b94f46cd8d3e909aef4af0",
+    "tools/space-tent/app/ruimteklaar.tsx": "0231dce9fa5fd24f5ecb319f7b358579c6f0a4e737b612b76873e9ca1d1caca6",
     "tools/space-tent/app/version.ts": "38c713297f8ccdb551bd166af1cfc7bb84cb93f9e9b88938f72c7c2e01db3dee",
     "tools/space-tent/app/viewing-guide.tsx": "3726e67aa01bc0be52b4f6228f8f18ec10dce7070ad793be6ea7aca133e82ec0",
     "tools/space-tent/app/viewing-math.ts": "44e659c2fc56dc95825af5cfc2ecfe9ed361ddec1917cae25d777fb1d944f528",
@@ -68,9 +68,9 @@
     "scripts/audit-ruimteklaar-review.mjs": "a78b91ab665a0c4907b90b35feca2fbf80bd5492bd07d0a3a2d098407c48615e"
   },
   "privateAssets": {
-    "index.html": "4a65232011e48d55ca286a92926e39583b2afa35ceb67c1dac9c1571b5b33316",
-    "assets/index-DFfurRR-.css": "b034f9ffb57a98fe533710fdb073f1e550532779df02d3f72e54ccabf692b3fc",
-    "assets/index-DYWpEXM3.js": "4b5409f7df4d84dc4493b12d1bcac39c8d195563438aa77dbf025f6eafd42075"
+    "index.html": "2dc26763b2ecdccd96a7d1f56bd0419e6c98ae217b04bf798c1bbbdce510278d",
+    "assets/index-C25QSMea.js": "b382673b4c64ed3a5791e4a1e74dbd8709925008e31a3d0e5420ec838b3744d0",
+    "assets/index-DFfurRR-.css": "b034f9ffb57a98fe533710fdb073f1e550532779df02d3f72e54ccabf692b3fc"
   },
   "browserEvidence": {
     "status": "passed",
