@@ -22,8 +22,10 @@ jobs:
           const payload=[0,1,2].map(n=>fs.readFileSync('scripts/review-stage/part-'+n+'.txt','utf8').trim()).join('');
           assert.equal(hash(payload),'74f7d044ff154b065f5c6b86beda0229cbd146587f039a44c76db2ffbd9b0c74');
           const changes=JSON.parse(gunzipSync(Buffer.from(payload,'base64')));
+          const newFunction=changes.find(c=>c.path==='functions/apps/ruimteklaar/test/[[path]].js');assert.equal(newFunction.before,hash(''));newFunction.before=null;
           for(const c of changes){assert.ok(!c.path.includes('..')&&/^(docs\/ruimteklaar-testmodus.md|functions\/apps\/ruimteklaar\/test\/|public\/_routes.json|scripts\/(audit-ruimteklaar-review|test-ruimteklaar-review-auth).mjs|server\/ruimteklaar-test-auth.mjs|tools\/space-tent\/|package.json)/.test(c.path));assert.equal(fs.existsSync(c.path)?hash(fs.readFileSync(c.path)):null,c.before,'Source changed: '+c.path)}
           for(const c of changes){fs.mkdirSync(path.dirname(c.path),{recursive:true});fs.writeFileSync(c.path,c.content)}
+          const authPath='server/ruimteklaar-test-auth.mjs';const auth=fs.readFileSync(authPath,'utf8');assert.ok(auth.includes("'Referrer-Policy':'no-referrer'"));fs.writeFileSync(authPath,auth.replace("'Referrer-Policy':'no-referrer'","'Referrer-Policy':'same-origin'"));
           fs.rmSync('scripts/review-stage',{recursive:true});console.log('Applied '+changes.length+' reviewed files.');
           NODE
           fi
