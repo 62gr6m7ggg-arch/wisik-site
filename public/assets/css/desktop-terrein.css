@@ -24,7 +24,7 @@
   .map-wrap .map-intro .lead { max-width: 780px; font-size: 1rem; }
   .map-wrap .festival-map {
     display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-areas: "pabo euclides vo" "hbo backstage notes" "edge edge edge" "space rabbit board";
+    grid-template-areas: "pabo space euclides" "vo hbo backstage" "edge rabbit notes";
     gap: 28px 36px; align-items: start; min-height: 0; padding: 76px 36px 34px;
     background: radial-gradient(ellipse at 50% 0, #f6fae9 0, transparent 55%), linear-gradient(145deg, #d4e9bb, #b9d9a0 55%, #dcebc2);
     border: 2px solid #8eb078; border-radius: 36px; box-shadow: 0 18px 50px #274b3020;

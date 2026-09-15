@@ -1,0 +1,79 @@
+name: Spacetent hoofdpodium vrijgave
+on:
+  push:
+    branches: [feat/space-hoofdpodium]
+permissions:
+  contents: write
+concurrency:
+  group: space-mainstage-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/space-tent/package-lock.json
+      - run: npm ci
+        working-directory: tools/space-tent
+      - name: Build learner, reviewer and audit runtime
+        working-directory: tools/space-tent
+        run: npx tsc --noEmit && npm run build && npm run audit:build && npm test && node scripts/build-review.mjs
+      - name: Install browsers
+        run: |
+          npm install --prefix /tmp/space-browser --no-save playwright@1.56.1
+          /tmp/space-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Place fresh learner bundle
+        run: |
+          rm -rf public/apps/ruimteklaar/assets
+          cp -a tools/space-tent/.space-dist/. public/apps/ruimteklaar/
+          cp -a tools/space-tent/.audit-dist/. tools/space-tent/audit-runtime/
+      - name: Verify main stages, old links, billboard and artist entrance
+        env:
+          PLAYWRIGHT_MODULE: /tmp/space-browser/node_modules/playwright/index.mjs
+        run: |
+          node scripts/test-space-artist-entrance.mjs
+          node scripts/test-mobile-terrein.mjs
+          node scripts/check-space-artist-entrance-browser.mjs
+      - name: Verify required learner and reviewer browser evidence
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/space-browser/node_modules/playwright/index.mjs
+        run: |
+          node scripts/check-knowledge-browser.mjs
+          node scripts/check-desktop-workspace.mjs
+          node scripts/check-review-browser.mjs
+      - name: Bind evidence and run full release gate
+        run: |
+          cp tools/space-tent/.knowledge-browser/results.json tools/space-tent/validation/knowledge-browser-050.json
+          cp tools/space-tent/.workspace-browser/results.json tools/space-tent/validation/desktop-workspace-050.json
+          cp tools/space-tent/.review-browser/results.json tools/space-tent/validation/review-mode-100.json
+          node scripts/audit-pabo-release.mjs --write
+          node scripts/audit-space-release.mjs --write
+          node scripts/audit-ruimteklaar-review.mjs --write
+          npm run build
+      - name: Commit verified assets to the working branch
+        run: |
+          test "$(git ls-remote origin refs/heads/feat/space-hoofdpodium | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/apps/ruimteklaar tools/space-tent/audit-runtime tools/space-tent/validation/knowledge-browser-050.json tools/space-tent/validation/desktop-workspace-050.json tools/space-tent/validation/review-mode-100.json public/assets/data/pabo-release-audit.json public/assets/data/ruimteklaar-release-audit.json server/ruimteklaar-test-assets.mjs server/ruimteklaar-test-manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build and verify Spacetent 0.5.3 and Wisik 0.1.27'
+            git push origin HEAD:feat/space-hoofdpodium
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: space-mainstage-browser-evidence
+          path: |
+            /tmp/space-entrance-evidence/
+            tools/space-tent/.knowledge-browser/
+            tools/space-tent/.workspace-browser/
+            tools/space-tent/.review-browser/
+          include-hidden-files: true
+          retention-days: 7

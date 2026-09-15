@@ -68,7 +68,7 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
     if (stop === find("zone-space")) { festival.appendChild(venue); venue.appendChild(stop); venue.appendChild(bell); }
     else festival.appendChild(stop);
   });
-  const board = festival.appendChild(new Node("FIGURE"));
+  const board = venue.appendChild(new Node("FIGURE"));
   [find("moshpit"), find("grabbelton")].forEach(stop => sideStages.appendChild(stop));
   const originalFestival = [...festival.children];
   const originalSideStages = [...sideStages.children];
@@ -105,7 +105,7 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
 }
 
 const page = setup();
-const order = ["zone-pabo", "moshpit", "grabbelton", "zone-stoicheia", "zone-space", "kh-entry--map", "zone-vo", "zone-hbo", "zone-backstage", "zone-kladblok"];
+const order = ["zone-pabo", "zone-space", "zone-stoicheia", "moshpit", "grabbelton", "kh-entry--map", "zone-vo", "zone-hbo", "zone-backstage", "zone-kladblok"];
 assert.equal(page.directory.open, false, "The long alternative should start collapsed on mobile");
 assert.deepEqual(page.map.children.filter(node => node.tagName === "A" || node === page.venue).map(node => node === page.venue ? page.find("zone-space") : node), order.map(page.find), "Keyboard order must follow the walk");
 assert.equal(page.walkList.hidden, false);
@@ -127,10 +127,12 @@ for (let round = 0; round < 3; round++) {
   assert.deepEqual(withoutMarkers(page.festival), page.originalFestival, "Restore the exact desktop slots");
   assert.deepEqual(withoutMarkers(page.sideStages), page.originalSideStages, "Restore desktop side-stage navigation");
   assert.equal(page.directory.open, true);
+  assert.equal(page.find("zone-space").getAttribute("href"), "/hbo/space-tent/");
   assert.equal(page.find("zone-pabo").getAttribute("href"), "/pabo/pabo-rekenklaar/");
   page.resize(true);
   assert.deepEqual(page.map.children.filter(node => node.tagName === "A" || node === page.venue).map(node => node === page.venue ? page.find("zone-space") : node), order.map(page.find));
   assert.equal(page.walkList.children.length, 10, "Rotating/resizing must not duplicate the list");
+  assert.equal(page.board.parentNode, page.venue, "The billboard must travel with the tent");
   assert.equal(page.bell.parentNode, page.venue, "The bell must travel with the tent");
   assert.equal(page.find("zone-space").parentNode, page.venue);
   assert.equal(page.bell.getAttribute("href"), "/apps/ruimteklaar/test/");

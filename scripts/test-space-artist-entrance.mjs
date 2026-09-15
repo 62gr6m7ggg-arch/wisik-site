@@ -3,7 +3,7 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import {REVIEW_ROOT} from '../server/ruimteklaar-test-auth.mjs';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
-const pages=['public/index.html','public/rafelrand/index.html','public/rafelrand/space-tent/index.html'];
+const pages=['public/index.html','public/hbo/space-tent/index.html'];
 const context={window:{}};vm.runInNewContext(read('public/assets/js/site-data.js'),context);
 const tool=context.window.WISIK_TOOLS.find(t=>t.id==='ruimteklaar');
 assert.equal(tool.artistEntrance.url,REVIEW_ROOT);assert.equal(tool.artistEntrance.label,'artiesten-ingang');
@@ -14,8 +14,13 @@ for(const name of pages){
  assert.ok(markup.includes('space-doorbell'));assert.doesNotMatch(markup,/onclick|password|factor|priem|exponent|autoplay|<audio/i);
  assert.ok(html.includes('data-venue-id="ruimteklaar"'));
 }
+assert.equal(tool.maturity,'mainstage');assert.equal(tool.status,'open');
+assert.equal(tool.appUrl,'/apps/ruimteklaar/');assert.equal(tool.productUrl,'/hbo/space-tent/');
+assert.ok(read('public/_redirects').includes('/rafelrand/space-tent/ /hbo/space-tent/ 301'));
+assert.ok(!read('public/rafelrand/index.html').includes('data-artist-entrance'));
+assert.ok(read('public/rafelrand/index.html').includes('href="/hbo/space-tent/"'));
 const home=read(pages[0]);
-assert.match(home,/<div class="space-venue" data-terrain-group data-venue-id="ruimteklaar">\s*<a class="map-zone zone-space [\s\S]*?<\/a>\s*<a class="space-artist-entry"[\s\S]*?<\/a>\s*<\/div>/);
+assert.match(home,/<div id="space-tent" class="space-venue" data-terrain-group data-venue-id="ruimteklaar">\s*<a class="map-zone zone-space [\s\S]*?<\/a>\s*<a class="space-artist-entry"[\s\S]*?<\/a>\s*<figure class="space-billboard space-billboard-map">[\s\S]*?<\/figure>\s*<\/div>/);
 const runtime=read('public/assets/js/mobile-terrein.js');assert.ok(runtime.includes('link.closest("[data-terrain-group]") || link'));
 const css=read('public/assets/css/styles.css');assert.match(css,/\.space-artist-entry\s*\{[\s\S]*?min-height: 52px/);
 assert.ok(css.includes('.space-artist-entry:focus-visible'));assert.ok(css.includes('prefers-reduced-motion'));
@@ -28,4 +33,4 @@ for(const candidate of [tool,{...tool,route:'HBO',venue:'Space MainStage',maturi
  assert.ok(html.includes('href="'+REVIEW_ROOT+'"'));assert.equal((html.match(/space-doorbell/g)||[]).length,1);
 }
 for(const other of context.window.WISIK_TOOLS.filter(t=>t.id!=='ruimteklaar'))assert.ok(!sandbox.render(other).includes('data-artist-entrance'));
-console.log('Spacetent artiesten-ingang: vaste testroute, drie gekoppelde ingangen, verplaatsbare tentgroep, statusonafhankelijke attractiekaart, aanraakdoel en geen inloghints gecontroleerd.');
+console.log('Spacetent artiesten-ingang: vaste testroute, hoofdpodium en productpagina, verplaatsbare tentgroep, statusonafhankelijke attractiekaart, aanraakdoel en geen inloghints gecontroleerd.');

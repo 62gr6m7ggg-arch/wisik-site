@@ -1,0 +1,41 @@
+/* Space-tent main stage: keep the entrance and future board attached to the tent. */
+.space-stage-status {
+  margin: 12px 0;
+  color: #315540;
+  font-weight: 750;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+.map-wrap .space-venue {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 112px;
+  gap: 8px;
+  align-items: center;
+}
+.map-wrap .space-venue .zone-space { grid-column: 1 / -1; order: 0; }
+.map-wrap .space-venue > .space-artist-entry {
+  order: 1;
+  margin: 0;
+  justify-self: center;
+  max-width: 100%;
+  min-width: 0;
+}
+.map-wrap .space-venue > .space-billboard-map {
+  order: 2;
+  position: relative;
+  inset: auto;
+  grid-area: auto;
+  width: 112px;
+  margin: 0;
+  justify-self: center;
+}
+.map-wrap .space-venue .space-billboard-map figcaption { max-width: 100%; }
+@media (max-width: 1000px) {
+  .map-wrap .space-venue { order: 2; margin-bottom: 18px; }
+  .map-wrap .side-stage-card.moshpit { order: 4; }
+  .map-wrap .side-stage-card.grabbelton { order: 5; }
+  .map-wrap .kh-entry--map { order: 6; }
+}
+@media (max-width: 360px) {
+  .map-wrap .space-venue { grid-template-columns: minmax(0, 1fr) 96px; }
+  .map-wrap .space-venue > .space-billboard-map { width: 96px; }
+}

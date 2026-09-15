@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "auditVersion": "1.2.0",
-  "siteVersion": "0.1.26",
+  "siteVersion": "0.1.27",
   "tool": "Pabo Rekenklaar",
   "toolVersion": "1.6.3",
-  "generatedAt": "2026-09-14T16:45:30.507Z",
+  "generatedAt": "2026-09-15T07:46:42.957Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -950,7 +950,7 @@
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
     "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "89a7a9cca7bf2c8a33919b66ad24e303ef3fd3e73760a2f4394313ff45102186"
+    "sha256": "eb0a603d07ab48332111ebdd32518109421fe46894e40cdff9e7f4dbcb8ca7ce"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",
