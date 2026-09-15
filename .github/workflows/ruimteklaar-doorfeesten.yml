@@ -26,6 +26,11 @@ jobs:
         run: |
           npm install --prefix /tmp/knowledge-browser --no-save playwright@1.56.1
           /tmp/knowledge-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Check level continuation and save failure
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-level-continuation-browser.mjs
       - name: Check all concepts and return to unfinished work
         working-directory: tools/space-tent
         env:
@@ -46,11 +51,6 @@ jobs:
         env:
           PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
         run: node scripts/check-construction-next-browser.mjs
-      - name: Check level continuation and save failure
-        working-directory: tools/space-tent
-        env:
-          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
-        run: node scripts/check-level-continuation-browser.mjs
       - name: Check protected reviewer and learner isolation
         working-directory: tools/space-tent
         env:

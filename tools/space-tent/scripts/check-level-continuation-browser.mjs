@@ -26,14 +26,14 @@ function completed(level){const events=[];for(let l=1;l<=level;l++){
  events.push(...(M.CHECKS[l]||[]).map(id=>answer(id,'check','level-'+l)),event('paper',{level:String(l),checks:['figure','relations','intersection','reason']}));
  for(const t of C.CONSTRUCTION_TASKS.filter(t=>t.level===l))events.push(construction(t));
 }return events;}
-let browser;
+let browser,currentPage;
 try{for(const [name,engine,width,mobile] of [['desktop',chromium,1280,false],['mobile',chromium,390,true],['webkit-mobile',webkit,390,true]]){
- browser=await engine.launch({headless:true});const context=await browser.newContext({viewport:{width,height:844},isMobile:mobile,hasTouch:mobile});const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+ browser=await engine.launch({headless:true});const context=await browser.newContext({viewport:{width,height:844},isMobile:mobile,hasTouch:mobile});const page=await context.newPage();currentPage=page;page.on('pageerror',e=>errors.push(e.message));
  const button=label=>page.getByRole('button',{name:label,exact:true});
  async function seed(events,level){await page.goto(url);await page.evaluate(({key,events})=>localStorage.setItem(key,JSON.stringify({format:'wisik-space-tent-progress',version:1,events})),{key:L.LOCAL_PROGRESS_KEY,events});await page.reload();await page.locator('.level-tile').nth(level-1).click();}
  async function fillPaper(){await button('Mijn werk controleren').click();for(const box of await page.locator('.paper-checks [role=checkbox]').all())await box.check();}
  for(let level=1;level<=6;level++){
-  await seed(completed(level).filter(e=>!(e.type==='paper'&&e.payload.level===String(level))),level);
+  await seed(completed(level).filter(e=>!(e.type==='paper'&&String(e.payload.level??1)===String(level))),level);
   await page.locator('.finishing-tasks button').filter({hasText:'Op papier toepassen'}).click();
   assert.equal(await button('Doorfeesten naar level '+(level+1)).count(),0);
   await fillPaper();await button('Zelfcontrole vastleggen').click();
@@ -81,4 +81,5 @@ try{for(const [name,engine,width,mobile] of [['desktop',chromium,1280,false],['m
  await page.evaluate(()=>{Storage.prototype.setItem=window.originalSetItem});await button('Opnieuw opslaan').click();await button('Doorfeesten naar level 2').waitFor();
  await browser.close();browser=null;
 }assert.deepEqual(errors,[]);fs.writeFileSync(path.join(output,'results.json'),JSON.stringify({status:'passed',results,guards:['unfinished level stays in level','paper, check and construction as last requirement','reopening saved paper','failed save and successful retry'],errors},null,2));}
+catch(error){if(currentPage)await currentPage.screenshot({path:path.join(output,'failure.png'),fullPage:true}).catch(()=>{});fs.writeFileSync(path.join(output,'failure.json'),JSON.stringify({results,errors,error:String(error)},null,2));throw error;}
 finally{if(browser)await browser.close();server.close();}
