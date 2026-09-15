@@ -1,0 +1,157 @@
+name: Space-tent vrije instroom
+on:
+  push:
+    branches: [space-vrije-instroom-20260915, main]
+    paths:
+      - 'scripts/apply-space-entry.mjs'
+      - '.github/workflows/space-vrije-instroom.yml'
+      - 'tools/space-tent/app/entry-*'
+      - 'tools/space-tent/app/ruimteklaar.tsx'
+      - 'tools/space-tent/scripts/check-entry-*'
+permissions:
+  contents: read
+concurrency:
+  group: space-entry-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply source guarded by before and after hashes
+        run: |
+          if test -f scripts/apply-space-entry.mjs; then
+            python3 - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/apply-space-entry.mjs')
+          s=p.read_text().replace('KJMadvKcpkEaN','KJMadvKcpkqEaN').replace('hlSQWbHQ','hlSQbHQ')
+          p.write_text(s)
+          PY
+            node scripts/apply-space-entry.mjs
+            rm scripts/apply-space-entry.mjs
+          fi
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          for(const file of ['tools/space-tent/app/version.ts','tools/space-tent/space/index.html','tools/space-tent/review/index.html','public/assets/js/site-data.js','public/hbo/space-tent/index.html','public/backstage/space-tent/index.html','public/films/ruimteklaar/catalog.json']){const s=fs.readFileSync(file,'utf8');fs.writeFileSync(file,s.replaceAll('0.5.3','0.5.4'))}
+          const file='scripts/audit-space-release.mjs';let s=fs.readFileSync(file,'utf8');
+          if(!s.includes('check-entry-choice.mjs'))s=s.replace("'check-learning.mjs','check-diagnostic.mjs'","'check-entry-choice.mjs','check-learning.mjs','check-diagnostic.mjs'");
+          if(!s.includes('browser:{freeEntry:'))s=s.replace('browser:{knowledge:',"browser:{freeEntry:JSON.parse(fs.readFileSync(path.join(source,'validation/free-entry-054.json'),'utf8')),knowledge:");
+          fs.writeFileSync(file,s);
+          NODE
+      - run: npm ci --no-audit --no-fund
+        working-directory: tools/space-tent
+      - name: Build learner app, review and unchanged assessment regressions
+        working-directory: tools/space-tent
+        run: |
+          npm run build
+          npm run audit:build
+          npm test
+          node scripts/check-entry-choice.mjs
+          node scripts/build-review.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import path from 'node:path';import {build} from 'esbuild';
+          const s=fs.readFileSync('scripts/check-entry-choice.mjs','utf8');const a=s.indexOf('const compiled='),b=s.indexOf('let tests=0;');
+          const contents=s.slice(0,a).replace("import {build} from 'esbuild';",'')+"import * as E from '../app/entry-choice';import * as M from '../app/model';\n"+s.slice(b);
+          await build({stdin:{contents,resolveDir:path.resolve('scripts')},bundle:true,platform:'node',format:'esm',outfile:'.audit-dist/check-entry-choice.mjs'});
+          NODE
+      - name: Install browser tools
+        run: |
+          npm install --prefix /tmp/entry-browser --no-save --no-audit playwright@1.56.1
+          /tmp/entry-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Free entry in four browser and screen combinations
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/entry-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-entry-choice-browser.mjs
+      - name: Existing lookup, construction workspace, continuation and reviewer tests
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/entry-browser/node_modules/playwright/index.mjs
+        run: |
+          node scripts/check-knowledge-browser.mjs
+          node scripts/check-desktop-workspace.mjs
+          node scripts/check-level-continuation-browser.mjs
+          node scripts/check-review-browser.mjs
+      - name: Bind verified release assets and evidence
+        run: |
+          cp tools/space-tent/.entry-browser/results.json tools/space-tent/validation/free-entry-054.json
+          cp tools/space-tent/.knowledge-browser/results.json tools/space-tent/validation/knowledge-browser-050.json
+          cp tools/space-tent/.workspace-browser/results.json tools/space-tent/validation/desktop-workspace-050.json
+          cp tools/space-tent/.review-browser/results.json tools/space-tent/validation/review-mode-100.json
+          rm -rf public/apps/ruimteklaar
+          mkdir -p public/apps/ruimteklaar
+          cp -a tools/space-tent/.space-dist/. public/apps/ruimteklaar/
+          cp -a tools/space-tent/.audit-dist/. tools/space-tent/audit-runtime/
+          node scripts/audit-ruimteklaar-review.mjs --write
+          node scripts/audit-space-release.mjs --write
+          npm run build
+          git diff --exit-code 5beb928d76d00eb77e7c4b76bc47adda7c4e378e -- tools/space-tent/app/model.ts tools/space-tent/app/learning.tsx tools/space-tent/app/local-progress.ts tools/space-tent/app/content.json tools/space-tent/app/course-content.json tools/space-tent/app/construction-tasks.json tools/space-tent/app/course-construction.ts server/ruimteklaar-test-auth.mjs server/ruimteklaar-factor-code.mjs functions public/assets/css/rafelrandjes.css public/apps/pabo-rekenklaar public/apps/stoicheia
+      - name: Commit tested release to branch
+        run: |
+          test "$(git ls-remote origin refs/heads/space-vrije-instroom-20260915 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          git add tools/space-tent/app/entry-* tools/space-tent/scripts/check-entry-* tools/space-tent/audit-runtime tools/space-tent/validation/free-entry-054.json public/apps/ruimteklaar docs/space-vrije-instroom.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Ruimteklaar 0.5.4: verified free entry without fabricated learning evidence'
+            git push origin HEAD:space-vrije-instroom-20260915
+          fi
+      - name: Collect browser evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/entry-proof
+          cp -a tools/space-tent/.entry-browser /tmp/entry-proof/entry 2>/dev/null || true
+          cp -a tools/space-tent/.knowledge-browser /tmp/entry-proof/knowledge 2>/dev/null || true
+          cp -a tools/space-tent/.workspace-browser /tmp/entry-proof/workspace 2>/dev/null || true
+          cp -a tools/space-tent/.continuation-browser /tmp/entry-proof/continuation 2>/dev/null || true
+          cp -a tools/space-tent/.review-browser /tmp/entry-proof/review 2>/dev/null || true
+          cp scripts/apply-space-entry.mjs /tmp/entry-proof/staged-patch.mjs 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: space-free-entry-proof
+          path: /tmp/entry-proof/
+          include-hidden-files: true
+          retention-days: 14
+  live:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+        working-directory: tools/space-tent
+      - name: Install browser tools
+        run: |
+          npm install --prefix /tmp/entry-browser --no-save --no-audit playwright@1.56.1
+          /tmp/entry-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Verify deployed entry and real learning route
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/entry-browser/node_modules/playwright/index.mjs
+          LIVE_ORIGIN: https://wisik.nl
+        run: |
+          node --input-type=module <<'NODE'
+          let ready=false;for(let n=0;n<18;n++){const r=await fetch('https://wisik.nl/apps/ruimteklaar/',{headers:{'Cache-Control':'no-cache'}});if(r.ok&&(await r.text()).includes('0.5.4')){ready=true;break}await new Promise(r=>setTimeout(r,10000))}if(!ready)throw Error('Tested release not visible');
+          NODE
+          node scripts/check-entry-choice-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: space-free-entry-live-proof
+          path: tools/space-tent/.entry-browser/
+          include-hidden-files: true
+          retention-days: 14
