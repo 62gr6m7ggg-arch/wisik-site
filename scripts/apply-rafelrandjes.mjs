@@ -19,4 +19,9 @@ for(const c of changes){
  const text=chars.join('');assert.equal(hash(text),c.after,'Patch corrupted: '+c.path);outputs.push([c.path,text]);
 }
 for(const [file,text] of outputs){fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,text)}
-console.log('Applied '+outputs.length+' checksum-verified Rafelrandjes files.');
+const test='scripts/check-rafelrandjes-browser.mjs';
+const source=fs.readFileSync(test,'utf8');
+const before="assert.ok((await page.locator('.paper-heading').innerText()).includes('nog niet te oefenen'));";
+assert.ok(source.includes(before));
+fs.writeFileSync(test,source.replace(before,"assert.match(await page.locator('.paper-heading').innerText(),/nog niet te oefenen/i);"));
+console.log('Applied '+outputs.length+' checksum-verified Rafelrandjes files; visible status assertion respects CSS capitals.');
