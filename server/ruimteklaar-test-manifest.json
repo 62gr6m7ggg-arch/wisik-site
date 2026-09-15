@@ -1,6 +1,6 @@
 {
   "version": "1.1-factor-gate",
-  "learnerVersion": "0.5.3",
+  "learnerVersion": "0.5.4",
   "status": "passed",
   "auth": {
     "status": "passed",
@@ -24,6 +24,9 @@
     "tools/space-tent/app/course-figure.tsx": "22d1198896ac2070b4e3cd291c89a2aed92e92cc57c33975d8ba6b27b77a7017",
     "tools/space-tent/app/course-paper.tsx": "67b0e3b438568ed60ceded44b3c89c08dc813ab29319558ff617056ea4e1c43b",
     "tools/space-tent/app/diagnostic.ts": "ec6641e5097808d3f70363e19794f1354b1739c64280726d1f6c6294b4a3520c",
+    "tools/space-tent/app/entry-choice.css": "7ef88ad94b12e615f079033bdfb92256e9197ee8a195af6ce9237917322fee55",
+    "tools/space-tent/app/entry-choice.ts": "bea4b469d30c620107d66152aa1faa56712507f1c5048034b39633e482e30653",
+    "tools/space-tent/app/entry-chooser.tsx": "e849228b6a939c483dada6086b04182b01eea3b63b08a3f809cfeb6644734e47",
     "tools/space-tent/app/explanation-audio.css": "bcda3e3e2628bc5dd0e1cb4af75ddb7edf7f20512a0addfe14fc51b80d38d084",
     "tools/space-tent/app/explanation-audio.tsx": "c7deb2f05ec0397038f6992ac2455477f9d0f515e5850820369749863b852a49",
     "tools/space-tent/app/figure-guidance.tsx": "d6c3bac460363142fe716643566ad5573c34dddfafefbb205a7705520251de9d",
@@ -55,8 +58,8 @@
     "tools/space-tent/app/rotation.ts": "2c478f06af92bc49e27f9a2d001b13fc675b3a7ffe48b54b863af91d2abc2b2f",
     "tools/space-tent/app/route-header.tsx": "674fc3df365f786049252b5ef58ba4cc8be0fd0f8367dcc20bdfbb1ff80e0a35",
     "tools/space-tent/app/route-progress.ts": "e837e7148651619a0874d072522e09d58f16682ad224f816bb99177ad5e0ac41",
-    "tools/space-tent/app/ruimteklaar.tsx": "d6ee0537a0b78432b06ebb6c70d5a798d485e3a5488970c9a1184d39b380a153",
-    "tools/space-tent/app/version.ts": "82f2a7b1def2f560c4f47592f9e8cbb68f34d86e2e8e8d519cffeea34a7e1647",
+    "tools/space-tent/app/ruimteklaar.tsx": "f43d9ca20f374c95639e3bf80c958373c6066ebc2466add72e4a6217e4aa1256",
+    "tools/space-tent/app/version.ts": "6e708b7ae75230e037a19362caa3ab2f051f50acc89bb1593da1fe179c14ad2c",
     "tools/space-tent/app/viewing-guide.tsx": "3726e67aa01bc0be52b4f6228f8f18ec10dce7070ad793be6ea7aca133e82ec0",
     "tools/space-tent/app/viewing-math.ts": "44e659c2fc56dc95825af5cfc2ecfe9ed361ddec1917cae25d777fb1d944f528",
     "tools/space-tent/app/workbench-math.ts": "77c2e882262fa69495b773afbac1e71881e21568d6673791a468d2bb8b81a131",
@@ -77,9 +80,9 @@
     "scripts/audit-ruimteklaar-review.mjs": "99b17d1ac701c39936b3d40e2f01fd214198d4180c32a1df016714f1924310b7"
   },
   "privateAssets": {
-    "index.html": "09e3ba0dff3151bfed6c8dac0ae477562ec05891501fdd26c52fe5e6724e473a",
+    "index.html": "8d22ea430762a6a74a7f2ac098c7b4c8d668aeaed9e0c36580246e140523e5ec",
     "assets/index-5-63GSC2.css": "c50539d6758240e76e5929ac37715e7ad07e217e3681dea3a7f7e70d48a76f8a",
-    "assets/index-BFSoEJJw.js": "cd2ceaa90855a4cbe04ab05706236ddd7c0ddfb707b049a68b525dcfa45fa7d3"
+    "assets/index-xSKhswT-.js": "abdeaf5244433a8cefe811276051b2de683819277949d068c06b466dd1437ca4"
   },
   "browserEvidence": {
     "status": "passed",

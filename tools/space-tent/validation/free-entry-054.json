@@ -1,0 +1,65 @@
+{
+  "version": "0.5.4",
+  "status": "passed",
+  "live": false,
+  "results": [
+    {
+      "environment": "desktop",
+      "width": 1280,
+      "status": "passed",
+      "levels": 7,
+      "choiceNotCompletion": true,
+      "reloadChoice": true,
+      "realLearning": true,
+      "guidedReturnPreservesProgress": true,
+      "topStatusGuard": true,
+      "keyboardAndCancel": true,
+      "knowledgeReturn": true
+    },
+    {
+      "environment": "mobile",
+      "width": 390,
+      "status": "passed",
+      "levels": 7,
+      "choiceNotCompletion": true,
+      "reloadChoice": true,
+      "realLearning": true,
+      "guidedReturnPreservesProgress": true,
+      "topStatusGuard": true,
+      "keyboardAndCancel": true,
+      "knowledgeReturn": true
+    },
+    {
+      "environment": "narrow",
+      "width": 320,
+      "status": "passed",
+      "levels": 7,
+      "choiceNotCompletion": true,
+      "reloadChoice": true,
+      "realLearning": true,
+      "guidedReturnPreservesProgress": true,
+      "topStatusGuard": true,
+      "keyboardAndCancel": true,
+      "knowledgeReturn": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "width": 390,
+      "status": "passed",
+      "levels": 7,
+      "choiceNotCompletion": true,
+      "reloadChoice": true,
+      "realLearning": true,
+      "guidedReturnPreservesProgress": true,
+      "topStatusGuard": true,
+      "keyboardAndCancel": true,
+      "knowledgeReturn": true
+    }
+  ],
+  "errors": [],
+  "network": [],
+  "limitations": [
+    "Automated Linux browsers and mobile emulation, not a physical iPhone or user study.",
+    "Free entry is not an assessment of prior knowledge."
+  ]
+}
