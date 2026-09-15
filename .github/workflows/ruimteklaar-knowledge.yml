@@ -2,6 +2,9 @@ name: Spacetent vraagbaak
 on:
   push:
     branches: [feat/space-vraagbaak]
+concurrency:
+  group: spacetent-vraagbaak-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -23,16 +26,31 @@ jobs:
         run: |
           npm install --prefix /tmp/knowledge-browser --no-save playwright@1.56.1
           /tmp/knowledge-browser/node_modules/.bin/playwright install --with-deps chromium webkit
-      - name: Check lookup, learning, construction and protected review
+      - name: Check all concepts and return to unfinished work
         working-directory: tools/space-tent
         env:
           PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
-        run: |
-          node scripts/check-knowledge-browser.mjs
-          node scripts/check-desktop-workspace.mjs
-          node scripts/check-selection-browser.mjs
-          node scripts/check-construction-next-browser.mjs
-          node scripts/check-review-browser.mjs
+        run: node scripts/check-knowledge-browser.mjs
+      - name: Check desktop and mobile construction workspace
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-desktop-workspace.mjs
+      - name: Check construction selection and actions
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-selection-browser.mjs
+      - name: Check continuing after construction
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-construction-next-browser.mjs
+      - name: Check protected reviewer and learner isolation
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-review-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
