@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "status": "passed",
   "results": [
     {
@@ -22,7 +22,7 @@
       "browser": "141.0.7390.37",
       "width": 1024,
       "height": 680,
-      "articles": 5,
+      "articles": 7,
       "lookupReturn": true,
       "draftAnswer": true,
       "constructionAndUndo": true,
@@ -37,7 +37,7 @@
       "browser": "141.0.7390.37",
       "width": 390,
       "height": 844,
-      "articles": 5,
+      "articles": 7,
       "lookupReturn": true,
       "draftAnswer": true,
       "constructionAndUndo": true,
@@ -67,7 +67,7 @@
       "browser": "26.0",
       "width": 390,
       "height": 844,
-      "articles": 5,
+      "articles": 7,
       "lookupReturn": true,
       "draftAnswer": true,
       "constructionAndUndo": true,
