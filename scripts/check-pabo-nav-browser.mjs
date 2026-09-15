@@ -57,7 +57,7 @@ try{
    assert.equal(await page.locator('.wisik-exit-nav .wisik-terrain-link').count(),1);
    await page.screenshot({path:path.join(output,config.name+'-home.png')});
    for(const view of ['learn','practice','exam','stats','home']){
-    await page.locator('[data-nav="'+view+'"]').click();await page.waitForTimeout(150);await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await layout(page,config.name+' '+view);
+    await page.locator('.bottom-nav [data-nav="'+view+'"]').click();await page.waitForTimeout(150);await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await layout(page,config.name+' '+view);
     await page.evaluate(()=>window.scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));await page.waitForTimeout(80);
     const footer=await page.locator('.bottom-nav').boundingBox();const active=await page.locator('.view.active').boundingBox();assert.ok(active.y+active.height<=footer.y-5,view+': view end cannot clear bottom navigation');
     const buttons=page.locator('.view.active button:visible:not([disabled])');if(await buttons.count()){
@@ -70,13 +70,13 @@ try{
     for(const width of [320,360,390,520,620,768,1024,1440,390,1280]){await page.setViewportSize({width,height:900});await page.waitForTimeout(80);await layout(page,'resize '+width);assert.equal(await page.locator('[data-wisik-exit-nav]').count(),1);}
    }
    // Settings dialog must cover the header and retain working keyboard navigation.
-   await page.locator('#settingsBtn').focus();await page.keyboard.press('Enter');await page.locator('#settingLarge').waitFor();
+   await page.locator('#settingsBtn').focus();await page.keyboard.press('Enter');await page.locator('#modalBackdrop.show').waitFor();
    const modalTop=await page.locator('.modal-head').evaluate(el=>{const r=el.getBoundingClientRect();return el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));});assert.ok(modalTop,'header covers settings');
-   await page.locator('#settingLarge').check();await page.locator('#settingMotion').check();await page.locator('#saveSettings').click();await page.waitForTimeout(120);await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await layout(page,'large text');
+   for(const id of ['settingLarge','settingMotion']){if(!await page.locator('#'+id).isChecked())await page.locator('label.switch:has(#'+id+')').click();assert.equal(await page.locator('#'+id).isChecked(),true);}await page.locator('#saveSettings').click();await page.waitForTimeout(120);await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await layout(page,'large text');
    await page.screenshot({path:path.join(output,config.name+'-large-text.png')});
    const learned=()=>page.evaluate(()=>{const s=JSON.parse(localStorage.getItem('pabo-rekenklaar-state-v1')||'{}');return {xp:s.xp,answered:s.totalAnswered,lessons:s.completedLessons};});const progress=await learned();
    // Exercise a real practice view without submitting a fabricated answer.
-   await page.locator('[data-nav="practice"]').click();await page.locator('#startPracticeBtn').click();await page.locator('.question-card').first().waitFor();await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await layout(page,'active question');assert.equal(await page.locator('.bottom-nav').isVisible(),false);
+   await page.locator('.bottom-nav [data-nav="practice"]').click();await page.locator('#startPracticeBtn').click();await page.locator('.question-card').first().waitFor();await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await layout(page,'active question');assert.equal(await page.locator('.bottom-nav').isVisible(),false);
    const scratch=page.locator('[data-action="scratch"]');if(await scratch.count()){
     await scratch.first().click();const r=await page.locator('#scratchpad').boundingBox();const h=await page.locator('.topbar').boundingBox();assert.ok(r.y>=h.y+h.height,'scratchpad covers header');await page.locator('#closeScratch').click();
    }
@@ -88,7 +88,7 @@ try{
    if(process.env.LIVE_ORIGIN){const snap=await page.evaluate(()=>JSON.parse(localStorage.getItem('wisik:pabo-rekenklaar:last-exit')));assert.equal(snap.app,'Pabo Rekenklaar');assert.ok(snap.destination.startsWith('https://wisik.nl/kladblok/'));}
    await page.goto(origin+app);await page.locator('.wisik-header-integrated').waitFor();assert.deepEqual(await learned(),progress,'return changed scores');
    assert.deepEqual(errors,[]);result.environments.push({name:config.name,status:'passed',checks:'no overlapping/covered header controls; wrapping; 44px links; all five views; last buttons and content clear footer; settings/large text; active question; scratchpad; Kladblok context and return; no unearned progress'});
-  }catch(e){result.errors.push(config.name+': '+e.message);await page.screenshot({path:path.join(output,config.name+'-failure.png'),fullPage:true});throw e;}
+  }catch(e){result.status='failed';result.errors.push(config.name+': '+e.message);await page.screenshot({path:path.join(output,config.name+'-failure.png'),fullPage:true});throw e;}
   finally{await context.close();await browser.close();}
  }
  result.status='passed';
