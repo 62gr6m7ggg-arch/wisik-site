@@ -5006,14 +5006,18 @@
     "supportingTerm": false,
     "summary": "De lengte van de loodrechte verbinding van het punt met het vlak. Voor een punt in het vlak is de afstand nul.",
     "explanation": [
-      "De afstand van een punt P tot een vlak V is de lengte van de loodrechte verbinding PF, met F in V. Als P in V ligt, is die afstand nul.",
-      "Deze lengte is het kleinst: voor ieder ander punt Q in V staat PF loodrecht op FQ. Daarom geeft Pythagoras PQ² = PF² + FQ². Je kunt PF soms direct construeren, maar ook via de inhoud van een piramide berekenen."
+      "De afstand van een punt P tot een vlak is de lengte van de loodrechte verbinding PF, met F in het vlak. Als P in het vlak ligt, is die afstand nul.",
+      "Deze lengte is het kleinst: voor ieder ander punt Q in het vlak staat PF loodrecht op FQ. Daarom geeft Pythagoras PQ² = PF² + FQ². Je kunt PF soms direct construeren en in een hulpdriehoek berekenen.",
+      "Een andere manier gebruikt de inhoud van een piramide. Kies P als top en een grondvlak dat in het gevraagde vlak ligt. De loodrechte hoogte h van die piramide is dan precies PF, de gezochte afstand.",
+      "Voor een piramide geldt: inhoud = ⅓ × grondvlakoppervlakte × hoogte. In letters: V = ⅓ × G × h. Hier is V de inhoud, G de oppervlakte van het grondvlak en h de loodrechte hoogte. Daarom is h = (3 × V) / G: drie keer de inhoud gedeeld door de grondvlakoppervlakte.",
+      "Bijvoorbeeld: is de inhoud 20 cm³ en de grondvlakoppervlakte 15 cm², dan is de afstand h = (3 × 20) / 15 = 4 cm. Deze methode helpt alleen als je de inhoud en de grondvlakoppervlakte al kent of kunt berekenen zonder de gezochte hoogte te gebruiken."
     ],
     "steps": [
       "Zoek een loodlijn op het vlak door P.",
       "Bepaal zijn snijpunt F met het vlak.",
-      "Bereken PF in een hulpdriehoek, of gebruik h = 3V/G bij een geschikte piramide.",
-      "Controleer dat de gebruikte hoogte bij het gekozen vlak hoort."
+      "Bereken PF in een hulpdriehoek. Of kies een piramide met top P en een grondvlak in het gevraagde vlak: de afstand PF is dan de loodrechte hoogte h.",
+      "Gebruik je de piramide? Bereken dan h = (3 × V) / G: drie keer de inhoud V gedeeld door de grondvlakoppervlakte G. Beide moeten bekend zijn of zonder de gezochte hoogte berekend kunnen worden.",
+      "Controleer dat de hoogte loodrecht op het gekozen vlak staat en gebruik passende eenheden: inhoud in cm³ en oppervlakte in cm² geven een afstand in cm."
     ],
     "example": {
       "given": "In een loodrecht assenstelsel is P = (2,3,4). Het vlak is het xy-vlak.",
@@ -5025,7 +5029,9 @@
     },
     "pitfalls": [
       "Een schuine verbinding naar een vlakpunt geeft niet de afstand.",
-      "Het getekende vlakdeel mag worden verlengd."
+      "Het getekende vlakdeel mag worden verlengd.",
+      "V betekent hier inhoud, niet het vlak. G is een oppervlakte, geen lengte.",
+      "Gebruik niet de schuine zijhoogte van de piramide: alleen de loodrechte hoogte is de afstand tot het vlak."
     ],
     "related": [
       "loodvoet",
@@ -5316,14 +5322,15 @@
     "supportingTerm": true,
     "summary": "Dezelfde piramide-inhoud met een ander grondvlak en de bijbehorende hoogte uitdrukken. De gezochte punt-vlakafstand is die hoogte.",
     "explanation": [
-      "Een afstand van een punt tot een vlak is een hoogte van een piramide met dat punt als top en een geschikte veelhoek in het vlak als basis. Uit V = ⅓Gh volgt h = 3V/G.",
-      "Bij een viervlak kun je een ander zijvlak als basis kiezen. De inhoud blijft dezelfde, maar grondoppervlakte en bijbehorende hoogte veranderen. Zo bereken je een moeilijk zichtbare afstand via een gemakkelijker volume."
+      "Een afstand van een punt tot een vlak is de loodrechte hoogte van een piramide met dat punt als top en een geschikte veelhoek in het vlak als grondvlak.",
+      "Voor een piramide geldt V = ⅓ × G × h. V is de inhoud, G is de oppervlakte van het grondvlak en h is de loodrechte hoogte. Om de hoogte te berekenen gebruik je h = (3 × V) / G: drie keer de inhoud gedeeld door de grondvlakoppervlakte.",
+      "Bij een viervlak kun je een ander zijvlak als grondvlak kiezen. De inhoud blijft dezelfde, maar grondvlakoppervlakte en bijbehorende hoogte veranderen. Bereken de inhoud eerst met een basis en hoogte die je wel kent. Deel daarna drie keer die inhoud door de oppervlakte van het grondvlak in het gevraagde vlak."
     ],
     "steps": [
       "Kies een piramide of viervlak met het punt als top en het gevraagde vlak als basisvlak.",
       "Bereken de inhoud via een gemakkelijkere basis en hoogte.",
       "Bereken de oppervlakte van de gewenste basis.",
-      "Gebruik h = 3V/G."
+      "Bereken de afstand h = (3 × V) / G: drie keer de inhoud V gedeeld door de grondvlakoppervlakte G. Deze h staat loodrecht op het gevraagde vlak."
     ],
     "example": {
       "given": "Viervlak OABC heeft loodrechte ribben OA = 3, OB = 4 en OC = 5 vanuit O. Gevraagd is de afstand van B tot vlak OAC.",
@@ -5335,7 +5342,9 @@
     },
     "pitfalls": [
       "Gebruik dezelfde piramide-inhoud bij het wisselen van basis.",
-      "Vergeet de factor 3 niet bij het vrijmaken van h."
+      "Vergeet de factor 3 niet bij het vrijmaken van h.",
+      "Je moet de inhoud kunnen berekenen zonder de gezochte hoogte al te kennen.",
+      "Gebruik consistente eenheden: cm³ gedeeld door cm² geeft cm."
     ],
     "related": [
       "afstand-van-een-punt-tot-een-vlak",

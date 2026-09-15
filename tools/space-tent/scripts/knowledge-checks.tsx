@@ -22,6 +22,18 @@ for(const e of ENTRIES){
  if(e.figure)assert.ok(FIGURE_KINDS.includes(e.figure),e.term+' supported illustration');
  assert.ok(!/TODO|Lorem ipsum|uitleg volgt|nog uitwerken/i.test(JSON.stringify(e)),e.term+' no placeholders');
 }
+// The volume shortcut must remain understandable without opening another article.
+for(const id of ['afstand-van-een-punt-tot-een-vlak','afstand-via-inhoud']){
+ const entry=ENTRY_BY_ID.get(id)!;
+ const explanation=entry.explanation.join(' ');
+ assert.match(explanation,/V (?:is|de) (?:de )?inhoud/,id+' explains V');
+ assert.match(explanation,/G (?:is|de) (?:de )?oppervlakte van het grondvlak/,id+' explains G');
+ assert.match(explanation,/h (?:is|de) (?:de )?loodrechte hoogte/,id+' explains h');
+ assert.match(explanation,/drie keer de inhoud gedeeld door de grondvlakoppervlakte/,id+' reads formula aloud');
+ assert.match(entry.steps.join(' '),/drie keer de inhoud V gedeeld door de grondvlakoppervlakte G/,id+' self-contained method');
+ assert.match(explanation,/zonder de gezochte hoogte|hoogte die je wel kent/,id+' avoids circular calculation');
+}
+near(3*20/15,4,'point-plane volume example');
 assert.deepEqual(findEntries('loodvoet').entries.map(e=>e.id),['loodvoet']);
 assert.equal(findEntries('tetraeder').entries[0].term,'Viervlak');
 assert.equal(findEntries('DIAMETER').entries[0].term,'Middellijn');
