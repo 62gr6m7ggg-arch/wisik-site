@@ -1,5 +1,5 @@
 /* Wisik.nl — centrale attractieregistratie. */
-window.WISIK_SITE_VERSION = "0.1.27";
+window.WISIK_SITE_VERSION = "0.1.28";
 window.WISIK_MISCONCEPTION_CODES = Object.freeze([
   "A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08",
   "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08",
@@ -68,13 +68,13 @@ window.WISIK_TOOLS = Object.freeze([
     phase: "Instroom / jaar 1",
     level: "Basisvaardigheden voor technische opleidingen",
     subject: "Rekenen, algebra, meten en verbanden",
-    venue: "HBO-Werkplaats",
+    venue: "Rafelrandjes · HBO-werkplaats",
     maturity: "bouwplaats",
     status: "concept",
-    statusLabel: "Concept",
+    statusLabel: "Concept · nog niet te oefenen",
     version: "0.0",
     summary: "Een toekomstige route waarin wiskundige basisvaardigheden worden verbonden aan bouwen, meten, ontwerpen en constructies.",
-    productUrl: "/hbo/#summer-course-bouwkunde",
+    productUrl: "/rafelrand/#hbo-werkplaats",
     appUrl: "",
     icon: "△",
     accent: "blue",

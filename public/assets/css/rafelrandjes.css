@@ -1,0 +1,100 @@
+/* Rafelrandjes — an inhabited sketch sheet, not a broken interface.
+   Original Wisik artwork in CSS. © Edwin van der Plas. */
+.paper-surface {
+  --paper-edge: polygon(1% 2%,4% 1%,7% 2.4%,10% .5%,14% 1.6%,18% .4%,22% 1.8%,26% .6%,30% 1.2%,34% .3%,38% 1.7%,42% .5%,47% 1.1%,51% .2%,55% 1.7%,59% .6%,64% 1.3%,68% .4%,73% 1.8%,77% .7%,82% 1.2%,87% .4%,91% 1.6%,95% .5%,98% 1.4%,99% 5%,98.2% 12%,99.6% 18%,98.7% 26%,99.8% 34%,98.5% 42%,99.6% 50%,98.5% 58%,99.8% 66%,98.7% 74%,99.6% 82%,98.5% 91%,99% 97%,95% 99%,91% 97.9%,87% 99.6%,83% 98.2%,78% 99.8%,73% 98.4%,69% 99.5%,65% 98.3%,60% 99.7%,55% 98.5%,50% 99.8%,45% 98.4%,40% 99.5%,35% 98.1%,30% 99.7%,25% 98.4%,20% 99.6%,16% 98.1%,12% 99.7%,8% 98.3%,4% 99.3%,1% 97%,1.8% 91%,.4% 83%,1.3% 75%,.2% 68%,1.6% 60%,.4% 52%,1.5% 44%,.3% 36%,1.4% 27%,.4% 19%,1.6% 11%);
+  position: relative;
+  isolation: isolate;
+  color: #302b25;
+  filter: drop-shadow(2px 7px 4px #342a242a);
+}
+/* Clip only the decorative sheet: links, focus rings and text are never clipped. */
+.paper-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  clip-path: var(--paper-edge);
+  background:
+    radial-gradient(ellipse at 1% 27%, #70513548 0, #95795c15 7%, transparent 15%),
+    radial-gradient(ellipse at 99% 67%, #6e554745 0, #997a5622 6%, transparent 16%),
+    radial-gradient(ellipse at 15% 99%, #98754633, transparent 20%),
+    radial-gradient(ellipse at 94% 2%, #8e73553b, transparent 22%),
+    linear-gradient(101deg, transparent 47%, #9c89691a 49.5%, #fffdf595 50%, transparent 52%),
+    repeating-linear-gradient(0deg, transparent 0 27px, #7089a51b 27px 28px),
+    #f3e7cc;
+  box-shadow: inset 0 0 28px #84603c33;
+}
+.paper-surface::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 12%;
+  width: 94px;
+  height: 28px;
+  background: linear-gradient(95deg, #d9bf85a8, #e8d3a39c 53%, #cfb1789c);
+  border-inline: 2px dotted #aa8b5244;
+  transform: rotate(-9deg);
+  box-shadow: 0 1px 2px #4c362218;
+  pointer-events: none;
+}
+.paper-stamp { position: absolute; right: 26px; top: 28px; padding: 3px 8px; border: 2px solid currentColor; color: #914437; transform: rotate(7deg); font: 750 .75rem/1.3 ui-monospace, monospace; letter-spacing: .12em; opacity: .86; pointer-events: none; }
+.paper-scribble, .paper-motto { font-family: "Segoe Print", "Bradley Hand", cursive; font-weight: 650; color: #31565c; }
+.paper-scribble { display: block; margin: 8px 16px 0; text-align: right; font-size: 1rem; transform: rotate(-2deg); pointer-events: none; }
+/* One group owns the label and the worksite on every screen, including no-JS. */
+.map-wrap .rafelrand-venue { grid-area: edge; order: 8; min-width: 0; padding: 32px 26px 24px; margin: 12px 0; align-self: center; }
+.map-wrap .rafelrand-venue .map-zone { position: relative; inset: auto; width: 100%; min-height: 0; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; transform: none; }
+.map-wrap .rafelrand-venue .zone-rafel { display: block; width: fit-content; max-width: 100%; padding-right: 95px; margin-bottom: 12px; }
+.map-wrap .rafelrand-venue .zone-rafel .zone-card { padding: 0; margin: 0; max-width: none; border: 0; border-radius: 0; box-shadow: none; background: none; text-align: left; }
+.map-wrap .rafelrand-venue .zone-rafel h3 { display: inline-block; color: #302b25; font-size: clamp(1.55rem, 2.5vw, 2.25rem); letter-spacing: -.03em; margin: 3px 0 6px; border-bottom: 3px solid #b97544; }
+.map-wrap .rafelrand-venue .zone-rafel .zone-badge { font-size: .8125rem; color: #5c4f3e; }
+.map-wrap .rafelrand-venue .zone-rafel .terrain-short { display: block; color: #4c483c; margin: 2px 0 0; font-size: 1rem; }
+.map-wrap .rafelrand-venue .zone-hbo { display: grid; grid-template-columns: minmax(100px, 32fr) minmax(0, 68fr); gap: 14px; align-items: center; }
+.map-wrap .rafelrand-venue .zone-hbo .terrain-art { width: 100%; max-width: 180px; grid-column: 1; grid-row: 1; filter: sepia(.18) drop-shadow(0 4px 2px #44362218); }
+.map-wrap .rafelrand-venue .zone-hbo .zone-card { grid-column: 2; grid-row: 1; width: 100%; max-width: none; text-align: left; margin: 0; padding: 14px 16px; background: #fbf3df; border: 1px solid #b3a17d; border-bottom: 3px solid #9d8861; border-radius: 3px 7px 4px 3px; box-shadow: 2px 4px 0 #6347210e; }
+.map-wrap .rafelrand-venue .zone-hbo h3 { color: #163f58; }
+.map-wrap .rafelrand-venue .zone-hbo .zone-badge { color: #79502f; }
+.map-wrap .rafelrand-venue a:focus-visible { outline: 3px solid #163f58; outline-offset: 5px; border-radius: 4px; }
+.map-wrap .rafelrand-venue a:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+@media screen and (min-width:1001px) {
+  .map-wrap .festival-map { grid-template-areas: "pabo space euclides" "vo rabbit backstage" "edge edge notes"; }
+  .map-wrap .rafelrand-venue { width: 100%; transform: rotate(-.8deg); }
+  .map-wrap .rafelrand-venue .zone-hbo .terrain-short { font-size: 1.05rem; }
+}
+@media (max-width:1000px) {
+  .map-wrap .rafelrand-venue { width: min(100%, 560px); margin: 16px auto 22px; padding: 30px 18px 22px; }
+  .map-wrap .rafelrand-venue .zone-rafel { padding-right: 0; padding-top: 17px; }
+  .map-wrap .rafelrand-venue .paper-stamp { top: 18px; right: 23px; font-size: .65rem; }
+  .map-wrap .rafelrand-venue .zone-hbo { grid-template-columns: minmax(65px, 32fr) minmax(0, 68fr); gap: 8px; }
+  .map-wrap .rafelrand-venue .zone-hbo .zone-card { padding: 12px 10px; }
+  .map-wrap .rafelrand-venue .zone-hbo h3 { font-size: 1.12rem; }
+  .map-wrap .rafelrand-venue .zone-hbo .zone-badge { font-size: .8125rem; }
+  .map-wrap .rafelrand-venue .zone-hbo .terrain-short { font-size: .9375rem; }
+  .map-wrap .rafelrand-venue .paper-scribble { margin: 14px 8px 0; font-size: .9375rem; }
+}
+.rafelrand-page { background: #f5f1e8; }
+.rafelrand-page .page-hero { background: #e6eadd; }
+.rafelrand-page .page-hero .lead { color: #4c5749; }
+.paper-panel { padding: clamp(34px, 5vw, 64px); }
+.paper-heading { max-width: 780px; padding-top: 20px; }
+.paper-heading h2 { font-size: clamp(2rem, 5vw, 3.3rem); margin: 12px 0; }
+.paper-heading .lead { font-weight: 650; }
+.paper-heading .kicker { color: #79502f; }
+.paper-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 40px; margin: 28px 0; }
+.paper-facts section { border-top: 1px solid #b4a488; padding-top: 18px; }
+.paper-facts h3 { margin: 0 0 8px; font-size: 1.2rem; color: #163f58; }
+.paper-facts p { margin: 0; line-height: 1.65; }
+.paper-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
+.paper-motto { font-size: 1.15rem; }
+.rafelrand-page :is(#hbo-werkplaats, #summer-course-bouwkunde), #summer-course-bouwkunde { scroll-margin-top: 110px; }
+@media (max-width:600px) {
+  .paper-panel { padding: 42px 22px 32px; }
+  .paper-facts { grid-template-columns: 1fr; gap: 22px; }
+  .paper-panel .paper-stamp { top: 22px; right: 24px; }
+  .paper-footer .btn { white-space: normal; text-align: center; }
+}
+@media print {
+  .paper-surface { filter: none; transform: none !important; }
+  .paper-surface::before { clip-path: none; background: #fff; box-shadow: none; border: 1px solid #999; }
+  .paper-surface::after, .paper-stamp, .paper-scribble { display: none; }
+}

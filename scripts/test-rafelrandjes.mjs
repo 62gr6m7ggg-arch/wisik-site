@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
+const c={window:{}};vm.runInNewContext(read('public/assets/js/site-data.js'),c);
+const tools=c.window.WISIK_TOOLS,space=tools.find(t=>t.id==='ruimteklaar'),summer=tools.find(t=>t.id==='summer-course-bouwkunde');
+assert.equal(space.maturity,'mainstage');assert.equal(space.productUrl,'/hbo/space-tent/');assert.equal(space.artistEntrance.url,'/apps/ruimteklaar/test/');
+assert.equal(summer.route,'HBO');assert.equal(summer.maturity,'bouwplaats');assert.equal(summer.appUrl,'');assert.equal(summer.productUrl,'/rafelrand/#hbo-werkplaats');assert.match(summer.venue,/Rafelrandjes/);
+const home=read('public/index.html'),rafel=read('public/rafelrand/index.html'),hbo=read('public/hbo/index.html'),vo=read('public/vo/index.html');
+assert.match(home,/<div id="rafelrandjes"[^>]*data-terrain-group[^>]*>[\s\S]*?class="map-zone zone-rafel"[\s\S]*?class="map-zone zone-hbo"/);
+assert.equal((home.match(/class="map-zone zone-hbo"/g)||[]).length,1);assert.match(home,/class="map-zone zone-hbo" href="\/rafelrand\/#hbo-werkplaats"/);
+assert.match(home,/Konijnenhol bij de Space-tent: zelfstandige verdieping/);assert.ok(!home.includes('Konijnenhol in de Rafelrand'));
+assert.ok(rafel.includes('id="hbo-werkplaats"'));assert.ok(rafel.includes('Concept · nog niet te oefenen'));assert.ok(!rafel.includes('data-artist-entrance'));
+assert.ok(hbo.includes('<h1>HBO-route</h1>'));assert.ok(hbo.includes('data-route="HBO" data-maturity="mainstage"'));assert.ok(hbo.includes('href="/rafelrand/#hbo-werkplaats"'));
+assert.ok(vo.includes('data-route="VO" data-maturity="mainstage"'));assert.ok(!vo.includes('Nog geen openbare attractie.'));
+const css=read('public/assets/css/rafelrandjes.css');assert.ok(css.includes('--paper-edge: polygon('));assert.ok(css.includes('pointer-events: none'));assert.ok(css.includes('focus-visible'));assert.ok(!css.includes('animation:'));
+// Execute the real renderer with status/maturity filters, not a copy of its predicate.
+const source=read('public/assets/js/site.js');
+const body=source.slice(source.indexOf('  const escapeHtml ='),source.indexOf('  function bindFilters()'));
+const grids=[{dataset:{route:'HBO',maturity:'mainstage'}},{dataset:{route:'HBO'}},{dataset:{route:'VO',maturity:'mainstage'}},{dataset:{route:'ALL'}}];
+const env={TOOLS:tools,document:{querySelectorAll:s=>{assert.equal(s,'[data-tools-grid]');return grids}}};vm.runInNewContext(body+'\nrenderToolGrids();',env);
+assert.ok(grids[0].innerHTML.includes('Space-tent'));assert.ok(!grids[0].innerHTML.includes('Summer Course'));assert.ok(grids[1].innerHTML.includes('Summer Course'));assert.ok(grids[2].innerHTML.includes('Euclides'));assert.equal((grids[3].innerHTML.match(/class="tool-card"/g)||[]).length,tools.length);
+console.log('Rafelrandjes: workshop location, honest concept label, separate HBO/VO routes, standalone Konijnenhol, shared renderer filters and preserved Space entrance passed.');

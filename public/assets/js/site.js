@@ -58,7 +58,8 @@
     document.querySelectorAll("[data-tools-grid]").forEach((grid) => {
       const route = (grid.dataset.route || "ALL").toUpperCase();
       const status = grid.dataset.status || "";
-      const selected = TOOLS.filter((tool) => (route === "ALL" || tool.route === route) && (!status || tool.status === status));
+      const maturity = grid.dataset.maturity || "";
+      const selected = TOOLS.filter((tool) => (route === "ALL" || tool.route === route) && (!status || tool.status === status) && (!maturity || tool.maturity === maturity));
       grid.innerHTML = selected.length
         ? selected.map(toolCardMarkup).join("")
         : `<div class="content-card"><h3>Hier wordt nog gebouwd</h3><p class="muted">Er staat nog geen openbare attractie in deze selectie. Zodra een tool inhoudelijk en technisch voldoende is uitgewerkt, verschijnt die hier met een duidelijk statuslabel.</p></div>`;
