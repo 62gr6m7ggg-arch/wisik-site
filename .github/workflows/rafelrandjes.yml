@@ -1,0 +1,118 @@
+name: Wisik Rafelrandjes
+on:
+  push:
+    branches: [wisik-rafelrandjes-20260915, main]
+    paths:
+      - 'public/assets/css/rafelrandjes.css'
+      - 'scripts/*rafelrandjes*'
+      - '.github/workflows/rafelrandjes.yml'
+permissions:
+  contents: read
+concurrency:
+  group: rafelrandjes-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply checksum-verified source edits
+        run: |
+          if test -f scripts/apply-rafelrandjes.mjs; then
+            node scripts/apply-rafelrandjes.mjs
+            rm scripts/apply-rafelrandjes.mjs scripts/rafelrandjes-payload*.txt
+          fi
+      - name: Registry, mobile grouping and existing access checks
+        run: |
+          node scripts/test-rafelrandjes.mjs
+          node scripts/test-mobile-terrein.mjs
+          node scripts/test-space-artist-entrance.mjs
+          node scripts/test-ruimteklaar-review-auth.mjs
+      - name: Install isolated browsers
+        run: |
+          npm install --prefix /tmp/rafel-browser --no-save playwright@1.56.1
+          /tmp/rafel-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Paper zone and educational route browser checks
+        env:
+          PLAYWRIGHT_MODULE: /tmp/rafel-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-rafelrandjes-browser.mjs
+      - name: Existing artist entrance and test-mode isolation
+        env:
+          PLAYWRIGHT_MODULE: /tmp/rafel-browser/node_modules/playwright/index.mjs
+          ENTRANCE_EVIDENCE_DIR: /tmp/rafel-entrance-evidence
+        run: node scripts/check-space-artist-entrance-browser.mjs
+      - name: Bind site evidence and run all release checks
+        run: |
+          node scripts/audit-pabo-release.mjs --write
+          node scripts/audit-space-release.mjs --write
+          npm run build
+          git diff --exit-code c5c283bdd8a2f9a7eee8c4a85771d99308b77cb6 -- tools/space-tent server functions public/apps/ruimteklaar public/apps/stoicheia
+      - name: Commit verified source and evidence to working branch
+        run: |
+          test "$(git ls-remote origin refs/heads/wisik-rafelrandjes-20260915 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          git add docs/rafelrandjes-20260915.md public/assets/css/rafelrandjes.css scripts/test-rafelrandjes.mjs scripts/check-rafelrandjes-browser.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Wisik 0.1.28: HBO-werkplaats op Rafelrandjes, gerafeld papier en gescheiden routes'
+            git push origin HEAD:wisik-rafelrandjes-20260915
+          fi
+      - name: Collect evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/rafel-proof
+          if test -d /tmp/rafelrandjes-evidence; then cp -a /tmp/rafelrandjes-evidence /tmp/rafel-proof/paper; fi
+          if test -d /tmp/rafel-entrance-evidence; then cp -a /tmp/rafel-entrance-evidence /tmp/rafel-proof/entrance; fi
+          git status --short > /tmp/rafel-proof/git-status.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rafelrandjes-browser-proof
+          path: /tmp/rafel-proof/
+          retention-days: 14
+  live:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browsers
+        run: |
+          npm install --prefix /tmp/rafel-browser --no-save playwright@1.56.1
+          /tmp/rafel-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Published paper zone and route checks
+        env:
+          PLAYWRIGHT_MODULE: /tmp/rafel-browser/node_modules/playwright/index.mjs
+          LIVE_ORIGIN: https://wisik.nl
+        run: node scripts/check-rafelrandjes-browser.mjs
+      - name: Published artist entrance and learner isolation
+        env:
+          PLAYWRIGHT_MODULE: /tmp/rafel-browser/node_modules/playwright/index.mjs
+          LIVE_ORIGIN: https://wisik.nl
+          ENTRANCE_EVIDENCE_DIR: /tmp/rafel-entrance-evidence
+        run: node scripts/check-space-artist-entrance-browser.mjs
+      - name: Collect live evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/rafel-proof
+          if test -d /tmp/rafelrandjes-evidence; then cp -a /tmp/rafelrandjes-evidence /tmp/rafel-proof/paper; fi
+          if test -d /tmp/rafel-entrance-evidence; then cp -a /tmp/rafel-entrance-evidence /tmp/rafel-proof/entrance; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rafelrandjes-live-proof
+          path: /tmp/rafel-proof/
+          retention-days: 14

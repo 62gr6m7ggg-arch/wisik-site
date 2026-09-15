@@ -62,11 +62,13 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
   const stops = ["zone-vo", "zone-hbo", "zone-pabo", "zone-rafel", "zone-stoicheia", "zone-space", "kh-entry--map", "zone-backstage", "zone-kladblok"].map(find);
   assert(stops.every(Boolean), "A terrain destination is missing from the real homepage");
   const venue = new Node("DIV", {"data-terrain-group": "", "data-venue-id": "ruimteklaar"});
+  const paper = new Node("DIV", {"data-terrain-group": "", "data-venue-id": "rafelrandjes"});
   const bell = anchors.find(link => link.getAttribute("data-artist-entrance") === "ruimteklaar");
   assert(bell, "The actual homepage must contain an artist entrance");
   stops.forEach(stop => {
     if (stop === find("zone-space")) { festival.appendChild(venue); venue.appendChild(stop); venue.appendChild(bell); }
-    else festival.appendChild(stop);
+    else if (stop === find("zone-rafel")) { festival.appendChild(paper); paper.appendChild(stop); paper.appendChild(find("zone-hbo")); }
+    else if (stop !== find("zone-hbo")) festival.appendChild(stop);
   });
   const board = venue.appendChild(new Node("FIGURE"));
   [find("moshpit"), find("grabbelton")].forEach(stop => sideStages.appendChild(stop));
@@ -99,7 +101,7 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
   if (withRegistry) vm.runInContext(registry, context);
   vm.runInContext(runtime, context);
   return {
-    map, festival, sideStages, board, venue, bell, originalFestival, originalSideStages, directory, walkList, window, find, anchors,
+    map, festival, sideStages, board, venue, paper, bell, originalFestival, originalSideStages, directory, walkList, window, find, anchors,
     resize(mobile) { media.matches = mobile; media.emit("change"); },
   };
 }
@@ -107,7 +109,7 @@ function setup({ mobile = true, hash = "", withRegistry = true } = {}) {
 const page = setup();
 const order = ["zone-pabo", "zone-space", "zone-stoicheia", "moshpit", "grabbelton", "kh-entry--map", "zone-vo", "zone-hbo", "zone-backstage", "zone-kladblok"];
 assert.equal(page.directory.open, false, "The long alternative should start collapsed on mobile");
-assert.deepEqual(page.map.children.filter(node => node.tagName === "A" || node === page.venue).map(node => node === page.venue ? page.find("zone-space") : node), order.map(page.find), "Keyboard order must follow the walk");
+assert.deepEqual(page.map.children.filter(node => node.tagName === "A" || node === page.venue || node === page.paper).map(node => node === page.venue ? page.find("zone-space") : node === page.paper ? page.find("zone-hbo") : node), order.map(page.find), "Keyboard order must follow the walk");
 assert.equal(page.walkList.hidden, false);
 assert.equal(page.walkList.children.length, 10, "The list must include every walk destination");
 const listLinks = page.walkList.children.map(item => item.children[0]);
@@ -130,9 +132,12 @@ for (let round = 0; round < 3; round++) {
   assert.equal(page.find("zone-space").getAttribute("href"), "/hbo/space-tent/");
   assert.equal(page.find("zone-pabo").getAttribute("href"), "/pabo/pabo-rekenklaar/");
   page.resize(true);
-  assert.deepEqual(page.map.children.filter(node => node.tagName === "A" || node === page.venue).map(node => node === page.venue ? page.find("zone-space") : node), order.map(page.find));
+  assert.deepEqual(page.map.children.filter(node => node.tagName === "A" || node === page.venue || node === page.paper).map(node => node === page.venue ? page.find("zone-space") : node === page.paper ? page.find("zone-hbo") : node), order.map(page.find));
   assert.equal(page.walkList.children.length, 10, "Rotating/resizing must not duplicate the list");
   assert.equal(page.board.parentNode, page.venue, "The billboard must travel with the tent");
+  assert.equal(page.find("zone-rafel").parentNode, page.paper);
+  assert.equal(page.find("zone-hbo").parentNode, page.paper);
+  assert.equal(page.find("zone-hbo").getAttribute("href"), "/rafelrand/#hbo-werkplaats");
   assert.equal(page.bell.parentNode, page.venue, "The bell must travel with the tent");
   assert.equal(page.find("zone-space").parentNode, page.venue);
   assert.equal(page.bell.getAttribute("href"), "/apps/ruimteklaar/test/");
