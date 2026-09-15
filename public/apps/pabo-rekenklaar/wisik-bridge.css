@@ -71,6 +71,7 @@ body > .wisik-exit-nav {
 .wisik-header-integrated .wisik-terrain-link { flex: 0 0 auto; }
 .domain-nav { top: calc(var(--wisik-header-height, 68px) + 16px); }
 .scratchpad { top: calc(var(--wisik-header-height, 68px) + 8px); }
+.toast-stack { top: calc(var(--wisik-header-height, 68px) + 12px); pointer-events: none; }
 
 @media (max-width: 620px) {
   .topbar.wisik-header-integrated > .brand { flex-basis: 140px; }
