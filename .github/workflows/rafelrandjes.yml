@@ -1,0 +1,19 @@
+name: Wisik Rafelrandjes
+on:
+  push:
+    branches: [wisik-rafelrandjes-20260915]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Snapshot current source
+        run: tar --exclude=.git --exclude=node_modules --exclude=public/films --exclude=docs/screenshots -czf /tmp/rafelrandjes-source.tar.gz .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rafelrandjes-source
+          path: /tmp/rafelrandjes-source.tar.gz
+          retention-days: 3
