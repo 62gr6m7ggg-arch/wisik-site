@@ -1,0 +1,86 @@
+{
+  "version": "0.5.0",
+  "status": "passed",
+  "results": [
+    {
+      "environment": "desktop",
+      "browser": "141.0.7390.37",
+      "width": 1366,
+      "height": 768,
+      "articles": 145,
+      "lookupReturn": true,
+      "draftAnswer": true,
+      "constructionAndUndo": true,
+      "camera": true,
+      "searchNotHelp": true,
+      "assistedCheck": true,
+      "reloadedCheck": true,
+      "newIndependentCheck": true
+    },
+    {
+      "environment": "small-desktop",
+      "browser": "141.0.7390.37",
+      "width": 1024,
+      "height": 680,
+      "articles": 5,
+      "lookupReturn": true,
+      "draftAnswer": true,
+      "constructionAndUndo": true,
+      "camera": true,
+      "searchNotHelp": true,
+      "assistedCheck": true,
+      "reloadedCheck": true,
+      "newIndependentCheck": true
+    },
+    {
+      "environment": "mobile",
+      "browser": "141.0.7390.37",
+      "width": 390,
+      "height": 844,
+      "articles": 5,
+      "lookupReturn": true,
+      "draftAnswer": true,
+      "constructionAndUndo": true,
+      "camera": true,
+      "searchNotHelp": true,
+      "assistedCheck": true,
+      "reloadedCheck": true,
+      "newIndependentCheck": true
+    },
+    {
+      "environment": "narrow",
+      "browser": "141.0.7390.37",
+      "width": 320,
+      "height": 740,
+      "articles": 145,
+      "lookupReturn": true,
+      "draftAnswer": true,
+      "constructionAndUndo": true,
+      "camera": true,
+      "searchNotHelp": true,
+      "assistedCheck": true,
+      "reloadedCheck": true,
+      "newIndependentCheck": true
+    },
+    {
+      "environment": "mobile-webkit",
+      "browser": "26.0",
+      "width": 390,
+      "height": 844,
+      "articles": 5,
+      "lookupReturn": true,
+      "draftAnswer": true,
+      "constructionAndUndo": true,
+      "camera": true,
+      "searchNotHelp": true,
+      "assistedCheck": true,
+      "reloadedCheck": true,
+      "newIndependentCheck": true
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Automated Linux browsers and mobile emulation; not a physical iPhone or user study.",
+    "Text reviewed internally; no independent teacher review or measured learning gain."
+  ]
+}
