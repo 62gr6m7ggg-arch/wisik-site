@@ -1,4 +1,5 @@
 import {useEffect,useState} from 'react';
+import {KnowledgeButton} from '../app/knowledge/context';
 import {BANK,correctAnswer,type LearningEvent} from '../app/model';
 import {QuestionCard,CorrectAnswer,LearningView,LevelCheck} from '../app/learning';
 import QuestionFigure from '../app/question-figure';
@@ -18,7 +19,7 @@ export default function Review(){
  const filtered=filterEntries(INVENTORY,level,kind,role,block,search),index=filtered.findIndex(e=>e.id===entry.id),events=eventsByEntry[entry.id]||[];
  useEffect(()=>{let stopped=false;const check=async()=>{try{const r=await fetch(ROOT+'session',{cache:'no-store',credentials:'same-origin'});if(!r.ok&&!stopped){setExpired(true);setEventsByEntry({});location.replace(ROOT)}}catch{if(!stopped)setMessage('De sessiecontrole kon de server niet bereiken. Herladen vraagt opnieuw toegang.')}};void check();const timer=setInterval(check,30000);const visible=()=>{if(document.visibilityState==='visible')void check()};document.addEventListener('visibilitychange',visible);const pageShow=(e:PageTransitionEvent)=>{if(e.persisted)location.reload()};window.addEventListener('pageshow',pageShow);return()=>{stopped=true;clearInterval(timer);document.removeEventListener('visibilitychange',visible);window.removeEventListener('pageshow',pageShow)}},[]);
  // Coalesce rapid navigation so WebKit does not exceed its History API quota.
- useEffect(()=>{const timer=window.setTimeout(()=>{try{history.replaceState(null,'',ROOT+'#'+encodeURIComponent(entry.id))}catch{setMessage('De vraag is geopend. De browser kon de bronlink nog niet bijwerken.')}},500);return()=>window.clearTimeout(timer)},[entry.id]);
+ useEffect(()=>{const timer=window.setTimeout(()=>{try{history.replaceState({...history.state},'',ROOT+'#'+encodeURIComponent(entry.id))}catch{setMessage('De vraag is geopend. De browser kon de bronlink nog niet bijwerken.')}},500);return()=>window.clearTimeout(timer)},[entry.id]);
  function choose(e:Entry){setEntry(e);setReveal(false);setAttempt(0);setMessage('');}
  useEffect(()=>{const changed=()=>choose(initialEntry());window.addEventListener('hashchange',changed);return()=>window.removeEventListener('hashchange',changed)},[]);
  function move(delta:number){const e=filtered[index+delta];if(e)choose(e);else setMessage('Dit is het einde van de geselecteerde lijst. Kies bovenaan een ander onderdeel.');}
@@ -33,7 +34,7 @@ export default function Review(){
  const q=entry.question,t=entry.task,trigger=q&&BANK.blocks.find(b=>b.id===q.block)?.misconception.trigger;
  if(expired)return <p role="alert">Je testsessie is verlopen. Open de testmodus opnieuw.</p>;
  return <main className="app-shell reviewer" data-review-mode="true">
-  <header className="review-banner"><div><strong>TESTMODUS</strong><span>Ruimteklaar {APP_VERSION} · telt niet mee voor je voortgang</span></div><form method="post" action={ROOT+'logout'}><button type="submit">Uitloggen</button></form></header>
+  <header className="review-banner"><div><strong>TESTMODUS</strong><span>Ruimteklaar {APP_VERSION} · telt niet mee voor je voortgang</span></div><KnowledgeButton/><form method="post" action={ROOT+'logout'}><button type="submit">Uitloggen</button></form></header>
   <p className="review-intro">Vrij kiezen, proberen en overslaan. Testwerk blijft alleen in het geheugen van dit tabblad; herladen of uitloggen wist het. Je gewone leerroute en XP blijven ongewijzigd.</p>
   <section className="review-picker" aria-label="Vrije vragenlijst">
    <div className="review-filters">

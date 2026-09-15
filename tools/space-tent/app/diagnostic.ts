@@ -1,12 +1,12 @@
 // Integration target: app/diagnostic.ts. No writes to the Site were made.
-import {QUESTIONS,correctAnswer,type AnswerEvent,type Block,type LearningEvent} from './model';
+import {QUESTIONS,correctAnswer,effectiveAnswerEvents,type AnswerEvent,type Block,type LearningEvent} from './model';
 
 export type BlockStage='theory'|'practice'|'probe'|'repair'|'retest'|'complete';
 export type BlockResume={stage:BlockStage;sessionId?:string;index:number;probeIndex:number;probeAnswers:string[][];retestIndex:number;retestSuccess:boolean[];supported:boolean};
 
 function answerEvents(events:LearningEvent[]):AnswerEvent[]{
  const ids=new Set<string>();
- return events.filter((event):event is AnswerEvent=>{
+ return effectiveAnswerEvents(events).filter((event):event is AnswerEvent=>{
   if(event.type!=='answer'||ids.has(event.id))return false;
   ids.add(event.id);return true;
  });
@@ -31,7 +31,7 @@ export function getBlockDiagnosis(block:Block,events:LearningEvent[],sessionId?:
  const episode=nextMain<0?subsequent:subsequent.slice(0,nextMain);
  const probes=block.probeIds.map(id=>episode.find(e=>e.payload.context==='probe'&&e.payload.questionId===id));
  const investigated=probes.every(Boolean);
- const supported=investigated&&supportsMisconception(block,probes.map(e=>e!.payload.answer));
+ const supported=investigated&&probes.every(e=>!e!.payload.helped)&&supportsMisconception(block,probes.map(e=>e!.payload.answer));
  const lastProbe=investigated?Math.max(...probes.map(e=>episode.indexOf(e!))):-1;
  const retests=block.retestIds.map(id=>investigated?episode.slice(lastProbe+1).find(e=>e.payload.context==='retest'&&e.payload.questionId===id):undefined);
  const retestSuccess=retests.map(e=>!!e&&correctAnswer(QUESTIONS[e.payload.questionId],e.payload.answer));

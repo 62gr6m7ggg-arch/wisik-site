@@ -6,3 +6,6 @@ node_modules/
 .selection-browser/
 .review-dist/
 .review-browser/
+
+.knowledge-browser/
+.workspace-browser/
