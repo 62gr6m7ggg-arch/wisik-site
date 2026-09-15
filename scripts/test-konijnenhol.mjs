@@ -27,14 +27,14 @@ assert(!/<script\b|<iframe\b|<form\b|data-diagnostic|data-start-repair|localStor
 assert(css.includes('@media(max-width:1000px)'));assert(css.includes('position:static;order:4;'));
 assert(css.includes('focus-visible'));assert(css.includes('prefers-reduced-motion'));
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);assert.equal(ids.length,new Set(ids).size);
-for(const rel of ['public/index.html','public/rafelrand/index.html','public/rafelrand/space-tent/index.html']){
+for(const rel of ['public/index.html','public/rafelrand/index.html','public/hbo/space-tent/index.html']){
  const s=fs.readFileSync(path.join(root,rel),'utf8');
  assert(s.includes('href="/rafelrand/konijnenhol/"'),`${rel}: ingang ontbreekt`);
  assert(s.includes('href="/rafelrand/konijnenhol/konijnenhol.css?v=1.0.0"'),`${rel}: stijlkoppeling ontbreekt`);
 }
 const home=fs.readFileSync(path.join(root,'public/index.html'),'utf8');
 assert.equal((home.match(/id="konijnenhol"/g)||[]).length,1);
-assert(home.indexOf('id="konijnenhol"')<home.indexOf('<figure class="space-billboard space-billboard-map">'));
+assert(home.indexOf('<figure class="space-billboard space-billboard-map">')<home.indexOf('id="konijnenhol"'),'Het toekomstbord hoort bij het hoofdpodium; het Konijnenhol blijft een apart zijpad');
 console.log('Konijnenhol: titel, gekozen subtitel, waarschuwing, drie ingangen en zelfstandige spelerstructuur geslaagd.');
 if(requireMedia){
  const f=path.join(dir,m.mediaFile);
