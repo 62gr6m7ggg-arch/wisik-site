@@ -1,18 +1,51 @@
-.wisik-exit-nav {
-  position: fixed;
-  z-index: 2147483000;
-  top: max(8px, env(safe-area-inset-top));
-  left: max(8px, env(safe-area-inset-left));
-  display: flex;
-  align-items: stretch;
-  gap: 6px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.15;
-  filter: drop-shadow(0 7px 18px rgba(14, 45, 66, 0.20));
+/* Wisik/Pabo navigation 1.1.1 — one wrapping header, no floating overlay. */
+html {
+  scroll-padding-top: calc(var(--wisik-header-height, 68px) + 12px);
+  scroll-padding-bottom: calc(var(--wisik-bottom-clearance, 90px) + 12px);
 }
 
+.topbar.wisik-header-integrated {
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding-top: max(10px, env(safe-area-inset-top));
+}
+.topbar.wisik-header-integrated > .brand {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+.topbar.wisik-header-integrated > .top-stats {
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.topbar.wisik-header-integrated .icon-btn,
+.topbar.wisik-header-integrated .wisik-terrain-link {
+  min-height: 44px;
+}
+.topbar.wisik-header-integrated .icon-btn {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+}
+
+.wisik-exit-nav {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.15;
+}
+/* A safe in-flow fallback if the host ever has no topbar. */
+body > .wisik-exit-nav {
+  padding: max(8px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left));
+}
 .wisik-exit-link {
-  min-height: 42px;
+  min-height: 44px;
+  flex: 0 0 auto;
   border: 1px solid rgba(22, 63, 88, 0.18);
   border-radius: 13px;
   display: inline-flex;
@@ -21,97 +54,35 @@
   text-decoration: none;
   color: #163f58;
   background: rgba(255, 255, 255, 0.96);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
   -webkit-tap-highlight-color: transparent;
 }
-
-.wisik-exit-link:focus-visible {
-  outline: 3px solid #ffd563;
+.wisik-exit-link:focus-visible,
+.wisik-header-integrated .wisik-terrain-link:focus-visible,
+.wisik-header-integrated .icon-btn:focus-visible {
+  outline: 3px solid #c77700;
   outline-offset: 2px;
 }
+.wisik-exit-home { gap: 8px; padding: 5px 10px 5px 6px; }
+.wisik-exit-mark { width: 31px; height: 31px; border-radius: 10px; display: block; flex: 0 0 31px; }
+.wisik-exit-label { display: grid; text-align: left; }
+.wisik-exit-label strong { font-size: 13px; letter-spacing: .02em; }
+.wisik-exit-label small { font-size: 10px; font-weight: 700; color: #526b78; }
+.wisik-exit-feedback { padding: 0 11px; font-size: 12px; font-weight: 800; }
+.wisik-header-integrated .wisik-terrain-link { flex: 0 0 auto; }
+.domain-nav { top: calc(var(--wisik-header-height, 68px) + 16px); }
+.scratchpad { top: calc(var(--wisik-header-height, 68px) + 8px); }
+.toast-stack { top: calc(var(--wisik-header-height, 68px) + 12px); pointer-events: none; }
 
-.wisik-exit-home {
-  gap: 8px;
-  padding: 5px 10px 5px 6px;
+@media (max-width: 620px) {
+  .topbar.wisik-header-integrated > .brand { flex-basis: 140px; }
+  .topbar.wisik-header-integrated .brand-copy strong { white-space: normal; }
+  .topbar.wisik-header-integrated > .wisik-exit-nav { flex: 1 1 100%; }
+  /* The terrain link now lives in the navigation; preserve the existing mobile stats. */
+  .topbar.wisik-header-integrated .top-stats .stat-pill { display: flex; }
+  .topbar.wisik-header-integrated .top-stats .stat-pill:first-child { display: none; }
+  .wisik-exit-label small { display: none; }
 }
 
-.wisik-exit-mark {
-  width: 31px;
-  height: 31px;
-  border-radius: 10px;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  background: #163f58;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.wisik-exit-label {
-  display: grid;
-  text-align: left;
-}
-
-.wisik-exit-label strong {
-  font-size: 13px;
-  letter-spacing: .02em;
-}
-
-.wisik-exit-label small {
-  font-size: 10px;
-  font-weight: 700;
-  color: #526b78;
-}
-
-.wisik-exit-feedback {
-  padding: 0 11px;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-@media (max-width: 520px) {
-  .wisik-exit-nav {
-    top: max(6px, env(safe-area-inset-top));
-    left: max(6px, env(safe-area-inset-left));
-    gap: 4px;
-  }
-
-  .wisik-exit-link {
-    min-height: 38px;
-    border-radius: 12px;
-  }
-
-  .wisik-exit-home {
-    padding: 4px 8px 4px 5px;
-  }
-
-  .wisik-exit-mark {
-    width: 29px;
-    height: 29px;
-    border-radius: 9px;
-  }
-
-  .wisik-exit-label small {
-    display: none;
-  }
-
-  .wisik-exit-feedback {
-    padding: 0 9px;
-  }
-}
-
-@media (max-width: 360px) {
-  .wisik-exit-label strong {
-    font-size: 0;
-  }
-
-  .wisik-exit-label strong::after {
-    content: "Terrein";
-    font-size: 12px;
-  }
-
-  .wisik-exit-feedback {
-    font-size: 11px;
-  }
+@media print {
+  .wisik-exit-nav { display: none !important; }
 }

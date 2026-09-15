@@ -91,7 +91,16 @@
     });
 
     nav.append(home, feedback);
-    document.body.appendChild(nav);
+    const topbar = document.querySelector(".app-shell > .topbar");
+    if (topbar) {
+      // Keep native links and their listeners, but give them one shared layout.
+      const terrain = topbar.querySelector(".wisik-terrain-link");
+      if (terrain) nav.appendChild(terrain);
+      topbar.appendChild(nav);
+      topbar.classList.add("wisik-header-integrated");
+    } else {
+      document.body.insertBefore(nav, document.body.firstChild);
+    }
   }
 
   function makeExistingWisikMarksClickable() {
@@ -122,10 +131,30 @@
     });
   }
 
+  function observeNavigationSize() {
+    const topbar = document.querySelector(".topbar.wisik-header-integrated");
+    const bottomNav = document.querySelector(".bottom-nav");
+    const sync = () => {
+      const root = document.documentElement;
+      if (topbar) root.style.setProperty("--wisik-header-height", `${Math.ceil(topbar.getBoundingClientRect().height)}px`);
+      const height = bottomNav?.getBoundingClientRect().height || 0;
+      const bottom = bottomNav ? parseFloat(getComputedStyle(bottomNav).bottom) || 0 : 0;
+      root.style.setProperty("--wisik-bottom-clearance", `${Math.ceil(height ? height + bottom : 0)}px`);
+    };
+    sync();
+    if (typeof ResizeObserver === "function") {
+      const observer = new ResizeObserver(sync);
+      if (topbar) observer.observe(topbar);
+      if (bottomNav) observer.observe(bottomNav);
+    }
+    window.addEventListener("resize", sync, { passive: true });
+  }
+
   function initialize() {
     createNavigation();
     makeExistingWisikMarksClickable();
     updateKladblokLinks();
+    observeNavigationSize();
   }
 
   if (document.readyState === "loading") {

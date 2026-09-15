@@ -1,0 +1,97 @@
+name: Pabo navigatie zonder overlap
+on:
+  push:
+    branches: [pabo-navigatie-wrap-20260915, main]
+    paths:
+      - 'public/apps/pabo-rekenklaar/**'
+      - 'scripts/check-pabo-nav-browser.mjs'
+      - 'scripts/test-pabo-navigation.mjs'
+      - '.github/workflows/pabo-navigation-wrap.yml'
+permissions:
+  contents: read
+concurrency:
+  group: pabo-navigation-wrap-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Bind bridge cache version without modifying the learner app
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          const p='public/apps/pabo-rekenklaar/index.html';
+          const original=execFileSync('git',['show','322c78d351a31af30cf5d0d6edfa3d691b5afbb1:'+p],{encoding:'utf8',maxBuffer:2000000});
+          const current=fs.readFileSync(p,'utf8');
+          const normalize=s=>s.replaceAll('./wisik-bridge.css?v=1.1.1','./wisik-bridge.css?v=1.1.0').replaceAll('./wisik-bridge.js?v=1.1.1','./wisik-bridge.js?v=1.1.0');
+          assert.equal(normalize(current),original,'Unrelated learner HTML change');
+          const next=current.replaceAll('./wisik-bridge.css?v=1.1.0','./wisik-bridge.css?v=1.1.1').replaceAll('./wisik-bridge.js?v=1.1.0','./wisik-bridge.js?v=1.1.1');
+          assert.equal((next.match(/\.\/wisik-bridge\.(?:css|js)\?v=1\.1\.1/g)||[]).length,2);
+          fs.writeFileSync(p,next);
+          NODE
+          node scripts/test-pabo-navigation.mjs
+      - name: Install isolated browsers
+        run: |
+          npm install --prefix /tmp/pabo-browser --no-save playwright@1.56.1
+          /tmp/pabo-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Browser layout, footer, settings and navigation checks
+        env:
+          PLAYWRIGHT_MODULE: /tmp/pabo-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-pabo-nav-browser.mjs
+      - name: Refresh audit evidence and run complete site release gate
+        run: |
+          node scripts/audit-pabo-release.mjs --write
+          npm run build
+          git diff --exit-code 322c78d351a31af30cf5d0d6edfa3d691b5afbb1 -- public/apps/ruimteklaar public/apps/stoicheia tools/space-tent functions server
+      - name: Commit only verified cache links and audit evidence to work branch
+        run: |
+          test "$(git ls-remote origin refs/heads/pabo-navigatie-wrap-20260915 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/apps/pabo-rekenklaar/index.html public/assets/data/pabo-release-audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Bind tested Pabo navigation 1.1.1 and refresh unchanged-learning audit'
+            git push origin HEAD:pabo-navigatie-wrap-20260915
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pabo-navigation-browser-proof
+          path: /tmp/pabo-nav-evidence/
+          retention-days: 14
+  live:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browsers
+        run: |
+          npm install --prefix /tmp/pabo-browser --no-save playwright@1.56.1
+          /tmp/pabo-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Verify deployed files and repeat browser checks on wisik.nl
+        env:
+          PLAYWRIGHT_MODULE: /tmp/pabo-browser/node_modules/playwright/index.mjs
+          LIVE_ORIGIN: https://wisik.nl
+        run: node scripts/check-pabo-nav-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pabo-navigation-live-proof
+          path: /tmp/pabo-nav-evidence/
+          retention-days: 14
