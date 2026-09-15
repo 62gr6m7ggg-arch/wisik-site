@@ -43,9 +43,9 @@ export function KnowledgeProvider({children}:{children:ReactNode}){
  return <Context.Provider value={{open,register}}>{children}<KnowledgePanel open={opened} onClose={close} entryId={entryId} onSelect={select} onList={()=>setEntryId(null)} mode={mode}/></Context.Provider>;
 }
 
-export function KnowledgeButton(){
+export function KnowledgeButton({beforeOpen}:{beforeOpen?:()=>void}={}){
  const ctx=useContext(Context);if(!ctx)return null;
- return <button type="button" className="knowledge-launch no-print" onClick={ctx.open} aria-haspopup="dialog"><BookOpen aria-hidden="true"/><span>Vraagbaak A–Z</span></button>;
+ return <button type="button" className="knowledge-launch no-print" onClick={()=>{beforeOpen?.();ctx.open()}} aria-haspopup="dialog"><BookOpen aria-hidden="true"/><span>Vraagbaak A–Z</span></button>;
 }
 export function useKnowledgeSupport(key:string,mode:LookupMode,active:boolean,onRead:()=>void){
  const ctx=useContext(Context),callback=useRef(onRead);callback.current=onRead;
