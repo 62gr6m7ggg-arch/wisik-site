@@ -6,4 +6,5 @@ import {KnowledgeProvider} from '../app/knowledge/context';
 import '../app/globals.css';
 import '../app/construction-selection.css';
 import '../app/knowledge/knowledge.css';
+import '../app/entry-choice.css';
 createRoot(document.getElementById('root')!).render(<KnowledgeProvider><Ruimteklaar local/></KnowledgeProvider>);
