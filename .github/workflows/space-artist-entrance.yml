@@ -90,8 +90,8 @@ jobs:
       - name: Wait for reviewed deployment
         run: |
           node --input-type=module <<'NODE'
-          import assert from 'node:assert/strict';let ready=false;
-          for(let attempt=0;attempt<18;attempt++){try{const r=await fetch('https://wisik.nl/',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)}),html=await r.text();if(r.status===200&&html.includes('class="space-venue"')&&html.includes('/assets/css/styles.css?v=0.1.26')){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,10000))}assert.ok(ready,'Reviewed entrance deployment not visible');
+          import assert from 'node:assert/strict';import fs from 'node:fs';const version=JSON.parse(fs.readFileSync('package.json')).version;let ready=false;
+          for(let attempt=0;attempt<18;attempt++){try{const r=await fetch('https://wisik.nl/',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)}),html=await r.text();if(r.status===200&&html.includes('class="space-venue"')&&html.includes('/assets/css/styles.css?v='+version)){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,10000))}assert.ok(ready,'Reviewed entrance deployment not visible');
           NODE
       - name: Actual live entrance and learner isolation
         env:

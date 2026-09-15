@@ -13,7 +13,8 @@ const {chromium,webkit}=await import(process.env.PLAYWRIGHT_MODULE||'playwright'
 const live=process.env.LIVE_ORIGIN;
 const out=process.env.ENTRANCE_EVIDENCE_DIR||'/tmp/space-entrance-evidence';
 fs.mkdirSync(out,{recursive:true});
-const evidence={status:'running',live:!!live,version:'0.1.26',checks:[],errors:[],checkedAt:new Date().toISOString()};
+const siteVersion=JSON.parse(fs.readFileSync(path.join(root,'package.json'))).version;
+const evidence={status:'running',live:!!live,version:siteVersion,checks:[],errors:[],checkedAt:new Date().toISOString()};
 let server,base=live,browser;
 if(!live){
  execFileSync('openssl',['req','-x509','-newkey','rsa:2048','-nodes','-days','1','-subj','/CN=localhost','-keyout',out+'/key.pem','-out',out+'/cert.pem'],{stdio:'ignore'});
@@ -43,11 +44,15 @@ try{
   const page=await context.newPage();page.setDefaultTimeout(15000);
   page.on('pageerror',e=>evidence.errors.push(config.name+': '+e.message));
   await page.goto(base+'/');
-  assert.equal(await page.evaluate(()=>window.WISIK_SITE_VERSION),'0.1.26');
+  assert.equal(await page.evaluate(()=>window.WISIK_SITE_VERSION),siteVersion);
   const group=page.locator('.space-venue[data-terrain-group]'),bell=group.locator('[data-artist-entrance]'),tent=group.locator('.zone-space');
   await bell.waitFor({state:'visible'});
   assert.equal(await group.count(),1);assert.equal(await bell.getAttribute('href'),REVIEW_ROOT);
-  assert.equal(await tent.getAttribute('href'),'/apps/ruimteklaar/');
+  assert.equal(await tent.getAttribute('href'),config.mobile?'/apps/ruimteklaar/':'/hbo/space-tent/');
+  const board=group.locator('[data-space-billboard]');assert.equal(await board.count(),1);
+  await board.click();await page.locator('.space-billboard-dialog[open]').waitFor();
+  await page.getByRole('button',{name:'Sluiten ×',exact:true}).click();
+  assert.equal(await page.locator('.space-billboard-dialog[open]').count(),0);
   assert.equal(await page.locator('a a').count(),0,'No nested links anywhere in the page');
   const size=await bell.boundingBox();assert.ok(size.width>=44&&size.height>=44);
   await bell.scrollIntoViewIfNeeded();
@@ -66,9 +71,12 @@ try{
     marker.replaceWith(group);stage.remove();return answer;
    });
    assert.ok(moved.moved&&moved.attached&&moved.dx<1&&moved.dy<1,'Relocation must preserve the bell attachment');
+   const stages=await page.locator('.zone-pabo,.space-venue,.zone-stoicheia').evaluateAll(nodes=>nodes.map(n=>({x:n.getBoundingClientRect().x,y:n.getBoundingClientRect().y})));
+   assert.equal(stages.length,3);assert.ok(stages.every(s=>Math.abs(s.y-stages[0].y)<2),'Three main stages share the first row');
+   assert.ok(stages[0].x<stages[1].x&&stages[1].x<stages[2].x,'Space is between Pabo and Euclides');
    for(const width of [320,390,590,768,1000,1001,1280,1440,390,1280]){
     await page.setViewportSize({width,height:900});await page.waitForTimeout(60);
-    assert.equal(await group.count(),1);assert.equal(await bell.count(),1);assert.ok(await bell.isVisible());
+    assert.equal(await group.count(),1);assert.equal(await bell.count(),1);assert.ok(await bell.isVisible());assert.equal(await board.count(),1);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow at '+width);
     if(width<=1000){
      assert.equal(await page.locator('[data-terrain-walk-list] > li').count(),10);
@@ -91,24 +99,25 @@ try{
   assert.deepEqual(await page.evaluate(()=>[localStorage.getItem('artist-entry-progress-sentinel'),sessionStorage.getItem('artist-entry-session-sentinel')]),['unchanged','unchanged']);
   await page.getByRole('button',{name:'Uitloggen',exact:true}).click();await page.getByLabel('Wachtwoord',{exact:true}).waitFor();
   assert.equal((await context.request.get(base+REVIEW_ROOT+'session')).status(),401);
-  // Both Rafelrand contexts retain a real, directly usable bell.
-  for(const route of ['/rafelrand/','/rafelrand/space-tent/']){
-   await page.goto(base+route);const entry=page.locator('[data-artist-entrance="ruimteklaar"]');assert.equal(await entry.count(),1);assert.ok(await entry.isVisible());
+  // The new product page and old address reach the same usable entrance.
+  for(const route of ['/hbo/space-tent/','/rafelrand/space-tent/']){
+   await page.goto(base+route);await page.waitForURL(base+'/hbo/space-tent/');const entry=page.locator('[data-artist-entrance="ruimteklaar"]');await entry.waitFor({state:'visible'});assert.equal(await entry.count(),1);assert.ok(await entry.isVisible());
+   if(route==='/hbo/space-tent/'){await page.screenshot({path:path.join(out,config.name+'-product.png')});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No product page overflow');}
    if(config.mobile)await entry.tap();else await entry.click();await page.getByLabel('Wachtwoord',{exact:true}).waitFor();assert.equal(new URL(page.url()).pathname,REVIEW_ROOT);
   }
   await page.goto(base+'/hbo/');const cardBell=page.locator('.tool-card [data-artist-entrance="ruimteklaar"]');assert.equal(await cardBell.count(),1);assert.ok(await cardBell.isVisible());assert.equal(await cardBell.getAttribute('href'),REVIEW_ROOT);
   // Ordinary learning remains a separate route.
-  await page.goto(base+'/');await page.locator('.zone-space').click();await page.getByRole('button',{name:'Open het oefenatelier',exact:false}).waitFor();assert.equal(await page.locator('[data-review-mode]').count(),0);
+  await page.goto(base+'/');await page.locator('.zone-space').click();if(!config.mobile)await page.getByRole('link',{name:'Stap de Space-tent in',exact:true}).click();await page.getByRole('button',{name:'Open het oefenatelier',exact:false}).waitFor();assert.equal(await page.locator('[data-review-mode]').count(),0);
   // A plain HTML bell still works with scripts disabled.
   const native=await browser.newContext({ignoreHTTPSErrors:!live,javaScriptEnabled:false,viewport:{width:config.width,height:config.height}});const raw=await native.newPage();await raw.goto(base+'/');await raw.locator('.space-venue [data-artist-entrance]').click();await raw.getByLabel('Wachtwoord',{exact:true}).waitFor();await native.close();
-  evidence.checks.push({environment:config.name,status:'passed',checks:'tent and bell separate links in one movable group; registry card; actual new-stage move; desktop/mobile resizing; target size; no overflow/cover; keyboard; tap; Rafelrand and tent page; no-JS link; unchanged hint-free login; invalid rejection and valid entry; free question; logout; ordinary learner route; progress sentinels unchanged'});
+  evidence.checks.push({environment:config.name,status:'passed',checks:'tent and bell separate links in one movable group; registry card; actual new-stage move; desktop/mobile resizing; target size; no overflow/cover; keyboard; tap; new HBO page and old URL; future board enlargement; three main stages; no-JS link; unchanged hint-free login; invalid rejection and valid entry; free question; logout; ordinary learner route; progress sentinels unchanged'});
   await context.close();await browser.close();browser=null;
  }
  if(live){
   // The deployed site CSS, registry and navigation must match the reviewed checkout.
-  const hash=b=>createHash('sha256').update(b).digest('hex');const checks=['/assets/css/styles.css','/assets/js/site.js','/assets/js/site-data.js','/assets/js/mobile-terrein.js'];
+  const hash=b=>createHash('sha256').update(b).digest('hex');const checks=['/assets/css/styles.css','/assets/js/site.js','/assets/js/site-data.js','/assets/js/mobile-terrein.js','/assets/css/space-stage.css','/assets/css/desktop-terrein.css'];
   evidence.assets=[];
-  for(const file of checks){const response=await fetch(base+file+'?v=0.1.26');assert.equal(response.status,200);const bytes=Buffer.from(await response.arrayBuffer());const expected=hash(fs.readFileSync(path.join(root,'public',file)));assert.equal(hash(bytes),expected,file);evidence.assets.push({file,sha256:expected})}
+  for(const file of checks){const response=await fetch(base+file+'?v='+siteVersion);assert.equal(response.status,200);const bytes=Buffer.from(await response.arrayBuffer());const expected=hash(fs.readFileSync(path.join(root,'public',file)));assert.equal(hash(bytes),expected,file);evidence.assets.push({file,sha256:expected})}
  }
  assert.deepEqual(evidence.errors,[]);evidence.status='passed';
  console.log(JSON.stringify({status:'passed',live:!!live,environments:evidence.checks.length}));
