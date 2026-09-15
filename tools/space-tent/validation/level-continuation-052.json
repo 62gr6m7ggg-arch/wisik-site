@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "environment": "desktop",
+      "level": 1,
+      "paperLast": true
+    },
+    {
+      "environment": "desktop",
+      "level": 2,
+      "paperLast": true
+    },
+    {
+      "environment": "desktop",
+      "level": 3,
+      "paperLast": true
+    },
+    {
+      "environment": "desktop",
+      "level": 4,
+      "paperLast": true
+    },
+    {
+      "environment": "desktop",
+      "level": 5,
+      "paperLast": true
+    },
+    {
+      "environment": "desktop",
+      "level": 6,
+      "paperLast": true
+    },
+    {
+      "environment": "mobile",
+      "level": 1,
+      "paperLast": true
+    },
+    {
+      "environment": "mobile",
+      "level": 2,
+      "paperLast": true
+    },
+    {
+      "environment": "mobile",
+      "level": 3,
+      "paperLast": true
+    },
+    {
+      "environment": "mobile",
+      "level": 4,
+      "paperLast": true
+    },
+    {
+      "environment": "mobile",
+      "level": 5,
+      "paperLast": true
+    },
+    {
+      "environment": "mobile",
+      "level": 6,
+      "paperLast": true
+    },
+    {
+      "environment": "webkit-mobile",
+      "level": 1,
+      "paperLast": true
+    },
+    {
+      "environment": "webkit-mobile",
+      "level": 2,
+      "paperLast": true
+    },
+    {
+      "environment": "webkit-mobile",
+      "level": 3,
+      "paperLast": true
+    },
+    {
+      "environment": "webkit-mobile",
+      "level": 4,
+      "paperLast": true
+    },
+    {
+      "environment": "webkit-mobile",
+      "level": 5,
+      "paperLast": true
+    },
+    {
+      "environment": "webkit-mobile",
+      "level": 6,
+      "paperLast": true
+    }
+  ],
+  "guards": [
+    "unfinished level stays in level",
+    "paper, check and construction as last requirement",
+    "reopening saved paper",
+    "failed save and successful retry"
+  ],
+  "errors": []
+}

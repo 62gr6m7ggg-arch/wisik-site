@@ -2,14 +2,14 @@
 import {useState} from 'react';
 import {Button} from '@/components/ui/button';
 import {Checkbox} from '@/components/ui/checkbox';
-import {ArrowLeft,Printer,CheckCircle2,Eye} from 'lucide-react';
+import {ArrowRight,ArrowLeft,Printer,CheckCircle2,Eye} from 'lucide-react';
 import Geometry from './geometry';
 import QuestionFigure from './question-figure';
 import {QUESTIONS} from './model';
 import type {SaveEvent} from './workbench';
 
-export default function Paper({save,onBack,alreadyDone}:{save:SaveEvent;onBack:()=>void;alreadyDone:boolean}){
- const [show,setShow]=useState(false),[checks,setChecks]=useState<string[]>([]),[done,setDone]=useState(alreadyDone),[busy,setBusy]=useState(false);
+export default function Paper({save,onBack,alreadyDone,onContinue,continueLabel='Verder met dit level'}:{save:SaveEvent;onBack:()=>void;alreadyDone:boolean;onContinue?:()=>void;continueLabel?:string}){
+ const [show,setShow]=useState(false),[checks,setChecks]=useState<string[]>(alreadyDone?['figure','relations','intersection','reason']:[]),[done,setDone]=useState(alreadyDone),[busy,setBusy]=useState(false),[saveError,setSaveError]=useState(false);
  const criteria=[['figure','Mijn kubus is correct benoemd; evenwijdige ribben zijn evenwijdig getekend.'],['relations','Ik onderbouw dat AE en BC kruisend zijn met richting en gemeenschappelijke punten.'],['intersection','Ik construeer AG als snijlijn en herken A als gezamenlijke punt van de drie gevraagde vlakken.'],['reason','Ik geef een ruimtelijke redenering; “dat zie je” is niet mijn bewijs.']];
  const reviews=[
   {question:'probe-l1',title:'Opdracht 2 · AE en BC',text:'AE loopt in de hoogterichting, BC in de diepterichting. De lijnen hebben verschillende richtingen en geen gemeenschappelijk punt. Ze zijn kruisend.'},
@@ -21,7 +21,7 @@ export default function Paper({save,onBack,alreadyDone}:{save:SaveEvent;onBack:(
   <div className="question-actions no-print"><Button variant="outline" onClick={()=>window.print()}><Printer/>Afdrukken</Button><Button onClick={()=>setShow(true)}><Eye/>Mijn werk controleren</Button></div>
   {show&&<div className="paper-feedback no-print"><h2>Controleer je constructie én je argumenten.</h2><p>Vergelijk de opdrachten één voor één. Elke figuur laat alleen de lijnen en vlakken zien die bij die redenering horen.</p>
    <div className="paper-review-grid">{reviews.map(review=><article key={review.question}><h3>{review.title}</h3><QuestionFigure question={QUESTIONS[review.question]} reveal/><p>{review.text}</p></article>)}</div>
-   <p>Dit is een zelfcontrole. Laat je redenering bij twijfel ook door een docent of medestudent bekijken.</p><div className="paper-checks">{criteria.map(([id,text])=><label key={id}><Checkbox checked={checks.includes(id)} onCheckedChange={v=>setChecks(c=>v?[...c,id]:c.filter(k=>k!==id))}/><span>{text}</span></label>)}</div><Button disabled={checks.length!==4||busy} onClick={async()=>{setBusy(true);if(await save('paper',{checks}))setDone(true);setBusy(false)}}>{busy?'Opslaan…':'Zelfcontrole vastleggen'}<CheckCircle2/></Button>{done&&<p className="positive" role="status">Je papierwerk is als zelfgecontroleerd vastgelegd.</p>}
-  </div>}
+   <p>Dit is een zelfcontrole. Laat je redenering bij twijfel ook door een docent of medestudent bekijken.</p><div className="paper-checks">{criteria.map(([id,text])=><label key={id}><Checkbox disabled={done||busy} checked={checks.includes(id)} onCheckedChange={v=>setChecks(c=>v?[...c,id]:c.filter(k=>k!==id))}/><span>{text}</span></label>)}</div>{!done&&<Button disabled={checks.length!==4||busy} onClick={async()=>{setBusy(true);setSaveError(false);try{const ok=await save('paper',{checks});setDone(ok);setSaveError(!ok)}catch{setSaveError(true)}finally{setBusy(false)}}}>{busy?'Opslaan…':saveError?'Opnieuw opslaan':'Zelfcontrole vastleggen'}<CheckCircle2/></Button>}{saveError&&<p role="alert">Je zelfcontrole is nog niet opgeslagen. Probeer het opnieuw.</p>}
+  </div>}{done&&<div className="paper-feedback no-print"><p className="positive" role="status">Zelfcontrole opgeslagen.</p>{onContinue&&<Button disabled={busy} onClick={onContinue}>{continueLabel}<ArrowRight/></Button>}</div>}
  </section>
 }
