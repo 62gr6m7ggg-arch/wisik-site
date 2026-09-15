@@ -50,6 +50,8 @@ try{
   const browser=await config.engine.launch({headless:true});const context=await browser.newContext({viewport:{width:config.width,height:config.height},isMobile:!!config.mobile,hasTouch:!!config.mobile});const page=await context.newPage();page.setDefaultTimeout(12000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
   try{
    await page.goto(origin+app);await page.locator('.wisik-header-integrated').waitFor();await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(100);
+   // Fresh visitors receive the existing delayed welcome dialog; close it as a user.
+   await page.locator('#modalBackdrop.show').waitFor();assert.match(await page.locator('#modalTitle').innerText(),/Welkom/);await page.locator('#modalClose').click();await page.locator('#modalBackdrop').waitFor({state:'hidden'});
    const initial=await page.evaluate(()=>localStorage.getItem('pabo-rekenklaar-state-v1'));
    await layout(page,config.name+' initial');
    assert.equal(await page.locator('[data-wisik-exit-nav]').count(),1);
