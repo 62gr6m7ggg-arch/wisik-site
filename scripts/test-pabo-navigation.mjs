@@ -13,8 +13,8 @@ const kladblok = read("public/kladblok/index.html");
 const context = read("public/assets/js/kladblok-context.js");
 
 const requiredPabo = [
-  './wisik-bridge.css?v=1.1.0',
-  './wisik-bridge.js?v=1.1.0'
+  './wisik-bridge.css?v=1.1.1',
+  './wisik-bridge.js?v=1.1.1'
 ];
 for (const fragment of requiredPabo) {
   if (!pabo.includes(fragment)) throw new Error(`Pabo Rekenklaar mist ${fragment}`);
@@ -36,8 +36,15 @@ for (const fragment of requiredBridge) {
   if (!bridge.includes(fragment)) throw new Error(`Wisik-bridge mist ${fragment}`);
 }
 if (/const APP_VERSION\s*=/.test(bridge)) throw new Error("Wisik-bridge bevat nog een tweede, handmatig versienummer");
-if (!bridgeCss.includes("position: fixed") || !bridgeCss.includes("safe-area-inset-top") || !bridgeCss.includes("@media (max-width: 520px)")) {
-  throw new Error("De vaste Wisik-uitgang is niet aantoonbaar mobiel ontworpen");
+if (!bridgeCss.includes("flex-wrap: wrap") || !bridgeCss.includes("safe-area-inset-top") || !bridgeCss.includes("@media (max-width: 620px)")) {
+  throw new Error("De gezamenlijke Wisik-bovenbalk kan niet aantoonbaar mobiel doorlopen");
+}
+if (/position\s*:\s*fixed/.test(bridgeCss)) throw new Error("De Wisik-uitgang mag niet meer los bovenop de Pabo-bovenbalk zweven");
+for (const fragment of ['topbar.appendChild(nav)', 'nav.appendChild(terrain)', 'wisik-header-integrated', 'observeNavigationSize()', 'ResizeObserver']) {
+  if (!bridge.includes(fragment)) throw new Error(`Geïntegreerde navigatie mist ${fragment}`);
+}
+if (!bridgeCss.includes("--wisik-header-height") || !bridgeCss.includes("min-height: 44px") || !bridgeCss.includes("@media print")) {
+  throw new Error("Dynamische headerhoogte, aanraakgrootte of printweergave ontbreekt");
 }
 
 const requiredKladblok = [
@@ -63,4 +70,4 @@ for (const fragment of requiredContext) {
   if (!context.includes(fragment)) throw new Error(`Kladblokcontext mist ${fragment}`);
 }
 
-console.log("Pabo-navigatiecontrole geslaagd: vaste uitgang, lokaal voortgangssnapshot, mobiele vormgeving en automatische Kladblokcontext.");
+console.log("Pabo-navigatiecontrole geslaagd: gezamenlijke doorlopende bovenbalk, lokaal voortgangssnapshot, mobiele vormgeving en automatische Kladblokcontext.");
