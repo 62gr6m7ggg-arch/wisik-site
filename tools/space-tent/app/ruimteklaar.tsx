@@ -43,7 +43,7 @@ export default function Ruimteklaar({local=false}:{local?:boolean}){
  function nextFor(level:number){
   if(level>1&&!p.levels[level-1].passed){setLevelId(level-1);go('route');return}
   setLevelId(level);
-  if(p.levels[level].passed){if(level<7){nextFor(level+1);return}go('level');return}
+  if(p.levels[level].passed){if(level===6){setLevelId(7);go('level');return}if(level<7){nextFor(level+1);return}go('level');return}
   const block=blocksForLevel(level).find(b=>!p.complete.includes(b.id));
   if(block){start(block);return}
   const task=CONSTRUCTION_TASKS.find(t=>t.level===level&&!p.constructions.some(e=>e.payload.taskId===t.id&&(level!==7||!e.payload.helped)));
