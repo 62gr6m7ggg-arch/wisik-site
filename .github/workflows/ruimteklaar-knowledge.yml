@@ -1,0 +1,84 @@
+name: Spacetent vraagbaak
+on:
+  push:
+    branches: [feat/space-vraagbaak]
+concurrency:
+  group: spacetent-vraagbaak-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/space-tent/package-lock.json
+      - run: npm ci
+        working-directory: tools/space-tent
+      - run: npx tsc --noEmit && npm run build && npm run audit:build && npm test && node scripts/build-review.mjs
+        working-directory: tools/space-tent
+      - name: Install test browsers
+        run: |
+          npm install --prefix /tmp/knowledge-browser --no-save playwright@1.56.1
+          /tmp/knowledge-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Check all concepts and return to unfinished work
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-knowledge-browser.mjs
+      - name: Check desktop and mobile construction workspace
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-desktop-workspace.mjs
+      - name: Check construction selection and actions
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-selection-browser.mjs
+      - name: Check continuing after construction
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-construction-next-browser.mjs
+      - name: Check protected reviewer and learner isolation
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/knowledge-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-review-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spacetent-vraagbaak-screenshots
+          path: |
+            tools/space-tent/.knowledge-browser/
+            tools/space-tent/.workspace-browser/
+            tools/space-tent/.review-browser/
+          include-hidden-files: true
+          retention-days: 7
+      - name: Bind verified source, evidence and assets
+        run: |
+          cp tools/space-tent/.knowledge-browser/results.json tools/space-tent/validation/knowledge-browser-050.json
+          cp tools/space-tent/.workspace-browser/results.json tools/space-tent/validation/desktop-workspace-050.json
+          cp tools/space-tent/.review-browser/results.json tools/space-tent/validation/review-mode-100.json
+          rm -rf public/apps/ruimteklaar/assets
+          cp -a tools/space-tent/.space-dist/. public/apps/ruimteklaar/
+          cp -a tools/space-tent/.audit-dist/. tools/space-tent/audit-runtime/
+          node scripts/audit-space-release.mjs --write
+          node scripts/audit-ruimteklaar-review.mjs --write
+          npm run build
+      - name: Commit verified release to isolated branch
+        run: |
+          test "$(git ls-remote origin refs/heads/feat/space-vraagbaak | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/apps/ruimteklaar tools/space-tent/audit-runtime tools/space-tent/validation/knowledge-browser-050.json tools/space-tent/validation/desktop-workspace-050.json tools/space-tent/validation/review-mode-100.json public/assets/data/ruimteklaar-release-audit.json server/ruimteklaar-test-assets.mjs server/ruimteklaar-test-manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build and verify Spacetent 0.5.0 question bank'
+            git push origin HEAD:feat/space-vraagbaak
+          fi

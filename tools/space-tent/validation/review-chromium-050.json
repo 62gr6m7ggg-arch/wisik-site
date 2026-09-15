@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "environment": "chromium-desktop",
+      "status": "passed",
+      "directEntries": 311,
+      "questions": 261,
+      "constructions": 10,
+      "lessonBlocks": 23,
+      "checks": 8,
+      "papers": 8,
+      "checksPerformed": "one field without hints; native Enter; rejected composite factors; accepted repeat/caret/superscript codes; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
+    },
+    {
+      "environment": "chromium-mobile",
+      "status": "passed",
+      "directEntries": 311,
+      "questions": 261,
+      "constructions": 10,
+      "lessonBlocks": 23,
+      "checks": 8,
+      "papers": 8,
+      "checksPerformed": "one field without hints; native Enter; rejected composite factors; accepted repeat/caret/superscript codes; protected JS; all items free; filters; next/skip; three answer types; original check rules; extension and undo; source-linked Kladblok; unchanged local/session storage; no progress API; logout; session expiry; ordinary learner route"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Automated browsers on Linux; no physical iPhone test.",
+    "Mathematical access gate, not identity authentication. No professional penetration test; per-isolate throttling is not global."
+  ],
+  "version": "0.5.0",
+  "testedSourceCommit": "40f6486",
+  "lookupReturnAndStorageIsolation": true,
+  "pending": "WebKit and central release gate run after authorization to push the existing feature branch."
+}

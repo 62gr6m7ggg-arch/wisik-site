@@ -1,4 +1,4 @@
-# Space-tent — Ruimteklaar 0.4.3
+# Space-tent — Ruimteklaar 0.5.0
 
 Public client at /apps/ruimteklaar/. Node 22+: npm ci; npm run build; npm run audit:build. Copy .space-dist to public/apps/ruimteklaar and .audit-dist to audit-runtime before regenerating the root Space audit. Root CI runs committed audit-runtime without dependency installation and binds source and assets by hash.
 
@@ -42,3 +42,28 @@ These are automated Linux browser tests, not a physical iPhone/Safari trial or
 an empirical usability/learning-effect study.
 
 The point/action controls, status and undo now sit immediately below the drawing, before optional viewing controls. Browser tests enforce this placement.
+
+
+## 0.5.0 — Vraagbaak A–Z
+
+145 source-linked Dutch concepts cover the six presentations and the accompanying
+course material, with complete explanations, approaches, worked examples, pitfalls
+and related concepts. Core material, additional optimization material and GeoGebra
+tasks have separate labels. Exact SVG and existing 3D geometry provide 43 figure
+variants, including interactive perpendicular feet, views and area optimization.
+
+The modal lookup preserves the mounted exercise, answer draft, construction,
+selection, camera, undo and page position. Alphabet jumps and search work on mobile;
+the return button stays visible. Searching alone is not assistance. Reading during
+an unfinished independent check marks the attempt assisted; an entirely new
+attempt can pass independently. Previous successful independent attempts remain
+valid. Assisted diagnostic probes cannot establish an independent misconception.
+No search text or article-reading history is stored. The protected reviewer keeps
+its temporary attempts isolated from learner storage.
+
+See `../../docs/spacetent-vraagbaak.md` for content ownership and extension rules.
+`npm test` includes content, geometric and support checks; the browser workflow
+checks all articles at 1366 and 320 px plus representative articles at 1024 and
+390 px and in WebKit. It also runs the existing construction and protected-review
+regressions. This is internal review and automated browser evidence, not an
+independent teacher review, physical iPhone test or measured learning outcome.

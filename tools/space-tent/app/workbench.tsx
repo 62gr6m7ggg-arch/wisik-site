@@ -1,4 +1,5 @@
 'use client';
+import {useKnowledgeSupport} from './knowledge/context';
 import {useConstructionSelection,type ConstructionAction} from './construction-selection';
 import {canonicalLine} from './construction-selection-math';
 import {newEventId} from './identity';
@@ -14,6 +15,7 @@ export type SaveEvent=(type:LearningEvent['type'],payload:Record<string,unknown>
 
 export default function Workbench({onBack,save}:{onBack:()=>void;save:SaveEvent}){
  const [variant,setVariant]=useState(0),[points,setPoints]=useState<Record<string,V3>>(initialPoints(0)),[lines,setLines]=useState<DrawLine[]>([]),[selected,setSelected]=useState<string[]>([]),[message,setMessage]=useState(''),[history,setHistory]=useState<{points:Record<string,V3>;lines:DrawLine[]}[]>([]),[hint,setHint]=useState(0),[helped,setHelped]=useState(false),[valid,setValid]=useState(false),[reason,setReason]=useState(''),[reasonReviewed,setReasonReviewed]=useState(false),[done,setDone]=useState(false),[busy,setBusy]=useState(false);
+ useKnowledgeSupport('workbench-'+variant,'construction',!done,()=>setHelped(true));
  const edges:DrawLine[]=EDGES.map(e=>({id:'edge-'+e,name:e,a:CUBE[e[0]],b:CUBE[e[1]]}));const allLines:DrawLine[]=[...edges,...lines];
  const selection=useConstructionSelection({points,lines:allLines,selected,setSelected,disabled:done||busy,atLimit:lines.length>=45,execute});
  function edit(p:Record<string,V3>,l:DrawLine[]){setHistory(h=>[...h,{points,lines}]);setPoints(p);setLines(l);setSelected([]);setValid(false);setDone(false);setMessage('Constructiestap toegevoegd.');}

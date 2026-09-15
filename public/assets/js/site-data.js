@@ -29,7 +29,7 @@ window.WISIK_TOOLS = Object.freeze([
     maturity: "prototype",
     status: "prototype",
     statusLabel: "Technisch prototype",
-    version: "0.4.6",
+    version: "0.5.0",
     summary: "Zes leslevels met visuele uitleg, adaptief oefenen en construeren. Het toplevel verbindt de stof in twee gemengde proeven en papierwerk.",
     productUrl: "/rafelrand/space-tent/",
     appUrl: "/apps/ruimteklaar/",

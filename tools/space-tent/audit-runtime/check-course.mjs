@@ -32673,17 +32673,44 @@ function blocksForLevel(level) {
 }
 function checkAttempts(events, key) {
   const ids = CHECKS[key] || [], groups = /* @__PURE__ */ new Map();
-  for (const e of events) if (e.type === "answer" && e.payload.context === "check" && ids.includes(String(e.payload.questionId))) {
-    const sid = String(e.payload.sessionId);
-    const rows = groups.get(sid) || [];
-    if (!rows.some((a2) => a2.payload.questionId === e.payload.questionId)) rows.push(e);
-    groups.set(sid, rows);
+  for (const e of events) {
+    if (e.type !== "answer" && e.type !== "lookup" || e.payload.context !== "check" || !ids.includes(String(e.payload.questionId))) continue;
+    const sid = String(e.payload.sessionId), group = groups.get(sid) || { rows: [], lookups: [] };
+    if (e.type === "lookup") group.lookups.push(e);
+    else if (!group.rows.some((a2) => a2.payload.questionId === e.payload.questionId)) group.rows.push(e);
+    groups.set(sid, group);
   }
-  return [...groups].map(([sessionId, rows]) => ({ sessionId, rows, complete: ids.length > 0 && rows.length === ids.length, passed: ids.length > 0 && rows.length === ids.length && rows.every((e) => correctAnswer(QUESTIONS[e.payload.questionId], e.payload.answer) && !e.payload.helped), at: Math.max(...rows.map((e) => e.at)), startedAt: Math.min(...rows.map((e) => e.at)) }));
+  return [...groups].map(([sessionId, { rows, lookups }]) => {
+    const complete = ids.length > 0 && rows.length === ids.length;
+    const at = Math.max(...(complete ? rows : [...rows, ...lookups]).map((e) => e.at));
+    const used = lookups.filter((e) => e.at <= at), helped = rows.some((e) => e.payload.helped) || used.length > 0;
+    const effectiveRows = rows.map((e) => helped ? { ...e, payload: { ...e.payload, helped: true } } : e);
+    return {
+      sessionId,
+      rows: effectiveRows,
+      helped,
+      complete,
+      passed: ids.length > 0 && rows.length === ids.length && !helped && rows.every((e) => correctAnswer(QUESTIONS[e.payload.questionId], e.payload.answer)),
+      at,
+      startedAt: Math.min(...[...rows, ...used].map((e) => e.at))
+    };
+  });
+}
+function effectiveAnswerEvents(events) {
+  const lookupTimes = /* @__PURE__ */ new Map();
+  for (const e of events) if (e.type === "lookup") {
+    const key = e.payload.sessionId + "|" + e.payload.context + "|" + e.payload.questionId;
+    lookupTimes.set(key, Math.min(lookupTimes.get(key) ?? Infinity, e.at));
+  }
+  const checkHelp = new Set(Object.keys(CHECKS).flatMap((key) => checkAttempts(events, key).filter((a2) => a2.helped).map((a2) => key + "|" + a2.sessionId)));
+  return events.filter((e) => e.type === "answer").map((e) => {
+    const used = e.payload.context === "check" ? checkHelp.has(checkGroup(e.payload.questionId) + "|" + e.payload.sessionId) : (lookupTimes.get(e.payload.sessionId + "|" + e.payload.context + "|" + e.payload.questionId) ?? Infinity) <= e.at;
+    return used ? { ...e, payload: { ...e.payload, helped: true } } : e;
+  });
 }
 var RETENTION_MS = 24 * 60 * 60 * 1e3;
 function deriveProgress(events) {
-  const answers = events.filter((e) => e.type === "answer");
+  const answers = effectiveAnswerEvents(events);
   const evidence = {};
   for (const e of visibleEvidenceAnswers(events, BANK.checkpointIds)) {
     const id = e.payload.questionId, q = QUESTIONS[id];
@@ -32720,8 +32747,8 @@ function deriveProgress(events) {
 }
 function visibleEvidenceAnswers(events, checkpointIds) {
   const seen = /* @__PURE__ */ new Set();
-  const answers = events.filter((e) => {
-    if (e.type !== "answer" || seen.has(e.id)) return false;
+  const answers = effectiveAnswerEvents(events).filter((e) => {
+    if (seen.has(e.id)) return false;
     seen.add(e.id);
     return true;
   });
@@ -32820,7 +32847,11 @@ function normalizeEvent(value) {
   if (!record(value) || typeof value.id !== "string" || !/^[a-zA-Z0-9-]{10,80}$/.test(value.id) || typeof value.at !== "number" || !Number.isSafeInteger(value.at) || value.at < 0 || value.at > 864e13 || !record(value.payload)) fail("Het voortgangsbestand bevat een ongeldige handeling.");
   const payload = value.payload;
   let clean;
-  if (value.type === "answer") {
+  if (value.type === "lookup") {
+    const { questionId, context, sessionId } = payload;
+    if (typeof questionId !== "string" || !own(QUESTIONS, questionId) || typeof context !== "string" || !own(contexts, context) || !contexts[context].has(questionId) || typeof sessionId !== "string" || !/^[a-zA-Z0-9-]{1,80}$/.test(sessionId)) fail("Ongeldige hulpregistratie.");
+    clean = { questionId, context, sessionId };
+  } else if (value.type === "answer") {
     const { questionId, answer: answer2, helped, context, sessionId } = payload;
     if (typeof questionId !== "string" || !own(QUESTIONS, questionId)) fail("Het voortgangsbestand bevat een onbekende vraag.");
     const question = QUESTIONS[questionId];

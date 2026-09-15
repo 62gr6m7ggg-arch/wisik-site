@@ -25,7 +25,11 @@ for(const config of configurations){
  const settle=()=>page.waitForFunction(()=>!document.querySelector('.selection-controls .point-tray button:disabled'));
  const chosen=()=>page.locator('.selection-caption').innerText();
  const drawn=()=>page.locator('.drawing-panel svg .drawn-line').count();
- const open=async task=>{await page.goto(base+'/test?task='+task);await page.evaluate(()=>localStorage.clear());await page.reload();await point('A').waitFor();const stage=await page.locator('.geometry-stage').first().boundingBox(),controls=await page.locator('.selection-controls').boundingBox();if(config.width>=1000){assert.ok(controls.x>=stage.x+stage.width,'Desktop controls beside figure');assert.ok(controls.y<stage.y+stage.height,'Desktop controls and figure overlap vertically')}else assert.ok(controls.y>=stage.y+stage.height-1&&controls.y-(stage.y+stage.height)<60,'Narrow screen controls follow figure');};
+ const open=async task=>{await page.goto(base+'/test?task='+task);await page.evaluate(()=>localStorage.clear());await page.reload();await point('A').waitFor();
+  // ResizeObserver settles the SVG width after mounting. Read both boxes in the
+  // same browser frame, so a resize or restored scroll cannot split the sample.
+  await page.waitForFunction(()=>{const el=document.querySelector('.geometry-stage'),svg=el?.querySelector('svg');return el&&svg&&Math.abs(svg.viewBox.baseVal.width-el.clientWidth)<1});
+  const {stage,controls}=await page.evaluate(()=>({stage:document.querySelector('.geometry-stage').getBoundingClientRect().toJSON(),controls:document.querySelector('.selection-controls').getBoundingClientRect().toJSON()}));if(config.width>=1000){assert.ok(controls.x>=stage.x+stage.width,'Desktop controls beside figure');assert.ok(controls.y<stage.y+stage.height,'Desktop controls and figure overlap vertically')}else assert.ok(controls.y>=stage.y+stage.height-1&&controls.y-(stage.y+stage.height)<60,config.name+' '+task+': controls follow figure, gap '+(controls.y-stage.y-stage.height));};
  const lineByName=async text=>{await page.locator('.selection-line-list summary').click();await page.locator('.selection-line-list').getByRole('button',{name:text}).click();};
  const undo=async()=>{await page.locator('.drawing-footer').getByRole('button').click();await settle();};
  const screenshot=async label=>{await page.screenshot({path:path.join(out,config.name+'-'+label+'.png'),fullPage:true});};

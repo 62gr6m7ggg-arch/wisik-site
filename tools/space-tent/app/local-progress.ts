@@ -37,7 +37,12 @@ export function normalizeEvent(value: unknown): LearningEvent {
     || !record(value.payload)) fail('Het voortgangsbestand bevat een ongeldige handeling.');
   const payload = value.payload;
   let clean: Record<string, unknown>;
-  if (value.type === 'answer') {
+  if (value.type === 'lookup') {
+    const {questionId,context,sessionId}=payload;
+    if(typeof questionId!=='string'||!own(QUESTIONS,questionId)||typeof context!=='string'||!own(contexts,context)
+      ||!contexts[context as keyof typeof contexts].has(questionId)||typeof sessionId!=='string'||!/^[a-zA-Z0-9-]{1,80}$/.test(sessionId))fail('Ongeldige hulpregistratie.');
+    clean={questionId,context,sessionId};
+  } else if (value.type === 'answer') {
     const {questionId, answer, helped, context, sessionId} = payload;
     if (typeof questionId !== 'string' || !own(QUESTIONS, questionId)) fail('Het voortgangsbestand bevat een onbekende vraag.');
     const question = QUESTIONS[questionId];
