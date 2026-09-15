@@ -3,8 +3,12 @@ import path from 'node:path';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
-const changes=JSON.parse(gunzipSync(Buffer.from(fs.readFileSync('scripts/rafelrandjes-payload.txt','utf8').trim(),'base64')).toString());
 const hash=b=>createHash('sha256').update(b).digest('hex');
+const parts=Array.from({length:8},(_,i)=>fs.readFileSync(`scripts/rafelrandjes-payload-${i}.txt`,'utf8').trim());
+console.log('Source transfer lengths:',parts.map(p=>p.length));
+const packed=parts.join('');
+assert.equal(hash(packed),'578e79cf702bff48c43f36969357c683a97ab0116b9bfe81cd58c91c5661cd28','Source transfer incomplete or altered');
+const changes=JSON.parse(gunzipSync(Buffer.from(packed,'base64')).toString());
 const outputs=[];
 for(const c of changes){
  assert.ok(!c.path.includes('..')&&/^(public\/|scripts\/|docs\/|package\.json$)/.test(c.path));
