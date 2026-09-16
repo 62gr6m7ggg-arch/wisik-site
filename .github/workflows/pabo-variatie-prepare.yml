@@ -31,6 +31,19 @@ jobs:
       - name: Install reviewed sources and build idempotently
         run: |
           python3 tools/pabo-variation-update.py
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('src/pabo/variation-generators.js')
+          s=p.read_text()
+          old='hint:"De tweede breuk hoort bij de overgebleven voorraad, niet bij de beginvoorraad."'
+          new='hint:kind==="direct"?"Bepaal welk deel van de hele voorraad overblijft.":"De tweede breuk hoort bij de overgebleven voorraad, niet bij de beginvoorraad."'
+          assert old in s or new in s
+          p.write_text(s.replace(old,new))
+          for name in ['public/index.html','public/pabo/pabo-rekenklaar/index.html','public/moshpit/index.html']:
+              p=Path(name); p.write_text(p.read_text().replace('1.6.3','1.7.0'))
+          p=Path('public/backstage/index.html')
+          p.write_text(p.read_text().replace('Hier komen de acht technische controles en de inhoudelijke flirtbeoordeling te staan.','Hier komen de technische vrijgavecontroles en de inhoudelijke flirtbeoordeling te staan.'))
+          PY
           node scripts/apply-pabo-variation.mjs
           sha256sum public/apps/pabo-rekenklaar/index.html > /tmp/pabo-build.sha
           node scripts/apply-pabo-variation.mjs
@@ -57,7 +70,7 @@ jobs:
           test "$(git ls-remote origin refs/heads/feat/pabo-variatie-20260916 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/pabo scripts/apply-pabo-variation.mjs scripts/lib/pabo-variation-context.mjs scripts/lib/pabo-variation-audit.mjs scripts/test-pabo-variation.mjs scripts/check-pabo-variation-browser.mjs scripts/audit-pabo-release.mjs scripts/test-backstage-audit.mjs scripts/check-pabo-nav-browser.mjs docs/pabo-variatie-1.7.0.md package.json public/apps/pabo-rekenklaar/index.html public/assets/js/site.js public/assets/js/site-data.js public/assets/data/pabo-release-audit.json
+          git add src/pabo scripts/apply-pabo-variation.mjs scripts/lib/pabo-variation-context.mjs scripts/lib/pabo-variation-audit.mjs scripts/test-pabo-variation.mjs scripts/check-pabo-variation-browser.mjs scripts/audit-pabo-release.mjs scripts/test-backstage-audit.mjs scripts/check-pabo-nav-browser.mjs docs/pabo-variatie-1.7.0.md package.json public/apps/pabo-rekenklaar/index.html public/assets/js/site.js public/assets/js/site-data.js public/assets/data/pabo-release-audit.json public/index.html public/pabo/pabo-rekenklaar/index.html public/moshpit/index.html public/backstage/index.html
           if ! git diff --cached --quiet; then
             git commit -m 'Pabo 1.7.0: diverse questions, balanced sessions, hard duplicate protection and verified release evidence'
             git push origin HEAD:feat/pabo-variatie-20260916
@@ -71,7 +84,7 @@ jobs:
               for base in ['src/pabo','scripts','docs']:
                   for p in pathlib.Path(base).rglob('*'):
                       if p.is_file() and p.suffix in {'.js','.mjs','.py','.md','.json'}: z.write(p,str(p))
-              for name in ['public/apps/pabo-rekenklaar/index.html','public/assets/data/pabo-release-audit.json','public/assets/js/site.js','public/assets/js/site-data.js','package.json']:
+              for name in ['public/apps/pabo-rekenklaar/index.html','public/assets/data/pabo-release-audit.json','public/assets/js/site.js','public/assets/js/site-data.js','package.json','public/index.html','public/pabo/pabo-rekenklaar/index.html','public/moshpit/index.html','public/backstage/index.html']:
                   p=pathlib.Path(name)
                   if p.is_file(): z.write(p,name)
           PY
