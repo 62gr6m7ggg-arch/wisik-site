@@ -5,6 +5,8 @@ import { createHash, webcrypto } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { runFlirtChainAudit } from "./lib/flirt-chain-audit.mjs";
 import { auditFlirtContent } from "./lib/flirt-content-audit.mjs";
+import {createVariationContext} from "./lib/pabo-variation-context.mjs";
+import {runPaboVariationAudit} from "./lib/pabo-variation-audit.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const paboPath = path.join(root, "public/apps/pabo-rekenklaar/index.html");
@@ -169,6 +171,11 @@ const sprintQuestionAudit = runInAuditContext(context, `(() => {
   return result;
 })()`);
 const toolVersion = String(context.PaboRekenklaarQA.version || "");
+const variation = runPaboVariationAudit(createVariationContext(html));
+const variationFullCount = variation.counts.adaptiveFullExams + variation.counts.fixedLevelFullExams + variation.counts.sequentialFullExams;
+for (const name of ["variation-generators.js", "variation-selection.js", "variation-rubrics.js"]) {
+  if (!html.includes(fs.readFileSync(path.join(root,"src/pabo",name),"utf8").trimEnd())) throw new Error("Pabo variation source and inline build differ: "+name);
+}
 
 const answerContract = /issues\.push\(\.\.\.validateQualityRule\(q\)\)/.test(script)
   && /canoniek antwoord faalt in antwoordcontrole/.test(script);
@@ -235,10 +242,11 @@ const gates = [
 
 gates.push({id:"flirt-trigger-chain",label:"Van antwoordpatroon naar juiste flirt",passed:JSON.stringify(flirtChain)===JSON.stringify(flirtReplay),evidence:`${flirtChain.chains} ketens; ${flirtChain.answerExamples} vaste antwoordchecks; ${flirtChain.negativeExamples} andere fouten; ${flirtChain.modeExclusions} toets-/sprintuitsluitingen; dubbelzinnige denkroute onderdrukt; vaste seed tweemaal gelijk`});
 gates.push({id:"flirt-content-lock",label:"Beoordeelde flirtinhoud bewaakt",passed:flirtContent.passed,evidence:flirtContent.passed?`${flirtContent.counts.reviewed} beoordelingen gekoppeld aan de exacte tekst, media en misconceptie. ${flirtContent.counts.needsRevision} open inhoudelijke herstelpunten; dit vinkje bevestigt de ongewijzigde review, geen inhoudelijke goedkeuring.`:flirtContent.failures.join("; ")});
+gates.push({id:"session-variation",label:"Spreiding en variatie van volledige sessies",passed:variation.passed&&variationFullCount===98&&variation.counts.duplicates===0&&variation.counts.familyLimitFailures===0&&variation.counts.coverageFailures===0,evidence:`${variationFullCount} volledige toetsroutes, ${variation.counts.miniExams} korte toetsen en ${variation.counts.practiceSessions} oefenreeksen; geen dubbele opgaven binnen de geteste sessies; alle 18 deelonderwerpen in iedere volledige toets; maximaal drie opgaven per familie.`});
 const passed = gates.every((gate) => gate.passed);
 const report = {
   schemaVersion: 1,
-  auditVersion: "1.2.0",
+  auditVersion: "1.3.0",
   siteVersion: packageJson.version,
   tool: "Pabo Rekenklaar",
   toolVersion,
@@ -269,8 +277,12 @@ const report = {
     flirtAnswerChecks: flirtChain.answerExamples,
     flirtNegativeChecks: flirtChain.negativeExamples,
     flirtModeExclusions: flirtChain.modeExclusions,
+    variationFullExams: variationFullCount,
+    variationQuestionChecks: variation.counts.questions,
+    variationDuplicates: variation.counts.duplicates,
   },
   gates,
+  variation,
   flirtContent: {
     status: flirtContent.contentStatus,
     counts: flirtContent.counts,
@@ -288,6 +300,7 @@ const report = {
     ...visualAudit.failures.slice(0, 25).map((failure) => ({ area: "grafiek", issue: failure })),
     ...sprintQuestionAudit.failures.slice(0, 25).map((failure) => ({ area: "moshpit", issue: failure })),
     ...flirtContent.failures.map(issue=>({area:"flirt-inhoud",issue})),
+    ...variation.failures.map(issue=>({area:"sessievariatie",issue})),
   ],
   scope: "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   source: {

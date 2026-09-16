@@ -83,7 +83,7 @@ try{
     await scratch.first().click();const r=await page.locator('#scratchpad').boundingBox();const h=await page.locator('.topbar').boundingBox();assert.ok(r.y>=h.y+h.height,'scratchpad covers header');await page.locator('#closeScratch').click();
    }
    assert.deepEqual(await learned(),progress,'opening practice changed scores');
-   const feedback=page.locator('.wisik-exit-feedback');const url=new URL(await feedback.getAttribute('href'));assert.equal(url.pathname,'/kladblok/');assert.equal(url.searchParams.get('bron'),origin+app);assert.equal(url.searchParams.get('appversie'),'1.6.3');
+   const feedback=page.locator('.wisik-exit-feedback');const url=new URL(await feedback.getAttribute('href'));assert.equal(url.pathname,'/kladblok/');assert.equal(url.searchParams.get('bron'),origin+app);assert.equal(url.searchParams.get('appversie'),'1.7.0');
    // Intercept only the destination document in local preview; production visits it.
    if(!process.env.LIVE_ORIGIN)await page.route('https://wisik.nl/kladblok/**',r=>r.fulfill({status:200,contentType:'text/html',body:'<!doctype html><title>Preview destination</title>'}));
    await Promise.all([page.waitForURL(u=>u.pathname==='/kladblok/'),feedback.click()]);

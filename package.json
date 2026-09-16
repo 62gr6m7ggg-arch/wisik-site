@@ -10,7 +10,9 @@
     "build": "npm run check",
     "preview": "npx wrangler pages dev public",
     "predeploy": "npm run check",
-    "deploy": "npx wrangler pages deploy public --project-name wisik-site"
+    "deploy": "npx wrangler pages deploy public --project-name wisik-site",
+    "pabo:variation": "node scripts/test-pabo-variation.mjs",
+    "pabo:variation:build": "node scripts/apply-pabo-variation.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
