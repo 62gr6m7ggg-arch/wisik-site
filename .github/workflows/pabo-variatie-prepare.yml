@@ -1,0 +1,29 @@
+name: Pabo variatie voorbereiding
+on:
+  push:
+    branches: [feat/pabo-variatie-20260916]
+    paths: [.github/workflows/pabo-variatie-prepare.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export tracked text source only
+        run: |
+          python3 - <<'PY'
+          import pathlib, subprocess, zipfile
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          extensions = {'.html','.js','.mjs','.json','.css','.md','.yml','.yaml','.txt','.vtt','.py','.toml'}
+          with zipfile.ZipFile('/tmp/pabo-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in paths:
+                  p=pathlib.Path(name)
+                  if p.is_file() and (p.suffix in extensions or p.name in {'_headers','_redirects','.gitignore'}):
+                      z.write(p,name)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pabo-source-review
+          path: /tmp/pabo-source.zip
+          retention-days: 3
