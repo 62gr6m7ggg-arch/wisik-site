@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123b5d">
-<title>Pabo Rekenklaar 1.6.3 – rubricgestuurd oefenen met diagnostische foutpatronen</title><link rel="icon" href="/favicon.ico?v=wisik-tenten-20260914-2" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/icons/wisik-20260914-32.png?v=wisik-tenten-20260914-2" type="image/png" sizes="32x32"><link rel="icon" href="/assets/icons/wisik-20260914-192.png?v=wisik-tenten-20260914-2" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="/assets/icons/wisik-20260914-180.png?v=wisik-tenten-20260914-2" sizes="180x180">
+<title>Pabo Rekenklaar 1.7.0 – rubricgestuurd oefenen met diagnostische foutpatronen</title><link rel="icon" href="/favicon.ico?v=wisik-tenten-20260914-2" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/icons/wisik-20260914-32.png?v=wisik-tenten-20260914-2" type="image/png" sizes="32x32"><link rel="icon" href="/assets/icons/wisik-20260914-192.png?v=wisik-tenten-20260914-2" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="/assets/icons/wisik-20260914-180.png?v=wisik-tenten-20260914-2" sizes="180x180">
 <style>
 :root{
   --navy:#123b5d;
@@ -520,7 +520,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
     <section id="view-home" class="view active" aria-labelledby="homeTitle">
       <div class="hero">
         <div class="hero-copy">
-          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.6.3</span></button></div>
+          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.7.0</span></button></div>
           <h1 id="homeTitle"><span id="heroGreeting">Klaar om rekenen weer vanzelfsprekend te maken?</span></h1>
           <p>Leer per onderdeel, oefen adaptief en bouw de officiële toetsopzet na. De uitleg start rond havo 3 en groeit door naar het overwegend 3F-niveau van de toets.</p>
           <div class="button-row">
@@ -717,7 +717,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 
 <script>
 "use strict";
-const APP_VERSION = "1.6.3";
+const APP_VERSION = "1.7.0";
 const STORAGE_KEY = "pabo-rekenklaar-state-v1";
 const WISIK_TERRAIN_URL = "https://wisik.nl/";
 const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
@@ -773,6 +773,14 @@ const MISCONCEPTION_CATALOG = Object.freeze({
 const DIAGNOSTIC_DEFAULT_STATE = Object.freeze({schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0});
 
 const RELEASE_NOTES = [
+  {version:"1.7.0",date:"16 september 2026",title:"Meer variatie en inhoudelijke toetsdekking",items:[
+    "Volledige en korte toetsen spreiden de opgaven vooraf over de deelonderwerpen, met behoud van de domeinverdeling en rekenmachinebeperkingen.",
+    "Binnen een toets geen identieke opgaven; een vraagfamilie verschijnt maximaal drie keer over beide delen samen.",
+    "Zestien aanvullende generatoren vragen om andere denkhandelingen. Kleine vaste lijstjes bij gevorderde opgaven zijn vervangen door gecontroleerde getallenvariatie.",
+    "De vraagzwaarte blijft een eerlijke expertinschatting: bij inhoudelijke spreiding wordt een eenvoudiger vraag niet kunstmatig als moeilijk gelabeld.",
+    "Een begrensde lijst vraagvingerafdrukken blijft lokaal om herhaling tussen sessies te beperken. De bestaande voortgang, diagnostiek en rekenflirts blijven behouden.",
+    "Een aparte regressiecontrole doorloopt volledige adaptieve sessies en rapporteert spreiding, herhaling en voorraadtekorten. Dit is geen empirische toetsvalidatie."
+  ]},
   {version:"1.6.3",date:"8 september 2026",title:"Voorwaarde bij kansberekening",items:[
     "De kansuitleg vermeldt nu expliciet dat gunstige uitkomsten tellen alleen rechtstreeks werkt bij even waarschijnlijke uitkomsten.",
     "Het toetskader is opnieuw vergeleken met de actuele Cito-handreiking RWT 2.2.",
@@ -937,7 +945,7 @@ const DEFAULT_STATE = {
     C:{attempts:0,correct:0,rating:1.8,topics:{}},
     D:{attempts:0,correct:0,rating:1.8,topics:{}}
   },
-  completedLessons:[],badges:[],history:[],mistakes:[],diagnostics:{schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0},lastMode:"practice",lastDomain:"mix"
+  completedLessons:[],badges:[],history:[],mistakes:[],variation:{schemaVersion:1,recent:[]},diagnostics:{schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0},lastMode:"practice",lastDomain:"mix"
 };
 
 const LESSONS = {
@@ -1126,6 +1134,7 @@ function loadState(){
     for(const d of Object.keys(merged.mastery))Object.assign(merged.mastery[d],(parsed.mastery||{})[d]||{});
     merged.mistakes=(Array.isArray(parsed.mistakes)?parsed.mistakes:[]).slice(0,80).map(m=>({domain:m.domain,topic:m.topic,difficulty:m.difficulty||3,date:m.date||"",correctSince:Math.max(0,Number(m.correctSince)||0)}));
     merged.diagnostics=normalizeDiagnosticsState(parsed.diagnostics);
+    merged.variation=normalizeVariationHistory(parsed.variation);
     merged.version=APP_VERSION;
     return merged;
   }catch(e){console.warn("Voortgang kon niet worden geladen",e);return deepClone(DEFAULT_STATE)}
@@ -1720,6 +1729,26 @@ const RUBRIC_DEMAND = Object.freeze({
 });
 function rubricVariant(family,variant,demand,reason){return Object.freeze({family,variant,demand:Object.freeze({...demand}),reason})}
 const RUBRIC_VARIANTS = Object.freeze({
+/* BEGIN PABO VARIATION RUBRICS */
+  "A.variation.packing":rubricVariant("A-bestellingen-plannen","Een voordelige bestelling onder twee voorwaarden plannen",RUBRIC_DEMAND.L5_COMPLEX,"Hele verpakkingen, minimale aantallen, een leveringsgrens en kosten combineren; meerdere haalbare plannen vergelijken."),
+  "A.variation.remainders":rubricVariant("A-resten-combineren","Een getal uit twee resten en een interval afleiden",RUBRIC_DEMAND.L4_TRANSFER,"Twee deelbaarheidsvoorwaarden met een begrensd interval combineren en kandidaten uitsluiten."),
+  "A.variation.rounding":rubricVariant("A-afrondingsgrenzen","Een grens van een afrondingsinterval terugvinden",RUBRIC_DEMAND.L3_INVERSE,"Een afgerond getal terugvertalen naar mogelijke gehele getallen en de juiste grens bewaken."),
+  "B.variation.remaining-direct":rubricVariant("B-breuken-in-context","Een resterend deel van een voorraad bepalen",RUBRIC_DEMAND.L2_ROUTINE,"Het gebruikte deel aftrekken van het geheel en de overgebleven hoeveelheid bepalen."),
+  "B.variation.remaining-forward":rubricVariant("B-breuken-in-context","Twee opeenvolgende delen van een voorraad verwerken",RUBRIC_DEMAND.L3_COMPOSE,"Onderscheiden bij welk geheel de tweede breuk hoort en beide overblijvende delen combineren."),
+  "B.variation.remaining-inverse":rubricVariant("B-breuken-in-context","Na twee gedeeltelijke afnames de beginvoorraad terugvinden",RUBRIC_DEMAND.L4_TRANSFER,"Twee veranderende gehelen modelleren, de restfactor samenstellen en de situatie omkeren."),
+  "B.variation.wholes":rubricVariant("B-verschillende-gehelen","Breuken van verschillende groepsgroottes vergelijken",RUBRIC_DEMAND.L3_REP,"Een relatief aandeel van een absoluut aantal onderscheiden en twee verschillende gehelen verwerken."),
+  "B.variation.mixture":rubricVariant("B-verhouding-aanpassen","Een mengverhouding door toevoeging veranderen",RUBRIC_DEMAND.L4_TRANSFER,"De onveranderde component herkennen en van de gewenste nieuwe verhouding terugredeneren naar de toevoeging."),
+  "B.variation.reverse-chain":rubricVariant("B-procentketen-omkeren","De beginprijs na twee prijsveranderingen terugvinden",RUBRIC_DEMAND.L4_TRANSFER,"Opeenvolgende groeifactoren aan het juiste bedrag koppelen en de samengestelde verandering omkeren."),
+  "C.variation.fence":rubricVariant("C-omtrek-ontleden","De omtrek van een L-vorm met een doorgang bepalen",RUBRIC_DEMAND.L4_TRANSFER,"De rand van een uitgesneden figuur reconstrueren, interne maten afleiden en een doorgang correct verwerken."),
+  "C.variation.tank":rubricVariant("C-vullen-en-inhoud","Vultijd uit tankafmetingen en waterhoogtes bepalen",RUBRIC_DEMAND.L4_NUMERIC,"Het hoogteverschil naar een volume vertalen, kubieke maten met liters verbinden en een debiet gebruiken."),
+  "C.variation.journey":rubricVariant("C-gemiddelde-reissnelheid","Gemiddelde snelheid inclusief pauze bepalen",RUBRIC_DEMAND.L4_TRANSFER,"Afstanden van twee reisdelen samenstellen en delen door de totale verstreken tijd, inclusief de stilstand."),
+  "C.variation.scale-fence":rubricVariant("C-schaal-ontbrekende-maat","Een ontbrekende maat uit schaal en oppervlakte afleiden",RUBRIC_DEMAND.L5_COMPLEX,"Schaal, oppervlakte, een onbekende zijde, een onderbroken omtrek en materiaalkosten in één model verbinden."),
+  "C.variation.flow-units":rubricVariant("C-samengestelde-eenheden","Milliliter per seconde naar een totale hoeveelheid omzetten",RUBRIC_DEMAND.L3_COMPOSE,"De tijdseenheid en inhoudseenheid apart omzetten en hun samenhang bewaken."),
+  "D.variation.weighted":rubricVariant("D-gewogen-gemiddelde","Een onbekende groepsgrootte uit drie gemiddelden bepalen",RUBRIC_DEMAND.L4_TRANSFER,"Verschillende groepsgroottes als gewichten gebruiken en uit het gecombineerde gemiddelde terugredeneren."),
+  "D.variation.graph-rate":rubricVariant("D-grafiek-naar-tempo","Een grafiekinterval naar een verwachte eindtijd vertalen",RUBRIC_DEMAND.L4_TRANSFER,"Een beginvoorraad van een toename onderscheiden, het tempo uit twee punten bepalen en naar een doelwaarde extrapoleren."),
+  "D.variation.pattern-inverse":rubricVariant("D-patroon-terugzoeken","Een figuurnummer uit een kwadratisch patroon terugvinden",RUBRIC_DEMAND.L3_INVERSE,"Een tabel aan de gegeven patroonregel verbinden, een constante aftrekken en de kwadratische relatie omkeren."),
+  "D.variation.formula-budget":rubricVariant("D-formule-afleiden","Een kostenformule uit twee waarnemingen afleiden",RUBRIC_DEMAND.L4_TRANSFER,"De variabele en vaste kosten uit een tabel afleiden en daarna met een budget en gehele aantallen rekenen."),
+/* END PABO VARIATION RUBRICS */
   "A.operations.direct":rubricVariant("A-basisbewerkingen","Eén basisbewerking met een passende rekenstrategie",RUBRIC_DEMAND.L2_ROUTINE,"Een bekende bewerking uitvoeren en de getalstructuur benutten."),
   "A.operations.inverse":rubricVariant("A-basisbewerkingen","Ontbrekende factor via de omgekeerde bewerking",RUBRIC_DEMAND.L2_ROUTINE,"De standaardbewerking omkeren en controleren met vermenigvuldigen."),
   "A.decimal.compare":rubricVariant("A-decimalen-vergelijken","Decimalen vergelijken op plaatswaarde",RUBRIC_DEMAND.L2_REP,"Twee decimale voorstellingen plaats voor plaats vergelijken en een misleidende cijferlengte negeren."),
@@ -1898,14 +1927,14 @@ function rubricFeedbackMarkup(q){
 
 function genAAdvanced(d,mode){
   if(d>=5){
-    const n=pick([1998,2998,3998,4998]),factor=25,answer=n*factor,round=n+2;
-    const correct=`(${fmt(round)} − 2) × ${factor} = ${fmt(round*factor)} − ${2*factor} = ${fmt(answer)}`;
+    const factor=pick([5,25,50,125]),offset=pick([1,2,4]),round=randInt(4,60)*100,n=round-offset,answer=n*factor;
+    const correct=`(${fmt(round)} − ${offset}) × ${factor} = ${fmt(round*factor)} − ${offset*factor} = ${fmt(answer)}`;
     const distractors=[
-      `${fmt(round)} × ${factor} − 2 = ${fmt(round*factor-2)}`,
-      `${fmt(n)} × 100 : ${factor} = ${fmt(n*4)}`,
-      `${fmt(n-2)} × ${factor} + 2 = ${fmt((n-2)*factor+2)}`
+      `${fmt(round)} × ${factor} − ${offset} = ${fmt(round*factor-offset)}`,
+      `${fmt(n)} × 100 : ${factor} = ${fmt(n*100/factor,4)}`,
+      `${fmt(n-offset)} × ${factor} + ${offset} = ${fmt((n-offset)*factor+offset)}`
     ];
-    return tagRubric(makeMCQ({domain:"A",topic:"operations",mode,difficulty:d,prompt:`Vier studenten rekenen <strong>${fmt(n)} × ${factor}</strong> uit. Welke strategie is exact juist?`,correct,distractors,explanation:`Vervang ${fmt(n)} door ${fmt(round)} − 2 en corrigeer het volledige verschil van 2 × ${factor}. De exacte uitkomst is <strong>${fmt(answer)}</strong>.`,hint:"Bij compenseren moet je de verandering in één factor ook met de andere factor vermenigvuldigen."}),"A.advanced.strategy-evaluation",{n,factor,answer});
+    return tagRubric(makeMCQ({domain:"A",topic:"operations",mode,difficulty:d,prompt:`Vier studenten rekenen <strong>${fmt(n)} × ${factor}</strong> uit. Welke strategie is exact juist?`,correct,distractors,explanation:`Vervang ${fmt(n)} door ${fmt(round)} − ${offset} en corrigeer het volledige verschil van ${offset} × ${factor}. De exacte uitkomst is <strong>${fmt(answer)}</strong>.`,hint:"Bij compenseren moet je de verandering in één factor ook met de andere factor vermenigvuldigen."}),"A.advanced.strategy-evaluation",{n,factor,answer});
   }
   let a,b,c,missing,number,quotient;
   do{a=randInt(2,8);b=randInt(0,9);c=randInt(0,9);missing=(9-((a+b+c)%9))%9}while(missing===0);
@@ -1916,42 +1945,36 @@ function genAAdvanced(d,mode){
 }
 function genBAdvanced(d,mode){
   if(d>=5){
-    const scenarios=[
-      {price:240,aPct:25,bFlat:30,bPct:10},
-      {price:320,aPct:20,bFlat:40,bPct:8},
-      {price:180,aPct:30,bFlat:36,bPct:10}
-    ],s=pick(scenarios),priceA=roundTo(s.price*(1-s.aPct/100),2),priceB=roundTo((s.price-s.bFlat)*(1-s.bPct/100),2),diff=roundTo(Math.abs(priceA-priceB),2),winner=priceA<priceB?"Aanbieding A":"Aanbieding B";
+    const price=randInt(12,65)*10,aPct=pick([10,15,20,25,30]),bPct=pick([5,8,10,15,20]);let bFlat=randInt(1,10)*5;
+    if(almostEqual(price*(1-aPct/100),(price-bFlat)*(1-bPct/100)))bFlat+=5;
+    const s={price,aPct,bFlat,bPct},priceA=roundTo(s.price*(1-s.aPct/100),2),priceB=roundTo((s.price-s.bFlat)*(1-s.bPct/100),2),diff=roundTo(Math.abs(priceA-priceB),2),winner=priceA<priceB?"Aanbieding A":"Aanbieding B";
     const correct=`${winner} is € ${fmtFixed(diff,2)} goedkoper.`;
     const other=winner==="Aanbieding A"?"Aanbieding B":"Aanbieding A";
     const distractors=[`${other} is € ${fmtFixed(diff,2)} goedkoper.`,`Beide aanbiedingen kosten evenveel.`,`${winner} is € ${fmtFixed(roundTo(diff+s.bPct,2),2)} goedkoper.`];
     return tagRubric(makeMCQ({domain:"B",topic:"percent",mode,difficulty:d,prompt:`Een artikel kost normaal <strong>€ ${fmtFixed(s.price,2)}</strong>.<br>Aanbieding A: <strong>${s.aPct}% korting</strong>.<br>Aanbieding B: eerst <strong>€ ${fmtFixed(s.bFlat,2)} korting</strong> en daarna nog <strong>${s.bPct}% korting op het resterende bedrag</strong>.<br>Welke conclusie klopt?`,correct,distractors,explanation:`A kost € ${fmtFixed(priceA,2)}. B kost (€ ${fmtFixed(s.price,2)} − € ${fmtFixed(s.bFlat,2)}) × ${fmt(1-s.bPct/100,2)} = € ${fmtFixed(priceB,2)}. Dus <strong>${correct}</strong>`,hint:"Bereken beide eindprijzen afzonderlijk; tel percentages en eurokorting niet rechtstreeks op.",calculatorAllowed:mode==="non",quality:{rule:"compareOffers",...s,priceA,priceB,winner,diff}}),"B.advanced.compare-offers",s);
   }
-  const scenarios=[{base:200,p1:20,p2:-25},{base:160,p1:-25,p2:20},{base:120,p1:25,p2:-20},{base:240,p1:-20,p2:25}],s=pick(scenarios),answer=roundTo(s.base*(1+s.p1/100)*(1+s.p2/100),2);
+  const s={base:randInt(6,80)*20,p1:pick([-30,-25,-20,-10,10,20,25,50]),p2:pick([-30,-25,-20,-10,10,20,25,50])},answer=roundTo(s.base*(1+s.p1/100)*(1+s.p2/100),2);
   const wording1=s.p1>=0?`${s.p1}% verhoogd`:`${Math.abs(s.p1)}% verlaagd`,wording2=s.p2>=0?`${s.p2}% verhoogd`:`${Math.abs(s.p2)}% verlaagd`;
   return tagRubric(makeNumberQ({domain:"B",topic:"percent",mode,difficulty:d,prompt:`Een bedrag van <strong>€ ${fmtFixed(s.base,2)}</strong> wordt eerst <strong>${wording1}</strong> en daarna <strong>${wording2}</strong>. Wat is het eindbedrag?`,answer,answerDisplay:`€ ${fmtFixed(answer,2)}`,unit:"€",tolerance:.005,explanation:`Gebruik opeenvolgend de factoren ${fmt(1+s.p1/100,2)} en ${fmt(1+s.p2/100,2)}: ${fmtFixed(s.base,2)} × ${fmt(1+s.p1/100,2)} × ${fmt(1+s.p2/100,2)} = <strong>€ ${fmtFixed(answer,2)}</strong>.`,hint:"Elke procentuele verandering hoort bij de waarde die op dat moment geldt.",calculatorAllowed:mode==="non",quality:{rule:"successivePercent",...s}}),"B.advanced.successive",s);
 }
 function genCAdvanced(d,mode){
   if(d>=5&&mode==="head"){
-    const cases=[{l:2,w:3,h:.5,answer:3},{l:3,w:.5,h:2,answer:3},{l:1.5,w:2,h:2,answer:6}],s=pick(cases),correct=`${s.answer} keer`;
-    return tagRubric(makeMCQ({domain:"C",topic:"volume-surface",mode,difficulty:d,prompt:`Van een balk wordt de lengte <strong>${fmt(s.l,1)} keer</strong>, de breedte <strong>${fmt(s.w,1)} keer</strong> en de hoogte <strong>${fmt(s.h,1)} keer</strong> zo groot. Hoeveel keer zo groot wordt de inhoud?`,correct,distractors:[`${fmt(s.l+s.w+s.h,2)} keer`,`${fmt(s.l*s.w,2)} keer`,`${fmt((s.l*s.w*s.h)**2,2)} keer`],explanation:`Bij inhoud vermenigvuldig je de drie onafhankelijke lengtefactoren: ${fmt(s.l,1)} × ${fmt(s.w,1)} × ${fmt(s.h,1)} = <strong>${fmt(s.answer,2)} keer</strong>.`,hint:"Gebruik niet automatisch één macht; de drie richtingen hebben hier verschillende factoren."}),"C.advanced.dimension-change",s);
+    const l=pick([1.5,2,3,4]),w=pick([.5,1.5,2,3]),h=pick([.5,1.5,2]),s={l,w,h,answer:l*w*h},correct=`${fmt(s.answer,3)} keer`;
+    return tagRubric(makeMCQ({domain:"C",topic:"volume-surface",mode,difficulty:d,prompt:`Van een balk wordt de lengte <strong>${fmt(s.l,1)} keer</strong>, de breedte <strong>${fmt(s.w,1)} keer</strong> en de hoogte <strong>${fmt(s.h,1)} keer</strong> zo groot. Hoeveel keer zo groot wordt de inhoud?`,correct,distractors:[...new Set([s.l+s.w+s.h,s.l*s.w,s.answer**2,s.answer*2,s.answer/2].filter(v=>!almostEqual(v,s.answer)))].slice(0,3).map(v=>`${fmt(v,3)} keer`),explanation:`Bij inhoud vermenigvuldig je de drie onafhankelijke lengtefactoren: ${fmt(s.l,1)} × ${fmt(s.w,1)} × ${fmt(s.h,1)} = <strong>${fmt(s.answer,3)} keer</strong>.`,hint:"Gebruik niet automatisch één macht; de drie richtingen hebben hier verschillende factoren."}),"C.advanced.dimension-change",s);
   }
   if(d>=5){
-    const cases=[
-      {roomL:4.8,roomW:3.6,tileCm:30,reserve:10,box:12},
-      {roomL:5.4,roomW:4,tileCm:30,reserve:8,box:10},
-      {roomL:6,roomW:3.75,tileCm:25,reserve:5,box:14}
-    ],s=pick(cases),roomArea=s.roomL*s.roomW,tileArea=(s.tileCm/100)**2,rawTiles=roomArea/tileArea,withReserve=rawTiles*(1+s.reserve/100),tiles=Math.ceil(withReserve-1e-10),answer=Math.ceil(tiles/s.box);
-    return tagRubric(makeNumberQ({domain:"C",topic:"area-perimeter",mode,difficulty:d,prompt:`Een rechthoekige vloer is <strong>${fmt(s.roomL,2)} m × ${fmt(s.roomW,2)} m</strong>. Er komen vierkante tegels van <strong>${s.tileCm} cm × ${s.tileCm} cm</strong>. Reken met <strong>${s.reserve}% snijverlies</strong>. De tegels zitten per <strong>${s.box}</strong> in een doos. Hoeveel hele dozen zijn minimaal nodig?`,answer,unit:"dozen",explanation:`Vloer: ${fmt(roomArea,3)} m². Tegel: ${fmt(tileArea,4)} m². Zonder reserve: ${fmt(rawTiles,2)} tegels. Met ${s.reserve}% reserve: ${fmt(withReserve,2)}, dus ${tiles} hele tegels. ${tiles} : ${s.box} vraagt om <strong>${answer} hele dozen</strong>.`,hint:"Zet eerst de tegelmaat om naar meters. Rond tegels én dozen steeds naar boven af.",calculatorAllowed:true,quality:{rule:"tilingBoxes",...s,answer}}),"C.advanced.tiles-boxes",s);
+    const s={roomL:randInt(28,80)/10,roomW:randInt(24,65)/10,tileCm:pick([20,25,30,40,50]),reserve:pick([5,8,10,12]),box:pick([8,10,12,14,16])},roomArea=s.roomL*s.roomW,tileArea=(s.tileCm/100)**2,rawTiles=roomArea/tileArea,withReserve=rawTiles*(1+s.reserve/100),tiles=Math.ceil(withReserve-1e-10),answer=Math.ceil(tiles/s.box);
+    return tagRubric(makeNumberQ({domain:"C",topic:"area-perimeter",mode,difficulty:d,prompt:`Een rechthoekige vloer is <strong>${fmt(s.roomL,2)} m × ${fmt(s.roomW,2)} m</strong>. Er komen vierkante tegels van <strong>${s.tileCm} cm × ${s.tileCm} cm</strong>. Bereken op basis van de oppervlakten en tel <strong>${s.reserve}% extra tegels als reserve voor snijverlies</strong> erbij. De tegels zitten per <strong>${s.box}</strong> in een doos. Hoeveel hele dozen zijn minimaal nodig?`,answer,unit:"dozen",explanation:`Vloer: ${fmt(roomArea,3)} m². Tegel: ${fmt(tileArea,4)} m². Zonder reserve: ${fmt(rawTiles,2)} tegels. Met ${s.reserve}% reserve: ${fmt(withReserve,2)}, dus ${tiles} hele tegels. ${tiles} : ${s.box} vraagt om <strong>${answer} hele dozen</strong>.`,hint:"Zet eerst de tegelmaat om naar meters. Rond tegels én dozen steeds naar boven af.",calculatorAllowed:true,quality:{rule:"tilingBoxes",...s,answer}}),"C.advanced.tiles-boxes",s);
   }
-  const cases=[{drawL:3,drawW:2,scale:200},{drawL:4.5,drawW:2.5,scale:200},{drawL:2.4,drawW:1.8,scale:500}],s=pick(cases),realL=s.drawL*s.scale/100,realW=s.drawW*s.scale/100,answer=roundTo(realL*realW,4);
+  const s={drawL:randInt(12,60)/10,drawW:randInt(10,45)/10,scale:pick([50,100,200,250,500])},realL=s.drawL*s.scale/100,realW=s.drawW*s.scale/100,answer=roundTo(realL*realW,4);
   return tagRubric(makeNumberQ({domain:"C",topic:"geometry-scale",mode,difficulty:d,prompt:`Op een schaaltekening <strong>1 : ${fmt(s.scale)}</strong> is een rechthoek <strong>${fmt(s.drawL,1)} cm × ${fmt(s.drawW,1)} cm</strong>. Bereken de werkelijke oppervlakte in m².`,answer,unit:"m²",explanation:`Werkelijke lengtes: ${fmt(s.drawL,1)} × ${fmt(s.scale)} = ${fmt(s.drawL*s.scale)} cm = ${fmt(realL,2)} m en ${fmt(s.drawW,1)} × ${fmt(s.scale)} = ${fmt(realW,2)} m. Oppervlakte = <strong>${fmt(answer,4)} m²</strong>.`,hint:"Zet beide lengtes afzonderlijk om; bereken daarna pas de oppervlakte.",calculatorAllowed:mode==="non",quality:{rule:"scaleArea",...s,answer}}),"C.advanced.scale-area",s);
 }
 function genDAdvanced(d,mode){
   if(d>=5){
-    const cases=[{a0:4,ar:2.5,b0:10,br:1.5},{a0:3,ar:3,b0:15,br:1},{a0:6,ar:2,b0:18,br:1}],s=pick(cases),cross=(s.b0-s.a0)/(s.ar-s.br),kms=[0,Math.max(1,cross-2),cross,cross+4],rows=kms.map(k=>`<tr><td>${fmt(k,2)}</td><td>€ ${fmtFixed(s.a0+s.ar*k,2)}</td><td>€ ${fmtFixed(s.b0+s.br*k,2)}</td></tr>`).join(""),visual=`<div class="question-table-wrap"><table class="exam-matrix question-table" aria-label="Kosten van tarief A en tarief B per afstand"><thead><tr><th>kilometer</th><th>Tarief A</th><th>Tarief B</th></tr></thead><tbody>${rows}</tbody></table></div>`,correct=`Bij ${fmt(cross,2)} km zijn de tarieven gelijk; daarboven is tarief B goedkoper.`;
+    const a0=randInt(2,15),br=pick([1,1.5,2,2.5]),ar=br+pick([.5,1,1.5,2]),crossing=randInt(3,18),s={a0,ar,b0:a0+(ar-br)*crossing,br},cross=(s.b0-s.a0)/(s.ar-s.br),kms=[0,Math.max(1,cross-2),cross,cross+4],rows=kms.map(k=>`<tr><td>${fmt(k,2)}</td><td>€ ${fmtFixed(s.a0+s.ar*k,2)}</td><td>€ ${fmtFixed(s.b0+s.br*k,2)}</td></tr>`).join(""),visual=`<div class="question-table-wrap"><table class="exam-matrix question-table" aria-label="Kosten van tarief A en tarief B per afstand"><thead><tr><th>kilometer</th><th>Tarief A</th><th>Tarief B</th></tr></thead><tbody>${rows}</tbody></table></div>`,correct=`Bij ${fmt(cross,2)} km zijn de tarieven gelijk; daarboven is tarief B goedkoper.`;
     return tagRubric(makeMCQ({domain:"D",topic:"formulas",mode:"non",difficulty:d,prompt:`Tarief A heeft formule <span class="formula">A = ${fmt(s.a0,2)} + ${fmt(s.ar,2)} × km</span>.<br>Tarief B heeft formule <span class="formula">B = ${fmt(s.b0,2)} + ${fmt(s.br,2)} × km</span>.<br>Welke conclusie past bij de formules én de tabel?`,correct,distractors:[`Tarief A is bij elke afstand goedkoper.`,`Tarief B is bij elke afstand goedkoper.`,`Bij ${fmt(cross,2)} km zijn de tarieven gelijk; daarboven is tarief A goedkoper.`],visual,explanation:`Los ${fmt(s.a0,2)} + ${fmt(s.ar,2)}k = ${fmt(s.b0,2)} + ${fmt(s.br,2)}k op. Dat geeft k = ${fmt(cross,2)}. Omdat tarief B daarna per kilometer minder stijgt, is B boven dit omslagpunt goedkoper.`,hint:"Zoek eerst het omslagpunt en vergelijk daarna de stijging per kilometer.",calculatorAllowed:true,quality:{rule:"tariffBreakEven",...s,cross}}),"D.advanced.tariff-evaluation",s);
   }
-  const cases=[{a0:80,a1:100,b0:200,b1:230},{a0:120,a1:138,b0:50,b1:60},{a0:40,a1:52,b0:150,b1:180}],s=pick(cases),aPct=(s.a1-s.a0)/s.a0*100,bPct=(s.b1-s.b0)/s.b0*100,winner=aPct>bPct?"Reeks A":"Reeks B",correct=`${winner} heeft relatief de grootste stijging.`;
+  const a0=randInt(4,40)*10,b0=randInt(4,40)*10,pa=pick([5,10,15,20,25,30,40,50]),pb=pick([5,10,15,20,25,30,40,50].filter(p=>p!==pa)),s={a0,a1:roundTo(a0*(1+pa/100),2),b0,b1:roundTo(b0*(1+pb/100),2)},aPct=(s.a1-s.a0)/s.a0*100,bPct=(s.b1-s.b0)/s.b0*100,winner=aPct>bPct?"Reeks A":"Reeks B",correct=`${winner} heeft relatief de grootste stijging.`;
   const visual=`<div class="question-table-wrap"><table class="exam-matrix question-table four-col" aria-label="Begin, einde en absolute stijging per reeks"><thead><tr><th>Reeks</th><th>begin</th><th>einde</th><th>absolute stijging</th></tr></thead><tbody><tr><td>A</td><td>${s.a0}</td><td>${s.a1}</td><td>${s.a1-s.a0}</td></tr><tr><td>B</td><td>${s.b0}</td><td>${s.b1}</td><td>${s.b1-s.b0}</td></tr></tbody></table></div>`;
   return tagRubric(makeMCQ({domain:"D",topic:"statistics",mode:"non",difficulty:d,prompt:"Welke reeks heeft relatief de grootste stijging?",correct,distractors:[`${winner==="Reeks A"?"Reeks B":"Reeks A"} heeft relatief de grootste stijging.`,`Beide reeksen stijgen relatief evenveel.`,`Dat is zonder grafiek niet te bepalen.`],visual,explanation:`A stijgt ${s.a1-s.a0} op ${s.a0}: ${fmt(aPct,1)}%. B stijgt ${s.b1-s.b0} op ${s.b0}: ${fmt(bPct,1)}%. Dus <strong>${correct}</strong>`,hint:"Deel de stijging door de beginwaarde; vergelijk niet alleen de absolute verschillen.",quality:{rule:"relativeChange",...s,winner}}),"D.advanced.relative-change",s);
 }
@@ -2024,6 +2047,252 @@ const QUESTION_BANK = {
     {topic:"formulas",modes:["non"],levels:[5],fn:genDAdvancedTariff}
   ]
 };
+
+/* BEGIN PABO VARIATION MODULE */
+/* Aanvullende eigen opgaven. Elke rubric is een expertinschatting, geen RWT-kalibratie.
+   Bron wordt door apply-pabo-variation.mjs in de zelfstandige HTML ingebouwd. */
+function variationNumber(domain,topic,key,prompt,answer,explanation,data,extra={}){
+  const q=tagRubric(makeNumberQ({domain,topic,mode:extra.mode||"non",difficulty:1,prompt,answer,explanation,...extra}),key);
+  q.variationData={key,...data};return q;
+}
+function variationTable(headers,rows,label){
+  return `<div class="question-table-wrap"><table class="exam-matrix question-table" aria-label="${escapeHtml(label)}"><thead><tr>${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(x=>`<td>${escapeHtml(String(x))}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+function genAVariationPacking(d,mode){
+  const small=pick([6,8,10,12]),large=small*pick([2,3]),smallCost=pick([7,9,11,13]),largeCost=smallCost*(large/small)-randInt(2,5),limit=randInt(1,3),needed=randInt(4,11)*small+randInt(1,small-1);
+  const plans=Array.from({length:limit+1},(_,big)=>{const little=Math.max(0,Math.ceil((needed-big*large)/small));return {big,little,cost:big*largeCost+little*smallCost}}),best=plans.reduce((a,b)=>a.cost<=b.cost?a:b);
+  return variationNumber("A","operations","A.variation.packing",`Een school heeft minstens <strong>${needed} potloden</strong> nodig. Een kleine doos bevat <strong>${small}</strong> potloden en kost <strong>€ ${smallCost}</strong>; een grote doos bevat <strong>${large}</strong> potloden en kost <strong>€ ${largeCost}</strong>. Er zijn maximaal <strong>${limit} grote dozen</strong> leverbaar; kleine dozen zijn onbeperkt leverbaar. Er mogen potloden overblijven. Wat zijn de laagst mogelijke kosten?`,best.cost,`Vergelijk de mogelijke aantallen grote dozen. ${plans.map(p=>`${p.big} grote en ${p.little} kleine: € ${p.cost}`).join("; ")}. Het minimum is <strong>€ ${best.cost}</strong>.`,{small,large,smallCost,largeCost,limit,needed},{mode,unit:"€",hint:"Vergelijk voor ieder mogelijk aantal grote dozen hoeveel kleine dozen nog nodig zijn.",calculatorAllowed:true});
+}
+function genAVariationRemainders(d,mode){
+  const [a,b]=pick([[3,5],[4,7],[5,6],[5,7],[7,8]]),period=a*b,lower=randInt(1,8)*period,target=lower+randInt(1,period-1),ra=target%a,rb=target%b;
+  return variationNumber("A","negative-divisibility","A.variation.remainders",`Een geheel getal ligt in het interval <strong>${lower} ≤ getal &lt; ${lower+period}</strong>. Bij delen door <strong>${a}</strong> is de rest <strong>${ra}</strong>; bij delen door <strong>${b}</strong> is de rest <strong>${rb}</strong>. Welk getal is het?`,target,`Onderzoek de getallen met rest ${ra} bij deling door ${a}. Alleen <strong>${target}</strong> heeft in dit interval ook rest ${rb} bij deling door ${b}. Controle: ${target} = ${a} × ${Math.floor(target/a)} + ${ra} = ${b} × ${Math.floor(target/b)} + ${rb}.`,{a,b,lower,upper:lower+period,ra,rb},{mode,hint:"Begin met één restvoorwaarde en controleer de kandidaten met de andere."});
+}
+function genAVariationRounding(d,mode){
+  const step=pick([10,100,1000]),rounded=randInt(12,89)*step,upper=Math.random()<.5,answer=rounded+(upper?step/2-1:-step/2);
+  return variationNumber("A","place-value","A.variation.rounding",`Een positief geheel getal wordt afgerond op ${step===10?"tientallen":step===100?"honderdtallen":"duizendtallen"} en geeft <strong>${fmt(rounded)}</strong>. Bij precies een halve stap wordt naar boven afgerond. Wat is het <strong>${upper?"grootste":"kleinste"}</strong> mogelijke gehele getal vóór het afronden?`,answer,`De gehele getallen van ${fmt(rounded-step/2)} tot en met ${fmt(rounded+step/2-1)} ronden af op ${fmt(rounded)}. De gevraagde grens is <strong>${fmt(answer)}</strong>.`,{step,rounded,upper},{mode,hint:"Zoek de twee halve-stapgrenzen; let op welke grens nog bij dit afgeronde getal hoort."});
+}
+function genBVariationRemaining(d,mode){
+  const a=pick([2,3,4,5]),b=pick([2,3,4,5]),total=a*b*randInt(6,30),first=total*(a-1)/a,left=first*(b-1)/b;
+  const kind=d<=2?"direct":d===3?"forward":"inverse",key=`B.variation.remaining-${kind}`;
+  const prompt=kind==="direct"?`Een magazijn heeft <strong>${total} schriften</strong>. Er wordt <strong>1/${a}</strong> van de voorraad uitgedeeld. Hoeveel schriften blijven over?`:kind==="forward"?`Een magazijn heeft <strong>${total} schriften</strong>. Eerst wordt <strong>1/${a}</strong> van de voorraad uitgedeeld, daarna <strong>1/${b} van wat dan nog over is</strong>. Hoeveel schriften blijven uiteindelijk over?`:`Een magazijn deelt eerst <strong>1/${a}</strong> van zijn voorraad schriften uit en daarna <strong>1/${b} van wat dan nog over is</strong>. Er blijven <strong>${left} schriften</strong> over. Hoe groot was de beginvoorraad?`;
+  const answer=kind==="direct"?first:kind==="forward"?left:total;
+  const explanation=kind==="direct"?`Er blijft ${a-1}/${a} over: ${total} × ${a-1}/${a} = <strong>${first}</strong>.`:kind==="forward"?`Na de eerste uitdeling zijn er ${first} schriften. Van die nieuwe voorraad blijft ${b-1}/${b} over: <strong>${left}</strong>.`:`Het overgebleven deel van de beginvoorraad is ${a-1}/${a} × ${b-1}/${b}. De beginvoorraad is ${left} : (${a-1}/${a} × ${b-1}/${b}) = <strong>${total}</strong>.`;
+  return variationNumber("B","fraction-operations",key,prompt,answer,explanation,{a,b,total,left,kind},{mode,hint:kind==="direct"?"Bepaal welk deel van de hele voorraad overblijft.":"De tweede breuk hoort bij de overgebleven voorraad, niet bij de beginvoorraad.",calculatorAllowed:mode==="non"&&d>=4});
+}
+function genBVariationWholes(d,mode){
+  const da=pick([3,4,5,6]),db=pick([3,4,5,6]),na=randInt(1,da-1),nb=randInt(1,db-1),sizeA=da*randInt(4,10),sizeB=db*randInt(4,10),countA=sizeA/da*na,countB=sizeB/db*nb;
+  return variationNumber("B","fraction-concept","B.variation.wholes",`In groep A fietsen <strong>${na}/${da} van de ${sizeA} leerlingen</strong> naar school. In groep B fietsen <strong>${nb}/${db} van de ${sizeB} leerlingen</strong>. Hoe groot is het verschil tussen de <strong>aantallen</strong> fietsende leerlingen?`,Math.abs(countA-countB),`Groep A: ${sizeA} × ${na}/${da} = ${countA}. Groep B: ${sizeB} × ${nb}/${db} = ${countB}. Het absolute verschil is <strong>${Math.abs(countA-countB)}</strong> leerlingen; alleen de breuken vergelijken is niet voldoende.`,{da,db,na,nb,sizeA,sizeB},{mode,hint:"De breuken horen bij verschillende groepsgroottes."});
+}
+function genBVariationMixture(d,mode){
+  const syrup=randInt(2,9)*50,before=randInt(2,5),after=before+randInt(1,4),initial=syrup*(before+1),answer=syrup*(after-before);
+  return variationNumber("B","ratio-scale-probability","B.variation.mixture",`Er is <strong>${initial} ml</strong> limonade, gemengd in de verhouding <strong>siroop : water = 1 : ${before}</strong>. Je voegt alleen water toe, totdat de verhouding <strong>1 : ${after}</strong> is. Hoeveel milliliter water moet erbij?`,answer,`De hoeveelheid siroop verandert niet: ${initial} : ${before+1} = ${syrup} ml. Het water moet van ${syrup*before} naar ${syrup*after} ml. Voeg dus <strong>${answer} ml</strong> toe.`,{syrup,before,after,initial},{mode,unit:"ml",hint:"Welke hoeveelheid blijft bij het verdunnen onveranderd?"});
+}
+function genBVariationReverseChain(d,mode){
+  const base=randInt(10,80)*20,p1=pick([10,20,25,50]),p2=pick([10,20,25,40]),final=roundTo(base*(1+p1/100)*(1-p2/100),2);
+  return variationNumber("B","percent","B.variation.reverse-chain",`Een prijs wordt eerst <strong>${p1}% verhoogd</strong> en daarna <strong>${p2}% verlaagd ten opzichte van de verhoogde prijs</strong>. De eindprijs is <strong>€ ${fmtFixed(final,2)}</strong>. Wat was de oorspronkelijke prijs?`,base,`De samengestelde factor is ${fmt(1+p1/100,2)} × ${fmt(1-p2/100,2)}. Deel de eindprijs door die factor: <strong>€ ${fmtFixed(base,2)}</strong>. De twee percentages horen niet bij hetzelfde bedrag.`,{base,p1,p2,final},{mode,unit:"€",hint:"Bereken eerst welk deel van de beginprijs de eindprijs vertegenwoordigt.",calculatorAllowed:mode==="non"});
+}
+function variationLShape(l,w,cutL,cutW){
+  const scale=Math.min(320/l,175/w),x=76,y=54,right=x+l*scale,bottom=y+w*scale,notch=right-cutL*scale,drop=y+cutW*scale;
+  return `<svg viewBox="0 0 480 295" role="img" aria-label="L-vorm met buitenmaten ${l} bij ${w} meter en een uitsparing rechtsboven van ${cutL} bij ${cutW} meter"><desc>Een rechthoek van ${l} bij ${w} meter. Rechtsboven ontbreekt een rechthoek van ${cutL} bij ${cutW} meter.</desc><path d="M ${x} ${y} H ${notch} V ${drop} H ${right} V ${bottom} H ${x} Z" fill="#eaf6ff" stroke="#123b5d" stroke-width="3"/><path d="M ${notch} ${y} H ${right} V ${drop}" fill="none" stroke="#647486" stroke-dasharray="5 4"/><text x="${(x+right)/2}" y="${bottom+30}" text-anchor="middle" font-size="18">${l} m</text><text x="${x-38}" y="${(y+bottom)/2}" text-anchor="middle" font-size="18">${w} m</text><text x="${(notch+right)/2}" y="${y-16}" text-anchor="middle" font-size="17">${cutL} m</text><text x="${right+12}" y="${(y+drop)/2+6}" font-size="17">${cutW} m</text></svg>`;
+}
+function genCVariationFence(d,mode){
+  const l=randInt(12,24),w=randInt(8,14),cutL=randInt(2,Math.floor(l/2)),cutW=randInt(2,Math.floor(w/2)),gate=randInt(1,4),answer=2*(l+w)-gate;
+  return variationNumber("C","area-perimeter","C.variation.fence",`Uit de rechterbovenhoek van een rechthoekig terrein van <strong>${l} m bij ${w} m</strong> is een rechthoek van <strong>${cutL} m bij ${cutW} m</strong> weggehaald. Rond de overblijvende L-vorm komt een hek, behalve bij een doorgang van <strong>${gate} m</strong>. Hoeveel meter hek is nodig?`,answer,`De twee verwijderde buitenstukken worden vervangen door twee even lange binnenranden. De omtrek van deze L-vorm blijft 2 × (${l} + ${w}) = ${2*(l+w)} m. Trek de doorgang af: <strong>${answer} m</strong>.`,{l,w,cutL,cutW,gate},{mode,unit:"m",visual:variationLShape(l,w,cutL,cutW),hint:"Volg alle randen, ook de randen van de uitsparing."});
+}
+function genCVariationTank(d,mode){
+  const l=randInt(6,16)*10,w=randInt(4,9)*10,start=randInt(1,4)*5,rise=randInt(2,6)*5,rate=pick([2,3,4,5,6]),litres=l*w*rise/1000,answer=roundTo(litres/rate,1);
+  return variationNumber("C","volume-surface","C.variation.tank",`Een rechthoekige tank heeft binnenmaten <strong>${l} cm × ${w} cm</strong>. Het water staat <strong>${start} cm</strong> hoog en moet naar <strong>${start+rise} cm</strong>. Een kraan levert constant <strong>${rate} liter per minuut</strong>. Hoeveel minuten duurt dat? Rond zo nodig af op één decimaal.`,answer,`De stijging is ${rise} cm. Er moet ${l} × ${w} × ${rise} = ${fmt(l*w*rise)} cm³ bij, dus ${fmt(litres,2)} liter. Deel door ${rate}: <strong>${fmtFixed(answer,1)} minuten</strong>.`,{l,w,start,rise,rate},{mode,unit:"min",tolerance:.01,calculatorAllowed:true,hint:"Bereken alleen het volume dat er nog bij moet; 1 liter is 1.000 cm³."});
+}
+function genCVariationJourney(d,mode){
+  const speed1=pick([12,15,18,20,24]),speed2=pick([10,12,15,18,20]),t1=pick([20,30,40,60]),t2=pick([20,30,40,60]),pause=pick([5,10,15,20]),distance=speed1*t1/60+speed2*t2/60,answer=Math.floor((20*(speed1*t1+speed2*t2)+(t1+t2+pause))/(2*(t1+t2+pause)))/10;
+  return variationNumber("C","speed-time","C.variation.journey",`Een fietser rijdt <strong>${t1} minuten met ${speed1} km/u</strong>, pauzeert <strong>${pause} minuten</strong> en rijdt daarna <strong>${t2} minuten met ${speed2} km/u</strong>. Wat is de gemiddelde snelheid over de hele tocht, <strong>inclusief de pauze</strong>? Rond af op één decimaal.`,answer,`De totale afstand is ${speed1} × ${t1}/60 + ${speed2} × ${t2}/60 = ongeveer ${fmt(distance,3)} km. De hele tocht duurt ${t1+t2+pause} minuten. Afstand gedeeld door tijd in uren geeft <strong>${fmtFixed(answer,1)} km/u</strong>.`,{speed1,speed2,t1,t2,pause},{mode,unit:"km/u",tolerance:.01,calculatorAllowed:true,hint:"Gebruik totale afstand : totale verstreken tijd; neem de pauze mee."});
+}
+function genCVariationScaleFence(d,mode){
+  const scale=pick([100,200,500]),drawL=randInt(3,10),realL=drawL*scale/100,realW=randInt(3,15),area=realL*realW,gate=randInt(1,3),price=randInt(8,24),answer=(2*(realL+realW)-gate)*price;
+  return variationNumber("C","geometry-scale","C.variation.scale-fence",`Een rechthoekig terrein is op een tekening met schaal <strong>1 : ${scale}</strong> precies <strong>${drawL} cm</strong> lang. De werkelijke oppervlakte is <strong>${area} m²</strong>. Rondom komt een hek, behalve bij een poort van <strong>${gate} m</strong>. Het hek kost <strong>€ ${price} per meter</strong>; de poort is al betaald. Wat kost het benodigde hek?`,answer,`De werkelijke lengte is ${drawL} × ${scale}/100 = ${realL} m. De breedte volgt uit ${area} : ${realL} = ${realW} m. Nodig is 2 × (${realL} + ${realW}) − ${gate} = ${2*(realL+realW)-gate} m hek. De kosten zijn <strong>€ ${answer}</strong>.`,{scale,drawL,area,gate,price},{mode,unit:"€",calculatorAllowed:true,hint:"Leid eerst de ontbrekende werkelijke zijde af; bereken daarna de rand en de kosten."});
+}
+function genCVariationFlowUnits(d,mode){
+  const flow=pick([5,10,15,20,25,30]),minutes=randInt(2,18),answer=flow*minutes*60/1000;
+  return variationNumber("C","units","C.variation.flow-units",`Een pomp verplaatst <strong>${flow} milliliter per seconde</strong>. Hoeveel <strong>liter</strong> verplaatst de pomp in <strong>${minutes} minuten</strong>?`,answer,`${minutes} minuten is ${minutes*60} seconden. Dat is ${flow} × ${minutes*60} = ${flow*minutes*60} ml, oftewel <strong>${fmt(answer,2)} liter</strong>.`,{flow,minutes},{mode,unit:"l",hint:"Zet de tijd en de hoeveelheid elk naar de gevraagde eenheid om."});
+}
+function genDVariationWeighted(d,mode){
+  const a=randInt(3,10),b=randInt(3,10),target=randInt(8,24),deltaA=randInt(1,3)*b,deltaB=randInt(1,3)*a;
+  // Construct exact integer group counts from deviations, not from rounded means.
+  const countA=deltaB*randInt(2,4),countB=countA*deltaA/deltaB,meanA=target+deltaA,meanB=target-deltaB;
+  // Use nonnegative scores (distance walked) by shifting all means equally.
+  const shift=Math.max(0,1-meanB),ma=meanA+shift,mb=meanB+shift,combined=target+shift;
+  return variationNumber("D","statistics","D.variation.weighted",`Groep A heeft <strong>${countA} deelnemers</strong> en liep gemiddeld <strong>${ma} km</strong>. Groep B liep gemiddeld <strong>${mb} km</strong>. Samen liepen de deelnemers gemiddeld <strong>${combined} km</strong>. Hoeveel deelnemers heeft groep B?`,countB,`Groep A ligt per deelnemer ${ma-combined} km boven het gezamenlijke gemiddelde: samen ${countA*(ma-combined)} km. Groep B ligt per deelnemer ${combined-mb} km eronder. Dus heeft B ${countA*(ma-combined)} : ${combined-mb} = <strong>${countB} deelnemers</strong>.`,{countA,ma,mb,combined},{mode,hint:"De groepsgemiddelden tellen mee met hun groepsgroottes als gewichten.",calculatorAllowed:true});
+}
+function genDVariationGraphRate(d,mode){
+  const start=pick([5,10,15,20]),step=pick([5,10,15]),targetMinute=randInt(5,9),values=Array.from({length:5},(_,i)=>start+i*step),target=start+targetMinute*step;
+  const chart=simpleLineChartSVG(["0","1","2","3","4"],values,{title:"Voorraad tijdens vullen",unit:"liter",minorStep:5,majorStep:10});
+  return variationNumber("D","charts","D.variation.graph-rate",`De grafiek toont de hoeveelheid vloeistof na 0, 1, 2, 3 en 4 minuten. Vanaf minuut 4 blijft het <strong>zelfde vultempo</strong> gelden. Hoeveel minuten na het begin is er <strong>${target} liter</strong> aanwezig?`,targetMinute,`Bij het begin is er al ${start} liter. Er komt ${step} liter per minuut bij. Voor ${target} liter is (${target} − ${start}) : ${step} = <strong>${targetMinute} minuten</strong> nodig.`,{start,step,target},{mode,unit:"min",visual:chart.html,visualMeta:chart.meta,hint:"Lees eerst de beginvoorraad en de toename per minuut af."});
+}
+function genDVariationPatternInverse(d,mode){
+  const k=randInt(2,6),c=randInt(1,12),n=randInt(6,18),target=k*n*n+c,rows=[1,2,3,4].map(i=>[i,k*i*i+c]);
+  return variationNumber("D","patterns","D.variation.pattern-inverse",`Bij figuur <strong>n</strong> horen <strong>${k} × n² + ${c}</strong> stippen. De tabel toont de eerste vier figuren. Bij welk <strong>figuurnummer</strong> horen <strong>${target} stippen</strong>?`,n,`Trek ${c} af en deel door ${k}: (${target} − ${c}) : ${k} = ${n*n}. Omdat n een positief figuurnummer is, geldt n = √${n*n} = <strong>${n}</strong>.`,{k,c,target},{mode,visual:variationTable(["Figuurnummer","Aantal stippen"],rows,"Kwadratisch stippenpatroon"),hint:"Werk van het aantal stippen terug naar n² en vervolgens naar n.",calculatorAllowed:true});
+}
+function genDVariationFormulaBudget(d,mode){
+  const base=randInt(6,20)*2,rate=pick([2,3,4,5,6]),n1=randInt(2,6),n2=n1+randInt(3,8),maxN=randInt(n2+1,n2+12),budget=base+rate*maxN+randInt(0,rate-1),rows=[[n1,base+rate*n1],[n2,base+rate*n2]];
+  return variationNumber("D","formulas","D.variation.formula-budget",`De kosten voor materiaal bestaan uit <strong>een vast bedrag plus een vast bedrag per deelnemer</strong>. De tabel geeft twee bestellingen. Hoeveel deelnemers kun je maximaal voorzien met een budget van <strong>€ ${budget}</strong>?`,maxN,`De toename per deelnemer is (${rows[1][1]} − ${rows[0][1]}) : (${n2} − ${n1}) = € ${rate}. Het vaste bedrag is ${rows[0][1]} − ${n1} × ${rate} = € ${base}. Het budget laat (${budget} − ${base}) : ${rate} deelnemers toe. Rond naar beneden af: <strong>${maxN}</strong>.`,{base,rate,n1,n2,budget},{mode,visual:variationTable(["Deelnemers","Kosten in euro"],rows,"Materiaalbestellingen"),hint:"Leid eerst de kosten per extra deelnemer en daarna het vaste bedrag af.",calculatorAllowed:true});
+}
+
+/* Variatiecontract: inhoudelijke spreiding vóór lokale vraagzwaarte; nooit een
+   duplicaat als stille terugval. Alleen begrensde vingerafdrukken blijven lokaal. */
+const VARIATION_CONTRACT=Object.freeze({schemaVersion:1,historyLimit:480,examFamilyLimit:3,candidateSamples:8});
+const VARIATION_GENERATORS={
+  A:[
+    {topic:"operations",modes:["non"],levels:[5],fn:genAVariationPacking},
+    {topic:"negative-divisibility",modes:["head","non"],levels:[4],fn:genAVariationRemainders},
+    {topic:"place-value",modes:["head","non"],levels:[3],fn:genAVariationRounding}
+  ],
+  B:[
+    {topic:"fraction-operations",modes:["head","non"],levels:[2,3,4],fn:genBVariationRemaining},
+    {topic:"fraction-concept",modes:["head","non"],levels:[3],fn:genBVariationWholes},
+    {topic:"ratio-scale-probability",modes:["head","non"],levels:[4],fn:genBVariationMixture},
+    {topic:"percent",modes:["head","non"],levels:[4],fn:genBVariationReverseChain}
+  ],
+  C:[
+    {topic:"area-perimeter",modes:["non"],levels:[4],fn:genCVariationFence},
+    {topic:"volume-surface",modes:["non"],levels:[4],fn:genCVariationTank},
+    {topic:"speed-time",modes:["non"],levels:[4],fn:genCVariationJourney},
+    {topic:"geometry-scale",modes:["non"],levels:[5],fn:genCVariationScaleFence},
+    {topic:"units",modes:["head","non"],levels:[3],fn:genCVariationFlowUnits}
+  ],
+  D:[
+    {topic:"statistics",modes:["non"],levels:[4],fn:genDVariationWeighted},
+    {topic:"charts",modes:["non"],levels:[4],fn:genDVariationGraphRate},
+    {topic:"patterns",modes:["non"],levels:[3],fn:genDVariationPatternInverse},
+    {topic:"formulas",modes:["non"],levels:[4],fn:genDVariationFormulaBudget}
+  ]
+};
+for(const [domain,generators] of Object.entries(VARIATION_GENERATORS))QUESTION_BANK[domain].push(...generators);
+
+function normalizeVariationHistory(value){
+  // This function is also called while loading state, before the const above exists.
+  const list=value?.schemaVersion===1&&Array.isArray(value.recent)?value.recent:[];
+  return {schemaVersion:1,recent:[...new Set(list.filter(s=>typeof s==="string"&&/^[0-9a-f]{16}$/.test(s)))].slice(-480)};
+}
+function variationText(value){
+  return String(value??"").replace(/<[^>]*>/g," ").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
+}
+function variationIdentity(q){
+  // Ignore question ids and option order. Include the actual data, not SVG ids.
+  const visual=q.visualMeta?{kind:q.visualMeta.kind,labels:q.visualMeta.labels,values:q.visualMeta.values,yMin:q.visualMeta.yMin,yMax:q.visualMeta.yMax}:String(q.visual||" ").replace(/\bid=(?:"[^"]*"|'[^']*')/g,"").replace(/\s+/g," ").trim();
+  const items=q.type==="order"?[...(q.items||[])].map(variationText).sort():null;
+  return JSON.stringify([variationText(q.prompt),visual,items,variationText(q.unit)]);
+}
+function variationFingerprint(identity){
+  let h1=2166136261,h2=2246822507;
+  for(let i=0;i<identity.length;i++){const c=identity.charCodeAt(i);h1=Math.imul(h1^c,16777619);h2=Math.imul(h2^c,3266489909)}
+  return (h1>>>0).toString(16).padStart(8,"0")+(h2>>>0).toString(16).padStart(8,"0");
+}
+function freshVariationLedger(){return {seen:new Set(),families:{},topics:{},domains:{},representations:{},recentFamilies:[],offered:0}}
+function sessionVariation(session){if(!session.variationLedger)session.variationLedger=freshVariationLedger();return session.variationLedger}
+function variationRepresentation(q){return q.visualMeta?.kind||(q.visual?.includes("<table")?"table":q.visual?"figure":q.type)}
+function rememberVariationQuestion(session,q,{persist=true}={}){
+  const ledger=sessionVariation(session),identity=variationIdentity(q);
+  if(ledger.seen.has(identity))return;
+  ledger.seen.add(identity);ledger.offered++;
+  ledger.families[q.family]=(ledger.families[q.family]||0)+1;
+  const topicKey=`${q.domain}:${q.topic}`;ledger.topics[topicKey]=(ledger.topics[topicKey]||0)+1;
+  ledger.domains[q.domain]=(ledger.domains[q.domain]||0)+1;
+  const representation=variationRepresentation(q);ledger.representations[representation]=(ledger.representations[representation]||0)+1;
+  ledger.recentFamilies=[...ledger.recentFamilies,q.family].slice(-3);
+  if(persist){
+    state.variation=normalizeVariationHistory(state.variation);
+    const fingerprint=variationFingerprint(identity);
+    state.variation.recent=state.variation.recent.filter(s=>s!==fingerprint).concat(fingerprint).slice(-VARIATION_CONTRACT.historyLimit);
+    saveState();
+  }
+}
+function distributeExamTopics(plan){
+  const counts={};
+  // Scored entries first: pilot questions never substitute for scored coverage.
+  for(const entry of [...plan.filter(e=>!e.isPilot),...plan.filter(e=>e.isPilot)]){
+    const topics=[...new Set(QUESTION_BANK[entry.domain].filter(g=>g.modes.includes(entry.mode)).map(g=>g.topic))];
+    const ordered=shuffle(topics).sort((a,b)=>(counts[`${entry.domain}:${a}`]||0)-(counts[`${entry.domain}:${b}`]||0));
+    entry.topic=ordered[0];const key=`${entry.domain}:${entry.topic}`;counts[key]=(counts[key]||0)+1;
+  }
+  return plan;
+}
+function generateSessionQuestion(session,domain,mode="mix",difficulty=3,topicHint=null){
+  const ledger=sessionVariation(session),history=new Set(normalizeVariationHistory(state.variation).recent);
+  if(domain==="mix")domain=shuffle(Object.keys(DOMAIN_META)).sort((a,b)=>(ledger.domains[a]||0)-(ledger.domains[b]||0))[0];
+  const actualMode=domain==="D"?"non":mode==="mix"?(Math.random()<.36?"head":"non"):mode;
+  const requested=clamp(Math.round(difficulty),1,5),all=QUESTION_BANK[domain].filter(g=>g.modes.includes(actualMode));
+  const topics=topicHint?[topicHint]:shuffle([...new Set(all.map(g=>g.topic))]).sort((a,b)=>(ledger.topics[`${domain}:${a}`]||0)-(ledger.topics[`${domain}:${b}`]||0));
+  const cap=session.kind==="exam"?VARIATION_CONTRACT.examFamilyLimit:topicHint?Infinity:Math.max(3,Math.ceil((session.total||10)/4));
+  let best=null;
+  for(const topic of topics){
+    const candidates=all.filter(g=>g.topic===topic),pool=[];
+    for(const generator of shuffle(candidates)){
+      for(const level of [...generator.levels].sort((a,b)=>Math.abs(a-requested)-Math.abs(b-requested))){
+        for(let sample=0;sample<VARIATION_CONTRACT.candidateSamples;sample++){
+          const q=finalizeGeneratedQuestion(generator.fn(level,actualMode),{domain,mode:actualMode,requestedLevel:requested,effectiveLevel:level,generator});
+          if(q.topic!==topic||validateGeneratedQuestion(q).length)continue;
+          const identity=variationIdentity(q),familyCount=ledger.families[q.family]||0;
+          if(ledger.seen.has(identity)||familyCount>=cap)continue;
+          const recentlySeen=history.has(variationFingerprint(identity)),representation=variationRepresentation(q);
+          const score=(recentlySeen?1000:0)+3*Math.abs(q.difficulty-requested)+1.6*familyCount+(ledger.recentFamilies.includes(q.family)?2:0)+.04*(ledger.representations[representation]||0);
+          pool.push({q,identity,score,recentlySeen});
+        }
+      }
+    }
+    if(pool.length){
+      pool.sort((a,b)=>a.score-b.score);best=pool[0];
+      // Topic balance is hard in exams (topicHint), and prioritized in broad practice.
+      break;
+    }
+  }
+  if(!best){const error=new Error(`VARIATIE_VOORRAAD_ONVOLDOENDE: ${domain}/${actualMode}/${topicHint||"gemengd"}, vraagzwaarte ${requested}`);error.code="VARIATION_POOL_EXHAUSTED";throw error}
+  const q=best.q;q.levelAdjusted=q.difficulty!==requested;q.rubricTarget=q.difficulty;
+  q.selectionInfo={contract:1,requestedLevel:requested,selectedLevel:q.difficulty,topic:q.topic,familyLimit:Number.isFinite(cap)?cap:null,recentHistoryRelaxed:best.recentlySeen};
+  return q;
+}
+function sessionQuestionOrStop(session,domain,mode,difficulty,topicHint){
+  try{return generateSessionQuestion(session,domain,mode,difficulty,topicHint)}
+  catch(error){
+    if(error.code!=="VARIATION_POOL_EXHAUSTED")throw error;
+    console.error(error.message);stopTimers();session.current=null;session.answered=true;session.variationIssue=error.message;
+    const containerId=session.kind==="exam"?"examPlayArea":session.containerId||"playArea";
+    document.getElementById(containerId).innerHTML=`<div class="card" role="alert"><h3>Nog niet genoeg verschillende vragen</h3><p>Voor deze selectie is de voorraad verschillende opgaven uitgeput. Je krijgt daarom niet stilzwijgend dezelfde vraag opnieuw. Je eerdere antwoorden en voortgang blijven behouden.</p><p>Kies een ander onderdeel of begin een nieuwe reeks.</p><button class="btn primary" data-action="quitSession">Terug naar de keuze</button></div>`;
+    return null;
+  }
+}
+function validateVariationQuestion(q){
+  const v=q.variationData;if(!v)return [];
+  let expected;
+  switch(v.key){
+    case "A.variation.packing":{
+      const costs=[];for(let big=0;big<=v.limit;big++)for(let small=0;small<=Math.ceil(v.needed/v.small);small++)if(big*v.large+small*v.small>=v.needed)costs.push(big*v.largeCost+small*v.smallCost);
+      expected=Math.min(...costs);break;
+    }
+    case "A.variation.remainders":{
+      const matches=[];for(let n=v.lower;n<v.upper;n++)if(n%v.a===v.ra&&n%v.b===v.rb)matches.push(n);
+      if(matches.length!==1)return ["restvoorwaarden leveren niet precies één getal op"];expected=matches[0];break;
+    }
+    case "A.variation.rounding":expected=v.rounded+(v.upper?v.step/2-1:-v.step/2);break;
+    case "B.variation.remaining-direct":expected=v.total-v.total/v.a;break;
+    case "B.variation.remaining-forward":expected=(v.total-v.total/v.a)*(1-1/v.b);break;
+    case "B.variation.remaining-inverse":expected=v.left/((1-1/v.a)*(1-1/v.b));break;
+    case "B.variation.wholes":expected=Math.abs(v.sizeA*v.na/v.da-v.sizeB*v.nb/v.db);break;
+    case "B.variation.mixture":expected=(v.initial/(1+v.before))*(v.after-v.before);break;
+    case "B.variation.reverse-chain":expected=v.final/((100+v.p1)*(100-v.p2)/10000);break;
+    case "C.variation.fence":expected=(v.l-v.cutL)+v.cutW+v.cutL+(v.w-v.cutW)+v.l+v.w-v.gate;break;
+    case "C.variation.tank":expected=Math.floor((2*v.l*v.w*v.rise*10+1000*v.rate)/(2000*v.rate))/10;break;
+    case "C.variation.journey":expected=Math.round(10*(v.speed1*v.t1+v.speed2*v.t2)/(v.t1+v.t2+v.pause))/10;break;
+    case "C.variation.scale-fence":{const length=v.scale*v.drawL/100;expected=(2*length+2*v.area/length-v.gate)*v.price;break}
+    case "C.variation.flow-units":expected=v.flow/1000*v.minutes*60;break;
+    case "D.variation.weighted":expected=v.countA*(v.ma-v.combined)/(v.combined-v.mb);break;
+    case "D.variation.graph-rate":expected=(v.target-v.start)/v.step;break;
+    case "D.variation.pattern-inverse":expected=Math.sqrt((v.target-v.c)/v.k);break;
+    case "D.variation.formula-budget":expected=Math.floor((v.budget-v.base)/v.rate);break;
+    default:return ["onbekende aanvullende variatieregel"];
+  }
+  return Number.isFinite(expected)&&almostEqual(q.answer,expected,1e-8)?[]:[`variatieantwoord onjuist: ${v.key}`];
+}
+/* END PABO VARIATION MODULE */
 
 function almostEqual(a,b,tolerance=1e-9){return Math.abs(a-b)<=tolerance*Math.max(1,Math.abs(a),Math.abs(b))}
 function applyCalculatorPolicy(q){
@@ -2141,6 +2410,7 @@ function validateGeneratedQuestion(q){
   if(q.diagnosticProbe&&(!(q.diagnosticCodes||[]).includes(q.diagnosticProbe)))issues.push("controlevraag mist haar diagnostische focuscode");
   const requestedPlaces=requestedDecimalPlaces(q);if(q.type==="number"&&requestedPlaces>0&&decimalPlacesInResponse(q.answerDisplay)!==requestedPlaces)issues.push(`antwoordweergave heeft niet exact ${requestedPlaces} decimalen`);
   issues.push(...validateQualityRule(q));
+  issues.push(...validateVariationQuestion(q));
   return [...new Set(issues)];
 }
 function supportedLevels(candidates){return [...new Set(candidates.flatMap(g=>g.levels||[1,2,3,4,5]))].sort((a,b)=>a-b)}
@@ -2695,7 +2965,7 @@ function completeLesson(id){
 }
 function openSettings(firstRun=false){
   const adminControls=ADMIN_MODE?`<div class="exam-note"><strong>Beheermodus</strong><br><button class="btn small secondary" data-action="openDiagnosticRegister" style="margin-top:9px">Open diagnostiekregister (30 patronen)</button><button class="btn small ghost" data-action="runReleaseCheck" style="margin-top:9px">Voer releasecontrole uit</button></div>`:"";
-  const source=`<div class="tip" style="margin-top:18px"><strong>Toetskader</strong><br>De toetsnabootsing is inhoudelijk afgestemd op de openbare Cito-handreiking RWT versie ${escapeHtml(RWT_SOURCE.version)} (${escapeHtml(RWT_SOURCE.date)}): vier domeinen, 55 vragen, 17 minuten hoofdrekenen en 103 minuten niet-hoofdrekenen. De digitale rekenmachine is nooit beschikbaar bij hoofdrekenen en alleen bij afzonderlijke niet-hoofdrekenopgaven met een rekenmachine-icoon. Eigen rekenmachines zijn tijdens de echte afname niet toegestaan. Alle vragen in deze tool zijn nieuw geschreven en niet afkomstig uit een echte toets.<br><br><strong>Vraagzwaarte</strong><br>De vraagzwaarte is een transparante expertvoorspelling op basis van zeven dimensies. Zij is nog niet empirisch gekalibreerd en is geen officiële RWT-moeilijkheidsparameter.<br><br><strong>Diagnostiek en privacy</strong><br>Eén fout antwoord geldt nooit als diagnose. Pas na verschillende aanwijzingen en een gerichte controlevraag kan een waarschijnlijk denkpatroon verschijnen. Letterlijke antwoorden worden niet duurzaam opgeslagen; alleen patrooncodes, tellers, statussen en gehashte vraagsignaturen blijven lokaal in deze browser.<br><small>Toolversie ${APP_VERSION} • diagnostiekschema ${DIAGNOSTIC_SCHEMA_VERSION} • bron gecontroleerd ${escapeHtml(RWT_SOURCE.verifiedOn)} • © 2026 Edwin van der Plas<br><a href="${escapeHtml(RWT_SOURCE.landingUrl)}" target="_blank" rel="noopener">Actuele Cito-bronpagina</a> · <a href="${escapeHtml(RWT_SOURCE.pdfUrl)}" target="_blank" rel="noopener">Handreiking 2.2 (pdf)</a></small></div>`;
+  const source=`<div class="tip" style="margin-top:18px"><strong>Toetskader</strong><br>De toetsnabootsing is inhoudelijk afgestemd op de openbare Cito-handreiking RWT versie ${escapeHtml(RWT_SOURCE.version)} (${escapeHtml(RWT_SOURCE.date)}): vier domeinen, 55 vragen, 17 minuten hoofdrekenen en 103 minuten niet-hoofdrekenen. De digitale rekenmachine is nooit beschikbaar bij hoofdrekenen en alleen bij afzonderlijke niet-hoofdrekenopgaven met een rekenmachine-icoon. Eigen rekenmachines zijn tijdens de echte afname niet toegestaan. Alle vragen in deze tool zijn nieuw geschreven en niet afkomstig uit een echte toets.<br><br><strong>Vraagzwaarte</strong><br>De vraagzwaarte is een transparante expertvoorspelling op basis van zeven dimensies. Zij is nog niet empirisch gekalibreerd en is geen officiële RWT-moeilijkheidsparameter.<br><br><strong>Diagnostiek en privacy</strong><br>Eén fout antwoord geldt nooit als diagnose. Pas na verschillende aanwijzingen en een gerichte controlevraag kan een waarschijnlijk denkpatroon verschijnen. Letterlijke antwoorden worden niet duurzaam opgeslagen; alleen patrooncodes, tellers, statussen en gehashte vraagsignaturen blijven lokaal in deze browser. Voor variatie onthoudt de browser ook maximaal 480 vraagvingerafdrukken, zonder extra letterlijke antwoorden. Binnen een toets krijgt iedere vraagfamilie maximaal drie plaatsen; tussen sessies krijgt nieuw materiaal voorrang waar de voorraad dat toelaat.<br><small>Toolversie ${APP_VERSION} • diagnostiekschema ${DIAGNOSTIC_SCHEMA_VERSION} • bron gecontroleerd ${escapeHtml(RWT_SOURCE.verifiedOn)} • © 2026 Edwin van der Plas<br><a href="${escapeHtml(RWT_SOURCE.landingUrl)}" target="_blank" rel="noopener">Actuele Cito-bronpagina</a> · <a href="${escapeHtml(RWT_SOURCE.pdfUrl)}" target="_blank" rel="noopener">Handreiking 2.2 (pdf)</a></small></div>`;
   openModal(firstRun?"Welkom bij Pabo Rekenklaar":"Instellingen",`
     <div class="settings-grid">
       <label><strong>Voornaam</strong><input class="number-input" id="settingName" type="text" value="${escapeHtml(state.profile.name)}" placeholder="Bijvoorbeeld: Sara" style="margin-top:7px"></label>
@@ -2812,12 +3082,12 @@ function startDiagnostic(){
 function makeFullExamPlan(){
   const part1=[];for(let i=0;i<8;i++)part1.push({domain:"A",mode:"head",part:1,isPilot:false});for(let i=0;i<5;i++)part1.push({domain:"B",mode:"head",part:1,isPilot:false});for(let i=0;i<2;i++)part1.push({domain:"C",mode:"head",part:1,isPilot:false});for(let i=0;i<2;i++)part1.push({domain:pick(["A","B","C"]),mode:"head",part:1,isPilot:true});
   const part2=[];for(let i=0;i<7;i++)part2.push({domain:"A",mode:"non",part:2,isPilot:false});for(let i=0;i<9;i++)part2.push({domain:"B",mode:"non",part:2,isPilot:false});for(let i=0;i<10;i++)part2.push({domain:"C",mode:"non",part:2,isPilot:false});for(let i=0;i<9;i++)part2.push({domain:"D",mode:"non",part:2,isPilot:false});for(let i=0;i<3;i++)part2.push({domain:pick(["A","B","C","D"]),mode:"non",part:2,isPilot:true});
-  return [...shuffle(part1),...shuffle(part2)];
+  return distributeExamTopics([...shuffle(part1),...shuffle(part2)]);
 }
 function makeMiniExamPlan(){
   const part1=shuffle([{domain:"A",mode:"head",part:1,isPilot:false},{domain:"A",mode:"head",part:1,isPilot:false},{domain:"A",mode:"head",part:1,isPilot:false},{domain:"B",mode:"head",part:1,isPilot:false},{domain:"B",mode:"head",part:1,isPilot:false}]);
   const part2=shuffle([{domain:"A",mode:"non",part:2,isPilot:false},{domain:"A",mode:"non",part:2,isPilot:false},{domain:"B",mode:"non",part:2,isPilot:false},{domain:"B",mode:"non",part:2,isPilot:false},{domain:"C",mode:"non",part:2,isPilot:false},{domain:"C",mode:"non",part:2,isPilot:false},{domain:"C",mode:"non",part:2,isPilot:false},{domain:"C",mode:"non",part:2,isPilot:false},{domain:"D",mode:"non",part:2,isPilot:false},{domain:"D",mode:"non",part:2,isPilot:false}]);
-  return [...part1,...part2];
+  return distributeExamTopics([...part1,...part2]);
 }
 function startExam(full=true){
   stopTimers();const plan=full?makeFullExamPlan():makeMiniExamPlan();
@@ -2836,9 +3106,11 @@ function nextPracticeQuestion(containerId="playArea"){
       if(activeSession.kind==="sprint"){domain=pick(["A","B","C"]);mode="head"}
       if(activeSession.kind==="daily"||activeSession.kind==="diagnostic"){domain=activeSession.plan[activeSession.index];mode=domain==="D"?"non":"mix"}
       if(activeSession.kind==="mistakes"){const p=activeSession.plan[activeSession.index];domain=p.domain;topic=p.topic;activeSession.ability=p.difficulty||3;mode=domain==="D"?"non":"mix"}
-      q=activeSession.kind==="sprint"?generateSprintQuestion(domain,activeSession.ability,{avoidFamilies:activeSession.recentFamilies||[]}):generateQuestion(domain,mode,activeSession.ability,topic,{avoidFamilies:activeSession.recentFamilies||[]});
+      q=activeSession.kind==="sprint"?generateSprintQuestion(domain,activeSession.ability,{avoidFamilies:activeSession.recentFamilies||[]}):sessionQuestionOrStop(activeSession,domain,mode,activeSession.ability,topic);
     }
   }
+  if(!q)return;
+  if(activeSession.kind!=="sprint")rememberVariationQuestion(activeSession,q);
   activeSession.current=q;activeSession.recentFamilies=[...(activeSession.recentFamilies||[]),q.family].filter(Boolean).slice(-2);activeSession.answered=false;activeSession.usedHint=false;prepareCalculatorForQuestion(q);renderSessionQuestion(containerId);
 }
 function answerMarkup(q){
@@ -3006,7 +3278,7 @@ function quitSession(){
 function renderExamQuestion(){
   const s=activeSession;if(!s||s.kind!=="exam"||s.finished)return;document.body.classList.add("session-active");if(s.index>=s.total){finishExam();return}
   const entry=s.plan[s.index];if(entry.part!==s.currentPart){renderExamTransition();return}
-  if(!entry.question)entry.question=generateQuestion(entry.domain,entry.mode,s.ability,null,{avoidFamilies:s.recentFamilies||[]});const q=entry.question;applyCalculatorPolicy(q);if(q?.family)s.recentFamilies=[...(s.recentFamilies||[]),q.family].slice(-2);s.current=q;s.answered=false;s.containerId="examPlayArea";prepareCalculatorForQuestion(q);
+  if(!entry.question){entry.question=sessionQuestionOrStop(s,entry.domain,entry.mode,s.ability,entry.topic);if(!entry.question)return;rememberVariationQuestion(s,entry.question)}const q=entry.question;applyCalculatorPolicy(q);if(q?.family)s.recentFamilies=[...(s.recentFamilies||[]),q.family].slice(-2);s.current=q;s.answered=false;s.containerId="examPlayArea";prepareCalculatorForQuestion(q);
   const withinPart=s.plan.slice(0,s.index+1).filter(x=>x.part===s.currentPart).length;const partTotal=s.plan.filter(x=>x.part===s.currentPart).length;
   document.getElementById("examPlayArea").innerHTML=`<div class="play-shell">
     <div class="exam-banner"><div><strong>Deel ${s.currentPart}: ${s.currentPart===1?"hoofdrekenen":"niet-hoofdrekenen"}</strong><div class="exam-lock">🔒 Na opslaan kun je niet terug</div></div><div class="timer" id="examTimer">${formatClock(s.secondsRemaining)}</div></div>
@@ -3454,7 +3726,7 @@ function runQualityAudit({samplesPerCombination=100,seed=12062026}={}){
   return {version:APP_VERSION,passed:failures.length===0,counts,failures};
 }
 
-window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,wisikTerrainUrl:WISIK_TERRAIN_URL,wisikContextKey:WISIK_CONTEXT_KEY,diagnosticSchemaVersion:DIAGNOSTIC_SCHEMA_VERSION,RWT_SOURCE,sourceIntegrityIssues,duplicateTopLevelFunctionNames,runQualityAudit,runDiagnosticAudit,validateGeneratedQuestion,parseNumeric,checkResponse,applyCalculatorPolicy,calculatorAllowedForQuestion,calculatorAvailableInContext,calcEvaluateExpression,calculatorUseIsCurrentlyAllowed,assessQuestionDifficulty,rubricLevelFromDemand,RUBRIC_VARIANTS,RUBRIC_LEVEL_META,MISCONCEPTION_CATALOG,generateQuestion,generateSprintQuestion,isSprintQuestion,generateDiagnosticProbe,generateNaturalRecoveryQuestion,classifyIncorrectResponse,diagnosticTestResponseFor,normalizeDiagnosticsState,resolveWisikEntry,sprintDeadlineExpired});
+window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,VARIATION_CONTRACT,VARIATION_GENERATORS,variationIdentity,variationFingerprint,normalizeVariationHistory,generateSessionQuestion,rememberVariationQuestion,distributeExamTopics,validateVariationQuestion,wisikTerrainUrl:WISIK_TERRAIN_URL,wisikContextKey:WISIK_CONTEXT_KEY,diagnosticSchemaVersion:DIAGNOSTIC_SCHEMA_VERSION,RWT_SOURCE,sourceIntegrityIssues,duplicateTopLevelFunctionNames,runQualityAudit,runDiagnosticAudit,validateGeneratedQuestion,parseNumeric,checkResponse,applyCalculatorPolicy,calculatorAllowedForQuestion,calculatorAvailableInContext,calcEvaluateExpression,calculatorUseIsCurrentlyAllowed,assessQuestionDifficulty,rubricLevelFromDemand,RUBRIC_VARIANTS,RUBRIC_LEVEL_META,MISCONCEPTION_CATALOG,generateQuestion,generateSprintQuestion,isSprintQuestion,generateDiagnosticProbe,generateNaturalRecoveryQuestion,classifyIncorrectResponse,diagnosticTestResponseFor,normalizeDiagnosticsState,resolveWisikEntry,sprintDeadlineExpired});
 
 function init(){
   if(state.dailyDate!==todayKey()){state.dailyDate=todayKey();state.dailyCorrect=0}

@@ -11,6 +11,7 @@
     "readable-graphs",
     "diagnostic-patterns",
     "flirt-trigger-chain",
+    "session-variation",
     "flirt-content-lock"
   ]);
   const VIEW_LABELS = Object.freeze({

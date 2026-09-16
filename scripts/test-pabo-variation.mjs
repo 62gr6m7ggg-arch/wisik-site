@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+import {createVariationContext,runVariationExpression} from './lib/pabo-variation-context.mjs';
+import {runPaboVariationAudit} from './lib/pabo-variation-audit.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const html=fs.readFileSync(path.join(root,'public/apps/pabo-rekenklaar/index.html'),'utf8');
+const context=createVariationContext(html);
+const quality=runVariationExpression(context,'runQualityAudit({samplesPerCombination:100,seed:16092026})');
+assert.equal(quality.passed,true,JSON.stringify(quality.failures));assert.equal(quality.counts.fallbacks,0);
+console.log('Existing generator/rubric audit:',JSON.stringify(quality.counts));
+const report=runPaboVariationAudit(context,{seedsPerProfile:Number(process.env.VARIATION_SEEDS)||8,progress:Boolean(process.env.VARIATION_PROGRESS)});
+console.log('Variation audit:',JSON.stringify(report,null,2));
+assert.equal(report.passed,true,JSON.stringify(report.failures));
+fs.mkdirSync('/tmp/pabo-variation-evidence',{recursive:true});fs.writeFileSync('/tmp/pabo-variation-evidence/variation.json',JSON.stringify(report,null,2)+'\n');
