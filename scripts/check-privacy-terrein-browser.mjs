@@ -98,12 +98,25 @@ try{
       assert.ok((await form.innerText()).includes('3 maanden'));
       assert.ok((await form.innerText()).includes('30 dagen'));
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Kladblok geen horizontale overloop');
+      assert.equal(await form.locator('[data-feedback-source]:visible, [data-feedback-context]:visible').count(),1,'vóór verzending exact één zichtbare bronmelding');
+      assert.equal(await form.locator('[data-feedback-context]').textContent(),'','geen tweede bronmelding in het vangnet');
+      const clipping=await form.evaluate(f=>{
+        const errors=[],width=document.documentElement.clientWidth;
+        for(const el of [f,...f.querySelectorAll('select,textarea,input:not([type="hidden"]):not([name="_honey"]),.form-note')]){
+          const r=el.getBoundingClientRect();if(!r.width||!r.height)continue;
+          if(r.left < -1 || r.right > width+1)errors.push((el.name||el.className||'form')+' buiten venster');
+          if(el.matches('.form-note')&&el.scrollWidth>el.clientWidth+1)errors.push('bron- of privacytekst afgesneden');
+        }
+        return errors;
+      });
+      assert.deepEqual(clipping,[],'formulieronderdelen en bronadressen passen werkelijk in de viewport');
       const autoPayload=await form.evaluate(f=>Object.fromEntries(new FormData(f)));
       assert.ok(!JSON.stringify(autoPayload).includes('PRIVATE_'),'geen leergegevens in formuliervelden');
       await page.locator('[name="Bericht"]').fill('Geautomatiseerde privacytest. De verzending wordt onderschept; er wordt geen echte mail verstuurd.');
       assert.equal(await page.locator('[name="email"]').getAttribute('required'),null,'e-mail blijft optioneel');
       assert.equal(await page.evaluate(()=>JSON.stringify(Object.entries(localStorage).sort())),initialStorage,'voortgang ongewijzigd');
-      await form.screenshot({path:path.join(proof,label+'-formulier.png')});
+      await page.evaluate(()=>{document.activeElement?.blur();window.scrollTo({top:0,behavior:'instant'});});
+      await page.screenshot({path:path.join(proof,label+'-formulier.png'),fullPage:true});
       await Promise.all([page.waitForURL('https://formsubmit.co/**'),page.getByRole('button',{name:'Leg op het Kladblok'}).click()]);
       assert.ok(submitted,'werkelijke browser-POST onderschept');
       for(const name of ['Pagina','Bronpagina'])assert.equal(submitted.get(name),origin+'/apps/ruimteklaar/');
