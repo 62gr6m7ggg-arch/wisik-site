@@ -37,3 +37,5 @@ jobs:
             git commit -m 'Pabo 1.7.1: natural pattern reasoning and refreshed audit evidence'
             git push origin HEAD:feat/pabo-didactische-poort-20260917
           fi
+      - name: Confirm clean generated release state
+        run: git diff --exit-code
