@@ -1,0 +1,118 @@
+name: Wisik terreinbrede privacy
+on:
+  push:
+    branches: [privacy-terrein-20260916, main]
+    paths:
+      - 'scripts/*privacy-terrein*'
+      - 'public/assets/js/site.js'
+      - 'public/assets/js/kladblok-context.js'
+      - 'public/backstage/index.html'
+      - 'public/kladblok/index.html'
+      - 'public/pabo/pabo-rekenklaar/index.html'
+      - 'public/hbo/space-tent/index.html'
+      - '.github/workflows/privacy-terrein.yml'
+permissions:
+  contents: read
+concurrency:
+  group: privacy-terrein-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/privacy-terrein-20260916'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Begrensde wijziging op de werkbranch
+        run: |
+          test "$GITHUB_REF" = refs/heads/privacy-terrein-20260916
+          if test -f scripts/prepare-privacy-terrein.py; then
+            python3 scripts/prepare-privacy-terrein.py
+            rm scripts/prepare-privacy-terrein.py
+          fi
+          node --check public/assets/js/site.js
+          node --check public/assets/js/kladblok-context.js
+      - name: Beide privacycontextpaden, negatieve mutaties en bestaande toegang
+        run: |
+          node scripts/test-privacy-terrein.mjs
+          node scripts/test-feedback.mjs
+          node scripts/test-ruimteklaar-review-auth.mjs
+      - name: Brongebonden auditbewijs en alle bestaande vrijgavecontroles
+        run: |
+          node scripts/audit-pabo-release.mjs --write
+          node scripts/audit-space-release.mjs --write
+          npm run build
+      - name: Installeer geïsoleerde testbrowsers
+        run: |
+          npm install --prefix /tmp/privacy-browser --no-save playwright@1.56.1
+          /tmp/privacy-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Desktop, mobiel, smal WebKit en zonder JavaScript
+        env:
+          PLAYWRIGHT_MODULE: /tmp/privacy-browser/node_modules/playwright/index.mjs
+        run: node scripts/check-privacy-terrein-browser.mjs
+      - name: Bewaak appbron, leerlogica, opslag, media en server
+        run: |
+          node --input-type=module <<'JS'
+          import {execFileSync} from 'node:child_process';
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const base='d29c51f132a766b1590d141f18eaef1f6ac8fd4e';
+          const protectedPaths=['src/pabo','tools/space-tent','server','functions','public/apps','public/films','public/_headers','public/_routes.json'];
+          const files=execFileSync('git',['diff','--name-only',base,'--',...protectedPaths],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          for(const file of files){
+            const before=execFileSync('git',['show',base+':'+file],{encoding:'utf8'});
+            const after=fs.readFileSync(file,'utf8');
+            assert.equal(after.replaceAll('?v=0.1.29','?v=0.1.28'),before,'Buiten privacycontext alleen gedeelde cache-URLs wijzigen: '+file);
+          }
+          console.log(JSON.stringify({appLogicStorageServerMediaUnchanged:true,cacheOnlyFiles:files}));
+          JS
+      - name: Commit uitsluitend gecontroleerde bron en bewijs op werkbranch
+        run: |
+          test "$GITHUB_REF" = refs/heads/privacy-terrein-20260916
+          test "$(git ls-remote origin refs/heads/privacy-terrein-20260916 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'Wisik 0.1.29: terreinbrede privacy, dataminimale feedback en gecontroleerde regressies'
+            git push origin HEAD:privacy-terrein-20260916
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: privacy-terrein-voorpublicatie
+          path: /tmp/wisik-privacy-proof/
+          retention-days: 14
+  live:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Installeer geïsoleerde testbrowsers
+        run: |
+          npm install --prefix /tmp/privacy-browser --no-save playwright@1.56.1
+          /tmp/privacy-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Vergelijk live bron en herhaal privacybediening zonder echte mail
+        env:
+          PLAYWRIGHT_MODULE: /tmp/privacy-browser/node_modules/playwright/index.mjs
+          LIVE_ORIGIN: https://wisik.nl
+        run: node scripts/check-privacy-terrein-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: privacy-terrein-live
+          path: /tmp/wisik-privacy-proof/
+          retention-days: 14
