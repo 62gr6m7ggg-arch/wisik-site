@@ -4,6 +4,7 @@ on:
     branches: [privacy-terrein-20260916, main]
     paths:
       - 'scripts/*privacy-terrein*'
+      - 'scripts/test-pabo-navigation.mjs'
       - 'public/assets/js/site.js'
       - 'public/assets/js/kladblok-context.js'
       - 'public/backstage/index.html'
@@ -43,12 +44,8 @@ jobs:
         run: |
           node scripts/test-privacy-terrein.mjs
           node scripts/test-feedback.mjs
+          node scripts/test-pabo-navigation.mjs
           node scripts/test-ruimteklaar-review-auth.mjs
-      - name: Brongebonden auditbewijs en alle bestaande vrijgavecontroles
-        run: |
-          node scripts/audit-pabo-release.mjs --write
-          node scripts/audit-space-release.mjs --write
-          npm run build
       - name: Installeer geïsoleerde testbrowsers
         run: |
           npm install --prefix /tmp/privacy-browser --no-save playwright@1.56.1
@@ -57,6 +54,11 @@ jobs:
         env:
           PLAYWRIGHT_MODULE: /tmp/privacy-browser/node_modules/playwright/index.mjs
         run: node scripts/check-privacy-terrein-browser.mjs
+      - name: Brongebonden auditbewijs en alle bestaande vrijgavecontroles
+        run: |
+          node scripts/audit-pabo-release.mjs --write
+          node scripts/audit-space-release.mjs --write
+          npm run build
       - name: Bewaak appbron, leerlogica, opslag, media en server
         run: |
           node --input-type=module <<'JS'
