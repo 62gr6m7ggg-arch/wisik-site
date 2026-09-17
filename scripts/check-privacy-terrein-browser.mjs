@@ -102,9 +102,15 @@ try{
   try{
     const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
     const page=await context.newPage();await page.goto(origin+'/backstage/#privacy');
-    await page.locator('#privacy details summary').first().click();assert.equal(await page.locator('#privacy details').first().evaluate(e=>e.open),true);
+    // Native toetsenbordbediening vereist geen applicatie-JavaScript en geen
+    // animatie-/stabiliteitsinjectie van Playwright voor een muisklik.
+    const summary=page.locator('#privacy details summary').first();
+    await summary.focus();await page.keyboard.press('Enter');
+    assert.equal(await page.locator('#privacy details').first().evaluate(e=>e.open),true);
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('#privacy details').first().evaluate(e=>e.open),false);
     await page.goto(origin+'/kladblok/');assert.equal(await page.locator('form').getAttribute('action'),'https://formsubmit.co/kladblok@wisik.nl');assert.ok((await page.locator('form').innerText()).includes('3 maanden'));assert.equal(await page.locator('a[href="/backstage/#privacy"]').count(),1);
-    report.scenarios.push({label:'zonder-javascript',passed:true});await context.close();
+    report.scenarios.push({label:'zonder-javascript',passed:true,nativeKeyboardToggle:true});await context.close();
   }finally{await browser.close();}
   report.passed=true;report.verifiedLiveFiles=verifiedBytes?files.length:0;
   if(!process.env.LIVE_ORIGIN)fs.writeFileSync(path.join(root,'docs/privacy-terrein-browser-evidence.json'),JSON.stringify(report,null,2)+'\n');
