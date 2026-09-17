@@ -1,3 +1,4 @@
+import {verifyDeployedPrivacyFile} from './verify-deployed-privacy-file.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import http from 'node:http';
@@ -26,20 +27,22 @@ if(!origin){
 origin=origin.replace(/\/$/,'');
 const files=[['/backstage/','backstage/index.html'],['/kladblok/','kladblok/index.html'],['/pabo/pabo-rekenklaar/','pabo/pabo-rekenklaar/index.html'],['/hbo/space-tent/','hbo/space-tent/index.html'],['/assets/js/site.js','assets/js/site.js'],['/assets/js/kladblok-context.js','assets/js/kladblok-context.js'],['/assets/js/site-data.js','assets/js/site-data.js'],['/assets/data/pabo-release-audit.json','assets/data/pabo-release-audit.json'],['/assets/data/ruimteklaar-release-audit.json','assets/data/ruimteklaar-release-audit.json']];
 let verifiedBytes=false;
+let deploymentComparisons=[];
 const report={origin,live:Boolean(process.env.LIVE_ORIGIN),startedAt:new Date().toISOString(),scenarios:[],realMailSent:false};
 try{
   if(process.env.LIVE_ORIGIN){
     let failures=[];
     for(let attempt=0;attempt<30;attempt++){
       failures=[];
+      deploymentComparisons=[];
       for(const [url,file] of files){
-        try{const response=await fetch(origin+url+'?privacy-check='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});const bytes=Buffer.from(await response.arrayBuffer());if(!response.ok||!bytes.equals(fs.readFileSync(path.join(pub,file))))failures.push(url);}catch{failures.push(url);}
+        try{const response=await fetch(origin+url+'?privacy-check='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});const bytes=Buffer.from(await response.arrayBuffer());assert.equal(response.status,200,'HTTP-status voor '+url);deploymentComparisons.push(verifyDeployedPrivacyFile(fs.readFileSync(path.join(pub,file)),bytes,url));}catch(error){failures.push(url+' — '+error.message.slice(0,160));}
       }
       if(!failures.length){verifiedBytes=true;break;}
       console.log('Wacht op publicatie van geteste bron:',failures.join(', '));
       await new Promise(resolve=>setTimeout(resolve,8000));
     }
-    assert.ok(verifiedBytes,'Livebestanden moeten bytegelijk zijn aan geteste release');
+    assert.ok(verifiedBytes,'Livebestanden moeten overeenkomen; alleen de expliciet getoetste e-mailomzetting is toegestaan');
   }
   for(const [label,engine,viewport] of [['chromium-desktop',chromium,{width:1366,height:900}],['chromium-mobiel',chromium,{width:390,height:844}],['webkit-smal',webkit,{width:320,height:740}]]){
     const browser=await engine.launch({headless:true});
@@ -61,6 +64,19 @@ try{
       await page.goto(origin+'/backstage/#privacy',{waitUntil:'networkidle'});
       assert.equal(await page.locator('#privacy').count(),1);
       assert.equal(await page.locator('#privacy details').count(),6);
+      // De contacttekst hoort bij een standaard gesloten native details-element.
+      // Open dit eerst zoals een bezoeker; toets daarna zichtbaarheid én maildoel.
+      const contactDetail=page.locator('#privacy details').filter({has:page.locator('summary',{hasText:'Privacyvragen en contact'})});
+      assert.equal(await contactDetail.count(),1);
+      const contactSummary=contactDetail.locator('summary');
+      await contactSummary.focus();await page.keyboard.press('Enter');
+      assert.equal(await contactDetail.evaluate(e=>e.open),true,'contactonderdeel opent');
+      const contact=contactDetail.locator('a[href="mailto:kladblok@wisik.nl"]');
+      await contact.waitFor({state:'visible'});
+      assert.equal(await contact.count(),1,'maildoel is na laden correct');
+      assert.equal(await contact.innerText(),'kladblok@wisik.nl','leesbaar e-mailadres blijft beschikbaar');
+      await contactSummary.focus();await page.keyboard.press('Enter');
+      assert.equal(await contactDetail.evaluate(e=>e.open),false,'contactonderdeel sluit');
       for(const detail of await page.locator('#privacy details').all()){
         const summary=detail.locator('summary');await summary.focus();await page.keyboard.press('Enter');assert.equal(await detail.evaluate(e=>e.open),true);await page.keyboard.press('Enter');assert.equal(await detail.evaluate(e=>e.open),false);
       }
@@ -113,6 +129,9 @@ try{
     report.scenarios.push({label:'zonder-javascript',passed:true,nativeKeyboardToggle:true});await context.close();
   }finally{await browser.close();}
   report.passed=true;report.verifiedLiveFiles=verifiedBytes?files.length:0;
+  report.deploymentComparisons=deploymentComparisons;
+  report.byteExactFiles=deploymentComparisons.filter(p=>p.mode==='byte-exact').length;
+  report.emailNormalizedFiles=deploymentComparisons.filter(p=>p.mode==='cloudflare-email-only').length;
   if(!process.env.LIVE_ORIGIN)fs.writeFileSync(path.join(root,'docs/privacy-terrein-browser-evidence.json'),JSON.stringify(report,null,2)+'\n');
 }finally{
   report.finishedAt=new Date().toISOString();fs.writeFileSync(path.join(proof,'privacy-browser-report.json'),JSON.stringify(report,null,2)+'\n');

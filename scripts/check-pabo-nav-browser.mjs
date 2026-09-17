@@ -19,6 +19,8 @@ if(!origin){
  await new Promise(r=>server.listen(0,'127.0.0.1',r));origin='http://127.0.0.1:'+server.address().port;
 }
 const app='/apps/pabo-rekenklaar/';
+const expectedToolVersion=JSON.parse(fs.readFileSync(path.join(publicRoot,'assets/data/pabo-release-audit.json'),'utf8')).toolVersion;
+assert.match(expectedToolVersion,/^\d+\.\d+\.\d+$/,'Versie uit het gecontroleerde brongebonden auditbewijs vereist');
 const result={status:'running',checkedAt:new Date().toISOString(),origin,bridgeVersion:'1.1.1',environments:[],assets:[],errors:[]};
 const hash=b=>createHash('sha256').update(b).digest('hex');
 async function deployedFiles(){
@@ -83,7 +85,8 @@ try{
     await scratch.first().click();const r=await page.locator('#scratchpad').boundingBox();const h=await page.locator('.topbar').boundingBox();assert.ok(r.y>=h.y+h.height,'scratchpad covers header');await page.locator('#closeScratch').click();
    }
    assert.deepEqual(await learned(),progress,'opening practice changed scores');
-   const feedback=page.locator('.wisik-exit-feedback');const url=new URL(await feedback.getAttribute('href'));assert.equal(url.pathname,'/kladblok/');assert.equal(url.searchParams.get('bron'),origin+app);assert.equal(url.searchParams.get('appversie'),'1.7.0');
+   const feedback=page.locator('.wisik-exit-feedback');const url=new URL(await feedback.getAttribute('href'));assert.equal(url.pathname,'/kladblok/');assert.equal(url.searchParams.get('bron'),origin+app);assert.equal(url.searchParams.get('appversie'),expectedToolVersion);
+   assert.equal(await page.evaluate(()=>window.PaboRekenklaarQA.version),expectedToolVersion,'app, feedbacklink en brongebonden releaseversie komen overeen');
    // Intercept only the destination document in local preview; production visits it.
    if(!process.env.LIVE_ORIGIN)await page.route('https://wisik.nl/kladblok/**',r=>r.fulfill({status:200,contentType:'text/html',body:'<!doctype html><title>Preview destination</title>'}));
    await Promise.all([page.waitForURL(u=>u.pathname==='/kladblok/'),feedback.click()]);
