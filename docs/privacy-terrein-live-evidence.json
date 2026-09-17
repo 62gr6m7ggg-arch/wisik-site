@@ -1,0 +1,112 @@
+{
+  "origin": "https://wisik.nl",
+  "live": true,
+  "startedAt": "2026-09-17T20:36:12.332Z",
+  "scenarios": [
+    {
+      "label": "chromium-desktop",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "passed": true,
+      "detailsKeyboard": 6,
+      "productLinks": 2,
+      "postIntercepted": true,
+      "storageUnchanged": true
+    },
+    {
+      "label": "chromium-mobiel",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true,
+      "detailsKeyboard": 6,
+      "productLinks": 2,
+      "postIntercepted": true,
+      "storageUnchanged": true
+    },
+    {
+      "label": "webkit-smal",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "passed": true,
+      "detailsKeyboard": 6,
+      "productLinks": 2,
+      "postIntercepted": true,
+      "storageUnchanged": true
+    },
+    {
+      "label": "zonder-javascript",
+      "passed": true,
+      "nativeKeyboardToggle": true
+    }
+  ],
+  "realMailSent": false,
+  "passed": true,
+  "verifiedLiveFiles": 9,
+  "deploymentComparisons": [
+    {
+      "pathname": "/backstage/",
+      "expectedSha256": "30eed04eb552a95dd71b547b19f8d948fb45c09e7c494c7a8f822860bcaf430c",
+      "servedSha256": "122991a92eb413891bf31119457a74a3006d3f9015341a8a3732b544981ca97d",
+      "mode": "cloudflare-email-only",
+      "normalizedSha256": "30eed04eb552a95dd71b547b19f8d948fb45c09e7c494c7a8f822860bcaf430c",
+      "transformedEmails": 1
+    },
+    {
+      "pathname": "/kladblok/",
+      "expectedSha256": "05323ff8d3071a9e664dd62cba8207f1ae995fded036d5b8d230633cb1b3cae2",
+      "servedSha256": "05323ff8d3071a9e664dd62cba8207f1ae995fded036d5b8d230633cb1b3cae2",
+      "mode": "byte-exact"
+    },
+    {
+      "pathname": "/pabo/pabo-rekenklaar/",
+      "expectedSha256": "7d2bcbfc703935f7d5a559781c5f21ba4a31ae0bc11fa34d0cbad21181d686f3",
+      "servedSha256": "7d2bcbfc703935f7d5a559781c5f21ba4a31ae0bc11fa34d0cbad21181d686f3",
+      "mode": "byte-exact"
+    },
+    {
+      "pathname": "/hbo/space-tent/",
+      "expectedSha256": "52e1de99f0e269a7648d0f94d00fa1687425efc12d7287e45b2150e88e83aa5f",
+      "servedSha256": "52e1de99f0e269a7648d0f94d00fa1687425efc12d7287e45b2150e88e83aa5f",
+      "mode": "byte-exact"
+    },
+    {
+      "pathname": "/assets/js/site.js",
+      "expectedSha256": "22fce0c069f1c5b656233d3cc83f4680ccc58ba9b152c0eaeffec7779a5ad756",
+      "servedSha256": "22fce0c069f1c5b656233d3cc83f4680ccc58ba9b152c0eaeffec7779a5ad756",
+      "mode": "byte-exact"
+    },
+    {
+      "pathname": "/assets/js/kladblok-context.js",
+      "expectedSha256": "12146531c0f398ff4d7e59acbb526b410633819c31b598bf69439cefa4184df4",
+      "servedSha256": "12146531c0f398ff4d7e59acbb526b410633819c31b598bf69439cefa4184df4",
+      "mode": "byte-exact"
+    },
+    {
+      "pathname": "/assets/js/site-data.js",
+      "expectedSha256": "39567cfb9fed33b850d7d0af5a0af560a353bcc23a42c30a61c4c7649a378bb7",
+      "servedSha256": "39567cfb9fed33b850d7d0af5a0af560a353bcc23a42c30a61c4c7649a378bb7",
+      "mode": "byte-exact"
+    },
+    {
+      "pathname": "/assets/data/pabo-release-audit.json",
+      "expectedSha256": "2d41bc91a80315f9c0e85cd85bbf09726e6c620e9c79a398289ade1ecd5ae77f",
+      "servedSha256": "2d41bc91a80315f9c0e85cd85bbf09726e6c620e9c79a398289ade1ecd5ae77f",
+      "mode": "byte-exact"
+    },
+    {
+      "pathname": "/assets/data/ruimteklaar-release-audit.json",
+      "expectedSha256": "543654f2090d95669717f576c09b26a6f8a2c19be50cfd9469b1196e3969ffc1",
+      "servedSha256": "543654f2090d95669717f576c09b26a6f8a2c19be50cfd9469b1196e3969ffc1",
+      "mode": "byte-exact"
+    }
+  ],
+  "byteExactFiles": 8,
+  "emailNormalizedFiles": 1,
+  "finishedAt": "2026-09-17T20:36:30.894Z"
+}

@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-09-17T20:36:31.180Z",
+  "origin": "https://wisik.nl",
+  "bridgeVersion": "1.1.1",
+  "environments": [
+    {
+      "name": "chromium-desktop",
+      "status": "passed",
+      "checks": "no overlapping/covered header controls; wrapping; 44px links; all five views; last buttons and content clear footer; settings/large text; active question; scratchpad; Kladblok context and return; no unearned progress"
+    },
+    {
+      "name": "chromium-mobile",
+      "status": "passed",
+      "checks": "no overlapping/covered header controls; wrapping; 44px links; all five views; last buttons and content clear footer; settings/large text; active question; scratchpad; Kladblok context and return; no unearned progress"
+    },
+    {
+      "name": "chromium-small",
+      "status": "passed",
+      "checks": "no overlapping/covered header controls; wrapping; 44px links; all five views; last buttons and content clear footer; settings/large text; active question; scratchpad; Kladblok context and return; no unearned progress"
+    },
+    {
+      "name": "webkit-mobile",
+      "status": "passed",
+      "checks": "no overlapping/covered header controls; wrapping; 44px links; all five views; last buttons and content clear footer; settings/large text; active question; scratchpad; Kladblok context and return; no unearned progress"
+    }
+  ],
+  "assets": [
+    {
+      "file": "index.html",
+      "sha256": "b1f52eb886935de1d5b082c351139638f8e9750f48a0304b863b5fa64307e5c2"
+    },
+    {
+      "file": "wisik-bridge.css",
+      "sha256": "3d9d5cbcdb791c3d32902b25c946f358ac31314af196cbaff735481648bc3a46"
+    },
+    {
+      "file": "wisik-bridge.js",
+      "sha256": "dc4f0ad9d4354c7bc8e22fa67724fdf04a7f1d493246369088b4f89d2746199b"
+    }
+  ],
+  "errors": []
+}

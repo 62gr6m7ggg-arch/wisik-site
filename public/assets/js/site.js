@@ -193,6 +193,13 @@
       const parts = [context.product, context.productVersion, VIEW_LABELS[context.view] || context.view, fieldValues.Bronpagina].filter(Boolean);
       note.hidden = false;
       note.textContent = `Automatisch meegestuurde context: ${parts.join(" · ")}.`;
+      // Het vangnet kan al vóór DOMContentLoaded zijn uitgevoerd. Het hoofdpad
+      // neemt de zichtbare melding dan over, ook vóór iemand op verzenden klikt.
+      const fallbackNote = form.querySelector("[data-feedback-context]");
+      if (fallbackNote) {
+        fallbackNote.hidden = true;
+        fallbackNote.textContent = "";
+      }
     }
   }
 

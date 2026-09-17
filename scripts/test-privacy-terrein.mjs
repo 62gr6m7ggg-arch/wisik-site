@@ -1,3 +1,4 @@
+import './test-deployed-privacy-file.mjs';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
@@ -97,6 +98,14 @@ for(const which of ['modern','legacy']){
     else{assert.ok(legacy.includes(guarded));runLegacy(h,legacy.replace(guarded,'return url.href;'));assert.equal(h.values.Pagina.value,sourcePath);}
   }catch{rejected=true;}
   equal(rejected,true,'negatieve URL-mutatie afgewezen: '+which);
+}
+// Defer + DOMContentLoaded kan het vangnet vóór het hoofdscript initialiseren.
+// Beide volgordes moeten vóór enige gebruikersinteractie één melding tonen.
+for(const order of ['main-first','fallback-first']){
+  const h=createHarness({href:origin+'/kladblok/?product=Space-tent&bron='+encodeURIComponent(rawSource)});
+  if(order==='main-first'){runMain(h);runLegacy(h);}else{runLegacy(h);runMain(h);}
+  equal(Object.values(h.notes).filter(note=>!note.hidden).length,1,'één bronmelding na initialisatie: '+order);
+  assert.equal(h.notes['[data-feedback-context]'].textContent,'','verborgen vangnet blijft leeg');
 }
 const backstage=read('public/backstage/index.html'),form=read('public/kladblok/index.html');
 equal((backstage.match(/id="privacy"/g)||[]).length,1,'één terreinbrede privacysectie');
