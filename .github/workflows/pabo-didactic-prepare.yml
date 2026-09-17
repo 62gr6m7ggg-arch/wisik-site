@@ -1,0 +1,39 @@
+name: Pabo didactische poort voorbereiding
+on:
+  push:
+    branches: [feat/pabo-didactische-poort-20260917]
+    paths:
+      - 'scripts/apply-pabo-didactic-fixes.mjs'
+      - 'scripts/pabo-didactic-audit.mjs'
+      - '.github/workflows/pabo-didactic-prepare.yml'
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Apply didactic correction and refresh bound audit evidence
+        run: |
+          node scripts/apply-pabo-didactic-fixes.mjs
+          npm run audit:update
+          npm run pabo:didactic
+          npm run check
+      - name: Require the reported quadratic issue to be absent
+        run: |
+          ! grep -q 'tweede verschillen steeds gelijk' public/apps/pabo-rekenklaar/index.html
+          ! grep -q 'De rij past bij .*n²' public/apps/pabo-rekenklaar/index.html
+          grep -q 'Bekijk hoe de verschillen tussen opeenvolgende getallen veranderen' public/apps/pabo-rekenklaar/index.html
+      - name: Commit only verified generated release files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/apps/pabo-rekenklaar/index.html public/index.html public/pabo/pabo-rekenklaar/index.html public/moshpit/index.html public/assets/data/pabo-release-audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Pabo 1.7.1: natural pattern reasoning and refreshed audit evidence'
+            git push origin HEAD:feat/pabo-didactische-poort-20260917
+          fi
