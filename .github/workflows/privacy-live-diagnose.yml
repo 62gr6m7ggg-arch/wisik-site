@@ -2,9 +2,16 @@ name: Privacy nacontrole en herstel testverwachtingen
 on:
   push:
     branches: [privacy-live-controle-20260917]
-    paths: ['.github/workflows/privacy-live-diagnose.yml']
+    paths:
+      - '.github/workflows/privacy-live-diagnose.yml'
+      - 'scripts/prepare-privacy-live-check.py'
+      - 'scripts/*privacy*.mjs'
+      - 'scripts/check-pabo-nav-browser.mjs'
 permissions:
   contents: read
+concurrency:
+  group: privacy-nacontrole-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
