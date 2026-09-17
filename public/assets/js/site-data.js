@@ -51,7 +51,7 @@ window.WISIK_TOOLS = Object.freeze([
     maturity: "mainstage",
     status: "openingsklaar",
     statusLabel: "Openingsklaar",
-    version: "1.7.1",
+    version: "1.8.0",
     summary: "Versterk je rekenbasis, oefen rubricgestuurd en ontdek welke terugkerende denkpatronen je mogelijk in de weg zitten.",
     productUrl: "/pabo/pabo-rekenklaar/",
     appUrl: "/apps/pabo-rekenklaar/",

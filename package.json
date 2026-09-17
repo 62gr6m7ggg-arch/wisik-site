@@ -13,8 +13,12 @@
     "predeploy": "npm run check",
     "deploy": "npx wrangler pages deploy public --project-name wisik-site",
     "pabo:variation": "node scripts/test-pabo-variation.mjs",
-    "pabo:variation:build": "node scripts/apply-pabo-variation.mjs"
+    "pabo:variation:build": "node scripts/apply-pabo-variation.mjs",
+    "pabo:reasoning": "node scripts/test-pabo-reasoning.mjs",
+    "pabo:reasoning:build": "node scripts/apply-pabo-reasoning.mjs"
   },
-  "devDependencies": {"wrangler": "^4.0.0"},
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
   "type": "module"
 }

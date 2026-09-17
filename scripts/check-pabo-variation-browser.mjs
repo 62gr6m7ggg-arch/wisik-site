@@ -43,7 +43,7 @@ try{
       const context=await browser.newContext({viewport:{width:config.width,height:config.height},isMobile:config.width<700,hasTouch:config.width<700});
       await context.addInitScript(()=>localStorage.setItem('pabo-rekenklaar-state-v1',JSON.stringify({version:'1.6.3',xp:321,profile:{name:'Variatiecontrole',sound:false,reduceMotion:true},completedLessons:['A1']})));
       const page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));page.setDefaultTimeout(15000);
-      await page.goto(origin+'/apps/pabo-rekenklaar/');await page.waitForFunction(()=>window.PaboRekenklaarQA?.version==='1.7.0');
+      await page.goto(origin+'/apps/pabo-rekenklaar/');await page.waitForFunction(()=>Boolean(window.PaboRekenklaarQA?.REASONING_DESIGNS?.length));
       assert.equal(await page.evaluate(()=>state.xp),321,'Existing XP lost');assert.deepEqual(await page.evaluate(()=>state.completedLessons),['A1']);
       await page.evaluate(()=>{Math.random=seededRandom(16092026);showView('exam')});await page.locator('#startFullExamBtn').click();
       for(let index=0;index<55;index++){
