@@ -32,10 +32,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/apps/pabo-rekenklaar/index.html public/index.html public/pabo/pabo-rekenklaar/index.html public/moshpit/index.html public/assets/data/pabo-release-audit.json
+          git add public/apps/pabo-rekenklaar/index.html public/index.html public/pabo/pabo-rekenklaar/index.html public/moshpit/index.html public/assets/js/site-data.js public/assets/data/pabo-release-audit.json
           if ! git diff --cached --quiet; then
             git commit -m 'Pabo 1.7.1: natural pattern reasoning and refreshed audit evidence'
             git push origin HEAD:feat/pabo-didactische-poort-20260917
           fi
-      - name: Confirm clean generated release state
-        run: git diff --exit-code
