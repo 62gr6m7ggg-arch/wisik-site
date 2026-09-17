@@ -11,16 +11,23 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - name: Lees publieke Backstage-respons en vergelijk met bron
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Lees de echte HTTP-respons van de livecontrole
         run: |
-          python3 - <<'PY'
-          import urllib.request, hashlib, difflib, time, json
-          from pathlib import Path
-          original=Path('public/backstage/index.html').read_bytes()
-          request=urllib.request.Request('https://wisik.nl/backstage/?privacy-diagnose='+str(int(time.time())))
-          with urllib.request.urlopen(request,timeout=25) as response:
-              served=response.read()
-              print(json.dumps({'status':response.status,'headers':dict(response.headers),'expectedSHA256':hashlib.sha256(original).hexdigest(),'servedSHA256':hashlib.sha256(served).hexdigest(),'expectedLength':len(original),'servedLength':len(served)},indent=2))
-          difference=list(difflib.unified_diff(original.decode().splitlines(),served.decode().splitlines(),fromfile='geteste-bron',tofile='online-backstage',n=2))
-          print('\n'.join(difference)[:20000])
-          PY
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import crypto from 'node:crypto';
+          const expected=fs.readFileSync('public/backstage/index.html');
+          const response=await fetch('https://wisik.nl/backstage/?privacy-check='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(25000)});
+          const actual=Buffer.from(await response.arrayBuffer());
+          const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+          console.log(JSON.stringify({status:response.status,url:response.url,headers:Object.fromEntries(response.headers),expectedSha256:sha(expected),servedSha256:sha(actual),byteEqual:expected.equals(actual),expectedLength:expected.length,servedLength:actual.length},null,2));
+          if(!response.ok) console.log('HTTP-FOUTRESPONS:',actual.toString('utf8').slice(0,6000));
+          else if(!expected.equals(actual)) {
+            const e=expected.toString('utf8'),a=actual.toString('utf8');
+            let first=0;while(first<e.length&&first<a.length&&e[first]===a[first])first++;
+            console.log(JSON.stringify({firstDifference:first,expected:e.slice(Math.max(0,first-200),first+4000),served:a.slice(Math.max(0,first-200),first+4000)},null,2));
+          }
+          JS
