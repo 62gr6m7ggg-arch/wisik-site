@@ -59,10 +59,13 @@ for (const fragment of requiredKladblok) {
   if (!kladblok.includes(fragment)) throw new Error(`Kladblok mist ${fragment}`);
 }
 
+// De dynamische privacytest toetst bovendien vreemde origins, oude sessie-URL's,
+// referrers en negatieve mutaties. Deze statische check bewaakt de aansluiting.
 const requiredContext = [
   'params.get("bron")',
   'params.get("appversie")',
-  'url.origin === window.location.origin',
+  'url.origin !== window.location.origin',
+  'return `${url.origin}${url.pathname}`;',
   '[name=\'Pagina\']',
   '[name=\'Attractieversie\']'
 ];
@@ -70,4 +73,4 @@ for (const fragment of requiredContext) {
   if (!context.includes(fragment)) throw new Error(`Kladblokcontext mist ${fragment}`);
 }
 
-console.log("Pabo-navigatiecontrole geslaagd: gezamenlijke doorlopende bovenbalk, lokaal voortgangssnapshot, mobiele vormgeving en automatische Kladblokcontext.");
+console.log("Pabo-navigatiecontrole geslaagd: gezamenlijke doorlopende bovenbalk, lokaal voortgangssnapshot, mobiele vormgeving en automatische dataminimale Kladblokcontext.");

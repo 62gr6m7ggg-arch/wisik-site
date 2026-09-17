@@ -65,7 +65,7 @@ if (!homepage.includes(`src="/assets/js/site-data.js?v=${siteVersion}"`) || !hom
 if (/Cloudflare-sleutels|\/api\/feedback|\/api\/config/i.test(homepage)) throw new Error("De homepage bevat nog achterhaalde Cloudflare- of Kladblok-API-tekst");
 if (/name=["']_captcha["'][^>]*value=["']false["']/i.test(html)) throw new Error("FormSubmit-spamcontrole is ten onrechte uitgeschakeld");
 if (!/FormSubmit/.test(html) || !/30 dagen/.test(html)) throw new Error("Externe verwerking of bewaartermijn is niet zichtbaar bij het formulier");
-if (!html.includes("exacte bronpagina") || !html.includes("productversie")) throw new Error("De gebruiker wordt niet geïnformeerd over meegestuurde context");
+if (!html.includes("bronpagina zonder queryparameters of fragment") || !html.includes("productversie")) throw new Error("De gebruiker wordt niet geïnformeerd over meegestuurde context");
 if (!siteJs.includes('querySelectorAll(".wisik-direct-feedback-form")')) throw new Error("Het nieuwe Kladblokformulier is niet gekoppeld aan het actuele script");
 if (!siteJs.includes('searchParams.get("verzonden") === "1"')) throw new Error("Bevestiging na succesvolle verzending ontbreekt");
 if (!siteJs.includes("submit.disabled = false")) throw new Error("Herstel van een eerder gecachte uitgeschakelde knop ontbreekt");

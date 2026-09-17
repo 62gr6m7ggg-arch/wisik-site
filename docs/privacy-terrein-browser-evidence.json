@@ -1,0 +1,51 @@
+{
+  "origin": "http://127.0.0.1:39709",
+  "live": false,
+  "startedAt": "2026-09-17T20:05:00.532Z",
+  "scenarios": [
+    {
+      "label": "chromium-desktop",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "passed": true,
+      "detailsKeyboard": 6,
+      "productLinks": 2,
+      "postIntercepted": true,
+      "storageUnchanged": true
+    },
+    {
+      "label": "chromium-mobiel",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true,
+      "detailsKeyboard": 6,
+      "productLinks": 2,
+      "postIntercepted": true,
+      "storageUnchanged": true
+    },
+    {
+      "label": "webkit-smal",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "passed": true,
+      "detailsKeyboard": 6,
+      "productLinks": 2,
+      "postIntercepted": true,
+      "storageUnchanged": true
+    },
+    {
+      "label": "zonder-javascript",
+      "passed": true,
+      "nativeKeyboardToggle": true
+    }
+  ],
+  "realMailSent": false,
+  "passed": true,
+  "verifiedLiveFiles": 0
+}
