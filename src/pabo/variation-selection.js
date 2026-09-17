@@ -60,6 +60,7 @@ function rememberVariationQuestion(session,q,{persist=true}={}){
   ledger.domains[q.domain]=(ledger.domains[q.domain]||0)+1;
   const representation=variationRepresentation(q);ledger.representations[representation]=(ledger.representations[representation]||0)+1;
   ledger.recentFamilies=[...ledger.recentFamilies,q.family].slice(-3);
+  rememberReasoningExposure(session,q,persist);
   if(persist){
     state.variation=normalizeVariationHistory(state.variation);
     const fingerprint=variationFingerprint(identity);
@@ -79,6 +80,7 @@ function distributeExamTopics(plan){
 }
 function generateSessionQuestion(session,domain,mode="mix",difficulty=3,topicHint=null){
   const ledger=sessionVariation(session),history=new Set(normalizeVariationHistory(state.variation).recent);
+  const recent=[...(session.reasoningHistorySnapshot??=normalizeReasoningExposure(state.reasoningExposure).recent),...(session.reasoningRecent||[])];
   if(domain==="mix")domain=shuffle(Object.keys(DOMAIN_META)).sort((a,b)=>(ledger.domains[a]||0)-(ledger.domains[b]||0))[0];
   const actualMode=domain==="D"?"non":mode==="mix"?(Math.random()<.36?"head":"non"):mode;
   const requested=clamp(Math.round(difficulty),1,5),all=QUESTION_BANK[domain].filter(g=>g.modes.includes(actualMode));
@@ -95,20 +97,35 @@ function generateSessionQuestion(session,domain,mode="mix",difficulty=3,topicHin
           const identity=variationIdentity(q),familyCount=ledger.families[q.family]||0;
           if(ledger.seen.has(identity)||familyCount>=cap)continue;
           const recentlySeen=history.has(variationFingerprint(identity)),representation=variationRepresentation(q);
-          const score=(recentlySeen?1000:0)+3*Math.abs(q.difficulty-requested)+1.6*familyCount+(ledger.recentFamilies.includes(q.family)?2:0)+.04*(ledger.representations[representation]||0);
-          pool.push({q,identity,score,recentlySeen});
+          const diversity=reasoningSelectionCost(q,recent);
+          const score=(recentlySeen?1000:0)+3*Math.abs(q.difficulty-requested)+2*familyCount+diversity.cost;
+          pool.push({q,identity,score,recentlySeen,cooling:diversity.cooling});
         }
       }
     }
     if(pool.length){
-      pool.sort((a,b)=>a.score-b.score);best=pool[0];
+      // Fresh concrete questions first. Within available material stay near the target,
+      // then enforce a short structural cooldown when there is a suitable alternative.
+      const fresh=pool.filter(item=>!item.recentlySeen),available=fresh.length?fresh:pool;
+      const nearest=Math.min(...available.map(item=>Math.abs(item.q.difficulty-requested)));
+      let eligible=available.filter(item=>Math.abs(item.q.difficulty-requested)<=Math.min(2,Math.max(1,nearest+1)));
+      const cooled=eligible.filter(item=>!item.cooling);
+      if(cooled.length)eligible=cooled;
+      else{
+        // A small focused pool may not sustain five intervening questions.
+        // Still avoid an immediate repeat whenever a compatible alternative exists.
+        const previous=recent.at(-1)?.signature,alternatives=eligible.filter(item=>reasoningExposureRecord(item.q).signature!==previous);
+        if(alternatives.length)eligible=alternatives;
+      }
+      eligible.sort((a,b)=>a.score-b.score);best=eligible[0];
+      best.cooldownRelaxed=!cooled.length;best.nearestAvailable=nearest;
       // Topic balance is hard in exams (topicHint), and prioritized in broad practice.
       break;
     }
   }
   if(!best){const error=new Error(`VARIATIE_VOORRAAD_ONVOLDOENDE: ${domain}/${actualMode}/${topicHint||"gemengd"}, vraagzwaarte ${requested}`);error.code="VARIATION_POOL_EXHAUSTED";throw error}
   const q=best.q;q.levelAdjusted=q.difficulty!==requested;q.rubricTarget=q.difficulty;
-  q.selectionInfo={contract:1,requestedLevel:requested,selectedLevel:q.difficulty,topic:q.topic,familyLimit:Number.isFinite(cap)?cap:null,recentHistoryRelaxed:best.recentlySeen};
+  q.selectionInfo={contract:1,requestedLevel:requested,selectedLevel:q.difficulty,topic:q.topic,familyLimit:Number.isFinite(cap)?cap:null,recentHistoryRelaxed:best.recentlySeen,semanticContract:1,semanticCooldownRelaxed:best.cooldownRelaxed,nearestAvailableLevelDistance:best.nearestAvailable};
   return q;
 }
 function sessionQuestionOrStop(session,domain,mode,difficulty,topicHint){

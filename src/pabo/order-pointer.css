@@ -1,0 +1,14 @@
+/* Scrolling works on the row; only the actual handle owns the drag gesture. */
+.order-item{touch-action:auto;user-select:auto;position:relative;min-width:0;gap:8px}
+.order-item .drag-handle{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:grab;flex:0 0 44px;width:44px;min-height:44px;border:1px solid var(--line);border-radius:10px;color:var(--navy);background:var(--sky);font-size:1.2rem;display:grid;place-items:center;padding:0}
+.order-item .drag-handle:active{cursor:grabbing}
+.order-item .drag-handle:focus-visible,.order-controls button:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+.order-item .drag-handle:disabled{cursor:default;opacity:.4;touch-action:auto}
+.order-controls button{min-width:44px;min-height:44px}
+.order-item strong{min-width:0;overflow-wrap:anywhere}
+.order-drag-ghost{position:fixed!important;margin:0!important;z-index:1000;pointer-events:none!important;opacity:.95!important;box-shadow:0 12px 28px rgba(18,59,93,.25);border-color:var(--navy)}
+.order-item[data-drop-position="before"]::before,.order-item[data-drop-position="after"]::after{content:"";position:absolute;left:0;right:0;border-top:4px solid var(--navy);pointer-events:none}
+.order-item[data-drop-position="before"]::before{top:-8px}
+.order-item[data-drop-position="after"]::after{bottom:-8px}
+.order-help{font-size:.86rem;color:var(--muted);margin:0 0 10px}
+@media(max-width:360px){.order-item{padding:8px;gap:5px}.order-controls{gap:4px}.order-item .drag-handle{flex-basis:44px}}

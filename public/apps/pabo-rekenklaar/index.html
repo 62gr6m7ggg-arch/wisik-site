@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123b5d">
-<title>Pabo Rekenklaar 1.7.1 – rubricgestuurd oefenen met diagnostische foutpatronen</title><link rel="icon" href="/favicon.ico?v=wisik-tenten-20260914-2" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/icons/wisik-20260914-32.png?v=wisik-tenten-20260914-2" type="image/png" sizes="32x32"><link rel="icon" href="/assets/icons/wisik-20260914-192.png?v=wisik-tenten-20260914-2" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="/assets/icons/wisik-20260914-180.png?v=wisik-tenten-20260914-2" sizes="180x180">
+<title>Pabo Rekenklaar 1.8.0 – rubricgestuurd oefenen met diagnostische foutpatronen</title><link rel="icon" href="/favicon.ico?v=wisik-tenten-20260914-2" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/icons/wisik-20260914-32.png?v=wisik-tenten-20260914-2" type="image/png" sizes="32x32"><link rel="icon" href="/assets/icons/wisik-20260914-192.png?v=wisik-tenten-20260914-2" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="/assets/icons/wisik-20260914-180.png?v=wisik-tenten-20260914-2" sizes="180x180">
 <style>
 :root{
   --navy:#123b5d;
@@ -492,6 +492,22 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
   .topbar,.bottom-nav,.btn,.calculator,.scratchpad{display:none!important}
   body{background:#fff}.view{display:block!important}.card,.question-card{box-shadow:none}
 }
+/* BEGIN PABO ORDER POINTER CSS */
+/* Scrolling works on the row; only the actual handle owns the drag gesture. */
+.order-item{touch-action:auto;user-select:auto;position:relative;min-width:0;gap:8px}
+.order-item .drag-handle{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:grab;flex:0 0 44px;width:44px;min-height:44px;border:1px solid var(--line);border-radius:10px;color:var(--navy);background:var(--sky);font-size:1.2rem;display:grid;place-items:center;padding:0}
+.order-item .drag-handle:active{cursor:grabbing}
+.order-item .drag-handle:focus-visible,.order-controls button:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+.order-item .drag-handle:disabled{cursor:default;opacity:.4;touch-action:auto}
+.order-controls button{min-width:44px;min-height:44px}
+.order-item strong{min-width:0;overflow-wrap:anywhere}
+.order-drag-ghost{position:fixed!important;margin:0!important;z-index:1000;pointer-events:none!important;opacity:.95!important;box-shadow:0 12px 28px rgba(18,59,93,.25);border-color:var(--navy)}
+.order-item[data-drop-position="before"]::before,.order-item[data-drop-position="after"]::after{content:"";position:absolute;left:0;right:0;border-top:4px solid var(--navy);pointer-events:none}
+.order-item[data-drop-position="before"]::before{top:-8px}
+.order-item[data-drop-position="after"]::after{bottom:-8px}
+.order-help{font-size:.86rem;color:var(--muted);margin:0 0 10px}
+@media(max-width:360px){.order-item{padding:8px;gap:5px}.order-controls{gap:4px}.order-item .drag-handle{flex-basis:44px}}
+/* END PABO ORDER POINTER CSS */
 </style>
   <link rel="stylesheet" href="./wisik-bridge.css?v=1.1.1">
   <script src="./wisik-bridge.js?v=1.1.1" defer></script>
@@ -520,7 +536,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
     <section id="view-home" class="view active" aria-labelledby="homeTitle">
       <div class="hero">
         <div class="hero-copy">
-          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.7.1</span></button></div>
+          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.8.0</span></button></div>
           <h1 id="homeTitle"><span id="heroGreeting">Klaar om rekenen weer vanzelfsprekend te maken?</span></h1>
           <p>Leer per onderdeel, oefen adaptief en bouw de officiële toetsopzet na. De uitleg start rond havo 3 en groeit door naar het overwegend 3F-niveau van de toets.</p>
           <div class="button-row">
@@ -717,7 +733,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 
 <script>
 "use strict";
-const APP_VERSION = "1.7.1";
+const APP_VERSION = "1.8.0";
 const STORAGE_KEY = "pabo-rekenklaar-state-v1";
 const WISIK_TERRAIN_URL = "https://wisik.nl/";
 const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
@@ -773,6 +789,7 @@ const MISCONCEPTION_CATALOG = Object.freeze({
 const DIAGNOSTIC_DEFAULT_STATE = Object.freeze({schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0});
 
 const RELEASE_NOTES = [
+  {version:"1.8.0",date:"17 september 2026",title:"Andere denkhandelingen, minder herhaling, echt slepen",items:["36 nieuwe vraagontwerpen: reconstrueren, grenzen bewaken, vergelijken, tegenvoorbeelden, figuren lezen en plannen onder voorwaarden.","Oefenselectie weegt rekenstructuur, denkhandeling, context en presentatie mee, ook over meerdere sessies in dezelfde browser.","Sorteervragen werken via muis of aanraking aan het handvat, via de knoppen en met het toetsenbord. Na nakijken staat de volgorde vast.","Nieuwe antwoorden worden gecontroleerd uit gestructureerde rekendata. Nieuwe teksten leveren niet automatisch een diagnose of flirt op.","Vraagzwaarte blijft een expertvoorspelling. Gerichte herhaling blijft mogelijk als het passende aanbod anders te klein is."]},
   {version:"1.7.1",date:"16 september 2026",title:"Meer variatie en inhoudelijke toetsdekking",items:[
     "Volledige en korte toetsen spreiden de opgaven vooraf over de deelonderwerpen, met behoud van de domeinverdeling en rekenmachinebeperkingen.",
     "Binnen een toets geen identieke opgaven; een vraagfamilie verschijnt maximaal drie keer over beide delen samen.",
@@ -945,7 +962,7 @@ const DEFAULT_STATE = {
     C:{attempts:0,correct:0,rating:1.8,topics:{}},
     D:{attempts:0,correct:0,rating:1.8,topics:{}}
   },
-  completedLessons:[],badges:[],history:[],mistakes:[],variation:{schemaVersion:1,recent:[]},diagnostics:{schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0},lastMode:"practice",lastDomain:"mix"
+  completedLessons:[],badges:[],history:[],mistakes:[],variation:{schemaVersion:1,recent:[]},reasoningExposure:{schemaVersion:1,recent:[]},diagnostics:{schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0},lastMode:"practice",lastDomain:"mix"
 };
 
 const LESSONS = {
@@ -1135,6 +1152,7 @@ function loadState(){
     merged.mistakes=(Array.isArray(parsed.mistakes)?parsed.mistakes:[]).slice(0,80).map(m=>({domain:m.domain,topic:m.topic,difficulty:m.difficulty||3,date:m.date||"",correctSince:Math.max(0,Number(m.correctSince)||0)}));
     merged.diagnostics=normalizeDiagnosticsState(parsed.diagnostics);
     merged.variation=normalizeVariationHistory(parsed.variation);
+    merged.reasoningExposure=normalizeReasoningExposure(parsed.reasoningExposure);
     merged.version=APP_VERSION;
     return merged;
   }catch(e){console.warn("Voortgang kon niet worden geladen",e);return deepClone(DEFAULT_STATE)}
@@ -1728,7 +1746,189 @@ const RUBRIC_DEMAND = Object.freeze({
   L5_CRITICAL:Object.freeze({C:3,S:3,I:2,N:1,R:3,M:2,V:3})
 });
 function rubricVariant(family,variant,demand,reason){return Object.freeze({family,variant,demand:Object.freeze({...demand}),reason})}
+/* BEGIN PABO REASONING DESIGNS */
+/* Eigen vraagontwerpen, 17 september 2026. © Edwin van der Plas / Wisik.
+   Eén ontwerp = één herkenbaar andere wiskundige denkhandeling, niet één getallenset.
+   Alle antwoorden worden opnieuw berekend uit reasoningData; geen tekstparsing.
+   Vraagzwaarte is een expertvoorspelling, niet empirisch gekalibreerd. */
+function reasoningNum(prompt,answer,explanation,data,extra={}){
+  const q=makeNumberQ({domain:"A",topic:"operations",mode:"non",difficulty:1,prompt,answer,explanation,...extra});q.reasoningData=data;return q;
+}
+function reasoningChoice(prompt,correct,distractors,explanation,data,extra={}){
+  if(new Set([correct,...distractors]).size!==4)throw new Error("Denkontwerp heeft geen vier unieke opties");
+  const q=makeMCQ({domain:"A",topic:"operations",mode:"non",difficulty:1,prompt,correct,distractors,explanation,...extra});q.reasoningData=data;return q;
+}
+function reasoningFraction(n,d){const g=gcd(n,d);return `${n/g}/${d/g}`}
+function reasoningTable(headers,rows,caption){return variationTable(headers,rows,caption)}
+function reasoningSvg(body,description,height=230){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 ${height}" role="img" aria-label="${escapeHtml(description)}"><desc>${escapeHtml(description)}</desc>${body}</svg>`}
+function reasoningRectangles(a,b,c,d){
+  const scale=Math.min(150/Math.max(a,c),120/Math.max(b,d));
+  return reasoningSvg([[a,b,40,"Ontwerp 1"],[c,d,280,"Ontwerp 2"]].map(([l,w,x,label])=>`<text x="${x}" y="28" font-size="19">${label}</text><rect x="${x}" y="50" width="${l*scale}" height="${w*scale}" fill="#eaf6ff" stroke="#123b5d" stroke-width="3"/><text x="${x}" y="195" font-size="18">${l} m × ${w} m</text>`).join(""),`Twee rechthoeken op dezelfde schaal: ontwerp 1 ${a} bij ${b} meter; ontwerp 2 ${c} bij ${d} meter.`);
+}
+function reasoningNumberLine(left,right,den,stepIndex,steps){
+  const x0=40,w=400,y=90;
+  let body=`<line x1="${x0}" y1="${y}" x2="${x0+w}" y2="${y}" stroke="#123b5d" stroke-width="3"/>`;
+  for(let i=0;i<=steps;i++)body+=`<line x1="${x0+w*i/steps}" x2="${x0+w*i/steps}" y1="80" y2="100" stroke="#123b5d" stroke-width="2"/>`;
+  body+=`<text x="40" y="135" text-anchor="middle" font-size="21">${reasoningFraction(left,den)}</text><text x="440" y="135" text-anchor="middle" font-size="21">${reasoningFraction(right,den)}</text><circle cx="${x0+w*stepIndex/steps}" cy="90" r="7" fill="#123b5d"/><text x="${x0+w*stepIndex/steps}" y="60" text-anchor="middle" font-size="23">P</text>`;
+  return reasoningSvg(body,`Getallenlijn van ${left}/${den} tot ${right}/${den}, verdeeld in ${steps} gelijke stappen. P ligt ${stepIndex} stappen rechts van het linkeruiteinde.`,170);
+}
+const REASONING_DESIGNS = [
+  {id:"A.digit-swap",title:"Plaatswaarde reconstrueren na verwisselen",domain:"A",topic:"place-value",demand:"L3_INVERSE",structure:"place-value-difference",action:"reconstruct",context:"getallen",representation:"text",reason:"Het verschil van plaatswaarden gebruiken om een onbekend cijfer terug te vinden.",modes:["head","non"],build(){
+    const units=randInt(1,4),hundreds=units+randInt(1,5),tens=randInt(0,9),gap=99*(hundreds-units);
+    return reasoningNum(`Een getal heeft drie cijfers. Het tientallencijfer is <strong>${tens}</strong> en het eenhedencijfer is <strong>${units}</strong>. Als je het honderdtallen- en eenhedencijfer verwisselt, wordt het getal <strong>${gap} kleiner</strong>. Wat is het oorspronkelijke honderdtallencijfer?`,hundreds,`Een stap verschil tussen de twee verwisselde cijfers verandert het getal met 100 − 1 = 99. Het verschil tussen de cijfers is ${gap} : 99 = ${hundreds-units}. Het gezochte cijfer is dus ${units} + ${hundreds-units} = <strong>${hundreds}</strong>.`,{rule:"digit-swap",units,tens,gap},{hint:"Wat gebeurt er met 100 eenheden als hetzelfde cijfer naar de eenhedenplaats verhuist?"});
+  }},
+  {id:"A.rounded-total",title:"Wat weet je zeker na afronden?",domain:"A",topic:"place-value",demand:"L4_CRITICAL",structure:"rounding-intervals",action:"bound",context:"bezoekersaantallen",representation:"table",reason:"Twee afrondingsintervallen samenstellen en zekerheid onderscheiden van een schatting.",build(){
+    const a=randInt(15,35)*10,b=randInt(15,35)*10,total=a+b,correct=`Van ${total-10} tot en met ${total+8}.`;
+    return reasoningChoice("De aantallen bezoekers zijn afgerond op tientallen. Bij precies een halve stap wordt naar boven afgerond. Welk bereik bevat <strong>alle mogelijke werkelijke totaalaantallen</strong> van deze twee dagen?",correct,[`Precies ${total}.`,`Van ${total-5} tot en met ${total+4}.`,`Van ${total-10} tot en met ${total+10}.`],`Een afgerond aantal van ${a} kan ${a-5} tot en met ${a+4} betekenen. Voor ${b} is dat ${b-5} tot en met ${b+4}. Tel de ondergrenzen en bovengrenzen apart op: <strong>${total-10} tot en met ${total+8}</strong>.`,{rule:"rounded-total",a,b},{visual:reasoningTable(["Dag","Afgerond aantal"],[["Zaterdag",a],["Zondag",b]],"Bezoekersaantallen"),hint:"Zoek eerst het kleinste en grootste gehele aantal dat naar elk getoond tiental afrondt."});
+  }},
+  {id:"A.balance",title:"Een evenwicht als vergelijking lezen",domain:"A",topic:"operations",demand:"L3_INVERSE",structure:"equal-balance",action:"eliminate",context:"weegschaal",representation:"table",reason:"Gelijke onbekende hoeveelheden aan beide zijden wegdenken en de rest verdelen.",build(){
+    const right=randInt(1,3),difference=randInt(2,4),left=right+difference,mass=randInt(3,12)*10,extra=mass*difference;
+    return reasoningNum("De weegschaal is in evenwicht. Alle zakjes wegen evenveel. Hoeveel gram weegt <strong>één zakje</strong>?",mass,`Denk aan beide kanten ${right} zakje${right===1?"":"s"} weg. Er blijven links ${difference} zakjes over en rechts ${extra} gram. Eén zakje weegt ${extra} : ${difference} = <strong>${mass} gram</strong>.`,{rule:"balance",left,right,extra},{unit:"g",visual:reasoningTable(["Linkerschaal","Rechterschaal"],[[`${left} gelijke zakjes`,`${right} gelijke zakjes en een gewicht van ${extra} gram`]],"Evenwicht"),hint:"Je mag aan beide kanten evenveel weghalen zonder het evenwicht te veranderen."});
+  }},
+  {id:"A.missing-digit",title:"Een ontbrekend cijfer aan twee eisen toetsen",domain:"A",topic:"negative-divisibility",demand:"L4_TRANSFER",structure:"digit-divisibility",action:"constrain",context:"nummercode",representation:"text",reason:"Deelbaarheid door negen combineren met evenheid en precies één cijfer reconstrueren.",modes:["head","non"],build(){
+    const target=18*randInt(6,55),hundreds=Math.floor(target/100),tens=Math.floor(target/10)%10,answer=target%10;return reasoningNum(`Op een kaart staat <strong>${hundreds}${tens}□</strong>. Het getal is zowel <strong>even</strong> als <strong>deelbaar door 9</strong>. Welk cijfer hoort in het vakje?`,answer,`De som van de cijfers moet deelbaar zijn door 9. Met ${answer} is de som ${hundreds+tens+answer}. Het getal ${100*hundreds+10*tens+answer} is bovendien even. Daarom hoort <strong>${answer}</strong> in het vakje.`,{rule:"missing-digit",hundreds,tens},{hint:"Gebruik de cijfersom en controleer daarna of het laatste cijfer even is."});
+  }},
+  {id:"A.brackets-story",title:"Een verhaal aan een berekening koppelen",domain:"A",topic:"powers-order",demand:"L3_REP",structure:"grouped-operations",action:"model",context:"knutselpakketten",representation:"text",reason:"Herkennen welke hoeveelheid per pakket geldt en welke eenmalig van het totaal afgaat.",modes:["head","non"],build(){
+    const packs=randInt(3,8),each=randInt(8,16),damaged=randInt(2,5),correct=`${packs} × ${each} − ${damaged}`;
+    return reasoningChoice(`Er zijn <strong>${packs} pakketten</strong> met elk <strong>${each} kaartjes</strong>. Van alle kaartjes samen zijn er <strong>${damaged} beschadigd</strong>. Welke berekening geeft het aantal bruikbare kaartjes?`,correct,[`${packs} × (${each} − ${damaged})`,`${packs} + ${each} − ${damaged}`,`(${packs} − ${damaged}) × ${each}`],`Eerst tel je alle kaartjes: ${packs} × ${each}. De ${damaged} beschadigde kaartjes trek je één keer van het totaal af, niet uit ieder pakket. Daarom past <strong>${correct}</strong>.`,{rule:"brackets-story",packs,each,damaged},{hint:"Zijn er beschadigde kaartjes per pakket of in totaal?"});
+  }},
+  {id:"A.cycles",title:"Twee terugkerende momenten afstemmen",domain:"A",topic:"negative-divisibility",demand:"L3_COMPOSE",structure:"common-multiple",action:"synchronize",context:"lichtsignalen",representation:"text",reason:"De twee herhaalritmes combineren en het eerste gezamenlijke tijdstip bepalen.",modes:["head","non"],build(){
+    const [a,b]=pick([[4,6],[6,8],[6,9],[8,12],[9,12],[10,15]]),after=randInt(1,5)*lcm(a,b),answer=after+lcm(a,b);
+    return reasoningNum(`Twee lampjes flitsen tegelijk bij de start. Daarna flitst het ene elke <strong>${a} seconden</strong> en het andere elke <strong>${b} seconden</strong>. Op welk tijdstip, in seconden na de start, flitsen ze voor het eerst weer samen <strong>ná ${after} seconden</strong>?`,answer,`Gemeenschappelijke flitsmomenten liggen telkens ${lcm(a,b)} seconden uit elkaar: dat is het kleinste gemeenschappelijke veelvoud van ${a} en ${b}. Het eerste gezamenlijke moment strikt na ${after} is <strong>${answer} seconden</strong>.`,{rule:"cycles",a,b,after},{unit:"s",hint:"Zoek eerst wanneer beide ritmes samenkomen. Het genoemde grensmoment zelf telt niet mee."});
+  }},
+  {id:"B.nearest",title:"Afstanden tot een referentiebreuk vergelijken",domain:"B",topic:"fraction-concept",demand:"L3_COMPOSE",structure:"fraction-distance",action:"compare-distance",context:"getallen",representation:"text",reason:"Niet de grootste breuk kiezen maar de kleinste afstand tot een referentiegetal bepalen.",modes:["head","non"],build(){
+    const den=pick([20,24,30,36]),n=randInt(Math.ceil(den*.35),Math.floor(den*.65)),offsets=shuffle([-1,2,-3,4]),pairs=offsets.map(k=>[n+k,den]),correct=reasoningFraction(n-1,den);
+    return reasoningChoice(`Welke breuk ligt het dichtst bij <strong>${reasoningFraction(n,den)}</strong>?`,correct,pairs.filter(p=>p[0]!==n-1).map(p=>reasoningFraction(...p)),`Schrijf de breuken met noemer ${den}. De afstanden tot ${n}/${den} zijn 1/${den}, 2/${den}, 3/${den} en 4/${den}. De kleinste afstand hoort bij <strong>${correct}</strong>.`,{rule:"nearest",n,den,pairs},{hint:"Vergelijk het verschil met de referentiebreuk, niet alleen de breuken onderling."});
+  }},
+  {id:"B.between",title:"Strikt tussen twee breuken plaatsen",domain:"B",topic:"fraction-concept",demand:"L2_SORT",structure:"fraction-interval",action:"locate",context:"getallen",representation:"text",reason:"Twee grenzen tegelijk gebruiken en gelijkheid aan een grens uitsluiten.",modes:["head","non"],build(){
+    const den=pick([12,16,20,24]),n=randInt(2,den-5),correct=reasoningFraction(n+1,den);
+    return reasoningChoice(`Welke breuk ligt <strong>strikt tussen ${reasoningFraction(n,den)} en ${reasoningFraction(n+2,den)}</strong>?`,correct,[reasoningFraction(n,den),reasoningFraction(n+2,den),reasoningFraction(n+3,den)],`Met noemer ${den} zoek je een teller groter dan ${n} en kleiner dan ${n+2}. Dat is ${n+1}. Dus <strong>${correct}</strong> ligt ertussen. De grenswaarden tellen niet mee.`,{rule:"between",n,den},{hint:"Maak de noemers gelijk en let op het woord strikt."});
+  }},
+  {id:"B.same-numerator",title:"Uitleg voor gelijke tellers beoordelen",domain:"B",topic:"fraction-concept",demand:"L2_REP",structure:"same-numerator",action:"justify",context:"getallen",representation:"text",reason:"De grootte van één deel koppelen aan een gelijk aantal delen, in plaats van alleen een antwoord uitrekenen.",modes:["head","non"],build(){
+    const n=randInt(2,5),a=n+randInt(1,3),b=a+randInt(2,4),correct=`${n}/${a} is groter: evenveel stukken, maar ieder stuk is groter.`;
+    return reasoningChoice(`Welke uitleg klopt bij de vergelijking van <strong>${n}/${a}</strong> en <strong>${n}/${b}</strong>? Beide breuken gaan over <strong>hetzelfde geheel</strong>.`,correct,[`${n}/${b} is groter: ${b} is de grootste noemer.`,`De breuken zijn gelijk: de tellers zijn gelijk.`,`${n}/${a} is kleiner: ${a} is de kleinste noemer.`],`Een geheel verdelen in ${a} gelijke stukken geeft grotere stukken dan verdelen in ${b} gelijke stukken. Je neemt in beide gevallen ${n} stukken. Daarom is <strong>${n}/${a} groter</strong>.`,{rule:"same-numerator",n,a,b},{hint:"Vergelijk eerst 1/noemer; neem daarna evenveel van die stukken."});
+  }},
+  {id:"B.line-origin",title:"Een getallenlijn zonder nul als begin lezen",domain:"B",topic:"fraction-concept",demand:"L3_REP",structure:"affine-numberline",action:"read-offset",context:"getallenlijn",representation:"numberline",reason:"De niet-nul beginwaarde én de grootte van een stap verwerken.",build(){
+    const den=pick([4,6,8]),left=randInt(1,den-2),steps=4,right=left+4,index=randInt(1,3),answer=(left+index)/den;
+    return reasoningNum("De streepjes op deze getallenlijn staan op gelijke afstand. Welk getal hoort bij <strong>P</strong>? Je mag een breuk invullen.",answer,`Het verschil tussen de uiteinden is 4/${den}, verdeeld over vier stappen. Elke stap is 1/${den}. P ligt ${index} stappen rechts van ${reasoningFraction(left,den)}: <strong>${reasoningFraction(left+index,den)}</strong>.`,{rule:"line-origin",left,right,den,index,steps},{allowFraction:true,answerDisplay:reasoningFraction(left+index,den),visual:reasoningNumberLine(left,right,den,index,steps),hint:"Het linkeruiteinde is niet nul. Tel de stapjes vanaf de aangegeven beginwaarde."});
+  }},
+  {id:"B.counterexample",title:"Een breukbewering met een tegenvoorbeeld testen",domain:"B",topic:"fraction-concept",demand:"L4_CRITICAL",structure:"fraction-order-claim",action:"refute",context:"leerlingredenering",representation:"text",reason:"Een algemene bewering ontkrachten: zowel de grotere teller als de kleinere breukwaarde moeten aanwezig zijn.",build(){
+    const a=randInt(2,5),big=a+1,smallDen=a+1,bigDen=2*(a+2),correct=`${big}/${bigDen} < ${a}/${smallDen}`;
+    return reasoningChoice("Noor zegt: ‘De breuk met de grootste teller is altijd het grootst.’ Welke vergelijking is een <strong>tegenvoorbeeld</strong> dat laat zien dat dit niet altijd klopt?",correct,[`${big}/${bigDen} > ${a}/${bigDen}`,`${a}/${smallDen} > 1/${smallDen}`,`${a}/${bigDen} < ${a}/${smallDen}`],`In <strong>${correct}</strong> is ${big} de grootste teller, maar hoort daar juist de kleinste breuk bij. Daarmee is Noors bewering weerlegd. Een vergelijking met gelijke tellers test haar bewering niet.`,{rule:"counterexample",a,big,smallDen,bigDen},{hint:"Zoek een voorbeeld waarin de grotere teller niet bij de grotere breuk hoort."});
+  }},
+  {id:"B.numerator-bound",title:"Een teller binnen twee grenzen bepalen",domain:"B",topic:"fraction-concept",demand:"L3_INVERSE",structure:"fraction-inequality",action:"bound-integer",context:"getallen",representation:"text",reason:"Breukgrenzen naar gehele tellers vertalen en de grootste toegestane teller kiezen.",modes:["head","non"],build(){
+    const den=pick([12,18,24,30,36]),lo=den/3,hi=den*2/3,answer=hi-1;
+    return reasoningNum(`De breuk <strong>□/${den}</strong> is groter dan <strong>1/3</strong> en kleiner dan <strong>2/3</strong>. Wat is het <strong>grootste gehele getal</strong> dat in het vakje past?`,answer,`1/3 = ${lo}/${den} en 2/3 = ${hi}/${den}. De teller moet dus groter zijn dan ${lo} en kleiner dan ${hi}. De grootste mogelijke gehele teller is <strong>${answer}</strong>.`,{rule:"numerator-bound",den},{hint:"Schrijf beide grenzen met de gegeven noemer. De bovengrens zelf is niet toegestaan."});
+  }},
+  {id:"B.reference-whole",title:"Het juiste geheel in een redenering aanwijzen",domain:"B",topic:"fraction-operations",demand:"L3_REP",structure:"successive-fractions",action:"explain-base",context:"filmzaal",representation:"text",reason:"Uitleggen waarom de tweede breuk niet op de oorspronkelijke hoeveelheid mag worden toegepast.",modes:["head","non"],build(){
+    const total=pick([60,72,84,96,120]),first=total/4,next=(total-first)/3,correct=`De tweede groep gebruikt 1/3 van ${total-first} lege plaatsen.`;
+    return reasoningChoice(`Een zaal heeft <strong>${total} plaatsen</strong>. Eerst raakt <strong>1/4</strong> bezet. Daarna wordt <strong>1/3 van de nog lege plaatsen</strong> bezet. Sam telt 1/4 en 1/3 op. Welke uitleg laat zien waarom dat hier niet klopt?`,correct,[`De tweede groep gebruikt 1/3 van alle ${total} plaatsen.`,`Je moet 1/4 en 1/3 vervangen door 1/7.`,`Bij twee groepen moet je de noemers altijd vermenigvuldigen.`],`Na de eerste groep zijn ${total-first} plaatsen leeg. De tweede groep bezet daarvan 1/3: ${next} plaatsen. De breuken slaan op verschillende gehelen, dus je mag ze niet rechtstreeks optellen. Er zijn uiteindelijk ${first+next} plaatsen bezet.`,{rule:"reference-whole",total},{hint:"Hoeveel plaatsen waren nog leeg toen de tweede groep binnenkwam?"});
+  }},
+  {id:"B.overlap",title:"Dubbel getelde delen herkennen",domain:"B",topic:"fraction-operations",demand:"L4_TRANSFER",structure:"overlapping-subsets",action:"correct-double-count",context:"schoolclubs",representation:"table",reason:"Breuken van hetzelfde geheel omzetten en de overlap één keer aftrekken.",build(){
+    const total=randInt(3,9)*12,both=total/6,answer=total/2+total/3-both;
+    return reasoningNum(`Een school heeft <strong>${total} leerlingen</strong>. De tabel gaat steeds over deze hele groep. Hoeveel leerlingen zitten op <strong>minstens één</strong> van beide clubs?`,answer,`Op de sportclub zitten ${total/2} leerlingen en op de muziekclub ${total/3}. De ${both} leerlingen die beide doen zijn dan dubbel geteld. Trek hen één keer af: ${total/2} + ${total/3} − ${both} = <strong>${answer}</strong>.`,{rule:"overlap",total},{visual:reasoningTable(["Club","Deel van alle leerlingen"],[["Sport","1/2"],["Muziek","1/3"],["Beide clubs","1/6"]],"Clubdeelname"),hint:"Wie tel je twee keer wanneer je de twee clubaantallen optelt?"});
+  }},
+  {id:"B.restore",title:"Toevoegen onderscheiden van een breukbewerking",domain:"B",topic:"fraction-operations",demand:"L4_TRANSFER",structure:"fraction-plus-fixed",action:"reverse-chain",context:"spaargeld",representation:"text",reason:"Een vaste toevoeging ongedaan maken voordat wordt teruggerekend met de overgebleven fractie.",modes:["head","non"],build(){
+    const den=pick([3,4,5]),start=den*randInt(12,30),gift=randInt(2,8)*5,end=start*(den-1)/den+gift;
+    return reasoningNum(`Je besteedt <strong>1/${den}</strong> van je spaargeld. Daarna krijg je <strong>€ ${gift}</strong> erbij. Nu heb je <strong>€ ${end}</strong>. Hoeveel spaargeld had je vóór het besteden?`,start,`Haal eerst het toegevoegde bedrag weg: ${end} − ${gift} = ${end-gift}. Dat is ${den-1}/${den} van het begingeld. Eén deel is ${(end-gift)/(den-1)}, dus alle ${den} delen samen zijn <strong>€ ${start}</strong>.`,{rule:"restore",den,gift,end},{unit:"€",hint:"Welke laatste verandering kun je als eerste ongedaan maken?"});
+  }},
+  {id:"B.share-of-rest",title:"Een deel van de rest uitdrukken in het oorspronkelijke geheel",domain:"B",topic:"fraction-operations",demand:"L3_COMPOSE",structure:"successive-fractions",action:"change-reference",context:"wandelroute",representation:"text",reason:"Een fractie van de rest terugvertalen naar een fractie van de hele route.",modes:["head","non"],build(){
+    const a=pick([3,4,5,6]),b=pick([2,3,4]),answer=(a-1)/(a*b);
+    return reasoningNum(`Je hebt <strong>1/${a}</strong> van een route afgelegd. Daarna loop je <strong>1/${b} van wat dan nog over is</strong>. Welk deel van de <strong>oorspronkelijke hele route</strong> loop je in die tweede etappe? Vul een breuk in.`,answer,`Na de eerste etappe is ${a-1}/${a} over. De tweede etappe is daarvan 1/${b}: 1/${b} × ${a-1}/${a} = <strong>${reasoningFraction(a-1,a*b)}</strong> van de hele route.`,{rule:"share-of-rest",a,b},{allowFraction:true,answerDisplay:reasoningFraction(a-1,a*b),hint:"Noem eerst de rest als deel van de hele route."});
+  }},
+  {id:"B.operation-order",title:"Volgorde van een vast bedrag en een fractie vergelijken",domain:"B",topic:"fraction-operations",demand:"L4_CRITICAL",structure:"fraction-fixed-order",action:"compare-orders",context:"cadeaubudget",representation:"table",reason:"Twee handelingsvolgordes vergelijken en herkennen welk deel van het vaste bedrag het verschil veroorzaakt.",build(){
+    const den=pick([2,3,4,5]),total=den*randInt(20,40),fixed=den*randInt(2,5),gap=fixed/den,correct=`Plan B laat € ${gap} meer over.`;
+    return reasoningChoice(`Je hebt <strong>€ ${total}</strong>. Welk plan laat het meeste geld over, en hoeveel meer?`,correct,[`Plan A laat € ${gap} meer over.`,`Beide plannen laten evenveel over.`,`Plan B laat € ${fixed} meer over.`],`Plan A: ${total} × ${den-1}/${den} − ${fixed} = ${total*(den-1)/den-fixed}. Plan B: (${total} − ${fixed}) × ${den-1}/${den} = ${(total-fixed)*(den-1)/den}. In B wordt de fractie over minder geld berekend. B laat <strong>€ ${gap} meer</strong> over.`,{rule:"operation-order",den,total,fixed},{visual:reasoningTable(["Plan","Eerst","Daarna"],[["A",`Besteed 1/${den} van je geld`,`Besteed € ${fixed}`],["B",`Besteed € ${fixed}`,`Besteed 1/${den} van wat over is`]],"Twee bestedingsplannen"),hint:"Reken beide plannen door. Een breuk van een kleiner bedrag is ook kleiner."});
+  }},
+  {id:"B.add-no-votes",title:"Een verhouding veranderen terwijl het aantal voorstemmers gelijk blijft",domain:"B",topic:"fraction-operations",demand:"L4_TRANSFER",structure:"fixed-part-new-whole",action:"reconstruct-whole",context:"clubstemming",representation:"text",reason:"De onveranderde teller gebruiken om uit het nieuwe aandeel de grotere noemer af te leiden.",build(){
+    const unit=randInt(3,15),total=5*unit,yes=3*unit,answer=unit;
+    return reasoningNum(`Van <strong>${total} clubleden</strong> stemt <strong>3/5 vóór</strong> een voorstel. Er sluiten extra leden aan die <strong>allemaal tegen</strong> stemmen. Niemand verandert van stem. Hoeveel extra leden zijn nodig zodat precies <strong>de helft</strong> vóór is?`,answer,`Het aantal voorstemmers blijft 3/5 × ${total} = ${yes}. Als dat de helft is, moet de nieuwe groep ${yes*2} leden tellen. Er moeten dus ${yes*2} − ${total} = <strong>${answer} leden</strong> bijkomen.`,{rule:"add-no-votes",total},{hint:"Welk aantal blijft gelijk wanneer er alleen tegenstemmers bijkomen?"});
+  }},
+  {id:"C.same-area",title:"Gelijke oppervlakte, andere randlengte",domain:"C",topic:"area-perimeter",demand:"L3_REP",structure:"area-vs-perimeter",action:"compare-invariants",context:"tuinontwerp",representation:"diagram",reason:"Een gelijke oppervlakte onderscheiden van gelijke omtrek en beide randen vergelijken.",build(){
+    const k=randInt(1,4),a=3*k,b=8*k,c=4*k,d=6*k,answer=2*k;
+    return reasoningNum("Deze twee tuinen hebben dezelfde oppervlakte. Hoeveel meter <strong>meer randlint</strong> vraagt ontwerp 1 dan ontwerp 2?",answer,`Beide oppervlakten zijn ${a*b} m². De randen verschillen: ontwerp 1 heeft 2 × (${a} + ${b}) = ${2*(a+b)} m omtrek; ontwerp 2 heeft ${2*(c+d)} m. Het verschil is <strong>${answer} m</strong>.`,{rule:"same-area",a,b,c,d},{unit:"m",visual:reasoningRectangles(a,b,c,d),hint:"Randlint hoort bij omtrek, niet bij oppervlakte."});
+  }},
+  {id:"C.border",title:"Een strook rondom uit een plattegrond halen",domain:"C",topic:"area-perimeter",demand:"L4_TRANSFER",structure:"outer-minus-inner",action:"derive-dimensions",context:"bloementuin",representation:"diagram",reason:"Een randbreedte aan twee zijden verwerken en het verschil tussen twee oppervlakten nemen.",build(){
+    const w=randInt(6,12),l=w+randInt(2,8),border=pick([1,2]),innerL=l-2*border,innerW=w-2*border,answer=l*w-innerL*innerW,scale=Math.min(340/l,140/w);
+    const visual=reasoningSvg(`<rect x="55" y="40" width="${l*scale}" height="${w*scale}" fill="#eaf6ff" stroke="#123b5d" stroke-width="3"/><rect x="${55+border*scale}" y="${40+border*scale}" width="${innerL*scale}" height="${innerW*scale}" fill="white" stroke="#123b5d" stroke-width="2"/><text x="55" y="215" font-size="18">Buitenmaat ${l} m × ${w} m; rand ${border} m breed</text>`,`Rechthoek ${l} bij ${w} meter met aan alle vier kanten een rand van ${border} meter breed.`);
+    return reasoningNum(`Rondom een rechthoekige tuin ligt aan de <strong>binnenkant</strong> een overal <strong>${border} m brede</strong> bloemenstrook. Wat is de oppervlakte van alleen de bloemenstrook?`,answer,`De buitenoppervlakte is ${l} × ${w} = ${l*w} m². Binnen de strook blijft ${innerL} bij ${innerW} meter over: aan elke maat gaat twee keer ${border} meter af. De strook beslaat ${l*w} − ${innerL*innerW} = <strong>${answer} m²</strong>.`,{rule:"border",l,w,border},{unit:"m²",visual,hint:"De rand zit links én rechts, en ook boven én onder."});
+  }},
+  {id:"C.paint",title:"Muurvlakken, openingen en lagen combineren",domain:"C",topic:"area-perimeter",demand:"L5_COMPLEX",structure:"surface-coverage-layers",action:"plan-material",context:"schilderwerk",representation:"table",reason:"Vier wanden samenstellen, een opening aftrekken, twee lagen meenemen en de benodigde verf naar hele blikken vertalen.",build(){
+    const l=randInt(4,8),w=randInt(3,6),h=3,opening=randInt(2,5),coverage=pick([8,10]),tin=pick([2,3]),area=2*(l+w)*h-opening,litres=2*area/coverage,answer=Math.ceil(litres/tin-1e-9);
+    return reasoningNum("De vier muren van deze kamer krijgen <strong>twee lagen</strong> verf. Plafond, vloer en deuropening worden niet geschilderd. Hoeveel hele blikken zijn minimaal nodig? Reken uitsluitend met de aangegeven dekking; extra reserve is niet nodig.",answer,`De vier muren samen zijn 2 × (${l} + ${w}) × ${h} = ${2*(l+w)*h} m². Trek de opening af: ${area} m². Voor twee lagen moet ${2*area} m² gedekt worden. Eén blik dekt ${tin*coverage} m² voor één laag. ${2*area} : ${tin*coverage} = ${fmt(2*area/(tin*coverage),3)}, dus <strong>${answer} hele blikken</strong>.`,{rule:"paint",l,w,h,opening,coverage,tin},{unit:"blikken",calculatorAllowed:true,visual:reasoningTable(["Gegeven","Waarde"],[["Lengte × breedte × hoogte",`${l} m × ${w} m × ${h} m`],["Deuropening",`${opening} m²`],["Dekking",`${coverage} m² per liter per laag`],["Inhoud blik",`${tin} liter`]],"Schilderplan"),hint:"Bereken het oppervlak van de vier wanden, niet van de vloer."});
+  }},
+  {id:"C.missing-height",title:"Een ontbrekende maat uit een uitgesneden oppervlakte vinden",domain:"C",topic:"area-perimeter",demand:"L4_TRANSFER",structure:"compound-area-inverse",action:"reconstruct-dimension",context:"podium",representation:"diagram",reason:"Een weggenomen rechthoek terugplaatsen en uit de herstelde oppervlakte een onbekende maat bepalen.",build(){
+    const l=randInt(12,20),h=randInt(8,12),cutL=randInt(3,6),cutH=randInt(2,4),area=l*h-cutL*cutH;
+    const scale=Math.min(320/l,170/h),x=76,y=54,right=x+l*scale,bottom=y+h*scale,notch=right-cutL*scale,drop=y+cutH*scale;
+    const visual=reasoningSvg(`<path d="M ${x} ${y} H ${notch} V ${drop} H ${right} V ${bottom} H ${x} Z" fill="#eaf6ff" stroke="#123b5d" stroke-width="3"/><path d="M ${notch} ${y} H ${right} V ${drop}" fill="none" stroke="#647486" stroke-dasharray="5 4"/><text x="${(x+right)/2}" y="${bottom+30}" text-anchor="middle" font-size="18">${l} m</text><text x="38" y="${(y+bottom)/2}" text-anchor="middle" font-size="18">? m</text><text x="${(notch+right)/2}" y="${y-16}" text-anchor="middle" font-size="17">${cutL} m</text><text x="${right+12}" y="${(y+drop)/2+6}" font-size="17">${cutH} m</text>`,`Podium met buitenlengte ${l} meter en onbekende buitenhoogte. Uitsparing rechtsboven ${cutL} bij ${cutH} meter. Overgebleven oppervlakte ${area} vierkante meter. Gebruik de gegeven maten.`,285);
+    return reasoningNum(`Het overgebleven podium heeft oppervlakte <strong>${area} m²</strong>. Hoe groot is de <strong>onbekende buitenhoogte</strong>? Gebruik de maten, niet de getekende verhoudingen.`,h,`Plaats de ontbrekende rechthoek in gedachten terug: ${cutL} × ${cutH} = ${cutL*cutH} m². De hele rechthoek heeft ${area+cutL*cutH} m² oppervlakte. Deel door de lengte ${l}: <strong>${h} m</strong>.`,{rule:"missing-height",l,cutL,cutH,area},{unit:"m",visual,hint:"Maak van de L-vorm eerst weer een hele rechthoek."});
+  }},
+  {id:"C.shared-edge",title:"Een gedeelde rand niet dubbel meetellen",domain:"C",topic:"area-perimeter",demand:"L4_CRITICAL",structure:"union-perimeter",action:"correct-internal-edge",context:"samengevoegde-terreinen",representation:"diagram",reason:"Herkennen dat de gemeenschappelijke zijde twee keer in de losse omtrekken staat maar niet in de buitenrand.",build(){
+    const h=randInt(3,8),l=randInt(6,12),r=randInt(4,9),total=2*(l+h)+2*(r+h),answer=total-2*h;
+    const scale=Math.min(330/(l+r),130/h),right=45+(l+r)*scale,join=45+l*scale,bottom=45+h*scale;
+    const visual=reasoningSvg(`<rect x="45" y="45" width="${(l+r)*scale}" height="${h*scale}" fill="#eaf6ff" stroke="#123b5d" stroke-width="3"/><line x1="${join}" y1="45" x2="${join}" y2="${bottom}" stroke="#123b5d" stroke-width="3" stroke-dasharray="7 5"/><text x="${45+l*scale/2}" y="${bottom+30}" text-anchor="middle" font-size="20">${l} m</text><text x="${join+r*scale/2}" y="${bottom+30}" text-anchor="middle" font-size="20">${r} m</text><text x="${right+12}" y="${45+h*scale/2}" font-size="20">${h} m</text>`,`Twee naast elkaar liggende rechthoeken van ${l} bij ${h} en ${r} bij ${h} meter. De stippellijn is de volledige gemeenschappelijke zijde van ${h} meter.`);
+    return reasoningNum(`Twee terreinen worden samengevoegd. Iemand telt de losse omtrekken op en vindt <strong>${total} m</strong>. Hoeveel meter is de <strong>buitenrand van het samengevoegde terrein</strong> werkelijk?`,answer,`De gedeelde zijde van ${h} m is bij elk terrein één keer geteld. Beide stukken verdwijnen uit de buitenrand. Trek dus 2 × ${h} af: ${total} − ${2*h} = <strong>${answer} m</strong>.`,{rule:"shared-edge",l,r,h},{unit:"m",visual,hint:"Welke stippellijn ligt niet meer aan de buitenkant? Hoe vaak zat die in de optelsom?"});
+  }},
+  {id:"C.enclosure",title:"Een terrein ontwerpen onder een randvoorwaarde",domain:"C",topic:"area-perimeter",demand:"L5_COMPLEX",structure:"discrete-area-optimization",action:"optimize",context:"dierenverblijf",representation:"text",reason:"Een variabele maat kiezen, de gekoppelde maat uit de hekvoorwaarde afleiden en alle haalbare gehele maten vergelijken.",build(){
+    const fence=pick([24,28,32,36,40]),gate=2,total=fence+gate,limit=randInt(1,3)+Math.floor(total/4);let best=0;
+    for(let w=1;w<=limit;w++){const l=total-2*w;if(l>0){const area=w*l;if(area>best)best=area;}}
+    return reasoningNum(`Een rechthoekig verblijf ligt met één zijde langs een bestaande muur: daar is geen hek nodig. Voor de andere drie zijden is <strong>${fence} m hek</strong> beschikbaar, plus een aparte poort van <strong>${gate} m</strong> in de zijde tegenover de muur. Gebruik al het hek en de poort. De breedte loodrecht op de muur mag maximaal <strong>${limit} m</strong> zijn. Lengte en breedte zijn positieve gehele meters. Wat is de <strong>grootste mogelijke oppervlakte</strong>?`,best,`Samen overbruggen hek en poort ${total} m. Bij breedte b blijft voor de zijde tegenover de muur ${total} − 2 × b over. Vergelijk b × (${total} − 2 × b) voor de toegestane gehele breedten. Het maximum is <strong>${best} m²</strong>.`,{rule:"enclosure",fence,gate,limit},{unit:"m²",calculatorAllowed:true,hint:"Maak een tabel: kies een breedte, trek die tweemaal van de beschikbare rand af en bereken de oppervlakte."});
+  }},
+  {id:"D.interval-rate",title:"Ongelijke meetintervallen eerlijk vergelijken",domain:"D",topic:"charts",demand:"L3_REP",structure:"unequal-interval-rate",action:"compare-rates",context:"garderobe",representation:"table",reason:"Verschillen delen door de verschillende tijdsduren; de grootste absolute toename is niet automatisch het hoogste tempo.",build(){
+    const start=randInt(1,4)*5,slow=randInt(2,4),fast=slow+randInt(1,3),a=start+15*slow,b=a+5*fast,correct="Van 19.15 tot 19.20 uur.";
+    return reasoningChoice("In welk tijdvak neemt het aantal jassen in de garderobe <strong>gemiddeld per minuut</strong> het sterkst toe?",correct,["Van 19.00 tot 19.15 uur.","In beide tijdvakken even sterk.","Dat kun je niet uit deze meetgegevens berekenen."],`Eerst komen er ${15*slow} jassen bij in 15 minuten: ${slow} per minuut. Daarna ${5*fast} in 5 minuten: ${fast} per minuut. Het tweede tijdvak heeft dus het hoogste gemiddelde tempo.`,{rule:"interval-rate",start,a,b},{visual:reasoningTable(["Tijd","Aantal jassen"],[["19.00",start],["19.15",a],["19.20",b]],"Garderobemetingen"),hint:"De tijdvakken zijn niet even lang. Reken terug naar één minuut."});
+  }},
+  {id:"D.net-flow",title:"Instroom onderscheiden van wat binnenblijft",domain:"D",topic:"charts",demand:"L3_REP",structure:"cumulative-net-flow",action:"accumulate-net",context:"museum",representation:"table",reason:"De beginvoorraad behouden en bij ieder tijdvak instroom én uitstroom verwerken.",build(){
+    const start=randInt(2,5)*10,ins=[randInt(2,6)*5,randInt(2,6)*5,randInt(2,6)*5],outs=[randInt(1,3)*5,randInt(1,3)*5,randInt(1,3)*5],answer=start+ins.reduce((a,b)=>a+b,0)-outs.reduce((a,b)=>a+b,0);
+    return reasoningNum(`Om 10.00 uur zijn <strong>${start} bezoekers</strong> in het museum. De tabel toont hoeveel mensen in elk tijdvak <strong>binnenkomen en weggaan</strong>. Hoeveel bezoekers zijn er om 11.30 uur binnen?`,answer,`Begin met ${start}. Tel ${ins.join(" + ")} binnenkomers erbij en trek ${outs.join(" + ")} vertrekkers af. Er blijven <strong>${answer} bezoekers</strong> binnen. Binnengekomen bezoekers zijn niet hetzelfde als aanwezige bezoekers.`,{rule:"net-flow",start,ins,outs},{visual:reasoningTable(["Tijdvak","Binnen","Weg"],[["10.00–10.30",ins[0],outs[0]],["10.30–11.00",ins[1],outs[1]],["11.00–11.30",ins[2],outs[2]]],"Bezoekersbewegingen"),hint:"Werk van de beginsituatie uit en verwerk ook de mensen die vertrekken."});
+  }},
+  {id:"D.graph-story",title:"Een verhaal aan een afstandsgrafiek koppelen",domain:"D",topic:"charts",demand:"L2_REP",structure:"piecewise-distance",action:"interpret-story",context:"wandeling",representation:"line",reason:"Stijgen, constant blijven en dalen vertalen naar afstand tot het vertrekpunt.",build(){
+    const distance=pick([100,200,300,400]),values=[0,distance,distance,0],chart=simpleLineChartSVG(["0","5","10","15"],values,{title:"Afstand tot het vertrekpunt",unit:"meter",minorStep:distance/4,majorStep:distance/2}),correct="Eerst verder weg, dan dezelfde afstand, daarna terug naar het vertrekpunt.";
+    return reasoningChoice("Op de horizontale as staat de tijd in minuten. De grafiek toont <strong>afstand tot het vertrekpunt</strong>, niet totale afgelegde afstand. Welke beschrijving past bij de grafiek?",correct,["Eerst terug naar het vertrekpunt, daarna steeds verder weg.","De afstand tot het vertrekpunt groeit de hele tijd.","Na vijf minuten neemt de afstand tot het vertrekpunt meteen af."],`De afstand stijgt eerst tot ${distance} m, blijft tussen minuut 5 en 10 gelijk, en daalt daarna naar nul. Een horizontaal stuk betekent hier een constante afstand tot het vertrekpunt; alleen op basis hiervan hoef je geen stilstand te veronderstellen.`,{rule:"graph-story",distance},{visual:chart.html,visualMeta:chart.meta,hint:"Lees elke periode apart en kijk goed welke afstand de verticale as bedoelt."});
+  }},
+  {id:"D.extrapolation",title:"Zekerheid onderscheiden van doortrekken",domain:"D",topic:"charts",demand:"L4_CRITICAL",structure:"finite-data-extension",action:"judge-sufficiency",context:"fietsmetingen",representation:"line",reason:"Een waargenomen regelmaat onderscheiden van een gegarandeerde toekomstige waarde wanneer een voortzettingsregel ontbreekt.",build(){
+    const start=randInt(1,4)*10,step=pick([5,10,15]),values=[start,start+step,start+2*step,start+3*step],chart=simpleLineChartSVG(["Ma","Di","Wo","Do"],values,{title:"Getelde fietsen bij de ingang",unit:"fietsen",minorStep:5,majorStep:10}),correct="Nee. De eerdere toename garandeert niet hoeveel fietsen er vrijdag staan.";
+    return reasoningChoice(`Iemand zegt: ‘Vrijdag zijn het <strong>zeker ${start+4*step} fietsen</strong>.’ Er is geen informatie over vrijdag of een regel voor de verdere groei. Volgt deze zekerheid uit de grafiek?`,correct,["Ja, want drie gelijke toenames bewijzen dat het daarna zo doorgaat.",`Nee, vrijdag moeten het zeker ${start+3*step} fietsen zijn.`,"Ja, want iedere lijngrafiek beschrijft een vaste toename."],`De grafiek laat bij deze vier metingen telkens ${step} fietsen meer zien. ${start+4*step} is een mogelijke voorspelling bij voortzetting van dat patroon, maar <strong>geen zekere conclusie</strong>. Daarvoor ontbreekt een afspraak of extra gegeven over de verdere ontwikkeling.`,{rule:"extrapolation",start,step},{visual:chart.html,visualMeta:chart.meta,hint:"Wat is gemeten, en wat wordt alleen verondersteld?"});
+  }},
+  {id:"D.missing-bar",title:"Een ontbrekende waarde met het totaal aanvullen",domain:"D",topic:"charts",demand:"L3_INVERSE",structure:"sum-constraint-data",action:"repair-data",context:"uitleenbalie",representation:"table",reason:"Het totaalcijfer als extra voorwaarde gebruiken om een ontbrekende meetwaarde te reconstrueren.",build(){
+    const values=Array.from({length:4},()=>randInt(2,9)*5),index=randInt(0,3),total=values.reduce((a,b)=>a+b,0),labels=["Maandag","Dinsdag","Woensdag","Donderdag"],answer=values[index];
+    return reasoningNum(`In totaal zijn deze vier dagen <strong>${total} boeken</strong> uitgeleend. Eén waarde ontbreekt. Hoeveel boeken zijn op <strong>${labels[index].toLowerCase()}</strong> uitgeleend?`,answer,`De bekende dagen tellen samen op tot ${total-answer}. Het ontbrekende aantal is ${total} − ${total-answer} = <strong>${answer} boeken</strong>.`,{rule:"missing-bar",values,index,total},{visual:reasoningTable(["Dag","Uitgeleende boeken"],labels.map((x,i)=>[x,i===index?"?":values[i]]),"Uitleenregistratie"),hint:"Het totaal hoort bij alle vier dagen, dus ook bij de ontbrekende dag."});
+  }},
+  {id:"D.stock-plan",title:"Voorraad plannen met beperkte bijvulmomenten",domain:"D",topic:"charts",demand:"L5_COMPLEX",structure:"inventory-time-capacity",action:"plan-constraints",context:"broodjeskraam",representation:"table",reason:"Vraag per tijdvak, beperkte opslag en toegestane bevoorradingsmomenten combineren om een minimaal beginplan te vinden.",build(){
+    const demands=Array.from({length:4},()=>randInt(3,8)*5),limits=[randInt(6,13)*5,randInt(3,9)*5],reserve=randInt(1,3)*5;
+    const total=demands.reduce((a,b)=>a+b,0),prefix=demands[0]+demands[1]+demands[2],answer=Math.max(demands[0],prefix-limits[0],total+reserve-limits[0]-limits[1]);
+    const cap=Math.max(answer,demands[1]+demands[2]+Math.max(0,demands[3]+reserve-limits[1]),demands[3]+reserve)+10;
+    const first=Math.max(0,demands[1]+demands[2]+Math.max(0,demands[3]+reserve-limits[1])-(answer-demands[0])),second=total+reserve-answer-first;
+    return reasoningNum(`Een broodjeskraam kan <strong>${cap} broodjes</strong> tegelijk bewaren. Alleen na tijdvak 1 komt een levering van <strong>maximaal ${limits[0]}</strong> broodjes; alleen na tijdvak 3 komt nog een levering van <strong>maximaal ${limits[1]}</strong>. Je mag minder laten leveren. De verkoop uit de tabel moet volledig mogelijk zijn en aan het eind moeten minstens <strong>${reserve} broodjes</strong> overblijven. Wat is het <strong>minimale aantal bij opening</strong>? Er is geen ander verbruik.`,answer,`Er zijn drie ondergrenzen: voor het eerste tijdvak ${demands[0]}; tot aan de tweede levering ${prefix} − ${limits[0]} = ${prefix-limits[0]}; en voor alle verkoop plus de eindreserve ${total+reserve} − ${limits[0]} − ${limits[1]} = ${total+reserve-limits[0]-limits[1]}. De grootste is ${answer}. Dit kan ook echt: start met ${answer}, laat na tijdvak 1 ${first} leveren en na tijdvak 3 ${second}. Dat blijft binnen de levergrenzen en de opslagcapaciteit en laat ${reserve} over. Het minimum is <strong>${answer}</strong>.`,{rule:"stock-plan",demands,limits,reserve,cap},{calculatorAllowed:true,visual:reasoningTable(["Tijdvak","Verkoop in broodjes"],demands.map((v,i)=>[`${i+1}: ${11+i}–${12+i} uur`,v])),hint:"Controleer niet alleen het dagtotaal, maar ook hoeveel voorraad vóór elk volgend levermoment nodig is."});
+  }},
+  {id:"D.fixed-fee",title:"Een vast bedrag uit twee metingen reconstrueren",domain:"D",topic:"formulas",demand:"L3_INVERSE",structure:"affine-model",action:"recover-intercept",context:"workshops",representation:"table",reason:"Eerst het bedrag per extra eenheid uit verschillen halen en daarna het vaste bedrag bepalen.",build(){
+    const base=randInt(2,12),rate=randInt(3,9),n=randInt(2,5),delta=randInt(2,4),rows=[[n,base+rate*n],[n+delta,base+rate*(n+delta)]];
+    return reasoningNum("Je betaalt eenmalig inschrijfgeld en daarnaast een vast bedrag per workshop. De tabel toont twee totaalprijzen. Hoeveel euro is het <strong>eenmalige inschrijfgeld</strong>?",base,`${delta} extra workshops kosten samen € ${delta*rate}: dat is € ${rate} per workshop. Haal de kosten van ${n} workshops van de eerste totaalprijs af: ${rows[0][1]} − ${n} × ${rate} = <strong>€ ${base}</strong>.`,{rule:"fixed-fee",rows},{unit:"€",visual:reasoningTable(["Workshops","Totaal in euro"],rows,"Workshopprijzen"),hint:"Het verschil tussen de prijzen bevat geen extra inschrijfgeld."});
+  }},
+  {id:"D.coefficient",title:"Een formule in gewone taal lezen",domain:"D",topic:"formulas",demand:"L2_REP",structure:"affine-model",action:"interpret-coefficient",context:"drukwerk",representation:"formula",reason:"De constante term en de toename per eenheid in een formule onderscheiden.",build(){
+    const base=randInt(6,15),rate=randInt(2,5),correct=`Elke extra afdruk verhoogt de prijs met € ${rate}.`;
+    return reasoningChoice(`Een drukker gebruikt <strong>prijs in euro = ${base} + ${rate} × aantal afdrukken</strong>. Wat betekent het getal <strong>${rate}</strong>?`,correct,[`De eerste afdruk kost in totaal € ${rate}.`,`Het vaste startbedrag is € ${rate}.`,`Je mag maximaal ${rate} afdrukken bestellen.`],`Het aantal afdrukken wordt met ${rate} vermenigvuldigd. Eén extra afdruk verhoogt de prijs daarom met € ${rate}. Het vaste bedrag van € ${base} blijft hetzelfde.`,{rule:"coefficient",base,rate},{hint:"Vergelijk de prijs bij één afdruk meer."});
+  }},
+  {id:"D.table-repair",title:"Een registratie aan een formule toetsen",domain:"D",topic:"formulas",demand:"L3_REP",structure:"affine-model",action:"detect-inconsistency",context:"opslagkosten",representation:"table",reason:"Een bekende regel als controle gebruiken voor meerdere registraties en precies de afwijkende rij identificeren.",build(){
+    const base=randInt(3,12),rate=randInt(2,5),ns=[1,3,5,7],bad=randInt(0,3),error=pick([1,2,3])*rate,rows=ns.map((n,i)=>[n,base+rate*n+(i===bad?error:0)]),correct=`De rij bij ${ns[bad]} maanden.`;
+    return reasoningChoice(`De afgesproken formule is <strong>kosten = ${base} + ${rate} × aantal maanden</strong>, in euro. In welke rij staat een <strong>rekenfout</strong>?`,correct,ns.filter((_,i)=>i!==bad).map(n=>`De rij bij ${n} maanden.`),`Controleer elke rij met dezelfde formule. Bij ${ns[bad]} maanden hoort ${base} + ${rate} × ${ns[bad]} = € ${base+rate*ns[bad]}, niet € ${rows[bad][1]}. De andere drie rijen kloppen.`,{rule:"table-repair",base,rate,ns,bad,rows},{visual:reasoningTable(["Maanden","Kosten in euro"],rows,"Kostenregistratie"),hint:"Een tabel mag niet alleen een regelmatig patroon lijken te hebben: elke rij moet bij de formule passen."});
+  }},
+  {id:"D.strict-threshold",title:"Een grens voor gehele aantallen bewaken",domain:"D",topic:"formulas",demand:"L3_INVERSE",structure:"affine-model",action:"strict-integer-threshold",context:"bezorging",representation:"formula",reason:"Terugrekenen en onderscheid maken tussen gelijk aan de grens en voor het eerst erboven.",build(){
+    const base=randInt(3,10),rate=randInt(2,6),n=randInt(4,15),limit=base+rate*n;
+    return reasoningNum(`Bezorgkosten worden berekend met <strong>kosten = ${base} + ${rate} × aantal kratten</strong>, in euro. Vanaf hoeveel <strong>hele kratten</strong> zijn de kosten voor het eerst <strong>meer dan € ${limit}</strong>?`,n+1,`Bij ${n} kratten is de prijs precies € ${limit}. Dat is nog niet méér dan de grens. Eén krat extra geeft € ${limit+rate}. Het eerste toegestane aantal is dus <strong>${n+1}</strong>.`,{rule:"strict-threshold",base,rate,limit},{hint:"Precies gelijk aan de grens is niet hetzelfde als erboven."});
+  }},
+  {id:"D.difference-only",title:"Verschil berekenen zonder onbekend beginaantal",domain:"D",topic:"formulas",demand:"L3_COMPOSE",structure:"affine-model",action:"reason-with-difference",context:"fotoafdrukken",representation:"formula",reason:"Herkennen dat het vaste bedrag wegvalt in het prijsverschil, ook wanneer het oorspronkelijke aantal onbekend is.",build(){
+    const base=randInt(2,12),rate=pick([2,3,4,5]),extra=randInt(3,9),answer=rate*extra;
+    return reasoningNum(`Een bestelling kost <strong>${base} + ${rate} × aantal foto's</strong> euro. Je verandert alleen het aantal foto's: je bestelt er <strong>${extra} meer</strong>. Het oorspronkelijke aantal staat niet vermeld. Hoeveel euro wordt de bestelling duurder?`,answer,`Het vaste bedrag van € ${base} verandert niet. Alleen de ${extra} extra foto's tellen voor het verschil mee: ${extra} × ${rate} = <strong>€ ${answer}</strong>. Het oorspronkelijke aantal heb je hiervoor niet nodig.`,{rule:"difference-only",base,rate,extra},{unit:"€",hint:"Welk deel van de formule blijft in de oude én de nieuwe bestelling hetzelfde?"});
+  }},
+  {id:"D.robust-choice",title:"Een keuze bij een onzeker aantal onderzoeken",domain:"D",topic:"formulas",demand:"L5_CRITICAL",structure:"affine-comparison-uncertain",action:"minimize-worst-regret",context:"programmaboekjes",representation:"table",reason:"Twee lineaire prijsregels over een interval vergelijken en voor elke vaste keuze het grootste nadeel bepalen.",build(){
+    const low=randInt(2,5)*10,span=pick([20,30,40]),high=low+span,cross=low+Math.round(span*pick([.4,.6])),base=randInt(1,4)*10,delta=1,aRate=3,bRate=2,bBase=base+cross,lossA=high-cross,lossB=cross-low,winner=lossA<lossB?"A":"B",correct=`Drukker ${winner}; het grootste prijsnadeel is daar kleiner.`;
+    return reasoningChoice(`Je moet nu een drukker kiezen. Het uiteindelijke aantal boekjes ligt tussen <strong>${low} en ${high}</strong>, inclusief de grenzen. Je wilt dat je gekozen drukker in het ongunstigste geval <strong>zo weinig mogelijk duurder is dan de andere</strong>. Welke keuze past daarbij?`,correct,[`Drukker ${winner==="A"?"B":"A"}; het grootste prijsnadeel is daar kleiner.`,"Beide keuzes hebben hetzelfde grootste prijsnadeel.","Drukker A is bij ieder mogelijk aantal goedkoper."],`De prijzen zijn gelijk bij ${cross} boekjes. Bij minder boekjes is A voordeliger; het grootste nadeel van B is € ${lossB} bij ${low} boekjes. Bij meer boekjes is B voordeliger; het grootste nadeel van A is € ${lossA} bij ${high} boekjes. Omdat ${Math.min(lossA,lossB)} kleiner is dan ${Math.max(lossA,lossB)}, kies je <strong>${winner}</strong> volgens deze beslisregel.`,{rule:"robust-choice",low,high,base,bBase,aRate,bRate},{calculatorAllowed:true,visual:reasoningTable(["Drukker","Prijs in euro; n = aantal boekjes"],[["A",`${base} + ${aRate} × n`],["B",`${bBase} + ${bRate} × n`]],"Twee offertes, onzeker aantal"),hint:"Bereken voor beide keuzes het maximale prijsnadeel bij de twee grenzen. Je hoeft geen waarschijnlijkheden te verzinnen."});
+  }}
+];
+/* END PABO REASONING DESIGNS */
 const RUBRIC_VARIANTS = Object.freeze({
+  ...Object.fromEntries(REASONING_DESIGNS.map(s=>[`reasoning.${s.id}`,rubricVariant(`denk-${s.id}`,s.title,RUBRIC_DEMAND[s.demand],s.reason)])),
 /* BEGIN PABO VARIATION RUBRICS */
   "A.variation.packing":rubricVariant("A-bestellingen-plannen","Een voordelige bestelling onder twee voorwaarden plannen",RUBRIC_DEMAND.L5_COMPLEX,"Hele verpakkingen, minimale aantallen, een leveringsgrens en kosten combineren; meerdere haalbare plannen vergelijken."),
   "A.variation.remainders":rubricVariant("A-resten-combineren","Een getal uit twee resten en een interval afleiden",RUBRIC_DEMAND.L4_TRANSFER,"Twee deelbaarheidsvoorwaarden met een begrensd interval combineren en kandidaten uitsluiten."),
@@ -2199,6 +2399,7 @@ function rememberVariationQuestion(session,q,{persist=true}={}){
   ledger.domains[q.domain]=(ledger.domains[q.domain]||0)+1;
   const representation=variationRepresentation(q);ledger.representations[representation]=(ledger.representations[representation]||0)+1;
   ledger.recentFamilies=[...ledger.recentFamilies,q.family].slice(-3);
+  rememberReasoningExposure(session,q,persist);
   if(persist){
     state.variation=normalizeVariationHistory(state.variation);
     const fingerprint=variationFingerprint(identity);
@@ -2218,6 +2419,7 @@ function distributeExamTopics(plan){
 }
 function generateSessionQuestion(session,domain,mode="mix",difficulty=3,topicHint=null){
   const ledger=sessionVariation(session),history=new Set(normalizeVariationHistory(state.variation).recent);
+  const recent=[...(session.reasoningHistorySnapshot??=normalizeReasoningExposure(state.reasoningExposure).recent),...(session.reasoningRecent||[])];
   if(domain==="mix")domain=shuffle(Object.keys(DOMAIN_META)).sort((a,b)=>(ledger.domains[a]||0)-(ledger.domains[b]||0))[0];
   const actualMode=domain==="D"?"non":mode==="mix"?(Math.random()<.36?"head":"non"):mode;
   const requested=clamp(Math.round(difficulty),1,5),all=QUESTION_BANK[domain].filter(g=>g.modes.includes(actualMode));
@@ -2234,20 +2436,35 @@ function generateSessionQuestion(session,domain,mode="mix",difficulty=3,topicHin
           const identity=variationIdentity(q),familyCount=ledger.families[q.family]||0;
           if(ledger.seen.has(identity)||familyCount>=cap)continue;
           const recentlySeen=history.has(variationFingerprint(identity)),representation=variationRepresentation(q);
-          const score=(recentlySeen?1000:0)+3*Math.abs(q.difficulty-requested)+1.6*familyCount+(ledger.recentFamilies.includes(q.family)?2:0)+.04*(ledger.representations[representation]||0);
-          pool.push({q,identity,score,recentlySeen});
+          const diversity=reasoningSelectionCost(q,recent);
+          const score=(recentlySeen?1000:0)+3*Math.abs(q.difficulty-requested)+2*familyCount+diversity.cost;
+          pool.push({q,identity,score,recentlySeen,cooling:diversity.cooling});
         }
       }
     }
     if(pool.length){
-      pool.sort((a,b)=>a.score-b.score);best=pool[0];
+      // Fresh concrete questions first. Within available material stay near the target,
+      // then enforce a short structural cooldown when there is a suitable alternative.
+      const fresh=pool.filter(item=>!item.recentlySeen),available=fresh.length?fresh:pool;
+      const nearest=Math.min(...available.map(item=>Math.abs(item.q.difficulty-requested)));
+      let eligible=available.filter(item=>Math.abs(item.q.difficulty-requested)<=Math.min(2,Math.max(1,nearest+1)));
+      const cooled=eligible.filter(item=>!item.cooling);
+      if(cooled.length)eligible=cooled;
+      else{
+        // A small focused pool may not sustain five intervening questions.
+        // Still avoid an immediate repeat whenever a compatible alternative exists.
+        const previous=recent.at(-1)?.signature,alternatives=eligible.filter(item=>reasoningExposureRecord(item.q).signature!==previous);
+        if(alternatives.length)eligible=alternatives;
+      }
+      eligible.sort((a,b)=>a.score-b.score);best=eligible[0];
+      best.cooldownRelaxed=!cooled.length;best.nearestAvailable=nearest;
       // Topic balance is hard in exams (topicHint), and prioritized in broad practice.
       break;
     }
   }
   if(!best){const error=new Error(`VARIATIE_VOORRAAD_ONVOLDOENDE: ${domain}/${actualMode}/${topicHint||"gemengd"}, vraagzwaarte ${requested}`);error.code="VARIATION_POOL_EXHAUSTED";throw error}
   const q=best.q;q.levelAdjusted=q.difficulty!==requested;q.rubricTarget=q.difficulty;
-  q.selectionInfo={contract:1,requestedLevel:requested,selectedLevel:q.difficulty,topic:q.topic,familyLimit:Number.isFinite(cap)?cap:null,recentHistoryRelaxed:best.recentlySeen};
+  q.selectionInfo={contract:1,requestedLevel:requested,selectedLevel:q.difficulty,topic:q.topic,familyLimit:Number.isFinite(cap)?cap:null,recentHistoryRelaxed:best.recentlySeen,semanticContract:1,semanticCooldownRelaxed:best.cooldownRelaxed,nearestAvailableLevelDistance:best.nearestAvailable};
   return q;
 }
 function sessionQuestionOrStop(session,domain,mode,difficulty,topicHint){
@@ -2294,6 +2511,120 @@ function validateVariationQuestion(q){
 }
 /* END PABO VARIATION MODULE */
 
+/* BEGIN PABO REASONING ENGINE */
+/* Inhoudelijke vraagregistratie en controle, los van verhaaltekst en nummergenerator. */
+const REASONING_GENERATORS=REASONING_DESIGNS.map(spec=>{
+  const level=rubricLevelFromDemand(RUBRIC_DEMAND[spec.demand]).level;
+  const fn=function(d,mode){
+    const q=spec.build();q.domain=spec.domain;q.topic=spec.topic;q.mode=mode;
+    q.reasoningData.design=spec.id;
+    q.pedagogy={design:spec.id,structure:spec.structure,action:spec.action,context:spec.context,representation:spec.representation};
+    return tagRubric(q,`reasoning.${spec.id}`);
+  };
+  Object.defineProperty(fn,"name",{value:`genReasoning_${spec.id.replace(/[^a-zA-Z0-9]/g,"_")}`});
+  const generator={topic:spec.topic,modes:spec.modes||["non"],levels:[level],fn,design:spec.id};
+  QUESTION_BANK[spec.domain].push(generator);return generator;
+});
+function reasoningExpected(v){
+  switch(v.rule){
+    case "digit-swap":{const possibilities=[];for(let h=1;h<=9;h++)if((100*h+10*v.tens+v.units)-(100*v.units+10*v.tens+h)===v.gap)possibilities.push(h);if(possibilities.length!==1)throw new Error("geen uniek honderdtallencijfer");return possibilities[0]}
+    case "rounded-total":{const possibilities=[];for(let a=v.a-10;a<=v.a+10;a++)for(let b=v.b-10;b<=v.b+10;b++)if(Math.round(a/10)*10===v.a&&Math.round(b/10)*10===v.b)possibilities.push(a+b);return `Van ${Math.min(...possibilities)} tot en met ${Math.max(...possibilities)}.`}
+    case "balance":return v.extra/(v.left-v.right);
+    case "missing-digit":{const xs=Array.from({length:10},(_,i)=>i).filter(i=>i%2===0&&(v.hundreds+v.tens+i)%9===0);if(xs.length!==1)throw new Error("geen uniek laatste cijfer");return xs[0]}
+    case "brackets-story":return `${v.packs} × ${v.each} − ${v.damaged}`;
+    case "cycles":{for(let t=v.after+1;t<=v.after+v.a*v.b;t++)if(t%v.a===0&&t%v.b===0)return t;throw new Error("geen gezamenlijk moment")}
+    case "nearest":{const sorted=v.pairs.map(([n,d])=>({n,d,gap:Math.abs(n/d-v.n/v.den)})).sort((a,b)=>a.gap-b.gap);if(almostEqual(sorted[0].gap,sorted[1].gap))throw new Error("dichtstbij niet uniek");return reasoningFraction(sorted[0].n,sorted[0].d)}
+    case "between":return reasoningFraction(v.n+1,v.den);
+    case "same-numerator":return `${v.n}/${Math.min(v.a,v.b)} is groter: evenveel stukken, maar ieder stuk is groter.`;
+    case "line-origin":return v.left/v.den+v.index*(v.right-v.left)/(v.steps*v.den);
+    case "counterexample":{if(!(v.big>v.a&&v.big/v.bigDen<v.a/v.smallDen))throw new Error("ongeldig tegenvoorbeeld");return `${v.big}/${v.bigDen} < ${v.a}/${v.smallDen}`}
+    case "numerator-bound":{let answer=-1;for(let n=0;n<=v.den;n++)if(n/v.den>1/3&&n/v.den<2/3)answer=n;return answer}
+    case "reference-whole":return `De tweede groep gebruikt 1/3 van ${v.total*3/4} lege plaatsen.`;
+    case "overlap":return v.total*(1/2+1/3-1/6);
+    case "restore":return (v.end-v.gift)/(1-1/v.den);
+    case "share-of-rest":return (1-1/v.a)/v.b;
+    case "operation-order":{const a=v.total-v.total/v.den-v.fixed,b=v.total-v.fixed-(v.total-v.fixed)/v.den;return `Plan ${a>b?"A":"B"} laat € ${Math.abs(a-b)} meer over.`}
+    case "add-no-votes":return 2*(3*v.total/5)-v.total;
+    case "same-area":return 2*(v.a+v.b)-2*(v.c+v.d);
+    case "border":return 2*v.border*(v.l+v.w)-4*v.border*v.border;
+    case "paint":{const walls=2*(v.l+v.w)*v.h-v.opening;for(let tins=1;tins<10000;tins++)if(tins*v.tin*v.coverage>=2*walls)return tins;throw new Error("onhaalbaar verfplan")}
+    case "missing-height":return (v.area+v.cutL*v.cutH)/v.l;
+    case "shared-edge":return 2*(v.l+v.r+v.h);
+    case "enclosure":{const areas=[];for(let w=1;w<=v.limit;w++){const l=v.fence+v.gate-2*w;if(l>0)areas.push(w*l)}return Math.max(...areas)}
+    case "interval-rate":return (v.a-v.start)/15>(v.b-v.a)/5?"Van 19.00 tot 19.15 uur.":"Van 19.15 tot 19.20 uur.";
+    case "net-flow":return v.ins.reduce((a,b,i)=>a+b-v.outs[i],v.start);
+    case "graph-story":return "Eerst verder weg, dan dezelfde afstand, daarna terug naar het vertrekpunt.";
+    case "extrapolation":return "Nee. De eerdere toename garandeert niet hoeveel fietsen er vrijdag staan.";
+    case "missing-bar":return v.total-v.values.reduce((a,b,i)=>a+(i===v.index?0:b),0);
+    case "stock-plan":{
+      // Independent reachability: test opening stocks, not the generator's three bounds.
+      for(let initial=0;initial<=v.cap;initial++){
+        let maximum=initial,feasible=true;
+        for(let i=0;i<4;i++){
+          if(maximum<v.demands[i]){feasible=false;break}
+          maximum-=v.demands[i];
+          if(i===0||i===2)maximum=Math.min(v.cap,maximum+v.limits[i===0?0:1]);
+        }
+        if(feasible&&maximum>=v.reserve)return initial;
+      }
+      throw new Error("geen haalbaar voorraadplan");
+    }
+    case "fixed-fee":{const [[n1,c1],[n2,c2]]=v.rows;return (c1*n2-c2*n1)/(n2-n1)}
+    case "coefficient":return `Elke extra afdruk verhoogt de prijs met € ${v.rate}.`;
+    case "table-repair":{const bad=v.rows.filter(([n,c])=>c!==v.base+v.rate*n);if(bad.length!==1)throw new Error("geen unieke foute tabelrij");return `De rij bij ${bad[0][0]} maanden.`}
+    case "strict-threshold":return Math.floor((v.limit-v.base)/v.rate)+1;
+    case "difference-only":return v.rate*(7+v.extra)+v.base-(v.rate*7+v.base);
+    case "robust-choice":{const differences=[v.low,v.high].map(n=>v.base+v.aRate*n-(v.bBase+v.bRate*n)),lossA=Math.max(0,...differences),lossB=Math.max(0,...differences.map(x=>-x));if(lossA===lossB)throw new Error("gelijk maximaal nadeel");return `Drukker ${lossA<lossB?"A":"B"}; het grootste prijsnadeel is daar kleiner.`}
+    default:throw new Error("onbekend denkontwerp");
+  }
+}
+function validateReasoningQuestion(q){
+  if(!q.reasoningData)return q.rubricKey?.startsWith("reasoning.")?["rekendata van denkontwerp ontbreken"]:[];
+  const issues=[],v=q.reasoningData,spec=REASONING_DESIGNS.find(s=>s.id===v.design);
+  if(!spec||q.rubricKey!==`reasoning.${v.design}`)issues.push("denkontwerp en rubric horen niet bij elkaar");
+  try{
+    const expected=reasoningExpected(v),actual=q.type==="mc"?q.options[q.answer]:q.answer;
+    if(typeof expected==="number"?!Number.isFinite(expected)||!almostEqual(actual,expected,1e-8):actual!==expected)issues.push(`onjuist antwoord denkontwerp: ${v.design}`);
+    if(spec&&(q.domain!==spec.domain||q.topic!==spec.topic))issues.push("denkontwerp buiten eigen leerdoel");
+    for(const key of ["structure","action","context","representation"])if(!q.pedagogy?.[key])issues.push(`ontbrekend variatiekenmerk: ${key}`);
+    if(q.type==="number"&&q.allowFraction&&!checkResponse(q,q.answerDisplay))issues.push("zichtbare breuk wordt niet geaccepteerd");
+  }catch(error){issues.push(`ongeldige data denkontwerp: ${error.message}`)}
+  return issues;
+}
+/* Hashes only, no question/answer text or additional identity. Older XP/history stays intact. */
+function normalizeReasoningExposure(value){
+  const rows=value?.schemaVersion===1&&Array.isArray(value.recent)?value.recent:[];
+  return {schemaVersion:1,recent:rows.filter(row=>row&&["signature","family","context","representation","topic"].every(k=>typeof row[k]==="string"&&/^[0-9a-f]{16}$/.test(row[k]))).slice(-96).map(row=>({signature:row.signature,family:row.family,context:row.context,representation:row.representation,topic:row.topic}))};
+}
+function applyReasoningMetadata(q){
+  if(q.pedagogy)return q;
+  const k=q.rubricKey||q.difficultyProfile?.key||q.generator||q.topic;
+  let structure=q.family||q.topic,action=k,context="getallen";
+  // Explicit legacy mappings stop near-identical templates masquerading as new questions.
+  if(k==="D.variation.graph-rate"||k==="C.variation.tank"){structure="linear-flow";action="find-time";context="vullen"}
+  else if(k==="C.variation.flow-units"){structure="linear-flow";action="find-quantity";context="vullen"}
+  else if(k.includes("tiling")){structure="surface-packaging";action="find-packs";context="tegels"}
+  else if(k.includes("tariff")){structure="affine-comparison";action="find-crossover";context="tarieven"}
+  else if(k.startsWith("B.variation.remaining")){structure="successive-fractions";action=k.endsWith("inverse")?"reverse-chain":"find-remainder";context="magazijn"}
+  else if(k.startsWith("B.compare")){structure="fraction-order";action="order"}
+  else if(k.startsWith("D.formula")){structure="affine-model";action=k.endsWith("inverse")?"reverse-chain":"substitute";context="tarieven"}
+  q.pedagogy={design:k,structure,action,context,representation:q.visualMeta?.kind||(q.visual?.includes("<table")?"table":q.visual?"diagram":q.type==="order"?"ordering":"text")};return q;
+}
+function reasoningExposureRecord(q){
+  applyReasoningMetadata(q);const p=q.pedagogy,hash=variationFingerprint;
+  return {signature:hash(`${p.structure}|${p.action}`),family:hash(q.family||p.design),context:hash(p.context),representation:hash(p.representation),topic:hash(`${q.domain}|${q.topic}`)};
+}
+function rememberReasoningExposure(session,q,persist){
+  const record=reasoningExposureRecord(q);
+  session.reasoningRecent=[...(session.reasoningRecent||[]),record].slice(-96);
+  if(persist){state.reasoningExposure=normalizeReasoningExposure(state.reasoningExposure);state.reasoningExposure.recent.push(record);state.reasoningExposure.recent=state.reasoningExposure.recent.slice(-96)}
+}
+function reasoningSelectionCost(q,recent){
+  const record=reasoningExposureRecord(q),window=recent.slice(-32),neutral=q.pedagogy.context==="getallen";
+  const count=(key)=>window.reduce((sum,item,i)=>sum+(item[key]===record[key]?(i>=window.length-8?1:.35):0),0);
+  return {record,cooling:recent.slice(-5).some(item=>item.signature===record.signature),cost:4*count("signature")+2.4*count("family")+(neutral?0:2*count("context"))+.45*count("representation")};
+}
+/* END PABO REASONING ENGINE */
 function almostEqual(a,b,tolerance=1e-9){return Math.abs(a-b)<=tolerance*Math.max(1,Math.abs(a),Math.abs(b))}
 function applyCalculatorPolicy(q){
   if(!q||typeof q!=="object")return q;
@@ -2411,13 +2742,14 @@ function validateGeneratedQuestion(q){
   const requestedPlaces=requestedDecimalPlaces(q);if(q.type==="number"&&requestedPlaces>0&&decimalPlacesInResponse(q.answerDisplay)!==requestedPlaces)issues.push(`antwoordweergave heeft niet exact ${requestedPlaces} decimalen`);
   issues.push(...validateQualityRule(q));
   issues.push(...validateVariationQuestion(q));
+  issues.push(...validateReasoningQuestion(q));
   return [...new Set(issues)];
 }
 function supportedLevels(candidates){return [...new Set(candidates.flatMap(g=>g.levels||[1,2,3,4,5]))].sort((a,b)=>a-b)}
 function nearestSupportedLevel(levels,target){return [...levels].sort((a,b)=>Math.abs(a-target)-Math.abs(b-target)||a-b)[0]||1}
 function finalizeGeneratedQuestion(q,{domain,mode,requestedLevel,effectiveLevel,generator}){
   q.domain=domain;q.mode=mode;q.topic=q.topic||generator.topic;q.generatorTopic=generator.topic;q.generator=generator.fn.name;q.requestedDifficulty=requestedLevel;q.rubricTarget=effectiveLevel;
-  applyCalculatorPolicy(q);applyDifficultyRubric(q);applyRequestedPrecisionDisplay(q);attachDiagnosticModels(q);return q;
+  applyCalculatorPolicy(q);applyDifficultyRubric(q);applyRequestedPrecisionDisplay(q);attachDiagnosticModels(q);applyReasoningMetadata(q);return q;
 }
 function makeRubricFallback(domain,mode,level,topicHint=null){
   let q;
@@ -2965,7 +3297,7 @@ function completeLesson(id){
 }
 function openSettings(firstRun=false){
   const adminControls=ADMIN_MODE?`<div class="exam-note"><strong>Beheermodus</strong><br><button class="btn small secondary" data-action="openDiagnosticRegister" style="margin-top:9px">Open diagnostiekregister (30 patronen)</button><button class="btn small ghost" data-action="runReleaseCheck" style="margin-top:9px">Voer releasecontrole uit</button></div>`:"";
-  const source=`<div class="tip" style="margin-top:18px"><strong>Toetskader</strong><br>De toetsnabootsing is inhoudelijk afgestemd op de openbare Cito-handreiking RWT versie ${escapeHtml(RWT_SOURCE.version)} (${escapeHtml(RWT_SOURCE.date)}): vier domeinen, 55 vragen, 17 minuten hoofdrekenen en 103 minuten niet-hoofdrekenen. De digitale rekenmachine is nooit beschikbaar bij hoofdrekenen en alleen bij afzonderlijke niet-hoofdrekenopgaven met een rekenmachine-icoon. Eigen rekenmachines zijn tijdens de echte afname niet toegestaan. Alle vragen in deze tool zijn nieuw geschreven en niet afkomstig uit een echte toets.<br><br><strong>Vraagzwaarte</strong><br>De vraagzwaarte is een transparante expertvoorspelling op basis van zeven dimensies. Zij is nog niet empirisch gekalibreerd en is geen officiële RWT-moeilijkheidsparameter.<br><br><strong>Diagnostiek en privacy</strong><br>Eén fout antwoord geldt nooit als diagnose. Pas na verschillende aanwijzingen en een gerichte controlevraag kan een waarschijnlijk denkpatroon verschijnen. Letterlijke antwoorden worden niet duurzaam opgeslagen; alleen patrooncodes, tellers, statussen en gehashte vraagsignaturen blijven lokaal in deze browser. Voor variatie onthoudt de browser ook maximaal 480 vraagvingerafdrukken, zonder extra letterlijke antwoorden. Binnen een toets krijgt iedere vraagfamilie maximaal drie plaatsen; tussen sessies krijgt nieuw materiaal voorrang waar de voorraad dat toelaat.<br><small>Toolversie ${APP_VERSION} • diagnostiekschema ${DIAGNOSTIC_SCHEMA_VERSION} • bron gecontroleerd ${escapeHtml(RWT_SOURCE.verifiedOn)} • © 2026 Edwin van der Plas<br><a href="${escapeHtml(RWT_SOURCE.landingUrl)}" target="_blank" rel="noopener">Actuele Cito-bronpagina</a> · <a href="${escapeHtml(RWT_SOURCE.pdfUrl)}" target="_blank" rel="noopener">Handreiking 2.2 (pdf)</a></small></div>`;
+  const source=`<div class="tip" style="margin-top:18px"><strong>Toetskader</strong><br>De toetsnabootsing is inhoudelijk afgestemd op de openbare Cito-handreiking RWT versie ${escapeHtml(RWT_SOURCE.version)} (${escapeHtml(RWT_SOURCE.date)}): vier domeinen, 55 vragen, 17 minuten hoofdrekenen en 103 minuten niet-hoofdrekenen. De digitale rekenmachine is nooit beschikbaar bij hoofdrekenen en alleen bij afzonderlijke niet-hoofdrekenopgaven met een rekenmachine-icoon. Eigen rekenmachines zijn tijdens de echte afname niet toegestaan. Alle vragen in deze tool zijn nieuw geschreven en niet afkomstig uit een echte toets.<br><br><strong>Vraagzwaarte</strong><br>De vraagzwaarte is een transparante expertvoorspelling op basis van zeven dimensies. Zij is nog niet empirisch gekalibreerd en is geen officiële RWT-moeilijkheidsparameter.<br><br><strong>Diagnostiek en privacy</strong><br>Eén fout antwoord geldt nooit als diagnose. Pas na verschillende aanwijzingen en een gerichte controlevraag kan een waarschijnlijk denkpatroon verschijnen. Letterlijke antwoorden worden niet duurzaam opgeslagen; alleen patrooncodes, tellers, statussen en gehashte vraagsignaturen blijven lokaal in deze browser. Voor variatie onthoudt de browser ook maximaal 480 vraagvingerafdrukken en 96 sets gehashte kenmerken van vraagaanpakken, zonder extra letterlijke antwoorden. Zo worden ook gelijksoortige aanpakken over meerdere sessies herkend. Bij te weinig passend aanbod kan een aanpak eerder terugkeren; onderwerp en haalbaar niveau blijven leidend. Binnen een toets krijgt iedere vraagfamilie maximaal drie plaatsen; tussen sessies krijgt nieuw materiaal voorrang waar de voorraad dat toelaat.<br><small>Toolversie ${APP_VERSION} • diagnostiekschema ${DIAGNOSTIC_SCHEMA_VERSION} • bron gecontroleerd ${escapeHtml(RWT_SOURCE.verifiedOn)} • © 2026 Edwin van der Plas<br><a href="${escapeHtml(RWT_SOURCE.landingUrl)}" target="_blank" rel="noopener">Actuele Cito-bronpagina</a> · <a href="${escapeHtml(RWT_SOURCE.pdfUrl)}" target="_blank" rel="noopener">Handreiking 2.2 (pdf)</a></small></div>`;
   openModal(firstRun?"Welkom bij Pabo Rekenklaar":"Instellingen",`
     <div class="settings-grid">
       <label><strong>Voornaam</strong><input class="number-input" id="settingName" type="text" value="${escapeHtml(state.profile.name)}" placeholder="Bijvoorbeeld: Sara" style="margin-top:7px"></label>
@@ -3122,7 +3454,7 @@ function answerMarkup(q){
   if(q.type==="text"){const placeholder=q.answerKind==="time"?"Bijvoorbeeld 14:35":q.answerKind==="remainder"?"Bijvoorbeeld 3 rest 2":"Typ je antwoord";return `<label class="sr-only" for="answerInput">Antwoord</label><input id="answerInput" class="number-input" autocomplete="off" enterkeyhint="done" placeholder="${placeholder}">`}
   if(q.type==="order"){
     activeSession.order=q.items.slice();
-    return `<div class="order-list" id="orderList">${activeSession.order.map((item,i)=>orderItemMarkup(item,i)).join("")}</div>`;
+    return `<p id="orderHelp" class="order-help">Sleep aan ☰ of gebruik de pijltjes. Met het toetsenbord: focus op ☰ en gebruik ↑ of ↓.</p><div id="orderStatus" class="sr-only" role="status" aria-live="polite"></div><div class="order-list" id="orderList">${activeSession.order.map((item,i)=>orderItemMarkup(item,i)).join("")}</div>`;
   }
   return "";
 }
@@ -3131,8 +3463,75 @@ function visualMarkup(q){
   const isChart=["bar","line"].includes(q.visualMeta?.kind),kind=q.visualMeta?.kind==="line"?"lijngrafiek":"staafdiagram";
   return `<div class="question-visual ${isChart?"chart-visual":""}">${q.visual}${isChart&&q.visualMeta?.expandable?`<div class="visual-tools"><button class="btn small ghost visual-expand" type="button" data-action="expandVisual" aria-label="${kind} vergroten">⛶ Vergroot grafiek</button></div>`:""}</div>`;
 }
-function orderItemMarkup(item,i){return `<div class="order-item" draggable="true" data-order-index="${i}"><span class="drag-handle" aria-hidden="true">☰</span><strong>${escapeHtml(item)}</strong><span class="order-controls"><button data-move="up" data-index="${i}" aria-label="Omhoog">↑</button><button data-move="down" data-index="${i}" aria-label="Omlaag">↓</button></span></div>`}
+/* BEGIN PABO ORDER POINTER */
+/* Sorting: pointer capture on the handle only; buttons and keyboard are equivalent. */
+let orderDragState=null;
+function orderCanMove(){return Boolean(activeSession&&!activeSession.answered&&!activeSession.finished&&activeSession.current?.type==="order"&&Array.isArray(activeSession.order))}
+function orderItemMarkup(item,i){
+  const locked=!orderCanMove(),last=(activeSession?.order?.length||0)-1,label=escapeHtml(item);
+  return `<div class="order-item" draggable="false" data-order-index="${i}"><button type="button" class="drag-handle" data-order-handle="${i}" aria-label="Verplaats ${label}; gebruik pijl omhoog of omlaag" aria-describedby="orderHelp" ${locked?"disabled":""}><span aria-hidden="true">☰</span></button><strong>${label}</strong><span class="order-controls"><button type="button" data-move="up" data-index="${i}" aria-label="${label} omhoog" ${locked||i===0?"disabled":""}>↑</button><button type="button" data-move="down" data-index="${i}" aria-label="${label} omlaag" ${locked||i===last?"disabled":""}>↓</button></span></div>`;
+}
+function renderOrderList(focusIndex=null,focusKind="handle"){
+  const list=document.getElementById("orderList");if(!list||!activeSession?.order)return;
+  list.innerHTML=activeSession.order.map((item,i)=>orderItemMarkup(item,i)).join("");
+  if(focusIndex!==null){const row=list.querySelector(`[data-order-index="${focusIndex}"]`),wanted=focusKind==="handle"?row?.querySelector(".drag-handle"):row?.querySelector(`[data-move="${focusKind}"]:not(:disabled)`);(wanted||row?.querySelector(".drag-handle"))?.focus({preventScroll:true})}
+}
+function orderMoveTo(from,to,focusKind="handle"){
+  if(!orderCanMove()||!Number.isInteger(from)||!Number.isInteger(to)||from<0||from>=activeSession.order.length||to<0||to>=activeSession.order.length)return false;
+  const item=activeSession.order[from];activeSession.order=arrayMove(activeSession.order,from,to);renderOrderList(to,focusKind);
+  const status=document.getElementById("orderStatus");if(status)status.textContent=`${item} staat op plaats ${to+1} van ${activeSession.order.length}.`;return true;
+}
+function moveOrderItem(index,direction){cancelOrderDrag();orderMoveTo(index,direction==="up"?index-1:index+1,direction)}
+function clearOrderTargets(){document.querySelectorAll(".order-item[data-drop-position]").forEach(row=>row.removeAttribute("data-drop-position"))}
+function updateOrderDrag(){
+  const s=orderDragState;if(!s)return;
+  if(!orderCanMove()||s.session!==activeSession||s.question!==activeSession.current||!s.handle.isConnected){cancelOrderDrag();return}
+  s.ghost.style.top=`${s.y-s.offsetY}px`;
+  const others=[...s.list.querySelectorAll(".order-item")].filter(row=>Number(row.dataset.orderIndex)!==s.from);
+  s.to=others.filter(row=>{const r=row.getBoundingClientRect();return s.y>r.top+r.height/2}).length;
+  clearOrderTargets();const target=others[s.to]||others.at(-1);if(target)target.dataset.dropPosition=s.to<others.length?"before":"after";
+}
+function orderDragScroll(){
+  const s=orderDragState;if(!s)return;
+  const topbar=document.querySelector(".topbar"),top=Math.min(window.innerHeight/2,(topbar?.getBoundingClientRect().bottom||0)+35),bottom=window.innerHeight-55;
+  if(s.y<top)window.scrollBy(0,-Math.min(14,(top-s.y)/3));else if(s.y>bottom)window.scrollBy(0,Math.min(14,(s.y-bottom)/3));
+  updateOrderDrag();if(orderDragState)orderDragState.frame=requestAnimationFrame(orderDragScroll);
+}
+function startOrderDrag(e){
+  const handle=e.target.closest?.("[data-order-handle]");if(!handle||handle.disabled||!orderCanMove()||orderDragState||e.isPrimary===false||(e.pointerType==="mouse"&&e.button!==0))return;
+  const row=handle.closest(".order-item"),list=handle.closest("#orderList");if(!row||!list)return;
+  e.preventDefault();handle.focus({preventScroll:true});const rect=row.getBoundingClientRect(),ghost=row.cloneNode(true);
+  ghost.classList.add("order-drag-ghost");ghost.setAttribute("aria-hidden","true");ghost.removeAttribute("data-order-index");ghost.querySelectorAll("button").forEach(button=>{button.disabled=true;button.tabIndex=-1});
+  Object.assign(ghost.style,{left:`${rect.left}px`,top:`${rect.top}px`,width:`${rect.width}px`});document.body.appendChild(ghost);row.classList.add("dragging");
+  orderDragState={pointerId:e.pointerId,from:Number(handle.dataset.orderHandle),to:Number(handle.dataset.orderHandle),x:e.clientX,y:e.clientY,offsetY:e.clientY-rect.top,handle,row,list,ghost,session:activeSession,question:activeSession.current,frame:null};
+  try{handle.setPointerCapture(e.pointerId)}catch(error){/* Synthetic test events have no active pointer; document listeners still work. */}
+  updateOrderDrag();orderDragState.frame=requestAnimationFrame(orderDragScroll);
+}
+function moveOrderDrag(e){const s=orderDragState;if(!s||e.pointerId!==s.pointerId)return;e.preventDefault();s.x=e.clientX;s.y=e.clientY;updateOrderDrag()}
+function cancelOrderDrag(){
+  const s=orderDragState;if(!s)return;orderDragState=null;cancelAnimationFrame(s.frame);s.row.classList.remove("dragging");s.ghost.remove();clearOrderTargets();
+  try{if(s.handle.hasPointerCapture(s.pointerId))s.handle.releasePointerCapture(s.pointerId)}catch(error){/* Capture may already have ended on cancellation. */}
+}
+function endOrderDrag(e){
+  const s=orderDragState;if(!s||e.pointerId!==s.pointerId)return;e.preventDefault();s.x=e.clientX;s.y=e.clientY;updateOrderDrag();
+  if(!orderDragState)return;
+  const bounds=s.list.getBoundingClientRect(),inside=s.x>=bounds.left-30&&s.x<=bounds.right+30&&s.y>=bounds.top-45&&s.y<=bounds.bottom+45,valid=inside&&s.session===activeSession&&s.question===activeSession?.current&&orderCanMove();
+  cancelOrderDrag();if(valid)orderMoveTo(s.from,s.to);else s.handle.focus({preventScroll:true});
+}
+function bindOrderPointer(){
+  document.addEventListener("pointerdown",startOrderDrag,{passive:false});document.addEventListener("pointermove",moveOrderDrag,{passive:false});document.addEventListener("pointerup",endOrderDrag,{passive:false});
+  document.addEventListener("pointercancel",e=>{if(orderDragState?.pointerId===e.pointerId)cancelOrderDrag()});
+  document.addEventListener("lostpointercapture",e=>{if(orderDragState?.pointerId===e.pointerId)cancelOrderDrag()});
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"&&orderDragState){e.preventDefault();const handle=orderDragState.handle;cancelOrderDrag();handle.focus({preventScroll:true});return}
+    const handle=e.target.closest?.("[data-order-handle]");if(!handle||!["ArrowUp","ArrowDown"].includes(e.key)||!orderCanMove())return;
+    e.preventDefault();const from=Number(handle.dataset.orderHandle);cancelOrderDrag();orderMoveTo(from,from+(e.key==="ArrowUp"?-1:1));
+  });
+  window.addEventListener("blur",cancelOrderDrag);window.addEventListener("pagehide",cancelOrderDrag);window.addEventListener("resize",cancelOrderDrag);
+}
+/* END PABO ORDER POINTER */
 function renderSessionQuestion(containerId="playArea"){
+  cancelOrderDrag();
   const s=activeSession,q=s.current;s.containerId=containerId;document.body.classList.add("session-active");
   const totalText=s.kind==="sprint"?`${s.index+1}`:`${s.index+1} / ${s.total}`;
   const progress=s.kind==="sprint"?(s.secondsRemaining/60*100):(s.index/s.total*100);
@@ -3213,10 +3612,11 @@ function answerWithUnit(q){
   return unit==="€"?`€ ${value}`:`${value} ${unit}`;
 }
 function markAnswerUI(q,response,correct){
+  cancelOrderDrag();
   const root=document.getElementById(activeSession.containerId);
   if(q.type==="mc")root.querySelectorAll(".option-btn").forEach((b,i)=>{b.disabled=true;if(i===q.answer)b.classList.add("correct");if(i===response&&!correct)b.classList.add("wrong")});
   const input=document.getElementById("answerInput");if(input){input.disabled=true;input.style.borderColor=correct?"var(--green)":"var(--red)"}
-  root.querySelectorAll(".order-controls button").forEach(b=>b.disabled=true);
+  root.querySelectorAll(".order-controls button, .drag-handle").forEach(b=>b.disabled=true);
   root.querySelectorAll('[data-action="calculator"]').forEach(b=>b.disabled=true);
   closeCalculator({reset:false});
 }
@@ -3238,9 +3638,6 @@ function insertAnswerText(text){
   const input=document.getElementById("answerInput");if(!input||input.disabled)return;
   const start=input.selectionStart??input.value.length,end=input.selectionEnd??input.value.length;
   input.value=input.value.slice(0,start)+text+input.value.slice(end);const pos=start+text.length;input.focus();input.setSelectionRange?.(pos,pos);
-}
-function moveOrderItem(index,direction){
-  if(!activeSession||activeSession.answered)return;const to=direction==="up"?index-1:index+1;if(to<0||to>=activeSession.order.length)return;activeSession.order=arrayMove(activeSession.order,index,to);const list=document.getElementById("orderList");if(list)list.innerHTML=activeSession.order.map((item,i)=>orderItemMarkup(item,i)).join("");
 }
 function showHint(){
   if(!activeSession||activeSession.answered)return;activeSession.usedHint=true;document.getElementById("hintBox")?.classList.add("show");
@@ -3271,11 +3668,13 @@ function nextPractice(){
   if(!activeSession||activeSession.finished)return;nextPracticeQuestion(activeSession.containerId);
 }
 function quitSession(){
+  cancelOrderDrag();
   if(!activeSession)return;const answered=activeSession.results?.length||0;if(answered&&!confirm("Deze sessie stoppen? De beantwoorde vragen blijven wel in je voortgang staan."))return;stopTimers();releaseActiveDiagnosticProbes();activeSession.finished=true;activeSession=null;document.body.classList.remove("session-active");closeAuxiliary();resetCalculator();
   if(currentView==="practice"){document.getElementById("playArea").style.display="none";document.getElementById("practiceSetup").style.display="block";renderPracticeSetup()}
   if(currentView==="exam"){document.getElementById("examPlayArea").style.display="none";document.getElementById("examSetup").style.display="block"}
 }
 function renderExamQuestion(){
+  cancelOrderDrag();
   const s=activeSession;if(!s||s.kind!=="exam"||s.finished)return;document.body.classList.add("session-active");if(s.index>=s.total){finishExam();return}
   const entry=s.plan[s.index];if(entry.part!==s.currentPart){renderExamTransition();return}
   if(!entry.question){entry.question=sessionQuestionOrStop(s,entry.domain,entry.mode,s.ability,entry.topic);if(!entry.question)return;rememberVariationQuestion(s,entry.question)}const q=entry.question;applyCalculatorPolicy(q);if(q?.family)s.recentFamilies=[...(s.recentFamilies||[]),q.family].slice(-2);s.current=q;s.answered=false;s.containerId="examPlayArea";prepareCalculatorForQuestion(q);
@@ -3626,11 +4025,7 @@ function bindEvents(){
   const canvas=document.getElementById("scratchCanvas");canvas.addEventListener("pointerdown",startScratch);canvas.addEventListener("pointermove",drawScratch);canvas.addEventListener("pointerup",endScratch);canvas.addEventListener("pointercancel",endScratch);canvas.addEventListener("pointerleave",endScratch);
   const calcHandle=document.getElementById("calcDragHandle");calcHandle.addEventListener("pointerdown",startCalculatorDrag);calcHandle.addEventListener("pointermove",moveCalculatorDrag);calcHandle.addEventListener("pointerup",endCalculatorDrag);calcHandle.addEventListener("pointercancel",endCalculatorDrag);
   window.addEventListener("resize",()=>{if(document.getElementById("scratchpad").classList.contains("show"))resizeScratchCanvas();clampCalculatorToViewport()});
-  let dragIndex=null;
-  document.addEventListener("dragstart",e=>{const item=e.target.closest(".order-item");if(!item)return;dragIndex=Number(item.dataset.orderIndex);item.classList.add("dragging")});
-  document.addEventListener("dragend",e=>{e.target.closest(".order-item")?.classList.remove("dragging");dragIndex=null});
-  document.addEventListener("dragover",e=>{if(e.target.closest(".order-item"))e.preventDefault()});
-  document.addEventListener("drop",e=>{const item=e.target.closest(".order-item");if(!item||dragIndex===null)return;e.preventDefault();const to=Number(item.dataset.orderIndex);activeSession.order=arrayMove(activeSession.order,dragIndex,to);document.getElementById("orderList").innerHTML=activeSession.order.map((x,i)=>orderItemMarkup(x,i)).join("");dragIndex=null});
+  bindOrderPointer();
 }
 
 function topLevelFunctionDeclarationNames(){
@@ -3726,7 +4121,7 @@ function runQualityAudit({samplesPerCombination=100,seed=12062026}={}){
   return {version:APP_VERSION,passed:failures.length===0,counts,failures};
 }
 
-window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,VARIATION_CONTRACT,VARIATION_GENERATORS,variationIdentity,variationFingerprint,normalizeVariationHistory,generateSessionQuestion,rememberVariationQuestion,distributeExamTopics,validateVariationQuestion,wisikTerrainUrl:WISIK_TERRAIN_URL,wisikContextKey:WISIK_CONTEXT_KEY,diagnosticSchemaVersion:DIAGNOSTIC_SCHEMA_VERSION,RWT_SOURCE,sourceIntegrityIssues,duplicateTopLevelFunctionNames,runQualityAudit,runDiagnosticAudit,validateGeneratedQuestion,parseNumeric,checkResponse,applyCalculatorPolicy,calculatorAllowedForQuestion,calculatorAvailableInContext,calcEvaluateExpression,calculatorUseIsCurrentlyAllowed,assessQuestionDifficulty,rubricLevelFromDemand,RUBRIC_VARIANTS,RUBRIC_LEVEL_META,MISCONCEPTION_CATALOG,generateQuestion,generateSprintQuestion,isSprintQuestion,generateDiagnosticProbe,generateNaturalRecoveryQuestion,classifyIncorrectResponse,diagnosticTestResponseFor,normalizeDiagnosticsState,resolveWisikEntry,sprintDeadlineExpired});
+window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,REASONING_DESIGNS,REASONING_GENERATORS,reasoningExpected,validateReasoningQuestion,normalizeReasoningExposure,reasoningExposureRecord,applyReasoningMetadata,VARIATION_CONTRACT,VARIATION_GENERATORS,variationIdentity,variationFingerprint,normalizeVariationHistory,generateSessionQuestion,rememberVariationQuestion,distributeExamTopics,validateVariationQuestion,wisikTerrainUrl:WISIK_TERRAIN_URL,wisikContextKey:WISIK_CONTEXT_KEY,diagnosticSchemaVersion:DIAGNOSTIC_SCHEMA_VERSION,RWT_SOURCE,sourceIntegrityIssues,duplicateTopLevelFunctionNames,runQualityAudit,runDiagnosticAudit,validateGeneratedQuestion,parseNumeric,checkResponse,applyCalculatorPolicy,calculatorAllowedForQuestion,calculatorAvailableInContext,calcEvaluateExpression,calculatorUseIsCurrentlyAllowed,assessQuestionDifficulty,rubricLevelFromDemand,RUBRIC_VARIANTS,RUBRIC_LEVEL_META,MISCONCEPTION_CATALOG,generateQuestion,generateSprintQuestion,isSprintQuestion,generateDiagnosticProbe,generateNaturalRecoveryQuestion,classifyIncorrectResponse,diagnosticTestResponseFor,normalizeDiagnosticsState,resolveWisikEntry,sprintDeadlineExpired});
 
 function init(){
   if(state.dailyDate!==todayKey()){state.dailyDate=todayKey();state.dailyCorrect=0}
