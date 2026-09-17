@@ -1,0 +1,26 @@
+name: Privacy live diagnose
+on:
+  push:
+    branches: [privacy-live-controle-20260917]
+    paths: ['.github/workflows/privacy-live-diagnose.yml']
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lees publieke Backstage-respons en vergelijk met bron
+        run: |
+          python3 - <<'PY'
+          import urllib.request, hashlib, difflib, time, json
+          from pathlib import Path
+          original=Path('public/backstage/index.html').read_bytes()
+          request=urllib.request.Request('https://wisik.nl/backstage/?privacy-diagnose='+str(int(time.time())))
+          with urllib.request.urlopen(request,timeout=25) as response:
+              served=response.read()
+              print(json.dumps({'status':response.status,'headers':dict(response.headers),'expectedSHA256':hashlib.sha256(original).hexdigest(),'servedSHA256':hashlib.sha256(served).hexdigest(),'expectedLength':len(original),'servedLength':len(served)},indent=2))
+          difference=list(difflib.unified_diff(original.decode().splitlines(),served.decode().splitlines(),fromfile='geteste-bron',tofile='online-backstage',n=2))
+          print('\n'.join(difference)[:20000])
+          PY
