@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123b5d">
-<title>Pabo Rekenklaar 1.7.0 – rubricgestuurd oefenen met diagnostische foutpatronen</title><link rel="icon" href="/favicon.ico?v=wisik-tenten-20260914-2" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/icons/wisik-20260914-32.png?v=wisik-tenten-20260914-2" type="image/png" sizes="32x32"><link rel="icon" href="/assets/icons/wisik-20260914-192.png?v=wisik-tenten-20260914-2" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="/assets/icons/wisik-20260914-180.png?v=wisik-tenten-20260914-2" sizes="180x180">
+<title>Pabo Rekenklaar 1.7.1 – rubricgestuurd oefenen met diagnostische foutpatronen</title><link rel="icon" href="/favicon.ico?v=wisik-tenten-20260914-2" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/icons/wisik-20260914-32.png?v=wisik-tenten-20260914-2" type="image/png" sizes="32x32"><link rel="icon" href="/assets/icons/wisik-20260914-192.png?v=wisik-tenten-20260914-2" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="/assets/icons/wisik-20260914-180.png?v=wisik-tenten-20260914-2" sizes="180x180">
 <style>
 :root{
   --navy:#123b5d;
@@ -520,7 +520,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
     <section id="view-home" class="view active" aria-labelledby="homeTitle">
       <div class="hero">
         <div class="hero-copy">
-          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.7.0</span></button></div>
+          <div class="version-row"><span class="eyebrow">🎓 Landelijke RWT • eigen oefenvragen</span><button class="version-badge" type="button" data-action="showReleaseNotes" title="Bekijk versiehistorie">Versie <span id="homeVersion">1.7.1</span></button></div>
           <h1 id="homeTitle"><span id="heroGreeting">Klaar om rekenen weer vanzelfsprekend te maken?</span></h1>
           <p>Leer per onderdeel, oefen adaptief en bouw de officiële toetsopzet na. De uitleg start rond havo 3 en groeit door naar het overwegend 3F-niveau van de toets.</p>
           <div class="button-row">
@@ -717,7 +717,7 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 
 <script>
 "use strict";
-const APP_VERSION = "1.7.0";
+const APP_VERSION = "1.7.1";
 const STORAGE_KEY = "pabo-rekenklaar-state-v1";
 const WISIK_TERRAIN_URL = "https://wisik.nl/";
 const WISIK_CONTEXT_KEY = "wisik-last-attraction-context-v1";
@@ -773,7 +773,7 @@ const MISCONCEPTION_CATALOG = Object.freeze({
 const DIAGNOSTIC_DEFAULT_STATE = Object.freeze({schemaVersion:DIAGNOSTIC_SCHEMA_VERSION,patterns:{},queue:[],history:[],totalEvaluated:0});
 
 const RELEASE_NOTES = [
-  {version:"1.7.0",date:"16 september 2026",title:"Meer variatie en inhoudelijke toetsdekking",items:[
+  {version:"1.7.1",date:"16 september 2026",title:"Meer variatie en inhoudelijke toetsdekking",items:[
     "Volledige en korte toetsen spreiden de opgaven vooraf over de deelonderwerpen, met behoud van de domeinverdeling en rekenmachinebeperkingen.",
     "Binnen een toets geen identieke opgaven; een vraagfamilie verschijnt maximaal drie keer over beide delen samen.",
     "Zestien aanvullende generatoren vragen om andere denkhandelingen. Kleine vaste lijstjes bij gevorderde opgaven zijn vervangen door gecontroleerde getallenvariatie.",
@@ -1631,7 +1631,7 @@ function genDPattern(d,mode){
     const start=randInt(2,15),step=randInt(2,9),seq=Array.from({length:5},(_,i)=>start+i*step),ans=start+5*step;return makeNumberQ({domain:"D",topic:"patterns",mode:"non",difficulty:d,prompt:`In deze rekenrij is het verschil tussen opeenvolgende getallen steeds gelijk. Welk getal volgt? <strong>${seq.join(" – ")} – …</strong>`,answer:ans,explanation:`Er komt steeds ${step} bij. Dus ${seq.at(-1)} + ${step} = <strong>${ans}</strong>.`,hint:"Bereken het constante verschil tussen twee opeenvolgende getallen."});
   }
   if(kind==="quadratic"){
-    const k=randInt(1,4),c=randInt(0,5),seq=Array.from({length:5},(_,i)=>k*(i+1)**2+c),ans=k*6**2+c;return makeNumberQ({domain:"D",topic:"patterns",mode:"non",difficulty:d,prompt:`In deze rekenrij zijn de tweede verschillen steeds gelijk. Welk zesde getal volgt? <strong>${seq.join(" – ")} – …</strong>`,answer:ans,explanation:`De tweede verschillen zijn constant. De rij past bij ${k} × n² + ${c}. Voor n = 6: ${k} × 36 + ${c} = <strong>${ans}</strong>.`,hint:"Bereken eerst de verschillen en daarna de verschillen daarvan."});
+    const k=randInt(1,4),c=randInt(0,5),seq=Array.from({length:5},(_,i)=>k*(i+1)**2+c),ans=k*6**2+c,diffs=seq.slice(1).map((v,i)=>v-seq[i]),second=diffs.slice(1).map((v,i)=>v-diffs[i]),nextDiff=diffs.at(-1)+second.at(-1);return makeNumberQ({domain:"D",topic:"patterns",mode:"non",difficulty:d,prompt:`Bekijk hoe de verschillen tussen opeenvolgende getallen veranderen. Welk zesde getal volgt? <strong>${seq.join(" – ")} – …</strong>`,answer:ans,explanation:`De sprongen zijn ${diffs.join(", ")}. Elke volgende sprong is ${second.at(-1)} groter. De volgende sprong is dus ${nextDiff}. Daarom volgt ${seq.at(-1)} + ${nextDiff} = <strong>${ans}</strong>.`,hint:"Schrijf eerst de sprongen tussen de getallen op. Kijk daarna hoe die sprongen veranderen."});
   }
   const add=pick([2,3,4]),base=pick([1,2,3]);const n=randInt(5,12),ans=add*n+base;return makeNumberQ({domain:"D",topic:"patterns",mode:"non",difficulty:d,prompt:`Een figurenpatroon gebruikt bij figuurnummer <strong>n</strong> steeds <span class="formula">${add} × n + ${base}</span> lucifers. Hoeveel lucifers zijn nodig voor figuur <strong>${n}</strong>?`,answer:ans,explanation:`Vul n = ${n} in: ${add} × ${n} + ${base} = <strong>${ans}</strong>.`,hint:"Vervang de letter n door het gevraagde figuurnummer."});
 }

@@ -3,8 +3,8 @@
   "auditVersion": "1.3.0",
   "siteVersion": "0.1.28",
   "tool": "Pabo Rekenklaar",
-  "toolVersion": "1.7.0",
-  "generatedAt": "2026-09-16T21:24:32.534Z",
+  "toolVersion": "1.7.1",
+  "generatedAt": "2026-09-17T07:04:06.971Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -142,7 +142,7 @@
         "name": "all-correct-16092317",
         "questions": 55,
         "unique": 55,
-        "families": 38,
+        "families": 37,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -150,7 +150,7 @@
         "name": "all-correct-16092414",
         "questions": 55,
         "unique": 55,
-        "families": 35,
+        "families": 34,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -174,7 +174,7 @@
         "name": "all-correct-16092705",
         "questions": 55,
         "unique": 55,
-        "families": 38,
+        "families": 37,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -254,7 +254,7 @@
         "name": "alternating-16112137",
         "questions": 55,
         "unique": 55,
-        "families": 37,
+        "families": 36,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -262,7 +262,7 @@
         "name": "alternating-16112234",
         "questions": 55,
         "unique": 55,
-        "families": 40,
+        "families": 39,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -270,7 +270,7 @@
         "name": "alternating-16112331",
         "questions": 55,
         "unique": 55,
-        "families": 38,
+        "families": 37,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -278,7 +278,7 @@
         "name": "alternating-16112428",
         "questions": 55,
         "unique": 55,
-        "families": 39,
+        "families": 38,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -286,7 +286,7 @@
         "name": "alternating-16112525",
         "questions": 55,
         "unique": 55,
-        "families": 41,
+        "families": 40,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -294,7 +294,7 @@
         "name": "alternating-16112622",
         "questions": 55,
         "unique": 55,
-        "families": 40,
+        "families": 39,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -302,7 +302,7 @@
         "name": "alternating-16112719",
         "questions": 55,
         "unique": 55,
-        "families": 39,
+        "families": 38,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -318,9 +318,9 @@
         "name": "first-weak-16122144",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 43,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 3
       },
       {
         "name": "first-weak-16122241",
@@ -334,7 +334,7 @@
         "name": "first-weak-16122338",
         "questions": 55,
         "unique": 55,
-        "families": 40,
+        "families": 41,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -358,7 +358,7 @@
         "name": "first-weak-16122629",
         "questions": 55,
         "unique": 55,
-        "families": 43,
+        "families": 44,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -366,7 +366,7 @@
         "name": "first-weak-16122726",
         "questions": 55,
         "unique": 55,
-        "families": 42,
+        "families": 41,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -374,7 +374,7 @@
         "name": "last-weak-16132054",
         "questions": 55,
         "unique": 55,
-        "families": 43,
+        "families": 42,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -390,7 +390,7 @@
         "name": "last-weak-16132248",
         "questions": 55,
         "unique": 55,
-        "families": 42,
+        "families": 41,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -406,7 +406,7 @@
         "name": "last-weak-16132442",
         "questions": 55,
         "unique": 55,
-        "families": 38,
+        "families": 39,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -414,7 +414,7 @@
         "name": "last-weak-16132539",
         "questions": 55,
         "unique": 55,
-        "families": 39,
+        "families": 40,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -454,7 +454,7 @@
         "name": "domain-uneven-16142255",
         "questions": 55,
         "unique": 55,
-        "families": 41,
+        "families": 40,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -470,7 +470,7 @@
         "name": "domain-uneven-16142449",
         "questions": 55,
         "unique": 55,
-        "families": 40,
+        "families": 39,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -518,7 +518,7 @@
         "name": "seventy-percent-16152262",
         "questions": 55,
         "unique": 55,
-        "families": 38,
+        "families": 37,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -766,7 +766,7 @@
         "name": "fixed-4-1",
         "questions": 55,
         "unique": 55,
-        "families": 36,
+        "families": 35,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -774,7 +774,7 @@
         "name": "fixed-4-2",
         "questions": 55,
         "unique": 55,
-        "families": 35,
+        "families": 34,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -854,7 +854,7 @@
         "name": "fixed-5-4",
         "questions": 55,
         "unique": 55,
-        "families": 36,
+        "families": 35,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -862,7 +862,7 @@
         "name": "fixed-5-5",
         "questions": 55,
         "unique": 55,
-        "families": 35,
+        "families": 34,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -878,7 +878,7 @@
         "name": "fixed-5-7",
         "questions": 55,
         "unique": 55,
-        "families": 35,
+        "families": 34,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -958,13 +958,13 @@
         "name": "all-correct-16183028",
         "questions": 55,
         "unique": 55,
-        "families": 38,
+        "families": 37,
         "scoredTopics": 18,
         "maxFamily": 3
       }
     ],
     "failures": [],
-    "traceFingerprint": "036d8671c6f1cda830949c7d522cb2557ff37779b0a94e5b178e8c741b902169"
+    "traceFingerprint": "87a884b29d1d58f694061137c03c5747060894eef68d069aacbfb843d950c49b"
   },
   "flirtContent": {
     "status": "reviewed-with-notes",
@@ -1834,7 +1834,7 @@
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
     "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "039a22d72fbc3edf3767b1cbadcd3c943f25486a171a7c4952df511664a57950"
+    "sha256": "c22b27e5b70679ce54a9dd58a598d1c2ec1192f2359fde7d0874270960b360c1"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",
