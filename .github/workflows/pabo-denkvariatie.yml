@@ -1,0 +1,125 @@
+name: Pabo denkvariatie controle
+on:
+  push:
+    branches: [feat/pabo-denkvariatie-20260917, main]
+    paths:
+      - '.github/workflows/pabo-denkvariatie.yml'
+      - 'src/pabo/**'
+      - 'scripts/*pabo*'
+      - 'scripts/lib/pabo-reasoning-audit.mjs'
+      - 'public/apps/pabo-rekenklaar/index.html'
+permissions:
+  contents: read
+concurrency:
+  group: pabo-denkvariatie-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/feat/pabo-denkvariatie-20260917'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply reviewed source and verify reproducible standalone build
+        run: |
+          mkdir -p /tmp/pabo-reasoning-logs
+          if test -f tools/pabo-reasoning-update.py; then python3 tools/pabo-reasoning-update.py; fi
+          node scripts/apply-pabo-reasoning.mjs
+          sha256sum public/apps/pabo-rekenklaar/index.html > /tmp/pabo-before-rebuild.sha
+          node scripts/apply-pabo-reasoning.mjs
+          sha256sum --check /tmp/pabo-before-rebuild.sha
+      - name: Verify new reasoning designs and cross-session history
+        run: |
+          npm run pabo:reasoning | tee /tmp/pabo-reasoning-logs/reasoning.log
+          node scripts/export-pabo-reasoning-catalog.mjs
+      - name: Generate complete release audit and run all existing release gates
+        run: |
+          npm run audit:update | tee /tmp/pabo-reasoning-logs/audit-update.log
+          npm run build | tee /tmp/pabo-reasoning-logs/build.log
+      - name: Install isolated browser test environment
+        run: |
+          npm --prefix /tmp/wisik-pw install --no-audit --no-fund playwright@1.56.1
+          /tmp/wisik-pw/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Test pointer sorting, all 36 designs and responsive layouts
+        env:
+          PLAYWRIGHT_MODULE: /tmp/wisik-pw/node_modules/playwright/index.mjs
+        run: node scripts/check-pabo-reasoning-browser.mjs | tee /tmp/pabo-reasoning-logs/reasoning-browser.log
+      - name: Test complete exam routes in four browser configurations
+        env:
+          PLAYWRIGHT_MODULE: /tmp/wisik-pw/node_modules/playwright/index.mjs
+        run: node scripts/check-pabo-variation-browser.mjs | tee /tmp/pabo-reasoning-logs/variation-browser.log
+      - name: Commit only verified Pabo sources and release evidence to the work branch
+        run: |
+          test "$(git ls-remote origin refs/heads/feat/pabo-denkvariatie-20260917 | cut -f1)" = "$GITHUB_SHA"
+          test -z "$(git diff --name-only -- public/apps/ruimteklaar public/apps/stoicheia public/films public/kladblok functions)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/pabo scripts/apply-pabo-reasoning.mjs scripts/check-pabo-reasoning-browser.mjs scripts/check-pabo-variation-browser.mjs scripts/lib/pabo-reasoning-audit.mjs scripts/test-pabo-reasoning.mjs scripts/export-pabo-reasoning-catalog.mjs scripts/audit-pabo-release.mjs scripts/test-backstage-audit.mjs docs/pabo-vraagontwerp-contract.md package.json public/apps/pabo-rekenklaar/index.html public/assets/js/site.js public/assets/js/site-data.js public/assets/data/pabo-release-audit.json public/index.html public/pabo/pabo-rekenklaar/index.html public/moshpit/index.html
+          for i in 0 1 2 3; do if test -f "tools/pabo-reasoning-payload-$i.b64"; then git rm "tools/pabo-reasoning-payload-$i.b64"; fi; done
+          if test -f tools/pabo-reasoning-update.py; then git rm tools/pabo-reasoning-update.py; fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'Pabo 1.8.0: 36 reasoning designs, semantic session history and accessible pointer sorting'
+            git push origin HEAD:refs/heads/feat/pabo-denkvariatie-20260917
+          fi
+      - name: Export candidate text sources for independent review
+        if: always()
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile, subprocess
+          names = subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z']).decode().split('\0')
+          allowed = {'.html','.js','.mjs','.cjs','.json','.md','.py','.yml','.yaml','.css','.txt','.toml','.svg'}
+          with zipfile.ZipFile('/tmp/pabo-candidate-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(set(names)):
+                  p=Path(name)
+                  if name and p.is_file() and p.suffix in allowed and p.stat().st_size < 4000000:
+                      z.write(p,name)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pabo-reasoning-review
+          path: |
+            /tmp/pabo-reasoning-logs
+            /tmp/pabo-reasoning-evidence
+            /tmp/pabo-reasoning-browser
+            /tmp/pabo-variation-browser
+            /tmp/pabo-variation-evidence
+            /tmp/pabo-candidate-source.zip
+            public/assets/data/pabo-release-audit.json
+          retention-days: 7
+  live:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated browser test environment
+        run: |
+          npm --prefix /tmp/wisik-pw install --no-audit --no-fund playwright@1.56.1
+          /tmp/wisik-pw/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Verify deployed source hash and exercise live Pabo
+        env:
+          PLAYWRIGHT_MODULE: /tmp/wisik-pw/node_modules/playwright/index.mjs
+          LIVE_ORIGIN: https://wisik.nl
+        run: |
+          node scripts/check-pabo-reasoning-browser.mjs
+          node scripts/check-pabo-variation-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pabo-reasoning-live
+          path: |
+            /tmp/pabo-reasoning-browser
+            /tmp/pabo-variation-browser
+          retention-days: 7

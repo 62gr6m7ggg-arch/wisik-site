@@ -36,7 +36,9 @@ const expectedGates = [
   "readable-graphs",
   "diagnostic-patterns",
   "flirt-trigger-chain",
-  "flirt-content-lock",
+  "session-variation",
+  "reasoning-diversity",
+    "flirt-content-lock",
 ];
 for (const id of expectedGates) {
   const gate = report.gates.find((item) => item.id === id);
@@ -105,4 +107,10 @@ assert(siteJs.includes('Bekijk alle ${gates.length} controles'), "De technische 
 assert(siteJs.includes('vragen doorgerekend') && siteJs.includes('noodvragen gebruikt'), "De kerncijfers missen begrijpelijke labels");
 assert(siteJs.includes('renderReleaseAudit();'), "De auditweergave wordt niet gestart");
 
-console.log("Backstage-auditcontrole geslaagd: direct zichtbare hero-status, actueel bewijs, acht vrijgavepoorten, cachebestendige route en eerlijke begrenzing.");
+console.log("Backstage-auditcontrole geslaagd: direct zichtbare hero-status, actueel bewijs, verplichte vrijgavepoorten, cachebestendige route en eerlijke begrenzing.");
+
+const missingVariation={...report,gates:report.gates.filter(g=>g.id!=="session-variation")};
+assert(evaluateReleaseAudit(missingVariation,paboVersion).passed===false,"Ontbrekende variatiecontrole mag geen groene vrijgave geven");
+
+const missingReasoning={...report,gates:report.gates.filter(g=>g.id!=="reasoning-diversity")};
+assert(evaluateReleaseAudit(missingReasoning,paboVersion).passed===false,"Ontbrekende denkvariatiecontrole mag geen groene vrijgave geven");

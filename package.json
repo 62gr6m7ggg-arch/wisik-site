@@ -6,11 +6,16 @@
   "scripts": {
     "audit:update": "node scripts/audit-pabo-release.mjs --write",
     "audit:verify": "node scripts/audit-pabo-release.mjs",
-    "check": "node scripts/test-konijnenhol.mjs --media && npm run audit:verify && node scripts/check-site.mjs && node scripts/test-feedback.mjs && node scripts/test-pabo-navigation.mjs && node scripts/test-pabo-flirts.mjs && node scripts/test-ownvoice-release.mjs && node scripts/test-grabbelton-cta.mjs && node scripts/test-flirt-endcards.mjs && node scripts/test-festival-venues.mjs && node scripts/test-mobile-terrein.mjs && node scripts/test-backstage-roadie.mjs && node scripts/test-backstage-audit.mjs && node scripts/audit-space-release.mjs && node scripts/audit-ruimteklaar-review.mjs && node scripts/test-space-artist-entrance.mjs && node scripts/test-rafelrandjes.mjs",
+    "pabo:didactic": "node scripts/pabo-didactic-audit.mjs",
+    "check": "node scripts/test-konijnenhol.mjs --media && npm run audit:verify && npm run pabo:didactic && node scripts/check-site.mjs && node scripts/test-feedback.mjs && node scripts/test-pabo-navigation.mjs && node scripts/test-pabo-flirts.mjs && node scripts/test-ownvoice-release.mjs && node scripts/test-grabbelton-cta.mjs && node scripts/test-flirt-endcards.mjs && node scripts/test-festival-venues.mjs && node scripts/test-mobile-terrein.mjs && node scripts/test-backstage-roadie.mjs && node scripts/test-backstage-audit.mjs && node scripts/audit-space-release.mjs && node scripts/audit-ruimteklaar-review.mjs && node scripts/test-space-artist-entrance.mjs && node scripts/test-rafelrandjes.mjs",
     "build": "npm run check",
     "preview": "npx wrangler pages dev public",
     "predeploy": "npm run check",
-    "deploy": "npx wrangler pages deploy public --project-name wisik-site"
+    "deploy": "npx wrangler pages deploy public --project-name wisik-site",
+    "pabo:variation": "node scripts/test-pabo-variation.mjs",
+    "pabo:variation:build": "node scripts/apply-pabo-variation.mjs",
+    "pabo:reasoning": "node scripts/test-pabo-reasoning.mjs",
+    "pabo:reasoning:build": "node scripts/apply-pabo-reasoning.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"

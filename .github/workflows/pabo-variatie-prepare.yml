@@ -1,0 +1,124 @@
+name: Pabo variatie vrijgave
+on:
+  push:
+    branches: [feat/pabo-variatie-20260916, main]
+    paths:
+      - '.github/workflows/pabo-variatie-prepare.yml'
+      - 'tools/pabo-variation*'
+      - 'src/pabo/**'
+      - 'scripts/*pabo*'
+      - 'scripts/lib/pabo-variation*'
+      - 'public/apps/pabo-rekenklaar/**'
+permissions:
+  contents: read
+concurrency:
+  group: pabo-variation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install reviewed sources and build idempotently
+        run: |
+          python3 tools/pabo-variation-update.py
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('src/pabo/variation-generators.js')
+          s=p.read_text()
+          old='hint:"De tweede breuk hoort bij de overgebleven voorraad, niet bij de beginvoorraad."'
+          new='hint:kind==="direct"?"Bepaal welk deel van de hele voorraad overblijft.":"De tweede breuk hoort bij de overgebleven voorraad, niet bij de beginvoorraad."'
+          assert old in s or new in s
+          p.write_text(s.replace(old,new))
+          for name in ['public/index.html','public/pabo/pabo-rekenklaar/index.html','public/moshpit/index.html']:
+              p=Path(name); p.write_text(p.read_text().replace('1.6.3','1.7.0'))
+          p=Path('public/backstage/index.html')
+          p.write_text(p.read_text().replace('Hier komen de acht technische controles en de inhoudelijke flirtbeoordeling te staan.','Hier komen de technische vrijgavecontroles en de inhoudelijke flirtbeoordeling te staan.'))
+          PY
+          node scripts/apply-pabo-variation.mjs
+          sha256sum public/apps/pabo-rekenklaar/index.html > /tmp/pabo-build.sha
+          node scripts/apply-pabo-variation.mjs
+          sha256sum --check /tmp/pabo-build.sha
+      - name: Full-session diversity and arithmetic checks
+        run: npm run pabo:variation
+      - name: Refresh evidence and run all existing site release checks
+        run: |
+          npm run audit:update
+          npm run build
+          git diff --exit-code 9fb853aa30e9ea9585d8b44491b3f9ab9af93194 -- public/apps/ruimteklaar public/apps/stoicheia tools/space-tent functions server
+      - name: Install isolated browsers
+        run: |
+          npm install --prefix /tmp/pabo-browser --no-save playwright@1.56.1
+          /tmp/pabo-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Browser navigation and full exam checks
+        env:
+          PLAYWRIGHT_MODULE: /tmp/pabo-browser/node_modules/playwright/index.mjs
+        run: |
+          node scripts/check-pabo-nav-browser.mjs
+          node scripts/check-pabo-variation-browser.mjs
+      - name: Commit verified sources and evidence only to work branch
+        run: |
+          test "$(git ls-remote origin refs/heads/feat/pabo-variatie-20260916 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/pabo scripts/apply-pabo-variation.mjs scripts/lib/pabo-variation-context.mjs scripts/lib/pabo-variation-audit.mjs scripts/test-pabo-variation.mjs scripts/check-pabo-variation-browser.mjs scripts/audit-pabo-release.mjs scripts/test-backstage-audit.mjs scripts/check-pabo-nav-browser.mjs docs/pabo-variatie-1.7.0.md package.json public/apps/pabo-rekenklaar/index.html public/assets/js/site.js public/assets/js/site-data.js public/assets/data/pabo-release-audit.json public/index.html public/pabo/pabo-rekenklaar/index.html public/moshpit/index.html public/backstage/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Pabo 1.7.0: diverse questions, balanced sessions, hard duplicate protection and verified release evidence'
+            git push origin HEAD:feat/pabo-variatie-20260916
+          fi
+      - name: Export reviewable source and reports
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib, zipfile
+          with zipfile.ZipFile('/tmp/pabo-variation-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for base in ['src/pabo','scripts','docs']:
+                  for p in pathlib.Path(base).rglob('*'):
+                      if p.is_file() and p.suffix in {'.js','.mjs','.py','.md','.json'}: z.write(p,str(p))
+              for name in ['public/apps/pabo-rekenklaar/index.html','public/assets/data/pabo-release-audit.json','public/assets/js/site.js','public/assets/js/site-data.js','package.json','public/index.html','public/pabo/pabo-rekenklaar/index.html','public/moshpit/index.html','public/backstage/index.html']:
+                  p=pathlib.Path(name)
+                  if p.is_file(): z.write(p,name)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pabo-variation-review-proof
+          path: |
+            /tmp/pabo-variation-evidence/
+            /tmp/pabo-variation-browser/
+            /tmp/pabo-nav-evidence/
+            /tmp/pabo-variation-source.zip
+          retention-days: 14
+  live:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browsers
+        run: |
+          npm install --prefix /tmp/pabo-browser --no-save playwright@1.56.1
+          /tmp/pabo-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Verify deployed files and complete exams on wisik.nl
+        env:
+          PLAYWRIGHT_MODULE: /tmp/pabo-browser/node_modules/playwright/index.mjs
+          LIVE_ORIGIN: https://wisik.nl
+        run: node scripts/check-pabo-variation-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pabo-variation-live-proof
+          path: /tmp/pabo-variation-browser/
+          retention-days: 14
