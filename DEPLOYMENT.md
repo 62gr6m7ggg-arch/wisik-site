@@ -52,7 +52,7 @@ Vóór vertrek wordt de bestaande lokale voortgang opnieuw naar `localStorage` g
 
 - productnaam;
 - productversie;
-- exacte bron-URL;
+- dataminimale bronpagina voor verzending (origin + pathname; geen queryparameters of fragment);
 - actief hoofdonderdeel;
 - moment van opslaan.
 

@@ -1,6 +1,6 @@
 # Privacy-notities voor de definitieve Wisik-privacyverklaring
 
-Laatst inhoudelijk gecontroleerd: 16 september 2026.
+Laatst inhoudelijk gecontroleerd: 17 september 2026. FormSubmit-documentatie gecontroleerd: https://formsubmit.co/documentation (inzendingenarchief: 30 dagen). De daadwerkelijke Cloudflare-accountinstellingen zijn in deze ronde niet gecontroleerd.
 
 ## Terreinbreed uitgangspunt
 

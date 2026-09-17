@@ -132,63 +132,67 @@
     });
   }
 
+  // Feedback krijgt alleen een lokale webpagina, nooit query, fragment of URL-inloggegevens.
+  function sameOriginFeedbackPage(value) {
+    if (!value) return "";
+    try {
+      const url = new URL(String(value), window.location.origin);
+      if (!/^https?:$/.test(url.protocol) || url.origin !== window.location.origin) return "";
+      return `${url.origin}${url.pathname}`;
+    } catch {
+      return "";
+    }
+  }
+
   function readFeedbackSourceContext(currentUrl) {
     let stored = {};
     try {
-      stored = JSON.parse(sessionStorage.getItem(WISIK_CONTEXT_KEY) || "{}") || {};
+      const candidate = JSON.parse(sessionStorage.getItem(WISIK_CONTEXT_KEY) || "{}");
+      if (candidate && typeof candidate === "object" && !Array.isArray(candidate)) stored = candidate;
     } catch {
-      stored = {};
+      // Ook met geblokkeerde of beschadigde sessieopslag blijft het formulier werken.
     }
-
+    const params = currentUrl.searchParams;
+    const queryPage = sameOriginFeedbackPage(params.get("bron"));
+    const storedPage = sameOriginFeedbackPage(stored.pageUrl);
+    const referrerPage = sameOriginFeedbackPage(document.referrer);
     const context = {
-      pageUrl: cleanContextValue(currentUrl.searchParams.get("bron") || stored.pageUrl, 1000),
-      product: cleanContextValue(currentUrl.searchParams.get("product") || stored.product, 120),
-      productVersion: cleanContextValue(currentUrl.searchParams.get("productversie") || stored.productVersion, 40),
-      view: cleanContextValue(currentUrl.searchParams.get("onderdeel") || stored.view, 80)
+      pageUrl: queryPage || storedPage || (referrerPage === `${window.location.origin}/kladblok/` ? "" : referrerPage),
+      product: cleanContextValue(params.get("product") || params.get("attractie") || stored.product, 120),
+      productVersion: cleanContextValue(params.get("productversie") || params.get("appversie") || stored.productVersion, 40),
+      view: cleanContextValue(params.get("onderdeel") || stored.view, 80)
     };
-
-    if (!context.pageUrl && document.referrer) {
-      try {
-        const referrer = new URL(document.referrer);
-        if (referrer.origin === window.location.origin && referrer.pathname !== "/kladblok/") {
-          context.pageUrl = referrer.href;
-        }
-      } catch {
-        // Een ongeldige referrer wordt genegeerd.
-      }
-    }
+    // Alleen de vier expliciete feedbackvelden; geen antwoorden, XP of diagnosegegevens kopiëren.
     return context;
   }
 
   function applyFeedbackSourceContext(form, context) {
     const fieldValues = {
-      Bronpagina: context.pageUrl,
+      Bronpagina: sameOriginFeedbackPage(context.pageUrl),
       Bronproduct: context.product,
       Productversie: context.productVersion,
       Onderdeel: VIEW_LABELS[context.view] || context.view
     };
-
     for (const [name, value] of Object.entries(fieldValues)) {
       const field = form.elements.namedItem(name);
       if (field) field.value = value;
     }
-
+    const attraction = form.elements.namedItem("Attractie of terrein");
     if (context.product === "Pabo Rekenklaar") {
-      const attraction = form.elements.namedItem("Attractie of terrein");
       if (attraction) attraction.value = "Pabo Rekenklaar";
+    } else if (/^(Space-tent|Ruimteklaar|Space-tent · Ruimteklaar)$/.test(context.product)) {
+      if (attraction) attraction.value = "Space-tent";
     }
-
     const subject = form.elements.namedItem("_subject");
     if (subject && context.product) {
       const version = context.productVersion ? ` ${context.productVersion}` : "";
       subject.value = `[Wisik-Kladblok] ${context.product}${version} — nieuwe notitie`;
     }
-
     const note = form.querySelector("[data-feedback-source]");
-    if (note && (context.product || context.pageUrl)) {
-      const parts = [context.product, context.productVersion, VIEW_LABELS[context.view] || context.view].filter(Boolean);
+    if (note && (context.product || fieldValues.Bronpagina)) {
+      const parts = [context.product, context.productVersion, VIEW_LABELS[context.view] || context.view, fieldValues.Bronpagina].filter(Boolean);
       note.hidden = false;
-      note.textContent = `Automatisch meegestuurde context: ${parts.join(" · ") || "vorige Wisik-pagina"}.`;
+      note.textContent = `Automatisch meegestuurde context: ${parts.join(" · ")}.`;
     }
   }
 
