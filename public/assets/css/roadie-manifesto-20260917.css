@@ -1,0 +1,81 @@
+/* Wisik — het missiebeeld, uitsluitend binnen Ontmoet de roadie. */
+.roadie-manifesto {
+  display: grid;
+  grid-template-columns: minmax(0, 290px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 52px);
+  margin-top: 28px;
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid var(--line, #dedbd1);
+  border-radius: 28px;
+  background: #fff9eb;
+}
+.roadie-manifesto figure { margin: 0; min-width: 0; }
+.roadie-manifesto-image-link {
+  display: block;
+  border-radius: 16px;
+  color: #163f58;
+  text-decoration: none;
+}
+.roadie-manifesto-image-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 3px solid white;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(22, 63, 88, .14);
+}
+.roadie-manifesto-image-link span {
+  display: block;
+  margin-top: 12px;
+  font-size: .9rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.roadie-manifesto-image-link:focus-visible,
+.roadie-manifesto summary:focus-visible {
+  outline: 3px solid #163f58;
+  outline-offset: 6px;
+}
+.roadie-manifesto figcaption {
+  margin-top: 8px;
+  color: #5b6267;
+  font-size: .78rem;
+  line-height: 1.5;
+}
+.roadie-manifesto-copy { min-width: 0; }
+.roadie-manifesto h3 {
+  margin: 12px 0 18px;
+  color: #163f58;
+  font-size: clamp(1.65rem, 3.2vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -.035em;
+}
+.roadie-manifesto-invitation {
+  margin: 0;
+  max-width: 35em;
+  color: #334b58;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+.roadie-manifesto details {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(22, 63, 88, .2);
+  color: #334b58;
+}
+.roadie-manifesto summary {
+  padding: 8px 0;
+  cursor: pointer;
+  color: #163f58;
+  font-weight: 750;
+  line-height: 1.5;
+}
+.roadie-manifesto dl { margin: 16px 0 0; }
+.roadie-manifesto dt { margin-top: 16px; font-weight: 800; }
+.roadie-manifesto dd { margin: 4px 0 0; line-height: 1.6; }
+@media (max-width: 700px) {
+  .roadie-manifesto { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .roadie-manifesto figure { width: min(100%, 210px); margin-inline: auto; }
+}
