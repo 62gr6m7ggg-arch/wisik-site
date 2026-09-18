@@ -4,6 +4,10 @@
   "private": true,
   "description": "Wisik.nl — festivalterrein voor rekenen en wiskunde",
   "scripts": {
+    "seo:build": "node scripts/build-site-seo.mjs --write",
+    "seo:check": "node scripts/test-site-seo.mjs && node scripts/build-site-seo.mjs --check",
+    "precheck": "npm run seo:check",
+    "prebuild": "npm run seo:build",
     "audit:update": "node scripts/audit-pabo-release.mjs --write",
     "audit:verify": "node scripts/audit-pabo-release.mjs",
     "pabo:didactic": "node scripts/pabo-didactic-audit.mjs",
