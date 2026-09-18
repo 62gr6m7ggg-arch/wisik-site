@@ -1,0 +1,10 @@
+{
+  "origin": "https://wisik.nl",
+  "name": "Wisik",
+  "language": "nl",
+  "creator": {
+    "name": "Edwin van der Plas",
+    "page": "/backstage/#roadie"
+  },
+  "sitePages": ["/", "/vo/", "/pabo/", "/hbo/", "/rafelrand/", "/backstage/", "/kladblok/"]
+}
