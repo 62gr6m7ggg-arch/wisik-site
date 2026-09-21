@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {build} from 'esbuild';
+const source=fs.readFileSync('scripts/check-curriculum-contracts.mjs','utf8');
+const start=source.indexOf('const bundle='),end=source.indexOf('let n=0;');
+if(start<0||end<0)throw new Error('Curriculum audit markers changed');
+const course=JSON.parse(fs.readFileSync('app/course-content.json'));
+const block=course.blocks.find(b=>b.level===4);
+const extra=block.retestIds.find(id=>!Object.values(course.checks).flat().includes(id));
+course.checks['4'].push(extra);block.questionIds=[block.questionIds[0],extra,...block.questionIds.slice(1)];
+const contents=source.slice(0,start).replace("import {build} from 'esbuild';",'')+"import * as M from '../app/model';import * as L from '../app/local-progress';import * as D from '../app/diagnostic';\n"+source.slice(end);
+await build({stdin:{contents,resolveDir:path.resolve('scripts')},bundle:true,platform:'node',format:'esm',outfile:'.audit-dist/check-curriculum-contracts.mjs',plugins:[{name:'expanded-test-curriculum',setup(b){b.onLoad({filter:/course-content\.json$/},()=>({contents:JSON.stringify(course),loader:'json'}));}}]});

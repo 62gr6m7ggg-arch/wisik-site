@@ -1,0 +1,2246 @@
+{
+  "questions": [
+    {
+      "id": "vorm-l4-cos-piramide",
+      "block": "l4-cos",
+      "shapeFamily": "pyramid",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Piramide ABCDT heeft een rechthoekig grondvlak met AB = 8 cm en AD = 6 cm. De ribben TA en TB zijn respectievelijk 7 en 9 cm. Bereken ∠ATB in graden, op twee decimalen. Veronderstel geen rechte hoek in zijvlak ABT.",
+      "answer": [
+        "58.411864494798834"
+      ],
+      "hint": "Welke drie zijden begrenzen de gevraagde hoek? Welke zijde ligt ertegenover?",
+      "explanation": "Werk in driehoek ABT, niet in het grondvlak. De zijde tegenover ∠ATB is AB = 8. De cosinusregel geeft cos ∠ATB = (7² + 9² − 8²)/(2 × 7 × 9) = 11/21. Dus ∠ATB ≈ 58,41°. Pythagoras is hier niet geldig: 7² + 8² is niet gelijk aan 9².",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "Piramide met niet-centraal gelegen top. AB = 8 cm, AD = 6 cm, TA = 7 cm en TB = 9 cm.",
+        "highlights": [
+          "TA",
+          "TB",
+          "AB"
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-angle",
+        "lines": [
+          "TA",
+          "TB"
+        ],
+        "givenLengths": {
+          "AB": 8,
+          "AD": 6,
+          "TA": 7,
+          "TB": 9
+        },
+        "independentDegrees": 58.411864494798834
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.1; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-lines-prisma-verschuiven",
+      "block": "l4-lines",
+      "shapeFamily": "prism",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "ABC.DEF is een recht driehoekig prisma; AD, BE en CF verbinden overeenkomstige hoekpunten. Je zoekt de hoek tussen de kruisende lijnen BC en DF. Selecteer de twee punten van de lijn door C die evenwijdig is aan DF.",
+      "selectCount": 2,
+      "answer": [
+        "A",
+        "C"
+      ],
+      "hint": "Overeenkomstige zijden van de twee evenwijdige driehoekige grondvlakken hebben dezelfde richting.",
+      "explanation": "DF en AC zijn overeenkomstige zijden van de twee driehoekige grondvlakken, dus DF ∥ AC. Door DF evenwijdig naar AC te verschuiven ontstaat bij C de hoek tussen BC en CA. Je verschuift beide eindpunten over dezelfde afstand; je draait de lijn niet.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            5
+          ],
+          "E": [
+            6,
+            0,
+            5
+          ],
+          "F": [
+            2,
+            4,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "caption": "Recht driehoekig prisma ABC.DEF. De gegeven kruisende lijnen zijn BC en DF.",
+        "highlights": [
+          "BC",
+          "DF"
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            5
+          ],
+          "E": [
+            6,
+            0,
+            5
+          ],
+          "F": [
+            2,
+            4,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "caption": "DF ∥ AC. De hoek tussen BC en DF wordt gevonden bij C in driehoek BCA.",
+        "highlights": [
+          "BC",
+          "DF",
+          "AC"
+        ],
+        "studyPlanes": [
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "parallel-line",
+        "sourceLine": "DF",
+        "answerLine": "AC",
+        "through": "C"
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.2; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave."
+    },
+    {
+      "id": "vorm-l4-lines-piramide-kruisend",
+      "block": "l4-lines",
+      "shapeFamily": "pyramid",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Piramide ABCDT heeft rechthoekig grondvlak ABCD met AB = 8 cm en AD = 6 cm. Gegeven zijn CT = 9 cm en DT = 7 cm. Bereken de kleinste hoek tussen de kruisende lijnen AB en CT in graden, op twee decimalen.",
+      "answer": [
+        "48.18968510422141"
+      ],
+      "hint": "Welke ribbe door C heeft dezelfde richting als AB? Bereken vervolgens de hoek in een driehoek met drie bekende zijden.",
+      "explanation": "Omdat ABCD een rechthoek is, geldt AB ∥ CD en CD = 8. De hoek tussen AB en CT is de kleinste hoek tussen CD en CT. In driehoek CDT geeft de cosinusregel cos ∠DCT = (8² + 9² − 7²)/(2 × 8 × 9) = 2/3. De uitkomst 48,19° is al scherp en is dus de gevraagde lijnenhoek.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "AB = 8 cm, AD = 6 cm, CT = 9 cm, DT = 7 cm. Gevraagd: de hoek tussen AB en CT.",
+        "highlights": [
+          "AB",
+          "CT"
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "AB ∥ CD. Reken in zijvlak CDT: CD = 8, CT = 9 en DT = 7 cm.",
+        "highlights": [
+          "AB",
+          "CD",
+          "CT",
+          "DT"
+        ],
+        "studyPlanes": [
+          [
+            "C",
+            "D",
+            "T"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-angle",
+        "lines": [
+          "AB",
+          "CT"
+        ],
+        "givenLengths": {
+          "AB": 8,
+          "AD": 6,
+          "CT": 9,
+          "DT": 7
+        },
+        "independentDegrees": 48.18968510422141
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.2; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-lines-tetraeder-loodrecht",
+      "block": "l4-lines",
+      "shapeFamily": "tetrahedron",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "In tetraëder ABCT staat TA loodrecht op vlak ABC. De lijnen TA en BC kruisen. Wat is hun hoek en welke redenering rechtvaardigt die?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Er is geen hoek: de lijnen snijden elkaar niet."
+        },
+        {
+          "id": "b",
+          "text": "90°: een lijn door A evenwijdig aan BC ligt in vlak ABC en staat daarom loodrecht op TA."
+        },
+        {
+          "id": "c",
+          "text": "90°: alle tegenoverliggende ribben van elke tetraëder staan loodrecht op elkaar."
+        },
+        {
+          "id": "d",
+          "text": "Dat kan alleen met alle ribbelengten worden vastgesteld."
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "hint": "Breng de richting van BC door A; welke gegeven loodrechtheid kun je dan toepassen?",
+      "explanation": "Trek door A in vlak ABC een lijn evenwijdig aan BC. TA staat loodrecht op elke lijn van dat vlak door A, dus ook op deze lijn. De richting van BC is door het verschuiven niet veranderd: de hoek tussen TA en BC is 90°. Dit volgt uit TA ⟂ ABC, niet uit het feit dat het lichaam een tetraëder is.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "caption": "Tetraëder ABCT met TA ⟂ vlak ABC. Er is geen regelmatige tetraëder gegeven.",
+        "highlights": [
+          "TA",
+          "BC"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-angle-statement",
+        "lines": [
+          "TA",
+          "BC"
+        ],
+        "expectedDegrees": 90,
+        "perpendicularLine": "TA",
+        "plane": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.2; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave."
+    },
+    {
+      "id": "vorm-l4-plane-piramide-projectie",
+      "block": "l4-plane",
+      "shapeFamily": "pyramid",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "De loodrechte projectie van top T op grondvlak ABCD is O. O ligt binnen de rechthoek, maar niet in het middelpunt. Selecteer de twee punten die de loodrechte projectie van ribbe BT op het grondvlak bepalen.",
+      "selectCount": 2,
+      "answer": [
+        "B",
+        "O"
+      ],
+      "hint": "Projecteer beide eindpunten afzonderlijk; een punt dat al in het vlak ligt, blijft op zijn plaats.",
+      "explanation": "T projecteert op O en B ligt al in ABCD. De projectie van BT is daarom BO. De lijn–vlakhoek is ∠TBO. Je mag O niet door het middelpunt van de rechthoek vervangen: de top van deze piramide staat niet boven dat middelpunt.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ],
+          "O": [
+            2,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "TO ⟂ ABCD; O is de gegeven loodrechte projectie van T, niet het middelpunt.",
+        "highlights": [
+          "BT"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ],
+          "O": [
+            2,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "B blijft B en T projecteert op O; de gezochte projectielijn is BO.",
+        "highlights": [
+          "BT",
+          "BO",
+          "TO"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ],
+        "studyPlanes": [
+          [
+            "B",
+            "O",
+            "T"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-projection",
+        "line": "BT",
+        "plane": [
+          "A",
+          "B",
+          "C"
+        ],
+        "projectedLine": "BO",
+        "givenFoot": "O"
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.3; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave."
+    },
+    {
+      "id": "vorm-l4-plane-prisma-schuine-ribbe",
+      "block": "l4-plane",
+      "shapeFamily": "prism",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "ABC.DEF is een recht driehoekig prisma met hoogte AD = BE = CF = 5 cm. In het grondvlak ligt N op AB met AN = 2 cm en CN = 4 cm, waarbij CN ⟂ AB. Bereken de hoek tussen AF en vlak ABC in graden, op twee decimalen.",
+      "answer": [
+        "48.189685104221404"
+      ],
+      "hint": "Welke lijn is de loodrechte projectie van AF? Bereken zo nodig eerst een lengte in het grondvlak.",
+      "explanation": "F projecteert op C, want CF staat bij een recht prisma loodrecht op het grondvlak. De projectie van AF is AC. In rechthoekige driehoek ANC is AC = √(2² + 4²) = √20. Driehoek ACF is recht bij C, zodat tan ∠FAC = CF/AC = 5/√20. De lijn–vlakhoek is 48,19°.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            5
+          ],
+          "E": [
+            6,
+            0,
+            5
+          ],
+          "F": [
+            2,
+            4,
+            5
+          ],
+          "N": [
+            2,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "caption": "Recht driehoekig prisma; hoogte 5 cm. AN = 2 cm, CN = 4 cm en CN ⟂ AB.",
+        "highlights": [
+          "AF"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "segments": [
+          {
+            "from": [
+              2,
+              0,
+              0
+            ],
+            "to": [
+              2,
+              4,
+              0
+            ],
+            "color": "#72e1b8",
+            "dashed": true
+          }
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            5
+          ],
+          "E": [
+            6,
+            0,
+            5
+          ],
+          "F": [
+            2,
+            4,
+            5
+          ],
+          "N": [
+            2,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "caption": "Bereken eerst AC = √20 cm; gebruik vervolgens de rechthoekige driehoek ACF.",
+        "highlights": [
+          "AF",
+          "AC",
+          "CF",
+          "AN",
+          "CN"
+        ],
+        "studyPlanes": [
+          [
+            "A",
+            "C",
+            "F"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-plane-angle",
+        "line": "AF",
+        "plane": [
+          "A",
+          "B",
+          "C"
+        ],
+        "givenLengths": {
+          "AD": 5,
+          "BE": 5,
+          "CF": 5,
+          "AN": 2,
+          "CN": 4
+        },
+        "independentDegrees": 48.189685104221404
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.3; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-plane-tetraeder-zijvlak",
+      "block": "l4-plane",
+      "shapeFamily": "tetrahedron",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT geldt AB = 6 cm, AC = 8 cm, TA = 9 cm, AB ⟂ AC en TA ⟂ vlak ABC. Bereken de hoek tussen BT en zijvlak ACT in graden, op twee decimalen.",
+      "answer": [
+        "33.690067525979785"
+      ],
+      "hint": "Bewijs eerst dat AB loodrecht op ACT staat. Waar komt B bij loodrechte projectie op ACT terecht?",
+      "explanation": "AB staat loodrecht op AC en op AT, twee snijdende lijnen in vlak ACT. Dus AB ⟂ ACT en B projecteert op A. T ligt al in ACT; de projectie van BT is TA. De gevraagde hoek is daarom ∠BTA, niet ∠TBA. In rechthoekige driehoek BAT geldt tan ∠BTA = AB/AT = 6/9. De uitkomst is 33,69°; 56,31° is de complementaire hoek met de normaal AB.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "caption": "AB = 6 cm, AC = 8 cm, TA = 9 cm; AB ⟂ AC en TA ⟂ ABC. Gegeven zijvlak ACT.",
+        "highlights": [
+          "BT"
+        ],
+        "planes": [
+          [
+            "A",
+            "C",
+            "T"
+          ]
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "caption": "AB ⟂ ACT. BT projecteert op TA, zodat de lijn–vlakhoek bij T in driehoek BTA ligt.",
+        "highlights": [
+          "BT",
+          "TA",
+          "AB"
+        ],
+        "planes": [
+          [
+            "A",
+            "C",
+            "T"
+          ]
+        ],
+        "studyPlanes": [
+          [
+            "B",
+            "T",
+            "A"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-plane-angle",
+        "line": "BT",
+        "plane": [
+          "A",
+          "C",
+          "T"
+        ],
+        "givenLengths": {
+          "AB": 6,
+          "AC": 8,
+          "TA": 9
+        },
+        "independentDegrees": 33.69006752597978
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.3; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-dihedral-piramide-standhoek",
+      "block": "l4-dihedral",
+      "shapeFamily": "pyramid",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "In piramide ABCDT is TO loodrecht op rechthoekig grondvlak ABCD. N ligt op AD en ON ⟂ AD. Selecteer de drie hoekpunten van de driehoek waarin je de hoek tussen zijvlak ADT en grondvlak ABCD met een standhoek kunt berekenen.",
+      "selectCount": 3,
+      "answer": [
+        "T",
+        "N",
+        "O"
+      ],
+      "hint": "De snijlijn is AD. Zoek vanuit één punt op AD in beide vlakken een loodrechte richting.",
+      "explanation": "De snijlijn is AD. In het grondvlak staat NO loodrecht op AD. Ook TO staat loodrecht op de richting AD, omdat TO ⟂ ABCD. Daarom is vlak NTO loodrecht op AD; de lijn NT staat dus eveneens loodrecht op AD. De lijnen NO en NT geven de standhoek ∠ONT. De bijbehorende rekendriehoek is NTO en is recht bij O.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ],
+          "O": [
+            2,
+            3,
+            0
+          ],
+          "N": [
+            0,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "TO ⟂ ABCD, N ligt op AD en ON ⟂ AD. Gegeven vlakken: ADT en ABCD.",
+        "planes": [
+          [
+            "A",
+            "D",
+            "T"
+          ],
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ],
+          "O": [
+            2,
+            3,
+            0
+          ],
+          "N": [
+            0,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "Standdriehoek NTO: NO en NT staan beide loodrecht op snijlijn AD.",
+        "planes": [
+          [
+            "A",
+            "D",
+            "T"
+          ],
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ],
+        "highlights": [
+          "NO",
+          "NT",
+          "TO",
+          "AD"
+        ],
+        "studyPlanes": [
+          [
+            "N",
+            "T",
+            "O"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "stand-triangle",
+        "planes": [
+          [
+            "A",
+            "D",
+            "T"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "intersectionLine": "AD",
+        "rays": [
+          "NO",
+          "NT"
+        ],
+        "triangle": [
+          "N",
+          "T",
+          "O"
+        ]
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.4; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave."
+    },
+    {
+      "id": "vorm-l4-dihedral-tetraeder-oppervlakte",
+      "block": "l4-dihedral",
+      "shapeFamily": "tetrahedron",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT is driehoek ABC rechthoekig bij A, met AB = 6 cm en AC = 8 cm. TA = 9 cm en TA ⟂ vlak ABC. Bereken de kleinste hoek tussen zijvlak BCT en grondvlak ABC in graden, op twee decimalen.",
+      "answer": [
+        "61.92751306414704"
+      ],
+      "hint": "Neem BC als snijlijn. Vind in ABC de hoogte uit A op BC met de oppervlakte van de driehoek.",
+      "explanation": "Noem N de loodrechte projectie van A op BC. Met Pythagoras is BC = 10. De oppervlakte van ABC is ½ × 6 × 8 = 24, maar ook ½ × 10 × AN; dus AN = 4,8. BC staat loodrecht op AN en op de richting AT en dus op standvlak ANT. Daardoor is ∠ANT een standhoek. In de rechthoekige driehoek ANT geldt tan ∠ANT = AT/AN = 9/4,8. De kleinste vlakkenhoek is 61,93°.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "caption": "Tetraëder: AB = 6 cm, AC = 8 cm, TA = 9 cm; AB ⟂ AC en TA ⟂ ABC. Gegeven vlakken BCT en ABC.",
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            9
+          ],
+          "N": [
+            3.84,
+            2.88,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "caption": "N is de voet van A op BC. AN = 4,8 cm; ∠ANT is een standhoek.",
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "highlights": [
+          "AN",
+          "TN",
+          "AT",
+          "BC"
+        ],
+        "studyPlanes": [
+          [
+            "A",
+            "N",
+            "T"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "plane-angle",
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "givenLengths": {
+          "AB": 6,
+          "AC": 8,
+          "TA": 9
+        },
+        "solutionFoot": {
+          "name": "N",
+          "coordinate": [
+            3.84,
+            2.88,
+            0
+          ]
+        },
+        "independentDegrees": 61.92751306414704
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.4; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-dihedral-prisma-diagonaalvlak",
+      "block": "l4-dihedral",
+      "shapeFamily": "prism",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "ABC.DEF is een recht driehoekig prisma met hoogte CF = 5 cm. De afstand van C tot lijn AB is 4 cm. Bereken de kleinste hoek tussen vlak ABF en grondvlak ABC in graden, op twee decimalen.",
+      "answer": [
+        "51.34019174590991"
+      ],
+      "hint": "De vlakken snijden langs AB. Gebruik een loodrechte doorsnede door C en F, niet zomaar een ribbe van het prisma.",
+      "explanation": "Laat CN loodrecht op AB vallen. CN = 4 en CF = 5. Omdat AB loodrecht op CN en op de richting CF staat, is NCF een standvlak. Dus NF staat ook loodrecht op AB en ∠CNF is een standhoek van ABC en ABF. Driehoek NCF is recht bij C. tan ∠CNF = CF/CN = 5/4, zodat de vlakkenhoek 51,34° is. Het prisma hoeft geen rechthoekig driehoekig grondvlak te hebben.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            5
+          ],
+          "E": [
+            6,
+            0,
+            5
+          ],
+          "F": [
+            2,
+            4,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "caption": "Recht driehoekig prisma: hoogte 5 cm; afstand van C tot AB is 4 cm. Gegeven vlakken ABF en ABC.",
+        "planes": [
+          [
+            "A",
+            "B",
+            "F"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            2,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            5
+          ],
+          "E": [
+            6,
+            0,
+            5
+          ],
+          "F": [
+            2,
+            4,
+            5
+          ],
+          "N": [
+            2,
+            0,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "caption": "CN ⟂ AB; CN = 4 en CF = 5 cm. De hoek ∠CNF ligt in het standvlak NCF.",
+        "planes": [
+          [
+            "A",
+            "B",
+            "F"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "highlights": [
+          "CN",
+          "NF",
+          "CF",
+          "AB"
+        ],
+        "studyPlanes": [
+          [
+            "N",
+            "C",
+            "F"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "plane-angle",
+        "planes": [
+          [
+            "A",
+            "B",
+            "F"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "givenLengths": {
+          "CF": 5
+        },
+        "solutionFoot": {
+          "name": "N",
+          "coordinate": [
+            2,
+            0,
+            0
+          ],
+          "distance": 4
+        },
+        "independentDegrees": 51.34019174590991
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.4; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-lines-tetraeder-herhaling",
+      "block": "l4-lines",
+      "shapeFamily": "tetrahedron",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Tetraëder ABCT heeft AB = 6 cm, AC = 8 cm, TA = 9 cm, AB ⟂ AC en TA ⟂ ABC. Bereken de kleinste hoek tussen BT en CT in graden, op twee decimalen.",
+      "answer": [
+        "51.54629078329403"
+      ],
+      "hint": "In welke driehoek ligt de gevraagde hoek? Bereken eerst haar drie zijden vanuit de gegeven rechte hoeken.",
+      "explanation": "Uit de rechthoekige driehoeken ABC, ABT en ACT volgt BC = 10, BT = √117 en CT = √145. Driehoek BCT is niet rechthoekig. De cosinusregel geeft cos ∠BTC = (117 + 145 − 100)/(2√117√145) = 81/√16965. Dus ∠BTC ≈ 51,55°, al de kleinste hoek tussen de lijnen.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "caption": "AB = 6 cm, AC = 8 cm, TA = 9 cm; AB ⟂ AC en TA ⟂ ABC.",
+        "highlights": [
+          "BT",
+          "CT"
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "caption": "Reken in BCT na het bepalen van BT = √117, CT = √145 en BC = 10 cm.",
+        "highlights": [
+          "BT",
+          "CT",
+          "BC"
+        ],
+        "studyPlanes": [
+          [
+            "B",
+            "C",
+            "T"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-angle",
+        "lines": [
+          "BT",
+          "CT"
+        ],
+        "givenLengths": {
+          "AB": 6,
+          "AC": 8,
+          "TA": 9
+        },
+        "independentDegrees": 51.54629078329404
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.2; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-plane-piramide-herhaling",
+      "block": "l4-plane",
+      "shapeFamily": "pyramid",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Piramide ABCDT heeft rechthoekig grondvlak ABCD met AB = 8 en AD = 6 cm. TO = 6 cm en TO ⟂ ABCD. In het grondvlak ligt N op AD met AN = 3 cm, ON = 2 cm en ON ⟂ AD. Bereken de hoek tussen DT en ABCD in graden, op twee decimalen.",
+      "answer": [
+        "58.99728086612602"
+      ],
+      "hint": "Bepaal de loodrechte projectie van DT en bereken de benodigde lengte in de rechthoek.",
+      "explanation": "T projecteert op O, dus DT projecteert op DO. DN = AD − AN = 3; in rechthoekige driehoek DNO is DO = √(3² + 2²) = √13. Driehoek DOT is recht bij O, zodat tan ∠TDO = TO/DO = 6/√13. De gevraagde hoek is 59,00°. De top staat niet boven het middelpunt: een halve grondvlakdiagonaal gebruiken zou hier onjuist zijn.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ],
+          "O": [
+            2,
+            3,
+            0
+          ],
+          "N": [
+            0,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "AB = 8, AD = 6, TO = 6, AN = 3 en ON = 2 cm; TO ⟂ ABCD en ON ⟂ AD.",
+        "highlights": [
+          "DT"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "revealScene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ],
+          "O": [
+            2,
+            3,
+            0
+          ],
+          "N": [
+            0,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "DO = √13 cm; de projectie van DT is DO. Reken in de rechthoekige driehoek DOT.",
+        "highlights": [
+          "DT",
+          "DO",
+          "TO",
+          "DN",
+          "NO"
+        ],
+        "studyPlanes": [
+          [
+            "D",
+            "O",
+            "T"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-plane-angle",
+        "line": "DT",
+        "plane": [
+          "A",
+          "B",
+          "C"
+        ],
+        "givenLengths": {
+          "AB": 8,
+          "AD": 6,
+          "TO": 6,
+          "AN": 3,
+          "ON": 2
+        },
+        "independentDegrees": 58.997280866126005
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.3; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-check-prisma-lijnen",
+      "block": "l4-lines",
+      "shapeFamily": "prism",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "ABC.DEF is een recht driehoekig prisma. Gegeven zijn AB = 7 cm, AC = 5 cm en BC = √32 cm. Bereken de kleinste hoek tussen BC en DF in graden, op twee decimalen.",
+      "answer": [
+        "81.86989764584403"
+      ],
+      "hint": "Gebruik de definitie van de hoek tussen kruisende lijnen en kies daarna een geschikte driehoek.",
+      "explanation": "DF ∥ AC, zodat de gevraagde lijnenhoek wordt gevonden in ∠BCA. De cosinusregel geeft cos ∠BCA = (32 + 25 − 49)/(2 × √32 × 5) = √2/10. De scherpe hoek is 81,87°.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            7,
+            0,
+            0
+          ],
+          "C": [
+            3,
+            4,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            6
+          ],
+          "E": [
+            7,
+            0,
+            6
+          ],
+          "F": [
+            3,
+            4,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "caption": "Recht driehoekig prisma ABC.DEF; AB = 7, AC = 5 en BC = √32 cm.",
+        "highlights": [
+          "BC",
+          "DF"
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-angle",
+        "lines": [
+          "BC",
+          "DF"
+        ],
+        "givenLengths": {
+          "AB": 7,
+          "AC": 5,
+          "BC": 5.656854249492381
+        },
+        "independentDegrees": 81.86989764584403
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.2; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-check-tetraeder-lijnvlak",
+      "block": "l4-plane",
+      "shapeFamily": "tetrahedron",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT is driehoek ABC rechthoekig bij A. AB = 10 cm, AC = 7 cm, TA = 9 cm en TA ⟂ vlak ABC. Bereken de hoek tussen BT en vlak ABC in graden, op twee decimalen.",
+      "answer": [
+        "41.98721249581666"
+      ],
+      "hint": "Welke lijn is de loodrechte projectie van BT op het gegeven vlak?",
+      "explanation": "T projecteert op A, terwijl B al in het vlak ligt. De projectie is BA. Driehoek BAT is recht bij A; tan ∠TBA = TA/BA = 9/10. De lijn–vlakhoek is dus 41,99°. AC is voor deze berekening niet nodig.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            10,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            7,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "caption": "AB = 10 cm, AC = 7 cm en TA = 9 cm; AB ⟂ AC en TA ⟂ ABC.",
+        "highlights": [
+          "BT"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "line-plane-angle",
+        "line": "BT",
+        "plane": [
+          "A",
+          "B",
+          "C"
+        ],
+        "givenLengths": {
+          "AB": 10,
+          "AC": 7,
+          "TA": 9
+        },
+        "independentDegrees": 41.987212495816664
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.3; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    },
+    {
+      "id": "vorm-l4-check-piramide-vlakken",
+      "block": "l4-dihedral",
+      "shapeFamily": "pyramid",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Piramide ABCDT heeft rechthoekig grondvlak ABCD, AB = 8 cm en AD = 6 cm. TO = 6 cm en TO ⟂ ABCD. De afstand van O tot lijn AD is 2 cm; O ligt binnen ABCD. Bereken de kleinste hoek tussen zijvlak BCT en grondvlak ABCD in graden, op twee decimalen.",
+      "answer": [
+        "45"
+      ],
+      "hint": "Bepaal de afstand van O tot de snijlijn van de twee vlakken; gebruik daarna een standdriehoek.",
+      "explanation": "De snijlijn is BC. Omdat ABCD een rechthoek is en O binnen het grondvlak ligt, is de afstand van O tot BC gelijk aan 8 − 2 = 6. Laat OM loodrecht op BC vallen. BC staat loodrecht op OM en de richting OT, dus ∠OMT is een standhoek. In rechthoekige driehoek OMT geldt tan ∠OMT = OT/OM = 6/6 = 1. De kleinste vlakkenhoek is 45,00°.",
+      "scene": {
+        "showCube": false,
+        "view": "spatial",
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            2,
+            3,
+            6
+          ],
+          "O": [
+            2,
+            3,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "caption": "AB = 8 cm, AD = 6 cm, TO = 6 cm en afstand(O, AD) = 2 cm; O ligt binnen het grondvlak en TO ⟂ ABCD.",
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ],
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ]
+      },
+      "geometryCheck": {
+        "kind": "plane-angle",
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "givenLengths": {
+          "AB": 8,
+          "AD": 6,
+          "TO": 6
+        },
+        "givenPointLineDistance": {
+          "point": "O",
+          "line": "AD",
+          "distance": 2
+        },
+        "independentDegrees": 45
+      },
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 4, §10.4; zelf ontworpen oefenvorm bij de methode, geen kopie van een huiswerkopgave.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "tolerance": 0.02
+    }
+  ],
+  "blockAdditions": [
+    {
+      "id": "l4-cos",
+      "questionIds": [
+        "vorm-l4-cos-piramide"
+      ],
+      "retestIds": [],
+      "theory": []
+    },
+    {
+      "id": "l4-lines",
+      "questionIds": [
+        "vorm-l4-lines-prisma-verschuiven",
+        "vorm-l4-lines-piramide-kruisend",
+        "vorm-l4-lines-tetraeder-loodrecht"
+      ],
+      "retestIds": [
+        "vorm-l4-lines-tetraeder-herhaling"
+      ],
+      "theory": [
+        {
+          "title": "Dezelfde richtingshoek in een driehoekig prisma",
+          "text": "In een recht driehoekig prisma ABC.DEF zijn AC en DF evenwijdig. Daarom kun je de hoek tussen de kruisende lijnen BC en DF berekenen als ∠BCA. Neem AB = 6, AC = √20 en BC = √32 cm. De cosinusregel geeft cos C = (20 + 32 − 36)/(2√20√32) = 1/√10, dus 71,57°. Er is geen vierkant zijvlak nodig: evenwijdigheid kiest de juiste driehoek, de cosinusregel doet het rekenwerk.",
+          "scene": {
+            "showCube": false,
+            "view": "spatial",
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                2,
+                4,
+                0
+              ],
+              "D": [
+                0,
+                0,
+                5
+              ],
+              "E": [
+                6,
+                0,
+                5
+              ],
+              "F": [
+                2,
+                4,
+                5
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA",
+              "DE",
+              "EF",
+              "FD",
+              "AD",
+              "BE",
+              "CF"
+            ],
+            "caption": "DF ∥ AC; na evenwijdig verschuiven ligt de hoek in driehoek ABC.",
+            "highlights": [
+              "BC",
+              "DF",
+              "AC"
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "B",
+                "C"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "l4-plane",
+      "questionIds": [
+        "vorm-l4-plane-piramide-projectie",
+        "vorm-l4-plane-prisma-schuine-ribbe",
+        "vorm-l4-plane-tetraeder-zijvlak"
+      ],
+      "retestIds": [
+        "vorm-l4-plane-piramide-herhaling"
+      ],
+      "theory": [
+        {
+          "title": "Bij een scheve piramide is de voet niet vanzelf het middelpunt",
+          "text": "Grondvlak ABCD is een rechthoek van 8 bij 6 cm. De top T staat 6 cm boven O, dat 2 cm van AD en 3 cm van AB ligt. Voor de hoek tussen BT en het grondvlak projecteer je T op O, niet op het middelpunt van ABCD. In het grondvlak is BO = √((8 − 2)² + 3²) = √45. In de rechthoekige driehoek BOT geldt tan ∠TBO = 6/√45, dus 41,81°. Eerst de werkelijke projectie bepalen voorkomt een verkeerde, maar vertrouwd uitziende driehoek.",
+          "scene": {
+            "showCube": false,
+            "view": "spatial",
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                8,
+                0,
+                0
+              ],
+              "C": [
+                8,
+                6,
+                0
+              ],
+              "D": [
+                0,
+                6,
+                0
+              ],
+              "T": [
+                2,
+                3,
+                6
+              ],
+              "O": [
+                2,
+                3,
+                0
+              ],
+              "N": [
+                2,
+                0,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "AT",
+              "BT",
+              "CT",
+              "DT"
+            ],
+            "caption": "Niet-centrale top: TO = 6 cm; O ligt 2 cm van AD en 3 cm van AB. BO = √45 cm.",
+            "highlights": [
+              "BT",
+              "BO",
+              "TO",
+              "BN",
+              "NO"
+            ],
+            "planes": [
+              [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            ],
+            "studyPlanes": [
+              [
+                "B",
+                "O",
+                "T"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "l4-dihedral",
+      "questionIds": [
+        "vorm-l4-dihedral-piramide-standhoek",
+        "vorm-l4-dihedral-tetraeder-oppervlakte",
+        "vorm-l4-dihedral-prisma-diagonaalvlak"
+      ],
+      "retestIds": [],
+      "theory": [
+        {
+          "title": "Een standhoek in een tetraëder: de voet eerst vinden",
+          "text": "Bij tetraëder ABCT geldt AB = 6, AC = 8, AT = 9 cm, AB ⟂ AC en AT ⟂ ABC. Om de hoek tussen BCT en ABC te vinden gebruik je snijlijn BC. De loodlijn AN op BC heeft lengte 4,8 cm: BC = 10 en ½ × 6 × 8 = ½ × 10 × AN. BC staat loodrecht op AN én de richting AT, dus ANT is een standvlak en ∠ANT een standhoek. Nu is tan ∠ANT = 9/4,8 en volgt 61,93°. De loodvoet N is geen hoekpunt en ook geen midden van BC.",
+          "scene": {
+            "showCube": false,
+            "view": "spatial",
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                6,
+                0,
+                0
+              ],
+              "C": [
+                0,
+                8,
+                0
+              ],
+              "T": [
+                0,
+                0,
+                9
+              ],
+              "N": [
+                3.84,
+                2.88,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA",
+              "AT",
+              "BT",
+              "CT"
+            ],
+            "caption": "N is de loodvoet van A op BC, niet het midden. AN = 4,8 cm; de standhoek ligt bij N.",
+            "highlights": [
+              "AN",
+              "TN",
+              "AT",
+              "BC"
+            ],
+            "planes": [
+              [
+                "B",
+                "C",
+                "T"
+              ],
+              [
+                "A",
+                "B",
+                "C"
+              ]
+            ],
+            "studyPlanes": [
+              [
+                "A",
+                "N",
+                "T"
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "checkAdditions": {
+    "4": [
+      "vorm-l4-check-prisma-lijnen",
+      "vorm-l4-check-tetraeder-lijnvlak",
+      "vorm-l4-check-piramide-vlakken"
+    ]
+  }
+}

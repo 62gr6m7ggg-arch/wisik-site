@@ -30,7 +30,7 @@ for(const block of M.BANK.blocks){
  r=D.resumeBlock(block,[trigger,...noConfirmation]);assert.equal(r.stage,'repair');assert.equal(r.supported,false,'Unconfirmed suspicion uses neutral repair wording');
  const retests=block.retestIds.map(id=>event(id,M.QUESTIONS[id].answer,'retest'));
  if(retests.length>1){r=D.resumeBlock(block,[trigger,...probes,retests[0]]);assert.equal(r.stage,'retest');assert.equal(r.retestIndex,1);assert.deepEqual(r.retestSuccess,[true]);}
- r=D.resumeBlock(block,[trigger,...probes,...retests]);const index=block.questionIds.indexOf(t.qid);assert.equal(r.stage,index===block.questionIds.length-1?'complete':'practice');assert.ok(r.retestSuccess.every(Boolean));
+ r=D.resumeBlock(block,[trigger,...probes,...retests]);const next=block.questionIds.findIndex(id=>id!==t.qid);assert.equal(r.stage,next<0?'complete':'practice');if(next>=0)assert.equal(r.index,next,'Resume the first unanswered main question, including newly inserted earlier questions');assert.ok(r.retestSuccess.every(Boolean));
  const wrongRetests=block.retestIds.map(id=>event(id,[],'retest'));
  assert.equal(D.getBlockDiagnosis(block,[trigger,...probes,...wrongRetests]).retested,false,'Stored payload.correct cannot make a failed repair successful');
  const closure={id:'finished-'+block.id,type:'block',at:++n,payload:{blockId:block.id}};

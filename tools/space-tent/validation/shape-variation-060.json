@@ -1,0 +1,1676 @@
+{
+  "version": "0.6.0",
+  "status": "passed",
+  "questionIds": [
+    "vorm-l4-cos-piramide",
+    "vorm-l4-lines-prisma-verschuiven",
+    "vorm-l4-lines-piramide-kruisend",
+    "vorm-l4-lines-tetraeder-loodrecht",
+    "vorm-l4-plane-piramide-projectie",
+    "vorm-l4-plane-prisma-schuine-ribbe",
+    "vorm-l4-plane-tetraeder-zijvlak",
+    "vorm-l4-dihedral-piramide-standhoek",
+    "vorm-l4-dihedral-tetraeder-oppervlakte",
+    "vorm-l4-dihedral-prisma-diagonaalvlak",
+    "vorm-l4-lines-tetraeder-herhaling",
+    "vorm-l4-plane-piramide-herhaling",
+    "vorm-l4-check-prisma-lijnen",
+    "vorm-l4-check-tetraeder-lijnvlak",
+    "vorm-l4-check-piramide-vlakken",
+    "vorm-l5-punt-lijn-prisma",
+    "vorm-l5-punt-lijn-piramide",
+    "vorm-l5-punt-lijn-buiten-ribbe",
+    "vorm-l5-punt-lijn-prisma-herstel",
+    "vorm-l5-punt-vlak-prisma",
+    "vorm-l5-punt-vlak-piramide",
+    "vorm-l5-punt-vlak-scheef-prisma",
+    "vorm-l5-punt-vlak-vijfhoek-herstel",
+    "vorm-l5-inhoud-tetraeder",
+    "vorm-l5-inhoud-vierzijdige-piramide",
+    "vorm-l5-inhoud-scheve-tetraeder",
+    "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+    "vorm-l5-model-water-prisma",
+    "vorm-l5-model-water-piramide",
+    "vorm-l5-model-balk-in-prisma",
+    "vorm-l5-model-balk-in-piramide",
+    "vorm-l5-model-balk-piramide-herstel",
+    "vorm-l5-check-lijn-tetraeder",
+    "vorm-l5-check-vlak-prisma",
+    "vorm-l5-check-model-piramide",
+    "vorm-l6-common-q1",
+    "vorm-l6-common-q2",
+    "vorm-l6-common-q3",
+    "vorm-l6-common-r1",
+    "vorm-l6-parallel-q1",
+    "vorm-l6-parallel-q2",
+    "vorm-l6-parallel-q3",
+    "vorm-l6-parallel-r1",
+    "vorm-l6-method-q1",
+    "vorm-l6-method-q2",
+    "vorm-l6-method-q3",
+    "vorm-l6-method-r1",
+    "vorm-l6-check-1",
+    "vorm-l6-check-2",
+    "vorm-l6-check-3",
+    "vorm-l7a-check-1",
+    "vorm-l7a-check-2",
+    "vorm-l7b-check-1",
+    "vorm-l7b-check-2"
+  ],
+  "questions": 54,
+  "numeric": 43,
+  "families": [
+    "box-in-square-pyramid",
+    "box-in-triangular-prism",
+    "oblique-pyramid",
+    "oblique-quadrilateral-pyramid",
+    "oblique-triangular-prism",
+    "oblique-triangular-pyramid",
+    "pentagonal-prism",
+    "prism",
+    "pyramid",
+    "rectangular-pyramid",
+    "square-pyramid",
+    "square-pyramid-frustum",
+    "tetrahedron",
+    "triangular-prism",
+    "triangular-prism-frame",
+    "triangular-pyramid"
+  ],
+  "blocks": 11,
+  "theory": 10,
+  "checks": {
+    "4": 3,
+    "5": 3,
+    "6": 3,
+    "7a": 2,
+    "7b": 2
+  },
+  "independentGeometry": [
+    {
+      "level": 4,
+      "output": "{\n  \"ok\": true,\n  \"source\": \"course-content.json\",\n  \"questions\": 15,\n  \"numeric\": 11,\n  \"checks\": 3,\n  \"results\": [\n    {\n      \"id\": \"vorm-l4-cos-piramide\",\n      \"degrees\": 58.41186449479884,\n      \"rounded\": \"58.41\"\n    },\n    {\n      \"id\": \"vorm-l4-lines-piramide-kruisend\",\n      \"degrees\": 48.189685104221404,\n      \"rounded\": \"48.19\"\n    },\n    {\n      \"id\": \"vorm-l4-plane-prisma-schuine-ribbe\",\n      \"degrees\": 48.1896851042214,\n      \"rounded\": \"48.19\"\n    },\n    {\n      \"id\": \"vorm-l4-plane-tetraeder-zijvlak\",\n      \"degrees\": 33.690067525979785,\n      \"rounded\": \"33.69\"\n    },\n    {\n      \"id\": \"vorm-l4-dihedral-tetraeder-oppervlakte\",\n      \"degrees\": 61.92751306414704,\n      \"rounded\": \"61.93\"\n    },\n    {\n      \"id\": \"vorm-l4-dihedral-prisma-diagonaalvlak\",\n      \"degrees\": 51.34019174590991,\n      \"rounded\": \"51.34\"\n    },\n    {\n      \"id\": \"vorm-l4-lines-tetraeder-herhaling\",\n      \"degrees\": 51.54629078329404,\n      \"rounded\": \"51.55\"\n    },\n    {\n      \"id\": \"vorm-l4-plane-piramide-herhaling\",\n      \"degrees\": 58.997280866126005,\n      \"rounded\": \"59.00\"\n    },\n    {\n      \"id\": \"vorm-l4-check-prisma-lijnen\",\n      \"degrees\": 81.86989764584403,\n      \"rounded\": \"81.87\"\n    },\n    {\n      \"id\": \"vorm-l4-check-tetraeder-lijnvlak\",\n      \"degrees\": 41.987212495816664,\n      \"rounded\": \"41.99\"\n    },\n    {\n      \"id\": \"vorm-l4-check-piramide-vlakken\",\n      \"degrees\": 45,\n      \"rounded\": \"45.00\"\n    }\n  ]\n}\n"
+    },
+    {
+      "level": 5,
+      "output": "{\n  \"ok\": true,\n  \"questions\": 20,\n  \"theories\": 4,\n  \"independentMethods\": \"3D cross/dot products, polygon areas, geometric similarity and numerical formula comparisons\",\n  \"results\": [\n    {\n      \"id\": \"vorm-l5-punt-lijn-prisma\",\n      \"answer\": 7.2\n    },\n    {\n      \"id\": \"vorm-l5-punt-lijn-piramide\",\n      \"answer\": 12.18415398160343\n    },\n    {\n      \"id\": \"vorm-l5-punt-lijn-buiten-ribbe\",\n      \"answer\": 9\n    },\n    {\n      \"id\": \"vorm-l5-punt-lijn-prisma-herstel\",\n      \"answer\": 9.6\n    },\n    {\n      \"id\": \"vorm-l5-punt-vlak-prisma\",\n      \"answer\": 7.0588235294117645\n    },\n    {\n      \"id\": \"vorm-l5-punt-vlak-piramide\",\n      \"answer\": 4.615384615384615\n    },\n    {\n      \"id\": \"vorm-l5-punt-vlak-scheef-prisma\",\n      \"answer\": 6\n    },\n    {\n      \"id\": \"vorm-l5-punt-vlak-vijfhoek-herstel\",\n      \"answer\": 8\n    },\n    {\n      \"id\": \"vorm-l5-inhoud-tetraeder\",\n      \"answer\": 4.4566881162492455\n    },\n    {\n      \"id\": \"vorm-l5-inhoud-vierzijdige-piramide\",\n      \"answer\": 9.6\n    },\n    {\n      \"id\": \"vorm-l5-inhoud-scheve-tetraeder\",\n      \"answer\": 5.857122361103716\n    },\n    {\n      \"id\": \"vorm-l5-inhoud-rechthoekige-piramide-herstel\",\n      \"answer\": 7.427813527082075\n    },\n    {\n      \"id\": \"vorm-l5-model-water-prisma\",\n      \"answer\": \"linear\"\n    },\n    {\n      \"id\": \"vorm-l5-model-water-piramide\",\n      \"answer\": 80.99999999999999\n    },\n    {\n      \"id\": \"vorm-l5-model-balk-in-prisma\",\n      \"answer\": 4.5\n    },\n    {\n      \"id\": \"vorm-l5-model-balk-in-piramide\",\n      \"answer\": \"cubic\"\n    },\n    {\n      \"id\": \"vorm-l5-model-balk-piramide-herstel\",\n      \"answer\": 3\n    },\n    {\n      \"id\": \"vorm-l5-check-lijn-tetraeder\",\n      \"answer\": 11.092339699089639\n    },\n    {\n      \"id\": \"vorm-l5-check-vlak-prisma\",\n      \"answer\": 4.615384615384615\n    },\n    {\n      \"id\": \"vorm-l5-check-model-piramide\",\n      \"answer\": 588\n    }\n  ]\n}\n"
+    },
+    {
+      "level": 6,
+      "output": "{\n  \"passed\": true,\n  \"questions\": 19,\n  \"results\": [\n    {\n      \"id\": \"vorm-l6-common-q1\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 4.8\n    },\n    {\n      \"id\": \"vorm-l6-common-q2\",\n      \"shape\": \"triangular-prism\",\n      \"value\": 5\n    },\n    {\n      \"id\": \"vorm-l6-common-q3\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 6\n    },\n    {\n      \"id\": \"vorm-l6-common-r1\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 7\n    },\n    {\n      \"id\": \"vorm-l6-parallel-q1\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 6.24695048\n    },\n    {\n      \"id\": \"vorm-l6-parallel-q2\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 7.05882353\n    },\n    {\n      \"id\": \"vorm-l6-parallel-q3\",\n      \"shape\": \"triangular-prism-frame\",\n      \"value\": 8\n    },\n    {\n      \"id\": \"vorm-l6-parallel-r1\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 7\n    },\n    {\n      \"id\": \"vorm-l6-method-q1\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 41.9872125\n    },\n    {\n      \"id\": \"vorm-l6-method-q2\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 3.46410162\n    },\n    {\n      \"id\": \"vorm-l6-method-q3\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 63.43494882\n    },\n    {\n      \"id\": \"vorm-l6-method-r1\",\n      \"shape\": \"triangular-prism-frame\",\n      \"value\": 7.2\n    },\n    {\n      \"id\": \"vorm-l6-check-1\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 7.2\n    },\n    {\n      \"id\": \"vorm-l6-check-2\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 5\n    },\n    {\n      \"id\": \"vorm-l6-check-3\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 33.69006753\n    },\n    {\n      \"id\": \"vorm-l7a-check-1\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 8.13733471\n    },\n    {\n      \"id\": \"vorm-l7a-check-2\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 69.44395478\n    },\n    {\n      \"id\": \"vorm-l7b-check-1\",\n      \"shape\": \"triangular-prism\",\n      \"value\": 4.8\n    },\n    {\n      \"id\": \"vorm-l7b-check-2\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 61.92751306\n    }\n  ],\n  \"checks\": {\n    \"6\": [\n      \"vorm-l6-check-1\",\n      \"vorm-l6-check-2\",\n      \"vorm-l6-check-3\"\n    ],\n    \"7a\": [\n      \"vorm-l7a-check-1\",\n      \"vorm-l7a-check-2\"\n    ],\n    \"7b\": [\n      \"vorm-l7b-check-1\",\n      \"vorm-l7b-check-2\"\n    ]\n  },\n  \"theoryExamples\": 3,\n  \"limitations\": \"Coordinate and content-structure checks only; no browser, physical-device, independent teacher review or measured learning-effect claim.\"\n}\n"
+    }
+  ],
+  "browser": {
+    "version": "0.6.0",
+    "status": "passed",
+    "ids": [
+      "vorm-l4-cos-piramide",
+      "vorm-l4-lines-prisma-verschuiven",
+      "vorm-l4-lines-piramide-kruisend",
+      "vorm-l4-lines-tetraeder-loodrecht",
+      "vorm-l4-plane-piramide-projectie",
+      "vorm-l4-plane-prisma-schuine-ribbe",
+      "vorm-l4-plane-tetraeder-zijvlak",
+      "vorm-l4-dihedral-piramide-standhoek",
+      "vorm-l4-dihedral-tetraeder-oppervlakte",
+      "vorm-l4-dihedral-prisma-diagonaalvlak",
+      "vorm-l4-lines-tetraeder-herhaling",
+      "vorm-l4-plane-piramide-herhaling",
+      "vorm-l4-check-prisma-lijnen",
+      "vorm-l4-check-tetraeder-lijnvlak",
+      "vorm-l4-check-piramide-vlakken",
+      "vorm-l5-punt-lijn-prisma",
+      "vorm-l5-punt-lijn-piramide",
+      "vorm-l5-punt-lijn-buiten-ribbe",
+      "vorm-l5-punt-lijn-prisma-herstel",
+      "vorm-l5-punt-vlak-prisma",
+      "vorm-l5-punt-vlak-piramide",
+      "vorm-l5-punt-vlak-scheef-prisma",
+      "vorm-l5-punt-vlak-vijfhoek-herstel",
+      "vorm-l5-inhoud-tetraeder",
+      "vorm-l5-inhoud-vierzijdige-piramide",
+      "vorm-l5-inhoud-scheve-tetraeder",
+      "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+      "vorm-l5-model-water-prisma",
+      "vorm-l5-model-water-piramide",
+      "vorm-l5-model-balk-in-prisma",
+      "vorm-l5-model-balk-in-piramide",
+      "vorm-l5-model-balk-piramide-herstel",
+      "vorm-l5-check-lijn-tetraeder",
+      "vorm-l5-check-vlak-prisma",
+      "vorm-l5-check-model-piramide",
+      "vorm-l6-common-q1",
+      "vorm-l6-common-q2",
+      "vorm-l6-common-q3",
+      "vorm-l6-common-r1",
+      "vorm-l6-parallel-q1",
+      "vorm-l6-parallel-q2",
+      "vorm-l6-parallel-q3",
+      "vorm-l6-parallel-r1",
+      "vorm-l6-method-q1",
+      "vorm-l6-method-q2",
+      "vorm-l6-method-q3",
+      "vorm-l6-method-r1",
+      "vorm-l6-check-1",
+      "vorm-l6-check-2",
+      "vorm-l6-check-3",
+      "vorm-l7a-check-1",
+      "vorm-l7a-check-2",
+      "vorm-l7b-check-1",
+      "vorm-l7b-check-2"
+    ],
+    "results": [
+      {
+        "environment": "chromium-desktop",
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "status": "passed",
+        "questions": [
+          {
+            "id": "vorm-l4-cos-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-prisma-verschuiven",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-piramide-kruisend",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-tetraeder-loodrecht",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-piramide-projectie",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-prisma-schuine-ribbe",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-tetraeder-zijvlak",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-dihedral-piramide-standhoek",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-dihedral-tetraeder-oppervlakte",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-dihedral-prisma-diagonaalvlak",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-tetraeder-herhaling",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-piramide-herhaling",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-check-prisma-lijnen",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-check-tetraeder-lijnvlak",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-check-piramide-vlakken",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-buiten-ribbe",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-prisma-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-scheef-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-vijfhoek-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-tetraeder",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-vierzijdige-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-scheve-tetraeder",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-water-prisma",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-water-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-balk-in-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-balk-in-piramide",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-balk-piramide-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-check-lijn-tetraeder",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-check-vlak-prisma",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-check-model-piramide",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-q1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-q2",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-q3",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-r1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-q1",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-q2",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-q3",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-r1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-q1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-q2",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-q3",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-r1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-check-1",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-check-2",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-check-3",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7a-check-1",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7a-check-2",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7b-check-1",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7b-check-2",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          }
+        ],
+        "screenshots": [
+          "chromium-desktop-vorm-l4-lines-prisma-verschuiven.png",
+          "chromium-desktop-vorm-l6-common-q3.png"
+        ]
+      },
+      {
+        "environment": "chromium-mobile",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "status": "passed",
+        "questions": [
+          {
+            "id": "vorm-l4-cos-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-prisma-verschuiven",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-piramide-kruisend",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-tetraeder-loodrecht",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-piramide-projectie",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-prisma-schuine-ribbe",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-tetraeder-zijvlak",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-dihedral-piramide-standhoek",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-dihedral-tetraeder-oppervlakte",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-dihedral-prisma-diagonaalvlak",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-tetraeder-herhaling",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-piramide-herhaling",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-check-prisma-lijnen",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-check-tetraeder-lijnvlak",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-check-piramide-vlakken",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-buiten-ribbe",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-prisma-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-scheef-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-vijfhoek-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-tetraeder",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-vierzijdige-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-scheve-tetraeder",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-water-prisma",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-water-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-balk-in-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-balk-in-piramide",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-balk-piramide-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-check-lijn-tetraeder",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-check-vlak-prisma",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-check-model-piramide",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-q1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-q2",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-q3",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-r1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-q1",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-q2",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-q3",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-r1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-q1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-q2",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-q3",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-r1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-check-1",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-check-2",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-check-3",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7a-check-1",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7a-check-2",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7b-check-1",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7b-check-2",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          }
+        ],
+        "screenshots": [
+          "chromium-mobile-vorm-l4-lines-prisma-verschuiven.png",
+          "chromium-mobile-vorm-l6-common-q3.png"
+        ]
+      },
+      {
+        "environment": "webkit-mobile",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "status": "passed",
+        "questions": [
+          {
+            "id": "vorm-l4-cos-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-prisma-verschuiven",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-piramide-kruisend",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-tetraeder-loodrecht",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-piramide-projectie",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-prisma-schuine-ribbe",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-tetraeder-zijvlak",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-dihedral-piramide-standhoek",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-dihedral-tetraeder-oppervlakte",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-dihedral-prisma-diagonaalvlak",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-lines-tetraeder-herhaling",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-plane-piramide-herhaling",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-check-prisma-lijnen",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-check-tetraeder-lijnvlak",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l4-check-piramide-vlakken",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-buiten-ribbe",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-lijn-prisma-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-scheef-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-punt-vlak-vijfhoek-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-tetraeder",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-vierzijdige-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-scheve-tetraeder",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-water-prisma",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-water-piramide",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-balk-in-prisma",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-balk-in-piramide",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-model-balk-piramide-herstel",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-check-lijn-tetraeder",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-check-vlak-prisma",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l5-check-model-piramide",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-q1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-q2",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-q3",
+            "type": "points",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-common-r1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-q1",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-q2",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-q3",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-parallel-r1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-q1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-q2",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-q3",
+            "type": "choice",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 9,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-method-r1",
+            "type": "numeric",
+            "check": false,
+            "status": "passed",
+            "initialSvgCount": 8,
+            "feedbackSvgCount": 7,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-check-1",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-check-2",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l6-check-3",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7a-check-1",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7a-check-2",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7b-check-1",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          },
+          {
+            "id": "vorm-l7b-check-2",
+            "type": "numeric",
+            "check": true,
+            "status": "passed",
+            "initialSvgCount": 2,
+            "feedbackSvgCount": 2,
+            "revealSvgCount": 5
+          }
+        ],
+        "screenshots": [
+          "webkit-mobile-vorm-l4-lines-prisma-verschuiven.png",
+          "webkit-mobile-vorm-l6-common-q3.png"
+        ]
+      }
+    ],
+    "errors": [],
+    "limitations": [
+      "Automated Linux browsers and mobile emulation; not a physical iPhone test.",
+      "Checks submission, rendering and feedback rules, not the quality of a student-written proof.",
+      "Exact mathematical answers are independently tested by the shape coordinate validators."
+    ]
+  },
+  "errors": [],
+  "limitations": [
+    "Eigen nieuwe opgaven; geen volledige census van de oorspronkelijke huiswerkvragen.",
+    "Geen onafhankelijke HAN-docentbeoordeling of aangetoonde leerwinst."
+  ]
+}

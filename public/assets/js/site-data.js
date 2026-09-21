@@ -29,7 +29,7 @@ window.WISIK_TOOLS = Object.freeze([
     maturity: "mainstage",
     status: "open",
     statusLabel: "Open om te leren — in ontwikkeling met gebruikers",
-    version: "0.5.4",
+    version: "0.6.0",
     summary: "Zes leslevels met visuele uitleg, adaptief oefenen en construeren. Het toplevel verbindt de stof in twee gemengde proeven en papierwerk.",
     productUrl: "/hbo/space-tent/",
     appUrl: "/apps/ruimteklaar/",

@@ -9,3 +9,6 @@ node_modules/
 
 .knowledge-browser/
 .workspace-browser/
+.shape-browser/
+.entry-browser/
+.continuation-browser/

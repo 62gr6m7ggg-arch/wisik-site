@@ -67,10 +67,14 @@ delete globalThis.__questionFixture;
 let sequence=0;
 const answerEvent=(questionId,answer,context)=>({id:'resume-'+(++sequence),type:'answer',at:sequence,payload:{questionId,answer,context,sessionId:'same-resume',helped:false,correct:false}});
 for(const block of BANK.blocks){
+ const triggerIndex=block.questionIds.indexOf(block.misconception.trigger.qid);
+ // A last-position trigger can complete the block only if all earlier work exists.
+ // Include interleaved transfer questions in that real session history as well.
+ const prior=block.questionIds.slice(0,triggerIndex).map(id=>answerEvent(id,BANK.questions.find(q=>q.id===id).answer,'practice'));
  const trigger=answerEvent(block.misconception.trigger.qid,[block.misconception.trigger.wrongAnswer],'practice');
  const probes=block.probeIds.map((id,i)=>answerEvent(id,[block.misconception.probeWrongAnswers[i]],'probe'));
  const retests=block.retestIds.map(id=>answerEvent(id,BANK.questions.find(q=>q.id===id).answer,'retest'));
- const resume=events=>render(LearningView,{block,events,save:async()=>true,onBack:()=>{},onDone:()=>{}});
+ const resume=events=>render(LearningView,{block,events:[...prior,...events],save:async()=>true,onBack:()=>{},onDone:()=>{}});
  assert.ok(resume([trigger]).includes('EVEN PRECIES KIJKEN'),block.id+' must resume the first probe');
  assert.ok(resume([trigger,probes[0]]).includes('2 / 2'),block.id+' must resume the second probe');
  assert.ok(resume([trigger,...probes]).includes('We zien hetzelfde denkpatroon.'),block.id+' must resume supported repair');
@@ -206,9 +210,21 @@ console.log(`Interaction SSR checks passed: ${cards} question-card states, ${fig
  const {VM,PM,COURSE,CourseFigure,InsightFigure,ConstructionLab,CoursePaper,Paper}=module.exports;
  const digest=value=>require('node:crypto').createHash('sha256').update(value).digest('hex');
  function firstSvg(html){const begin=html.indexOf('<svg');if(begin<0)return '';let depth=0;for(const m of html.slice(begin).matchAll(/<\/?svg\b[^>]*>/g)){depth+=m[0].startsWith('</')?-1:1;if(depth===0)return html.slice(begin,begin+m.index+m[0].length).replace(/id="[^"]+"/g,'id="ID"').replace(/url\(#[^)]+\)/g,'url(#ID)');}throw Error('Unclosed SVG');}
+ const oldContract=JSON.parse(readFileSync(resolve(site,'validation/learning-contract-042.json'),'utf8'));
+ const fragments=[4,5,6].map(level=>JSON.parse(readFileSync(resolve(site,`app/shape-variation-level${level}.json`),'utf8')));
+ const addedQuestions=fragments.flatMap(f=>f.questions),addedIds=new Set(addedQuestions.map(q=>q.id));
+ const addedBlocks=fragments.flatMap(f=>f.blockAdditions),addedTheory=addedBlocks.flatMap(b=>b.theory||[]);
+ assert.equal(addedIds.size,addedQuestions.length,'Every explicitly permitted new question has a unique ID');
+ assert.equal(BANK.questions.length,oldContract.questions.length+addedQuestions.length,'The current bank contains every original and added question exactly once');
+ assert.equal(new Set(BANK.questions.map(q=>q.id)).size,BANK.questions.length,'The current bank has no duplicate question IDs');
+ assert.ok(addedQuestions.every(q=>q.id.startsWith('vorm-')&&!oldContract.questions.some(old=>old.id===q.id)),'Shape fragments add new IDs only');
+ for(const question of addedQuestions)assert.deepEqual(BANK.questions.find(q=>q.id===question.id),question,question.id+' must match its reviewed shape fragment');
+ const legacyQuestions=BANK.questions.filter(q=>!addedIds.has(q.id));
+ assert.deepEqual(legacyQuestions,oldContract.questions,'Every original question, answer and ordering stays intact; only explicitly listed shape questions may be added');
  const old=JSON.parse(readFileSync(resolve(site,'validation/visual-regression-042.json'),'utf8'));
+ assert.deepEqual(Object.keys(old).sort(),legacyQuestions.flatMap(q=>[q.id+'/false',q.id+'/true']).sort(),'The historical snapshot covers every original question in both states');
  let preserved=0;
- for(const question of BANK.questions)for(const reveal of [false,true]){
+ for(const question of legacyQuestions)for(const reveal of [false,true]){
   const key=question.id+'/'+reveal,actual=digest(firstSvg(render(QuestionFigure,{question,reveal})));
   if(question.id==='probe-p2')assert.notEqual(actual,old[key],'The paired-camera comparison deliberately gets one fixed scale');
   else{assert.equal(actual,old[key],key+' original main figure must stay intact');preserved++;}
@@ -270,14 +286,32 @@ console.log(`Interaction SSR checks passed: ${cards} question-card states, ${fig
  assert.ok(!render(Paper,{save:async()=>true,onBack:()=>{},alreadyDone:false}).includes('data-viewing-guide'));
  assert.match(geometrySource,/onExplore\?\.\(\);setPlaneFocus\(name\)/,'A practice plane view records support');
  assert.match(geometrySource,/function reset\(\)\{drag.current=null;setPlaneFocus\(''\)/,'Reset clears the active plane');
- const oldContract=JSON.parse(readFileSync(resolve(site,'validation/learning-contract-042.json'),'utf8'));
- const currentContract={questions:BANK.questions,blocks:BANK.blocks.map(({theory,repair,...rest})=>rest),checks:CHECKS,papers:COURSE.papers,constructions:tasks};
- assert.deepEqual(currentContract,oldContract,'Questions, answers, diagnoses, checks, paper tasks and construction data stay intact');
+ const originalIds=ids=>ids.filter(id=>!addedIds.has(id));
+ const newIds=ids=>ids.filter(id=>addedIds.has(id));
+ const currentContract={questions:legacyQuestions,blocks:BANK.blocks.map(({theory,repair,...rest})=>({...rest,questionIds:originalIds(rest.questionIds),probeIds:originalIds(rest.probeIds),retestIds:originalIds(rest.retestIds)})),checks:Object.fromEntries(Object.entries(CHECKS).map(([key,ids])=>[key,originalIds(ids)])),papers:COURSE.papers,constructions:tasks};
+ assert.deepEqual(currentContract,oldContract,'All original block IDs, question order, answers, diagnoses, check order, paper tasks and construction data stay intact');
+ for(const block of BANK.blocks){
+  const additions=addedBlocks.filter(b=>b.id===block.id);
+  for(const role of ['questionIds','probeIds','retestIds'])assert.deepEqual(newIds(block[role]),additions.flatMap(b=>b[role]||[]),block.id+'/'+role+' allows only reviewed additions in their stated order');
+  const expectedTheory=additions.flatMap(b=>b.theory||[]),titles=new Set(expectedTheory.map(t=>t.title));
+  assert.equal(titles.size,expectedTheory.length,block.id+' added theory titles must be unique');
+  assert.deepEqual(block.theory.filter(t=>titles.has(t.title)),expectedTheory,block.id+' added theory must match the reviewed fragments');
+ }
+ assert.ok(addedBlocks.every(b=>BANK.blocks.some(block=>block.id===b.id)),'No additions refer to an unknown block');
+ for(const [key,ids] of Object.entries(CHECKS))assert.deepEqual(newIds(ids),fragments.flatMap(f=>f.checkAdditions?.[key]||[]),key+' check adds only reviewed questions');
+ assert.ok(fragments.every(f=>Object.keys(f.checkAdditions||{}).every(key=>Object.hasOwn(CHECKS,key))),'No additions refer to an unknown check');
  const ledger=JSON.parse(readFileSync(resolve(site,'validation/viewing-review-043.json'),'utf8'));
- assert.deepEqual(ledger.questions.map(q=>q.id).sort(),BANK.questions.map(q=>q.id).sort());
+ assert.deepEqual(ledger.questions.map(q=>q.id).sort(),legacyQuestions.map(q=>q.id).sort());
  assert.deepEqual(ledger.blocks.map(b=>b.id).sort(),BANK.blocks.map(b=>b.id).sort());
- assert.equal(ledger.instructionStates,instructions);assert.equal(ledger.explicitStudyViews,studyViews);
- console.log(`Whole-tool viewing checks passed: ${instructions} instruction/repair states, ${studyViews} explicit study-plane views, ${rays} matching view/ray models, ${preserved} unchanged primary SVGs, all ${tasks.length} construction tasks and ${Object.keys(COURSE.papers).length+1} paper tasks. All grading and diagnosis data match 0.4.2.`);
+ assert.equal(ledger.instructionStates,instructions-addedTheory.length);
+ assert.equal(ledger.explicitStudyViews,studyViews-addedTheory.reduce((n,t)=>n+(t.scene?.studyPlanes||[]).length,0));
+ for(const block of BANK.blocks){
+  const titles=new Set(addedBlocks.filter(b=>b.id===block.id).flatMap(b=>(b.theory||[]).map(t=>t.title)));
+  const legacyEntries=[...block.theory.filter(t=>!titles.has(t.title)),block.repair],review=ledger.blocks.find(b=>b.id===block.id);
+  assert.equal(legacyEntries.length,review.instructionStates,block.id+' retains every original instruction state');
+  assert.deepEqual([...new Set(legacyEntries.flatMap(t=>(t.scene?.studyPlanes||[]).map(p=>p.join(''))))].sort(),[...review.studyPlanes].sort(),block.id+' retains the original study planes');
+ }
+ console.log(`Whole-tool viewing checks passed: ${instructions} instruction/repair states, ${studyViews} explicit study-plane views, ${rays} matching view/ray models, ${preserved} unchanged primary SVGs, all ${tasks.length} construction tasks and ${Object.keys(COURSE.papers).length+1} paper tasks. The complete original grading and diagnosis subset matches 0.4.2; only the explicit shape-fragment additions extend it.`);
 }
 
 // Selection-first contract: resolve actual geometry, never projected crossings.

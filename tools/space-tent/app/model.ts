@@ -2,6 +2,7 @@ import type {ExampleId} from './insight-scenes';
 import data from './content.json';
 import course from './course-content.json';
 import constructionData from './construction-tasks.json';
+import legacyCurriculum from './legacy-curriculum.json';
 import {numericValue} from './numeric';
 import type {V3} from './geometry-math';
 export type Skill='inzicht'|'construeren'|'onderbouwen'|'rekenen';
@@ -12,12 +13,15 @@ export type Block={id:string;level?:number;title:string;subtitle:string;theory:T
 export type PaperTask={title:string;prompt:string;steps:string[];rubric:string[];solution:string[];scene:Scene};
 export const COURSE=course as unknown as {blocks:Block[];questions:Question[];checks:Record<string,string[]>;papers:Record<string,PaperTask>;sources:unknown[]};
 export const CHECKS:Record<string,string[]>={'1':data.checkpointIds,...COURSE.checks};
+export const LEGACY_CHECKS:Record<string,string[]>=legacyCurriculum.checks;
+export const LEGACY_BLOCK_QUESTIONS:Record<string,string[]>=legacyCurriculum.blocks;
 export const BANK={blocks:[...data.blocks.map(b=>({...b,level:1})),...COURSE.blocks] as Block[],questions:[...data.questions,...COURSE.questions] as Question[],checkpointIds:Object.values(CHECKS).flat()};
 export const QUESTIONS=Object.fromEntries(BANK.questions.map(q=>[q.id,q]));
 export const SKILLS:Skill[]=['inzicht','construeren','onderbouwen','rekenen'];
 export const SKILL_NAMES={inzicht:'Ruimtelijk inzicht',construeren:'Construeren',onderbouwen:'Onderbouwen',rekenen:'Rekenen'};
 export type LearningEvent={id:string;type:'answer'|'lookup'|'block'|'paper'|'workbench'|'construction';at:number;payload:Record<string,unknown>};
-export type AnswerEvent=LearningEvent & {payload:{questionId:string;answer:string[];helped:boolean;context:string;sessionId:string;correct:boolean;working?:string}};
+export type AnswerEvent=LearningEvent & {payload:{questionId:string;answer:string[];helped:boolean;context:string;sessionId:string;correct:boolean;working?:string;checkQuestionIds?:string[]}};
+export function sameQuestionIds(a:readonly string[],b:readonly string[]){return a.length===b.length&&new Set(a).size===a.length&&a.every(id=>b.includes(id))}
 export function correctAnswer(q:Question,a:string[]){if(new Set(a).size!==a.length)return false;if(q.type==='numeric'){const n=a.length===1?numericValue(a[0]):null;if(n===null)return false;const expected=Number(q.answer[0]);return q.decimals!==undefined?Math.abs(n-expected)<=1e-6||Math.abs(n-Number(expected.toFixed(q.decimals)))<=1e-7:Math.abs(n-expected)<=(q.tolerance??.02)}if(q.acceptAny?.length)return a.length===(q.selectCount||1)&&a.every(k=>q.acceptAny!.includes(k));return a.length===q.answer.length&&[...a].sort().join('|')===[...q.answer].sort().join('|')}
 export function pointsForQuestion(q:Question){return q.scene?.showCube===false?Object.keys({...q.scene.points,...q.extraPoints}).filter(k=>!q.scene?.hiddenLabels?.includes(k)):Object.keys({...{A:0,B:0,C:0,D:0,E:0,F:0,G:0,H:0},...q.scene?.points,...q.extraPoints}).filter(k=>!q.scene?.hiddenLabels?.includes(k))}
 export function checkGroup(questionId:string){return Object.keys(CHECKS).find(k=>CHECKS[k].includes(questionId))}
@@ -25,21 +29,24 @@ export function blocksForLevel(level:number){return BANK.blocks.filter(b=>(b.lev
 /** An unfinished lookup-only check is resumable and cannot become independent
  * merely by reloading. No article name or query is stored in these events. */
 export function checkAttempts(events:LearningEvent[],key:string){
- const ids=CHECKS[key]||[],groups=new Map<string,{rows:AnswerEvent[];lookups:LearningEvent[]}>();
+ const currentIds=CHECKS[key]||[],groups=new Map<string,{rows:AnswerEvent[];lookups:LearningEvent[]}>();
  for(const e of events){
-  if((e.type!=='answer'&&e.type!=='lookup')||e.payload.context!=='check'||!ids.includes(String(e.payload.questionId)))continue;
+  if((e.type!=='answer'&&e.type!=='lookup')||e.payload.context!=='check'||!currentIds.includes(String(e.payload.questionId)))continue;
   const sid=String(e.payload.sessionId),group=groups.get(sid)||{rows:[],lookups:[]};
   if(e.type==='lookup')group.lookups.push(e);
   else if(!group.rows.some(a=>a.payload.questionId===e.payload.questionId))group.rows.push(e as AnswerEvent);
   groups.set(sid,group);
  }
  return [...groups].map(([sessionId,{rows,lookups}])=>{
-  const complete=ids.length>0&&rows.length===ids.length;
+  const ids=rows.find(e=>e.payload.checkQuestionIds)?.payload.checkQuestionIds||currentIds;
+  const validContract=sameQuestionIds(ids,currentIds)||sameQuestionIds(ids,LEGACY_CHECKS[key]||[]);
+  const consistent=rows.every(e=>(!e.payload.checkQuestionIds||sameQuestionIds(e.payload.checkQuestionIds,ids))&&ids.includes(e.payload.questionId));
+  const complete=validContract&&consistent&&ids.length>0&&ids.every(id=>rows.some(e=>e.payload.questionId===id));
   const at=Math.max(...(complete?rows:[...rows,...lookups]).map(e=>e.at));
   const used=lookups.filter(e=>e.at<=at),helped=rows.some(e=>e.payload.helped)||used.length>0;
   const effectiveRows=rows.map(e=>helped?{...e,payload:{...e.payload,helped:true}}:e);
-  return {sessionId,rows:effectiveRows,helped,complete,
-   passed:ids.length>0&&rows.length===ids.length&&!helped&&rows.every(e=>correctAnswer(QUESTIONS[e.payload.questionId],e.payload.answer)),
+  return {sessionId,questionIds:[...ids],rows:effectiveRows,helped,complete,
+   passed:complete&&!helped&&rows.every(e=>correctAnswer(QUESTIONS[e.payload.questionId],e.payload.answer)),
    at,startedAt:Math.min(...[...rows,...used].map(e=>e.at))};
  });
 }
@@ -100,7 +107,6 @@ export const LEVELS=[
 /** Feedback and aggregate counters reveal no answers before a whole check. */
 export function visibleEvidenceAnswers(events:LearningEvent[],checkpointIds:string[]){
  const seen=new Set<string>();const answers=effectiveAnswerEvents(events).filter(e=>{if(seen.has(e.id))return false;seen.add(e.id);return true});
- const groups=new Map<string,Set<string>>();
- for(const e of answers)if(e.payload.context==='check'&&checkpointIds.includes(e.payload.questionId)){const key=checkGroup(e.payload.questionId)+'|'+e.payload.sessionId;const ids=groups.get(key)||new Set<string>();ids.add(e.payload.questionId);groups.set(key,ids)}
- return answers.filter(e=>{if(e.payload.context==='probe')return false;if(e.payload.context!=='check')return true;const group=checkGroup(e.payload.questionId);return !!group&&CHECKS[group].every(id=>groups.get(group+'|'+e.payload.sessionId)?.has(id))});
+ const complete=new Set(Object.keys(CHECKS).flatMap(key=>checkAttempts(events,key).filter(a=>a.complete).map(a=>key+'|'+a.sessionId)));
+ return answers.filter(e=>{if(e.payload.context==='probe')return false;if(e.payload.context!=='check')return true;return checkpointIds.includes(e.payload.questionId)&&complete.has(checkGroup(e.payload.questionId)+'|'+e.payload.sessionId)});
 }
