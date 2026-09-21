@@ -59,7 +59,7 @@ async function answerQuestion(page,q){
   const selected=(q.acceptAny||q.answer).slice(0,q.selectCount||q.answer.length);
   for(const name of selected)await page.locator('.answer-area .point-tray').getByRole('button',{name,exact:true}).click();
  }else throw new Error(`${q.id}: unsupported type ${q.type}`);
- if(q.working)await page.getByLabel('Jouw aanpak en berekening',{exact:true}).fill('Ik kies een geschikte hulpfiguur en controleer de loodrechte stand vóór mijn berekening.');
+ if(q.working)await page.locator('.answer-area .working-label textarea').fill('Ik kies een geschikte hulpfiguur en controleer de loodrechte stand vóór mijn berekening.');
  const submit=page.getByRole('button',{name:'Antwoord vastleggen',exact:false});
  assert.ok(await submit.isEnabled(),`${q.id}: complete answer enables submission`);
  await submit.click();await page.locator('.feedback-panel').waitFor();
@@ -159,5 +159,6 @@ finally{
  for(const name of ['key.pem','cert.pem'])fs.rmSync(path.join(out,name),{force:true});
  fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(report,null,2));
  console.log(JSON.stringify({status:report.status,questions:report.ids.length,environments:report.results.length,errors:report.errors.length,result:'.shape-browser/results.json'}));
+ if(report.errors.length)console.error(JSON.stringify(report.errors,null,2));
  if(report.status!=='passed')process.exitCode=1;
 }
