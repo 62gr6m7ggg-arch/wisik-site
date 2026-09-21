@@ -1,40 +1,1717 @@
 {
   "product": "Space-tent · Ruimteklaar",
-  "appVersion": "0.5.4",
+  "appVersion": "0.6.0",
   "siteVersion": "0.1.30",
   "status": "passed",
   "scope": {
     "knowledgeEntries": 145,
-    "questions": 261,
-    "numeric": 99,
+    "questions": 315,
+    "numeric": 142,
     "blocks": 23,
-    "theory": 73,
+    "theory": 83,
     "diagnosticRoutes": 23,
     "constructionTasks": 10,
     "legacyConstructionVariants": 2,
+    "shapeVariationQuestions": 54,
     "available": "Alle zes leslevels en het toplevel met proeven A en B en papierwerk"
   },
   "checks": {
-    "knowledge": "145 begrippen uit de zes lessen en het bijbehorende materiaal; uitleg, aanpak, voorbeeld, valkuilen, bronnen en verwante begrippen; 43 figuurvarianten; zoeken zonder hulpregistratie, uitleg lezen met hulpregistratie; behoud van onafhankelijke eerdere resultaten",
+    "knowledge": "145 begrippen uit de zes lessen en het bijbehorende materiaal; uitleg, aanpak, voorbeeld, valkuilen, bronnen en verwante begrippen; zoeken zonder hulpregistratie, uitleg lezen met hulpregistratie; behoud van onafhankelijke eerdere resultaten",
     "voiceOvers": "50 zelfgehoste luistervoorbeelden met leestekst, eigen voorbeeldgegevens en gekoppelde lesblokken; mediavingerafdrukken en loodvoeten gecontroleerd",
     "projectionLesson": "201 tussenstanden: snijpunten van projectiestralen met het tekenvlak onafhankelijk vergeleken met de getoonde projectie; kijkrichting, vlakstand en beeldlengten kloppen bij elkaar; alle hoekpunten passen op vier schermbreedten",
-    "unaffectedFigures": "520 hoofd-SVGs van vragen exact gelijk aan vrijgave 0.4.2; twee standen van het vergelijkingsvoorbeeld doelbewust op dezelfde schermschaal gezet",
-    "wholeToolViewing": "Alle 23 blokken, 96 uitleg-/hersteltoestanden, 80 besproken hulpvlakaanzichten, 210 kijkrichtingmodellen, 10 constructietaken en 8 papieropdrachten gecontroleerd; extra hulp verborgen in diagnoses en proeven; alle vraag-, antwoord-, diagnose- en constructiegegevens gelijk aan 0.4.2",
-    "constructionVisuals": "Vaste lijnkleuren bij verlengen en hervatten, unieke SVG-arceringen, gesloten antwoordvlakken en correcte zijvlakken voor alle tien taken; geen automatisch zichtbaar antwoordvlak",
+    "unaffectedFigures": "520 hoofd-SVGs uit de oorspronkelijke vragenbank gelijk aan vrijgave 0.4.2; twee standen van het vergelijkingsvoorbeeld doelbewust op dezelfde schermschaal gezet. Nieuwe vormvragen vallen onder de huidige meetkunde- en weergavecontroles, niet onder deze historische gelijkheidsclaim.",
+    "wholeToolViewing": "Alle 23 blokken, 106 uitleg-/hersteltoestanden, 85 besproken hulpvlakaanzichten, 210 kijkrichtingmodellen, 10 constructietaken en 8 papieropdrachten gecontroleerd; extra hulp verborgen in diagnoses en proeven.",
+    "constructionVisuals": "Vaste lijnkleuren bij verlengen en hervatten, unieke SVG-arceringen, gesloten antwoordvlakken en correcte zijvlakken voor alle 10 taken; geen automatisch zichtbaar antwoordvlak",
     "diagnosticAnswerCombinations": 805,
-    "questionCardStates": 3132,
-    "feedbackFigures": 522,
+    "questionCardStates": 3780,
+    "feedbackFigures": 630,
     "cameraMovements": 140,
-    "projectedScenes": 73080,
-    "courseScenes": 376,
-    "planePolygons": 180,
+    "projectedScenes": 88200,
+    "courseScenes": 453,
+    "planePolygons": 241,
     "fullRoute": "Alle zeven levels bereikbaar via gevalideerde antwoorden, constructies en zelfcontroles; proef B start minstens 24 uur na geslaagde proef A",
     "constructionDrafts": "Geen beoordeling of XP vóór expliciet inleveren; hervatten behoudt punten, lijnen en gekozen onderbouwing",
     "storage": "Herladen, import/export, ontdubbeling, ongeldige bestanden, opslagfouten, oude voortgang behouden, nul netwerkaanroepen"
   },
+  "shapeVariation": {
+    "version": "0.6.0",
+    "status": "passed",
+    "questionIds": [
+      "vorm-l4-cos-piramide",
+      "vorm-l4-lines-prisma-verschuiven",
+      "vorm-l4-lines-piramide-kruisend",
+      "vorm-l4-lines-tetraeder-loodrecht",
+      "vorm-l4-plane-piramide-projectie",
+      "vorm-l4-plane-prisma-schuine-ribbe",
+      "vorm-l4-plane-tetraeder-zijvlak",
+      "vorm-l4-dihedral-piramide-standhoek",
+      "vorm-l4-dihedral-tetraeder-oppervlakte",
+      "vorm-l4-dihedral-prisma-diagonaalvlak",
+      "vorm-l4-lines-tetraeder-herhaling",
+      "vorm-l4-plane-piramide-herhaling",
+      "vorm-l4-check-prisma-lijnen",
+      "vorm-l4-check-tetraeder-lijnvlak",
+      "vorm-l4-check-piramide-vlakken",
+      "vorm-l5-punt-lijn-prisma",
+      "vorm-l5-punt-lijn-piramide",
+      "vorm-l5-punt-lijn-buiten-ribbe",
+      "vorm-l5-punt-lijn-prisma-herstel",
+      "vorm-l5-punt-vlak-prisma",
+      "vorm-l5-punt-vlak-piramide",
+      "vorm-l5-punt-vlak-scheef-prisma",
+      "vorm-l5-punt-vlak-vijfhoek-herstel",
+      "vorm-l5-inhoud-tetraeder",
+      "vorm-l5-inhoud-vierzijdige-piramide",
+      "vorm-l5-inhoud-scheve-tetraeder",
+      "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+      "vorm-l5-model-water-prisma",
+      "vorm-l5-model-water-piramide",
+      "vorm-l5-model-balk-in-prisma",
+      "vorm-l5-model-balk-in-piramide",
+      "vorm-l5-model-balk-piramide-herstel",
+      "vorm-l5-check-lijn-tetraeder",
+      "vorm-l5-check-vlak-prisma",
+      "vorm-l5-check-model-piramide",
+      "vorm-l6-common-q1",
+      "vorm-l6-common-q2",
+      "vorm-l6-common-q3",
+      "vorm-l6-common-r1",
+      "vorm-l6-parallel-q1",
+      "vorm-l6-parallel-q2",
+      "vorm-l6-parallel-q3",
+      "vorm-l6-parallel-r1",
+      "vorm-l6-method-q1",
+      "vorm-l6-method-q2",
+      "vorm-l6-method-q3",
+      "vorm-l6-method-r1",
+      "vorm-l6-check-1",
+      "vorm-l6-check-2",
+      "vorm-l6-check-3",
+      "vorm-l7a-check-1",
+      "vorm-l7a-check-2",
+      "vorm-l7b-check-1",
+      "vorm-l7b-check-2"
+    ],
+    "questions": 54,
+    "numeric": 43,
+    "families": [
+      "box-in-square-pyramid",
+      "box-in-triangular-prism",
+      "oblique-pyramid",
+      "oblique-quadrilateral-pyramid",
+      "oblique-triangular-prism",
+      "oblique-triangular-pyramid",
+      "pentagonal-prism",
+      "prism",
+      "pyramid",
+      "rectangular-pyramid",
+      "square-pyramid",
+      "square-pyramid-frustum",
+      "tetrahedron",
+      "triangular-prism",
+      "triangular-prism-frame",
+      "triangular-pyramid"
+    ],
+    "blocks": 11,
+    "theory": 10,
+    "checks": {
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7a": 2,
+      "7b": 2
+    },
+    "independentGeometry": [
+      {
+        "level": 4,
+        "output": "{\n  \"ok\": true,\n  \"source\": \"course-content.json\",\n  \"questions\": 15,\n  \"numeric\": 11,\n  \"checks\": 3,\n  \"results\": [\n    {\n      \"id\": \"vorm-l4-cos-piramide\",\n      \"degrees\": 58.41186449479884,\n      \"rounded\": \"58.41\"\n    },\n    {\n      \"id\": \"vorm-l4-lines-piramide-kruisend\",\n      \"degrees\": 48.189685104221404,\n      \"rounded\": \"48.19\"\n    },\n    {\n      \"id\": \"vorm-l4-plane-prisma-schuine-ribbe\",\n      \"degrees\": 48.1896851042214,\n      \"rounded\": \"48.19\"\n    },\n    {\n      \"id\": \"vorm-l4-plane-tetraeder-zijvlak\",\n      \"degrees\": 33.690067525979785,\n      \"rounded\": \"33.69\"\n    },\n    {\n      \"id\": \"vorm-l4-dihedral-tetraeder-oppervlakte\",\n      \"degrees\": 61.92751306414704,\n      \"rounded\": \"61.93\"\n    },\n    {\n      \"id\": \"vorm-l4-dihedral-prisma-diagonaalvlak\",\n      \"degrees\": 51.34019174590991,\n      \"rounded\": \"51.34\"\n    },\n    {\n      \"id\": \"vorm-l4-lines-tetraeder-herhaling\",\n      \"degrees\": 51.54629078329404,\n      \"rounded\": \"51.55\"\n    },\n    {\n      \"id\": \"vorm-l4-plane-piramide-herhaling\",\n      \"degrees\": 58.997280866126005,\n      \"rounded\": \"59.00\"\n    },\n    {\n      \"id\": \"vorm-l4-check-prisma-lijnen\",\n      \"degrees\": 81.86989764584403,\n      \"rounded\": \"81.87\"\n    },\n    {\n      \"id\": \"vorm-l4-check-tetraeder-lijnvlak\",\n      \"degrees\": 41.987212495816664,\n      \"rounded\": \"41.99\"\n    },\n    {\n      \"id\": \"vorm-l4-check-piramide-vlakken\",\n      \"degrees\": 45,\n      \"rounded\": \"45.00\"\n    }\n  ]\n}\n"
+      },
+      {
+        "level": 5,
+        "output": "{\n  \"ok\": true,\n  \"questions\": 20,\n  \"theories\": 4,\n  \"independentMethods\": \"3D cross/dot products, polygon areas, geometric similarity and numerical formula comparisons\",\n  \"results\": [\n    {\n      \"id\": \"vorm-l5-punt-lijn-prisma\",\n      \"answer\": 7.2\n    },\n    {\n      \"id\": \"vorm-l5-punt-lijn-piramide\",\n      \"answer\": 12.18415398160343\n    },\n    {\n      \"id\": \"vorm-l5-punt-lijn-buiten-ribbe\",\n      \"answer\": 9\n    },\n    {\n      \"id\": \"vorm-l5-punt-lijn-prisma-herstel\",\n      \"answer\": 9.6\n    },\n    {\n      \"id\": \"vorm-l5-punt-vlak-prisma\",\n      \"answer\": 7.0588235294117645\n    },\n    {\n      \"id\": \"vorm-l5-punt-vlak-piramide\",\n      \"answer\": 4.615384615384615\n    },\n    {\n      \"id\": \"vorm-l5-punt-vlak-scheef-prisma\",\n      \"answer\": 6\n    },\n    {\n      \"id\": \"vorm-l5-punt-vlak-vijfhoek-herstel\",\n      \"answer\": 8\n    },\n    {\n      \"id\": \"vorm-l5-inhoud-tetraeder\",\n      \"answer\": 4.4566881162492455\n    },\n    {\n      \"id\": \"vorm-l5-inhoud-vierzijdige-piramide\",\n      \"answer\": 9.6\n    },\n    {\n      \"id\": \"vorm-l5-inhoud-scheve-tetraeder\",\n      \"answer\": 5.857122361103716\n    },\n    {\n      \"id\": \"vorm-l5-inhoud-rechthoekige-piramide-herstel\",\n      \"answer\": 7.427813527082075\n    },\n    {\n      \"id\": \"vorm-l5-model-water-prisma\",\n      \"answer\": \"linear\"\n    },\n    {\n      \"id\": \"vorm-l5-model-water-piramide\",\n      \"answer\": 80.99999999999999\n    },\n    {\n      \"id\": \"vorm-l5-model-balk-in-prisma\",\n      \"answer\": 4.5\n    },\n    {\n      \"id\": \"vorm-l5-model-balk-in-piramide\",\n      \"answer\": \"cubic\"\n    },\n    {\n      \"id\": \"vorm-l5-model-balk-piramide-herstel\",\n      \"answer\": 3\n    },\n    {\n      \"id\": \"vorm-l5-check-lijn-tetraeder\",\n      \"answer\": 11.092339699089639\n    },\n    {\n      \"id\": \"vorm-l5-check-vlak-prisma\",\n      \"answer\": 4.615384615384615\n    },\n    {\n      \"id\": \"vorm-l5-check-model-piramide\",\n      \"answer\": 588\n    }\n  ]\n}\n"
+      },
+      {
+        "level": 6,
+        "output": "{\n  \"passed\": true,\n  \"questions\": 19,\n  \"results\": [\n    {\n      \"id\": \"vorm-l6-common-q1\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 4.8\n    },\n    {\n      \"id\": \"vorm-l6-common-q2\",\n      \"shape\": \"triangular-prism\",\n      \"value\": 5\n    },\n    {\n      \"id\": \"vorm-l6-common-q3\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 6\n    },\n    {\n      \"id\": \"vorm-l6-common-r1\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 7\n    },\n    {\n      \"id\": \"vorm-l6-parallel-q1\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 6.24695048\n    },\n    {\n      \"id\": \"vorm-l6-parallel-q2\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 7.05882353\n    },\n    {\n      \"id\": \"vorm-l6-parallel-q3\",\n      \"shape\": \"triangular-prism-frame\",\n      \"value\": 8\n    },\n    {\n      \"id\": \"vorm-l6-parallel-r1\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 7\n    },\n    {\n      \"id\": \"vorm-l6-method-q1\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 41.9872125\n    },\n    {\n      \"id\": \"vorm-l6-method-q2\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 3.46410162\n    },\n    {\n      \"id\": \"vorm-l6-method-q3\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 63.43494882\n    },\n    {\n      \"id\": \"vorm-l6-method-r1\",\n      \"shape\": \"triangular-prism-frame\",\n      \"value\": 7.2\n    },\n    {\n      \"id\": \"vorm-l6-check-1\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 7.2\n    },\n    {\n      \"id\": \"vorm-l6-check-2\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 5\n    },\n    {\n      \"id\": \"vorm-l6-check-3\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 33.69006753\n    },\n    {\n      \"id\": \"vorm-l7a-check-1\",\n      \"shape\": \"oblique-quadrilateral-pyramid\",\n      \"value\": 8.13733471\n    },\n    {\n      \"id\": \"vorm-l7a-check-2\",\n      \"shape\": \"square-pyramid-frustum\",\n      \"value\": 69.44395478\n    },\n    {\n      \"id\": \"vorm-l7b-check-1\",\n      \"shape\": \"triangular-prism\",\n      \"value\": 4.8\n    },\n    {\n      \"id\": \"vorm-l7b-check-2\",\n      \"shape\": \"tetrahedron\",\n      \"value\": 61.92751306\n    }\n  ],\n  \"checks\": {\n    \"6\": [\n      \"vorm-l6-check-1\",\n      \"vorm-l6-check-2\",\n      \"vorm-l6-check-3\"\n    ],\n    \"7a\": [\n      \"vorm-l7a-check-1\",\n      \"vorm-l7a-check-2\"\n    ],\n    \"7b\": [\n      \"vorm-l7b-check-1\",\n      \"vorm-l7b-check-2\"\n    ]\n  },\n  \"theoryExamples\": 3,\n  \"limitations\": \"Coordinate and content-structure checks only; no browser, physical-device, independent teacher review or measured learning-effect claim.\"\n}\n"
+      }
+    ],
+    "browser": {
+      "version": "0.6.0",
+      "status": "passed",
+      "ids": [
+        "vorm-l4-cos-piramide",
+        "vorm-l4-lines-prisma-verschuiven",
+        "vorm-l4-lines-piramide-kruisend",
+        "vorm-l4-lines-tetraeder-loodrecht",
+        "vorm-l4-plane-piramide-projectie",
+        "vorm-l4-plane-prisma-schuine-ribbe",
+        "vorm-l4-plane-tetraeder-zijvlak",
+        "vorm-l4-dihedral-piramide-standhoek",
+        "vorm-l4-dihedral-tetraeder-oppervlakte",
+        "vorm-l4-dihedral-prisma-diagonaalvlak",
+        "vorm-l4-lines-tetraeder-herhaling",
+        "vorm-l4-plane-piramide-herhaling",
+        "vorm-l4-check-prisma-lijnen",
+        "vorm-l4-check-tetraeder-lijnvlak",
+        "vorm-l4-check-piramide-vlakken",
+        "vorm-l5-punt-lijn-prisma",
+        "vorm-l5-punt-lijn-piramide",
+        "vorm-l5-punt-lijn-buiten-ribbe",
+        "vorm-l5-punt-lijn-prisma-herstel",
+        "vorm-l5-punt-vlak-prisma",
+        "vorm-l5-punt-vlak-piramide",
+        "vorm-l5-punt-vlak-scheef-prisma",
+        "vorm-l5-punt-vlak-vijfhoek-herstel",
+        "vorm-l5-inhoud-tetraeder",
+        "vorm-l5-inhoud-vierzijdige-piramide",
+        "vorm-l5-inhoud-scheve-tetraeder",
+        "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+        "vorm-l5-model-water-prisma",
+        "vorm-l5-model-water-piramide",
+        "vorm-l5-model-balk-in-prisma",
+        "vorm-l5-model-balk-in-piramide",
+        "vorm-l5-model-balk-piramide-herstel",
+        "vorm-l5-check-lijn-tetraeder",
+        "vorm-l5-check-vlak-prisma",
+        "vorm-l5-check-model-piramide",
+        "vorm-l6-common-q1",
+        "vorm-l6-common-q2",
+        "vorm-l6-common-q3",
+        "vorm-l6-common-r1",
+        "vorm-l6-parallel-q1",
+        "vorm-l6-parallel-q2",
+        "vorm-l6-parallel-q3",
+        "vorm-l6-parallel-r1",
+        "vorm-l6-method-q1",
+        "vorm-l6-method-q2",
+        "vorm-l6-method-q3",
+        "vorm-l6-method-r1",
+        "vorm-l6-check-1",
+        "vorm-l6-check-2",
+        "vorm-l6-check-3",
+        "vorm-l7a-check-1",
+        "vorm-l7a-check-2",
+        "vorm-l7b-check-1",
+        "vorm-l7b-check-2"
+      ],
+      "results": [
+        {
+          "environment": "chromium-desktop",
+          "viewport": {
+            "width": 1366,
+            "height": 900
+          },
+          "status": "passed",
+          "questions": [
+            {
+              "id": "vorm-l4-cos-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-prisma-verschuiven",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-piramide-kruisend",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-tetraeder-loodrecht",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-piramide-projectie",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-prisma-schuine-ribbe",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-tetraeder-zijvlak",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-dihedral-piramide-standhoek",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-dihedral-tetraeder-oppervlakte",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-dihedral-prisma-diagonaalvlak",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-tetraeder-herhaling",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-piramide-herhaling",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-check-prisma-lijnen",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-check-tetraeder-lijnvlak",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-check-piramide-vlakken",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-buiten-ribbe",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-prisma-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-scheef-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-vijfhoek-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-tetraeder",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-vierzijdige-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-scheve-tetraeder",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-water-prisma",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-water-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-balk-in-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-balk-in-piramide",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-balk-piramide-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-check-lijn-tetraeder",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-check-vlak-prisma",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-check-model-piramide",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-q1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-q2",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-q3",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-r1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-q1",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-q2",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-q3",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-r1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-q1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-q2",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-q3",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-r1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-check-1",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-check-2",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-check-3",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7a-check-1",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7a-check-2",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7b-check-1",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7b-check-2",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            }
+          ],
+          "screenshots": [
+            "chromium-desktop-vorm-l4-lines-prisma-verschuiven.png",
+            "chromium-desktop-vorm-l6-common-q3.png"
+          ]
+        },
+        {
+          "environment": "chromium-mobile",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "status": "passed",
+          "questions": [
+            {
+              "id": "vorm-l4-cos-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-prisma-verschuiven",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-piramide-kruisend",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-tetraeder-loodrecht",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-piramide-projectie",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-prisma-schuine-ribbe",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-tetraeder-zijvlak",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-dihedral-piramide-standhoek",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-dihedral-tetraeder-oppervlakte",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-dihedral-prisma-diagonaalvlak",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-tetraeder-herhaling",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-piramide-herhaling",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-check-prisma-lijnen",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-check-tetraeder-lijnvlak",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-check-piramide-vlakken",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-buiten-ribbe",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-prisma-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-scheef-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-vijfhoek-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-tetraeder",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-vierzijdige-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-scheve-tetraeder",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-water-prisma",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-water-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-balk-in-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-balk-in-piramide",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-balk-piramide-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-check-lijn-tetraeder",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-check-vlak-prisma",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-check-model-piramide",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-q1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-q2",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-q3",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-r1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-q1",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-q2",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-q3",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-r1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-q1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-q2",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-q3",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-r1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-check-1",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-check-2",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-check-3",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7a-check-1",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7a-check-2",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7b-check-1",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7b-check-2",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            }
+          ],
+          "screenshots": [
+            "chromium-mobile-vorm-l4-lines-prisma-verschuiven.png",
+            "chromium-mobile-vorm-l6-common-q3.png"
+          ]
+        },
+        {
+          "environment": "webkit-mobile",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "status": "passed",
+          "questions": [
+            {
+              "id": "vorm-l4-cos-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-prisma-verschuiven",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-piramide-kruisend",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-tetraeder-loodrecht",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-piramide-projectie",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-prisma-schuine-ribbe",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-tetraeder-zijvlak",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-dihedral-piramide-standhoek",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-dihedral-tetraeder-oppervlakte",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-dihedral-prisma-diagonaalvlak",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-lines-tetraeder-herhaling",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-plane-piramide-herhaling",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-check-prisma-lijnen",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-check-tetraeder-lijnvlak",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l4-check-piramide-vlakken",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-buiten-ribbe",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-lijn-prisma-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-scheef-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-punt-vlak-vijfhoek-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-tetraeder",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-vierzijdige-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-scheve-tetraeder",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-inhoud-rechthoekige-piramide-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-water-prisma",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-water-piramide",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-balk-in-prisma",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-balk-in-piramide",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-model-balk-piramide-herstel",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-check-lijn-tetraeder",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-check-vlak-prisma",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l5-check-model-piramide",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-q1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-q2",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-q3",
+              "type": "points",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-common-r1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-q1",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-q2",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-q3",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-parallel-r1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-q1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-q2",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-q3",
+              "type": "choice",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 9,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-method-r1",
+              "type": "numeric",
+              "check": false,
+              "status": "passed",
+              "initialSvgCount": 8,
+              "feedbackSvgCount": 7,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-check-1",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-check-2",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l6-check-3",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7a-check-1",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7a-check-2",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7b-check-1",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            },
+            {
+              "id": "vorm-l7b-check-2",
+              "type": "numeric",
+              "check": true,
+              "status": "passed",
+              "initialSvgCount": 2,
+              "feedbackSvgCount": 2,
+              "revealSvgCount": 5
+            }
+          ],
+          "screenshots": [
+            "webkit-mobile-vorm-l4-lines-prisma-verschuiven.png",
+            "webkit-mobile-vorm-l6-common-q3.png"
+          ]
+        }
+      ],
+      "errors": [],
+      "limitations": [
+        "Automated Linux browsers and mobile emulation; not a physical iPhone test.",
+        "Checks submission, rendering and feedback rules, not the quality of a student-written proof.",
+        "Exact mathematical answers are independently tested by the shape coordinate validators."
+      ]
+    },
+    "errors": [],
+    "limitations": [
+      "Eigen nieuwe opgaven; geen volledige census van de oorspronkelijke huiswerkvragen.",
+      "Geen onafhankelijke HAN-docentbeoordeling of aangetoonde leerwinst."
+    ]
+  },
   "browser": {
     "freeEntry": {
-      "version": "0.5.4",
+      "version": "0.6.0",
       "status": "passed",
       "live": false,
       "results": [
@@ -99,7 +1776,7 @@
       ]
     },
     "knowledge": {
-      "version": "0.5.4",
+      "version": "0.6.0",
       "status": "passed",
       "results": [
         {
@@ -185,7 +1862,7 @@
       ]
     },
     "desktopWorkspace": {
-      "version": "0.5.4",
+      "version": "0.6.0",
       "status": "passed",
       "results": [
         {
@@ -623,243 +2300,234 @@
         "Human ease of use to be assessed by students."
       ]
     },
-    "selectionFirst": {
-      "evidenceVersion": "0.4.5",
-      "status": "passed",
-      "results": [
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l2-parallel",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l2-six",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l3-pyramid",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l3-prism",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l2-lineplane",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l4-standvlak",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l5-foot",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l6-commonfoot",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l7-a",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "construct-l7-b",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "legacy-0",
-          "checks": "complete independent construction and final verification"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "legacy-1",
-          "checks": "complete independent construction and final verification"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "geometric-guards",
-          "checks": "explicit extension before exterior intersection; skew lines rejected"
-        },
-        {
-          "environment": "chromium-desktop",
-          "task": "interaction",
-          "checks": "midpoint, foot, real point/line hits, drag separation, keyboard, 44px actions, no horizontal overflow"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l2-parallel",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l2-six",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l3-pyramid",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l3-prism",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l2-lineplane",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l4-standvlak",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l5-foot",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l6-commonfoot",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l7-a",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "construct-l7-b",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "legacy-0",
-          "checks": "complete independent construction and final verification"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "legacy-1",
-          "checks": "complete independent construction and final verification"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "geometric-guards",
-          "checks": "explicit extension before exterior intersection; skew lines rejected"
-        },
-        {
-          "environment": "chromium-mobile",
-          "task": "interaction",
-          "checks": "midpoint, foot, real point/line hits, drag separation, keyboard, 44px actions, no horizontal overflow"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l2-parallel",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l2-six",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l3-pyramid",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l3-prism",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l2-lineplane",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l4-standvlak",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l5-foot",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l6-commonfoot",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l7-a",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "construct-l7-b",
-          "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "legacy-0",
-          "checks": "complete independent construction and final verification"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "legacy-1",
-          "checks": "complete independent construction and final verification"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "geometric-guards",
-          "checks": "explicit extension before exterior intersection; skew lines rejected"
-        },
-        {
-          "environment": "webkit-mobile",
-          "task": "interaction",
-          "checks": "midpoint, foot, real point/line hits, drag separation, keyboard, 44px actions, no horizontal overflow"
-        }
-      ],
-      "errors": [],
-      "limitations": [
-        "Browser automation on Linux, not a physical iPhone or Safari session.",
-        "Not an empirical usability or learning-effect study."
-      ]
+    "historicalEvidence": {
+      "selectionFirst": {
+        "evidenceVersion": "0.4.5",
+        "status": "passed",
+        "results": [
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l2-parallel",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l2-six",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l3-pyramid",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l3-prism",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l2-lineplane",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l4-standvlak",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l5-foot",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l6-commonfoot",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l7-a",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "construct-l7-b",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "legacy-0",
+            "checks": "complete independent construction and final verification"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "legacy-1",
+            "checks": "complete independent construction and final verification"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "geometric-guards",
+            "checks": "explicit extension before exterior intersection; skew lines rejected"
+          },
+          {
+            "environment": "chromium-desktop",
+            "task": "interaction",
+            "checks": "midpoint, foot, real point/line hits, drag separation, keyboard, 44px actions, no horizontal overflow"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l2-parallel",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l2-six",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l3-pyramid",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l3-prism",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l2-lineplane",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l4-standvlak",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l5-foot",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l6-commonfoot",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l7-a",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "construct-l7-b",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "legacy-0",
+            "checks": "complete independent construction and final verification"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "legacy-1",
+            "checks": "complete independent construction and final verification"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "geometric-guards",
+            "checks": "explicit extension before exterior intersection; skew lines rejected"
+          },
+          {
+            "environment": "chromium-mobile",
+            "task": "interaction",
+            "checks": "midpoint, foot, real point/line hits, drag separation, keyboard, 44px actions, no horizontal overflow"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l2-parallel",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l2-six",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l3-pyramid",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l3-prism",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l2-lineplane",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l4-standvlak",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l5-foot",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l6-commonfoot",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l7-a",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "construct-l7-b",
+            "checks": "pair, reverse, one-click extension, no duplicate, undo, cancel, reload, drawing lock, no early grading or support"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "legacy-0",
+            "checks": "complete independent construction and final verification"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "legacy-1",
+            "checks": "complete independent construction and final verification"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "geometric-guards",
+            "checks": "explicit extension before exterior intersection; skew lines rejected"
+          },
+          {
+            "environment": "webkit-mobile",
+            "task": "interaction",
+            "checks": "midpoint, foot, real point/line hits, drag separation, keyboard, 44px actions, no horizontal overflow"
+          }
+        ],
+        "errors": [],
+        "limitations": [
+          "Browser automation on Linux, not a physical iPhone or Safari session.",
+          "Not an empirical usability or learning-effect study."
+        ]
+      },
+      "voiceOvers": {
+        "evidenceVersion": "0.4.4",
+        "environment": "Chromium 149, lokale productiebundel",
+        "verified": "50 voorbeelden op 320, 390 en 1280 px; afspelen vanuit alle zes lessen; geen autoplay; stoppen bij wisselen, sluiten en oefenen; geen JavaScript-fouten"
+      }
     },
-    "voiceOvers": {
-      "evidenceVersion": "0.4.4",
-      "environment": "Chromium 149, lokale productiebundel",
-      "verified": "50 voorbeelden op 320, 390 en 1280 px; afspelen vanuit alle zes lessen; geen autoplay; stoppen bij wisselen, sluiten en oefenen; geen JavaScript-fouten"
-    },
-    "evidenceVersion": "0.4 — eerdere vrijgave; geen nieuwe browsercontrole voor 0.4.3",
-    "environment": "Chromium, eigen preview van de clientbron uit versie 0.4",
-    "verified": [
-      "Open rekenantwoord en schriftelijke aanpak invoeren",
-      "Verkeerd antwoord toont juiste afgeronde uitkomst in groen",
-      "AC tekenen, loodvoet van B op AC en afstandslijn construeren",
-      "Tekening vastleggen zonder inhoudelijke beoordeling",
-      "Onderbouwing kiezen, herladen en keuze hervatten",
-      "Pas expliciet inleveren rondt de constructie af",
-      "Mobiel iframe: alle zeven leveltegels; breedte en scrollbreedte beide 373 px"
-    ],
     "limitations": [
       "Geen fysieke iPhone/Safari-test uitgevoerd",
       "Geen empirische validering van leerwinst, moeilijkheid of diagnostische foutpositieven",
@@ -963,6 +2631,12 @@
       "source": "Ruimtemeetkunde 2025-2026 lessen 1.1–1.6",
       "slides": "1.2: 10–22; 1.3: 5–11; 1.4: 5–20; 1.5: 8–14; 1.6: 4–10",
       "coverage": "Cumulatieve dekking van zes lessen; tweede variant wisselt kubussen en balken af met driehoekige prisma’s, scheve piramides, afgeknotte piramides en een omgekeerd volumemodel."
+    },
+    {
+      "id": "han-homework-shape-variation-060",
+      "level": "4–7",
+      "source": "HAN Ruimtemeetkunde 1: huiswerk bij lessen 1.4–1.6; Par 2_2 2_4 en 2_5.pdf; Par 4-5.pdf; Uitwerkingen Ruimtemeetkunde 1.pdf",
+      "coverage": "Nieuwe eigen opgaven naar de vaardigheden en vormfamilies in het huiswerk: hoeken, loodvoeten, inhoudsmethode, gelijkvormige doorsneden, ingepaste balken en kruisende lijnen. Prisma’s, tetraëders, centrale en scheve piramides, afgeknotte piramides en samengestelde modellen. Geen letterlijke kopieën en geen claim van een volledige telling van het originele hoofdstuk 10."
     }
   ],
   "runs": [
@@ -983,18 +2657,23 @@
       "output": "Local progress checks passed: all available questions, fresh/reloaded storage, scoring and level gates, proof rechecking for both construction variants, duplicate/conflicting IDs, safe import/export, malformed files, quota/security failures, clock reversal and no network calls."
     },
     {
+      "file": "check-curriculum-contracts.mjs",
+      "output": "Curriculum contracts passed: historical checks/blocks, expanded/interleaved new and resumed sessions, delayed feedback, lookup support, import/export, bare remote events, invalid/conflicting contracts."
+    },
+    {
       "file": "check-interaction.cjs",
-      "output": "Interaction SSR checks passed: 3132 question-card states, 522 feedback figures, 23 deferred triggers, 140 camera movements and 73080 projected question scenes. Pointer behavior still requires browser QA.\nConstruction visual checks passed: stable line colors, distinct hatch IDs, no automatic answer planes, and complete convex boundary faces for all tasks.\nProjection checks passed: 201 valid intermediate projections, consistent rays/planes/lengths, and four viewport sizes.\nWhole-tool viewing checks passed: 96 instruction/repair states, 80 explicit study-plane views, 210 matching view/ray models, 520 unchanged primary SVGs, all 10 construction tasks and 8 paper tasks. All grading and diagnosis data match 0.4.2.\nSelection-first checks passed: 10 course tasks, 198 forward/reverse edge selections, idempotent extensions and world-coordinate guards."
+      "output": "Interaction SSR checks passed: 3780 question-card states, 630 feedback figures, 23 deferred triggers, 140 camera movements and 88200 projected question scenes. Pointer behavior still requires browser QA.\nConstruction visual checks passed: stable line colors, distinct hatch IDs, no automatic answer planes, and complete convex boundary faces for all tasks.\nProjection checks passed: 201 valid intermediate projections, consistent rays/planes/lengths, and four viewport sizes.\nWhole-tool viewing checks passed: 106 instruction/repair states, 85 explicit study-plane views, 210 matching view/ray models, 520 unchanged primary SVGs, all 10 construction tasks and 8 paper tasks. The complete original grading and diagnosis subset matches 0.4.2; only the explicit shape-fragment additions extend it.\nSelection-first checks passed: 10 course tasks, 198 forward/reverse edge selections, idempotent extensions and world-coordinate guards."
     },
     {
       "file": "check-course.mjs",
-      "output": "Course checks passed: 261 questions, 99 numeric answer keys and rounded inputs, 376 scenes, 180 plane polygons, 10 construction tasks, eight assessment groups and a complete seven-level storage roundtrip with delayed summit gate."
+      "output": "Course checks passed: 315 questions, 142 numeric answer keys and rounded inputs, 453 scenes, 241 plane polygons, 10 construction tasks, eight assessment groups and a complete seven-level storage roundtrip with delayed summit gate."
     },
     {
       "file": "check-knowledge.cjs",
       "output": "{\"status\":\"passed\",\"entries\":145,\"relatedLinks\":440,\"illustrations\":43,\"planarPolygons\":24,\"footCases\":101,\"independentCheckGroups\":8,\"coverage\":[\"Complete articles and source references\",\"Dutch alphabet, aliases and typo suggestions\",\"Spatial geometry, foot inside/outside segment, example calculations\",\"Help-only resume and storage; no queries or reading history\",\"Assisted checks cannot pass or leak partial correctness\",\"Old achievements preserved; later independent attempt can pass\",\"Helped diagnostic answers excluded from independent confirmation\"]}"
     }
   ],
+  "releaseChecker": "6666496708d9acf2ff351099085a5d5cb8c7f4fe41dc8b38097778b531a7028f",
   "sourceFiles": {
     "tools/space-tent/app/audio-examples.json": "35930b3b2597ecd0afe4eafbea16ed2ae8d769aa897fc4b9f973397eb9ede7be",
     "tools/space-tent/app/construction-insight.tsx": "6b5535f19ea3ee6e2a3f47e32a0483465909eb928ef5da83a61d5470c62eaabc",
@@ -1006,10 +2685,10 @@
     "tools/space-tent/app/construction-visuals.ts": "4f1d73afbf838a9ae58e3459192c546135936104db8a378e3b4c12aef3a6b19c",
     "tools/space-tent/app/content.json": "5e1d548b05b3e88f79c3957961f93192f1a9a7b396b1139c29b1d1f40cae781a",
     "tools/space-tent/app/course-construction.ts": "4a29571e5d5bc056d2fb6973c692f15f219d7cb83108a8ede62c517a064f3782",
-    "tools/space-tent/app/course-content.json": "872e394c16c70c8efb8c676dde0718580405658807d774cd08f133bbe94aebb0",
+    "tools/space-tent/app/course-content.json": "251f970d2eea7d2349cdb8840203d10bb7ebf0eef49d294cfb046fabb08db661",
     "tools/space-tent/app/course-figure.tsx": "22d1198896ac2070b4e3cd291c89a2aed92e92cc57c33975d8ba6b27b77a7017",
     "tools/space-tent/app/course-paper.tsx": "67b0e3b438568ed60ceded44b3c89c08dc813ab29319558ff617056ea4e1c43b",
-    "tools/space-tent/app/diagnostic.ts": "ec6641e5097808d3f70363e19794f1354b1739c64280726d1f6c6294b4a3520c",
+    "tools/space-tent/app/diagnostic.ts": "a5cd40df07f13c23a0cacbb8290d4e634f177a89498ffff035dc51ba34aa490e",
     "tools/space-tent/app/entry-choice.css": "7ef88ad94b12e615f079033bdfb92256e9197ee8a195af6ce9237917322fee55",
     "tools/space-tent/app/entry-choice.ts": "bea4b469d30c620107d66152aa1faa56712507f1c5048034b39633e482e30653",
     "tools/space-tent/app/entry-chooser.tsx": "e849228b6a939c483dada6086b04182b01eea3b63b08a3f809cfeb6644734e47",
@@ -1031,10 +2710,11 @@
     "tools/space-tent/app/knowledge/model.ts": "ee610c0a17a05f6093e03bc70e2b5e43d0a6c5c7c9a74d9701977a8cc9a13634",
     "tools/space-tent/app/knowledge/panel.tsx": "a0b1a93dc1e36527b5be456e07bc519379cab82d9d619981fab9e443f4ef2886",
     "tools/space-tent/app/knowledge/sources.json": "bddb0b320952b2966b34ca3b6d32c6ee9b52fcd54ff9789d70df5ddea918eb72",
-    "tools/space-tent/app/learning.tsx": "af2fd7360e029efc04f890e145806d56fd03080dd5bdc2d9cc146c9132842973",
+    "tools/space-tent/app/learning.tsx": "abef9f92894a993b4786c21e2953c5b5c4b5a3a2d511df62656c368f3613ca62",
+    "tools/space-tent/app/legacy-curriculum.json": "1058441e944f06cf879f2f06e5698a20a9417707b8f252b58383ae257ca12bbf",
     "tools/space-tent/app/line-extension-example.tsx": "078915da346accdc8c3ea61d6ece45d62df3b608a045b57640b9d989afc78635",
-    "tools/space-tent/app/local-progress.ts": "4304753c664a15122d951e47ba50e964551c68e20a0ad703a5ecf8502e94e78b",
-    "tools/space-tent/app/model.ts": "ca5f11b55d86391af692d3d9aba672ac15909b84d56e08d1cac734891629ec4e",
+    "tools/space-tent/app/local-progress.ts": "a5b8f1801b1d3692519e10e25ba5803ab19d92bfedd34d9f1cb5df559ae95199",
+    "tools/space-tent/app/model.ts": "b6b0a2948b5135718633977bb42e4a024b522e2e26dd7343bea3d3c93e66e580",
     "tools/space-tent/app/numeric.ts": "d139de877ca1898fdcb3bfa450fcf2de552df05e1731e3ae76883a36403fbacf",
     "tools/space-tent/app/paper.tsx": "0b3374fcb649928857a3865c07ab4996461b2b398fde0d94d79f37b688ef5d66",
     "tools/space-tent/app/projection-lesson-math.ts": "9efdd6b16b9dde9e221e4603a56e74b4e10beca11dd33d9d57e6b85ed7324354",
@@ -1044,19 +2724,23 @@
     "tools/space-tent/app/rotation.ts": "2c478f06af92bc49e27f9a2d001b13fc675b3a7ffe48b54b863af91d2abc2b2f",
     "tools/space-tent/app/route-header.tsx": "674fc3df365f786049252b5ef58ba4cc8be0fd0f8367dcc20bdfbb1ff80e0a35",
     "tools/space-tent/app/route-progress.ts": "e837e7148651619a0874d072522e09d58f16682ad224f816bb99177ad5e0ac41",
-    "tools/space-tent/app/ruimteklaar.tsx": "f43d9ca20f374c95639e3bf80c958373c6066ebc2466add72e4a6217e4aa1256",
-    "tools/space-tent/app/version.ts": "6e708b7ae75230e037a19362caa3ab2f051f50acc89bb1593da1fe179c14ad2c",
+    "tools/space-tent/app/ruimteklaar.tsx": "0e2f5b10d2648e881e7561d939e0ed407defe3ef025e8886dff91f96a06c8883",
+    "tools/space-tent/app/shape-variation-level4.json": "72c440d3c3305fd7b08f623fdf6287862f946000bc06d37d5bb465bb60b0c6aa",
+    "tools/space-tent/app/shape-variation-level5.json": "d3cde40b751144274757f5eb5971874dcca867403ba78e9e5474fea30a6389ff",
+    "tools/space-tent/app/shape-variation-level6.json": "732dbe19caa1306d78c8cbd684cbe4993b7dbf9cdc02c74ae6256806955467ef",
+    "tools/space-tent/app/version.ts": "7b3fc65864e8212afd0b1b4aff3c7c6dfad2dde10a37f25f7d565169fcc04875",
     "tools/space-tent/app/viewing-guide.tsx": "3726e67aa01bc0be52b4f6228f8f18ec10dce7070ad793be6ea7aca133e82ec0",
     "tools/space-tent/app/viewing-math.ts": "44e659c2fc56dc95825af5cfc2ecfe9ed361ddec1917cae25d777fb1d944f528",
     "tools/space-tent/app/workbench-math.ts": "77c2e882262fa69495b773afbac1e71881e21568d6673791a468d2bb8b81a131",
     "tools/space-tent/app/workbench.tsx": "1c832c4d3fc75e84c9674dde11e96e3f5241fdd727a3f0f766bb7c31290de5cb",
-    "tools/space-tent/audit-runtime/check-course.mjs": "90e030f4ae9b5e6f53da764894ef2988dd27408ca251ceec7b715d96cf1e9dc2",
-    "tools/space-tent/audit-runtime/check-diagnostic.mjs": "51061f8a4a7ca224df8a5707f559ae99b0f3d78cafb62c8121d6b72c07267df2",
-    "tools/space-tent/audit-runtime/check-entry-choice.mjs": "b1548b3e56e98dbc527835540d0c67f28633a75bb915024a0f89b95be2240cde",
-    "tools/space-tent/audit-runtime/check-interaction.cjs": "cbdf6d8884eaca9a37b639041de3cfa4194f26a64ba4bab82972ca640c42e06e",
-    "tools/space-tent/audit-runtime/check-knowledge.cjs": "4b13d90f06df9f47ca8c9ea4aca7e88f15b918ac8c3337ca860307e3e21a87d4",
-    "tools/space-tent/audit-runtime/check-learning.mjs": "dc02170b64293a609de1d589b5a6e201ad513cdc8c283a8abf5d1dcb6b8661e2",
-    "tools/space-tent/audit-runtime/check-local-progress.mjs": "0da47c5c55bc7ba51fffe214287ffc712bc1e133895550e08c01697883136028",
+    "tools/space-tent/audit-runtime/check-course.mjs": "646d6184252820b6861022ac102ffc3fec5b92ae360d9cfb0fc24847057f6330",
+    "tools/space-tent/audit-runtime/check-curriculum-contracts.mjs": "79886d1e5a82bec2b57240047bb2f7af3e70268288ee653733f75b424682598e",
+    "tools/space-tent/audit-runtime/check-diagnostic.mjs": "1a6a2b8839db6cb0904d741ed6d4edd125a93d59f16cb0959364abb42d2e98e2",
+    "tools/space-tent/audit-runtime/check-entry-choice.mjs": "a4ba352145a0ee2ac57a2560dee5dd45b12c3a219806c5d7552823543d1d96a1",
+    "tools/space-tent/audit-runtime/check-interaction.cjs": "0bfae7cd9dc268546470465a1fbb200d5c69113414a5763a0ca0a564d93a3a4c",
+    "tools/space-tent/audit-runtime/check-knowledge.cjs": "0dfc94b594b17a35653445ede557b14062fe3c5a1ec0b986849bf91d049d5594",
+    "tools/space-tent/audit-runtime/check-learning.mjs": "df7526dd886e7f3e630735a54bfbc25f766800deaa1ec1263eeeb4e9f3804c99",
+    "tools/space-tent/audit-runtime/check-local-progress.mjs": "5f9722d4e059f4d762c4e768ed0fccc537be4f477f3c57a68ac048b24a3f7201",
     "tools/space-tent/components/ui/button.tsx": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4",
     "tools/space-tent/components/ui/checkbox.tsx": "b23ab9d4deeedf2ac8f512c368361ede681aa383437ef48563a6f9b7dbe95f27",
     "tools/space-tent/components/ui/progress.tsx": "c8c26e8f5f041c3cdf4915347dc1d9c022f9448f149990fadcaf303e952fa57d",
@@ -1066,7 +2750,7 @@
     "tools/space-tent/components/ui/tabs.tsx": "865d0194331b9b2be36723fa79d3575dc83078b4cb941cafee87cb72fc2cff46",
     "tools/space-tent/lib/utils.ts": "53f3d3d070f0a9082934da25b875f9499855c2b0693868dd28be8c23d8730f68",
     "tools/space-tent/package-lock.json": "9b91987e6c3cdbda4f01c917a2c580ed7afbe77cb3eae066dbbba2afd99f2718",
-    "tools/space-tent/package.json": "76dc20b00cec0e81ffa29c987a419c5cdeecc7faab9a7bbb18953696927b0ac4",
+    "tools/space-tent/package.json": "504aa4ffa9ccef0a1e9cd0cfd85af3f62250bd73ef6ee2ea5eea07b122878fa6",
     "tools/space-tent/postcss.config.mjs": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde",
     "tools/space-tent/README.md": "f211b4742ae1b12f01576a03e1aa397d268ebf08357451ee09f42b8b302a30b4",
     "tools/space-tent/review/index.html": "d812a96c4acfddf0611a0046bb3a5a86a17dd28f0d0a3b9b1aa1cf1a122ba71a",
@@ -1078,32 +2762,43 @@
     "tools/space-tent/scripts/audio/prepare.py": "04f2c84160fe59bea5189723deaed625dabbe5f9c1c7229b96dc2ace6423b9de",
     "tools/space-tent/scripts/build-audit.mjs": "71ccce0c2b5d382bf9d4b33869dc6f8795b44c270c3d33efa75efa25aa2af579",
     "tools/space-tent/scripts/build-course-audit.mjs": "a0da634a6c364edef416936073dd7ad9f07c826bc326c04d70794ea3117b42a4",
+    "tools/space-tent/scripts/build-curriculum-audit.mjs": "250ef9e05bd5387540dbcabcaade2d6802113f9f86fc4e6d715aaf1f53edf28b",
+    "tools/space-tent/scripts/build-entry-audit.mjs": "3f8461d4a81c174f52c2edad85bed2be8c27f8a400c8d572bed13663ff3bea2e",
     "tools/space-tent/scripts/build-review.mjs": "51d7b3e277941e49e5039094bc54518d9d9b05d4ebce802d7cf53bd06af421b6",
+    "tools/space-tent/scripts/build-shape-variation-level4.mjs": "ba5d885715245c6deabca91843180cd7fa103fa5ba78b3a5af5fc5b426846f58",
     "tools/space-tent/scripts/build-space.mjs": "276258dbb27aed97c9380eb99276fc430d8241d491192c2cc2e55bfbf282f852",
     "tools/space-tent/scripts/check-construction-next-browser.mjs": "515d6e6cab698fd226a0a7a451060bd4c288c277e74c39fcf1fd0e4d21191a10",
     "tools/space-tent/scripts/check-course.mjs": "ecb2b0085950ede0aa7c1929e323e2711357e1447e01e1ee4c8094885872b9fd",
+    "tools/space-tent/scripts/check-curriculum-contracts.mjs": "9f8023d87cf7c9f78440545756c4bc7fa883c80a436adf9d69108cdc7619f7f3",
     "tools/space-tent/scripts/check-desktop-workspace.mjs": "c7dee276d321343299767af5830af23f466b4884323eb1ecc7eff698cb763929",
-    "tools/space-tent/scripts/check-diagnostic.mjs": "60f286f803efbc73619f9d13b9bec3d2dcbb33aa82400e011d46ea84ceb298ab",
+    "tools/space-tent/scripts/check-diagnostic.mjs": "04d8c354177d3e23e3924c009a15b177ff38562938703d54b87a6d8e31b20e48",
     "tools/space-tent/scripts/check-entry-choice-browser.mjs": "8b6a34e4ecd546faf9042f33b94c52b591ffaa0efe8d8186e8b19d89d964236f",
     "tools/space-tent/scripts/check-entry-choice.mjs": "963d02c505feb495bb902e8ac4dc1b565ba09fc79dcc338e69c31a61bd84b718",
-    "tools/space-tent/scripts/check-interaction.mjs": "44c641beb3339ab8ed9e4c1aad7409d7b6854302e258f475fcfb7cd393aab146",
+    "tools/space-tent/scripts/check-interaction.mjs": "16c3b66311f2a1af1f84c79690ca4733b3099f23345d24411fac9dfb30ff2ddd",
     "tools/space-tent/scripts/check-knowledge-browser.mjs": "29f5fdb036aee774b49f2d3b392a51c38c891a8e1113bf4a7206eabcdc0da5b1",
     "tools/space-tent/scripts/check-knowledge.mjs": "805c21b2f636d9d3f32b93ccfc129d6cf654fed749e6bed85f1587f76e71cf7c",
     "tools/space-tent/scripts/check-learning.mjs": "9009f50c5e19c28554ca2c4d123a0567853a1a2146e81f1f840e5ad220a9e9a2",
     "tools/space-tent/scripts/check-level-continuation-browser.mjs": "c602081b98ba5d7af114716058966bd2b0e87add168197f43350c9990a5864bd",
     "tools/space-tent/scripts/check-local-progress.mjs": "ea10a5e90cac5dbfaa559b28d5be14e60e8d9e655e59736747fddd13e83c63e0",
-    "tools/space-tent/scripts/check-review-browser.mjs": "493b1496e1ab18f5108d9059985ea3cfcd3e8f04680d2c95bc84b2df33debb51",
+    "tools/space-tent/scripts/check-review-browser.mjs": "2a81cdd07fd3cd113bd62fd362275b95fa9f9bb3bc3f6d962d1bb6ff9855b9bd",
     "tools/space-tent/scripts/check-selection-browser.mjs": "780e4dd958808159676871a3249a399ca3fef6c586441f3fff5b3501efd30609",
+    "tools/space-tent/scripts/check-shape-browser.mjs": "8fb7d98edc02fe89656f1e911961bed0fb6a4d47621ca27c1f11d1d0c50f8f8f",
+    "tools/space-tent/scripts/check-shape-level4.mjs": "7dfacc44dd32368545d29761ff1f4121b13b1490f41ab1da582a9be78c3a9501",
+    "tools/space-tent/scripts/check-shape-level5.mjs": "2418697a2cac5fb016e34a07860c2b36c6c7754285f17e2f135f15a132616a96",
+    "tools/space-tent/scripts/check-shape-level6.mjs": "465942f61da40ed94b67ab07b4682674df63f50ac32191d9f04a386b182c1c3a",
+    "tools/space-tent/scripts/check-shape-variation.mjs": "07cce6d5179940000bb995e10af1e6fe8e2e775a2c1fdfcd5be91929fbb6777f",
     "tools/space-tent/scripts/knowledge-checks.tsx": "141257a69a301b062be392df462c8d72295ae4dbd608ecfe2ae9a795097fc900",
-    "tools/space-tent/space/index.html": "2fd445f6e2b9812113d3a4c244ecd4b17da65beaf5067c0378f809c9719f0a77",
+    "tools/space-tent/scripts/merge-shape-variation.mjs": "cacebcbc2a30a6664212c23f65d39ca13139f6009f32fcbda485d6b495dbc40e",
+    "tools/space-tent/scripts/update-shape-release-metadata.mjs": "997845599af121abfe2a7086b9b422dd9fbd6997b965feb57342be72583dda74",
+    "tools/space-tent/space/index.html": "9a0452ac5824c8fa80cb7ff06cf4687509f02b250314aef22ee28a4a57d626fd",
     "tools/space-tent/space/main.tsx": "fadb288a9c7b785f47197baace7ac0e34ef7251c411256a9541030df8b0a1748",
     "tools/space-tent/tsconfig.json": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3",
     "tools/space-tent/validation/audio-0.4.4.json": "39ae25931d1f61500bf2ca1e6e4eeecc1381bbc92fe7d99032108099b2b900e7",
     "tools/space-tent/validation/construction-tasks.json": "dd327e0ca916f5f619818225bccc329fe8063ac13cda8cfa6f88fbce3fb3eb85",
     "tools/space-tent/validation/desktop-workspace-046.json": "92b3c266d9d085194194fc7592e28deb1fe5ed1521c3df35db3357f0300caa5c",
-    "tools/space-tent/validation/desktop-workspace-050.json": "bb2f451f374dc030471385f2d04a9cbccd817b5381468c0d94783324a066099d",
-    "tools/space-tent/validation/free-entry-054.json": "2604ef19f69831e80e38fe4b717a3d9c7aa7c3b261eebe7ed4123a935cc775c6",
-    "tools/space-tent/validation/knowledge-browser-050.json": "5ed8c49311bab49b2714b8ebf6046b4fc6a5183a04848214c9eaf1aa82c268a2",
+    "tools/space-tent/validation/desktop-workspace-050.json": "b302d2788af4503158e772e28dc92a76f8f11eaf43b8d8d009c240dfb2a4670e",
+    "tools/space-tent/validation/free-entry-054.json": "a2f6bf51089aae97399cae650a5d5b823608603faf311cc5f0e45399aac4b3a3",
+    "tools/space-tent/validation/knowledge-browser-050.json": "430a72b8ce3591f597b2fe8fa4e8a9cf69ca7e1bafc60bf9f13ab71af8c78236",
     "tools/space-tent/validation/knowledge-chromium-050.json": "6825ceda604cbfbc8654853c2e254add2996ed289f093c7181014666ff5c7d66",
     "tools/space-tent/validation/learning-contract-042.json": "e722a032533bd034c302f6e6a5eac3c17ca76d5372902c52c3499c7367534b4a",
     "tools/space-tent/validation/level-4-validation-notes.md": "bbcdd46b2e036cb3bf1599b93c1229bbbd0f5267466abed1fbb6699a52b483d3",
@@ -1117,8 +2812,9 @@
     "tools/space-tent/validation/levels-5-6.json": "eca9737cff212674b8eb1e264d05ff2eb30222de47a695c254e2f42767589541",
     "tools/space-tent/validation/projection-regression-041.json": "6764f6e419fc7d5f94005fb49af0e808415a0d52bf3e2c50dc5a976c28320f18",
     "tools/space-tent/validation/review-chromium-050.json": "cd639bd5031e195516f8dd9d7d7d6a8a3b9729a99216f4bd24cdaef65a3c5f76",
-    "tools/space-tent/validation/review-mode-100.json": "adbd2fe5eaa5e9b1e5526134fc0df0dbf199308ffffb2ac9ee7705893adb3285",
+    "tools/space-tent/validation/review-mode-100.json": "f561dddcf3191f4e5d3c86a078fd61a36cd77c78c8b606c2f0650a0e09351d9f",
     "tools/space-tent/validation/selection-first-045.json": "377dc73da9e6215aef93b6ce19cbb42c2c956d01db0e9ad558602910e241b729",
+    "tools/space-tent/validation/shape-variation-060.json": "546618a8820b83e49e0fb5244912c2094a981f43e4b5345b3e10afd8b7355a61",
     "tools/space-tent/validation/state-audit.md": "a236d64c68ccf40c46572aa998d3dc5813fe3d997d5fa0482f6946040c7e45b1",
     "tools/space-tent/validation/summit.json": "7a758a4ff94f47ee93d4947c2fb7a1fbd397941e928e8e6fe8c06d75e70743bc",
     "tools/space-tent/validation/validate_levels_2_3.py": "a2f4b3578e4f5ace14347560e820c67598108f9cded8cfb13923a3a2d06b68cf",
@@ -1131,9 +2827,9 @@
     "tools/space-tent/vendor/shadcn-tailwind-4.13.0.LICENSE.md": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
   },
   "publicFiles": {
-    "public/apps/ruimteklaar/assets/index-BFDBLChc.css": "0e9e56aee6edf746c213073955ff03ff2406a242c64e79405539977e0f90a262",
-    "public/apps/ruimteklaar/assets/index-BVIufM8x.js": "c09afaffbdf852737aa0e39c3313fe9722b07439cf9b74046a7f7cdf5fd8cfe5",
-    "public/apps/ruimteklaar/index.html": "f0a73b29cbc968cf3b504feb3d42f266941d0edac54b2aa5d66d300ebafd999c",
+    "public/apps/ruimteklaar/assets/index-BiuWCVkL.js": "f3842930f23cc4b730bef15e4108616ef01929b04cd5370917b8370b83588967",
+    "public/apps/ruimteklaar/assets/index-Bxz7NXPz.css": "ad3d15324f25e0594bbc7e507ccf31ea14493f91a4d1a84da36b635489d86e4e",
+    "public/apps/ruimteklaar/index.html": "29fd49df2bb3b174bfe3e7fdaf0bd879d3d5b282d06dbcd1d83dfa01c198e8ed",
     "public/films/ruimteklaar/1.1/uitleg.m4a": "276fff5bbb021a03bb29b01f085bf9c284727f517740dd31c53a8ae9cb3a5cdc",
     "public/films/ruimteklaar/1.2/uitleg.m4a": "e9c3a6914348055e545056263214e9d03580cf2f22097d2abf982710618ec032",
     "public/films/ruimteklaar/1.3/uitleg.m4a": "a346abcc6b3f9f2ae6d718a82fd54c6e6dfd4cd0964a8167a39ca6a5d3e747d8",
@@ -1184,6 +2880,6 @@
     "public/films/ruimteklaar/6.4/uitleg.m4a": "d198e2dcfb942fac7d4ef950f3604a16397b288ec7c6e1462ecbb4eac000c395",
     "public/films/ruimteklaar/6.5/uitleg.m4a": "c649dddcf30d014188168c917238786583a45ce086f9a03337f0c4a09bf67d71",
     "public/films/ruimteklaar/6.6/uitleg.m4a": "52c1ce828245c2111070083aa430179009572ebbe122e2e627297f1275ced957",
-    "public/films/ruimteklaar/catalog.json": "40b496e04a490d92929f50d2cd5773eac78ca11bf54ff062fc0b0eda25b216e5"
+    "public/films/ruimteklaar/catalog.json": "20bb6a38a063bcf1859a86bc91c4313f1938f859399a0325160581a4df6f1daa"
   }
 }

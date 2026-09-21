@@ -1,11 +1,12 @@
 {
+  "version": "0.6.0",
   "status": "passed",
   "results": [
     {
       "environment": "chromium-desktop",
       "status": "passed",
-      "directEntries": 311,
-      "questions": 261,
+      "directEntries": 365,
+      "questions": 315,
       "constructions": 10,
       "lessonBlocks": 23,
       "checks": 8,
@@ -15,8 +16,8 @@
     {
       "environment": "chromium-mobile",
       "status": "passed",
-      "directEntries": 311,
-      "questions": 261,
+      "directEntries": 365,
+      "questions": 315,
       "constructions": 10,
       "lessonBlocks": 23,
       "checks": 8,
@@ -26,8 +27,8 @@
     {
       "environment": "webkit-mobile",
       "status": "passed",
-      "directEntries": 311,
-      "questions": 261,
+      "directEntries": 365,
+      "questions": 315,
       "constructions": 10,
       "lessonBlocks": 23,
       "checks": 8,
