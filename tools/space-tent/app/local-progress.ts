@@ -1,4 +1,4 @@
-import {BANK, COURSE, QUESTIONS, pointsForQuestion, correctAnswer, type LearningEvent} from './model';
+import {BANK, COURSE, CHECKS, LEGACY_CHECKS, LEGACY_BLOCK_QUESTIONS, QUESTIONS, checkGroup, sameQuestionIds, pointsForQuestion, correctAnswer, type LearningEvent} from './model';
 import {CONSTRUCTION_TASKS,verifyConstruction} from './course-construction';
 import {numericValue} from './numeric';
 import {CUBE, distance, type DrawLine, type V3} from './geometry-math';
@@ -8,6 +8,7 @@ import {initialPoints, verifyWorkbench} from './workbench-math';
 export const LOCAL_PROGRESS_KEY = 'wisik.space-tent.progress.v1';
 export const LOCAL_PROGRESS_FORMAT = 'wisik-space-tent-progress';
 export const LOCAL_PROGRESS_VERSION = 1;
+export const CURRICULUM_CONTRACT_VERSION = 1;
 export const MAX_PROGRESS_CHARACTERS = 8_000_000;
 export const MAX_PROGRESS_EVENTS = 20_000;
 
@@ -15,7 +16,7 @@ export type ProgressStorage = Pick<Storage, 'getItem' | 'setItem'>;
 export type LocalProgressResult = {ok: boolean; events: LearningEvent[]; error?: string};
 export type LocalProgressExport = LocalProgressResult & {text?: string};
 export type NewLocalEvent = Pick<LearningEvent, 'id' | 'type' | 'payload'>;
-type Envelope = {format: typeof LOCAL_PROGRESS_FORMAT; version: typeof LOCAL_PROGRESS_VERSION; events: LearningEvent[]};
+type Envelope = {format: typeof LOCAL_PROGRESS_FORMAT; version: typeof LOCAL_PROGRESS_VERSION; curriculumContracts: typeof CURRICULUM_CONTRACT_VERSION; events: LearningEvent[]};
 
 const contexts = {
   practice: new Set(BANK.blocks.flatMap(b => b.questionIds)),
@@ -29,6 +30,11 @@ const own = (v: object, key: string) => Object.prototype.hasOwnProperty.call(v, 
 function fail(message: string): never {throw new Error(message);}
 const clone = (events: LearningEvent[]): LearningEvent[] => JSON.parse(JSON.stringify(events)) as LearningEvent[];
 const vector = (v: unknown): v is V3 => Array.isArray(v) && v.length === 3 && v.every(n => typeof n === 'number' && Number.isFinite(n) && Math.abs(n) < 20);
+function contract(value: unknown, current: string[], legacy: string[]): string[] {
+  if(value===undefined)return [...current];
+  if(!Array.isArray(value)||!value.every(v=>typeof v==='string')||(!sameQuestionIds(value,current)&&!sameQuestionIds(value,legacy)))fail('De vragenlijst van deze poging is ongeldig.');
+  return [...(sameQuestionIds(value,current)?current:legacy)];
+}
 
 /** Allowlisted fields only: imported names, identifiers or other data are not kept. */
 export function normalizeEvent(value: unknown): LearningEvent {
@@ -53,11 +59,14 @@ export function normalizeEvent(value: unknown): LearningEvent {
       || new Set(answer).size !== answer.length || typeof helped !== 'boolean'
       || typeof sessionId !== 'string' || !/^[a-zA-Z0-9-]{1,80}$/.test(sessionId)) fail('Het voortgangsbestand bevat een ongeldig antwoord.');
     if(payload.working!==undefined&&(typeof payload.working!=='string'||payload.working.length>2000))fail('De berekening is te lang of ongeldig.');
-    clean = {questionId, answer: [...answer], helped, context, sessionId, correct: correctAnswer(question, answer),...(question.working?{working:String(payload.working||'')}: {})};
+    const checkKey=context==='check'?checkGroup(questionId):undefined;
+    const checkQuestionIds=checkKey?contract(payload.checkQuestionIds,CHECKS[checkKey],LEGACY_CHECKS[checkKey]||[]):undefined;
+    if(checkQuestionIds&&!checkQuestionIds.includes(questionId))fail('Het antwoord hoort niet bij de vastgelegde vragenlijst.');
+    clean = {questionId, answer: [...answer], helped, context, sessionId, correct: correctAnswer(question, answer),...(question.working?{working:String(payload.working||'')}: {}),...(checkQuestionIds?{checkQuestionIds}:{})};
   } else if (value.type === 'block') {
     const block = BANK.blocks.find(b => b.id === payload.blockId);
     if (!block) fail('Het voortgangsbestand bevat een onbekend lesblok.');
-    clean = {blockId: block.id};
+    clean = {blockId: block.id,questionIds:contract(payload.questionIds,block.questionIds,LEGACY_BLOCK_QUESTIONS[block.id]||[])};
   } else if (value.type === 'paper') {
     const {checks} = payload;
     if (!Array.isArray(checks) || checks.length > 4 || checks.some(v => typeof v !== 'string' || !paperChecks.includes(v)) || new Set(checks).size !== checks.length) fail('Het voortgangsbestand bevat een ongeldige zelfcontrole.');
@@ -109,8 +118,47 @@ function validateBlockEvidence(events: LearningEvent[]): void {
     if (event.type === 'answer' && event.payload.context === 'practice') attempted.add(String(event.payload.questionId));
     if (event.type === 'block') {
       const block = BANK.blocks.find(b => b.id === event.payload.blockId)!;
-      if (!block.questionIds.every(id => attempted.has(id))) fail('Een lesblok is als afgerond gemarkeerd terwijl niet alle oefenantwoorden aanwezig zijn.');
+      const required=event.payload.questionIds as string[]||block.questionIds;
+      if (!required.every(id => attempted.has(id))) fail('Een lesblok is als afgerond gemarkeerd terwijl niet alle oefenantwoorden aanwezig zijn.');
     }
+  }
+}
+
+/** A legacy boundary, not a timestamp heuristic. New events are always stamped
+ * with today's contract. Completed historical checks retain their coverage;
+ * unfinished historical checks continue with the expanded question list. This
+ * is also used when an older remote adapter returns a bare event collection. */
+export function migrateLegacyEvents(values: unknown): LearningEvent[] {
+  if(!Array.isArray(values)||values.length>MAX_PROGRESS_EVENTS)fail('Het voortgangsbestand bevat geen geldige reeks handelingen.');
+  const raw=values.map(value=>{
+    if(!record(value)||!record(value.payload))fail('Het voortgangsbestand bevat een ongeldige handeling.');
+    return value;
+  });
+  const groups=new Map<string,Record<string,unknown>[]>();
+  for(const value of raw){const p=value.payload as Record<string,unknown>;if(value.type!=='answer'||p.context!=='check')continue;const key=checkGroup(String(p.questionId));if(!key)continue;const groupKey=key+'|'+String(p.sessionId);groups.set(groupKey,[...(groups.get(groupKey)||[]),p]);}
+  const contracts=new Map<string,string[]>();
+  for(const [groupKey,rows] of groups){
+    const key=groupKey.split('|')[0],old=LEGACY_CHECKS[key]||[],given=rows.find(p=>p.checkQuestionIds!==undefined)?.checkQuestionIds;
+    const historicalComplete=old.length>0&&old.every(id=>rows.some(p=>p.questionId===id))&&rows.every(p=>old.includes(String(p.questionId)));
+    contracts.set(groupKey,given===undefined?(historicalComplete?old:CHECKS[key]):contract(given,CHECKS[key],old));
+  }
+  const migrated=raw.map(value=>{
+    const p=value.payload as Record<string,unknown>;
+    if(value.type==='answer'&&p.context==='check'&&p.checkQuestionIds===undefined){const key=checkGroup(String(p.questionId));if(key)return {...value,payload:{...p,checkQuestionIds:contracts.get(key+'|'+String(p.sessionId))}};}
+    if(value.type==='block'&&p.questionIds===undefined){const ids=LEGACY_BLOCK_QUESTIONS[String(p.blockId)];if(ids)return {...value,payload:{...p,questionIds:ids}};}
+    return value;
+  });
+  return validateLocalEvents(migrated);
+}
+
+function validateCheckContracts(events: LearningEvent[]): void {
+  const contracts=new Map<string,string[]>();
+  for(const event of events){
+    if(event.type!=='answer'||event.payload.context!=='check')continue;
+    const key=checkGroup(String(event.payload.questionId))+'|'+String(event.payload.sessionId),ids=event.payload.checkQuestionIds as string[];
+    const previous=contracts.get(key);
+    if(previous&&!sameQuestionIds(previous,ids))fail('Binnen één checkpoging zijn verschillende vragenlijsten opgeslagen. Er is niets overschreven.');
+    contracts.set(key,ids);
   }
 }
 
@@ -119,6 +167,7 @@ export function validateLocalEvents(values: unknown): LearningEvent[] {
   if (!Array.isArray(values) || values.length > MAX_PROGRESS_EVENTS) fail('Het voortgangsbestand bevat geen geldige reeks handelingen.');
   const events = orderedUnique(values.map(normalizeEvent));
   validateBlockEvidence(events);
+  validateCheckContracts(events);
   return events;
 }
 
@@ -126,6 +175,7 @@ export function validateLocalEvents(values: unknown): LearningEvent[] {
 export function mergeLocalEvents(existing: unknown, incoming: unknown): LearningEvent[] {
   const events = orderedUnique([...validateLocalEvents(existing), ...validateLocalEvents(incoming)]);
   validateBlockEvidence(events);
+  validateCheckContracts(events);
   return events;
 }
 
@@ -134,11 +184,13 @@ function parse(text: string): LearningEvent[] {
   let envelope: unknown;
   try {envelope = JSON.parse(text);} catch {return fail('Dit is geen leesbaar voortgangsbestand. Je bestaande voortgang is niet vervangen.');}
   if (!record(envelope) || envelope.format !== LOCAL_PROGRESS_FORMAT || envelope.version !== LOCAL_PROGRESS_VERSION) fail('Dit bestand is geen ondersteunde Space-tent-voortgang.');
+  if(envelope.curriculumContracts===undefined)return migrateLegacyEvents(envelope.events);
+  if(envelope.curriculumContracts!==CURRICULUM_CONTRACT_VERSION)fail('Dit bestand gebruikt een niet-ondersteunde versie van de vragenlijsten.');
   return validateLocalEvents(envelope.events);
 }
 
 function serialize(events: LearningEvent[]): string {
-  const envelope: Envelope = {format: LOCAL_PROGRESS_FORMAT, version: LOCAL_PROGRESS_VERSION, events};
+  const envelope: Envelope = {format: LOCAL_PROGRESS_FORMAT, version: LOCAL_PROGRESS_VERSION, curriculumContracts: CURRICULUM_CONTRACT_VERSION, events};
   const text = JSON.stringify(envelope);
   if (text.length > MAX_PROGRESS_CHARACTERS) fail('Je voortgang is te groot voor de lokale opslag. Bewaar eerst een kopie van je voortgang.');
   return text;
@@ -188,6 +240,7 @@ export function createLocalProgressStore(storage: ProgressStorage | (() => Progr
         if (next.type === 'workbench' && !next.payload.correct) fail('De constructie is nog niet compleet. Controleer de vier zijden van de doorsnede voordat je deze afrondt.');
         const merged = orderedUnique([...existing, next]);
         validateBlockEvidence(merged);
+        validateCheckContracts(merged);
         return write(merged);
       } catch (error) {return failure(error);}
     },

@@ -1,0 +1,239 @@
+{
+  "version": "0.5.4",
+  "checks": {
+    "1": [
+      "cp-p1",
+      "cp-p2",
+      "cp-l1",
+      "cp-l2",
+      "cp-v1",
+      "cp-v2",
+      "cp-d1",
+      "cp-d2"
+    ],
+    "2": [
+      "l2-hulpvlak-check-1",
+      "l2-hulpvlak-check-2",
+      "l2-doorsnede-check-3",
+      "l2-doorsnede-check-4",
+      "l2-buiten-check-5",
+      "l2-buiten-check-6",
+      "l2-gelijkvormig-check-7",
+      "l2-gelijkvormig-check-8"
+    ],
+    "3": [
+      "l3-ruimtefiguren-check-1",
+      "l3-ruimtefiguren-check-2",
+      "l3-ruimtefiguren-check-3",
+      "l3-oppervlakte-check-4",
+      "l3-inhoud-check-5",
+      "l3-inhoud-check-6",
+      "l3-goniometrie-check-7",
+      "l3-goniometrie-check-8"
+    ],
+    "4": [
+      "l4-check-1",
+      "l4-check-2",
+      "l4-check-3",
+      "l4-check-4",
+      "l4-check-5",
+      "l4-check-6",
+      "l4-check-7",
+      "l4-check-8"
+    ],
+    "5": [
+      "l5-check-1",
+      "l5-check-2",
+      "l5-check-3",
+      "l5-check-4",
+      "l5-check-5",
+      "l5-check-6",
+      "l5-check-7",
+      "l5-check-8"
+    ],
+    "6": [
+      "l6-check-1",
+      "l6-check-2",
+      "l6-check-3",
+      "l6-check-4",
+      "l6-check-5",
+      "l6-check-6",
+      "l6-check-7",
+      "l6-check-8"
+    ],
+    "7a": [
+      "l7a-01",
+      "l7a-02",
+      "l7a-03",
+      "l7a-04",
+      "l7a-05",
+      "l7a-06",
+      "l7a-07",
+      "l7a-08",
+      "l7a-09",
+      "l7a-10",
+      "l7a-11",
+      "l7a-12",
+      "l7a-13",
+      "l7a-14"
+    ],
+    "7b": [
+      "l7b-01",
+      "l7b-02",
+      "l7b-03",
+      "l7b-04",
+      "l7b-05",
+      "l7b-06",
+      "l7b-07",
+      "l7b-08",
+      "l7b-09",
+      "l7b-10",
+      "l7b-11",
+      "l7b-12",
+      "l7b-13",
+      "l7b-14"
+    ]
+  },
+  "blocks": {
+    "projection": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+    ],
+    "lines": [
+      "l1",
+      "l2",
+      "l3",
+      "l4"
+    ],
+    "planes": [
+      "v1",
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "threeplanes": [
+      "d1",
+      "d2",
+      "d3",
+      "d4"
+    ],
+    "l2-hulpvlak": [
+      "l2-hulpvlak-1",
+      "l2-hulpvlak-2",
+      "l2-hulpvlak-3",
+      "l2-hulpvlak-4"
+    ],
+    "l2-doorsnede": [
+      "l2-doorsnede-1",
+      "l2-doorsnede-2",
+      "l2-doorsnede-3",
+      "l2-doorsnede-4"
+    ],
+    "l2-buiten": [
+      "l2-buiten-1",
+      "l2-buiten-2",
+      "l2-buiten-3",
+      "l2-buiten-4"
+    ],
+    "l2-gelijkvormig": [
+      "l2-gelijkvormig-1",
+      "l2-gelijkvormig-2",
+      "l2-gelijkvormig-3",
+      "l2-gelijkvormig-4"
+    ],
+    "l3-ruimtefiguren": [
+      "l3-ruimtefiguren-1",
+      "l3-ruimtefiguren-2",
+      "l3-ruimtefiguren-3",
+      "l3-ruimtefiguren-4"
+    ],
+    "l3-oppervlakte": [
+      "l3-oppervlakte-1",
+      "l3-oppervlakte-2",
+      "l3-oppervlakte-3",
+      "l3-oppervlakte-4"
+    ],
+    "l3-inhoud": [
+      "l3-inhoud-1",
+      "l3-inhoud-2",
+      "l3-inhoud-3",
+      "l3-inhoud-4"
+    ],
+    "l3-goniometrie": [
+      "l3-goniometrie-1",
+      "l3-goniometrie-2",
+      "l3-goniometrie-3",
+      "l3-goniometrie-4"
+    ],
+    "l4-cos": [
+      "l4-cos-q1",
+      "l4-cos-q2",
+      "l4-cos-q3",
+      "l4-cos-q4"
+    ],
+    "l4-lines": [
+      "l4-lines-q1",
+      "l4-lines-q2",
+      "l4-lines-q3",
+      "l4-lines-q4"
+    ],
+    "l4-plane": [
+      "l4-plane-q1",
+      "l4-plane-q2",
+      "l4-plane-q3",
+      "l4-plane-q4"
+    ],
+    "l4-dihedral": [
+      "l4-dihedral-q1",
+      "l4-dihedral-q2",
+      "l4-dihedral-q3",
+      "l4-dihedral-q4"
+    ],
+    "l5-point-line": [
+      "l5-point-line-q1",
+      "l5-point-line-q2",
+      "l5-point-line-q3",
+      "l5-point-line-q4"
+    ],
+    "l5-point-plane": [
+      "l5-point-plane-q1",
+      "l5-point-plane-q2",
+      "l5-point-plane-q3",
+      "l5-point-plane-q4"
+    ],
+    "l5-volume": [
+      "l5-volume-q1",
+      "l5-volume-q2",
+      "l5-volume-q3",
+      "l5-volume-q4"
+    ],
+    "l5-model": [
+      "l5-model-q1",
+      "l5-model-q2",
+      "l5-model-q3",
+      "l5-model-q4"
+    ],
+    "l6-common-perpendicular": [
+      "l6-common-perpendicular-q1",
+      "l6-common-perpendicular-q2",
+      "l6-common-perpendicular-q3",
+      "l6-common-perpendicular-q4"
+    ],
+    "l6-parallel-plane": [
+      "l6-parallel-plane-q1",
+      "l6-parallel-plane-q2",
+      "l6-parallel-plane-q3",
+      "l6-parallel-plane-q4"
+    ],
+    "l6-method": [
+      "l6-method-q1",
+      "l6-method-q2",
+      "l6-method-q3",
+      "l6-method-q4"
+    ]
+  }
+}

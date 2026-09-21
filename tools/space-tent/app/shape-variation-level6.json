@@ -1,0 +1,2277 @@
+{
+  "questions": [
+    {
+      "id": "vorm-l6-common-q1",
+      "block": "l6-common-perpendicular",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT zijn AB, AC en AT paarsgewijs loodrecht. AB = 7 cm, AC = 6 cm en AT = 8 cm. Bereken de afstand tussen de volledige lijnen AB en CT, in cm op twee decimalen.",
+      "answer": [
+        "4.8"
+      ],
+      "explanation": "AB staat loodrecht op vlak ACT, want AB ⟂ AC en AB ⟂ AT. Laat vanuit A de loodlijn AN op CT neer. Dan is AN ook loodrecht op AB. CT = √(6² + 8²) = 10. Uit ½ × 6 × 8 = ½ × 10 × AN volgt AN = 4,80 cm. A en N liggen op de gevraagde lijnen, dus dit is hun afstand.",
+      "hint": "Zoek in de rechthoekige driehoek ACT een hoogtelijn en bewijs ook de andere loodrechtheid.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            7,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            8
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AB",
+          "CT"
+        ],
+        "planes": [],
+        "caption": "Tetraëder: AB = 7, AC = 6 en AT = 8 cm. AB, AC en AT staan paarsgewijs loodrecht."
+      },
+      "shapeFamily": "tetrahedron",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "lineLineDistance",
+        "lines": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C",
+            "T"
+          ]
+        ],
+        "expected": 4.8,
+        "feet": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3.84,
+            2.88
+          ]
+        ],
+        "mustBeSkew": true
+      }
+    },
+    {
+      "id": "vorm-l6-common-q2",
+      "block": "l6-common-perpendicular",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "ABC.DEF is een recht driehoekig prisma. De hoek BAC is 90° en de opstaande ribben staan loodrecht op ABC. Kies de twee voetpunten van de gemeenschappelijke loodlijn van AB en CF.",
+      "answer": [
+        "A",
+        "C"
+      ],
+      "explanation": "A ligt op AB en C ligt op CF. AC ⟂ AB wegens de rechte hoek bij A. CF staat loodrecht op het grondvlak, dus ook op AC. Daarom zijn A en C de gezochte voetpunten.",
+      "hint": "Een voetpunt ligt op elke lijn; de verbinding moet op beide lijnen loodrecht staan.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            5,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            7
+          ],
+          "E": [
+            8,
+            0,
+            7
+          ],
+          "F": [
+            0,
+            5,
+            7
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AB",
+          "CF"
+        ],
+        "planes": [],
+        "caption": "Recht driehoekig prisma ABC.DEF, met rechte hoek bij A. AB = 8, AC = 5 en AD = BE = CF = 7 cm."
+      },
+      "shapeFamily": "triangular-prism",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "selectCount": 2,
+      "geometryCheck": {
+        "kind": "lineLineDistance",
+        "lines": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C",
+            "F"
+          ]
+        ],
+        "expected": 5,
+        "feet": [
+          "A",
+          "C"
+        ],
+        "mustBeSkew": true
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            5,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            7
+          ],
+          "E": [
+            8,
+            0,
+            7
+          ],
+          "F": [
+            0,
+            5,
+            7
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AB",
+          "CF",
+          "AC"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "caption": "AC staat loodrecht op AB én CF; d(AB,CF) = AC = 5 cm."
+      }
+    },
+    {
+      "id": "vorm-l6-common-q3",
+      "block": "l6-common-perpendicular",
+      "skill": "construeren",
+      "type": "points",
+      "prompt": "De vierkanten van deze rechte afgeknotte piramide zijn evenwijdig en hebben hetzelfde middelpunt in bovenaanzicht. P ligt op AB met AP = 6 cm. Q ligt op de verlenging van GF voorbij F met FQ = 2 cm. Kies de voetpunten van de gemeenschappelijke loodlijn van de volledige lijnen AB en FG. Let op: niet alleen de ribben.",
+      "answer": [
+        "P",
+        "Q"
+      ],
+      "explanation": "In bovenaanzicht vallen P en Q samen. PQ is verticaal en staat dus loodrecht op zowel AB als FG: beide liggen horizontaal. P ligt op AB; Q ligt op de volledige lijn FG, maar buiten ribbe FG. Daarom is PQ = 6 cm de afstand tussen de lijnen. Dit is niet de kortste afstand tussen de twee begrensde ribben.",
+      "hint": "Een voetpunt mag buiten het getekende lijnstuk liggen. Controleer de twee volledige lijnen.",
+      "scene": {
+        "points": {
+          "A": [
+            -4,
+            -4,
+            0
+          ],
+          "B": [
+            4,
+            -4,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            -4,
+            4,
+            0
+          ],
+          "E": [
+            -2,
+            -2,
+            6
+          ],
+          "F": [
+            2,
+            -2,
+            6
+          ],
+          "G": [
+            2,
+            2,
+            6
+          ],
+          "H": [
+            -2,
+            2,
+            6
+          ],
+          "P": [
+            2,
+            -4,
+            0
+          ],
+          "Q": [
+            2,
+            -4,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AB",
+          "FG"
+        ],
+        "planes": [],
+        "caption": "Rechte afgeknotte vierzijdige piramide: grondvierkant zijde 8, bovenvierkant zijde 4 en hoogte 6 cm. AP = 6 cm; Q ligt 2 cm voorbij F op lijn GF.",
+        "segments": [
+          {
+            "from": [
+              2,
+              -2,
+              6
+            ],
+            "to": [
+              2,
+              -4,
+              6
+            ],
+            "color": "#ffa55c",
+            "dashed": true
+          }
+        ]
+      },
+      "shapeFamily": "square-pyramid-frustum",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 opgave 28, afgeknotte vierzijdige piramide. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "selectCount": 2,
+      "geometryCheck": {
+        "kind": "lineLineDistance",
+        "lines": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "F",
+            "G"
+          ]
+        ],
+        "expected": 6,
+        "feet": [
+          "P",
+          "Q"
+        ],
+        "mustBeSkew": true
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            -4,
+            -4,
+            0
+          ],
+          "B": [
+            4,
+            -4,
+            0
+          ],
+          "C": [
+            4,
+            4,
+            0
+          ],
+          "D": [
+            -4,
+            4,
+            0
+          ],
+          "E": [
+            -2,
+            -2,
+            6
+          ],
+          "F": [
+            2,
+            -2,
+            6
+          ],
+          "G": [
+            2,
+            2,
+            6
+          ],
+          "H": [
+            -2,
+            2,
+            6
+          ],
+          "P": [
+            2,
+            -4,
+            0
+          ],
+          "Q": [
+            2,
+            -4,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AB",
+          "FG",
+          "PQ"
+        ],
+        "planes": [],
+        "caption": "PQ staat op beide horizontale lijnen loodrecht. Q ligt buiten ribbe FG; de afstand tussen de volledige lijnen is 6 cm.",
+        "segments": [
+          {
+            "from": [
+              2,
+              -2,
+              6
+            ],
+            "to": [
+              2,
+              -4,
+              6
+            ],
+            "color": "#ffa55c",
+            "dashed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "vorm-l6-common-r1",
+      "block": "l6-common-perpendicular",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In piramide ABCDT ligt T loodrecht boven hoekpunt D, niet boven het midden. ABCD is een rechthoek met AB = 9 cm en AD = 7 cm; DT = 11 cm. Bereken d(AB,DT), in cm op twee decimalen.",
+      "answer": [
+        "7"
+      ],
+      "explanation": "AD verbindt A op AB met D op DT. AD ⟂ AB omdat ABCD rechthoekig is; AD ⟂ DT omdat DT loodrecht op het grondvlak staat. AD is dus de gemeenschappelijke loodlijn en d(AB,DT) = 7,00 cm. AT is langer en staat niet loodrecht op beide lijnen.",
+      "hint": "Zoek de twee voetpunten en onderbouw beide rechte hoeken.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            9,
+            0,
+            0
+          ],
+          "C": [
+            9,
+            7,
+            0
+          ],
+          "D": [
+            0,
+            7,
+            0
+          ],
+          "T": [
+            0,
+            7,
+            11
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AB",
+          "DT"
+        ],
+        "planes": [],
+        "caption": "Scheve vierzijdige piramide: ABCD is rechthoekig, AB = 9, AD = 7, DT = 11 cm; T staat loodrecht boven D."
+      },
+      "shapeFamily": "oblique-quadrilateral-pyramid",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 opgave 29, scheve vierzijdige piramide met top boven D. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "lineLineDistance",
+        "lines": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "D",
+            "T"
+          ]
+        ],
+        "expected": 7,
+        "feet": [
+          "A",
+          "D"
+        ],
+        "mustBeSkew": true
+      }
+    },
+    {
+      "id": "vorm-l6-parallel-q1",
+      "block": "l6-parallel-plane",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Je zoekt d(AD,BT) in de scheve piramide met T loodrecht boven D. Welke punt-vlakafstand is gelijk aan deze lijnafstand?",
+      "answer": [
+        "side"
+      ],
+      "explanation": "Vlak BCT bevat BT en bevat BC, dat evenwijdig is aan AD. AD ligt buiten BCT. Daarmee is BCT een hulpvlak door de ene lijn, evenwijdig aan de andere. Je mag A op AD kiezen: d(AD,BT) = d(A,BCT). De andere voorgestelde vlakken voldoen niet aan beide voorwaarden.",
+      "hint": "Het hulpvlak moet één lijn bevatten én evenwijdig zijn aan de andere.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            0,
+            6,
+            10
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AD",
+          "BT"
+        ],
+        "planes": [],
+        "caption": "ABCD is rechthoekig: AB = 8, AD = 6, DT = 10 cm. T ligt loodrecht boven D. Gezocht: d(AD,BT)."
+      },
+      "shapeFamily": "oblique-quadrilateral-pyramid",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 opgave 29 en §10.7, hulpvlak bij kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "options": [
+        {
+          "id": "base",
+          "text": "d(T,ABCD), omdat ABCD het grondvlak is."
+        },
+        {
+          "id": "side",
+          "text": "d(A,BCT), want BT ligt in BCT en BC ∥ AD."
+        },
+        {
+          "id": "vertical",
+          "text": "d(B,ADT), alleen omdat AD in ADT ligt."
+        }
+      ],
+      "geometryCheck": {
+        "kind": "parallelHelperPlane",
+        "lineInPlane": [
+          "B",
+          "T"
+        ],
+        "parallelLine": [
+          "A",
+          "D"
+        ],
+        "plane": [
+          "B",
+          "C",
+          "T"
+        ],
+        "point": "A",
+        "expected": 6.246950475544243
+      }
+    },
+    {
+      "id": "vorm-l6-parallel-q2",
+      "block": "l6-parallel-plane",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT staan AB, AC en AT paarsgewijs loodrecht. AC = 8 cm en AT = 15 cm. Je kiest een hulpvlak door AB, evenwijdig aan CT. Bereken d(AB,CT), in cm op twee decimalen.",
+      "answer": [
+        "7.0588235294117645"
+      ],
+      "explanation": "Teken in vlak ACT door A een lijn evenwijdig aan CT. Samen met AB vormt die het vereiste hulpvlak. De afstand van C tot dat vlak is de hoogte tussen de evenwijdige lijnen in ACT. Die hoogte is gelijk aan de hoogte uit A op CT. AB ⟂ ACT, dus deze hoogtelijn staat bovendien op AB loodrecht. CT = 17 en ½ × 8 × 15 = ½ × 17 × d. Dus d = 120/17 ≈ 7,06 cm.",
+      "hint": "Reduceer de ruimtelijke vraag tot een hoogte in driehoek ACT.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            5,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            15
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AB",
+          "CT"
+        ],
+        "planes": [],
+        "caption": "Tetraëder ABCT: AB = 5, AC = 8, AT = 15 cm; de drie ribben bij A staan paarsgewijs loodrecht."
+      },
+      "shapeFamily": "tetrahedron",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "lineLineDistance",
+        "lines": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C",
+            "T"
+          ]
+        ],
+        "expected": 7.0588235294117645,
+        "feet": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6.228373702422146,
+            3.3217993079584773
+          ]
+        ],
+        "mustBeSkew": true
+      }
+    },
+    {
+      "id": "vorm-l6-parallel-q3",
+      "block": "l6-parallel-plane",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "Een buizenframe heeft de vorm van recht prisma ABC.DEF, met rechte hoek bij A. We rekenen met volledige buisassen, zonder buisdikte. Welk hulpvlak door AB is geschikt om d(AB,CF) als punt-vlakafstand te berekenen?",
+      "answer": [
+        "front"
+      ],
+      "explanation": "Vlak ABED bevat AB en bevat de verticale lijn BE, evenwijdig aan CF. CF ligt buiten dit vlak. Daarom is d(AB,CF) = d(C,ABED). Vlak ABC bevat wel AB, maar is niet evenwijdig aan de verticale lijn CF; vlak ACF bevat AB niet.",
+      "hint": "Controleer afzonderlijk: bevat het vlak AB, en volgt het ook de richting van CF?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            9
+          ],
+          "E": [
+            6,
+            0,
+            9
+          ],
+          "F": [
+            0,
+            8,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AB",
+          "CF"
+        ],
+        "planes": [],
+        "caption": "Buizenframe in de vorm van een recht driehoekig prisma. ABC is rechthoekig bij A; opstaande buisassen AD, BE en CF zijn verticaal."
+      },
+      "shapeFamily": "triangular-prism-frame",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 opgave 30, buizenconstructie; §10.7 hulpvlak. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "options": [
+        {
+          "id": "ground",
+          "text": "Vlak ABC."
+        },
+        {
+          "id": "front",
+          "text": "Vlak ABED."
+        },
+        {
+          "id": "left",
+          "text": "Vlak ACF."
+        }
+      ],
+      "geometryCheck": {
+        "kind": "parallelHelperPlane",
+        "lineInPlane": [
+          "A",
+          "B"
+        ],
+        "parallelLine": [
+          "C",
+          "F"
+        ],
+        "plane": [
+          "A",
+          "B",
+          "E"
+        ],
+        "point": "C",
+        "expected": 8
+      }
+    },
+    {
+      "id": "vorm-l6-parallel-r1",
+      "block": "l6-parallel-plane",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "De rechte afgeknotte vierzijdige piramide heeft evenwijdige, gecentreerde vierkante vlakken: ABCD beneden en EFGH boven. De loodrechte hoogte is 7 cm. Bereken d(AC,FH), in cm op twee decimalen.",
+      "answer": [
+        "7"
+      ],
+      "explanation": "Het grondvlak bevat AC en is evenwijdig aan FH. Daarom is de gezochte afstand gelijk aan d(F,ABCD) = 7,00 cm. Je kunt dit ook zien aan de verticale verbinding tussen de middelpunten van AC en FH: die staat loodrecht op beide horizontale lijnen. AC en FH zijn niet evenwijdig en liggen in verschillende evenwijdige vlakken; zij zijn dus kruisend.",
+      "hint": "Bekijk eerst of een bestaand vlak beide vereiste richtingen bevat.",
+      "scene": {
+        "points": {
+          "A": [
+            -5,
+            -5,
+            0
+          ],
+          "B": [
+            5,
+            -5,
+            0
+          ],
+          "C": [
+            5,
+            5,
+            0
+          ],
+          "D": [
+            -5,
+            5,
+            0
+          ],
+          "E": [
+            -2,
+            -2,
+            7
+          ],
+          "F": [
+            2,
+            -2,
+            7
+          ],
+          "G": [
+            2,
+            2,
+            7
+          ],
+          "H": [
+            -2,
+            2,
+            7
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AC",
+          "FH"
+        ],
+        "planes": [],
+        "caption": "Rechte afgeknotte vierzijdige piramide: grondvierkant zijde 10, bovenvierkant zijde 4, loodrechte hoogte 7 cm."
+      },
+      "shapeFamily": "square-pyramid-frustum",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "lineLineDistance",
+        "lines": [
+          [
+            "A",
+            "C"
+          ],
+          [
+            "F",
+            "H"
+          ]
+        ],
+        "expected": 7,
+        "feet": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7
+          ]
+        ],
+        "mustBeSkew": true
+      }
+    },
+    {
+      "id": "vorm-l6-method-q1",
+      "block": "l6-method",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "T staat loodrecht boven D van rechthoek ABCD. AB = 8 cm, AD = 6 cm en DT = 9 cm. Bereken de hoek van BT met het grondvlak ABCD, in graden op twee decimalen.",
+      "answer": [
+        "41.98721249581666"
+      ],
+      "explanation": "De loodrechte projectie van T is D, zodat BT projecteert op BD. De gevraagde hoek is ∠TBD. Met Pythagoras: BD = √(8² + 6²) = 10 cm. In rechthoekige driehoek BDT geldt tan α = DT/BD = 9/10. Dus α ≈ 41,99°. De hoek met DT is de complementaire hoek (samen 90°).",
+      "hint": "Bepaal eerst de loodrechte projectie van de schuine ribbe.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            8,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            0,
+            6,
+            9
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "highlights": [
+          "BT"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ],
+        "caption": "ABCD is rechthoekig met AB = 8 en AD = 6 cm. T staat loodrecht boven D; DT = 9 cm."
+      },
+      "shapeFamily": "oblique-quadrilateral-pyramid",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "geometryCheck": {
+        "kind": "linePlaneAngle",
+        "line": [
+          "B",
+          "T"
+        ],
+        "plane": [
+          "A",
+          "B",
+          "C"
+        ],
+        "expected": 41.98721249581666
+      }
+    },
+    {
+      "id": "vorm-l6-method-q2",
+      "block": "l6-method",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In tetraëder ABCT zijn AB, AC en AT paarsgewijs loodrecht en elk 6 cm lang. Bereken d(A,BCT), in cm op twee decimalen. Kies zelf een geschikte methode.",
+      "answer": [
+        "3.4641016151377544"
+      ],
+      "explanation": "Gebruik hetzelfde volume met twee grondvlakken. Met ABC als grondvlak is V = ⅓ × (½ × 6 × 6) × 6 = 36 cm³. BC = BT = CT = 6√2, dus BCT is gelijkzijdig. De hoogte daarin is √((6√2)² − (3√2)²) = 3√6, zodat opp(BCT) = ½ × 6√2 × 3√6 = 18√3. Nu 36 = ⅓ × 18√3 × d, dus d = 2√3 ≈ 3,46 cm. Deze d is de loodrechte hoogte vanuit A op BCT.",
+      "hint": "Kun je de inhoud berekenen met een eenvoudig grondvlak en daarna met BCT als grondvlak?",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            6,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            6,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            6
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "highlights": [],
+        "planes": [
+          [
+            "B",
+            "C",
+            "T"
+          ]
+        ],
+        "caption": "Tetraëder met AB = AC = AT = 6 cm; die drie ribben staan paarsgewijs loodrecht."
+      },
+      "shapeFamily": "tetrahedron",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "pointPlaneDistance",
+        "point": "A",
+        "plane": [
+          "B",
+          "C",
+          "T"
+        ],
+        "expected": 3.4641016151377544
+      }
+    },
+    {
+      "id": "vorm-l6-method-q3",
+      "block": "l6-method",
+      "skill": "onderbouwen",
+      "type": "choice",
+      "prompt": "In deze rechte afgeknotte vierzijdige piramide zoek je de scherpe hoek α tussen zijvlak ABFE en grondvlak ABCD. M en N zijn de middens van AB en EF; R is de loodrechte projectie van N op ABCD. Welke aanpak bepaalt de juiste standhoek?",
+      "answer": [
+        "stand"
+      ],
+      "explanation": "AB is de snijlijn van de vlakken. MN ligt in zijvlak ABFE en staat loodrecht op AB; MR ligt in het grondvlak en staat ook loodrecht op AB. Daarom is ∠NMR de standhoek. NR = 6 en MR = (10 − 4)/2 = 3 cm. Dus tan α = 6/3 en α ≈ 63,43°. De zijribbe AE is niet loodrecht op AB en levert dus niet deze standhoek.",
+      "hint": "Zoek in beide vlakken een lijn loodrecht op hun snijlijn AB.",
+      "scene": {
+        "points": {
+          "A": [
+            -5,
+            -5,
+            0
+          ],
+          "B": [
+            5,
+            -5,
+            0
+          ],
+          "C": [
+            5,
+            5,
+            0
+          ],
+          "D": [
+            -5,
+            5,
+            0
+          ],
+          "E": [
+            -2,
+            -2,
+            6
+          ],
+          "F": [
+            2,
+            -2,
+            6
+          ],
+          "G": [
+            2,
+            2,
+            6
+          ],
+          "H": [
+            -2,
+            2,
+            6
+          ],
+          "M": [
+            0,
+            -5,
+            0
+          ],
+          "N": [
+            0,
+            -2,
+            6
+          ],
+          "R": [
+            0,
+            -2,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "highlights": [],
+        "planes": [
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ],
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ],
+        "caption": "Grondvierkant zijde 10, bovenvierkant zijde 4, hoogte 6 cm. M en N zijn de middens van AB en EF; R is de loodrechte projectie van N op het grondvlak."
+      },
+      "shapeFamily": "square-pyramid-frustum",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "options": [
+        {
+          "id": "edge",
+          "text": "Neem de hoek van AE met AB."
+        },
+        {
+          "id": "stand",
+          "text": "Neem ∠NMR; tan α = 6/3."
+        },
+        {
+          "id": "whole",
+          "text": "Neem ∠NMR; tan α = 6/10."
+        }
+      ],
+      "geometryCheck": {
+        "kind": "planePlaneAngle",
+        "planes": [
+          [
+            "A",
+            "B",
+            "F"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "expected": 63.43494882292201
+      },
+      "revealScene": {
+        "points": {
+          "A": [
+            -5,
+            -5,
+            0
+          ],
+          "B": [
+            5,
+            -5,
+            0
+          ],
+          "C": [
+            5,
+            5,
+            0
+          ],
+          "D": [
+            -5,
+            5,
+            0
+          ],
+          "E": [
+            -2,
+            -2,
+            6
+          ],
+          "F": [
+            2,
+            -2,
+            6
+          ],
+          "G": [
+            2,
+            2,
+            6
+          ],
+          "H": [
+            -2,
+            2,
+            6
+          ],
+          "M": [
+            0,
+            -5,
+            0
+          ],
+          "N": [
+            0,
+            -2,
+            6
+          ],
+          "R": [
+            0,
+            -2,
+            0
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "highlights": [
+          "MN",
+          "MR",
+          "NR"
+        ],
+        "planes": [
+          [
+            "M",
+            "N",
+            "R"
+          ]
+        ],
+        "caption": "MN en MR staan beide loodrecht op AB. ∠NMR is de standhoek; MR = 3 en NR = 6 cm."
+      }
+    },
+    {
+      "id": "vorm-l6-method-r1",
+      "block": "l6-method",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Bij een recht driehoekig buizenframe ABC.DEF is ∠BAC = 90°, AB = 9 cm en AC = 12 cm. De opstaande buisassen zijn loodrecht op het grondvlak. Bereken de afstand van A tot het verticale vlak BCEF, in cm op twee decimalen.",
+      "answer": [
+        "7.2"
+      ],
+      "explanation": "Vlak ABC staat loodrecht op de verticale richting. Teken daarin AN ⟂ BC. AN staat ook loodrecht op de verticale lijn door N in vlak BCEF. Dus AN staat loodrecht op BCEF. BC = 15; uit ½ × 9 × 12 = ½ × 15 × AN volgt AN = 7,20 cm. De framehoogte is voor deze afstand niet nodig.",
+      "hint": "Reduceer de punt-vlakafstand tot een hoogte in de driehoek ABC.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            9,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            12,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            10
+          ],
+          "E": [
+            9,
+            0,
+            10
+          ],
+          "F": [
+            0,
+            12,
+            10
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "showCube": false,
+        "highlights": [
+          "BC"
+        ],
+        "planes": [
+          [
+            "B",
+            "C",
+            "F",
+            "E"
+          ]
+        ],
+        "caption": "Recht driehoekig buizenframe: ABC is rechthoekig bij A, AB = 9, AC = 12 en opstaande hoogte = 10 cm."
+      },
+      "shapeFamily": "triangular-prism-frame",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 opgave 30, buizenconstructie; hoofdstuk 10, zelfstandige methodekeuze. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "pointPlaneDistance",
+        "point": "A",
+        "plane": [
+          "B",
+          "C",
+          "F"
+        ],
+        "expected": 7.2
+      }
+    },
+    {
+      "id": "vorm-l6-check-1",
+      "block": "l6-common-perpendicular",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Tetraëder ABCT: AB, AC en AT zijn paarsgewijs loodrecht. AB = 7, AC = 9 en AT = 12 cm. Bereken d(AB,CT), in cm op twee decimalen.",
+      "answer": [
+        "7.2"
+      ],
+      "explanation": "AB ⟂ ACT. De hoogtelijn uit A op CT staat dus loodrecht op AB én CT. CT = 15 cm. Tweemaal de oppervlakte van ACT is 9 × 12 = 15 × d. Dus d = 7,20 cm.",
+      "hint": "Bepaal zelfstandig een geldige gemeenschappelijke loodlijn.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            7,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            9,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            12
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AB",
+          "CT"
+        ],
+        "planes": [],
+        "caption": "AB = 7, AC = 9, AT = 12 cm; de drie ribben bij A staan paarsgewijs loodrecht."
+      },
+      "shapeFamily": "tetrahedron",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "lineLineDistance",
+        "lines": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C",
+            "T"
+          ]
+        ],
+        "expected": 7.2,
+        "feet": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            5.76,
+            4.32
+          ]
+        ],
+        "mustBeSkew": true
+      }
+    },
+    {
+      "id": "vorm-l6-check-2",
+      "block": "l6-parallel-plane",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "ABCD en EFGH zijn de evenwijdige, gecentreerde vierkanten van een rechte afgeknotte piramide. De loodrechte hoogte is 5 cm. Bereken de afstand tussen de volledige lijnen AC en FH, in cm op twee decimalen.",
+      "answer": [
+        "5"
+      ],
+      "explanation": "Het grondvlak bevat AC en is evenwijdig aan FH. De afstand is daarom d(F,ABCD) = 5,00 cm. De verticale middelpuntverbinding staat loodrecht op beide lijnen en heeft dezelfde lengte.",
+      "hint": "Kies zelfstandig een hulpvlak of gemeenschappelijke loodlijn.",
+      "scene": {
+        "points": {
+          "A": [
+            -6,
+            -6,
+            0
+          ],
+          "B": [
+            6,
+            -6,
+            0
+          ],
+          "C": [
+            6,
+            6,
+            0
+          ],
+          "D": [
+            -6,
+            6,
+            0
+          ],
+          "E": [
+            -3,
+            -3,
+            5
+          ],
+          "F": [
+            3,
+            -3,
+            5
+          ],
+          "G": [
+            3,
+            3,
+            5
+          ],
+          "H": [
+            -3,
+            3,
+            5
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AC",
+          "FH"
+        ],
+        "planes": [],
+        "caption": "Rechte afgeknotte vierzijdige piramide: grondzijde 12, bovenzijde 6, loodrechte hoogte 5 cm."
+      },
+      "shapeFamily": "square-pyramid-frustum",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "lineLineDistance",
+        "lines": [
+          [
+            "A",
+            "C"
+          ],
+          [
+            "F",
+            "H"
+          ]
+        ],
+        "expected": 5,
+        "feet": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            5
+          ]
+        ],
+        "mustBeSkew": true
+      }
+    },
+    {
+      "id": "vorm-l6-check-3",
+      "block": "l6-method",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "In piramide ABCDT ligt T loodrecht boven D. ABCD is rechthoekig, AB = 9 cm, AD = 12 cm en DT = 10 cm. Bereken de hoek tussen BT en ABCD, in graden op twee decimalen.",
+      "answer": [
+        "33.690067525979785"
+      ],
+      "explanation": "BT projecteert op BD. BD = √(9² + 12²) = 15 cm. De gezochte hoek is ∠TBD met tan α = 10/15. Dus α ≈ 33,69°.",
+      "hint": "Kies zelf de juiste vlakke driehoek.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            9,
+            0,
+            0
+          ],
+          "C": [
+            9,
+            12,
+            0
+          ],
+          "D": [
+            0,
+            12,
+            0
+          ],
+          "T": [
+            0,
+            12,
+            10
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "highlights": [
+          "BT"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ],
+        "caption": "Rechthoek ABCD: AB = 9 en AD = 12 cm. T ligt loodrecht boven D met DT = 10 cm."
+      },
+      "shapeFamily": "oblique-quadrilateral-pyramid",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "geometryCheck": {
+        "kind": "linePlaneAngle",
+        "line": [
+          "B",
+          "T"
+        ],
+        "plane": [
+          "A",
+          "B",
+          "C"
+        ],
+        "expected": 33.690067525979785
+      }
+    },
+    {
+      "id": "vorm-l7a-check-1",
+      "block": "l6-parallel-plane",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Scheve piramide ABCDT: ABCD is rechthoekig en T ligt loodrecht boven D. AB = 10 cm, AD = 7 cm en DT = 14 cm. Bereken de afstand tussen de volledige lijnen AD en BT, in cm op twee decimalen. Onderbouw je methode.",
+      "answer": [
+        "8.13733471206735"
+      ],
+      "explanation": "Neem hulpvlak BCT: het bevat BT en BC ∥ AD. Dus d(AD,BT) = d(A,BCT). Teken U loodrecht boven A met AU = DT = 14; dan UT ∥ AD en U ligt in het uitgebreide vlak BCT. In standvlak ABU ligt de loodlijn uit A op BU. Deze staat ook loodrecht op de richting AD en dus op BCT. BU = √(10² + 14²) = 2√74. Uit ½ × 10 × 14 = ½ × 2√74 × d volgt d = 70/√74 ≈ 8,14 cm. De gevonden punt-vlakafstand is gelijk aan de lijnafstand; A zelf hoeft geen voetpunt van de gemeenschappelijke loodlijn te zijn.",
+      "hint": "Bepaal zelfstandig een geschikt hulpvlak en een loodrechte doorsnede.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            10,
+            0,
+            0
+          ],
+          "C": [
+            10,
+            7,
+            0
+          ],
+          "D": [
+            0,
+            7,
+            0
+          ],
+          "T": [
+            0,
+            7,
+            14
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "AT",
+          "BT",
+          "CT",
+          "DT"
+        ],
+        "showCube": false,
+        "highlights": [
+          "AD",
+          "BT"
+        ],
+        "planes": [],
+        "caption": "ABCD is rechthoekig met AB = 10 en AD = 7 cm. DT = 14 cm staat loodrecht op ABCD."
+      },
+      "shapeFamily": "oblique-quadrilateral-pyramid",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "lineLineDistance",
+        "lines": [
+          [
+            "A",
+            "D"
+          ],
+          [
+            "B",
+            "T"
+          ]
+        ],
+        "expected": 8.13733471206735,
+        "feet": [
+          [
+            0,
+            2.364864864864865,
+            0
+          ],
+          [
+            6.621621621621622,
+            2.364864864864865,
+            4.72972972972973
+          ]
+        ],
+        "mustBeSkew": true
+      }
+    },
+    {
+      "id": "vorm-l7a-check-2",
+      "block": "l6-method",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Een regelmatige afgeknotte vierzijdige piramide heeft grondvierkant ABCD met zijde 10 cm, bovenvierkant EFGH met zijde 4 cm en loodrechte hoogte 8 cm. Bereken de scherpe hoek tussen zijvlak ABFE en grondvlak ABCD, in graden op twee decimalen.",
+      "answer": [
+        "69.44395478041653"
+      ],
+      "explanation": "Kies het verticale standvlak door de middens van AB en EF, loodrecht op AB. De horizontale terugloop is (10 − 4)/2 = 3 cm en de verticale hoogte is 8 cm. De twee snijlijnen van het standvlak met de gevraagde vlakken staan op AB loodrecht. Hun hoek α voldoet aan tan α = 8/3, dus α ≈ 69,44°.",
+      "hint": "Bepaal zelfstandig de snijlijn en een standvlak.",
+      "scene": {
+        "points": {
+          "A": [
+            -5,
+            -5,
+            0
+          ],
+          "B": [
+            5,
+            -5,
+            0
+          ],
+          "C": [
+            5,
+            5,
+            0
+          ],
+          "D": [
+            -5,
+            5,
+            0
+          ],
+          "E": [
+            -2,
+            -2,
+            8
+          ],
+          "F": [
+            2,
+            -2,
+            8
+          ],
+          "G": [
+            2,
+            2,
+            8
+          ],
+          "H": [
+            -2,
+            2,
+            8
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CD",
+          "DA",
+          "EF",
+          "FG",
+          "GH",
+          "HE",
+          "AE",
+          "BF",
+          "CG",
+          "DH"
+        ],
+        "showCube": false,
+        "highlights": [],
+        "planes": [
+          [
+            "A",
+            "B",
+            "F",
+            "E"
+          ],
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        ],
+        "caption": "Rechte afgeknotte vierzijdige piramide: grondvierkant zijde 10, bovenvierkant zijde 4, loodrechte hoogte 8 cm."
+      },
+      "shapeFamily": "square-pyramid-frustum",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "geometryCheck": {
+        "kind": "planePlaneAngle",
+        "planes": [
+          [
+            "A",
+            "B",
+            "F"
+          ],
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "expected": 69.44395478041653
+      }
+    },
+    {
+      "id": "vorm-l7b-check-1",
+      "block": "l6-method",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Recht driehoekig prisma ABC.DEF: ∠BAC = 90°, AB = 8 cm en AC = 6 cm. De opstaande ribben zijn 10 cm en loodrecht op ABC. Bereken d(A,BCEF), in cm op twee decimalen.",
+      "answer": [
+        "4.8"
+      ],
+      "explanation": "De hoogte AN uit A op BC in driehoek ABC is ook loodrecht op het verticale vlak BCEF: AN ⟂ BC en AN ⟂ de verticale lijn door N. BC = 10 cm. Met de oppervlakte: ½ × 8 × 6 = ½ × 10 × AN. Dus d = AN = 4,80 cm; de prismahoogte speelt geen rol.",
+      "hint": "Kies zelfstandig een geldige loodlijn.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            8,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            6,
+            0
+          ],
+          "D": [
+            0,
+            0,
+            10
+          ],
+          "E": [
+            8,
+            0,
+            10
+          ],
+          "F": [
+            0,
+            6,
+            10
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "DE",
+          "EF",
+          "FD",
+          "AD",
+          "BE",
+          "CF"
+        ],
+        "showCube": false,
+        "highlights": [],
+        "planes": [
+          [
+            "B",
+            "C",
+            "F",
+            "E"
+          ]
+        ],
+        "caption": "Recht prisma ABC.DEF: ABC is rechthoekig bij A, AB = 8, AC = 6, AD = BE = CF = 10 cm."
+      },
+      "shapeFamily": "triangular-prism",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "cm",
+      "working": true,
+      "geometryCheck": {
+        "kind": "pointPlaneDistance",
+        "point": "A",
+        "plane": [
+          "B",
+          "C",
+          "F"
+        ],
+        "expected": 4.8
+      }
+    },
+    {
+      "id": "vorm-l7b-check-2",
+      "block": "l6-method",
+      "skill": "rekenen",
+      "type": "numeric",
+      "prompt": "Tetraëder ABCT heeft paarsgewijs loodrechte ribben AB = 7 cm, AC = 8 cm en AT = 15 cm. Bereken de hoek van CT met vlak ABC, in graden op twee decimalen.",
+      "answer": [
+        "61.92751306414704"
+      ],
+      "explanation": "AT staat loodrecht op ABC, want AT ⟂ AB en AT ⟂ AC. Daarom projecteert CT op CA. In rechthoekige driehoek CAT is de gezochte hoek ∠TCA; tan α = AT/AC = 15/8. Dus α ≈ 61,93°.",
+      "hint": "Bepaal zelfstandig de loodrechte projectie van de lijn.",
+      "scene": {
+        "points": {
+          "A": [
+            0,
+            0,
+            0
+          ],
+          "B": [
+            7,
+            0,
+            0
+          ],
+          "C": [
+            0,
+            8,
+            0
+          ],
+          "T": [
+            0,
+            0,
+            15
+          ]
+        },
+        "edges": [
+          "AB",
+          "BC",
+          "CA",
+          "AT",
+          "BT",
+          "CT"
+        ],
+        "showCube": false,
+        "highlights": [
+          "CT"
+        ],
+        "planes": [
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "caption": "Tetraëder ABCT: AB = 7, AC = 8, AT = 15 cm en de drie ribben bij A staan paarsgewijs loodrecht."
+      },
+      "shapeFamily": "tetrahedron",
+      "curriculumSource": "HAN Ruimtemeetkunde 1, week 6; §4.5 en hoofdstuk 10, methodekeuze en kruisende lijnen. Nieuwe oefenvariant met eigen maten, geen letterlijke overname.",
+      "decimals": 2,
+      "unit": "°",
+      "working": true,
+      "geometryCheck": {
+        "kind": "linePlaneAngle",
+        "line": [
+          "C",
+          "T"
+        ],
+        "plane": [
+          "A",
+          "B",
+          "C"
+        ],
+        "expected": 61.92751306414704
+      }
+    }
+  ],
+  "blockAdditions": [
+    {
+      "id": "l6-common-perpendicular",
+      "questionIds": [
+        "vorm-l6-common-q1",
+        "vorm-l6-common-q2",
+        "vorm-l6-common-q3"
+      ],
+      "retestIds": [
+        "vorm-l6-common-r1"
+      ],
+      "theory": [
+        {
+          "title": "Een tetraëder: dezelfde loodlijnregel, andere vorm",
+          "text": "In tetraëder ABCT staan AB, AC en AT paarsgewijs loodrecht. AB staat dus loodrecht op vlak ACT. De hoogtelijn AN uit A op CT staat op CT loodrecht én, omdat zij in ACT ligt, op AB. AC = 6, AT = 8 en CT = 10 cm; via de oppervlakte ½ × 6 × 8 = ½ × 10 × AN volgt d(AB,CT) = 4,8 cm. Niet de buitenvorm, maar de twee bewezen loodrechten bepalen de afstand.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                7,
+                0,
+                0
+              ],
+              "C": [
+                0,
+                6,
+                0
+              ],
+              "T": [
+                0,
+                0,
+                8
+              ],
+              "N": [
+                0,
+                3.84,
+                2.88
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CA",
+              "AT",
+              "BT",
+              "CT"
+            ],
+            "showCube": false,
+            "highlights": [
+              "AB",
+              "CT",
+              "AN"
+            ],
+            "planes": [
+              [
+                "A",
+                "C",
+                "T"
+              ]
+            ],
+            "caption": "Drie onderling loodrechte ribben AB = 7, AC = 6 en AT = 8 cm. N ligt op CT; AN is de gemeenschappelijke loodlijn."
+          }
+        }
+      ]
+    },
+    {
+      "id": "l6-parallel-plane",
+      "questionIds": [
+        "vorm-l6-parallel-q1",
+        "vorm-l6-parallel-q2",
+        "vorm-l6-parallel-q3"
+      ],
+      "retestIds": [
+        "vorm-l6-parallel-r1"
+      ],
+      "theory": [
+        {
+          "title": "Scheve piramide: top boven D, hulpvlak door BT",
+          "text": "ABCD is rechthoekig en DT staat loodrecht op ABCD. Voor d(AD,BT) kies je vlak BCT: het bevat BT en BC ∥ AD. Dus d(AD,BT) = d(A,BCT). Zet U loodrecht boven A met AU = DT; UT ∥ BC, zodat U in BCT ligt. Standvlak ABU is loodrecht op AD. Laat daarin AN loodrecht op BU neer. AN staat ook loodrecht op de richting BC en dus op BCT. Bij AB = 9 en AU = 12 geldt BU = 15; tweemaal de oppervlakte van ABU geeft 9 × 12 = 15 × AN. De afstand is 7,2 cm. Let op: A is geschikt voor de punt-vlakafstand, maar is niet het voetpunt op AD van de gemeenschappelijke loodlijn.",
+          "scene": {
+            "points": {
+              "A": [
+                0,
+                0,
+                0
+              ],
+              "B": [
+                9,
+                0,
+                0
+              ],
+              "C": [
+                9,
+                12,
+                0
+              ],
+              "D": [
+                0,
+                12,
+                0
+              ],
+              "T": [
+                0,
+                12,
+                12
+              ],
+              "U": [
+                0,
+                0,
+                12
+              ],
+              "N": [
+                5.76,
+                0,
+                4.32
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "AT",
+              "BT",
+              "CT",
+              "DT"
+            ],
+            "showCube": false,
+            "highlights": [
+              "AD",
+              "BT",
+              "BU",
+              "AN"
+            ],
+            "planes": [
+              [
+                "B",
+                "C",
+                "T",
+                "U"
+              ],
+              [
+                "A",
+                "B",
+                "U"
+              ]
+            ],
+            "caption": "Scheve piramide met top boven D: AB = 9, AD = 12 en DT = 12 cm. U ligt loodrecht boven A met AU = 12; N is de loodvoet uit A op BU."
+          }
+        }
+      ]
+    },
+    {
+      "id": "l6-method",
+      "questionIds": [
+        "vorm-l6-method-q1",
+        "vorm-l6-method-q2",
+        "vorm-l6-method-q3"
+      ],
+      "retestIds": [
+        "vorm-l6-method-r1"
+      ],
+      "theory": [
+        {
+          "title": "Afgeknotte piramide: een standhoek vraagt een standvlak",
+          "text": "Een rechte afgeknotte vierzijdige piramide heeft grondzijde 10, bovenzijde 4 en hoogte 6 cm. Voor de hoek tussen ABFE en ABCD kies je het verticale vlak door de middens M van AB en N van EF. Met R recht onder N staan MN en MR beide loodrecht op snijlijn AB. ∠NMR is dus de standhoek. De terugloop is MR = (10 − 4)/2 = 3 cm; tan α = NR/MR = 6/3. Dus α ≈ 63,43°. Een hoek met zijribbe AE zou een andere vraag beantwoorden.",
+          "scene": {
+            "points": {
+              "A": [
+                -5,
+                -5,
+                0
+              ],
+              "B": [
+                5,
+                -5,
+                0
+              ],
+              "C": [
+                5,
+                5,
+                0
+              ],
+              "D": [
+                -5,
+                5,
+                0
+              ],
+              "E": [
+                -2,
+                -2,
+                6
+              ],
+              "F": [
+                2,
+                -2,
+                6
+              ],
+              "G": [
+                2,
+                2,
+                6
+              ],
+              "H": [
+                -2,
+                2,
+                6
+              ],
+              "M": [
+                0,
+                -5,
+                0
+              ],
+              "N": [
+                0,
+                -2,
+                6
+              ],
+              "R": [
+                0,
+                -2,
+                0
+              ]
+            },
+            "edges": [
+              "AB",
+              "BC",
+              "CD",
+              "DA",
+              "EF",
+              "FG",
+              "GH",
+              "HE",
+              "AE",
+              "BF",
+              "CG",
+              "DH"
+            ],
+            "showCube": false,
+            "highlights": [
+              "MN",
+              "MR",
+              "NR"
+            ],
+            "planes": [
+              [
+                "M",
+                "N",
+                "R"
+              ]
+            ],
+            "caption": "Standvlak MNR bij de afgeknotte piramide. MR = 3, NR = 6 cm; MN en MR staan loodrecht op AB."
+          }
+        }
+      ]
+    }
+  ],
+  "checkAdditions": {
+    "6": [
+      "vorm-l6-check-1",
+      "vorm-l6-check-2",
+      "vorm-l6-check-3"
+    ],
+    "7a": [
+      "vorm-l7a-check-1",
+      "vorm-l7a-check-2"
+    ],
+    "7b": [
+      "vorm-l7b-check-1",
+      "vorm-l7b-check-2"
+    ]
+  }
+}

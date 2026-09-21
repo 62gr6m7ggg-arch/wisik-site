@@ -19,6 +19,14 @@ export function isMisconceptionTrigger(block:Block,questionId:string,answer:stri
  return questionId===block.misconception.trigger.qid&&exactWrong(questionId,answer,block.misconception.trigger.wrongAnswer);
 }
 export function supportsMisconception(block:Block,answers:string[][]){return answers.length===block.probeIds.length&&answers.every((a,i)=>exactWrong(block.probeIds[i],a,block.misconception.probeWrongAnswers[i]));}
+/** Inserting transfer questions must not strand an in-progress lesson with
+ * missing earlier answers. Only this session counts; reopening a completed
+ * block deliberately starts a fresh practice session. */
+export function nextUnansweredQuestionIndex(block:Block,events:LearningEvent[],sessionId:string,justAnswered?:string){
+ const answered=new Set(events.filter(e=>e.type==='answer'&&e.payload.context==='practice'&&e.payload.sessionId===sessionId).map(e=>String(e.payload.questionId)));
+ if(justAnswered)answered.add(justAnswered);
+ return block.questionIds.findIndex(id=>!answered.has(id));
+}
 /** A named pattern needs its trigger plus both matching probes from one episode. */
 export function getBlockDiagnosis(block:Block,events:LearningEvent[],sessionId?:string){
  const answers=answerEvents(events);
@@ -52,7 +60,7 @@ export function resumeBlock(block:Block,events:LearningEvent[]):BlockResume{
   probeAnswers:previousDiagnosis.probeAnswers.filter(a=>a.length),supported:previousDiagnosis.supported,
   retestSuccess:previousDiagnosis.retestSuccess.slice(0,previousDiagnosis.retests.filter(Boolean).length),
  }:{})};
- const nextMain=():BlockResume=>index+1<block.questionIds.length?{...base,stage:'practice',index:index+1}:{...base,stage:'complete'};
+ const nextMain=():BlockResume=>{const next=nextUnansweredQuestionIndex(block,events,main.payload.sessionId);return next>=0?{...base,stage:'practice',index:next}:{...base,stage:'complete'};};
  if(!isMisconceptionTrigger(block,main.payload.questionId,main.payload.answer))return nextMain();
  const diagnosis=getBlockDiagnosis(block,events,main.payload.sessionId)!;
  const firstMissingProbe=diagnosis.probes.findIndex(e=>!e);
@@ -64,4 +72,3 @@ export function resumeBlock(block:Block,events:LearningEvent[]):BlockResume{
  if(firstMissingRetest>0)return {...diagnosed,stage:'retest',retestIndex:firstMissingRetest,retestSuccess:diagnosis.retestSuccess.slice(0,firstMissingRetest)};
  return {...nextMain(),probeAnswers:diagnosis.probeAnswers,supported:diagnosis.supported,retestSuccess:diagnosis.retestSuccess};
 }
-

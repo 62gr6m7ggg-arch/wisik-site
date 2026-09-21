@@ -1,0 +1,90 @@
+name: Space-tent vormvariatie
+on:
+  push:
+    branches: [space-vormvariatie-20260921]
+permissions:
+  contents: read
+concurrency:
+  group: space-shapes-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+        working-directory: tools/space-tent
+      - name: Build and verify mathematical content and preserved progress
+        working-directory: tools/space-tent
+        run: |
+          node scripts/merge-shape-variation.mjs
+          node scripts/update-shape-release-metadata.mjs
+          npx tsc --noEmit
+          node scripts/check-shape-variation.mjs
+          node scripts/check-course.mjs
+          npm test
+          node scripts/check-curriculum-contracts.mjs
+          node scripts/check-entry-choice.mjs
+          npm run build
+          npm run audit:build
+          node scripts/build-entry-audit.mjs
+          node scripts/build-review.mjs
+      - name: Install browser tools
+        run: |
+          npm install --prefix /tmp/space-shape-browser --no-save --no-audit playwright@1.56.1
+          /tmp/space-shape-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Stage learner assets for local browser tests
+        run: |
+          node -e "const fs=require('node:fs');fs.rmSync('public/apps/ruimteklaar',{recursive:true,force:true});fs.cpSync('tools/space-tent/.space-dist','public/apps/ruimteklaar',{recursive:true});fs.cpSync('tools/space-tent/.audit-dist','tools/space-tent/audit-runtime',{recursive:true});"
+      - name: Browser regressions and every new shape question
+        working-directory: tools/space-tent
+        env:
+          PLAYWRIGHT_MODULE: /tmp/space-shape-browser/node_modules/playwright/index.mjs
+        run: |
+          node scripts/check-shape-browser.mjs
+          node scripts/check-shape-variation.mjs --browser --write
+          node scripts/check-entry-choice-browser.mjs
+          node scripts/check-knowledge-browser.mjs
+          node scripts/check-desktop-workspace.mjs
+          node scripts/check-level-continuation-browser.mjs
+          node scripts/check-review-browser.mjs
+      - name: Bind current evidence and enforce all release gates
+        run: |
+          cp tools/space-tent/.entry-browser/results.json tools/space-tent/validation/free-entry-054.json
+          cp tools/space-tent/.knowledge-browser/results.json tools/space-tent/validation/knowledge-browser-050.json
+          cp tools/space-tent/.workspace-browser/results.json tools/space-tent/validation/desktop-workspace-050.json
+          cp tools/space-tent/.review-browser/results.json tools/space-tent/validation/review-mode-100.json
+          npm run seo:build
+          node scripts/audit-ruimteklaar-review.mjs --write
+          node scripts/audit-space-release.mjs --write
+          npm run build
+      - name: Save only verified candidate on the work branch
+        run: |
+          test "$(git ls-remote origin refs/heads/space-vormvariatie-20260921 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/space-tent/app/course-content.json tools/space-tent/audit-runtime tools/space-tent/validation public/apps/ruimteklaar public/hbo/space-tent/index.html public/backstage/space-tent/index.html public/assets/js/site-data.js public/films/ruimteklaar/catalog.json public/assets/data/ruimteklaar-release-audit.json server/ruimteklaar-test-assets.mjs server/ruimteklaar-test-manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Space-tent 0.6.0: verified varied geometry and preserved progress'
+            git push origin HEAD:space-vormvariatie-20260921
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: space-vormvariatie-bewijs
+          include-hidden-files: true
+          path: |
+            tools/space-tent/.shape-browser
+            tools/space-tent/.knowledge-browser
+            tools/space-tent/.workspace-browser
+            tools/space-tent/.review-browser
+            tools/space-tent/validation/shape-variation-060.json
+          retention-days: 14
