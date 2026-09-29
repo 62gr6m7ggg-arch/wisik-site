@@ -3050,9 +3050,16 @@ function openDiagnosticPattern(code){
   const p=MISCONCEPTION_CATALOG[code];if(!p)return;const e=diagnosticEntry(code);
   openModal(`${code} • ${p.title}`,`<p><strong>Voorzichtige duiding:</strong> ${escapeHtml(p.hypothesis)}</p><div class="lesson-example"><strong>Waarom dit niet werkt</strong><br>${escapeHtml(p.explanation)}</div><div class="pitfall"><strong>Tegenvoorbeeld</strong><br>${escapeHtml(p.counterexample)}</div><div class="tip"><strong>Herstelstrategie</strong><br>${escapeHtml(p.tip)}</div><p style="color:var(--muted)">Status: ${escapeHtml(diagnosticStatusLabel(e.status))}. De conclusie is gebaseerd op ${e.badSignatures.length} verschillende aanwijzingen${e.confirmations?` en ${e.confirmations} controlevraag${e.confirmations===1?"":"en"}`:""}.</p><button class="btn primary" data-start-repair="${code}">Start herstelset van vier vragen</button>`);
 }
-function startDiagnosticRepair(code){
+function openWisikMisconceptEntry(flags=URL_FLAGS){
+  const code=String(flags.get("misconcept")||"").toUpperCase();
+  if(!Object.hasOwn(MISCONCEPTION_CATALOG,code))return false;
+  if(flags.get("ingang")==="grabbelton"&&flags.get("modus")==="vier-vragen")startDiagnosticRepair(code,true);
+  else openDiagnosticPattern(code);
+  return true;
+}
+function startDiagnosticRepair(code,selfPractice=false){
   const p=MISCONCEPTION_CATALOG[code];if(!p)return;closeModal();stopTimers();
-  activeSession={kind:"repair",label:"Herstelset",diagnosticCode:code,total:4,index:0,correct:0,combo:0,ability:3,domain:p.domain,mode:p.domain==="D"?"non":"mix",plan:[{kind:"probe",variant:0},{kind:"probe",variant:1},{kind:"natural"},{kind:"natural"}],repairSignatures:[],results:[],current:null,answered:false,usedHint:false,doubleXp:false,comboShield:false,finished:false,recentFamilies:[]};
+  activeSession={kind:"repair",label:selfPractice?"Zelf proberen: vier vragen":"Herstelset",selfPractice,diagnosticCode:code,total:4,index:0,correct:0,combo:0,ability:3,domain:p.domain,mode:p.domain==="D"?"non":"mix",plan:[{kind:"probe",variant:0},{kind:"probe",variant:1},{kind:"natural"},{kind:"natural"}],repairSignatures:[],results:[],current:null,answered:false,usedHint:false,doubleXp:false,comboShield:false,finished:false,recentFamilies:[]};
   showView("practice",true);document.getElementById("practiceSetup").style.display="none";document.getElementById("playArea").style.display="block";nextPracticeQuestion();
 }
 function diagnosticRegisterMarkup(){
@@ -3648,7 +3655,7 @@ function readCurrentQuestion(){
 }
 function finishPracticeSession(containerId=null){
   const s=activeSession;if(!s||s.finished)return;stopTimers();closeAuxiliary();resetCalculator();releaseActiveDiagnosticProbes();s.finished=true;document.body.classList.remove("session-active");containerId=containerId||s.containerId||"playArea";const total=s.results.length;const correct=s.correct;const pct=total?Math.round(correct/total*100):0;
-  let type=s.label;if(s.kind==="practice")type="Oefenreeks";if(s.kind==="sprint")type="60-seconden-sprint";if(s.kind==="daily")type="Dagchallenge";if(s.kind==="diagnostic")type="Quickscan";if(s.kind==="mistakes")type="Fouten opnieuw";if(s.kind==="repair")type="Gerichte herstelset";
+  let type=s.label;if(s.kind==="practice")type="Oefenreeks";if(s.kind==="sprint")type="60-seconden-sprint";if(s.kind==="daily")type="Dagchallenge";if(s.kind==="diagnostic")type="Quickscan";if(s.kind==="mistakes")type="Fouten opnieuw";if(s.kind==="repair")type=s.selfPractice?"Zelf proberen: vier vragen":"Gerichte herstelset";
   if(total){state.history.unshift({type,date:new Date().toISOString(),correct,total});state.history=state.history.slice(0,30)}
   if(s.kind==="daily"){state.dailyChallengeDate=todayKey();awardXP(35,"Dagchallenge voltooid");launchConfetti(32)}
   if(s.kind==="diagnostic")state.diagnosticDone=true;
@@ -4127,7 +4134,7 @@ function init(){
   if(state.dailyDate!==todayKey()){state.dailyDate=todayKey();state.dailyCorrect=0}
   saveState();rememberWisikContext();
   applySettings();bindEvents();renderHome();renderLearn();renderPracticeSetup();renderStats();updateTopStats();
-  if(DIAGNOSTIC_DIRECT_MODE)setTimeout(openDiagnosticRegister,120);else if(RELEASE_CHECK_MODE)setTimeout(runVisibleReleaseCheck,120);else if(WISIK_ENTRY_MODE==="moshpit-sprint")setTimeout(openMoshpitEntrance,120);else if(MISCONCEPTION_CATALOG[WISIK_MISCONCEPT_ENTRY])setTimeout(()=>openDiagnosticPattern(WISIK_MISCONCEPT_ENTRY),120);else if(!state.profile.name)setTimeout(()=>openSettings(true),450);
+  if(DIAGNOSTIC_DIRECT_MODE)setTimeout(openDiagnosticRegister,120);else if(RELEASE_CHECK_MODE)setTimeout(runVisibleReleaseCheck,120);else if(WISIK_ENTRY_MODE==="moshpit-sprint")setTimeout(openMoshpitEntrance,120);else if(Object.hasOwn(MISCONCEPTION_CATALOG,WISIK_MISCONCEPT_ENTRY))setTimeout(()=>openWisikMisconceptEntry(),120);else if(!state.profile.name)setTimeout(()=>openSettings(true),450);
 }
 
 document.addEventListener("DOMContentLoaded",init);
