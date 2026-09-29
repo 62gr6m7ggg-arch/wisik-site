@@ -56,7 +56,7 @@
         },
         {
           "timestamps": "43,000 s",
-          "observation": "Geel bord rechts: gelijke gehelen, vulling 80% en 12,5%, labels 800/125 duizendsten en 0,8 > 0,125."
+          "observation": "Geel bord rechts: titel Vergelijk in duizendsten; gelijke eenheidsbalken, vulling 80% en 12,5%, labels 800/125 duizendsten en 0,8 > 0,125."
         },
         {
           "timestamps": "59,000 s",
@@ -72,7 +72,7 @@
       "fingerprints": {
         "misconception": "f2ad79e4c81167024f2b0af00c713785b0c25935023f52d6a1bf77af4efa88b7",
         "catalogItem": "2edc473b8afac71c7a371d344241c9722842af1cbc4d66ae9112891c93fb4ca1",
-        "video": "efb1aac7dbc666ae96ba559e254df6924b7ad707c0ebe13e5708132dfad0dd5a",
+        "video": "4a2bedee89e513234f35e4261c7ca3983a7557079e3390023eee29caa2153e71",
         "poster": "93d56af348926d4aff46c069f4510ae7fc494643ebcb558659ece00b98f3a0b3",
         "captions": "19f93060d1636c99b538ff6c3fbdba559e389980f463a86e5acb66b89902436e",
         "transcript": "20fcb181036344ae3806434757f6c506a6eaaa267b2ece5661fff4c98967abf8"
