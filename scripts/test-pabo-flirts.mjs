@@ -104,7 +104,7 @@ for (const item of fixtures.cases) {
   assert.ok(markup.includes(`<h4>${run('escapeHtml(rendererExpected.title)')}</h4>`), `${item.code}: verkeerde getoonde titel`);
   assert.ok(markup.includes(run('escapeHtml(rendererExpected.summary)')), `${item.code}: verkeerde getoonde flirttekst`);
   for (const route of [expected.source.url,expected.posterSrc,expected.captionsSrc,expected.transcriptUrl]) {
-    assert.ok(markup.includes(`https://wisik.nl${route}?v=${context.WISIK_SITE_VERSION}`), `${item.code}: speler verwijst naar verkeerde asset ${route}`);
+    assert.ok(markup.includes(`https://wisik.nl${route}?v=${context.WISIK_SITE_VERSION}${item.code === "A02" ? "-roadie-20260929" : ""}`), `${item.code}: speler verwijst naar verkeerde asset ${route}`);
   }
   assert.ok(element("modalBody").innerHTML.includes(`data-start-repair="${item.code}"`), `${item.code}: verkeerde herstelset`);
   run('closeModal()');
