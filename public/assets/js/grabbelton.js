@@ -156,12 +156,12 @@
     endTitle.textContent = "Verder oefenen?";
     endTitle.style.fontSize = "clamp(1.45rem, 4vw, 2.25rem)";
     const endCopy = document.createElement("span");
-    endCopy.textContent = "Ga verder met dit denkpatroon in Pabo Rekenklaar.";
+    endCopy.textContent = "Probeer vier vragen over dit onderwerp in Pabo Rekenklaar.";
     endCopy.style.fontSize = "1.02rem";
     const endLink = document.createElement("a");
     endLink.className = "btn coral";
-    endLink.href = `/apps/pabo-rekenklaar/?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton`;
-    endLink.textContent = "Open Pabo Rekenklaar";
+    endLink.href = `/apps/pabo-rekenklaar/?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton&modus=vier-vragen`;
+    endLink.textContent = "Zelf proberen: vier vragen";
     endCard.append(endTitle, endCopy, endLink);
     playerWrap.append(endCard);
     const showEndCard = () => { endCard.hidden = false; endCard.style.display = "flex"; };
@@ -182,8 +182,8 @@
     transcript.textContent = "Lees het transcript";
     const practice = document.createElement("a");
     practice.className = "btn primary small";
-    practice.href = `/apps/pabo-rekenklaar/?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton`;
-    practice.textContent = "Verder oefenen in Pabo Rekenklaar";
+    practice.href = `/apps/pabo-rekenklaar/?misconcept=${encodeURIComponent(video.target.misconceptionCode)}&ingang=grabbelton&modus=vier-vragen`;
+    practice.textContent = "Zelf proberen: vier vragen";
     const links = document.createElement("div");
     links.className = "button-row";
     links.append(transcript, practice);
