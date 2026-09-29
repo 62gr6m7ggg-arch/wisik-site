@@ -159,6 +159,9 @@
   function attachOwnVoice(player) {
     if (!(player instanceof BrowserVideoElement) || player.dataset.wisikOwnVoice === "1") return;
     const code = codeFromVideo(player);
+    // A02 Roadie (2026-09-29) contains the final Dutch voice and timed captions.
+    // Do not replace its audio or stretch its playback/caption timing.
+    if (code === "A02") return;
     const config = OWN_VOICE[code];
     if (!config) return;
     player.dataset.wisikOwnVoice = "1";
