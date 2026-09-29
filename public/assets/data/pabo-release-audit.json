@@ -4,7 +4,7 @@
   "siteVersion": "0.1.30",
   "tool": "Pabo Rekenklaar",
   "toolVersion": "1.8.0",
-  "generatedAt": "2026-09-29T11:09:27.451Z",
+  "generatedAt": "2026-09-29T20:40:00.088Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -1185,15 +1185,15 @@
     "status": "reviewed-with-notes",
     "counts": {
       "reviewed": 30,
-      "aligned": 19,
-      "withNotes": 11,
+      "aligned": 18,
+      "withNotes": 12,
       "needsRevision": 0
     },
-    "reviewedAt": "2026-09-09",
+    "reviewedAt": "2026-09-29",
     "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
     "scope": {
       "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-      "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02.",
+      "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02. B03 is op 29 september 2026 vervangen door de nieuwe Roadie-film met zes halve-literglazen en de fysieke breukkaart; zie de afzonderlijke B03-review.",
       "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden.",
       "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
       "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
@@ -1414,19 +1414,41 @@
       },
       {
         "code": "B03",
-        "verdict": "aligned",
-        "intendedInsight": "Delen door een breuk meet hoeveel keer die maat in de hoeveelheid past; rechtstreeks vermenigvuldigen beantwoordt een andere vraag.",
-        "observedContent": "De film zet de fout 3/4 × 1/4 = 3/16 expliciet tegenover 3/4 : 1/4 = 3. Eén kan met driekwart liter en drie kwartliterbekers geven één passend meetbeeld. De film behandelt de beoogde misconceptie, ook zonder de volledige omkeerprocedure te onderwijzen.",
+        "verdict": "aligned-with-notes",
+        "intendedInsight": "Delen door een halve liter meet hoeveel halve liters in drie liter passen: 3 : 1/2 = 6. De deler omkeren geeft dezelfde uitkomst: 3 × 2/1 = 3 × 2 = 6.",
+        "observedContent": "Roadie vult zes verschillende glazen vanuit een kan van drie liter. Het bord toont 3 gedeeld door 1/2 en daarna de samengestelde breuk. Roadie neemt het kaartje 1/2 onder de hoofdbreukstreep, draait het tot 2/1 en plaatst het rechts van de vaste 3. De hoofdbreukstreep wordt een keerteken. De uitkomst en algemene omkeerregel sluiten de uitleg af.",
         "visualEvidence": [
-          "4 s: titelkaart Delen door een breuk, code B03.",
-          "12, 21, 30 en 39 s: kan met label 3/4 L en drie bekers met elk 1/4 L; onderaan 3/4 : 1/4 = 3.",
-          "46,416 s: eindkaart met B03; poster stemt overeen."
+          {
+            "timestamps": "4; 8 s",
+            "observation": "Kan met 3 liter en zes gelijke lege glazen van 1/2 liter."
+          },
+          {
+            "timestamps": "11.5; 13.3; 14.6; 15.6 s",
+            "observation": "Nieuwe doorlopende schenkactie in zes verschillende glazen; eindoverzicht zes volle glazen en een lege kan."
+          },
+          {
+            "timestamps": "25.2; 31.7; 35 s",
+            "observation": "3 : 1/2 = 6 gaat over in 3 boven de hoofdbreukstreep met deler 1/2 eronder."
+          },
+          {
+            "timestamps": "39.5; 41.9; 46.8; 48.3 s",
+            "observation": "Fysieke kaart wordt gepakt, gedraaid en rechts van de vaste 3 gehangen; hoofdbreukstreep verandert in ×."
+          },
+          {
+            "timestamps": "52; 56.5; 62.3 s",
+            "observation": "3 × 2/1 = 3 × 2 = 6; juiste omkeerregel en slotkaart naar de herstelset."
+          }
         ],
-        "captionEvidence": "De uitkomst vertelt hier hoeveel keer de bekermaat in de hoeveelheid past.",
-        "notes": [],
+        "captionEvidence": "36.770–41.350: Alleen de breuk waardoor we delen, keren we om. Daarna: Een half wordt twee gedeeld door één, dus twee. Volledige nieuwe ondertitels en transcript corresponderen met de goedgekeurde Nederlandse opname.",
+        "notes": [
+          "Deze film toont een positief rekenvoorbeeld met de omkeerregel; de kenmerkende foute vermenigvuldiging wordt niet expliciet uitgerekend.",
+          "AI-animatie met 720p-actiebronnen; vergrote close-ups zijn zachter dan de overige beelden. Het vloeistofverloop in de bronkan is niet fysisch betrouwbaar; de schenkclose-up toont de zes glazen.",
+          "Edwin heeft deze montage voor nu geaccepteerd en publicatie gevraagd. De audiopakketten zijn ongewijzigd uit zijn goedgekeurde opname overgenomen; geen onafhankelijke tweede luisterbeoordeling."
+        ],
         "expectedMisconception": "De breuken worden bij een deling rechtstreeks met elkaar vermenigvuldigd.",
         "videoId": "wisik-flirt-b03",
-        "title": "Delen door een breuk"
+        "title": "Delen door een breuk",
+        "reviewedAt": "2026-09-29"
       },
       {
         "code": "B04",
