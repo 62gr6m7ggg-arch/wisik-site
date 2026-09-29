@@ -4,7 +4,7 @@
   "siteVersion": "0.1.30",
   "tool": "Pabo Rekenklaar",
   "toolVersion": "1.8.0",
-  "generatedAt": "2026-09-29T10:40:13.468Z",
+  "generatedAt": "2026-09-29T11:09:27.451Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -1237,7 +1237,7 @@
           },
           {
             "timestamps": "43,000 s",
-            "observation": "Geel bord rechts: gelijke gehelen, vulling 80% en 12,5%, labels 800/125 duizendsten en 0,8 > 0,125."
+            "observation": "Geel bord rechts: titel Vergelijk in duizendsten; gelijke eenheidsbalken, vulling 80% en 12,5%, labels 800/125 duizendsten en 0,8 > 0,125."
           },
           {
             "timestamps": "59,000 s",

@@ -37,7 +37,7 @@
     const resolved = resolveAssetUrl(value);
     if (!resolved) return null;
     const url = new URL(resolved);
-    const mediaVersion = url.pathname.startsWith("/films/rekenklaar/A02/") ? `${asText(version)}-roadie-20260929` : asText(version);
+    const mediaVersion = url.pathname.startsWith("/films/rekenklaar/A02/") ? `${asText(version)}-roadie-20260929b` : asText(version);
     url.searchParams.set("v", mediaVersion);
     return url.href;
   }
