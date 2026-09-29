@@ -233,8 +233,8 @@
       "id": "wisik-flirt-b03",
       "status": "published",
       "title": "Delen door een breuk",
-      "summary": "Waarom delen door een breuk kan worden gezien als meten hoeveel keer een maat past.",
-      "durationSeconds": 47,
+      "summary": "Roadie vult met drie liter zes halve-literglazen en laat zien waarom delen door een breuk vermenigvuldigen met het omgekeerde is.",
+      "durationSeconds": 63,
       "wristbands": [
         "PABO"
       ],
@@ -249,7 +249,7 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B03"
       },
-      "release": "festival-v1"
+      "release": "roadie-2026-09-29"
     },
     {
       "id": "wisik-flirt-b04",
