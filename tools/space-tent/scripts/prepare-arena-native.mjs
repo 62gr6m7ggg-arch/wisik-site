@@ -24,13 +24,13 @@ if(!main.includes('// ARENA-NATIVE-070')){
  {(view==='route'||view==='level')&&<>`);
  write(mainPath,main);
 }
-// A geometric correction found by independently intersecting the cutting plane
-// with all 12 edges. R on DC is a genuine vertex, not a point in an edge interior.
+// Corrections independently checked against the native coordinate models.
 const examPath='tools/space-tent/app/arena/exam-2018.ts';let exam=read(examPath);
 exam=exam.replace(/^const cube=.* as const;\n/m,'');
 exam=exam.replace('Voor de getoonde posities is het een vijfhoek; R ligt op een zijde van de grondvlakdoorsnede en hoeft geen hoekpunt te zijn.','Voor de getoonde posities is het een vijfhoek met hoekpunten op AB, op DC bij R, op DH, op HE bij P en op EF bij Q. R is hier een hoekpunt omdat het snijvlak ribbe DC raakt.');
 exam=exam.replace('Ik werk de volledige gesloten doorsnede uit en herken dat R niet per se een hoekpunt is.','Ik werk de volledige gesloten doorsnede uit, met R als ribbesnijpunt op DC.');
 write(examPath,exam);
+const trainingPath='tools/space-tent/app/arena/training.ts';write(trainingPath,read(trainingPath).replace("'V = G·h/3.'","'V = G·h/3: neem de grondoppervlakte maal de loodrechte hoogte en deel dat door drie.'"));
 const versionPath='tools/space-tent/app/version.ts',version=read(versionPath);assert.ok(["export const APP_VERSION='0.6.0';\n","export const APP_VERSION='0.7.0';\n"].includes(version));write(versionPath,"export const APP_VERSION='0.7.0';\n");
 for(const file of ['tools/space-tent/space/index.html','tools/space-tent/review/index.html','public/assets/js/site-data.js','public/hbo/space-tent/index.html','public/backstage/space-tent/index.html','public/films/ruimteklaar/catalog.json'])write(file,read(file).replaceAll('0.6.0','0.7.0'));
 for(const file of ['public/hbo/space-tent/index.html','public/backstage/space-tent/index.html']){
@@ -53,6 +53,4 @@ assert.deepEqual(nativeArena.publicFiles,hashes(path.join(root,'public/apps/ruim
 const report={`);
  audit=once(audit,' shapeVariation,',' nativeArena,\n shapeVariation,');write(auditPath,audit);
 }
-// No iframe, modified CSP, offline HTML, transport script or copy-to-public
-// workaround is used. build-space.mjs compiles the ordinary TypeScript sources.
 console.log('Native Tentamenarena aangesloten op de gewone Spacetent-bron. De bestaande bouw- en vrijgavecontroles blijven verplicht.');
