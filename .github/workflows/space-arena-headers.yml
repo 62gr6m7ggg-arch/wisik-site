@@ -1,0 +1,49 @@
+name: Space arena header compatibility
+on:
+  push:
+    branches: [space-tentamenarena-20261010]
+    paths: ['.github/workflows/space-arena-headers.yml']
+permissions:
+  contents: read
+jobs:
+  headers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install current locked Pages runtime
+        run: npm install --prefix /tmp/arena-header-runtime --no-audit --no-fund wrangler@4.92.0
+      - name: Test scoped header replacement without changing the live site
+        run: |
+          mkdir -p /tmp/arena-header-probe/apps/ruimteklaar/tentamenarena
+          cp public/_headers /tmp/arena-header-probe/_headers
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const p='/tmp/arena-header-probe/_headers';
+          const old=fs.readFileSync(p,'utf8');
+          const policy=old.match(/^  Content-Security-Policy: (.+)$/m)[1];
+          fs.writeFileSync(p,old+'\n/apps/ruimteklaar/*\n  ! Content-Security-Policy\n  Content-Security-Policy: '+policy.replace("frame-src 'none'","frame-src 'self'")+'\n');
+          for(const name of ['index.html','apps/ruimteklaar/index.html','apps/ruimteklaar/tentamenarena/index.html'])fs.writeFileSync('/tmp/arena-header-probe/'+name,'<!doctype html><title>Policy probe</title>');
+          JS
+          /tmp/arena-header-runtime/node_modules/.bin/wrangler pages dev /tmp/arena-header-probe --ip 127.0.0.1 --port 8175 > /tmp/arena-header-probe.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true; cat /tmp/arena-header-probe.log' EXIT
+          for i in $(seq 1 40); do curl -sf http://127.0.0.1:8175/ >/dev/null && break; sleep 1; done
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          for(const route of ['/','/apps/ruimteklaar/','/apps/ruimteklaar/tentamenarena/']){
+            const r=await fetch('http://127.0.0.1:8175'+route);
+            const csp=r.headers.get('content-security-policy');
+            console.log(route,csp);
+            assert.equal(r.status,200);
+            assert.ok(csp);
+            if(route==='/')assert.ok(csp.includes("frame-src 'none'"));
+            else {assert.ok(csp.includes("frame-src 'self'"));assert.ok(!csp.includes("frame-src 'none'"));}
+            assert.ok(csp.includes("frame-ancestors 'self'"));
+            assert.equal(r.headers.get('x-frame-options'),'SAMEORIGIN');
+          }
+          console.log('SCOPED CSP REPLACEMENT PASSED; no global iframe relaxation.');
+          JS
