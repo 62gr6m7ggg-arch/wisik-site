@@ -1,0 +1,35 @@
+name: Arena source inventory
+on:
+  push:
+    branches: [space-tentamenarena-20261010]
+    paths: ['.github/workflows/arena-source-inventory.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Inventory source documents and repository history
+        run: |
+          echo 'CURRENT SOURCE DOCUMENTS'
+          git ls-files | grep -Ei '\.(pdf|zip|webp)$' | grep -Ei 'space|ruimt|tentamen|oefen|\.pdf$|\.zip$' || true
+          echo 'HISTORICAL DOCUMENT PATHS'
+          git log --all --format= --name-only -- '*.pdf' '*.PDF' '*.zip' | sort -u | head -100
+          echo 'EXACT ORIGINAL OBJECTS'
+          for object in 0f4217d5cc2b31e499a71b98578402d77329854e da789df79e8e08e4a02c2f998497e83377b5d243 a7ff187993a1a3c2648a628862c4ceb9cdac4cd4 24f8a021b2ad43e49e27cb7347bc2b27a59c2c43; do
+            git cat-file -t "$object" 2>/dev/null && echo "$object exists" || echo "$object not found"
+          done
+          echo 'SOURCE SNAPSHOT'
+          git rev-parse HEAD
+          git rev-parse origin/main
+          mkdir -p /tmp/arena-source-export
+          git archive --format=tar HEAD tools/space-tent scripts server src functions tests package.json public/apps/ruimteklaar public/_headers public/hbo/space-tent public/backstage/space-tent public/assets/js/site-data.js public/films/ruimteklaar/catalog.json .github/workflows/quality.yml wrangler.jsonc > /tmp/arena-source-export/build-inputs.tar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arena-native-build-inputs
+          retention-days: 2
+          path: /tmp/arena-source-export/build-inputs.tar
