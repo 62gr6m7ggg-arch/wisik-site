@@ -1,0 +1,10 @@
+export type V3=[number,number,number];
+export type FigureModel={points:Record<string,V3>;faces:string[];extra?:string[][]};
+export type Group={title:string;context:string;provenance:string;model:FigureModel;notes?:string};
+export type ArenaQuestion={id:string;label:string;group:string;title:string;prompt:string;answer:string;blockId:string;criteria:string[];hint?:string;step?:string;editorial?:string;confidence?:string};
+export type TrainingQuestion={id:string;lesson:number;title:string;prompt:string;options:string[]|null;answer:number;hint:string;step:string;explanation:string;strategy:string;shape:string;unit:string;tolerance:number|null;expected:string|null;blockId:string};
+export type ExamSource={id:string;title:string;kind:string;source:string;minutes:number;timeSource:string;warning:string;groups:Record<string,Group>;questions:ArenaQuestion[]};
+export type Rating=0|1|2;
+export type Attempt={id:string;examId:string;start:number;minutes:number;showClock:boolean;finished:number|null;answers:Record<string,string>;flags:Record<string,boolean>;ratings:Record<string,Rating>;criteria:Record<string,boolean[]>;reasons:Record<string,string>};
+export type PracticeState={input:string;selected:number|null;stage:number;tries:number;correct:boolean;independent:boolean;feedback:'correct'|'wrong'|'invalid'|null};
+export type ArenaState={format:'wisik-native-arena';version:1;revision:string;session:Attempt|null;history:Attempt[];training:Record<string,PracticeState>;ui:{view:string;index:number;selectedExam:string;trainId:string}};

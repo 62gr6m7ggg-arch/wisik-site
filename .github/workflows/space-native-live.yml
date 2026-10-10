@@ -1,0 +1,89 @@
+name: Space-tent native publicatiecontrole
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/apps/ruimteklaar/**'
+      - '.github/workflows/space-native-live.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: space-native-live
+  cancel-in-progress: false
+jobs:
+  confirm-publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PLAYWRIGHT_MODULE: /tmp/space-arena-browser/node_modules/playwright/index.mjs
+      ARENA_LIVE_URL: https://wisik.nl
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Wait for the exact checked files on Cloudflare
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          const audit=JSON.parse(fs.readFileSync('public/assets/data/ruimteklaar-release-audit.json','utf8'));
+          assert.equal(audit.status,'passed');
+          assert.match(audit.appVersion,/^\d+\.\d+\.\d+$/);
+          const files=audit.nativeArena.publicFiles;
+          assert.ok(files&&Object.keys(files).length>=5);
+          const hash=x=>createHash('sha256').update(x).digest('hex');
+          const observed=[];
+          let confirmed=false;
+          for(let attempt=0;attempt<60;attempt++){
+            try{
+              const stamp=Date.now();
+              const entry=await fetch('https://wisik.nl/apps/ruimteklaar/?release='+stamp,{signal:AbortSignal.timeout(15000)});
+              assert.equal(entry.status,200);
+              assert.ok((await entry.text()).includes('Ruimteklaar '+audit.appVersion));
+              assert.ok(entry.headers.get('content-security-policy')?.includes("frame-src 'none'"),'Native build must retain the restrictive live iframe policy');
+              observed.length=0;
+              for(const [file,sha] of Object.entries(files)){
+                assert.ok(file.startsWith('public/apps/ruimteklaar/'));
+                const url='https://wisik.nl/'+file.slice(7)+'?release='+stamp;
+                const response=await fetch(url,{signal:AbortSignal.timeout(15000)});
+                assert.equal(response.status,200,file);
+                const actual=hash(Buffer.from(await response.arrayBuffer()));
+                assert.equal(actual,sha,file+' differs from the checked candidate');
+                observed.push({file,sha256:actual,status:response.status});
+              }
+              for(const route of ['/hbo/space-tent/','/backstage/space-tent/']){
+                const response=await fetch('https://wisik.nl'+route+'?release='+stamp,{signal:AbortSignal.timeout(15000)});
+                assert.equal(response.status,200,route);
+                assert.ok((await response.text()).includes('arena-native-description'),route+' must describe the actual native scope');
+              }
+              confirmed=true;break;
+            }catch(error){console.log('Publication not yet confirmed:',error.message);}
+            await new Promise(resolve=>setTimeout(resolve,10000));
+          }
+          assert.ok(confirmed,'No confirmed deployment of the exact candidate. Do not report this release as online.');
+          fs.mkdirSync('/tmp/space-live-proof',{recursive:true});
+          fs.writeFileSync('/tmp/space-live-proof/files.json',JSON.stringify({status:'passed',appVersion:audit.appVersion,commit:process.env.GITHUB_SHA,checkedAt:new Date().toISOString(),files:observed},null,2));
+          console.log('Exact source-bound native Spacetent files are served by wisik.nl.');
+          JS
+      - name: Install the locked course dependencies
+        working-directory: tools/space-tent
+        run: npm ci --no-audit --no-fund
+      - name: Install the verified browser engines
+        run: |
+          npm install --prefix /tmp/space-arena-browser --no-save --no-audit playwright@1.56.1
+          /tmp/space-arena-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Exercise both routes and local persistence on wisik.nl
+        working-directory: tools/space-tent
+        run: node scripts/check-arena-native-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: space-native-live-proof
+          include-hidden-files: true
+          retention-days: 14
+          path: |
+            /tmp/space-live-proof
+            tools/space-tent/.arena-browser
