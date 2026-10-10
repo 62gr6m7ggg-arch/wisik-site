@@ -13,33 +13,99 @@ concurrency:
 jobs:
   candidate:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
+    permissions:
+      contents: write
+    env:
+      PLAYWRIGHT_MODULE: /tmp/space-arena-browser/node_modules/playwright/index.mjs
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Connect native source to the existing course
-        run: node tools/space-tent/scripts/prepare-arena-native.mjs
+        run: |
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = 81ffb1162f01e89ba83b51c31164e54a81c30373
+          node tools/space-tent/scripts/prepare-arena-native.mjs
       - name: Install the existing locked dependency set
         working-directory: tools/space-tent
         run: npm ci --no-audit --no-fund
-      - name: Compile and check the new mathematical source
+      - name: Mathematical checks and the existing complete course build
         working-directory: tools/space-tent
         run: |
           npx tsc --noEmit
           node scripts/check-arena-native.mjs
+          node scripts/check-shape-variation.mjs
+          node scripts/check-course.mjs
+          npm test
+          node scripts/check-curriculum-contracts.mjs
+          node scripts/check-entry-choice.mjs
           npm run build
+          npm run audit:build
+          node scripts/build-entry-audit.mjs
+          node scripts/build-review.mjs
+      - name: Install the browser engines used for Spacetent regression testing
+        run: |
+          npm install --prefix /tmp/space-arena-browser --no-save --no-audit playwright@1.56.1
+          /tmp/space-arena-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Stage the production build for browser tests
+        run: |
+          node -e "const f=require('node:fs');f.rmSync('public/apps/ruimteklaar',{recursive:true,force:true});f.cpSync('tools/space-tent/.space-dist','public/apps/ruimteklaar',{recursive:true});f.cpSync('tools/space-tent/.audit-dist','tools/space-tent/audit-runtime',{recursive:true});"
+      - name: Test both native arena routes in six real browser environments
+        working-directory: tools/space-tent
+        run: node scripts/check-arena-native-browser.mjs
+      - name: Retain every existing Spacetent browser regression
+        working-directory: tools/space-tent
+        run: |
+          node scripts/check-shape-browser.mjs
+          node scripts/check-shape-variation.mjs --browser --write
+          node scripts/check-entry-choice-browser.mjs
+          node scripts/check-knowledge-browser.mjs
+          node scripts/check-desktop-workspace.mjs
+          node scripts/check-level-continuation-browser.mjs
+          node scripts/check-review-browser.mjs
+      - name: Refresh actual evidence and run the site-wide release gates
+        run: |
+          cp tools/space-tent/.entry-browser/results.json tools/space-tent/validation/free-entry-054.json
+          cp tools/space-tent/.knowledge-browser/results.json tools/space-tent/validation/knowledge-browser-050.json
+          cp tools/space-tent/.workspace-browser/results.json tools/space-tent/validation/desktop-workspace-050.json
+          cp tools/space-tent/.review-browser/results.json tools/space-tent/validation/review-mode-100.json
+          npm run seo:build
+          node scripts/audit-ruimteklaar-review.mjs --write
+          node scripts/audit-space-release.mjs --write
+          npm run build
+      - name: Commit only the fully checked candidate to the work branch
+        run: |
+          test "$(git ls-remote origin refs/heads/space-arena-native-20261010 | cut -f1)" = "$GITHUB_SHA"
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = 81ffb1162f01e89ba83b51c31164e54a81c30373
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/space-tent/app tools/space-tent/space/index.html tools/space-tent/review/index.html tools/space-tent/audit-runtime tools/space-tent/validation public/apps/ruimteklaar public/hbo/space-tent/index.html public/backstage/space-tent/index.html public/assets/js/site-data.js public/films/ruimteklaar/catalog.json public/assets/data/ruimteklaar-release-audit.json server/ruimteklaar-test-assets.mjs server/ruimteklaar-test-manifest.json scripts/audit-space-release.mjs
+          git diff --cached --stat
+          if ! git diff --cached --quiet; then
+            git commit -m 'Space-tent 0.7.0: native Tentamenarena, checked source and browser release evidence'
+            git push origin HEAD:space-arena-native-20261010
+          fi
+          echo "Candidate SHA: $(git rev-parse HEAD)"
+          echo 'Not published. A normal protected pull-request merge remains required.'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: native-arena-first-build
+          name: native-arena-release-evidence
           include-hidden-files: true
-          retention-days: 3
+          retention-days: 7
           path: |
             tools/space-tent/app/arena
             tools/space-tent/app/ruimteklaar.tsx
-            tools/space-tent/scripts/prepare-arena-native.mjs
             tools/space-tent/scripts/check-arena-native.mjs
+            tools/space-tent/scripts/check-arena-native-browser.mjs
             tools/space-tent/.arena-unit/results.json
+            tools/space-tent/.arena-browser
             tools/space-tent/.space-dist
+            tools/space-tent/.entry-browser
+            tools/space-tent/.knowledge-browser
+            tools/space-tent/.workspace-browser
+            tools/space-tent/.review-browser
+            tools/space-tent/validation/arena-native-070.json
