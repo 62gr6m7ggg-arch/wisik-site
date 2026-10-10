@@ -1,0 +1,33 @@
+name: Arena transport byte review
+on:
+  push:
+    branches: [space-tentamenarena-20261010]
+    paths: ['.github/workflows/arena-transport-review.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Export precisely identified non-executable data blobs for byte comparison
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - <<'PY'
+          import base64,hashlib,json,os,pathlib,urllib.request
+          blobs=[('part-000.txt','04ecbbb0c92c234f6324b7d92e0ca00ecc118e38')]
+          out=pathlib.Path('/tmp/arena-transport-review');out.mkdir()
+          for name,sha in blobs:
+            req=urllib.request.Request('https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/git/blobs/'+sha,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+            with urllib.request.urlopen(req,timeout=30) as response: result=json.load(response)
+            data=base64.b64decode(result['content'])
+            assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==sha
+            (out/name).write_bytes(data)
+            print(name,len(data),'bytes; blob hash confirmed. This is transfer data, not released site content.')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arena-incoming-byte-review
+          retention-days: 2
+          path: /tmp/arena-transport-review
