@@ -14,9 +14,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install current locked Pages runtime
+      - name: Install pinned Pages header test runtime
         run: npm install --prefix /tmp/arena-header-runtime --no-audit --no-fund wrangler@4.92.0
-      - name: Test scoped header replacement without changing the live site
+      - name: Test scoped header replacement without production bindings
         run: |
           mkdir -p /tmp/arena-header-probe/apps/ruimteklaar/tentamenarena
           cp public/_headers /tmp/arena-header-probe/_headers
@@ -28,7 +28,7 @@ jobs:
           fs.writeFileSync(p,old+'\n/apps/ruimteklaar/*\n  ! Content-Security-Policy\n  Content-Security-Policy: '+policy.replace("frame-src 'none'","frame-src 'self'")+'\n');
           for(const name of ['index.html','apps/ruimteklaar/index.html','apps/ruimteklaar/tentamenarena/index.html'])fs.writeFileSync('/tmp/arena-header-probe/'+name,'<!doctype html><title>Policy probe</title>');
           JS
-          /tmp/arena-header-runtime/node_modules/.bin/wrangler pages dev /tmp/arena-header-probe --ip 127.0.0.1 --port 8175 > /tmp/arena-header-probe.log 2>&1 &
+          (cd /tmp/arena-header-probe && /tmp/arena-header-runtime/node_modules/.bin/wrangler pages dev . --compatibility-date 2026-05-22 --ip 127.0.0.1 --port 8175) > /tmp/arena-header-probe.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true; cat /tmp/arena-header-probe.log' EXIT
           for i in $(seq 1 40); do curl -sf http://127.0.0.1:8175/ >/dev/null && break; sleep 1; done
@@ -47,3 +47,22 @@ jobs:
           }
           console.log('SCOPED CSP REPLACEMENT PASSED; no global iframe relaxation.');
           JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: space-arena-integration-inputs
+          retention-days: 2
+          path: |
+            tools/space-tent/app/ruimteklaar.tsx
+            tools/space-tent/app/content.json
+            tools/space-tent/app/course-content.json
+            tools/space-tent/app/version.ts
+            tools/space-tent/scripts/build-space.mjs
+            tools/space-tent/space/index.html
+            tools/space-tent/review/index.html
+            scripts/audit-space-release.mjs
+            public/_headers
+            public/assets/js/site-data.js
+            public/hbo/space-tent/index.html
+            public/backstage/space-tent/index.html
+            public/films/ruimteklaar/catalog.json
