@@ -29,6 +29,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate integration script syntax
+        run: |
+          node --check tools/space-tent/tentamenarena-package/integratie/install.mjs
+          node --check tools/space-tent/tentamenarena-package/integratie/check-native.mjs
       - name: Require the exact complete file; never treat missing input as success
         run: |
           FILE=tools/space-tent/tentamenarena-package/Spacetent_Tentamenarena_1.1.html
@@ -149,7 +153,8 @@ jobs:
       - name: Record confirmed publication in the pull request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr comment 72 --repo "$GITHUB_REPOSITORY" --body 'Publicatie gecontroleerd: Spacetent 0.7.0 met Tentamenarena 1.1. Het oorspronkelijke tentamen (18 deelopgaven), de expliciete Wisik-reconstructie (33 deelopgaven) en 24 herstelvragen zijn op de live site door de native Chromium-/WebKit-reeks gecontroleerd. De bestandsvingerafdruk is gelijk aan de vrijgegeven kandidaat. Papierwerk blijft zelfbeoordeling; geen fysieke iPhone-test.'
+        run: |
+          gh pr comment 72 --repo "$GITHUB_REPOSITORY" --body 'Publicatie gecontroleerd: Spacetent 0.7.0 met Tentamenarena 1.1. Het oorspronkelijke tentamen (18 deelopgaven), de expliciete Wisik-reconstructie (33 deelopgaven) en 24 herstelvragen zijn op de live site door de native Chromium-/WebKit-reeks gecontroleerd. De bestandsvingerafdruk is gelijk aan de vrijgegeven kandidaat. Papierwerk blijft zelfbeoordeling; geen fysieke iPhone-test.'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
