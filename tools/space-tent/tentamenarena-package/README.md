@@ -1,28 +1,38 @@
 # Tentamenarena 1.0 — integratievoorbereiding
 
 **Niet actief. Niet publiceren als voltooide Tentamenarena.**
-Deze branch bevat de inbouwcode, nog niet de volledige HTML met bronbestanden.
-De bestaande Spacetent en de main-branch zijn niet aangepast.
+Deze branch bevat de React-brug, de bronchecksums en een gecontroleerd
+installatieprogramma. De complete arena-HTML is nog niet overgebracht. De
+bestaande Spacetent en de main-branch zijn niet aangepast.
 
-## Complete kandidaat in de bijbehorende ChatGPT-oplevering
+## Complete kandidaat in de ChatGPT-oplevering
 
-Bestanden: `Spacetent_Tentamenarena_1.0.html` en `Spacetent_Tentamenarena_1.0_pakket.zip`.
-De zelfstandige HTML bevat alle vier originele PDF's, 23 leesbare bronpagina's,
-18 deelopgaven met 54 zelfcontrolecriteria, 24 nieuwe herstelvragen, lokale
-voortgangsexport/import, markeren, timer en een voorlopige herstelroute op basis
-van zelfbeoordeling. Er is geen automatische beoordeling van papierwerk en geen
-cijfer/topstatus.
+`Spacetent_Tentamenarena_1.0.html` bevat de oorspronkelijke PDF's, 23 bronpagina's,
+18 deelopgaven met 54 zelfcontrolecriteria, 24 nieuwe herstelvragen,
+voortgangsexport/import, markeren, timer en een herstelroute op basis van
+zelfbeoordeling. Geen automatische beoordeling van papierwerk, cijfer of topstatus.
+Het ZIP-pakket bevat daarnaast de bouwbroncode, de originele bestanden en tests.
 
-HTML SHA-256: `6fb2e448fe0a011b7ccf66fa62ac627c21747189d5bf117c80af409c7865f8a5`.
+HTML SHA-256: `1fd4e4424c05d9d38add7f0aead7a955e57eab6c49215bbe5687b004805d9fbd`.
+
+## Minimaal benodigde overdracht
+
+Voor de installer hoeft nog één bestand naar deze branch te worden overgezet:
+
+`tools/space-tent/tentamenarena-package/Spacetent_Tentamenarena_1.0.html`
+
+De overige benodigde installerbestanden en het PDF-manifest staan al hier.
+Het volledige ZIP-pakket kan eveneens in deze pakketmap worden uitgepakt voor
+onderhoud en reproduceerbare tests. Vervang niet de bestaande publieke app-index:
+dan zou de arena de hele Spacetent vervangen in plaats van uitbreiden.
 
 ## Bronbevindingen
 
 Er is één compleet tentamen: 5 november 2018 (5 pagina's, inclusief drie
-werkbladen), met uitwerkingen (8 pagina's). Het andere opgavenbestand bestaat
-uit tien extra oefeningen bij H9/H10 (2 pagina's). Van de afzonderlijke
-oefentoets zijn alleen uitwerkingen aanwezig: pagina 6–8 van het gecombineerde
-uitwerkingenbestand. Die oefentoets kan dus nog niet als tweede complete
-simulatie worden aangeboden.
+werkbladen), met uitwerkingen (8 pagina's). Het andere opgavenbestand bestaat uit
+tien extra oefeningen bij H9/H10 (2 pagina's). Van een afzonderlijke oefentoets
+zijn alleen uitwerkingen aanwezig: pagina 6–8 van het gecombineerde bestand.
+Deze oefentoets is dus niet als tweede complete simulatie aangeboden.
 
 Afzonderlijke Wisik-notities, oorspronkelijke bestanden ongewijzigd:
 - Opgave 3: kop 15 punten, deelpunten 16; totaalscore 54 tegenover 55.
@@ -34,36 +44,30 @@ Afzonderlijke Wisik-notities, oorspronkelijke bestanden ongewijzigd:
 
 ## Getest en niet getest
 
-De complete lokale kandidaat doorliep 108 browser/interactiecontroles en 26
-wiskundige/inhoudscontroles. Alle PDF-bytes zijn tegen de oorspronkelijke
-bestanden gecontroleerd. De browserreeks gebruikte Chromium met rechtstreeks
-geplaatste HTML en een gecontroleerde Storage-fixture, omdat de werkomgeving
-navigatie naar localhost en file-URL's blokkeerde. Dit is dus GEEN bewijs van
-echte schijfopslag, Safari/PWA-gedrag of de end-to-endkoppeling met Spacetent.
-De integratiecode zelf is nog niet met de volledige React-app gebouwd en getest.
+108 browser-/interactiecontroles en 26 wiskundige-/inhoudscontroles van de
+zelfstandige kandidaat slaagden. Alle oorspronkelijke PDF-bytes zijn gecontroleerd.
+De browserreeks gebruikte Chromium met rechtstreeks geplaatste lokale HTML en
+een gecontroleerde Storage-fixture, omdat de werkomgeving navigatie naar lokale
+bestanden en localhost blokkeerde. Dit bewijst geen echte schijfopslag,
+Safari/PWA-gedrag of de end-to-endkoppeling met Spacetent. De integratiecode is
+nog niet met de volledige React-app gebouwd en getest.
 
-## Vervolg binnen deze werkbranch
-
-Plaats de volledige inhoud van het opleverpakket in deze pakketmap. Het pakket
-bevat ook `bronbestanden/manifest.json`, bouwbroncode en tests. Het bestand kan
-niet door deze integratiestub worden vervangen: het bevat de daadwerkelijke
-bronnen en bediening.
-
-Voer eerst de dry-run uit:
+## Installeren en controleren — alleen in de werkbranch
 
 ```sh
 node tools/space-tent/tentamenarena-package/integratie/install.mjs .
 ```
 
-Het script stopt als de geverifieerde bronbestanden zijn gewijzigd. Daarna kan
-`--apply` de integratie plaatsen in de lokale werkbranch. Het script commit,
-bouwt en publiceert niets. Daarna zijn de bestaande cursus-/buildcontroles,
-volledige browserregressies en een echte les-terugkeertest nodig.
+Dit is een dry-run: geen bestanden worden gewijzigd. Het script stopt als de
+gecontroleerde Spacetent-bron of buildprocedure inmiddels is gewijzigd. Na een
+geslaagde controle kan `--apply` de integratie in de lokale werkmap plaatsen.
+Het script bouwt, commit of publiceert niets.
 
-De bron-HTML wordt onder `tools/space-tent/app/tentamenarena/index.html`
-bewaard en tijdens builds naar `.space-dist/tentamenarena/index.html` gekopieerd.
-Zo blijft de arena behouden wanneer een toekomstige release de public-map
-opnieuw opbouwt. De bestaande app-index niet vervangen door de arena-HTML.
+Daarna zijn de bestaande build-, cursus-, voortgangs- en browsercontroles nodig,
+plus een echte test van openen, terugkeren en lesherstel. Pas daarna is een
+release verantwoord. Deze PR blijft tot dat moment concept.
 
-Pas na volledige overdracht, succesvolle integratiecontroles en de gebruikelijke
-releasechecks kan deze conceptwijziging klaar voor samenvoegen worden gemaakt.
+De bron-HTML komt onder `tools/space-tent/app/tentamenarena/index.html`; de
+builduitvoer onder `.space-dist/tentamenarena/index.html`. De installer past de
+build aan zodat toekomstige releases de arena niet kwijtraken. De oorspronkelijke
+cursusresultaten en levelcriteria worden niet aangepast.
