@@ -1,0 +1,6 @@
+[
+  {"id":"exam2018","file":"tentamen-2018.pdf","pages":5,"bytes":137815,"sha256":"826da8a23e51474b25ebe17c01f4b098c0f1ee9d0a4187a2a2d3fad5beed12a4"},
+  {"id":"solutions2018","file":"uitwerkingen-2018.pdf","pages":8,"bytes":591966,"sha256":"6dcb99786741c2672e8ef2fdeb3557677f34a262909be66de0527ac99dba9f38"},
+  {"id":"extra","file":"extra-oefeningen.pdf","pages":2,"bytes":482754,"sha256":"f842c5357a822a36c87f68a7a599d54166cbbf2da7f5c3e314ae41dc3375677e"},
+  {"id":"solutionsExtra","file":"uitwerkingen-extra.pdf","pages":8,"bytes":73542,"sha256":"f8f8ff437f8fb762d45d4a63ff2a46916517a5210870825152c7040b8aac0493"}
+]
