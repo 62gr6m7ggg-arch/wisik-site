@@ -1,0 +1,45 @@
+name: Space-tent native Tentamenarena
+on:
+  push:
+    branches: [space-arena-native-20261010]
+    paths:
+      - '.github/workflows/space-native-arena.yml'
+      - 'tools/space-tent/scripts/arena-native-release.json'
+permissions:
+  contents: read
+concurrency:
+  group: space-native-arena-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Connect native source to the existing course
+        run: node tools/space-tent/scripts/prepare-arena-native.mjs
+      - name: Install the existing locked dependency set
+        working-directory: tools/space-tent
+        run: npm ci --no-audit --no-fund
+      - name: Compile and check the new mathematical source
+        working-directory: tools/space-tent
+        run: |
+          npx tsc --noEmit
+          node scripts/check-arena-native.mjs
+          npm run build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-arena-first-build
+          include-hidden-files: true
+          retention-days: 3
+          path: |
+            tools/space-tent/app/arena
+            tools/space-tent/app/ruimteklaar.tsx
+            tools/space-tent/scripts/prepare-arena-native.mjs
+            tools/space-tent/scripts/check-arena-native.mjs
+            tools/space-tent/.arena-unit/results.json
+            tools/space-tent/.space-dist
