@@ -20,11 +20,11 @@ if(!main.includes('// ARENA-NATIVE-070')){
  }
 `);
  main=once(main," {(view==='route'||view==='level')&&<>",` {local&&<ArenaEntry open={arenaOpen} onClose={()=>setArenaOpen(false)} onStudy={arenaStudy}/>}
- {local&&(view==='route'||view==='level'||arenaReturn)&&<section className="atelier-invite arena-launch no-print"><div><h2>{arenaReturn?'Terug naar je Tentamenarena?':'Tentamenarena'}</h2><p>Het tentamen uit 2018, een herkenbare Wisik-reconstructie en gerichte hersteltraining. Je bestaande levelresultaten blijven apart.</p></div><Button variant="outline" onClick={()=>setArenaOpen(true)}>{arenaReturn?'Terug naar mijn arena':'Open de Tentamenarena'}</Button></section>}
+ {local&&(view==='route'||view==='level'||(arenaReturn&&view==='learn'))&&<section className="atelier-invite arena-launch no-print"><div><h2>{arenaReturn?'Terug naar je Tentamenarena?':'Tentamenarena'}</h2><p>Het tentamen uit 2018, een herkenbare Wisik-reconstructie en gerichte hersteltraining. Je bestaande levelresultaten blijven apart.</p></div><Button variant="outline" onClick={()=>setArenaOpen(true)}>{arenaReturn?'Terug naar mijn arena':'Open de Tentamenarena'}</Button></section>}
  {(view==='route'||view==='level')&&<>`);
  write(mainPath,main);
 }
-// Corrections independently checked against the native coordinate models.
+assert.ok(read(mainPath).includes("(arenaReturn&&view==='learn')"),'Arena-return mag geen hulpingang in zelfstandige checks toevoegen.');
 const examPath='tools/space-tent/app/arena/exam-2018.ts';let exam=read(examPath);
 exam=exam.replace(/^const cube=.* as const;\n/m,'');
 exam=exam.replace('Voor de getoonde posities is het een vijfhoek; R ligt op een zijde van de grondvlakdoorsnede en hoeft geen hoekpunt te zijn.','Voor de getoonde posities is het een vijfhoek met hoekpunten op AB, op DC bij R, op DH, op HE bij P en op EF bij Q. R is hier een hoekpunt omdat het snijvlak ribbe DC raakt.');
@@ -36,7 +36,7 @@ for(const file of ['tools/space-tent/space/index.html','tools/space-tent/review/
 for(const file of ['public/hbo/space-tent/index.html','public/backstage/space-tent/index.html']){
  let text=read(file);
  if(!text.includes('arena-native-description')){
- const note='<section class="arena-native-description"><h2>Tentamenarena</h2><p>In Spacetent kun je het tentamen van 5 november 2018 digitaal bewerkt oefenen (18 deelopgaven) en een expliciete Wisik-reconstructie van de oefentoets bij hoofdstuk 9 en 10 (33 deelopgaven). De vragen en opnieuw getekende figuren zijn afdrukbaar, met of zonder uitwerkingen. Dit zijn tekstversies, geen facsimiles van de oorspronkelijke PDF’s.</p><p>Na zelfstandig werken op papier volgt zelfcontrole en een gerichte route naar bestaande lesblokken en 24 nieuwe herstelvragen. Aanvullingen en correcties worden zichtbaar vermeld. Er wordt geen officieel cijfer of automatische beheersingsstatus toegekend; de cursusvoortgang blijft apart.</p><p><a href="/apps/ruimteklaar/">Open Spacetent en kies Tentamenarena</a></p></section>';
+ const note='<section class="section compact arena-native-description"><div class="content-card"><h2>Tentamenarena</h2><p>In Spacetent kun je het tentamen van 5 november 2018 digitaal bewerkt oefenen (18 deelopgaven) en een expliciete Wisik-reconstructie van de oefentoets bij hoofdstuk 9 en 10 (33 deelopgaven). De vragen en opnieuw getekende figuren zijn afdrukbaar, met of zonder uitwerkingen. Dit zijn tekstversies, geen facsimiles van de oorspronkelijke PDF’s.</p><p>Na zelfstandig werken op papier volgt zelfcontrole en een gerichte route naar bestaande lesblokken en 24 nieuwe herstelvragen. Aanvullingen en correcties worden zichtbaar vermeld. Er wordt geen officieel cijfer of automatische beheersingsstatus toegekend; de cursusvoortgang blijft apart.</p><p><a class="btn primary" href="/apps/ruimteklaar/">Open Spacetent en kies Tentamenarena</a></p></div></section>';
  text=once(text,'</main>',note+'</main>');write(file,text);
  }
 }
