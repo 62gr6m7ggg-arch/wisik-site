@@ -1,0 +1,10 @@
+{
+  "appVersion": "0.7.0",
+  "arenaVersion": "1.1.0",
+  "payloadSha256": "e2d034cea4d36544ae2535a5086885f8a7be396dbb5552dc2e69075babfa3fef",
+  "payloadBytes": 4849146,
+  "baseSha": "81ffb1162f01e89ba83b51c31164e54a81c30373",
+  "workBranch": "space-tentamenarena-20261010",
+  "pullRequest": 72,
+  "status": "candidate-not-live"
+}

@@ -9,47 +9,41 @@ permissions:
   contents: read
 concurrency:
   group: space-arena-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
-  verify:
+  verify-and-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 65
     permissions:
       contents: write
+      pull-requests: write
+      actions: write
+    env:
+      WORK_BRANCH: space-tentamenarena-20261010
+      BASE_SHA: 81ffb1162f01e89ba83b51c31164e54a81c30373
+      PLAYWRIGHT_MODULE: /tmp/space-arena-browser/node_modules/playwright/index.mjs
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Inspect current course and require complete payload
-        id: payload
-        run: |
-          node --input-type=module - <<'JS'
-          import fs from 'node:fs';
-          const root='tools/space-tent/';
-          const a=JSON.parse(fs.readFileSync(root+'app/content.json'));
-          const b=JSON.parse(fs.readFileSync(root+'app/course-content.json'));
-          console.log('COURSE BLOCKS '+JSON.stringify([...a.blocks,...b.blocks].map(x=>({id:x.id,level:x.level||1,title:x.title})),null,2));
-          console.log('ROOT BUILD '+fs.readFileSync('package.json','utf8'));
-          const file=root+'tentamenarena-package/Spacetent_Tentamenarena_1.1.html';
-          const ready=fs.existsSync(file);
-          fs.appendFileSync(process.env.GITHUB_OUTPUT,'ready='+ready+'\n');
-          if(!ready)console.log('Complete source payload is not in this branch yet. No installation, build, deployment or success claim.');
-          JS
       - uses: actions/setup-node@v4
-        if: steps.payload.outputs.ready == 'true'
         with:
           node-version: '22'
-      - name: Verify payload and install guarded integration
-        if: steps.payload.outputs.ready == 'true'
+      - name: Require the exact complete file; never treat missing input as success
         run: |
+          FILE=tools/space-tent/tentamenarena-package/Spacetent_Tentamenarena_1.1.html
+          if [ ! -f "$FILE" ]; then
+            echo '::error::De volledige Spacetent_Tentamenarena_1.1.html ontbreekt nog in tools/space-tent/tentamenarena-package. Upload dit bestand op deze werkbranch. Er wordt niets gepubliceerd.'
+            exit 1
+          fi
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$BASE_SHA"
           node tools/space-tent/tentamenarena-package/integratie/install.mjs .
           node tools/space-tent/tentamenarena-package/integratie/install.mjs . --apply
+          node tools/space-tent/tentamenarena-package/integratie/check-native.mjs --math-only
       - name: Install locked course dependencies
-        if: steps.payload.outputs.ready == 'true'
         run: npm ci --no-audit --no-fund
         working-directory: tools/space-tent
       - name: Course, type and build checks
-        if: steps.payload.outputs.ready == 'true'
         working-directory: tools/space-tent
         run: |
           npx tsc --noEmit
@@ -62,20 +56,15 @@ jobs:
           npm run audit:build
           node scripts/build-entry-audit.mjs
           node scripts/build-review.mjs
-      - name: Install real browser engines
-        if: steps.payload.outputs.ready == 'true'
+      - name: Install native browser engines
         run: |
           npm install --prefix /tmp/space-arena-browser --no-save --no-audit playwright@1.56.1
           /tmp/space-arena-browser/node_modules/.bin/playwright install --with-deps chromium webkit
-      - name: Stage verified build for browser checks
-        if: steps.payload.outputs.ready == 'true'
+      - name: Stage production bundle for browser tests
         run: |
           node -e "const f=require('node:fs');f.rmSync('public/apps/ruimteklaar',{recursive:true,force:true});f.cpSync('tools/space-tent/.space-dist','public/apps/ruimteklaar',{recursive:true});f.cpSync('tools/space-tent/.audit-dist','tools/space-tent/audit-runtime',{recursive:true});"
-      - name: Integrated arena and all retained browser regressions
-        if: steps.payload.outputs.ready == 'true'
+      - name: All six native arena environments and retained regressions
         working-directory: tools/space-tent
-        env:
-          PLAYWRIGHT_MODULE: /tmp/space-arena-browser/node_modules/playwright/index.mjs
         run: |
           node tentamenarena-package/integratie/check-native.mjs
           node scripts/check-shape-browser.mjs
@@ -85,8 +74,7 @@ jobs:
           node scripts/check-desktop-workspace.mjs
           node scripts/check-level-continuation-browser.mjs
           node scripts/check-review-browser.mjs
-      - name: Bind release evidence and run site-wide checks
-        if: steps.payload.outputs.ready == 'true'
+      - name: Bind exact release evidence and run site-wide gates
         run: |
           cp tools/space-tent/.entry-browser/results.json tools/space-tent/validation/free-entry-054.json
           cp tools/space-tent/.knowledge-browser/results.json tools/space-tent/validation/knowledge-browser-050.json
@@ -96,22 +84,78 @@ jobs:
           node scripts/audit-ruimteklaar-review.mjs --write
           node scripts/audit-space-release.mjs --write
           npm run build
-      - name: Save only the checked candidate to the work branch
-        if: steps.payload.outputs.ready == 'true'
+      - name: Save only the checked candidate to its work branch
+        id: candidate
         run: |
-          test "$(git ls-remote origin refs/heads/space-tentamenarena-20261010 | cut -f1)" = "$GITHUB_SHA"
+          test "$(git ls-remote origin refs/heads/$WORK_BRANCH | cut -f1)" = "$GITHUB_SHA"
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$BASE_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/space-tent/app tools/space-tent/space/index.html tools/space-tent/review/index.html tools/space-tent/scripts/build-space.mjs tools/space-tent/audit-runtime tools/space-tent/validation public/apps/ruimteklaar public/hbo/space-tent/index.html public/backstage/space-tent/index.html public/assets/js/site-data.js public/films/ruimteklaar/catalog.json public/assets/data/ruimteklaar-release-audit.json server/ruimteklaar-test-assets.mjs server/ruimteklaar-test-manifest.json scripts/audit-space-release.mjs
-          if ! git diff --cached --quiet; then
-            git commit -m 'Space-tent 0.7.0: verified Tentamenarena 1.1 with 2018 exam and explicit reconstruction'
-            git push origin HEAD:space-tentamenarena-20261010
-          fi
+          git add tools/space-tent/app tools/space-tent/space/index.html tools/space-tent/review/index.html tools/space-tent/scripts/build-space.mjs tools/space-tent/audit-runtime tools/space-tent/validation public/apps/ruimteklaar public/_headers public/hbo/space-tent/index.html public/backstage/space-tent/index.html public/assets/js/site-data.js public/films/ruimteklaar/catalog.json public/assets/data/ruimteklaar-release-audit.json server/ruimteklaar-test-assets.mjs server/ruimteklaar-test-manifest.json scripts/audit-space-release.mjs
+          git diff --cached --stat
+          git commit -m 'Space-tent 0.7.0: checked Tentamenarena 1.1 and source reconstruction'
+          git push origin HEAD:$WORK_BRANCH
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Run the required quality workflow on precisely the candidate commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/quality.yml/dispatches" -f ref="$WORK_BRANCH"
+          PASSED=false
+          for i in $(seq 1 90); do
+            RESULT=$(gh api "repos/$GITHUB_REPOSITORY/commits/$CANDIDATE_SHA/check-runs?per_page=100" --jq '[.check_runs[] | select(.name == "Verplichte vrijgavecontrole" and .app.id == 15368)] | sort_by(.id) | last | if . == null then "waiting" elif .status != "completed" then "waiting" else .conclusion end')
+            if [ "$RESULT" = success ]; then PASSED=true; break; fi
+            if [ "$RESULT" != waiting ]; then echo "::error::Verplichte vrijgavecontrole: $RESULT. Niet samenvoegen."; exit 1; fi
+            sleep 10
+          done
+          test "$PASSED" = true
+      - name: Merge the authorized change without bypassing branch protection
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          test "$(gh api repos/$GITHUB_REPOSITORY/git/ref/heads/main --jq .object.sha)" = "$BASE_SHA"
+          test "$(gh api repos/$GITHUB_REPOSITORY/pulls/72 --jq .head.sha)" = "$CANDIDATE_SHA"
+          test "$(gh api repos/$GITHUB_REPOSITORY/pulls/72 --jq .base.ref)" = main
+          gh pr ready 72 --repo "$GITHUB_REPOSITORY"
+          gh api --method PUT "repos/$GITHUB_REPOSITORY/pulls/72/merge" -f sha="$CANDIDATE_SHA" -f merge_method=merge > /tmp/arena-merge-result.json
+          node -e "const x=JSON.parse(require('fs').readFileSync('/tmp/arena-merge-result.json'));if(x.merged!==true)throw Error('Merge niet bevestigd');console.log('Samengevoegd:',x.sha)"
+      - name: Wait for Cloudflare to serve the exact release
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const expected=JSON.parse(fs.readFileSync('tools/space-tent/tentamenarena-package/release.json')).payloadSha256;
+          const hash=x=>createHash('sha256').update(x).digest('hex');
+          let passed=false;
+          for(let i=0;i<90;i++){
+            try{
+              const t=Date.now();
+              const r=await fetch('https://wisik.nl/apps/ruimteklaar/tentamenarena/index.html?release='+t,{signal:AbortSignal.timeout(15000)});
+              const s=await fetch('https://wisik.nl/apps/ruimteklaar/?release='+t,{signal:AbortSignal.timeout(15000)});
+              if(r.ok&&s.ok&&hash(Buffer.from(await r.arrayBuffer()))===expected&&(await s.text()).includes('Ruimteklaar 0.7.0')){passed=true;break;}
+            }catch(e){console.log('Publicatie nog niet bevestigd:',e.message);}
+            await new Promise(r=>setTimeout(r,10000));
+          }
+          if(!passed)throw Error('Merge is uitgevoerd, maar online publicatie nog niet bevestigd. Controleer de Cloudflare-build; niet als live melden.');
+          console.log('Exacte Tentamenarena en Spacetent 0.7.0 online aangetroffen.');
+          JS
+      - name: Verify both learner routes on the live site
+        working-directory: tools/space-tent
+        env:
+          ARENA_LIVE_URL: https://wisik.nl
+        run: node tentamenarena-package/integratie/check-native.mjs
+      - name: Record confirmed publication in the pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr comment 72 --repo "$GITHUB_REPOSITORY" --body 'Publicatie gecontroleerd: Spacetent 0.7.0 met Tentamenarena 1.1. Het oorspronkelijke tentamen (18 deelopgaven), de expliciete Wisik-reconstructie (33 deelopgaven) en 24 herstelvragen zijn op de live site door de native Chromium-/WebKit-reeks gecontroleerd. De bestandsvingerafdruk is gelijk aan de vrijgegeven kandidaat. Papierwerk blijft zelfbeoordeling; geen fysieke iPhone-test.'
       - uses: actions/upload-artifact@v4
-        if: always() && steps.payload.outputs.ready == 'true'
+        if: always()
         with:
           name: tentamenarena-release-evidence
           include-hidden-files: true
+          if-no-files-found: ignore
           path: |
             tools/space-tent/.arena-browser
             tools/space-tent/validation/tentamenarena-110.json

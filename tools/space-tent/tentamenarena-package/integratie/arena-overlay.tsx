@@ -1,9 +1,8 @@
 'use client';
 import {useEffect,useRef} from 'react';
 
-type Props={open:boolean;onClose:()=>void;onLesson:(level:number,terms:string[])=>void};
-
-/** Same-origin bridge; the arena never writes the course's learning events. */
+type Props={open:boolean;onClose:()=>void;onLesson:(level:number,blockId:string)=>void};
+/** The iframe owns only arena storage; it never writes course learning events. */
 export default function ArenaOverlay({open,onClose,onLesson}:Props){
  const dialog=useRef<HTMLDialogElement>(null),frame=useRef<HTMLIFrameElement>(null);
  useEffect(()=>{
@@ -12,7 +11,7 @@ export default function ArenaOverlay({open,onClose,onLesson}:Props){
   const overflow=document.body.style.overflow;
   if(element&&!element.open)element.showModal();
   document.body.style.overflow='hidden';
-  return()=>{element?.close();document.body.style.overflow=overflow;previous?.focus();};
+  return()=>{element?.close();document.body.style.overflow=overflow;previous?.focus({preventScroll:true});};
  },[open]);
  useEffect(()=>{
   if(!open)return;
@@ -21,10 +20,7 @@ export default function ArenaOverlay({open,onClose,onLesson}:Props){
    const data=event.data;
    if(!data||typeof data!=='object')return;
    if(data.type==='wisik:arena:close'){onClose();return;}
-   if(data.type==='wisik:arena:lesson'&&Number.isInteger(data.lesson)&&data.lesson>=1&&data.lesson<=6){
-    const terms=Array.isArray(data.terms)?data.terms.filter((x:unknown)=>typeof x==='string').slice(0,8).map((x:string)=>x.slice(0,80)):[];
-    onLesson(data.lesson,terms);
-   }
+   if(data.type==='wisik:arena:lesson'&&Number.isInteger(data.lesson)&&data.lesson>=1&&data.lesson<=6&&typeof data.blockId==='string'&&/^[a-z0-9-]{1,64}$/.test(data.blockId))onLesson(data.lesson,data.blockId);
   }
   window.addEventListener('message',receive);
   return()=>window.removeEventListener('message',receive);
