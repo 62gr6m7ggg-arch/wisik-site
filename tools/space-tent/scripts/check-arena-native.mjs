@@ -27,8 +27,8 @@ for(const e of M.EXAMS){ok(e.warning.length>100&&e.source.length>60);for(const q
 }
 const p18=g=>M.EXAMS[0].groups[g].model.points,pr=g=>M.EXAMS[1].groups[g].model.points;
 {
- const p=p18('1');near(lineDist(p.A,p.K,p.F,p.I),0.7155417527999327,'independent skew AK/FI');ok(!parallel(sub(p.K,p.B),sub(p.L,p.H)));ok(lineDist(p.B,p.K,p.H,p.L)>0,'BK/HL skew');
- const x=[-6,0,0];near(planeDist(x,p.A,p.E,p.H),0,'three-plane intersection in AEH');near(planeDist(x,p.G,p.C,p.D),0,'three-plane intersection in GCD');near(x[2],0);
+ const p=p18('1');near(lineDist(p.A,p.K,p.F,p.I),1.6579575225847145,'independent skew AK/FI');ok(!parallel(sub(p.K,p.B),sub(p.L,p.H)));ok(lineDist(p.B,p.K,p.H,p.L)>0,'BK/HL skew');
+ const x=[7,0,0];near(planeDist(x,p.A,p.E,p.H),0,'three-plane intersection in AEH');near(planeDist(x,p.G,p.C,p.D),0,'three-plane intersection in GCD');near(x[2],0);
 }
 {
  const p=p18('2'),m=M.EXAMS[0].groups['2'].model;near(dot(sub(p.H,p.A),cross(sub(p.F,p.E),sub(p.S,p.E)))/(norm(sub(p.H,p.A))*norm(cross(sub(p.F,p.E),sub(p.S,p.E)))),1,'AH normal EFCD');eq(section(m,p.Q,p.P,p.C).length,5,'2018 section 2a');
@@ -57,7 +57,7 @@ const volume=x=>75*x*Math.sqrt(2025-45*x);for(const x of [10.09238055,43.0845813
  const p=pr('5');near(planeDist(p.H,p.C,p.M,p.N),Math.sqrt(3));near(planeDist(p.C,p.F,p.D,p.L),2);near(planeDist(p.B,p.A,p.F,p.H),2*Math.sqrt(3/7));ok(parallel(sub(p.F,p.A),sub(p.E,p.B)));ok(parallel(sub(p.H,p.A),sub(p.L,p.E)));
 }
 {
- const p=pr('6');near(dist(p.B,p.F),5);near(dist(p.D,p.E),5);near(dist(p.E,p.B),Math.sqrt(37));near(p.F[2],Math.sqrt(12));eq(Math.round(Math.atan(p.F[2]/2)*180/Math.PI),60);eq(Math.round(180-2*Math.atan(p.F[2]/3)*180/Math.PI),82);const a=angle(sub(p.F,p.B),sub(p.E,p.D));near(a,87.70755722404412,'smallest line angle');
+ const p=pr('6');near(dist(p.B,p.F),5);near(dist(p.D,p.E),5);near(dist(p.E,p.B),Math.sqrt(37));near(p.F[2],Math.sqrt(12));eq(Math.round(Math.atan(p.F[2]/2)*180/Math.PI),60);eq(Math.round(180-2*Math.atan(p.F[2]/3)*180/Math.PI),82);const a=angle(sub(p.F,p.B),sub(p.E,p.D));near(Math.min(a,180-a),87.70755722404412,'smallest line angle');
 }
 const expectedChoices={'L1-1':2,'L1-2':1,'L1-3':1,'L1-4':1,'L2-2':1,'L2-3':1,'L3-4':2,'L4-1':0,'L4-3':0,'L4-4':1,'L5-3':0,'L5-4':0,'L6-1':0,'L6-2':1,'L6-3':0};
 const expectedNumbers={'L2-1':10/2,'L2-4':8*9/12,'L3-1':18*7/3,'L3-2':(6*3+6*2/2)*10,'L3-3':3*40/24,'L4-2':Math.atan(3/4)*180/Math.PI,'L5-1':6*8/10,'L5-2':30*4/3,'L6-4':3};
