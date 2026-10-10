@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "status": "passed",
   "questionIds": [
     "vorm-l4-cos-piramide",
@@ -101,7 +101,7 @@
     }
   ],
   "browser": {
-    "version": "0.6.0",
+    "version": "0.7.0",
     "status": "passed",
     "ids": [
       "vorm-l4-cos-piramide",

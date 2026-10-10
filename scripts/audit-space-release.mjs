@@ -82,6 +82,13 @@ const newQuestionIds=bank.questions.filter(q=>q.id.startsWith('vorm-')).map(q=>q
 assert.ok(newQuestionIds.length>0,'Shape variation must be present in the released question bank');
 assert.deepEqual([...shapeVariation.questionIds].sort(),newQuestionIds,'Independent shape validation must cover every new question exactly once');
 
+// ARENA-NATIVE-070: evidence must belong to the exact native source and bundle.
+const nativeArena=currentEvidence('validation/arena-native-070.json');
+assert.deepEqual(nativeArena.environments,['chromium-desktop','chromium-mobile','chromium-narrow','webkit-desktop','webkit-mobile','webkit-narrow']);
+assert.equal(nativeArena.exams,2);assert.equal(nativeArena.examQuestions,51);assert.equal(nativeArena.trainingQuestions,24);
+assert.ok(nativeArena.results.length===6&&nativeArena.results.every(r=>r.status==='passed'&&r.reload&&r.coursePreserved&&r.lessonReturn&&r.originalParts===18&&r.reconstructedParts===33));
+assert.deepEqual(nativeArena.sourceFiles,hashes(path.join(source,'app/arena')));
+assert.deepEqual(nativeArena.publicFiles,hashes(path.join(root,'public/apps/ruimteklaar')));
 const report={
  product:'Space-tent · Ruimteklaar',appVersion:version,
  siteVersion:JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version,status:'passed',
@@ -98,6 +105,7 @@ const report={
   constructionDrafts:'Geen beoordeling of XP vóór expliciet inleveren; hervatten behoudt punten, lijnen en gekozen onderbouwing',
   storage:'Herladen, import/export, ontdubbeling, ongeldige bestanden, opslagfouten, oude voortgang behouden, nul netwerkaanroepen'
  },
+ nativeArena,
  shapeVariation,
  browser:{
   freeEntry,knowledge:knowledgeBrowser,desktopWorkspace:workspaceBrowser,
