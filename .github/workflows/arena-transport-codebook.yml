@@ -1,0 +1,41 @@
+name: Arena asset transport preparation
+on:
+  push:
+    branches: [space-tentamenarena-20261010]
+    paths: ['.github/workflows/arena-transport-codebook.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Prepare deterministic data-only transfer alphabet
+        run: |
+          python - <<'PY'
+          import base64,hashlib,json,pathlib,urllib.request
+          url='https://openaipublic.blob.core.windows.net/encodings/o200k_base.tiktoken'
+          data=urllib.request.urlopen(url,timeout=30).read()
+          assert hashlib.sha256(data).hexdigest()=='446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d'
+          choices=[]
+          for line in data.splitlines():
+            text,rank=line.split()
+            try: word=base64.b64decode(text).decode('utf-8')
+            except UnicodeError: continue
+            if word.startswith(' ') and len(word)>2 and all(c.isprintable() and not c.isspace() and c not in '\\"<>' for c in word[1:]):
+              choices.append((int(rank),word[1:]))
+          choices.sort()
+          print('Available single-token words:',len(choices))
+          assert len(choices)>=65536
+          words=[word for _,word in choices[:65536]]
+          assert len(set(words))==len(words)
+          out=pathlib.Path('/tmp/arena-codebook');out.mkdir()
+          encoded=json.dumps(words,ensure_ascii=False,separators=(',',':')).encode('utf-8')
+          (out/'codebook.json').write_bytes(encoded)
+          print('Codebook SHA256:',hashlib.sha256(encoded).hexdigest())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arena-text-transport-codebook
+          retention-days: 2
+          path: /tmp/arena-codebook/codebook.json
