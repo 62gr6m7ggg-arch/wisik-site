@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "exams": 2,
   "examQuestions": 51,
   "trainingQuestions": 24,
@@ -12,7 +12,7 @@
     "webkit-mobile",
     "webkit-narrow"
   ],
-  "assertions": 2316,
+  "assertions": 2576,
   "results": [
     {
       "environment": "chromium-desktop",
@@ -101,27 +101,32 @@
   ],
   "errors": [],
   "sourceFiles": {
-    "tools/space-tent/app/arena/arena.css": "ab863f91fcf6b3f8939374f33f1e3bb50e1004509038dcd122fed250cb6e0b7c",
-    "tools/space-tent/app/arena/arena.tsx": "192481109100ef4e7fbb8b4820b99ced21c2a90d0d5dc5b0dccb3699823be204",
+    "tools/space-tent/app/arena/arena.css": "b9ecf0fe9abb7e8e05c86e9d258ebdad0cffef63d4bd0fb3327c7b2d790500a8",
+    "tools/space-tent/app/arena/arena.tsx": "21fa8e1243428dce5b4e3e73242adeae2d613eba7f61736f5cb1609088e40e3c",
     "tools/space-tent/app/arena/core.ts": "f82feea33feec7631a043c341e541121b617b07466b849736e4688a004e3ffe6",
     "tools/space-tent/app/arena/entry.tsx": "6c54123489b9b374a2c7c7a81d376de2eb323a66ec040b4fe7d37759d7124c91",
     "tools/space-tent/app/arena/exam-2018.ts": "ed852d940d70be5752246873a6980963026d938bf1f8143e43192310cb6764ee",
     "tools/space-tent/app/arena/figure.tsx": "3cd68a0a67101d8cbd39c590ef2a4272a82e7802f42e94c568d77a67b8af7ef8",
+    "tools/space-tent/app/arena/pdf-exams.tsx": "5546332fc6edd444a9e2cb4c904692bec960736c899913dc76b4b3794601ca66",
     "tools/space-tent/app/arena/reconstruction.ts": "e17977a60917aedafa1f44189dd5e77088ce9706462f83abba915a14118683c9",
     "tools/space-tent/app/arena/training.ts": "777e51d843e5e47c4fbc7b95084e569506ffeedf132b9ed229d291e82464187d",
     "tools/space-tent/app/arena/types.ts": "2fd46c61180c72721197e9b37f8e53364db4cb73c5e46b936071cf28ed86e431"
   },
   "publicFiles": {
-    "public/apps/ruimteklaar/assets/arena-BPHXvych.js": "b582bad0a56f1c027f4f1636ad7adcc5d75ee77073e84340af162e9955c2a5ec",
-    "public/apps/ruimteklaar/assets/arena-C-9m5rq2.css": "5b4c456544897d1d735d58568b13d3dedcf2cb00a4523f57155935e4827efa83",
+    "public/apps/ruimteklaar/assets/arena-AYgW6anZ.css": "8d775828c3719565169b9a3e9933a88fd7a1ed7973f045a1e8ff741832c49619",
+    "public/apps/ruimteklaar/assets/arena-CK-U_eHL.js": "cafcf3459b4b733cb2979eb730b2dd37227334a0f7a7ea147a6a43279ec4505b",
     "public/apps/ruimteklaar/assets/index-Bxz7NXPz.css": "ad3d15324f25e0594bbc7e507ccf31ea14493f91a4d1a84da36b635489d86e4e",
-    "public/apps/ruimteklaar/assets/index-C8ZBb4gG.js": "5d5139dcb8d25ac63ea118496d5871e3937d9a982907a64bf2d3bed26fc4caad",
-    "public/apps/ruimteklaar/index.html": "2a394a5843aa90f8f60e60e535aa5167cfff6d63b59ccaad3f8a54dc0a7a84b2"
+    "public/apps/ruimteklaar/assets/index-zF25nkqk.js": "21894eb6290d43e307be1b32dff28c9de83a5b72ce59ab624af76e4d8d0f3a1a",
+    "public/apps/ruimteklaar/index.html": "c4fe1d4449ed61c8453ff39781025264cd04385978a8faf7cf23daceabb73a30",
+    "public/apps/ruimteklaar/tentamenarena/Ruimtemeetkunde_1_Oefententamen_A.pdf": "c88a022b0bba1e7b74e732385847f6fbf4cd29b46ea352c69cdc4d98f359e7f0",
+    "public/apps/ruimteklaar/tentamenarena/Ruimtemeetkunde_1_Oefententamen_B.pdf": "2e7df011b47a3ce0975d2110de7ffe0778c85ff36dc23a96350a70881f6096af",
+    "public/apps/ruimteklaar/tentamenarena/Ruimtemeetkunde_1_Oefententamen_C.pdf": "2e1ffde1a958d57e219923b01108863e85c3415c1da2bd7f08391cea18ac0435",
+    "public/apps/ruimteklaar/tentamenarena/Ruimtemeetkunde_1_Oefententamen_D.pdf": "b10c55a22c7ee278d5749950dd2710994b9cfdfb6dd0bc841243b88ef40e4109"
   },
   "live": false,
   "limitations": [
     "Geen fysieke iPhone/Safari-test; WebKit is een browserengine-test.",
     "Tekeningen en redeneringen berusten op zelfbeoordeling.",
-    "Afdrukken is via browser-PDF; oorspronkelijke PDF-facsimiles zijn niet gehost."
+    "De vier PDF-oefententamens zijn samengestelde oefenbundels, geen officiële HAN-toetsen."
   ]
 }

@@ -17,6 +17,12 @@ let server;let base=process.env.ARENA_LIVE_URL;
 if(!base){server=http.createServer((req,res)=>{try{const url=new URL(req.url,'http://localhost'),name=decodeURIComponent(url.pathname),p=path.resolve(publicDir,'.'+name+(name.endsWith('/')?'index.html':''));if(!p.startsWith(publicDir+path.sep)){res.writeHead(403);res.end();return;}if(!fs.existsSync(p)||!fs.statSync(p).isFile()){res.writeHead(404);res.end('Not found');return;}res.writeHead(200,{'Content-Type':mime[path.extname(p)]||'application/octet-stream','Content-Security-Policy':policy,'X-Content-Type-Options':'nosniff','Cache-Control':'no-store'});fs.createReadStream(p).pipe(res);}catch{res.writeHead(400);res.end();}});await new Promise(r=>server.listen(0,'127.0.0.1',r));base='http://127.0.0.1:'+server.address().port;}
 const environments=[['chromium-desktop',chromium,1280,900],['chromium-mobile',chromium,390,844],['chromium-narrow',chromium,320,700],['webkit-desktop',webkit,1280,900],['webkit-mobile',webkit,390,844],['webkit-narrow',webkit,320,700]];
 const results=[],errors=[];let assertions=0;
+const pdfHashes={
+ A:'c88a022b0bba1e7b74e732385847f6fbf4cd29b46ea352c69cdc4d98f359e7f0',
+ B:'2e7df011b47a3ce0975d2110de7ffe0778c85ff36dc23a96350a70881f6096af',
+ C:'2e1ffde1a958d57e219923b01108863e85c3415c1da2bd7f08391cea18ac0435',
+ D:'b10c55a22c7ee278d5749950dd2710994b9cfdfb6dd0bc841243b88ef40e4109'
+};
 const ok=(x,m)=>{assert.ok(x,m);assertions++;},eq=(a,b,m)=>{assert.deepEqual(a,b,m);assertions++;};
 const courseKey='wisik.space-tent.progress.v1';
 const seed=JSON.stringify({format:'wisik-space-tent-progress',version:1,curriculumContracts:1,events:[{id:'arena-course-preserved-00001',at:100000,type:'answer',payload:{questionId:'p1',answer:['c'],helped:false,context:'practice',sessionId:'arena-course-session-01',correct:true}}]});
@@ -33,6 +39,28 @@ async function run(environment,engine,width,height){
   await page.goto(base+'/apps/ruimteklaar/',{waitUntil:'networkidle'});await page.getByRole('button',{name:'Open de Tentamenarena',exact:true}).waitFor();
   const original=await page.evaluate(k=>localStorage.getItem(k),courseKey);ok(original&&JSON.parse(original).events.length===1,'existing course progress loaded');
   await open();await overflow();await dialog().screenshot({path:path.join(out,environment+'-home.png')});
+  async function checkPdfs(){
+   eq(await dialog().locator('.arena-pdf-card').count(),4,'four PDF cards');
+   for(const [letter,sha] of Object.entries(pdfHashes)){
+    const file='Ruimtemeetkunde_1_Oefententamen_'+letter+'.pdf',href='/apps/ruimteklaar/tentamenarena/'+file;
+    const card=dialog().locator('.arena-pdf-card[data-exam-id="'+letter+'"]'),link=card.locator('a[target="_blank"]');
+    eq(await link.getAttribute('href'),href);ok((await link.getAttribute('rel')).includes('noopener'));
+    eq(await card.locator('a[download]').getAttribute('download'),file);
+    eq(await card.locator('a[download]').getAttribute('href'),href);
+    if(environment==='chromium-desktop'){
+     const response=await context.request.get(base+href);eq(response.status(),200);
+     if(process.env.ARENA_LIVE_URL)ok(response.headers()['content-type'].includes('application/pdf'),'PDF MIME type');
+     const bytes=await response.body();ok(bytes.subarray(0,5).toString()==='%PDF-');
+     eq(createHash('sha256').update(bytes).digest('hex'),sha,'unaltered supplied PDF '+letter);
+     const dl=page.waitForEvent('download');await card.locator('a[download]').click();const download=await dl;
+     const target=path.join(out,file);await download.saveAs(target);
+     eq(createHash('sha256').update(fs.readFileSync(target)).digest('hex'),sha,'actual download '+letter);
+    }
+   }
+   await dialog().locator('.arena-pdf-exams').scrollIntoViewIfNeeded();await overflow();
+   await dialog().locator('.arena-pdf-exams').screenshot({path:path.join(out,environment+'-pdfs.png')});
+  }
+  await checkPdfs();
   await page.keyboard.press('Escape');eq(await dialog().count(),0,'native escape closes arena');await open();
   for(const source of M.EXAMS){
    await home();await btn('Kies mijn oefentoets').click();await dialog().getByRole('button',{name:new RegExp('^'+source.title.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'))}).click();await btn('Start zelfstandige poging').click();
@@ -41,7 +69,7 @@ async function run(environment,engine,width,height){
    const before=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),M.KEY);await page.reload({waitUntil:'networkidle'});await open();
    eq(await dialog().locator('#arena-note').inputValue(),'Bewaar deze notitie <b>als tekst</b>: '+source.id,'real reload retains draft');ok(await btn('Markering verwijderen').count()===1);
    const after=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),M.KEY);eq(after.session.start,before.session.start,'timer start retained');
-   await home();ok(await btn('Bekijk het materiaal').isDisabled(),'archive unavailable during active attempt');ok(await btn('Verken de training').isDisabled(),'training unavailable during active attempt');await btn('Verder met mijn poging').click();
+   await home();eq(await dialog().locator('.arena-pdf-exams a').count(),0,'PDF answers unavailable during attempt');ok(await btn('Bekijk het materiaal').isDisabled(),'archive unavailable during active attempt');ok(await btn('Verken de training').isDisabled(),'training unavailable during active attempt');await btn('Verder met mijn poging').click();
    for(let i=0;i<source.questions.length;i++){
     const q=source.questions[i];await dialog().getByRole('button',{name:new RegExp('^Deelopgave '+q.label+'(?:,|$)')}).click();ok((await dialog().locator('h1').innerText()).includes(q.label+'.'),'part '+q.id+' reachable');eq(await dialog().locator('.arena-solution').count(),0);
     if(i===0||q.label==='3a'||q.label==='4c'||q.label==='5f'){await overflow();await dialog().locator('.arena-figure').screenshot({path:path.join(out,environment+'-'+source.id+'-'+q.label+'.png')});}
@@ -55,7 +83,7 @@ async function run(environment,engine,width,height){
    const blockId=source.questions[0].blockId,blockTitle=M.BANK.blocks.find(b=>b.id===blockId).title;
    await btn('Open dit lesblok').first().click();eq(await dialog().count(),0,'lesson callback closes arena');await page.locator('#root').getByText(blockTitle,{exact:true}).first().waitFor();await open();ok((await dialog().innerText()).includes('Jouw herstelroute'),'return retains arena location');
   }
-  await home();await btn('Bekijk het materiaal').click();for(const source of M.EXAMS){await btn(source.title).click();eq(await dialog().locator('.arena-archive-question').count(),source.questions.length);eq(await dialog().locator('.arena-figure').count(),Object.keys(source.groups).length);await overflow();}
+  await home();await btn('Bekijk het materiaal').click();await checkPdfs();for(const source of M.EXAMS){await btn(source.title).click();eq(await dialog().locator('.arena-archive-question').count(),source.questions.length);eq(await dialog().locator('.arena-figure').count(),Object.keys(source.groups).length);await overflow();}
   await page.evaluate(()=>{window.print=()=>{};});await btn('Afdrukken: alleen opgaven').click();await page.locator('.arena-print-root').waitFor({state:'attached'});await page.waitForFunction(()=>document.body.classList.contains('arena-printing'));
   eq(await page.locator('.arena-print-root .arena-print-question').count(),33);ok(!(await page.locator('.arena-print-root').textContent()).includes('Wisik-uitwerking.'));
   await page.emulateMedia({media:'print'});ok(await page.locator('.arena-print-root').isVisible());ok(!(await page.locator('#root').isVisible()));
@@ -87,6 +115,6 @@ async function run(environment,engine,width,height){
 const walk=d=>fs.readdirSync(d,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name)).flatMap(e=>e.isDirectory()?walk(path.join(d,e.name)):[path.join(d,e.name)]);
 const hashes=d=>Object.fromEntries(walk(d).map(f=>[path.relative(root,f).replaceAll(path.sep,'/'),createHash('sha256').update(fs.readFileSync(f)).digest('hex')]));
 try{for(const args of environments)await run(...args);}finally{
- const report={status:errors.length?'failed':'passed',version:'0.7.0',exams:2,examQuestions:51,trainingQuestions:24,environments:environments.map(x=>x[0]),assertions,results,errors,sourceFiles:hashes(path.join(course,'app/arena')),publicFiles:hashes(path.join(publicDir,'apps/ruimteklaar')),live:!!process.env.ARENA_LIVE_URL,limitations:['Geen fysieke iPhone/Safari-test; WebKit is een browserengine-test.','Tekeningen en redeneringen berusten op zelfbeoordeling.','Afdrukken is via browser-PDF; oorspronkelijke PDF-facsimiles zijn niet gehost.']};fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(report,null,2));if(!errors.length&&results.length===6&&!process.env.ARENA_LIVE_URL)fs.writeFileSync('validation/arena-native-070.json',JSON.stringify(report,null,2)+'\n');if(server)await new Promise(r=>server.close(r));
+ const report={status:errors.length?'failed':'passed',version:fs.readFileSync(path.join(course,'app/version.ts'),'utf8').match(/APP_VERSION='([^']+)'/)[1],exams:2,examQuestions:51,trainingQuestions:24,environments:environments.map(x=>x[0]),assertions,results,errors,sourceFiles:hashes(path.join(course,'app/arena')),publicFiles:hashes(path.join(publicDir,'apps/ruimteklaar')),live:!!process.env.ARENA_LIVE_URL,limitations:['Geen fysieke iPhone/Safari-test; WebKit is een browserengine-test.','Tekeningen en redeneringen berusten op zelfbeoordeling.','De vier PDF-oefententamens zijn samengestelde oefenbundels, geen officiële HAN-toetsen.']};fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(report,null,2));if(!errors.length&&results.length===6&&!process.env.ARENA_LIVE_URL)fs.writeFileSync('validation/arena-native-070.json',JSON.stringify(report,null,2)+'\n');if(server)await new Promise(r=>server.close(r));
 }
 console.log('Native arena browser checks passed in six environments; '+assertions+' assertions.');

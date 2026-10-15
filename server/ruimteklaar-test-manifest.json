@@ -1,6 +1,6 @@
 {
   "version": "1.1-factor-gate",
-  "learnerVersion": "0.7.0",
+  "learnerVersion": "0.7.1",
   "status": "passed",
   "auth": {
     "status": "passed",
@@ -10,12 +10,13 @@
     "limitation": "Mathematical puzzle gate, not identity authentication. Credential envelope unsigned; timeout renewable by anyone with a valid factorisation."
   },
   "sourceFiles": {
-    "tools/space-tent/app/arena/arena.css": "ab863f91fcf6b3f8939374f33f1e3bb50e1004509038dcd122fed250cb6e0b7c",
-    "tools/space-tent/app/arena/arena.tsx": "192481109100ef4e7fbb8b4820b99ced21c2a90d0d5dc5b0dccb3699823be204",
+    "tools/space-tent/app/arena/arena.css": "b9ecf0fe9abb7e8e05c86e9d258ebdad0cffef63d4bd0fb3327c7b2d790500a8",
+    "tools/space-tent/app/arena/arena.tsx": "21fa8e1243428dce5b4e3e73242adeae2d613eba7f61736f5cb1609088e40e3c",
     "tools/space-tent/app/arena/core.ts": "f82feea33feec7631a043c341e541121b617b07466b849736e4688a004e3ffe6",
     "tools/space-tent/app/arena/entry.tsx": "6c54123489b9b374a2c7c7a81d376de2eb323a66ec040b4fe7d37759d7124c91",
     "tools/space-tent/app/arena/exam-2018.ts": "ed852d940d70be5752246873a6980963026d938bf1f8143e43192310cb6764ee",
     "tools/space-tent/app/arena/figure.tsx": "3cd68a0a67101d8cbd39c590ef2a4272a82e7802f42e94c568d77a67b8af7ef8",
+    "tools/space-tent/app/arena/pdf-exams.tsx": "5546332fc6edd444a9e2cb4c904692bec960736c899913dc76b4b3794601ca66",
     "tools/space-tent/app/arena/reconstruction.ts": "e17977a60917aedafa1f44189dd5e77088ce9706462f83abba915a14118683c9",
     "tools/space-tent/app/arena/training.ts": "777e51d843e5e47c4fbc7b95084e569506ffeedf132b9ed229d291e82464187d",
     "tools/space-tent/app/arena/types.ts": "2fd46c61180c72721197e9b37f8e53364db4cb73c5e46b936071cf28ed86e431",
@@ -68,11 +69,11 @@
     "tools/space-tent/app/rotation.ts": "2c478f06af92bc49e27f9a2d001b13fc675b3a7ffe48b54b863af91d2abc2b2f",
     "tools/space-tent/app/route-header.tsx": "674fc3df365f786049252b5ef58ba4cc8be0fd0f8367dcc20bdfbb1ff80e0a35",
     "tools/space-tent/app/route-progress.ts": "e837e7148651619a0874d072522e09d58f16682ad224f816bb99177ad5e0ac41",
-    "tools/space-tent/app/ruimteklaar.tsx": "59d2123d51fd937c8757c90091a672205698bf7f69fd7d271cb1079527e4f002",
+    "tools/space-tent/app/ruimteklaar.tsx": "45a80266e5a57e52ec46370a60014df8f77400f11a92885e5859768fb2fe1ee9",
     "tools/space-tent/app/shape-variation-level4.json": "72c440d3c3305fd7b08f623fdf6287862f946000bc06d37d5bb465bb60b0c6aa",
     "tools/space-tent/app/shape-variation-level5.json": "d3cde40b751144274757f5eb5971874dcca867403ba78e9e5474fea30a6389ff",
     "tools/space-tent/app/shape-variation-level6.json": "732dbe19caa1306d78c8cbd684cbe4993b7dbf9cdc02c74ae6256806955467ef",
-    "tools/space-tent/app/version.ts": "c67f9b305dba9f0cfaaa7fd9fb2e35ceb65ca0652405aa49f4f5b0cb3f5e5999",
+    "tools/space-tent/app/version.ts": "5d21591ac736ba9542f51f4fd1198247bc8a498cd3e6c789df04a721a7bb7231",
     "tools/space-tent/app/viewing-guide.tsx": "3726e67aa01bc0be52b4f6228f8f18ec10dce7070ad793be6ea7aca133e82ec0",
     "tools/space-tent/app/viewing-math.ts": "44e659c2fc56dc95825af5cfc2ecfe9ed361ddec1917cae25d777fb1d944f528",
     "tools/space-tent/app/workbench-math.ts": "77c2e882262fa69495b773afbac1e71881e21568d6673791a468d2bb8b81a131",
@@ -93,12 +94,12 @@
     "scripts/audit-ruimteklaar-review.mjs": "48fad17a8c9cddf7e0c2ac0edb314471ff17ce20db6b9f7f2ef3b26328cf256b"
   },
   "privateAssets": {
-    "index.html": "db14707270d780946c200a6c5ceca81232bf7eab5d9cc0f6eabd6db6e1f234ab",
+    "index.html": "8c44e997cb973aace6085eca1a8f4f61f90226c7c6870c7c4cd7eb4374e2419c",
     "assets/index-Bm9CD72p.css": "2675ca9e3fba805aa3d4e26a3d97e230a5a0ddd0657aa033ef8176d6aea304b4",
-    "assets/index-eGbch8Ku.js": "dd769c880ba5fdc8e7078419e9ebfcf668bf097748a987d978d2790e68e0a8f1"
+    "assets/index-CXyR3gJ6.js": "e8a6c2861bf0d249928dbaaa414a305f4d3579488d9bca69bd824c017ffee671"
   },
   "browserEvidence": {
-    "version": "0.7.0",
+    "version": "0.7.1",
     "status": "passed",
     "results": [
       {
