@@ -145,7 +145,27 @@ jobs:
           LIVE_ORIGIN: https://wisik.nl
         run: |
           node --input-type=module <<'NODE'
-          let ready=false;for(let n=0;n<18;n++){const r=await fetch('https://wisik.nl/apps/ruimteklaar/',{headers:{'Cache-Control':'no-cache'}});if(r.ok&&(await r.text()).includes('0.5.4')){ready=true;break}await new Promise(r=>setTimeout(r,10000))}if(!ready)throw Error('Tested release not visible');
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const audit=JSON.parse(fs.readFileSync('../../public/assets/data/ruimteklaar-release-audit.json','utf8'));
+          assert.equal(audit.status,'passed','Release evidence must be passed');
+          assert.match(audit.appVersion,/^\d+\.\d+\.\d+$/,'Release evidence must contain a valid app version');
+          const checkedHtml=fs.readFileSync('../../public/apps/ruimteklaar/index.html','utf8');
+          const expectedTitle=checkedHtml.match(/<title>[^<]+<\/title>/)?.[0];
+          assert.ok(expectedTitle?.includes(`Ruimteklaar ${audit.appVersion} `),'Checked page title must match release evidence');
+          let ready=false;
+          for(let n=0;n<18;n++){
+            try{
+              const r=await fetch('https://wisik.nl/apps/ruimteklaar/?release='+Date.now(),{
+                headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)
+              });
+              if(r.ok&&(await r.text()).includes(expectedTitle)){ready=true;break}
+              console.log(`Waiting for checked release ${audit.appVersion} (attempt ${n+1}/18, HTTP ${r.status})`);
+            }catch(error){console.log(`Waiting for checked release ${audit.appVersion}: ${error.message}`)}
+            if(n<17)await new Promise(resolve=>setTimeout(resolve,10000));
+          }
+          assert.ok(ready,`Checked release ${audit.appVersion} not visible; browser tests have not run`);
+          console.log(`Checked release ${audit.appVersion} visible; starting live browser tests`);
           NODE
           node scripts/check-entry-choice-browser.mjs
       - uses: actions/upload-artifact@v4
