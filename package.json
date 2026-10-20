@@ -2,7 +2,7 @@
   "name": "wisik-site",
   "version": "0.1.31",
   "private": true,
-  "description": "Wisik.nl — festivalterrein voor rekenen en wiskunde",
+  "description": "Wisik.nl \u2014 festivalterrein voor rekenen en wiskunde",
   "scripts": {
     "seo:build": "node scripts/build-site-seo.mjs --write",
     "seo:check": "node scripts/test-site-seo.mjs && node scripts/build-site-seo.mjs --check",
@@ -11,7 +11,7 @@
     "audit:update": "node scripts/audit-pabo-release.mjs --write",
     "audit:verify": "node scripts/audit-pabo-release.mjs",
     "pabo:didactic": "node scripts/pabo-didactic-audit.mjs",
-    "check": "node scripts/test-konijnenhol.mjs --media && npm run audit:verify && npm run pabo:didactic && node scripts/check-site.mjs && node scripts/test-feedback.mjs && node scripts/test-privacy-terrein.mjs && node scripts/test-pabo-navigation.mjs && node scripts/test-pabo-flirts.mjs && node scripts/test-ownvoice-release.mjs && node scripts/test-grabbelton-cta.mjs && node scripts/test-flirt-endcards.mjs && node scripts/test-festival-venues.mjs && node scripts/test-mobile-terrein.mjs && node scripts/test-backstage-roadie.mjs && node scripts/test-backstage-audit.mjs && node scripts/audit-space-release.mjs && node scripts/audit-ruimteklaar-review.mjs && node scripts/test-space-artist-entrance.mjs && node scripts/test-rafelrandjes.mjs",
+    "check": "node scripts/test-konijnenhol.mjs --media && npm run audit:verify && npm run pabo:didactic && npm run pabo:rich && node scripts/check-site.mjs && node scripts/test-feedback.mjs && node scripts/test-privacy-terrein.mjs && node scripts/test-pabo-navigation.mjs && node scripts/test-pabo-flirts.mjs && node scripts/test-ownvoice-release.mjs && node scripts/test-grabbelton-cta.mjs && node scripts/test-flirt-endcards.mjs && node scripts/test-festival-venues.mjs && node scripts/test-mobile-terrein.mjs && node scripts/test-backstage-roadie.mjs && node scripts/test-backstage-audit.mjs && node scripts/audit-space-release.mjs && node scripts/audit-ruimteklaar-review.mjs && node scripts/test-space-artist-entrance.mjs && node scripts/test-rafelrandjes.mjs",
     "build": "npm run check",
     "preview": "npx wrangler pages dev public",
     "predeploy": "npm run check",
@@ -19,7 +19,8 @@
     "pabo:variation": "node scripts/test-pabo-variation.mjs",
     "pabo:variation:build": "node scripts/apply-pabo-variation.mjs",
     "pabo:reasoning": "node scripts/test-pabo-reasoning.mjs",
-    "pabo:reasoning:build": "node scripts/apply-pabo-reasoning.mjs"
+    "pabo:reasoning:build": "node scripts/apply-pabo-reasoning.mjs",
+    "pabo:rich": "node scripts/test-pabo-rich.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"

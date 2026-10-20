@@ -1,0 +1,2134 @@
+{
+  "schemaVersion": 1,
+  "version": "1.10.0",
+  "scope": "Conservatieve telling per deelonderwerp. Getal- en contextvarianten tellen niet apart; families in verschillende deelonderwerpen zijn niet optelbaar als wereldwijd unieke rekenstructuren.",
+  "targetPerTopic": 81,
+  "targetReached": false,
+  "topics": [
+    {
+      "lesson": "A1",
+      "domain": "A",
+      "topic": "place-value",
+      "existingFamilies": 5,
+      "totalFamilies": 15,
+      "additionalFamilies": 10,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 66,
+      "contexts": 10,
+      "representations": [
+        "table",
+        "text",
+        "numberline"
+      ]
+    },
+    {
+      "lesson": "A2",
+      "domain": "A",
+      "topic": "operations",
+      "existingFamilies": 5,
+      "totalFamilies": 14,
+      "additionalFamilies": 9,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 67,
+      "contexts": 10,
+      "representations": [
+        "receipt",
+        "seating",
+        "label",
+        "budget",
+        "table",
+        "offer",
+        "calculation"
+      ]
+    },
+    {
+      "lesson": "A3",
+      "domain": "A",
+      "topic": "negative-divisibility",
+      "existingFamilies": 7,
+      "totalFamilies": 15,
+      "additionalFamilies": 8,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 66,
+      "contexts": 10,
+      "representations": [
+        "table",
+        "statement",
+        "label",
+        "order",
+        "timeline",
+        "text"
+      ]
+    },
+    {
+      "lesson": "A4",
+      "domain": "A",
+      "topic": "powers-order",
+      "existingFamilies": 3,
+      "totalFamilies": 11,
+      "additionalFamilies": 8,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 70,
+      "contexts": 9,
+      "representations": [
+        "diagram",
+        "text",
+        "calculation",
+        "offer",
+        "table"
+      ]
+    },
+    {
+      "lesson": "B1",
+      "domain": "B",
+      "topic": "fraction-concept",
+      "existingFamilies": 8,
+      "totalFamilies": 18,
+      "additionalFamilies": 10,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 63,
+      "contexts": 9,
+      "representations": [
+        "strip",
+        "table",
+        "calculation",
+        "text"
+      ]
+    },
+    {
+      "lesson": "B2",
+      "domain": "B",
+      "topic": "fraction-operations",
+      "existingFamilies": 8,
+      "totalFamilies": 13,
+      "additionalFamilies": 5,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 68,
+      "contexts": 10,
+      "representations": [
+        "table",
+        "label",
+        "text",
+        "calculation",
+        "recipe"
+      ]
+    },
+    {
+      "lesson": "B3",
+      "domain": "B",
+      "topic": "conversions",
+      "existingFamilies": 2,
+      "totalFamilies": 7,
+      "additionalFamilies": 5,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 74,
+      "contexts": 10,
+      "representations": [
+        "strip",
+        "table",
+        "text",
+        "calculation"
+      ]
+    },
+    {
+      "lesson": "B4",
+      "domain": "B",
+      "topic": "percent",
+      "existingFamilies": 4,
+      "totalFamilies": 11,
+      "additionalFamilies": 7,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 70,
+      "contexts": 10,
+      "representations": [
+        "offer",
+        "table",
+        "receipt",
+        "label"
+      ]
+    },
+    {
+      "lesson": "B5",
+      "domain": "B",
+      "topic": "ratio-scale-probability",
+      "existingFamilies": 4,
+      "totalFamilies": 12,
+      "additionalFamilies": 8,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 69,
+      "contexts": 10,
+      "representations": [
+        "recipe",
+        "table",
+        "scale",
+        "label",
+        "text"
+      ]
+    },
+    {
+      "lesson": "C1",
+      "domain": "C",
+      "topic": "units",
+      "existingFamilies": 2,
+      "totalFamilies": 9,
+      "additionalFamilies": 7,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 72,
+      "contexts": 10,
+      "representations": [
+        "label",
+        "table",
+        "text"
+      ]
+    },
+    {
+      "lesson": "C2",
+      "domain": "C",
+      "topic": "area-perimeter",
+      "existingFamilies": 10,
+      "totalFamilies": 16,
+      "additionalFamilies": 6,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 65,
+      "contexts": 10,
+      "representations": [
+        "diagram",
+        "table",
+        "text"
+      ]
+    },
+    {
+      "lesson": "C3",
+      "domain": "C",
+      "topic": "volume-surface",
+      "existingFamilies": 4,
+      "totalFamilies": 11,
+      "additionalFamilies": 7,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 70,
+      "contexts": 10,
+      "representations": [
+        "table",
+        "text"
+      ]
+    },
+    {
+      "lesson": "C4",
+      "domain": "C",
+      "topic": "speed-time",
+      "existingFamilies": 3,
+      "totalFamilies": 9,
+      "additionalFamilies": 6,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 72,
+      "contexts": 10,
+      "representations": [
+        "timetable",
+        "timeline",
+        "table",
+        "label"
+      ]
+    },
+    {
+      "lesson": "C5",
+      "domain": "C",
+      "topic": "geometry-scale",
+      "existingFamilies": 5,
+      "totalFamilies": 12,
+      "additionalFamilies": 7,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 69,
+      "contexts": 10,
+      "representations": [
+        "grid",
+        "text",
+        "table",
+        "scale",
+        "height-map"
+      ]
+    },
+    {
+      "lesson": "D1",
+      "domain": "D",
+      "topic": "charts",
+      "existingFamilies": 10,
+      "totalFamilies": 16,
+      "additionalFamilies": 6,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 65,
+      "contexts": 10,
+      "representations": [
+        "bar",
+        "line",
+        "table",
+        "pictogram"
+      ]
+    },
+    {
+      "lesson": "D2",
+      "domain": "D",
+      "topic": "statistics",
+      "existingFamilies": 4,
+      "totalFamilies": 13,
+      "additionalFamilies": 9,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 68,
+      "contexts": 10,
+      "representations": [
+        "table",
+        "text"
+      ]
+    },
+    {
+      "lesson": "D3",
+      "domain": "D",
+      "topic": "formulas",
+      "existingFamilies": 9,
+      "totalFamilies": 14,
+      "additionalFamilies": 5,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 67,
+      "contexts": 10,
+      "representations": [
+        "formula",
+        "table"
+      ]
+    },
+    {
+      "lesson": "D4",
+      "domain": "D",
+      "topic": "patterns",
+      "existingFamilies": 2,
+      "totalFamilies": 8,
+      "additionalFamilies": 6,
+      "addedDesigns": 10,
+      "target": 81,
+      "shortfall": 73,
+      "contexts": 10,
+      "representations": [
+        "table",
+        "text",
+        "diagram"
+      ]
+    }
+  ],
+  "designs": [
+    {
+      "id": "rich.A1.expanded-decimal",
+      "lesson": "A1",
+      "title": "Een decimaal uit plaatswaardekaarten opbouwen",
+      "level": 2,
+      "context": "plaatswaardekaarten",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.expanded-decimal"
+    },
+    {
+      "id": "rich.A1.digit-replacement",
+      "lesson": "A1",
+      "title": "Het effect van één vervangen cijfer",
+      "level": 2,
+      "context": "magazijncode",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.digit-replacement"
+    },
+    {
+      "id": "rich.A1.decimal-midpoint",
+      "lesson": "A1",
+      "title": "Het midden tussen twee decimalen vinden",
+      "level": 2,
+      "context": "meetlat",
+      "representation": "numberline",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.decimal-midpoint"
+    },
+    {
+      "id": "rich.A1.rounding-lower",
+      "lesson": "A1",
+      "title": "De ondergrens van een afgerond meetgetal",
+      "level": 3,
+      "context": "meetrapport",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.rounding-lower"
+    },
+    {
+      "id": "rich.A1.rounding-count",
+      "lesson": "A1",
+      "title": "Hoeveel gehele waarden dezelfde afronding hebben",
+      "level": 3,
+      "context": "bezoekerstellers",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.rounding-count"
+    },
+    {
+      "id": "rich.A1.decimal-completion",
+      "lesson": "A1",
+      "title": "Een decimale afstand tot een grens aanvullen",
+      "level": 2,
+      "context": "kilometerteller",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.decimal-completion"
+    },
+    {
+      "id": "rich.A1.bounded-number",
+      "lesson": "A1",
+      "title": "Een getal met cijfer- en intervalvoorwaarden",
+      "level": 3,
+      "context": "getallenraadsel",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.bounded-number"
+    },
+    {
+      "id": "rich.A1.interval-ticks",
+      "lesson": "A1",
+      "title": "De stapgrootte van een decimale schaal",
+      "level": 2,
+      "context": "instrument",
+      "representation": "numberline",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.interval-ticks"
+    },
+    {
+      "id": "rich.A1.tenfold-error",
+      "lesson": "A1",
+      "title": "Een verschoven komma herstellen",
+      "level": 2,
+      "context": "weegschaalnotitie",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.tenfold-error"
+    },
+    {
+      "id": "rich.A1.rounding-sum-difference",
+      "lesson": "A1",
+      "title": "Afronden vóór of na optellen vergelijken",
+      "level": 3,
+      "context": "dagtellingen",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.rounding-sum-difference"
+    },
+    {
+      "id": "rich.A2.receipt-change",
+      "lesson": "A2",
+      "title": "Wisselgeld uit een kassabon",
+      "level": 2,
+      "context": "boodschappen",
+      "representation": "receipt",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.receipt-change"
+    },
+    {
+      "id": "rich.A2.shared-bill",
+      "lesson": "A2",
+      "title": "Een rekening met één voorschot verdelen",
+      "level": 3,
+      "context": "samen-uit-eten",
+      "representation": "receipt",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.shared-bill"
+    },
+    {
+      "id": "rich.A2.rows-with-aisle",
+      "lesson": "A2",
+      "title": "Stoelen tellen met een gangpad",
+      "level": 3,
+      "context": "theater",
+      "representation": "seating",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.rows-with-aisle"
+    },
+    {
+      "id": "rich.A2.tare",
+      "lesson": "A2",
+      "title": "Verpakking van brutogewicht aftrekken",
+      "level": 3,
+      "context": "pakketpost",
+      "representation": "label",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.tare"
+    },
+    {
+      "id": "rich.A2.missing-line",
+      "lesson": "A2",
+      "title": "Een ontbrekende kassabonregel terugvinden",
+      "level": 3,
+      "context": "fietswinkel",
+      "representation": "receipt",
+      "equivalentTo": "reasoning.rich.A2.tare",
+      "family": "denk-rich.A2.tare"
+    },
+    {
+      "id": "rich.A2.budget-left",
+      "lesson": "A2",
+      "title": "Een budget na twee soorten aankopen",
+      "level": 3,
+      "context": "schoolfeest",
+      "representation": "budget",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.budget-left"
+    },
+    {
+      "id": "rich.A2.capacity-addition",
+      "lesson": "A2",
+      "title": "Benodigde extra capaciteit bepalen",
+      "level": 3,
+      "context": "excursie",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.capacity-addition"
+    },
+    {
+      "id": "rich.A2.unit-price",
+      "lesson": "A2",
+      "title": "Een totaalbedrag tot prijs per stuk herleiden",
+      "level": 2,
+      "context": "markt",
+      "representation": "offer",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.unit-price"
+    },
+    {
+      "id": "rich.A2.compensation-gap",
+      "lesson": "A2",
+      "title": "Een handige tussenuitkomst corrigeren",
+      "level": 3,
+      "context": "hoofdrekenen",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.compensation-gap"
+    },
+    {
+      "id": "rich.A2.equalize",
+      "lesson": "A2",
+      "title": "Twee hoeveelheden gelijkmaken door verplaatsen",
+      "level": 3,
+      "context": "bibliotheek",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.equalize"
+    },
+    {
+      "id": "rich.A3.lift",
+      "lesson": "A3",
+      "title": "Verdiepingen over nul volgen",
+      "level": 2,
+      "context": "lift",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.lift"
+    },
+    {
+      "id": "rich.A3.account",
+      "lesson": "A3",
+      "title": "Een tekort na bij- en afschrijving",
+      "level": 2,
+      "context": "banksaldo",
+      "representation": "statement",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.account"
+    },
+    {
+      "id": "rich.A3.remainder-use",
+      "lesson": "A3",
+      "title": "Overgebleven materiaal na hele stukken",
+      "level": 2,
+      "context": "knutselen",
+      "representation": "label",
+      "equivalentTo": "A.divisibility.remainder",
+      "family": "A-deelbaarheid"
+    },
+    {
+      "id": "rich.A3.gcd-groups",
+      "lesson": "A3",
+      "title": "Grootste aantal gelijke sets zonder rest",
+      "level": 3,
+      "context": "sportdag",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.gcd-groups"
+    },
+    {
+      "id": "rich.A3.minimum-multiple",
+      "lesson": "A3",
+      "title": "Eerste veelvoud boven een voorraadgrens",
+      "level": 3,
+      "context": "drukwerk",
+      "representation": "order",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.minimum-multiple"
+    },
+    {
+      "id": "rich.A3.temperature-start",
+      "lesson": "A3",
+      "title": "Een negatieve beginwaarde terugvinden",
+      "level": 2,
+      "context": "weer",
+      "representation": "timeline",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.temperature-start"
+    },
+    {
+      "id": "rich.A3.cross-zero-distance",
+      "lesson": "A3",
+      "title": "Afstand tussen hoogtes boven en onder zeeniveau",
+      "level": 2,
+      "context": "landschap",
+      "representation": "table",
+      "equivalentTo": "A.negative.difference",
+      "family": "A-negatieve-getallen"
+    },
+    {
+      "id": "rich.A3.divisibility-add",
+      "lesson": "A3",
+      "title": "Kleinste aanvulling tot deelbaarheid",
+      "level": 2,
+      "context": "teamindeling",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.divisibility-add"
+    },
+    {
+      "id": "rich.A3.inclusive-count",
+      "lesson": "A3",
+      "title": "Veelvouden binnen twee grenzen tellen",
+      "level": 3,
+      "context": "toegangsnummer",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.inclusive-count"
+    },
+    {
+      "id": "rich.A3.parity",
+      "lesson": "A3",
+      "title": "Even of oneven na een combinatie",
+      "level": 2,
+      "context": "getaleigenschappen",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.parity"
+    },
+    {
+      "id": "rich.A4.square-side",
+      "lesson": "A4",
+      "title": "Een zijde uit vierkante oppervlakte terugvinden",
+      "level": 2,
+      "context": "moestuin",
+      "representation": "diagram",
+      "equivalentTo": "A.powers.extended",
+      "family": "A-machten-wortels"
+    },
+    {
+      "id": "rich.A4.square-growth",
+      "lesson": "A4",
+      "title": "Het verschil tussen opeenvolgende kwadraten",
+      "level": 3,
+      "context": "vierkante-vloer",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.square-growth"
+    },
+    {
+      "id": "rich.A4.root-bound",
+      "lesson": "A4",
+      "title": "Een wortel tussen gehele getallen plaatsen",
+      "level": 3,
+      "context": "wortels-schatten",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.root-bound"
+    },
+    {
+      "id": "rich.A4.power-versus-product",
+      "lesson": "A4",
+      "title": "Een kwadraat onderscheiden van verdubbelen",
+      "level": 2,
+      "context": "rekenmachine",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.power-versus-product"
+    },
+    {
+      "id": "rich.A4.bracket-effect",
+      "lesson": "A4",
+      "title": "Het effect van haakjes vergelijken",
+      "level": 3,
+      "context": "rekenvolgorde",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.bracket-effect"
+    },
+    {
+      "id": "rich.A4.missing-factor",
+      "lesson": "A4",
+      "title": "Een ontbrekend getal in een samengestelde berekening",
+      "level": 3,
+      "context": "rekenketting",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.missing-factor"
+    },
+    {
+      "id": "rich.A4.estimate-check",
+      "lesson": "A4",
+      "title": "Een uitkomst op orde van grootte controleren",
+      "level": 2,
+      "context": "offerte",
+      "representation": "offer",
+      "equivalentTo": "A.estimate.product",
+      "family": "A-schatten"
+    },
+    {
+      "id": "rich.A4.cube-count",
+      "lesson": "A4",
+      "title": "Een kubuslaag vertalen naar een derde macht",
+      "level": 3,
+      "context": "bouwblokjes",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.cube-count"
+    },
+    {
+      "id": "rich.A4.group-division",
+      "lesson": "A4",
+      "title": "Eerst een totaal verdelen, daarna aanvullen",
+      "level": 3,
+      "context": "groepsbudget",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.group-division"
+    },
+    {
+      "id": "rich.A4.root-first",
+      "lesson": "A4",
+      "title": "Een wortel in een samengestelde bewerking",
+      "level": 3,
+      "context": "rekenvolgorde",
+      "representation": "calculation",
+      "equivalentTo": "A.orderops.nested",
+      "family": "A-rekenvolgorde"
+    },
+    {
+      "id": "rich.B1.strip-part",
+      "lesson": "B1",
+      "title": "Een gekleurde strook als breuk lezen",
+      "level": 1,
+      "context": "kleurstrook",
+      "representation": "strip",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.strip-part"
+    },
+    {
+      "id": "rich.B1.strip-complement",
+      "lesson": "B1",
+      "title": "Het ongekleurde deel herkennen",
+      "level": 2,
+      "context": "voortgangsbalk",
+      "representation": "strip",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.strip-complement"
+    },
+    {
+      "id": "rich.B1.restore-whole",
+      "lesson": "B1",
+      "title": "Het geheel uit een zichtbaar deel herstellen",
+      "level": 3,
+      "context": "mozaiek",
+      "representation": "strip",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.restore-whole"
+    },
+    {
+      "id": "rich.B1.same-part-different-whole",
+      "lesson": "B1",
+      "title": "Gelijke aantallen tegenover verschillende gehelen",
+      "level": 2,
+      "context": "klassen",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.same-part-different-whole"
+    },
+    {
+      "id": "rich.B1.equivalent-numerator",
+      "lesson": "B1",
+      "title": "Een gelijkwaardige breuk aanvullen",
+      "level": 2,
+      "context": "breukkaarten",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.equivalent-numerator"
+    },
+    {
+      "id": "rich.B1.missing-denominator",
+      "lesson": "B1",
+      "title": "De noemer van een gelijkwaardige breuk herstellen",
+      "level": 2,
+      "context": "breukkaarten",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.missing-denominator"
+    },
+    {
+      "id": "rich.B1.mixed-number",
+      "lesson": "B1",
+      "title": "Een breuk groter dan één als gemengd getal lezen",
+      "level": 2,
+      "context": "maatbekers",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.mixed-number"
+    },
+    {
+      "id": "rich.B1.benchmark-half",
+      "lesson": "B1",
+      "title": "Hoeveel ontbreekt tot de helft?",
+      "level": 3,
+      "context": "vakverdeling",
+      "representation": "strip",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.benchmark-half"
+    },
+    {
+      "id": "rich.B1.subdivision",
+      "lesson": "B1",
+      "title": "Een deel opnieuw in gelijke stukken verdelen",
+      "level": 3,
+      "context": "papierstrook",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.subdivision"
+    },
+    {
+      "id": "rich.B1.unequal-pieces",
+      "lesson": "B1",
+      "title": "Waarom stukjes tellen niet genoeg is",
+      "level": 2,
+      "context": "taartverdeling",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B1.unequal-pieces"
+    },
+    {
+      "id": "rich.B2.ribbon-join",
+      "lesson": "B2",
+      "title": "Ongelijknamige lengtes samenvoegen",
+      "level": 2,
+      "context": "linten",
+      "representation": "table",
+      "equivalentTo": "B.fraction.addsub",
+      "family": "B-breukbewerkingen"
+    },
+    {
+      "id": "rich.B2.jug-difference",
+      "lesson": "B2",
+      "title": "Een tekort tussen breukhoeveelheden",
+      "level": 2,
+      "context": "keukenmaat",
+      "representation": "table",
+      "equivalentTo": "B.fraction.addsub",
+      "family": "B-breukbewerkingen"
+    },
+    {
+      "id": "rich.B2.fraction-portions",
+      "lesson": "B2",
+      "title": "Het aantal porties bij een breuk als portiegrootte",
+      "level": 3,
+      "context": "soep",
+      "representation": "label",
+      "equivalentTo": null,
+      "family": "denk-rich.B2.fraction-portions"
+    },
+    {
+      "id": "rich.B2.share-portion",
+      "lesson": "B2",
+      "title": "Een breukhoeveelheid gelijk delen",
+      "level": 2,
+      "context": "bakactiviteit",
+      "representation": "text",
+      "equivalentTo": "B.fraction.divide",
+      "family": "B-breukbewerkingen"
+    },
+    {
+      "id": "rich.B2.part-of-part",
+      "lesson": "B2",
+      "title": "Een deel van een deel van een oppervlakte",
+      "level": 3,
+      "context": "schooltuin",
+      "representation": "text",
+      "equivalentTo": "B.fraction.multiply",
+      "family": "B-breukbewerkingen"
+    },
+    {
+      "id": "rich.B2.remaining-two-parts",
+      "lesson": "B2",
+      "title": "Twee delen van hetzelfde geheel aftrekken",
+      "level": 3,
+      "context": "dagbesteding",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B2.remaining-two-parts"
+    },
+    {
+      "id": "rich.B2.fraction-equation",
+      "lesson": "B2",
+      "title": "Een ontbrekende breukterm herstellen",
+      "level": 3,
+      "context": "breukpuzzel",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.B2.fraction-equation"
+    },
+    {
+      "id": "rich.B2.recipe-fraction",
+      "lesson": "B2",
+      "title": "Een recept met een breukfactor vergroten",
+      "level": 3,
+      "context": "receptkaart",
+      "representation": "recipe",
+      "equivalentTo": null,
+      "family": "denk-rich.B2.recipe-fraction"
+    },
+    {
+      "id": "rich.B2.whole-from-rest",
+      "lesson": "B2",
+      "title": "De oorspronkelijke hoeveelheid uit een rest",
+      "level": 3,
+      "context": "wandeling",
+      "representation": "text",
+      "equivalentTo": "B.variation.remaining-inverse",
+      "family": "B-breuken-in-context"
+    },
+    {
+      "id": "rich.B2.fraction-product-compare",
+      "lesson": "B2",
+      "title": "Het effect van vermenigvuldigen met een breuk",
+      "level": 2,
+      "context": "getalredenering",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B2.fraction-product-compare"
+    },
+    {
+      "id": "rich.B3.percent-strip",
+      "lesson": "B3",
+      "title": "Een strook omzetten naar procenten",
+      "level": 2,
+      "context": "laadindicator",
+      "representation": "strip",
+      "equivalentTo": null,
+      "family": "denk-rich.B3.percent-strip"
+    },
+    {
+      "id": "rich.B3.decimal-strip",
+      "lesson": "B3",
+      "title": "Een strook als decimaal schrijven",
+      "level": 2,
+      "context": "vulindicator",
+      "representation": "strip",
+      "equivalentTo": null,
+      "family": "denk-rich.B3.decimal-strip"
+    },
+    {
+      "id": "rich.B3.percent-fraction",
+      "lesson": "B3",
+      "title": "Een percentage als breuk geven",
+      "level": 2,
+      "context": "deelname",
+      "representation": "table",
+      "equivalentTo": "B.convert.routine",
+      "family": "B-omzetten"
+    },
+    {
+      "id": "rich.B3.above-one",
+      "lesson": "B3",
+      "title": "Meer dan één geheel in procenten",
+      "level": 2,
+      "context": "productiedoel",
+      "representation": "text",
+      "equivalentTo": "B.convert.routine",
+      "family": "B-omzetten"
+    },
+    {
+      "id": "rich.B3.unfilled-percent",
+      "lesson": "B3",
+      "title": "Een decimaal gevuld deel aanvullen tot procent",
+      "level": 2,
+      "context": "batterij",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B3.unfilled-percent"
+    },
+    {
+      "id": "rich.B3.mixed-notation-gap",
+      "lesson": "B3",
+      "title": "Verschil tussen twee schrijfwijzen",
+      "level": 3,
+      "context": "voortgang",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B3.mixed-notation-gap"
+    },
+    {
+      "id": "rich.B3.hundredth-error",
+      "lesson": "B3",
+      "title": "Een onjuiste procentomzetting herstellen",
+      "level": 2,
+      "context": "leerlingnotitie",
+      "representation": "calculation",
+      "equivalentTo": "B.convert.decimal-percent",
+      "family": "B-omzetten"
+    },
+    {
+      "id": "rich.B3.table-conversion",
+      "lesson": "B3",
+      "title": "Een conversietabel aanvullen",
+      "level": 2,
+      "context": "omrekentabel",
+      "representation": "table",
+      "equivalentTo": "B.convert.routine",
+      "family": "B-omzetten"
+    },
+    {
+      "id": "rich.B3.count-to-decimal",
+      "lesson": "B3",
+      "title": "Een telling als decimaal aandeel schrijven",
+      "level": 3,
+      "context": "enquete",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B3.count-to-decimal"
+    },
+    {
+      "id": "rich.B3.notation-equality",
+      "lesson": "B3",
+      "title": "Een equivalente notatie herkennen",
+      "level": 2,
+      "context": "getalkaarten",
+      "representation": "text",
+      "equivalentTo": "B.convert.routine",
+      "family": "B-omzetten"
+    },
+    {
+      "id": "rich.B4.discount-amount",
+      "lesson": "B4",
+      "title": "Het kortingsbedrag uit twee prijzen",
+      "level": 2,
+      "context": "prijskaart",
+      "representation": "offer",
+      "equivalentTo": null,
+      "family": "denk-rich.B4.discount-amount"
+    },
+    {
+      "id": "rich.B4.part-total",
+      "lesson": "B4",
+      "title": "Het geheel uit een bekend percentage",
+      "level": 3,
+      "context": "vereniging",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B4.part-total"
+    },
+    {
+      "id": "rich.B4.successive-loss",
+      "lesson": "B4",
+      "title": "Het totale verlies na twee dalingen",
+      "level": 3,
+      "context": "waterverlies",
+      "representation": "table",
+      "equivalentTo": "B.advanced.successive",
+      "family": "B-opeenvolgende-procenten"
+    },
+    {
+      "id": "rich.B4.recovery",
+      "lesson": "B4",
+      "title": "De benodigde stijging na een daling",
+      "level": 4,
+      "context": "bezoekersaantallen",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B4.recovery"
+    },
+    {
+      "id": "rich.B4.percentage-points",
+      "lesson": "B4",
+      "title": "Procentpunten van relatieve groei onderscheiden",
+      "level": 3,
+      "context": "opkomst",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B4.percentage-points"
+    },
+    {
+      "id": "rich.B4.vat-extract",
+      "lesson": "B4",
+      "title": "Het btw-bedrag uit een prijs inclusief btw",
+      "level": 3,
+      "context": "factuur",
+      "representation": "receipt",
+      "equivalentTo": null,
+      "family": "denk-rich.B4.vat-extract"
+    },
+    {
+      "id": "rich.B4.mixed-groups",
+      "lesson": "B4",
+      "title": "Twee groepspercentages met verschillende aantallen combineren",
+      "level": 4,
+      "context": "schoolonderzoek",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B4.mixed-groups"
+    },
+    {
+      "id": "rich.B4.discount-limit",
+      "lesson": "B4",
+      "title": "De hoogste prijs vóór korting binnen een budget",
+      "level": 3,
+      "context": "winkelbudget",
+      "representation": "offer",
+      "equivalentTo": "B.percent.reverse",
+      "family": "B-procenten"
+    },
+    {
+      "id": "rich.B4.extra-content",
+      "lesson": "B4",
+      "title": "Extra inhoud vergelijken met gewone inhoud",
+      "level": 3,
+      "context": "verpakking",
+      "representation": "label",
+      "equivalentTo": null,
+      "family": "denk-rich.B4.extra-content"
+    },
+    {
+      "id": "rich.B4.rejected-production",
+      "lesson": "B4",
+      "title": "Goedgekeurde aantallen uit een afkeurpercentage",
+      "level": 2,
+      "context": "productiecontrole",
+      "representation": "table",
+      "equivalentTo": "B.percent.part",
+      "family": "B-procenten"
+    },
+    {
+      "id": "rich.B5.recipe-scale",
+      "lesson": "B5",
+      "title": "Een recept naar een ander aantal personen schalen",
+      "level": 2,
+      "context": "recept",
+      "representation": "recipe",
+      "equivalentTo": "B.ratio.direct",
+      "family": "B-verhoudingen"
+    },
+    {
+      "id": "rich.B5.ratio-total",
+      "lesson": "B5",
+      "title": "Een totaal verdelen volgens een verhouding",
+      "level": 3,
+      "context": "verf-mengen",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B5.ratio-total"
+    },
+    {
+      "id": "rich.B5.limiting-ingredient",
+      "lesson": "B5",
+      "title": "Het beperkende ingrediënt bepalen",
+      "level": 3,
+      "context": "bakken",
+      "representation": "recipe",
+      "equivalentTo": null,
+      "family": "denk-rich.B5.limiting-ingredient"
+    },
+    {
+      "id": "rich.B5.map-distance",
+      "lesson": "B5",
+      "title": "Een kaartafstand in werkelijkheid berekenen",
+      "level": 2,
+      "context": "wandelkaart",
+      "representation": "scale",
+      "equivalentTo": "B.scale.route",
+      "family": "B-schaal"
+    },
+    {
+      "id": "rich.B5.promille",
+      "lesson": "B5",
+      "title": "Promille toepassen op een grote groep",
+      "level": 2,
+      "context": "kwaliteitsmeting",
+      "representation": "label",
+      "equivalentTo": null,
+      "family": "denk-rich.B5.promille"
+    },
+    {
+      "id": "rich.B5.complement-probability",
+      "lesson": "B5",
+      "title": "De kans op niet-rood uit aantallen",
+      "level": 2,
+      "context": "grabbelzak",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B5.complement-probability"
+    },
+    {
+      "id": "rich.B5.without-replacement",
+      "lesson": "B5",
+      "title": "Een trekkans na wegnemen herberekenen",
+      "level": 3,
+      "context": "loten",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B5.without-replacement"
+    },
+    {
+      "id": "rich.B5.two-independent",
+      "lesson": "B5",
+      "title": "Onafhankelijke kansen combineren",
+      "level": 3,
+      "context": "draaischijven",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B5.two-independent"
+    },
+    {
+      "id": "rich.B5.ratio-repair",
+      "lesson": "B5",
+      "title": "Een mengverhouding herstellen door toevoegen",
+      "level": 4,
+      "context": "limonade",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B5.ratio-repair"
+    },
+    {
+      "id": "rich.B5.inverse-workers",
+      "lesson": "B5",
+      "title": "Tijd bij evenredig meer werkers",
+      "level": 3,
+      "context": "samenwerken",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B5.inverse-workers"
+    },
+    {
+      "id": "rich.C1.mixed-length",
+      "lesson": "C1",
+      "title": "Meters en centimeters samenvoegen",
+      "level": 2,
+      "context": "rolmaat",
+      "representation": "label",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.mixed-length"
+    },
+    {
+      "id": "rich.C1.weight-remainder",
+      "lesson": "C1",
+      "title": "Gewichten met verschillende eenheden vergelijken",
+      "level": 2,
+      "context": "bagage",
+      "representation": "label",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.weight-remainder"
+    },
+    {
+      "id": "rich.C1.liters-milliliters",
+      "lesson": "C1",
+      "title": "Liters en milliliters combineren",
+      "level": 2,
+      "context": "drankvoorraad",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.liters-milliliters"
+    },
+    {
+      "id": "rich.C1.area-to-cm",
+      "lesson": "C1",
+      "title": "Vierkante meters naar vierkante centimeters",
+      "level": 2,
+      "context": "vloeroppervlak",
+      "representation": "text",
+      "equivalentTo": "C.units.area",
+      "family": "C-eenheden"
+    },
+    {
+      "id": "rich.C1.cubic-to-liters",
+      "lesson": "C1",
+      "title": "Kubieke decimeters aan liters koppelen",
+      "level": 2,
+      "context": "opslagvat",
+      "representation": "label",
+      "equivalentTo": "C.units.volume",
+      "family": "C-eenheden"
+    },
+    {
+      "id": "rich.C1.hectare",
+      "lesson": "C1",
+      "title": "Hectares naar vierkante meters omrekenen",
+      "level": 2,
+      "context": "landbouw",
+      "representation": "label",
+      "equivalentTo": "C.units.area",
+      "family": "C-eenheden"
+    },
+    {
+      "id": "rich.C1.time-seconds",
+      "lesson": "C1",
+      "title": "Een samengestelde tijd naar seconden",
+      "level": 2,
+      "context": "sporttijd",
+      "representation": "label",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.time-seconds"
+    },
+    {
+      "id": "rich.C1.mass-packs",
+      "lesson": "C1",
+      "title": "Verschillende verpakkingsgewichten samen optellen",
+      "level": 3,
+      "context": "inkoop",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.mass-packs"
+    },
+    {
+      "id": "rich.C1.unit-dimension",
+      "lesson": "C1",
+      "title": "De passende oppervlakte-eenheid kiezen",
+      "level": 2,
+      "context": "meetrapport",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.unit-dimension"
+    },
+    {
+      "id": "rich.C1.cubic-meter-fill",
+      "lesson": "C1",
+      "title": "Een reservoirinhoud naar kleine flessen vertalen",
+      "level": 3,
+      "context": "watervoorraad",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.cubic-meter-fill"
+    },
+    {
+      "id": "rich.C2.gate-perimeter",
+      "lesson": "C2",
+      "title": "Heklengte met een poortopening",
+      "level": 2,
+      "context": "tuin",
+      "representation": "diagram",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.gate-perimeter"
+    },
+    {
+      "id": "rich.C2.triangle-inverse",
+      "lesson": "C2",
+      "title": "Een driehoeksbasis uit oppervlakte en hoogte",
+      "level": 3,
+      "context": "zeildoek",
+      "representation": "diagram",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.triangle-inverse"
+    },
+    {
+      "id": "rich.C2.triangle-area",
+      "lesson": "C2",
+      "title": "Een loodrechte hoogte gebruiken",
+      "level": 2,
+      "context": "vlag",
+      "representation": "diagram",
+      "equivalentTo": "C.area.triangle",
+      "family": "C-oppervlakte-omtrek"
+    },
+    {
+      "id": "rich.C2.cutout",
+      "lesson": "C2",
+      "title": "Een rechthoekige uitsparing van een vlak aftrekken",
+      "level": 3,
+      "context": "wand",
+      "representation": "diagram",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.cutout"
+    },
+    {
+      "id": "rich.C2.rectangle-width",
+      "lesson": "C2",
+      "title": "Een ontbrekende maat uit de omtrek",
+      "level": 3,
+      "context": "fotolijst",
+      "representation": "diagram",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.rectangle-width"
+    },
+    {
+      "id": "rich.C2.parallelogram",
+      "lesson": "C2",
+      "title": "Een scheve rand onderscheiden van de hoogte",
+      "level": 3,
+      "context": "parallellogram",
+      "representation": "diagram",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.parallelogram"
+    },
+    {
+      "id": "rich.C2.circle-circumference",
+      "lesson": "C2",
+      "title": "Een rand uit de straal berekenen",
+      "level": 3,
+      "context": "ronde-tafel",
+      "representation": "diagram",
+      "equivalentTo": "C.circle.formula",
+      "family": "C-cirkels"
+    },
+    {
+      "id": "rich.C2.circle-area",
+      "lesson": "C2",
+      "title": "Een cirkeloppervlakte uit de straal",
+      "level": 3,
+      "context": "rond-deksel",
+      "representation": "diagram",
+      "equivalentTo": "C.circle.formula",
+      "family": "C-cirkels"
+    },
+    {
+      "id": "rich.C2.l-shape",
+      "lesson": "C2",
+      "title": "Een L-vorm uit twee niet-overlappende rechthoeken",
+      "level": 3,
+      "context": "terras",
+      "representation": "table",
+      "equivalentTo": "C.area.compound",
+      "family": "C-oppervlakte-omtrek"
+    },
+    {
+      "id": "rich.C2.scale-area-effect",
+      "lesson": "C2",
+      "title": "Het effect van één gewijzigde afmeting",
+      "level": 3,
+      "context": "vloerkleed",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.scale-area-effect"
+    },
+    {
+      "id": "rich.C3.aquarium",
+      "lesson": "C3",
+      "title": "Waterinhoud met een ongevulde bovenrand",
+      "level": 3,
+      "context": "aquarium",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C3.aquarium"
+    },
+    {
+      "id": "rich.C3.box-height",
+      "lesson": "C3",
+      "title": "Hoogte uit inhoud en grondvlak",
+      "level": 3,
+      "context": "doos",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C3.box-height"
+    },
+    {
+      "id": "rich.C3.cube-surface",
+      "lesson": "C3",
+      "title": "De buitenkant van een kubus",
+      "level": 2,
+      "context": "cadeaudoos",
+      "representation": "text",
+      "equivalentTo": "C.volume.surface",
+      "family": "C-ruimtefiguren"
+    },
+    {
+      "id": "rich.C3.open-box",
+      "lesson": "C3",
+      "title": "Oppervlakte van een open bak",
+      "level": 3,
+      "context": "opbergbak",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C3.open-box"
+    },
+    {
+      "id": "rich.C3.cube-removal",
+      "lesson": "C3",
+      "title": "Een hoekblokje uit een vol bouwsel wegnemen",
+      "level": 2,
+      "context": "blokjesbouwsel",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C3.cube-removal"
+    },
+    {
+      "id": "rich.C3.layer-count",
+      "lesson": "C3",
+      "title": "Volledige lagen in een opslagruimte",
+      "level": 3,
+      "context": "magazijn",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C3.layer-count"
+    },
+    {
+      "id": "rich.C3.displacement",
+      "lesson": "C3",
+      "title": "Waterstijging door een ondergedompeld voorwerp",
+      "level": 3,
+      "context": "proefopstelling",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C3.displacement"
+    },
+    {
+      "id": "rich.C3.cylinder",
+      "lesson": "C3",
+      "title": "Inhoud van een cilinder met gegeven straal",
+      "level": 3,
+      "context": "cilindervat",
+      "representation": "table",
+      "equivalentTo": "C.volume.cylinder",
+      "family": "C-ruimtefiguren"
+    },
+    {
+      "id": "rich.C3.double-dimensions",
+      "lesson": "C3",
+      "title": "Inhoudsverandering bij drie vergrote maten",
+      "level": 3,
+      "context": "schaalmodel",
+      "representation": "text",
+      "equivalentTo": "C.volume.scaling",
+      "family": "C-schaalwerking"
+    },
+    {
+      "id": "rich.C3.joined-cubes",
+      "lesson": "C3",
+      "title": "Buitenoppervlak van twee samengevoegde kubussen",
+      "level": 4,
+      "context": "blokconstructie",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C3.joined-cubes"
+    },
+    {
+      "id": "rich.C4.departure",
+      "lesson": "C4",
+      "title": "Terugplannen vanaf een aankomsttijd",
+      "level": 3,
+      "context": "busreis",
+      "representation": "timetable",
+      "equivalentTo": null,
+      "family": "denk-rich.C4.departure"
+    },
+    {
+      "id": "rich.C4.midnight",
+      "lesson": "C4",
+      "title": "Een tijdsduur over middernacht",
+      "level": 2,
+      "context": "nachttrein",
+      "representation": "timeline",
+      "equivalentTo": "C.time.elapsed",
+      "family": "C-tijd"
+    },
+    {
+      "id": "rich.C4.speed-distance",
+      "lesson": "C4",
+      "title": "Afstand uit snelheid en minuten",
+      "level": 2,
+      "context": "fietsen",
+      "representation": "table",
+      "equivalentTo": "C.speed.distance",
+      "family": "C-snelheid"
+    },
+    {
+      "id": "rich.C4.mean-trip",
+      "lesson": "C4",
+      "title": "Gemiddelde snelheid inclusief pauze",
+      "level": 3,
+      "context": "wandeltocht",
+      "representation": "table",
+      "equivalentTo": "C.variation.journey",
+      "family": "C-gemiddelde-reissnelheid"
+    },
+    {
+      "id": "rich.C4.speed-conversion",
+      "lesson": "C4",
+      "title": "Meters per seconde naar kilometer per uur",
+      "level": 2,
+      "context": "snelheidsmeter",
+      "representation": "label",
+      "equivalentTo": "C.speed.convert",
+      "family": "C-snelheid"
+    },
+    {
+      "id": "rich.C4.density",
+      "lesson": "C4",
+      "title": "Massa bij een gegeven massa per volume",
+      "level": 3,
+      "context": "materiaalkaart",
+      "representation": "label",
+      "equivalentTo": null,
+      "family": "denk-rich.C4.density"
+    },
+    {
+      "id": "rich.C4.production-time",
+      "lesson": "C4",
+      "title": "Productietijd uit een tempo",
+      "level": 3,
+      "context": "printer",
+      "representation": "label",
+      "equivalentTo": null,
+      "family": "denk-rich.C4.production-time"
+    },
+    {
+      "id": "rich.C4.consumption",
+      "lesson": "C4",
+      "title": "Brandstof uit een verbruik per afstand",
+      "level": 3,
+      "context": "autoreis",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C4.consumption"
+    },
+    {
+      "id": "rich.C4.catch-up",
+      "lesson": "C4",
+      "title": "Een achterstand met een snelheidsverschil inlopen",
+      "level": 4,
+      "context": "fietstocht",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C4.catch-up"
+    },
+    {
+      "id": "rich.C4.transfer",
+      "lesson": "C4",
+      "title": "Een overstap na vertraging beoordelen",
+      "level": 3,
+      "context": "treinreis",
+      "representation": "timetable",
+      "equivalentTo": null,
+      "family": "denk-rich.C4.transfer"
+    },
+    {
+      "id": "rich.C5.point-read",
+      "lesson": "C5",
+      "title": "Een coördinaat aflezen",
+      "level": 1,
+      "context": "rooster",
+      "representation": "grid",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.point-read"
+    },
+    {
+      "id": "rich.C5.translation",
+      "lesson": "C5",
+      "title": "Een punt verschuiven",
+      "level": 2,
+      "context": "roosterroute",
+      "representation": "grid",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.translation"
+    },
+    {
+      "id": "rich.C5.reflection",
+      "lesson": "C5",
+      "title": "Een punt spiegelen in een verticale lijn",
+      "level": 3,
+      "context": "spiegelrooster",
+      "representation": "grid",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.reflection"
+    },
+    {
+      "id": "rich.C5.right-angle-rest",
+      "lesson": "C5",
+      "title": "Een rechte hoek aanvullen",
+      "level": 2,
+      "context": "hoekmeting",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.right-angle-rest"
+    },
+    {
+      "id": "rich.C5.triangle-angle",
+      "lesson": "C5",
+      "title": "De derde hoek van een driehoek",
+      "level": 2,
+      "context": "driehoek",
+      "representation": "table",
+      "equivalentTo": "C.geometry.angle",
+      "family": "C-hoeken"
+    },
+    {
+      "id": "rich.C5.rotation",
+      "lesson": "C5",
+      "title": "Een aantal kwartslagen naar graden",
+      "level": 2,
+      "context": "draaiing",
+      "representation": "text",
+      "equivalentTo": "C.geometry.direct",
+      "family": "C-meetkundig-inzicht"
+    },
+    {
+      "id": "rich.C5.drawing-length",
+      "lesson": "C5",
+      "title": "Een werkelijke lengte naar de tekening",
+      "level": 2,
+      "context": "bouwtekening",
+      "representation": "scale",
+      "equivalentTo": "C.scale.distance",
+      "family": "C-schaal"
+    },
+    {
+      "id": "rich.C5.recover-scale",
+      "lesson": "C5",
+      "title": "De schaal uit twee overeenkomstige lengtes",
+      "level": 3,
+      "context": "modelbouw",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.recover-scale"
+    },
+    {
+      "id": "rich.C5.top-view",
+      "lesson": "C5",
+      "title": "Aantal bezette vakken in een bovenaanzicht",
+      "level": 3,
+      "context": "blokjesbouwsel",
+      "representation": "height-map",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.top-view"
+    },
+    {
+      "id": "rich.C5.manhattan",
+      "lesson": "C5",
+      "title": "Een route langs roosterlijnen",
+      "level": 3,
+      "context": "stratenplan",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.manhattan"
+    },
+    {
+      "id": "rich.D1.bar-difference",
+      "lesson": "D1",
+      "title": "Verschil tussen twee staven aflezen",
+      "level": 2,
+      "context": "uitleenbalie",
+      "representation": "bar",
+      "equivalentTo": "D.chart.difference",
+      "family": "D-grafieken"
+    },
+    {
+      "id": "rich.D1.bar-total",
+      "lesson": "D1",
+      "title": "Een totaal uit meerdere staven",
+      "level": 2,
+      "context": "sportinschrijving",
+      "representation": "bar",
+      "equivalentTo": "D.chart.total",
+      "family": "D-grafieken"
+    },
+    {
+      "id": "rich.D1.line-increase",
+      "lesson": "D1",
+      "title": "Toename tussen twee meetmomenten",
+      "level": 2,
+      "context": "plantgroei",
+      "representation": "line",
+      "equivalentTo": "D.chart.difference",
+      "family": "D-grafieken"
+    },
+    {
+      "id": "rich.D1.cumulative",
+      "lesson": "D1",
+      "title": "Een interval uit cumulatieve tellingen",
+      "level": 3,
+      "context": "kaartverkoop",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D1.cumulative"
+    },
+    {
+      "id": "rich.D1.two-way-table",
+      "lesson": "D1",
+      "title": "Een tabel met twee kenmerken combineren",
+      "level": 3,
+      "context": "schoolvervoer",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D1.two-way-table"
+    },
+    {
+      "id": "rich.D1.relative-chart",
+      "lesson": "D1",
+      "title": "Een aandeel uit grafiekwaarden",
+      "level": 3,
+      "context": "bestellingen",
+      "representation": "bar",
+      "equivalentTo": null,
+      "family": "denk-rich.D1.relative-chart"
+    },
+    {
+      "id": "rich.D1.legend-value",
+      "lesson": "D1",
+      "title": "Een pictogramlegenda gebruiken",
+      "level": 2,
+      "context": "bezoekentelling",
+      "representation": "pictogram",
+      "equivalentTo": null,
+      "family": "denk-rich.D1.legend-value"
+    },
+    {
+      "id": "rich.D1.table-interpolate",
+      "lesson": "D1",
+      "title": "Een tussenwaarde bij expliciet gelijkmatig verloop",
+      "level": 3,
+      "context": "vullen",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D1.table-interpolate"
+    },
+    {
+      "id": "rich.D1.threshold-data",
+      "lesson": "D1",
+      "title": "Meetdagen boven een grens tellen",
+      "level": 2,
+      "context": "luchtmetingen",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D1.threshold-data"
+    },
+    {
+      "id": "rich.D1.missing-category",
+      "lesson": "D1",
+      "title": "Een ontbrekende categorie uit een totaal",
+      "level": 3,
+      "context": "bezoekersverdeling",
+      "representation": "table",
+      "equivalentTo": "reasoning.D.missing-bar",
+      "family": "denk-D.missing-bar"
+    },
+    {
+      "id": "rich.D2.range",
+      "lesson": "D2",
+      "title": "Het verschil tussen maximum en minimum",
+      "level": 2,
+      "context": "dagtemperaturen",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.range"
+    },
+    {
+      "id": "rich.D2.median",
+      "lesson": "D2",
+      "title": "Het middelste getal na ordenen",
+      "level": 2,
+      "context": "wachttijden",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.median"
+    },
+    {
+      "id": "rich.D2.frequency-mean",
+      "lesson": "D2",
+      "title": "Een gemiddelde uit een frequentietabel",
+      "level": 3,
+      "context": "gezinsgrootte",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.frequency-mean"
+    },
+    {
+      "id": "rich.D2.mean-new-value",
+      "lesson": "D2",
+      "title": "Een gemiddelde na een extra waarneming",
+      "level": 3,
+      "context": "toetsscores",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.mean-new-value"
+    },
+    {
+      "id": "rich.D2.mean-correction",
+      "lesson": "D2",
+      "title": "Een gemiddelde na correctie van één waarde",
+      "level": 3,
+      "context": "meetregistratie",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.mean-correction"
+    },
+    {
+      "id": "rich.D2.weighted-average",
+      "lesson": "D2",
+      "title": "Groepsgemiddelden met verschillende groottes",
+      "level": 3,
+      "context": "klasresultaten",
+      "representation": "table",
+      "equivalentTo": "D.variation.weighted",
+      "family": "D-gewogen-gemiddelde"
+    },
+    {
+      "id": "rich.D2.outlier",
+      "lesson": "D2",
+      "title": "Het effect van één hoge uitschieter",
+      "level": 2,
+      "context": "reistijden",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.outlier"
+    },
+    {
+      "id": "rich.D2.sample-bias",
+      "lesson": "D2",
+      "title": "Een beperkte steekproef herkennen",
+      "level": 3,
+      "context": "schoolenquete",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.sample-bias"
+    },
+    {
+      "id": "rich.D2.same-average",
+      "lesson": "D2",
+      "title": "Verschillende spreiding bij hetzelfde gemiddelde",
+      "level": 3,
+      "context": "bezorgtijden",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.same-average"
+    },
+    {
+      "id": "rich.D2.mode",
+      "lesson": "D2",
+      "title": "De meest voorkomende waarde uit een tabel",
+      "level": 2,
+      "context": "schoenmaten",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.mode"
+    },
+    {
+      "id": "rich.D3.substitute",
+      "lesson": "D3",
+      "title": "Een formule invullen met expliciete eenheden",
+      "level": 2,
+      "context": "taxirit",
+      "representation": "formula",
+      "equivalentTo": "D.formula.substitute",
+      "family": "D-formules"
+    },
+    {
+      "id": "rich.D3.inverse-input",
+      "lesson": "D3",
+      "title": "Een invoerwaarde uit een formule terugvinden",
+      "level": 3,
+      "context": "huurkosten",
+      "representation": "formula",
+      "equivalentTo": "D.formula.inverse",
+      "family": "D-formules"
+    },
+    {
+      "id": "rich.D3.rate-from-table",
+      "lesson": "D3",
+      "title": "Een constante toename uit een tabel bepalen",
+      "level": 3,
+      "context": "kopieerwerk",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D3.rate-from-table"
+    },
+    {
+      "id": "rich.D3.fixed-term",
+      "lesson": "D3",
+      "title": "Betekenis van het vaste bedrag",
+      "level": 2,
+      "context": "abonnement",
+      "representation": "formula",
+      "equivalentTo": "reasoning.D.coefficient",
+      "family": "denk-D.coefficient"
+    },
+    {
+      "id": "rich.D3.cost-difference",
+      "lesson": "D3",
+      "title": "Het prijsverschil bij een veranderde invoer",
+      "level": 2,
+      "context": "drukker",
+      "representation": "formula",
+      "equivalentTo": "reasoning.D.difference-only",
+      "family": "denk-D.difference-only"
+    },
+    {
+      "id": "rich.D3.budget-bound",
+      "lesson": "D3",
+      "title": "Een maximaal geheel aantal binnen een budget",
+      "level": 3,
+      "context": "huur-boten",
+      "representation": "formula",
+      "equivalentTo": null,
+      "family": "denk-rich.D3.budget-bound"
+    },
+    {
+      "id": "rich.D3.equal-prices",
+      "lesson": "D3",
+      "title": "Twee lineaire prijsregels gelijkstellen",
+      "level": 4,
+      "context": "verhuurvergelijking",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D3.equal-prices"
+    },
+    {
+      "id": "rich.D3.decreasing",
+      "lesson": "D3",
+      "title": "Een afnemende voorraadregel gebruiken",
+      "level": 2,
+      "context": "reservoir",
+      "representation": "formula",
+      "equivalentTo": null,
+      "family": "denk-rich.D3.decreasing"
+    },
+    {
+      "id": "rich.D3.formula-match",
+      "lesson": "D3",
+      "title": "Een situatie aan de juiste formule koppelen",
+      "level": 3,
+      "context": "bezorgservice",
+      "representation": "formula",
+      "equivalentTo": "D.formula.select",
+      "family": "D-formules"
+    },
+    {
+      "id": "rich.D3.two-inputs",
+      "lesson": "D3",
+      "title": "Een formule met twee aantallen toepassen",
+      "level": 3,
+      "context": "theaterkaartjes",
+      "representation": "formula",
+      "equivalentTo": null,
+      "family": "denk-rich.D3.two-inputs"
+    },
+    {
+      "id": "rich.D4.arithmetic-forward",
+      "lesson": "D4",
+      "title": "Een verder gelegen term van een rekenrij",
+      "level": 2,
+      "context": "stoelenrijen",
+      "representation": "table",
+      "equivalentTo": "D.pattern.linear",
+      "family": "D-patronen"
+    },
+    {
+      "id": "rich.D4.arithmetic-backward",
+      "lesson": "D4",
+      "title": "Een beginterm reconstrueren",
+      "level": 3,
+      "context": "nummerreeks",
+      "representation": "text",
+      "equivalentTo": "D.variation.pattern-inverse",
+      "family": "D-patroon-terugzoeken"
+    },
+    {
+      "id": "rich.D4.geometric",
+      "lesson": "D4",
+      "title": "Een vermenigvuldigingspatroon voortzetten",
+      "level": 2,
+      "context": "groeireeks",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D4.geometric"
+    },
+    {
+      "id": "rich.D4.cycle-index",
+      "lesson": "D4",
+      "title": "Een positie in een herhalend patroon",
+      "level": 3,
+      "context": "lichtslinger",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D4.cycle-index"
+    },
+    {
+      "id": "rich.D4.matchsticks",
+      "lesson": "D4",
+      "title": "Gedeelde zijden in een vierkantenrij",
+      "level": 3,
+      "context": "luciferfiguur",
+      "representation": "diagram",
+      "equivalentTo": "D.pattern.figure",
+      "family": "D-patronen"
+    },
+    {
+      "id": "rich.D4.triangular",
+      "lesson": "D4",
+      "title": "Een groeiend aantal per rij optellen",
+      "level": 3,
+      "context": "stapelblikken",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D4.triangular"
+    },
+    {
+      "id": "rich.D4.growing-differences",
+      "lesson": "D4",
+      "title": "Een expliciet toenemende sprong volgen",
+      "level": 3,
+      "context": "getallenpatroon",
+      "representation": "text",
+      "equivalentTo": "D.pattern.quadratic",
+      "family": "D-patronen"
+    },
+    {
+      "id": "rich.D4.alternating",
+      "lesson": "D4",
+      "title": "Twee afwisselende bewerkingen volgen",
+      "level": 3,
+      "context": "rekenroute",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D4.alternating"
+    },
+    {
+      "id": "rich.D4.missing-middle",
+      "lesson": "D4",
+      "title": "Een ontbrekende term met gelijke sprongen",
+      "level": 2,
+      "context": "rekenrij",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D4.missing-middle"
+    },
+    {
+      "id": "rich.D4.grid-border",
+      "lesson": "D4",
+      "title": "Randvakken van een vierkant patroon tellen",
+      "level": 3,
+      "context": "tegelpatroon",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D4.grid-border"
+    }
+  ]
+}

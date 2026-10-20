@@ -91,7 +91,7 @@ function generateSessionQuestion(session,domain,mode="mix",difficulty=3,topicHin
     const candidates=all.filter(g=>g.topic===topic),pool=[];
     for(const generator of shuffle(candidates)){
       for(const level of [...generator.levels].sort((a,b)=>Math.abs(a-requested)-Math.abs(b-requested))){
-        for(let sample=0;sample<VARIATION_CONTRACT.candidateSamples;sample++){
+        for(let sample=0;sample<(generator.design?.startsWith("rich.")?3:VARIATION_CONTRACT.candidateSamples);sample++){
           const q=finalizeGeneratedQuestion(generator.fn(level,actualMode),{domain,mode:actualMode,requestedLevel:requested,effectiveLevel:level,generator});
           if(q.topic!==topic||validateGeneratedQuestion(q).length)continue;
           const identity=variationIdentity(q),familyCount=ledger.families[q.family]||0;
@@ -109,7 +109,11 @@ function generateSessionQuestion(session,domain,mode="mix",difficulty=3,topicHin
       const fresh=pool.filter(item=>!item.recentlySeen),available=fresh.length?fresh:pool;
       const nearest=Math.min(...available.map(item=>Math.abs(item.q.difficulty-requested)));
       let eligible=available.filter(item=>Math.abs(item.q.difficulty-requested)<=Math.min(2,Math.max(1,nearest+1)));
-      const cooled=eligible.filter(item=>!item.cooling);
+      let cooled=eligible.filter(item=>!item.cooling),levelWindowExpanded=false;
+      if(!cooled.length){
+        const wider=available.filter(item=>Math.abs(item.q.difficulty-requested)<=2&&!item.cooling);
+        if(wider.length){cooled=wider;levelWindowExpanded=true;}
+      }
       if(cooled.length)eligible=cooled;
       else{
         // A small focused pool may not sustain five intervening questions.
@@ -118,14 +122,14 @@ function generateSessionQuestion(session,domain,mode="mix",difficulty=3,topicHin
         if(alternatives.length)eligible=alternatives;
       }
       eligible.sort((a,b)=>a.score-b.score);best=eligible[0];
-      best.cooldownRelaxed=!cooled.length;best.nearestAvailable=nearest;
+      best.cooldownRelaxed=!cooled.length;best.nearestAvailable=nearest;best.levelWindowExpanded=levelWindowExpanded;
       // Topic balance is hard in exams (topicHint), and prioritized in broad practice.
       break;
     }
   }
   if(!best){const error=new Error(`VARIATIE_VOORRAAD_ONVOLDOENDE: ${domain}/${actualMode}/${topicHint||"gemengd"}, vraagzwaarte ${requested}`);error.code="VARIATION_POOL_EXHAUSTED";throw error}
   const q=best.q;q.levelAdjusted=q.difficulty!==requested;q.rubricTarget=q.difficulty;
-  q.selectionInfo={contract:1,requestedLevel:requested,selectedLevel:q.difficulty,topic:q.topic,familyLimit:Number.isFinite(cap)?cap:null,recentHistoryRelaxed:best.recentlySeen,semanticContract:1,semanticCooldownRelaxed:best.cooldownRelaxed,nearestAvailableLevelDistance:best.nearestAvailable};
+  q.selectionInfo={contract:1,requestedLevel:requested,selectedLevel:q.difficulty,topic:q.topic,familyLimit:Number.isFinite(cap)?cap:null,recentHistoryRelaxed:best.recentlySeen,semanticContract:2,semanticCooldownRelaxed:best.cooldownRelaxed,semanticLevelWindowExpanded:best.levelWindowExpanded,nearestAvailableLevelDistance:best.nearestAvailable};
   return q;
 }
 function sessionQuestionOrStop(session,domain,mode,difficulty,topicHint){

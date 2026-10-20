@@ -12,6 +12,7 @@ const REASONING_GENERATORS=REASONING_DESIGNS.map(spec=>{
   QUESTION_BANK[spec.domain].push(generator);return generator;
 });
 function reasoningExpected(v){
+  if(v.rule === "rich"){const spec=REASONING_BY_ID.get(v.design);if(!spec?.verify)throw new Error("onbekende rijke opgavenfamilie");return spec.verify(v.values)}
   switch(v.rule){
     case "digit-swap":{const possibilities=[];for(let h=1;h<=9;h++)if((100*h+10*v.tens+v.units)-(100*v.units+10*v.tens+h)===v.gap)possibilities.push(h);if(possibilities.length!==1)throw new Error("geen uniek honderdtallencijfer");return possibilities[0]}
     case "rounded-total":{const possibilities=[];for(let a=v.a-10;a<=v.a+10;a++)for(let b=v.b-10;b<=v.b+10;b++)if(Math.round(a/10)*10===v.a&&Math.round(b/10)*10===v.b)possibilities.push(a+b);return `Van ${Math.min(...possibilities)} tot en met ${Math.max(...possibilities)}.`}
@@ -66,7 +67,7 @@ function reasoningExpected(v){
 }
 function validateReasoningQuestion(q){
   if(!q.reasoningData)return q.rubricKey?.startsWith("reasoning.")?["rekendata van denkontwerp ontbreken"]:[];
-  const issues=[],v=q.reasoningData,spec=REASONING_DESIGNS.find(s=>s.id===v.design);
+  const issues=[],v=q.reasoningData,spec=REASONING_BY_ID.get(v.design);
   if(!spec||q.rubricKey!==`reasoning.${v.design}`)issues.push("denkontwerp en rubric horen niet bij elkaar");
   try{
     const expected=reasoningExpected(v),actual=q.type==="mc"?q.options[q.answer]:q.answer;
@@ -83,6 +84,19 @@ function normalizeReasoningExposure(value){
   return {schemaVersion:1,recent:rows.filter(row=>row&&["signature","family","context","representation","topic"].every(k=>typeof row[k]==="string"&&/^[0-9a-f]{16}$/.test(row[k]))).slice(-96).map(row=>({signature:row.signature,family:row.family,context:row.context,representation:row.representation,topic:row.topic}))};
 }
 function applyReasoningMetadata(q){
+  const spec=REASONING_BY_ID.get(q.reasoningData?.design);
+  if(spec?.equivalentTo){
+    let key=spec.equivalentTo;const visited=new Set();
+    while(key.startsWith('reasoning.rich.')&&REASONING_BY_ID.get(key.slice(10))?.equivalentTo){
+      if(visited.has(key))throw new Error('Cyclische familiekoppeling');visited.add(key);key=REASONING_BY_ID.get(key.slice(10)).equivalentTo;
+    }
+    const family=RUBRIC_VARIANTS[key]?.family;if(!family)throw new Error('Onbekende bestaande familie '+key);
+    q.family=family;
+    const old=key.startsWith('reasoning.')?REASONING_BY_ID.get(key.slice(10)):null;
+    const reference=old?{pedagogy:old}:{rubricKey:key,family,topic:q.topic};
+    if(!old)applyReasoningMetadata(reference);
+    q.pedagogy={...q.pedagogy,structure:reference.pedagogy.structure,action:reference.pedagogy.action};
+  }
   if(q.pedagogy)return q;
   const k=q.rubricKey||q.difficultyProfile?.key||q.generator||q.topic;
   let structure=q.family||q.topic,action=k,context="getallen";
@@ -108,5 +122,5 @@ function rememberReasoningExposure(session,q,persist){
 function reasoningSelectionCost(q,recent){
   const record=reasoningExposureRecord(q),window=recent.slice(-32),neutral=q.pedagogy.context==="getallen";
   const count=(key)=>window.reduce((sum,item,i)=>sum+(item[key]===record[key]?(i>=window.length-8?1:.35):0),0);
-  return {record,cooling:recent.slice(-5).some(item=>item.signature===record.signature),cost:4*count("signature")+2.4*count("family")+(neutral?0:2*count("context"))+.45*count("representation")};
+  return {record,cooling:recent.slice(-8).some(item=>item.signature===record.signature),cost:6*count("signature")+4*count("family")+(neutral?0:2*count("context"))+.45*count("representation")};
 }
