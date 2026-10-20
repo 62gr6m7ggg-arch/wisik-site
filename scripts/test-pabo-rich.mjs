@@ -18,6 +18,13 @@ const report=runVariationExpression(c,`(()=>{
    for(const mode of g.modes)for(let i=0;i<100;i++){
     const q=finalizeGeneratedQuestion(g.fn(level,mode),{domain,mode,requestedLevel:level,effectiveLevel:level,generator:g}),issues=validateGeneratedQuestion(q);
     ensure(!issues.length,spec.id+': '+issues.join('; '));ensure((q.diagnosticModels||[]).length===0,spec.id+' accidental diagnosis');
+    // Textually different formulas must also be mathematically different.
+    if(spec.id==='rich.D3.formula-match'){
+     const pairs=q.options.map(option=>{const [a,b]=option.match(/[0-9]+/g).map(Number);return option.includes('(')?[0,a+b]:option.includes('× aantal kratten +')?[b,a]:option.includes('×')?[a,b]:[a+b,1]});
+     ensure(new Set(pairs.map(p=>p.join(','))).size===4,spec.id+' equivalent distractor');
+     ensure(pairs[q.answer][0]===q.reasoningData.values.base&&pairs[q.answer][1]===q.reasoningData.values.rate,spec.id+' wrong coefficients');
+    }
+    if(spec.id==='rich.D3.fixed-term')ensure(q.reasoningData.values.base!==q.reasoningData.values.rate,spec.id+' ambiguous repeated coefficient');
     ensure(checkResponse(q,q.type==='mc'?q.answer:q.allowFraction?q.answerDisplay:q.answer),spec.id+' answer rejected');checked++;
     const bad={...q,answer:q.type==='mc'?(q.answer+1)%4:q.answer+7};ensure(validateReasoningQuestion(bad).length>0,spec.id+' wrong answer accepted');mutations++;
     ensure(validateReasoningQuestion({...q,reasoningData:{...q.reasoningData,values:null}}).length>0||typeof spec.verify(null)==='string',spec.id+' invalid data accepted');

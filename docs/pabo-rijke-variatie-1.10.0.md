@@ -8,7 +8,7 @@ De screenshots van 20 oktober laten terugkerende kaartjespakketten en sorteervra
 
 - 180 aanvullende ontwerpen, tien in ieder van de bestaande achttien deelonderwerpen.
 - Afwisseling in situaties en informatie: kassabonnen, recepten, verpakking, weeggegevens, dienstregelingen, budgetten, stroken, tijdlijnen, geometrische schetsen, coördinatenroosters, grafieken, pictogrammen en tabellen.
-- Per ontwerp expliciete rekendata en een afzonderlijke herberekening van het antwoord.
+- Per ontwerp expliciete rekendata en een afzonderlijke herberekening van het antwoord. Formulekeuzes worden ook op wiskundig equivalente afleiders gecontroleerd; vaste bedragen en tarieven zijn bij interpretatievragen onderscheiden.
 - 52 expliciete equivalentiekoppelingen voorkomen dat verwante nieuwe uitvoeringen als onafhankelijke families worden geteld. De telling is bewust conservatief en mag niet als bewijs van leerwinst worden opgevat.
 - De semanticahistorie remt herhaling over acht aangeboden vragen. Als het gebruikelijke niveauvenster is uitgeput, kan de selectie maximaal twee niveaus afwijken. Dat is zichtbaar in de selectiedata; het feitelijke niveau en de daarop gebaseerde score blijven behouden.
 - De afgeronde-bezoekersaantallenvraag vraagt naar het kleinste én grootste mogelijke totaal, zodat een te ruim interval niet meer ook aan de vraag voldoet.
