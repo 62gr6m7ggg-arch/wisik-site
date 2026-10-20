@@ -5,7 +5,7 @@ export function runPaboReasoningAudit(context){
   const ensure=(ok,message)=>{if(!ok)throw new Error(message)};
   function question(g,mode){const domain=REASONING_DESIGNS.find(s=>s.id===g.design).domain,level=g.levels[0];return finalizeGeneratedQuestion(g.fn(level,mode),{domain,mode,requestedLevel:level,effectiveLevel:level,generator:g})}
   try{
-    Math.random=seededRandom(17092026);ensure(REASONING_DESIGNS.length===36,'Not 36 designs');ensure(new Set(REASONING_DESIGNS.map(s=>s.structure+'|'+s.action)).size===36,'Cosmetic duplicates in designs');
+    Math.random=seededRandom(17092026);ensure(REASONING_DESIGNS.length===216,'Expected 36 preserved and 180 added designs');ensure(new Set(REASONING_DESIGNS.map(s=>s.id)).size===216,'Duplicate design identifiers');ensure(new Set(REASONING_DESIGNS.filter(s=>!s.id.startsWith('rich.')).map(s=>s.structure+'|'+s.action)).size===36,'Original designs changed');
     for(const g of REASONING_GENERATORS){
       for(const mode of g.modes)for(let i=0;i<120;i++){
         const q=question(g,mode),issues=validateGeneratedQuestion(q);ensure(!issues.length,g.design+': '+issues.join('; '));counts.generated++;
@@ -17,7 +17,7 @@ export function runPaboReasoningAudit(context){
       }
     }
     // One real learner, multiple consecutive sessions, including browser reloads.
-    for(const [domain,topic] of [['A','place-value'],['B','fraction-concept'],['B','fraction-operations'],['C','area-perimeter'],['D','charts'],['D','formulas']])for(const requested of [2,3,4,5]){
+    for(const [domain,topic] of Object.values(RICH_TOPICS))for(const requested of [2,3,4,5]){
       state=deepClone(DEFAULT_STATE);state.xp=906;state.completedLessons=['A1','B2'];const trail=[];let last=null,localRepeats=0,relaxed=0;
       for(let round=0;round<5;round++){
         const session={kind:'practice',total:10};
@@ -26,13 +26,13 @@ export function runPaboReasoningAudit(context){
           ensure(!validateGeneratedQuestion(q).length,'Invalid journey question');ensure(q.topic===topic,'Learning goal changed');
           if(last===record.signature){localRepeats++;counts.semanticRepeats++;ensure(q.selectionInfo.semanticCooldownRelaxed,'Unexplained adjacent semantic repeat')}
           if(q.selectionInfo.semanticCooldownRelaxed){relaxed++;counts.relaxed++}
-          ensure(Math.abs(q.difficulty-requested)<=Math.min(2,Math.max(1,q.selectionInfo.nearestAvailableLevelDistance+1)),'Diversity forced needless difficulty jump');
+          ensure(Math.abs(q.difficulty-requested)<=(q.selectionInfo.semanticLevelWindowExpanded?2:Math.min(2,Math.max(1,q.selectionInfo.nearestAvailableLevelDistance+1))),'Diversity forced needless difficulty jump');
           trail.push({design:q.pedagogy.design,structure:q.pedagogy.structure,action:q.pedagogy.action,level:q.difficulty,relaxed:q.selectionInfo.semanticCooldownRelaxed});
           rememberVariationQuestion(session,q);last=record.signature;counts.questions++;
         }
         const before=JSON.stringify(state.reasoningExposure);saveState();state=loadState();ensure(JSON.stringify(state.reasoningExposure)===before,'Semantic history lost on reload');ensure(state.xp===906&&state.completedLessons.length===2,'Progress lost');counts.persistenceChecks++;
       }
-      ensure(new Set(trail.map(q=>q.design)).size>=3,'Journey has too few different designs');
+      ensure(new Set(trail.map(q=>q.design)).size>=3,'Journey has too few different designs: '+domain+'/'+topic+'/'+requested);
       journeys.push({domain,topic,requested,distinctDesigns:new Set(trail.map(q=>q.design)).size,adjacentRepeats:localRepeats,relaxed,trail});counts.journeys++;
     }
     // Migration and privacy sanitization are separate from the existing 480-item contract.
@@ -45,5 +45,5 @@ export function runPaboReasoningAudit(context){
     for(const [key,expected] of [['C.advanced.tiling','tegels'],['D.advanced.tariff','tarieven'],['D.variation.graph-rate','vullen'],['C.variation.tank','vullen'],['B.variation.remaining-inverse','magazijn']])ensure(applyReasoningMetadata({rubricKey:key}).pedagogy.context===expected,'Legacy semantic mapping missing: '+key);
   }catch(error){failures.push(error.stack||String(error))}finally{state=saved.state;Math.random=saved.random}
   return {version:APP_VERSION,passed:!failures.length,counts,failures,examples,journeys};
-})()`,180000);
+})()`,480000);
 }

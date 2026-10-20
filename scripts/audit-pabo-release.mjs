@@ -245,11 +245,11 @@ const gates = [
 gates.push({id:"flirt-trigger-chain",label:"Van antwoordpatroon naar juiste flirt",passed:JSON.stringify(flirtChain)===JSON.stringify(flirtReplay),evidence:`${flirtChain.chains} ketens; ${flirtChain.answerExamples} vaste antwoordchecks; ${flirtChain.negativeExamples} andere fouten; ${flirtChain.modeExclusions} toets-/sprintuitsluitingen; dubbelzinnige denkroute onderdrukt; vaste seed tweemaal gelijk`});
 gates.push({id:"flirt-content-lock",label:"Beoordeelde flirtinhoud bewaakt",passed:flirtContent.passed,evidence:flirtContent.passed?`${flirtContent.counts.reviewed} beoordelingen gekoppeld aan de exacte tekst, media en misconceptie. ${flirtContent.counts.needsRevision} open inhoudelijke herstelpunten; dit vinkje bevestigt de ongewijzigde review, geen inhoudelijke goedkeuring.`:flirtContent.failures.join("; ")});
 gates.push({id:"session-variation",label:"Spreiding en variatie van volledige sessies",passed:variation.passed&&variationFullCount===98&&variation.counts.duplicates===0&&variation.counts.familyLimitFailures===0&&variation.counts.coverageFailures===0,evidence:`${variationFullCount} volledige toetsroutes, ${variation.counts.miniExams} korte toetsen en ${variation.counts.practiceSessions} oefenreeksen; geen dubbele opgaven binnen de geteste sessies; alle 18 deelonderwerpen in iedere volledige toets; maximaal drie opgaven per familie.`});
-gates.push({id:"reasoning-diversity",label:"Denkvariatie over meerdere oefensessies",passed:reasoning.passed&&reasoning.counts.designs===36,evidence:`36 eigen vraagontwerpen; ${reasoning.counts.generated} gecontroleerde varianten; ${reasoning.counts.mutations} foutmutaties; ${reasoning.counts.journeys} meer-sessie-routes met ${reasoning.counts.questions} vragen. Niveau en leerdoel begrenzen de variatie; ${reasoning.counts.relaxed} selecties hadden onvoldoende aanbod voor de volledige vijf-vragen-afstand.`});
+gates.push({id:"reasoning-diversity",label:"Denkvariatie over meerdere oefensessies",passed:reasoning.passed&&reasoning.counts.designs===216,evidence:`216 geregistreerde ontwerpen (inclusief contextvarianten, geen claim van 216 onafhankelijke families); ${reasoning.counts.generated} gecontroleerde varianten; ${reasoning.counts.mutations} foutmutaties; ${reasoning.counts.journeys} meer-sessie-routes met ${reasoning.counts.questions} vragen. Niveau en leerdoel begrenzen de variatie; ${reasoning.counts.relaxed} selecties hadden onvoldoende aanbod voor de volledige acht-vragen-afstand.`});
 const passed = gates.every((gate) => gate.passed);
 const report = {
   schemaVersion: 1,
-  auditVersion: "1.4.0",
+  auditVersion: "1.5.0",
   siteVersion: packageJson.version,
   tool: "Pabo Rekenklaar",
   toolVersion,

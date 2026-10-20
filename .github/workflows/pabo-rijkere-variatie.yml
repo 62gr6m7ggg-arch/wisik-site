@@ -1,0 +1,51 @@
+name: Pabo rijke variatie vrijgave
+on:
+  push:
+    branches: [feat/pabo-rich-variation-20261020]
+permissions:
+  contents: read
+concurrency:
+  group: pabo-rich-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  candidate:
+    name: Rekeninhoud en vier browseromgevingen
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Controleer reproduceerbare zelfstandige app
+        run: |
+          sha256sum public/apps/pabo-rekenklaar/index.html > /tmp/pabo-source.sha
+          npm run pabo:reasoning:build
+          sha256sum --check /tmp/pabo-source.sha
+      - name: Controleer alle bestaande vrijgavepoorten
+        run: npm run build
+      - name: Installeer de bestaande browsertestomgeving
+        run: |
+          npm --prefix /tmp/wisik-pw install --no-audit --no-fund playwright@1.56.1
+          /tmp/wisik-pw/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Controleer alle 216 ontwerpen, mobiele weergave en behoud van voortgang
+        env:
+          PLAYWRIGHT_MODULE: /tmp/wisik-pw/node_modules/playwright/index.mjs
+        run: node scripts/check-pabo-reasoning-browser.mjs
+      - name: Doorloop volledige toetsen in vier browseromgevingen
+        env:
+          PLAYWRIGHT_MODULE: /tmp/wisik-pw/node_modules/playwright/index.mjs
+        run: node scripts/check-pabo-variation-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pabo-rich-candidate-evidence
+          retention-days: 7
+          path: |
+            /tmp/pabo-reasoning-browser
+            /tmp/pabo-variation-browser
+            /tmp/pabo-rich-evidence
+            public/assets/data/pabo-release-audit.json
+            public/assets/data/pabo-variation-catalog.json

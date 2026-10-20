@@ -14,7 +14,7 @@ function block(name,source,anchor){
   if(html.includes(start)){const a=html.indexOf(start),b=html.indexOf(end,a);if(b<0)throw new Error('Incomplete '+name);html=html.slice(0,a)+text+html.slice(b+end.length)}
   else once(anchor,`${text}\n${anchor}`);
 }
-block('REASONING DESIGNS',read('reasoning-designs.js'),'const RUBRIC_VARIANTS = Object.freeze({');
+block('REASONING DESIGNS',read('reasoning-designs.js')+'\n\n'+read('rich-designs.js'),'const RUBRIC_VARIANTS = Object.freeze({');
 once('const RUBRIC_VARIANTS = Object.freeze({','const RUBRIC_VARIANTS = Object.freeze({\n  ...Object.fromEntries(REASONING_DESIGNS.map(s=>[`reasoning.${s.id}`,rubricVariant(`denk-${s.id}`,s.title,RUBRIC_DEMAND[s.demand],s.reason)])),');
 block('REASONING ENGINE',read('reasoning-engine.js'),'function almostEqual(a,b,tolerance=1e-9)');
 // Replace the old sort methods once. Their replacements live in the reviewed source module.
@@ -24,6 +24,11 @@ if(!html.includes('/* BEGIN PABO ORDER POINTER */')){
 }
 block('ORDER POINTER',read('order-pointer.js'),'function renderSessionQuestion(containerId="playArea"){');
 block('ORDER POINTER CSS',read('order-pointer.css'),'</style>');
+// Recovery must sample only generators with a reviewed diagnostic model. A larger
+// general-purpose bank must not dilute the targeted misconception pool.
+once('generators=QUESTION_BANK[pattern.domain].filter(g=>g.modes.includes(mode));',
+     'generators=QUESTION_BANK[pattern.domain].filter(g=>g.modes.includes(mode)&&pattern.topics.includes(g.topic)&&!g.design);');
+
 // CSS section marker differs among earlier releases; below uses an exact known CSS anchor.
 once('  const ledger=sessionVariation(session),identity=variationIdentity(q);','  const ledger=sessionVariation(session),identity=variationIdentity(q);');
 once('applyCalculatorPolicy(q);applyDifficultyRubric(q);applyRequestedPrecisionDisplay(q);attachDiagnosticModels(q);return q;', 'applyCalculatorPolicy(q);applyDifficultyRubric(q);applyRequestedPrecisionDisplay(q);attachDiagnosticModels(q);applyReasoningMetadata(q);return q;');
@@ -43,10 +48,10 @@ if(html.includes(oldDragStart)){
 }
 once('window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,', 'window.PaboRekenklaarQA=Object.freeze({version:APP_VERSION,REASONING_DESIGNS,REASONING_GENERATORS,reasoningExpected,validateReasoningQuestion,normalizeReasoningExposure,reasoningExposureRecord,applyReasoningMetadata,');
 // Only the product version changes. The site's unrelated components are not rebuilt.
-once('const APP_VERSION = "1.7.1";', 'const APP_VERSION = "1.8.0";');
+if(html.includes('const APP_VERSION = "1.7.1";'))once('const APP_VERSION = "1.7.1";', 'const APP_VERSION = "1.8.0";');
 html=html.replace('<title>Pabo Rekenklaar 1.7.1','<title>Pabo Rekenklaar 1.8.0').replaceAll('data-app-version>1.7.1','data-app-version>1.8.0').replace('<span id="homeVersion">1.7.1</span>','<span id="homeVersion">1.8.0</span>');
 const release=`  {version:"1.8.0",date:"17 september 2026",title:"Andere denkhandelingen, minder herhaling, echt slepen",items:["36 nieuwe vraagontwerpen: reconstrueren, grenzen bewaken, vergelijken, tegenvoorbeelden, figuren lezen en plannen onder voorwaarden.","Oefenselectie weegt rekenstructuur, denkhandeling, context en presentatie mee, ook over meerdere sessies in dezelfde browser.","Sorteervragen werken via muis of aanraking aan het handvat, via de knoppen en met het toetsenbord. Na nakijken staat de volgorde vast.","Nieuwe antwoorden worden gecontroleerd uit gestructureerde rekendata. Nieuwe teksten leveren niet automatisch een diagnose of flirt op.","Vraagzwaarte blijft een expertvoorspelling. Gerichte herhaling blijft mogelijk als het passende aanbod anders te klein is."]},`;
-once('const RELEASE_NOTES = [','const RELEASE_NOTES = [\n'+release);
+if(!html.includes('{version:"1.8.0"'))once('const RELEASE_NOTES = [','const RELEASE_NOTES = [\n'+release);
 once('Voor variatie onthoudt de browser ook maximaal 480 vraagvingerafdrukken, zonder extra letterlijke antwoorden.', 'Voor variatie onthoudt de browser ook maximaal 480 vraagvingerafdrukken en 96 sets gehashte kenmerken van vraagaanpakken, zonder extra letterlijke antwoorden. Zo worden ook gelijksoortige aanpakken over meerdere sessies herkend. Bij te weinig passend aanbod kan een aanpak eerder terugkeren; onderwerp en haalbaar niveau blijven leidend.');
 fs.writeFileSync(file,html);
 for(const file of ['public/assets/js/site-data.js','public/index.html','public/pabo/pabo-rekenklaar/index.html','public/moshpit/index.html']){
@@ -54,4 +59,4 @@ for(const file of ['public/assets/js/site-data.js','public/index.html','public/p
 }
 const browser='scripts/check-pabo-variation-browser.mjs';let text=fs.readFileSync(browser,'utf8');
 text=text.replace("await page.waitForFunction(()=>window.PaboRekenklaarQA?.version==='1.7.0');", "await page.waitForFunction(()=>Boolean(window.PaboRekenklaarQA?.REASONING_DESIGNS?.length));");fs.writeFileSync(browser,text);
-console.log('Pabo 1.8.0: reasoning source and pointer sorting embedded.');
+console.log('Pabo: reasoning sources and pointer sorting embedded.');

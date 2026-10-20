@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "auditVersion": "1.4.0",
+  "auditVersion": "1.5.0",
   "siteVersion": "0.1.31",
   "tool": "Pabo Rekenklaar",
-  "toolVersion": "1.8.0",
-  "generatedAt": "2026-09-29T21:18:51.989Z",
+  "toolVersion": "1.10.0",
+  "generatedAt": "2026-10-20T09:05:50.450Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -13,18 +13,18 @@
     "flirtSeed": 6092026
   },
   "counts": {
-    "generatedQuestions": 24400,
-    "generatorCombinations": 244,
+    "generatedQuestions": 53400,
+    "generatorCombinations": 534,
     "rubricSelections": 3500,
     "fallbackQuestions": 0,
     "diagnosticPatterns": 30,
     "diagnosticProbes": 1200,
     "naturalDiagnosticCoverage": 30,
-    "naturalClassificationChecks": 8829,
-    "unambiguousDiagnosticMatches": 8829,
-    "ambiguousDiagnosticsSuppressed": 0,
-    "chartInstances": 900,
-    "exactReadableChartInstances": 800,
+    "naturalClassificationChecks": 8875,
+    "unambiguousDiagnosticMatches": 8874,
+    "ambiguousDiagnosticsSuppressed": 1,
+    "chartInstances": 1300,
+    "exactReadableChartInstances": 1200,
     "sprintQuestionChecks": 2250,
     "sprintFallbackQuestions": 0,
     "flirtChains": 30,
@@ -46,7 +46,7 @@
       "id": "generated-variants",
       "label": "Gegenereerde vraagvarianten",
       "passed": true,
-      "evidence": "24.400 vragen in 244 combinaties"
+      "evidence": "53.400 vragen in 534 combinaties"
     },
     {
       "id": "reproducible-answers",
@@ -64,13 +64,13 @@
       "id": "readable-graphs",
       "label": "Afleesbare grafieken",
       "passed": true,
-      "evidence": "900 grafiekinstanties; rasterwaarden, asschaal, mobiele pixelafstand en toegankelijke SVG-markering gecontroleerd"
+      "evidence": "1.300 grafiekinstanties; rasterwaarden, asschaal, mobiele pixelafstand en toegankelijke SVG-markering gecontroleerd"
     },
     {
       "id": "diagnostic-patterns",
       "label": "Diagnostische patronen",
       "passed": true,
-      "evidence": "30 patronen; 30/30 natuurlijke dekking; 1200 controlevragen; 8829 natuurlijke classificatiechecks; 0 dubbelzinnige gevallen veilig zonder diagnose"
+      "evidence": "30 patronen; 30/30 natuurlijke dekking; 1200 controlevragen; 8875 natuurlijke classificatiechecks; 1 dubbelzinnige gevallen veilig zonder diagnose"
     },
     {
       "id": "flirt-trigger-chain",
@@ -94,7 +94,7 @@
       "id": "reasoning-diversity",
       "label": "Denkvariatie over meerdere oefensessies",
       "passed": true,
-      "evidence": "36 eigen vraagontwerpen; 5640 gecontroleerde varianten; 11280 foutmutaties; 24 meer-sessie-routes met 1200 vragen. Niveau en leerdoel begrenzen de variatie; 315 selecties hadden onvoldoende aanbod voor de volledige vijf-vragen-afstand."
+      "evidence": "216 geregistreerde ontwerpen (inclusief contextvarianten, geen claim van 216 onafhankelijke families); 40440 gecontroleerde varianten; 80880 foutmutaties; 72 meer-sessie-routes met 3600 vragen. Niveau en leerdoel begrenzen de variatie; 234 selecties hadden onvoldoende aanbod voor de volledige acht-vragen-afstand."
     }
   ],
   "variation": {
@@ -124,7 +124,7 @@
         "name": "all-correct-16092026",
         "questions": 55,
         "unique": 55,
-        "families": 42,
+        "families": 52,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -132,39 +132,39 @@
         "name": "all-correct-16092123",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 53,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-correct-16092220",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-correct-16092317",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-correct-16092414",
         "questions": 55,
         "unique": 55,
-        "families": 42,
+        "families": 51,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-correct-16092511",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 51,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -172,95 +172,95 @@
         "name": "all-correct-16092608",
         "questions": 55,
         "unique": 55,
-        "families": 41,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-correct-16092705",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 50,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-wrong-16102033",
         "questions": 55,
         "unique": 55,
-        "families": 36,
+        "families": 53,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-wrong-16102130",
         "questions": 55,
         "unique": 55,
-        "families": 37,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-wrong-16102227",
         "questions": 55,
         "unique": 55,
-        "families": 36,
+        "families": 53,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-wrong-16102324",
         "questions": 55,
         "unique": 55,
-        "families": 35,
+        "families": 50,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-wrong-16102421",
         "questions": 55,
         "unique": 55,
-        "families": 34,
+        "families": 50,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-wrong-16102518",
         "questions": 55,
         "unique": 55,
-        "families": 35,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-wrong-16102615",
         "questions": 55,
         "unique": 55,
-        "families": 36,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-wrong-16102712",
         "questions": 55,
         "unique": 55,
-        "families": 34,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "alternating-16112040",
         "questions": 55,
         "unique": 55,
-        "families": 48,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "alternating-16112137",
         "questions": 55,
         "unique": 55,
-        "families": 43,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -268,47 +268,47 @@
         "name": "alternating-16112234",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "alternating-16112331",
         "questions": 55,
         "unique": 55,
-        "families": 50,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "alternating-16112428",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "alternating-16112525",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "alternating-16112622",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "alternating-16112719",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -316,55 +316,55 @@
         "name": "first-weak-16122047",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "first-weak-16122144",
         "questions": 55,
         "unique": 55,
-        "families": 48,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "first-weak-16122241",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "first-weak-16122338",
         "questions": 55,
         "unique": 55,
-        "families": 50,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "first-weak-16122435",
         "questions": 55,
         "unique": 55,
-        "families": 49,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "first-weak-16122532",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 1
       },
       {
         "name": "first-weak-16122629",
         "questions": 55,
         "unique": 55,
-        "families": 48,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -372,47 +372,47 @@
         "name": "first-weak-16122726",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "last-weak-16132054",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "last-weak-16132151",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "last-weak-16132248",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "last-weak-16132345",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "last-weak-16132442",
         "questions": 55,
         "unique": 55,
-        "families": 49,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -420,31 +420,31 @@
         "name": "last-weak-16132539",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "last-weak-16132636",
         "questions": 55,
         "unique": 55,
-        "families": 49,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "last-weak-16132733",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 1
       },
       {
         "name": "domain-uneven-16142061",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -452,7 +452,7 @@
         "name": "domain-uneven-16142158",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 53,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -460,55 +460,55 @@
         "name": "domain-uneven-16142255",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 53,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "domain-uneven-16142352",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "domain-uneven-16142449",
         "questions": 55,
         "unique": 55,
-        "families": 48,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 1
       },
       {
         "name": "domain-uneven-16142546",
         "questions": 55,
         "unique": 55,
-        "families": 48,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "domain-uneven-16142643",
         "questions": 55,
         "unique": 55,
-        "families": 48,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "domain-uneven-16142740",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "seventy-percent-16152068",
         "questions": 55,
         "unique": 55,
-        "families": 43,
+        "families": 52,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -516,15 +516,15 @@
         "name": "seventy-percent-16152165",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "seventy-percent-16152262",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 53,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -532,7 +532,7 @@
         "name": "seventy-percent-16152359",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 51,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -540,15 +540,15 @@
         "name": "seventy-percent-16152456",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "seventy-percent-16152553",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -556,7 +556,7 @@
         "name": "seventy-percent-16152650",
         "questions": 55,
         "unique": 55,
-        "families": 48,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -564,175 +564,175 @@
         "name": "seventy-percent-16152747",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-1-0",
         "questions": 55,
         "unique": 55,
-        "families": 35,
+        "families": 50,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-1-1",
         "questions": 55,
         "unique": 55,
-        "families": 33,
+        "families": 50,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-1-2",
         "questions": 55,
         "unique": 55,
-        "families": 35,
+        "families": 50,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-1-3",
         "questions": 55,
         "unique": 55,
-        "families": 36,
+        "families": 53,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-1-4",
         "questions": 55,
         "unique": 55,
-        "families": 34,
+        "families": 50,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-1-5",
         "questions": 55,
         "unique": 55,
-        "families": 33,
+        "families": 48,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-1-6",
         "questions": 55,
         "unique": 55,
-        "families": 32,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-1-7",
         "questions": 55,
         "unique": 55,
-        "families": 32,
+        "families": 48,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-2-0",
         "questions": 55,
         "unique": 55,
-        "families": 42,
+        "families": 53,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-2-1",
         "questions": 55,
         "unique": 55,
-        "families": 41,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 1
       },
       {
         "name": "fixed-2-2",
         "questions": 55,
         "unique": 55,
-        "families": 41,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-2-3",
         "questions": 55,
         "unique": 55,
-        "families": 38,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-2-4",
         "questions": 55,
         "unique": 55,
-        "families": 43,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-2-5",
         "questions": 55,
         "unique": 55,
-        "families": 40,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-2-6",
         "questions": 55,
         "unique": 55,
-        "families": 41,
+        "families": 53,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-2-7",
         "questions": 55,
         "unique": 55,
-        "families": 41,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-3-0",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "fixed-3-1",
         "questions": 55,
         "unique": 55,
-        "families": 43,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "fixed-3-2",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "fixed-3-3",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "fixed-3-4",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -740,39 +740,39 @@
         "name": "fixed-3-5",
         "questions": 55,
         "unique": 55,
-        "families": 43,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "fixed-3-6",
         "questions": 55,
         "unique": 55,
-        "families": 43,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "fixed-3-7",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "fixed-4-0",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-4-1",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 53,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -780,23 +780,23 @@
         "name": "fixed-4-2",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-4-3",
         "questions": 55,
         "unique": 55,
-        "families": 47,
+        "families": 55,
         "scoredTopics": 18,
-        "maxFamily": 2
+        "maxFamily": 1
       },
       {
         "name": "fixed-4-4",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -804,7 +804,7 @@
         "name": "fixed-4-5",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -812,15 +812,15 @@
         "name": "fixed-4-6",
         "questions": 55,
         "unique": 55,
-        "families": 48,
+        "families": 54,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-4-7",
         "questions": 55,
         "unique": 55,
-        "families": 48,
+        "families": 54,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -828,7 +828,7 @@
         "name": "fixed-5-0",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 51,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -836,7 +836,7 @@
         "name": "fixed-5-1",
         "questions": 55,
         "unique": 55,
-        "families": 42,
+        "families": 51,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -844,15 +844,15 @@
         "name": "fixed-5-2",
         "questions": 55,
         "unique": 55,
-        "families": 39,
+        "families": 50,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-5-3",
         "questions": 55,
         "unique": 55,
-        "families": 42,
+        "families": 52,
         "scoredTopics": 18,
         "maxFamily": 2
       },
@@ -860,7 +860,7 @@
         "name": "fixed-5-4",
         "questions": 55,
         "unique": 55,
-        "families": 43,
+        "families": 48,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -868,7 +868,7 @@
         "name": "fixed-5-5",
         "questions": 55,
         "unique": 55,
-        "families": 46,
+        "families": 51,
         "scoredTopics": 18,
         "maxFamily": 3
       },
@@ -876,17 +876,17 @@
         "name": "fixed-5-6",
         "questions": 55,
         "unique": 55,
-        "families": 41,
+        "families": 51,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "fixed-5-7",
         "questions": 55,
         "unique": 55,
-        "families": 44,
+        "families": 52,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-correct-16172027",
@@ -956,119 +956,311 @@
         "name": "all-correct-16183027",
         "questions": 55,
         "unique": 55,
-        "families": 42,
+        "families": 51,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       },
       {
         "name": "all-correct-16183028",
         "questions": 55,
         "unique": 55,
-        "families": 45,
+        "families": 53,
         "scoredTopics": 18,
-        "maxFamily": 3
+        "maxFamily": 2
       }
     ],
     "failures": [],
-    "traceFingerprint": "a25180bd786f48098cc782e4b3698752f3b2f5ed76b7532bbae93f9cfb0f76f9"
+    "traceFingerprint": "2633ecaefd9d907ef8f4f6a98ce250de47d0b3b9a5eb93a515eb2bbb74451580"
   },
   "reasoning": {
-    "version": "1.8.0",
+    "version": "1.10.0",
     "passed": true,
     "counts": {
-      "designs": 36,
-      "generated": 5640,
-      "mutations": 11280,
-      "journeys": 24,
-      "questions": 1200,
-      "semanticRepeats": 0,
-      "relaxed": 315,
-      "persistenceChecks": 123
+      "designs": 216,
+      "generated": 40440,
+      "mutations": 80880,
+      "journeys": 72,
+      "questions": 3600,
+      "semanticRepeats": 1,
+      "relaxed": 234,
+      "persistenceChecks": 363
     },
     "journeys": [
       {
         "domain": "A",
         "topic": "place-value",
         "requested": 2,
+        "distinctDesigns": 15,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "place-value",
+        "requested": 3,
+        "distinctDesigns": 15,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "place-value",
+        "requested": 4,
+        "distinctDesigns": 15,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "place-value",
+        "requested": 5,
         "distinctDesigns": 7,
         "adjacentRepeats": 0,
-        "relaxed": 8
+        "relaxed": 37
       },
       {
         "domain": "A",
-        "topic": "place-value",
+        "topic": "operations",
+        "requested": 2,
+        "distinctDesigns": 15,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "operations",
         "requested": 3,
+        "distinctDesigns": 15,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "operations",
+        "requested": 4,
+        "distinctDesigns": 17,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "operations",
+        "requested": 5,
+        "distinctDesigns": 11,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "negative-divisibility",
+        "requested": 2,
+        "distinctDesigns": 16,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "negative-divisibility",
+        "requested": 3,
+        "distinctDesigns": 17,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "negative-divisibility",
+        "requested": 4,
+        "distinctDesigns": 9,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "negative-divisibility",
+        "requested": 5,
+        "distinctDesigns": 9,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "powers-order",
+        "requested": 2,
+        "distinctDesigns": 14,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "powers-order",
+        "requested": 3,
+        "distinctDesigns": 13,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "powers-order",
+        "requested": 4,
+        "distinctDesigns": 9,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "A",
+        "topic": "powers-order",
+        "requested": 5,
+        "distinctDesigns": 9,
+        "adjacentRepeats": 0,
+        "relaxed": 1
+      },
+      {
+        "domain": "B",
+        "topic": "fraction-concept",
+        "requested": 2,
+        "distinctDesigns": 18,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "fraction-concept",
+        "requested": 3,
+        "distinctDesigns": 17,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "fraction-concept",
+        "requested": 4,
+        "distinctDesigns": 17,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "fraction-concept",
+        "requested": 5,
+        "distinctDesigns": 9,
+        "adjacentRepeats": 0,
+        "relaxed": 19
+      },
+      {
+        "domain": "B",
+        "topic": "fraction-operations",
+        "requested": 2,
+        "distinctDesigns": 13,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "fraction-operations",
+        "requested": 3,
+        "distinctDesigns": 17,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "fraction-operations",
+        "requested": 4,
+        "distinctDesigns": 15,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "fraction-operations",
+        "requested": 5,
+        "distinctDesigns": 15,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "conversions",
+        "requested": 2,
+        "distinctDesigns": 12,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "conversions",
+        "requested": 3,
+        "distinctDesigns": 13,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "conversions",
+        "requested": 4,
+        "distinctDesigns": 13,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "conversions",
+        "requested": 5,
         "distinctDesigns": 5,
         "adjacentRepeats": 0,
-        "relaxed": 40
-      },
-      {
-        "domain": "A",
-        "topic": "place-value",
-        "requested": 4,
-        "distinctDesigns": 3,
-        "adjacentRepeats": 0,
-        "relaxed": 47
-      },
-      {
-        "domain": "A",
-        "topic": "place-value",
-        "requested": 5,
-        "distinctDesigns": 3,
-        "adjacentRepeats": 0,
-        "relaxed": 47
+        "relaxed": 43
       },
       {
         "domain": "B",
-        "topic": "fraction-concept",
+        "topic": "percent",
         "requested": 2,
-        "distinctDesigns": 8,
+        "distinctDesigns": 12,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
       {
         "domain": "B",
-        "topic": "fraction-concept",
+        "topic": "percent",
         "requested": 3,
-        "distinctDesigns": 8,
+        "distinctDesigns": 14,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
       {
         "domain": "B",
-        "topic": "fraction-concept",
+        "topic": "percent",
         "requested": 4,
-        "distinctDesigns": 8,
-        "adjacentRepeats": 0,
-        "relaxed": 0
-      },
-      {
-        "domain": "B",
-        "topic": "fraction-concept",
-        "requested": 5,
-        "distinctDesigns": 6,
-        "adjacentRepeats": 0,
-        "relaxed": 39
-      },
-      {
-        "domain": "B",
-        "topic": "fraction-operations",
-        "requested": 2,
-        "distinctDesigns": 6,
-        "adjacentRepeats": 0,
-        "relaxed": 8
-      },
-      {
-        "domain": "B",
-        "topic": "fraction-operations",
-        "requested": 3,
         "distinctDesigns": 11,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
       {
         "domain": "B",
-        "topic": "fraction-operations",
+        "topic": "percent",
+        "requested": 5,
+        "distinctDesigns": 11,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "ratio-scale-probability",
+        "requested": 2,
+        "distinctDesigns": 11,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "ratio-scale-probability",
+        "requested": 3,
+        "distinctDesigns": 14,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "B",
+        "topic": "ratio-scale-probability",
         "requested": 4,
         "distinctDesigns": 10,
         "adjacentRepeats": 0,
@@ -1076,25 +1268,57 @@
       },
       {
         "domain": "B",
-        "topic": "fraction-operations",
+        "topic": "ratio-scale-probability",
         "requested": 5,
-        "distinctDesigns": 10,
+        "distinctDesigns": 9,
+        "adjacentRepeats": 0,
+        "relaxed": 3
+      },
+      {
+        "domain": "C",
+        "topic": "units",
+        "requested": 2,
+        "distinctDesigns": 13,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "units",
+        "requested": 3,
+        "distinctDesigns": 11,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "units",
+        "requested": 4,
+        "distinctDesigns": 11,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "units",
+        "requested": 5,
+        "distinctDesigns": 5,
+        "adjacentRepeats": 1,
+        "relaxed": 44
+      },
+      {
+        "domain": "C",
+        "topic": "area-perimeter",
+        "requested": 2,
+        "distinctDesigns": 12,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
       {
         "domain": "C",
         "topic": "area-perimeter",
-        "requested": 2,
-        "distinctDesigns": 5,
-        "adjacentRepeats": 0,
-        "relaxed": 32
-      },
-      {
-        "domain": "C",
-        "topic": "area-perimeter",
         "requested": 3,
-        "distinctDesigns": 8,
+        "distinctDesigns": 14,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
@@ -1102,23 +1326,119 @@
         "domain": "C",
         "topic": "area-perimeter",
         "requested": 4,
-        "distinctDesigns": 10,
+        "distinctDesigns": 15,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
       {
         "domain": "C",
         "topic": "area-perimeter",
+        "requested": 5,
+        "distinctDesigns": 15,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "volume-surface",
+        "requested": 2,
+        "distinctDesigns": 12,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "volume-surface",
+        "requested": 3,
+        "distinctDesigns": 14,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "volume-surface",
+        "requested": 4,
+        "distinctDesigns": 12,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "volume-surface",
+        "requested": 5,
+        "distinctDesigns": 11,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "speed-time",
+        "requested": 2,
+        "distinctDesigns": 11,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "speed-time",
+        "requested": 3,
+        "distinctDesigns": 12,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "speed-time",
+        "requested": 4,
+        "distinctDesigns": 10,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "speed-time",
+        "requested": 5,
+        "distinctDesigns": 9,
+        "adjacentRepeats": 0,
+        "relaxed": 9
+      },
+      {
+        "domain": "C",
+        "topic": "geometry-scale",
+        "requested": 2,
+        "distinctDesigns": 12,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "geometry-scale",
+        "requested": 3,
+        "distinctDesigns": 12,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "geometry-scale",
+        "requested": 4,
+        "distinctDesigns": 11,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "C",
+        "topic": "geometry-scale",
         "requested": 5,
         "distinctDesigns": 7,
         "adjacentRepeats": 0,
-        "relaxed": 0
+        "relaxed": 20
       },
       {
         "domain": "D",
         "topic": "charts",
         "requested": 2,
-        "distinctDesigns": 12,
+        "distinctDesigns": 20,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
@@ -1126,7 +1446,7 @@
         "domain": "D",
         "topic": "charts",
         "requested": 3,
-        "distinctDesigns": 12,
+        "distinctDesigns": 19,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
@@ -1134,7 +1454,7 @@
         "domain": "D",
         "topic": "charts",
         "requested": 4,
-        "distinctDesigns": 8,
+        "distinctDesigns": 13,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
@@ -1142,31 +1462,63 @@
         "domain": "D",
         "topic": "charts",
         "requested": 5,
-        "distinctDesigns": 3,
-        "adjacentRepeats": 0,
-        "relaxed": 47
-      },
-      {
-        "domain": "D",
-        "topic": "formulas",
-        "requested": 2,
-        "distinctDesigns": 8,
+        "distinctDesigns": 13,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
       {
         "domain": "D",
-        "topic": "formulas",
+        "topic": "statistics",
+        "requested": 2,
+        "distinctDesigns": 13,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "D",
+        "topic": "statistics",
         "requested": 3,
+        "distinctDesigns": 15,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "D",
+        "topic": "statistics",
+        "requested": 4,
+        "distinctDesigns": 14,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "D",
+        "topic": "statistics",
+        "requested": 5,
         "distinctDesigns": 9,
         "adjacentRepeats": 0,
+        "relaxed": 30
+      },
+      {
+        "domain": "D",
+        "topic": "formulas",
+        "requested": 2,
+        "distinctDesigns": 14,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "D",
+        "topic": "formulas",
+        "requested": 3,
+        "distinctDesigns": 14,
+        "adjacentRepeats": 0,
         "relaxed": 0
       },
       {
         "domain": "D",
         "topic": "formulas",
         "requested": 4,
-        "distinctDesigns": 8,
+        "distinctDesigns": 13,
         "adjacentRepeats": 0,
         "relaxed": 0
       },
@@ -1174,9 +1526,41 @@
         "domain": "D",
         "topic": "formulas",
         "requested": 5,
-        "distinctDesigns": 3,
+        "distinctDesigns": 14,
         "adjacentRepeats": 0,
-        "relaxed": 47
+        "relaxed": 0
+      },
+      {
+        "domain": "D",
+        "topic": "patterns",
+        "requested": 2,
+        "distinctDesigns": 11,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "D",
+        "topic": "patterns",
+        "requested": 3,
+        "distinctDesigns": 10,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "D",
+        "topic": "patterns",
+        "requested": 4,
+        "distinctDesigns": 10,
+        "adjacentRepeats": 0,
+        "relaxed": 0
+      },
+      {
+        "domain": "D",
+        "topic": "patterns",
+        "requested": 5,
+        "distinctDesigns": 7,
+        "adjacentRepeats": 0,
+        "relaxed": 28
       }
     ],
     "failures": []
@@ -2082,7 +2466,7 @@
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
     "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "65d1a135aeb5b309e265372109922f1bbdfa068f95d08b748e7739a76c3b76e9"
+    "sha256": "6f9db9eddb78ff1e3cf931e319dd7667b2f2f608eb890b31a4fca5583f8f2e14"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",
