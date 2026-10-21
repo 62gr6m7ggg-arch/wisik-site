@@ -1,3 +1,4 @@
+const REASONING_BY_ID=new Map(REASONING_DESIGNS.map(s=>[s.id,s]));
 /* Inhoudelijke vraagregistratie en controle, los van verhaaltekst en nummergenerator. */
 const REASONING_GENERATORS=REASONING_DESIGNS.map(spec=>{
   const level=rubricLevelFromDemand(RUBRIC_DEMAND[spec.demand]).level;

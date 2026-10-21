@@ -5,7 +5,7 @@ export function runPaboReasoningAudit(context){
   const ensure=(ok,message)=>{if(!ok)throw new Error(message)};
   function question(g,mode){const domain=REASONING_DESIGNS.find(s=>s.id===g.design).domain,level=g.levels[0];return finalizeGeneratedQuestion(g.fn(level,mode),{domain,mode,requestedLevel:level,effectiveLevel:level,generator:g})}
   try{
-    Math.random=seededRandom(17092026);ensure(REASONING_DESIGNS.length===216,'Expected 36 preserved and 180 added designs');ensure(new Set(REASONING_DESIGNS.map(s=>s.id)).size===216,'Duplicate design identifiers');ensure(new Set(REASONING_DESIGNS.filter(s=>!s.id.startsWith('rich.')).map(s=>s.structure+'|'+s.action)).size===36,'Original designs changed');
+    Math.random=seededRandom(17092026);ensure(REASONING_DESIGNS.length===295,'Expected 36 original, 180 rich and 79 transfer designs');ensure(new Set(REASONING_DESIGNS.map(s=>s.id)).size===295,'Duplicate design identifiers');ensure(new Set(REASONING_DESIGNS.filter(s=>!s.id.startsWith('rich.')).map(s=>s.structure+'|'+s.action)).size===36,'Original designs changed');
     for(const g of REASONING_GENERATORS){
       for(const mode of g.modes)for(let i=0;i<120;i++){
         const q=question(g,mode),issues=validateGeneratedQuestion(q);ensure(!issues.length,g.design+': '+issues.join('; '));counts.generated++;

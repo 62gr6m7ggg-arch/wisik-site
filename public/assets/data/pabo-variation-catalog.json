@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "1.10.0",
+  "version": "1.11.0",
   "scope": "Conservatieve telling per deelonderwerp. Getal- en contextvarianten tellen niet apart; families in verschillende deelonderwerpen zijn niet optelbaar als wereldwijd unieke rekenstructuren.",
   "targetPerTopic": 81,
   "targetReached": false,
@@ -10,16 +10,17 @@
       "domain": "A",
       "topic": "place-value",
       "existingFamilies": 5,
-      "totalFamilies": 15,
-      "additionalFamilies": 10,
-      "addedDesigns": 10,
+      "totalFamilies": 25,
+      "additionalFamilies": 20,
+      "addedDesigns": 21,
       "target": 81,
-      "shortfall": 66,
-      "contexts": 10,
+      "shortfall": 56,
+      "contexts": 20,
       "representations": [
         "table",
         "text",
-        "numberline"
+        "numberline",
+        "calculation"
       ]
     },
     {
@@ -27,12 +28,12 @@
       "domain": "A",
       "topic": "operations",
       "existingFamilies": 5,
-      "totalFamilies": 14,
-      "additionalFamilies": 9,
-      "addedDesigns": 10,
+      "totalFamilies": 24,
+      "additionalFamilies": 19,
+      "addedDesigns": 21,
       "target": 81,
-      "shortfall": 67,
-      "contexts": 10,
+      "shortfall": 57,
+      "contexts": 21,
       "representations": [
         "receipt",
         "seating",
@@ -40,7 +41,8 @@
         "budget",
         "table",
         "offer",
-        "calculation"
+        "calculation",
+        "text"
       ]
     },
     {
@@ -48,19 +50,20 @@
       "domain": "A",
       "topic": "negative-divisibility",
       "existingFamilies": 7,
-      "totalFamilies": 15,
-      "additionalFamilies": 8,
-      "addedDesigns": 10,
+      "totalFamilies": 24,
+      "additionalFamilies": 17,
+      "addedDesigns": 20,
       "target": 81,
-      "shortfall": 66,
-      "contexts": 10,
+      "shortfall": 57,
+      "contexts": 20,
       "representations": [
         "table",
         "statement",
         "label",
         "order",
         "timeline",
-        "text"
+        "text",
+        "calculation"
       ]
     },
     {
@@ -68,12 +71,12 @@
       "domain": "A",
       "topic": "powers-order",
       "existingFamilies": 3,
-      "totalFamilies": 11,
-      "additionalFamilies": 8,
-      "addedDesigns": 10,
+      "totalFamilies": 18,
+      "additionalFamilies": 15,
+      "addedDesigns": 18,
       "target": 81,
-      "shortfall": 70,
-      "contexts": 9,
+      "shortfall": 63,
+      "contexts": 16,
       "representations": [
         "diagram",
         "text",
@@ -89,10 +92,10 @@
       "existingFamilies": 8,
       "totalFamilies": 18,
       "additionalFamilies": 10,
-      "addedDesigns": 10,
+      "addedDesigns": 12,
       "target": 81,
       "shortfall": 63,
-      "contexts": 9,
+      "contexts": 11,
       "representations": [
         "strip",
         "table",
@@ -105,12 +108,12 @@
       "domain": "B",
       "topic": "fraction-operations",
       "existingFamilies": 8,
-      "totalFamilies": 13,
-      "additionalFamilies": 5,
-      "addedDesigns": 10,
+      "totalFamilies": 15,
+      "additionalFamilies": 7,
+      "addedDesigns": 13,
       "target": 81,
-      "shortfall": 68,
-      "contexts": 10,
+      "shortfall": 66,
+      "contexts": 13,
       "representations": [
         "table",
         "label",
@@ -124,12 +127,12 @@
       "domain": "B",
       "topic": "conversions",
       "existingFamilies": 2,
-      "totalFamilies": 7,
-      "additionalFamilies": 5,
-      "addedDesigns": 10,
+      "totalFamilies": 10,
+      "additionalFamilies": 8,
+      "addedDesigns": 14,
       "target": 81,
-      "shortfall": 74,
-      "contexts": 10,
+      "shortfall": 71,
+      "contexts": 14,
       "representations": [
         "strip",
         "table",
@@ -142,17 +145,18 @@
       "domain": "B",
       "topic": "percent",
       "existingFamilies": 4,
-      "totalFamilies": 11,
-      "additionalFamilies": 7,
-      "addedDesigns": 10,
+      "totalFamilies": 13,
+      "additionalFamilies": 9,
+      "addedDesigns": 12,
       "target": 81,
-      "shortfall": 70,
-      "contexts": 10,
+      "shortfall": 68,
+      "contexts": 12,
       "representations": [
         "offer",
         "table",
         "receipt",
-        "label"
+        "label",
+        "text"
       ]
     },
     {
@@ -160,12 +164,12 @@
       "domain": "B",
       "topic": "ratio-scale-probability",
       "existingFamilies": 4,
-      "totalFamilies": 12,
-      "additionalFamilies": 8,
-      "addedDesigns": 10,
+      "totalFamilies": 13,
+      "additionalFamilies": 9,
+      "addedDesigns": 12,
       "target": 81,
-      "shortfall": 69,
-      "contexts": 10,
+      "shortfall": 68,
+      "contexts": 12,
       "representations": [
         "recipe",
         "table",
@@ -179,16 +183,17 @@
       "domain": "C",
       "topic": "units",
       "existingFamilies": 2,
-      "totalFamilies": 9,
-      "additionalFamilies": 7,
-      "addedDesigns": 10,
+      "totalFamilies": 12,
+      "additionalFamilies": 10,
+      "addedDesigns": 14,
       "target": 81,
-      "shortfall": 72,
-      "contexts": 10,
+      "shortfall": 69,
+      "contexts": 14,
       "representations": [
         "label",
         "table",
-        "text"
+        "text",
+        "diagram"
       ]
     },
     {
@@ -196,12 +201,12 @@
       "domain": "C",
       "topic": "area-perimeter",
       "existingFamilies": 10,
-      "totalFamilies": 16,
-      "additionalFamilies": 6,
-      "addedDesigns": 10,
+      "totalFamilies": 20,
+      "additionalFamilies": 10,
+      "addedDesigns": 14,
       "target": 81,
-      "shortfall": 65,
-      "contexts": 10,
+      "shortfall": 61,
+      "contexts": 14,
       "representations": [
         "diagram",
         "table",
@@ -213,12 +218,12 @@
       "domain": "C",
       "topic": "volume-surface",
       "existingFamilies": 4,
-      "totalFamilies": 11,
-      "additionalFamilies": 7,
-      "addedDesigns": 10,
+      "totalFamilies": 12,
+      "additionalFamilies": 8,
+      "addedDesigns": 12,
       "target": 81,
-      "shortfall": 70,
-      "contexts": 10,
+      "shortfall": 69,
+      "contexts": 12,
       "representations": [
         "table",
         "text"
@@ -229,17 +234,18 @@
       "domain": "C",
       "topic": "speed-time",
       "existingFamilies": 3,
-      "totalFamilies": 9,
-      "additionalFamilies": 6,
-      "addedDesigns": 10,
+      "totalFamilies": 10,
+      "additionalFamilies": 7,
+      "addedDesigns": 13,
       "target": 81,
-      "shortfall": 72,
-      "contexts": 10,
+      "shortfall": 71,
+      "contexts": 13,
       "representations": [
         "timetable",
         "timeline",
         "table",
-        "label"
+        "label",
+        "text"
       ]
     },
     {
@@ -247,12 +253,12 @@
       "domain": "C",
       "topic": "geometry-scale",
       "existingFamilies": 5,
-      "totalFamilies": 12,
-      "additionalFamilies": 7,
-      "addedDesigns": 10,
+      "totalFamilies": 15,
+      "additionalFamilies": 10,
+      "addedDesigns": 13,
       "target": 81,
-      "shortfall": 69,
-      "contexts": 10,
+      "shortfall": 66,
+      "contexts": 13,
       "representations": [
         "grid",
         "text",
@@ -266,17 +272,18 @@
       "domain": "D",
       "topic": "charts",
       "existingFamilies": 10,
-      "totalFamilies": 16,
-      "additionalFamilies": 6,
-      "addedDesigns": 10,
+      "totalFamilies": 18,
+      "additionalFamilies": 8,
+      "addedDesigns": 12,
       "target": 81,
-      "shortfall": 65,
-      "contexts": 10,
+      "shortfall": 63,
+      "contexts": 12,
       "representations": [
         "bar",
         "line",
         "table",
-        "pictogram"
+        "pictogram",
+        "text"
       ]
     },
     {
@@ -284,12 +291,12 @@
       "domain": "D",
       "topic": "statistics",
       "existingFamilies": 4,
-      "totalFamilies": 13,
-      "additionalFamilies": 9,
-      "addedDesigns": 10,
+      "totalFamilies": 16,
+      "additionalFamilies": 12,
+      "addedDesigns": 14,
       "target": 81,
-      "shortfall": 68,
-      "contexts": 10,
+      "shortfall": 65,
+      "contexts": 14,
       "representations": [
         "table",
         "text"
@@ -300,15 +307,16 @@
       "domain": "D",
       "topic": "formulas",
       "existingFamilies": 9,
-      "totalFamilies": 14,
-      "additionalFamilies": 5,
-      "addedDesigns": 10,
+      "totalFamilies": 16,
+      "additionalFamilies": 7,
+      "addedDesigns": 12,
       "target": 81,
-      "shortfall": 67,
-      "contexts": 10,
+      "shortfall": 65,
+      "contexts": 12,
       "representations": [
         "formula",
-        "table"
+        "table",
+        "text"
       ]
     },
     {
@@ -316,12 +324,12 @@
       "domain": "D",
       "topic": "patterns",
       "existingFamilies": 2,
-      "totalFamilies": 8,
-      "additionalFamilies": 6,
-      "addedDesigns": 10,
+      "totalFamilies": 10,
+      "additionalFamilies": 8,
+      "addedDesigns": 12,
       "target": 81,
-      "shortfall": 73,
-      "contexts": 10,
+      "shortfall": 71,
+      "contexts": 12,
       "representations": [
         "table",
         "text",
@@ -431,6 +439,116 @@
       "family": "denk-rich.A1.rounding-sum-difference"
     },
     {
+      "id": "rich.A1.transfer-grid-count",
+      "lesson": "A1",
+      "title": "Decimalen op een vast rooster tussen grenzen tellen",
+      "level": 3,
+      "context": "maatvoering",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-grid-count"
+    },
+    {
+      "id": "rich.A1.transfer-two-roundings",
+      "lesson": "A1",
+      "title": "Twee afrondingsgegevens tegelijk gebruiken",
+      "level": 4,
+      "context": "publiekstelling",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-two-roundings"
+    },
+    {
+      "id": "rich.A1.transfer-delete-unit",
+      "lesson": "A1",
+      "title": "Een getal terugvinden na weglaten van een cijfer",
+      "level": 4,
+      "context": "cijfermachine",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-delete-unit"
+    },
+    {
+      "id": "rich.A1.transfer-round-difference",
+      "lesson": "A1",
+      "title": "Verschilgrenzen uit twee afgeronde metingen",
+      "level": 4,
+      "context": "meetvergelijking",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-round-difference"
+    },
+    {
+      "id": "rich.A1.transfer-origin-recover",
+      "lesson": "A1",
+      "title": "Een onbekend beginpunt van een schaal bepalen",
+      "level": 3,
+      "context": "meetschaal",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-origin-recover"
+    },
+    {
+      "id": "rich.A1.transfer-largest-grid",
+      "lesson": "A1",
+      "title": "Grootste waarde met een beperkt aantal decimalen",
+      "level": 3,
+      "context": "digitale-invoer",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-largest-grid"
+    },
+    {
+      "id": "rich.A1.transfer-decimal-machine",
+      "lesson": "A1",
+      "title": "Een getal uit twee plaatswaardeverschuivingen reconstrueren",
+      "level": 4,
+      "context": "rekenmachinecontrole",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-decimal-machine"
+    },
+    {
+      "id": "rich.A1.transfer-round-stability",
+      "lesson": "A1",
+      "title": "Ruimte tot een afgerond getal verandert",
+      "level": 3,
+      "context": "kilometerregistratie",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-round-stability"
+    },
+    {
+      "id": "rich.A1.transfer-digit-count",
+      "lesson": "A1",
+      "title": "Een cijfer op een vaste positie tellen",
+      "level": 3,
+      "context": "nummering",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-digit-count"
+    },
+    {
+      "id": "rich.A1.transfer-place-sum",
+      "lesson": "A1",
+      "title": "Plaatswaardebijdragen uit een som reconstrueren",
+      "level": 4,
+      "context": "getallenraadsel",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A1.transfer-place-sum"
+    },
+    {
+      "id": "rich.A1.transfer-precision-claim",
+      "lesson": "A1",
+      "title": "Een meetprecisie uit een afrondingsinterval afleiden",
+      "level": 3,
+      "context": "meetapparaat",
+      "representation": "table",
+      "equivalentTo": "reasoning.rich.A1.rounding-count",
+      "family": "denk-rich.A1.rounding-count"
+    },
+    {
       "id": "rich.A2.receipt-change",
       "lesson": "A2",
       "title": "Wisselgeld uit een kassabon",
@@ -529,6 +647,116 @@
       "representation": "table",
       "equivalentTo": null,
       "family": "denk-rich.A2.equalize"
+    },
+    {
+      "id": "rich.A2.transfer-sum-difference",
+      "lesson": "A2",
+      "title": "Twee bedragen uit hun som en verschil",
+      "level": 3,
+      "context": "museumkassa",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-sum-difference"
+    },
+    {
+      "id": "rich.A2.transfer-reverse-chain",
+      "lesson": "A2",
+      "title": "Een beginsaldo na meerdere bewerkingen reconstrueren",
+      "level": 3,
+      "context": "spaarpot",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-reverse-chain"
+    },
+    {
+      "id": "rich.A2.transfer-wrong-sign",
+      "lesson": "A2",
+      "title": "Een totaal herstellen na de verkeerde bewerking",
+      "level": 3,
+      "context": "kascontrole",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-wrong-sign"
+    },
+    {
+      "id": "rich.A2.transfer-minimum-purchases",
+      "lesson": "A2",
+      "title": "Een exact aantal met zo min mogelijk verpakkingen",
+      "level": 4,
+      "context": "materiaalbestelling",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-minimum-purchases"
+    },
+    {
+      "id": "rich.A2.transfer-two-prices",
+      "lesson": "A2",
+      "title": "Een aantal van elke soort uit een totaalprijs",
+      "level": 4,
+      "context": "kaartverkoop",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-two-prices"
+    },
+    {
+      "id": "rich.A2.transfer-shared-resource",
+      "lesson": "A2",
+      "title": "Een minimum aan materiaal bij hergebruik",
+      "level": 4,
+      "context": "workshoprondes",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-shared-resource"
+    },
+    {
+      "id": "rich.A2.transfer-per-item-rounding",
+      "lesson": "A2",
+      "title": "Per stuk afronden vergelijken met het totaal afronden",
+      "level": 4,
+      "context": "betaalsysteem",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-per-item-rounding"
+    },
+    {
+      "id": "rich.A2.transfer-division-reconstruct",
+      "lesson": "A2",
+      "title": "Het deeltal uit quotiënt en rest herstellen",
+      "level": 3,
+      "context": "delingcontrole",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-division-reconstruct"
+    },
+    {
+      "id": "rich.A2.transfer-two-stage-loss",
+      "lesson": "A2",
+      "title": "Een vaste en een herhaalde uitgave onderscheiden",
+      "level": 3,
+      "context": "evenementbudget",
+      "representation": "table",
+      "equivalentTo": "reasoning.rich.A2.compensation-gap",
+      "family": "denk-rich.A2.compensation-gap"
+    },
+    {
+      "id": "rich.A2.transfer-consecutive-sum",
+      "lesson": "A2",
+      "title": "Opeenvolgende gehele getallen uit hun som",
+      "level": 3,
+      "context": "getallenpuzzel",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-consecutive-sum"
+    },
+    {
+      "id": "rich.A2.transfer-complement-total",
+      "lesson": "A2",
+      "title": "Een ontbrekend totaal door complementair tellen",
+      "level": 3,
+      "context": "wedstrijdschema",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A2.transfer-complement-total"
     },
     {
       "id": "rich.A3.lift",
@@ -631,6 +859,106 @@
       "family": "denk-rich.A3.parity"
     },
     {
+      "id": "rich.A3.transfer-two-remainders",
+      "lesson": "A3",
+      "title": "Een getal uit twee restvoorwaarden",
+      "level": 4,
+      "context": "verdeelraadsel",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.transfer-two-remainders"
+    },
+    {
+      "id": "rich.A3.transfer-negative-average",
+      "lesson": "A3",
+      "title": "Een ontbrekende negatieve meting uit een gemiddelde",
+      "level": 3,
+      "context": "temperatuurlog",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.transfer-negative-average"
+    },
+    {
+      "id": "rich.A3.transfer-restore-zero",
+      "lesson": "A3",
+      "title": "Minimale gelijke stappen om nul te bereiken of passeren",
+      "level": 3,
+      "context": "temperatuurstappen",
+      "representation": "text",
+      "equivalentTo": "reasoning.rich.A3.minimum-multiple",
+      "family": "denk-rich.A3.minimum-multiple"
+    },
+    {
+      "id": "rich.A3.transfer-divisor-count",
+      "lesson": "A3",
+      "title": "Het aantal positieve delers bepalen",
+      "level": 3,
+      "context": "deelbaarheidsonderzoek",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.transfer-divisor-count"
+    },
+    {
+      "id": "rich.A3.transfer-minimal-divisibility-add",
+      "lesson": "A3",
+      "title": "Een bedrag aanvullen tot gezamenlijke deelbaarheid",
+      "level": 3,
+      "context": "uitdeelvoorraad",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.transfer-minimal-divisibility-add"
+    },
+    {
+      "id": "rich.A3.transfer-negative-product",
+      "lesson": "A3",
+      "title": "Een ontbrekende factor met een teken bepalen",
+      "level": 3,
+      "context": "productcontrole",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.transfer-negative-product"
+    },
+    {
+      "id": "rich.A3.transfer-rest-after-change",
+      "lesson": "A3",
+      "title": "Een rest na toevoegen voorspellen",
+      "level": 3,
+      "context": "verpakkingsmachine",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.transfer-rest-after-change"
+    },
+    {
+      "id": "rich.A3.transfer-opposite-distance",
+      "lesson": "A3",
+      "title": "Een punt aan de andere kant van nul bepalen",
+      "level": 3,
+      "context": "hoogtemeting",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.transfer-opposite-distance"
+    },
+    {
+      "id": "rich.A3.transfer-prime-factor-repair",
+      "lesson": "A3",
+      "title": "Een ontbrekende priemfactor reconstrueren",
+      "level": 3,
+      "context": "factorboom",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.transfer-prime-factor-repair"
+    },
+    {
+      "id": "rich.A3.transfer-sign-parity",
+      "lesson": "A3",
+      "title": "Teken van een product met meerdere negatieve factoren",
+      "level": 3,
+      "context": "tekenredenering",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A3.transfer-sign-parity"
+    },
+    {
       "id": "rich.A4.square-side",
       "lesson": "A4",
       "title": "Een zijde uit vierkante oppervlakte terugvinden",
@@ -729,6 +1057,86 @@
       "representation": "calculation",
       "equivalentTo": "A.orderops.nested",
       "family": "A-rekenvolgorde"
+    },
+    {
+      "id": "rich.A4.transfer-power-product",
+      "lesson": "A4",
+      "title": "Exponent bij vermenigvuldigen van gelijke grondtallen",
+      "level": 3,
+      "context": "machtkaart",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.transfer-power-product"
+    },
+    {
+      "id": "rich.A4.transfer-power-quotient",
+      "lesson": "A4",
+      "title": "Exponent bij delen van machten",
+      "level": 3,
+      "context": "machtkaart",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.transfer-power-quotient"
+    },
+    {
+      "id": "rich.A4.transfer-power-of-power",
+      "lesson": "A4",
+      "title": "Aantal factoren bij een macht van een macht",
+      "level": 3,
+      "context": "haakjesonderzoek",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.transfer-power-of-power"
+    },
+    {
+      "id": "rich.A4.transfer-missing-exponent",
+      "lesson": "A4",
+      "title": "Een exponent uit een getal terugvinden",
+      "level": 3,
+      "context": "groeifactor",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.transfer-missing-exponent"
+    },
+    {
+      "id": "rich.A4.transfer-square-negative",
+      "lesson": "A4",
+      "title": "Een minteken binnen en buiten een kwadraat",
+      "level": 3,
+      "context": "teken-en-haakjes",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.transfer-square-negative"
+    },
+    {
+      "id": "rich.A4.transfer-product-bounds",
+      "lesson": "A4",
+      "title": "Een product begrenzen zonder exacte factoren",
+      "level": 4,
+      "context": "meetmarges",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.transfer-product-bounds"
+    },
+    {
+      "id": "rich.A4.transfer-decimal-power",
+      "lesson": "A4",
+      "title": "Een macht van een decimaal bepalen",
+      "level": 3,
+      "context": "kleine-factoren",
+      "representation": "calculation",
+      "equivalentTo": "A.powers.extended",
+      "family": "A-machten-wortels"
+    },
+    {
+      "id": "rich.A4.transfer-order-counterexample",
+      "lesson": "A4",
+      "title": "Een rekenregel toetsen met een tegenvoorbeeld",
+      "level": 4,
+      "context": "bewering",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.A4.transfer-order-counterexample"
     },
     {
       "id": "rich.B1.strip-part",
@@ -831,6 +1239,26 @@
       "family": "denk-rich.B1.unequal-pieces"
     },
     {
+      "id": "rich.B1.transfer-different-wholes",
+      "lesson": "B1",
+      "title": "Gelijke breuken met verschillende gehelen vergelijken",
+      "level": 3,
+      "context": "twee-klassen",
+      "representation": "table",
+      "equivalentTo": "reasoning.rich.B1.same-part-different-whole",
+      "family": "denk-rich.B1.same-part-different-whole"
+    },
+    {
+      "id": "rich.B1.transfer-fraction-between",
+      "lesson": "B1",
+      "title": "Een breuk met een vaste noemer tussen grenzen zoeken",
+      "level": 4,
+      "context": "getallenlijnonderzoek",
+      "representation": "text",
+      "equivalentTo": "reasoning.B.numerator-bound",
+      "family": "denk-B.numerator-bound"
+    },
+    {
       "id": "rich.B2.ribbon-join",
       "lesson": "B2",
       "title": "Ongelijknamige lengtes samenvoegen",
@@ -929,6 +1357,36 @@
       "representation": "text",
       "equivalentTo": null,
       "family": "denk-rich.B2.fraction-product-compare"
+    },
+    {
+      "id": "rich.B2.transfer-overlap-area",
+      "lesson": "B2",
+      "title": "Een overlap uit twee deeloppervlakken reconstrueren",
+      "level": 4,
+      "context": "moestuin",
+      "representation": "text",
+      "equivalentTo": "reasoning.B.overlap",
+      "family": "denk-B.overlap"
+    },
+    {
+      "id": "rich.B2.transfer-repeated-half",
+      "lesson": "B2",
+      "title": "Beginhoeveelheid na twee breukafnames reconstrueren",
+      "level": 4,
+      "context": "verfvoorraad",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B2.transfer-repeated-half"
+    },
+    {
+      "id": "rich.B2.transfer-division-error",
+      "lesson": "B2",
+      "title": "Een omgekeerde breuk bij delen herkennen",
+      "level": 3,
+      "context": "leerlingantwoord",
+      "representation": "calculation",
+      "equivalentTo": null,
+      "family": "denk-rich.B2.transfer-division-error"
     },
     {
       "id": "rich.B3.percent-strip",
@@ -1031,6 +1489,46 @@
       "family": "B-omzetten"
     },
     {
+      "id": "rich.B3.transfer-rounded-percent",
+      "lesson": "B3",
+      "title": "Een exacte breuk met een afgerond percentage vergelijken",
+      "level": 3,
+      "context": "dashboardafronding",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B3.transfer-rounded-percent"
+    },
+    {
+      "id": "rich.B3.transfer-percentage-point-notation",
+      "lesson": "B3",
+      "title": "Een verschil in procentpunten als decimaal schrijven",
+      "level": 3,
+      "context": "peilingnotatie",
+      "representation": "table",
+      "equivalentTo": "reasoning.rich.B3.mixed-notation-gap",
+      "family": "denk-rich.B3.mixed-notation-gap"
+    },
+    {
+      "id": "rich.B3.transfer-mixed-units-total",
+      "lesson": "B3",
+      "title": "Aandelen in drie notaties samenvoegen",
+      "level": 3,
+      "context": "ruimtegebruik",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B3.transfer-mixed-units-total"
+    },
+    {
+      "id": "rich.B3.transfer-rounded-decimal-range",
+      "lesson": "B3",
+      "title": "Een afrondingsgrens naar procenten vertalen",
+      "level": 4,
+      "context": "sensorrapport",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B3.transfer-rounded-decimal-range"
+    },
+    {
       "id": "rich.B4.discount-amount",
       "lesson": "B4",
       "title": "Het kortingsbedrag uit twee prijzen",
@@ -1129,6 +1627,26 @@
       "representation": "table",
       "equivalentTo": "B.percent.part",
       "family": "B-procenten"
+    },
+    {
+      "id": "rich.B4.transfer-discount-vs-fixed",
+      "lesson": "B4",
+      "title": "Het omslagpunt van twee kortingen",
+      "level": 4,
+      "context": "winkelkeuze",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.B4.transfer-discount-vs-fixed"
+    },
+    {
+      "id": "rich.B4.transfer-percent-integer-threshold",
+      "lesson": "B4",
+      "title": "Het kleinste gehele aantal voor een percentagegrens",
+      "level": 4,
+      "context": "aanmeldingsdoel",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B4.transfer-percent-integer-threshold"
     },
     {
       "id": "rich.B5.recipe-scale",
@@ -1231,6 +1749,26 @@
       "family": "denk-rich.B5.inverse-workers"
     },
     {
+      "id": "rich.B5.transfer-ratio-added",
+      "lesson": "B5",
+      "title": "Een verhouding na toevoeging terugrekenen",
+      "level": 4,
+      "context": "verfmengsel",
+      "representation": "text",
+      "equivalentTo": "reasoning.rich.B5.ratio-repair",
+      "family": "denk-rich.B5.ratio-repair"
+    },
+    {
+      "id": "rich.B5.transfer-scale-copy",
+      "lesson": "B5",
+      "title": "Een schaal na vergroten van een tekening bepalen",
+      "level": 3,
+      "context": "kopieerapparaat",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.B5.transfer-scale-copy"
+    },
+    {
       "id": "rich.C1.mixed-length",
       "lesson": "C1",
       "title": "Meters en centimeters samenvoegen",
@@ -1329,6 +1867,46 @@
       "representation": "table",
       "equivalentTo": null,
       "family": "denk-rich.C1.cubic-meter-fill"
+    },
+    {
+      "id": "rich.C1.transfer-balance-mass",
+      "lesson": "C1",
+      "title": "Een onbekende massa uit een balans",
+      "level": 3,
+      "context": "weegproef",
+      "representation": "diagram",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.transfer-balance-mass"
+    },
+    {
+      "id": "rich.C1.transfer-label-rounding",
+      "lesson": "C1",
+      "title": "Een massa-etiket toetsen met een meetinterval",
+      "level": 4,
+      "context": "verpakkingscontrole",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.transfer-label-rounding"
+    },
+    {
+      "id": "rich.C1.transfer-unit-rate",
+      "lesson": "C1",
+      "title": "Een stroom in milliliters per minuut omzetten",
+      "level": 3,
+      "context": "doseerpomp",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C1.transfer-unit-rate"
+    },
+    {
+      "id": "rich.C1.transfer-mixed-length-remainder",
+      "lesson": "C1",
+      "title": "Een restlengte uit verschillende eenheden",
+      "level": 3,
+      "context": "werkplaats",
+      "representation": "table",
+      "equivalentTo": "reasoning.rich.C1.weight-remainder",
+      "family": "denk-rich.C1.weight-remainder"
     },
     {
       "id": "rich.C2.gate-perimeter",
@@ -1431,6 +2009,46 @@
       "family": "denk-rich.C2.scale-area-effect"
     },
     {
+      "id": "rich.C2.transfer-fixed-perimeter",
+      "lesson": "C2",
+      "title": "De grootste rechthoek bij een vaste omtrek",
+      "level": 4,
+      "context": "tuinontwerp",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.transfer-fixed-perimeter"
+    },
+    {
+      "id": "rich.C2.transfer-border-inward",
+      "lesson": "C2",
+      "title": "De binnenmaat van een omlopend pad",
+      "level": 3,
+      "context": "vijverrand",
+      "representation": "diagram",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.transfer-border-inward"
+    },
+    {
+      "id": "rich.C2.transfer-equal-area-side",
+      "lesson": "C2",
+      "title": "Een zijde uit een gelijke oppervlakte bepalen",
+      "level": 3,
+      "context": "vloerplan",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.transfer-equal-area-side"
+    },
+    {
+      "id": "rich.C2.transfer-cut-corner-perimeter",
+      "lesson": "C2",
+      "title": "Omtrek na het uitsnijden van een hoek",
+      "level": 4,
+      "context": "plaatmateriaal",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C2.transfer-cut-corner-perimeter"
+    },
+    {
       "id": "rich.C3.aquarium",
       "lesson": "C3",
       "title": "Waterinhoud met een ongevulde bovenrand",
@@ -1529,6 +2147,26 @@
       "representation": "text",
       "equivalentTo": null,
       "family": "denk-rich.C3.joined-cubes"
+    },
+    {
+      "id": "rich.C3.transfer-packing-cubes",
+      "lesson": "C3",
+      "title": "Hele kubussen langs drie afmetingen inpassen",
+      "level": 4,
+      "context": "opslagdoos",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C3.transfer-packing-cubes"
+    },
+    {
+      "id": "rich.C3.transfer-unchanged-volume",
+      "lesson": "C3",
+      "title": "Een hoogte aanpassen bij gelijkblijvende inhoud",
+      "level": 3,
+      "context": "bakverandering",
+      "representation": "text",
+      "equivalentTo": "C.volume.scaling",
+      "family": "C-schaalwerking"
     },
     {
       "id": "rich.C4.departure",
@@ -1631,6 +2269,36 @@
       "family": "denk-rich.C4.transfer"
     },
     {
+      "id": "rich.C4.transfer-last-departure",
+      "lesson": "C4",
+      "title": "De laatste vertrektijd met een overstapmarge",
+      "level": 3,
+      "context": "reisplanning",
+      "representation": "timeline",
+      "equivalentTo": "reasoning.rich.C4.departure",
+      "family": "denk-rich.C4.departure"
+    },
+    {
+      "id": "rich.C4.transfer-moving-average",
+      "lesson": "C4",
+      "title": "De snelheid voor een resterende reistijd bepalen",
+      "level": 4,
+      "context": "tijdschema",
+      "representation": "text",
+      "equivalentTo": "C.speed.rate",
+      "family": "C-snelheid"
+    },
+    {
+      "id": "rich.C4.transfer-parallel-work",
+      "lesson": "C4",
+      "title": "De eindtijd van gelijktijdige processen bepalen",
+      "level": 3,
+      "context": "keukenplanning",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.C4.transfer-parallel-work"
+    },
+    {
       "id": "rich.C5.point-read",
       "lesson": "C5",
       "title": "Een coördinaat aflezen",
@@ -1729,6 +2397,36 @@
       "representation": "table",
       "equivalentTo": null,
       "family": "denk-rich.C5.manhattan"
+    },
+    {
+      "id": "rich.C5.transfer-exterior-angle",
+      "lesson": "C5",
+      "title": "Een buitenhoek van een driehoek afleiden",
+      "level": 3,
+      "context": "hoekconstructie",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.transfer-exterior-angle"
+    },
+    {
+      "id": "rich.C5.transfer-polygon-turn",
+      "lesson": "C5",
+      "title": "Het aantal zijden uit gelijke draaihoeken",
+      "level": 3,
+      "context": "tekenrobot",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.transfer-polygon-turn"
+    },
+    {
+      "id": "rich.C5.transfer-scale-area-inverse",
+      "lesson": "C5",
+      "title": "Een lengteschaal uit een oppervlaktefactor afleiden",
+      "level": 4,
+      "context": "gelijkvormige-figuren",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.C5.transfer-scale-area-inverse"
     },
     {
       "id": "rich.D1.bar-difference",
@@ -1831,6 +2529,26 @@
       "family": "denk-D.missing-bar"
     },
     {
+      "id": "rich.D1.transfer-rate-comparison",
+      "lesson": "D1",
+      "title": "Aantallen bij verschillende observatieduren vergelijken",
+      "level": 4,
+      "context": "telonderzoek",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D1.transfer-rate-comparison"
+    },
+    {
+      "id": "rich.D1.transfer-pie-angle",
+      "lesson": "D1",
+      "title": "Een aandeel uit de sectorhoek aflezen",
+      "level": 3,
+      "context": "cirkeldiagram",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D1.transfer-pie-angle"
+    },
+    {
       "id": "rich.D2.range",
       "lesson": "D2",
       "title": "Het verschil tussen maximum en minimum",
@@ -1929,6 +2647,46 @@
       "representation": "table",
       "equivalentTo": null,
       "family": "denk-rich.D2.mode"
+    },
+    {
+      "id": "rich.D2.transfer-removed-value",
+      "lesson": "D2",
+      "title": "Een verwijderd gegeven uit twee gemiddelden",
+      "level": 4,
+      "context": "meetserie",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.transfer-removed-value"
+    },
+    {
+      "id": "rich.D2.transfer-median-unknown",
+      "lesson": "D2",
+      "title": "Een ontbrekende waarde uit een gegeven mediaan",
+      "level": 3,
+      "context": "gesorteerde-metingen",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.transfer-median-unknown"
+    },
+    {
+      "id": "rich.D2.transfer-shift-spread",
+      "lesson": "D2",
+      "title": "Het effect van een vaste verschuiving op de spreidingsbreedte",
+      "level": 3,
+      "context": "sensorcorrectie",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D2.transfer-shift-spread"
+    },
+    {
+      "id": "rich.D2.transfer-frequency-median",
+      "lesson": "D2",
+      "title": "Een mediaan uit frequenties bepalen",
+      "level": 3,
+      "context": "klantbeoordelingen",
+      "representation": "table",
+      "equivalentTo": "reasoning.rich.D2.median",
+      "family": "denk-rich.D2.median"
     },
     {
       "id": "rich.D3.substitute",
@@ -2031,6 +2789,26 @@
       "family": "denk-rich.D3.two-inputs"
     },
     {
+      "id": "rich.D3.transfer-two-point-rule",
+      "lesson": "D3",
+      "title": "Een vast bedrag uit twee tariefmetingen afleiden",
+      "level": 4,
+      "context": "huurmodel",
+      "representation": "table",
+      "equivalentTo": null,
+      "family": "denk-rich.D3.transfer-two-point-rule"
+    },
+    {
+      "id": "rich.D3.transfer-formula-change",
+      "lesson": "D3",
+      "title": "Een invoerverandering uit een uitkomstverandering",
+      "level": 3,
+      "context": "procesmodel",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D3.transfer-formula-change"
+    },
+    {
       "id": "rich.D4.arithmetic-forward",
       "lesson": "D4",
       "title": "Een verder gelegen term van een rekenrij",
@@ -2129,6 +2907,26 @@
       "representation": "text",
       "equivalentTo": null,
       "family": "denk-rich.D4.grid-border"
+    },
+    {
+      "id": "rich.D4.transfer-arithmetic-sum",
+      "lesson": "D4",
+      "title": "Een totaal over een groeiend patroon bepalen",
+      "level": 4,
+      "context": "tribunebouw",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D4.transfer-arithmetic-sum"
+    },
+    {
+      "id": "rich.D4.transfer-geometric-inverse",
+      "lesson": "D4",
+      "title": "Een ontbrekende factor uit een groeipatroon afleiden",
+      "level": 3,
+      "context": "patroononderzoek",
+      "representation": "text",
+      "equivalentTo": null,
+      "family": "denk-rich.D4.transfer-geometric-inverse"
     }
   ]
 }

@@ -7,7 +7,7 @@ const report=runVariationExpression(c,`(()=>{
  Math.random=seededRandom(20102026);const errors=[],topics=[],examples=[];let checked=0,mutations=0;
  const ensure=(ok,msg)=>{if(!ok)throw new Error(msg)};
  for(const [lesson,[domain,topic]] of Object.entries(RICH_TOPICS)){
-  const specs=RICH_FAMILIES.filter(s=>s.lesson===lesson);ensure(specs.length===10,'Missing designs '+lesson);
+  const specs=RICH_FAMILIES.filter(s=>s.lesson===lesson);ensure(specs.length===10+{"A1": 11, "A2": 11, "A3": 10, "A4": 8, "B1": 2, "B2": 3, "B3": 4, "B4": 2, "B5": 2, "C1": 4, "C2": 4, "C3": 2, "C4": 3, "C5": 3, "D1": 2, "D2": 4, "D3": 2, "D4": 2}[lesson],'Missing designs '+lesson);
   const families=new Set(),legacy=new Set(),allKeys=new Set();
   for(const g of QUESTION_BANK[domain].filter(g=>g.topic===topic))for(const mode of g.modes)for(const level of g.levels)for(let sample=0;sample<35;sample++){
    const q=finalizeGeneratedQuestion(g.fn(level,mode),{domain,mode,requestedLevel:level,effectiveLevel:level,generator:g});
@@ -28,11 +28,26 @@ const report=runVariationExpression(c,`(()=>{
     ensure(checkResponse(q,q.type==='mc'?q.answer:q.allowFraction?q.answerDisplay:q.answer),spec.id+' answer rejected');checked++;
     const bad={...q,answer:q.type==='mc'?(q.answer+1)%4:q.answer+7};ensure(validateReasoningQuestion(bad).length>0,spec.id+' wrong answer accepted');mutations++;
     ensure(validateReasoningQuestion({...q,reasoningData:{...q.reasoningData,values:null}}).length>0||typeof spec.verify(null)==='string',spec.id+' invalid data accepted');
-    if(spec.equivalentTo){const canonical=spec.equivalentTo,definition=RUBRIC_VARIANTS[canonical];ensure(definition,spec.id+' unknown family link');ensure(q.family===definition.family||canonical.startsWith('reasoning.rich.'),spec.id+' cosmetic family counted independently');}
+    if(spec.equivalentTo){
+     let canonical=spec.equivalentTo;const seen=new Set();
+     while(canonical.startsWith('reasoning.rich.')&&REASONING_BY_ID.get(canonical.slice(10))?.equivalentTo){
+      ensure(!seen.has(canonical),spec.id+' cyclic family');seen.add(canonical);canonical=REASONING_BY_ID.get(canonical.slice(10)).equivalentTo;
+     }
+     const definition=RUBRIC_VARIANTS[canonical];ensure(definition,spec.id+' unknown family link');ensure(q.family===definition.family,spec.id+' cosmetic family counted independently');
+    }
     if(i===0&&mode===g.modes[0])examples.push({id:spec.id,lesson,title:spec.title,level,context:spec.context,representation:spec.representation,equivalentTo:spec.equivalentTo,family:q.family,prompt:q.prompt,visual:q.visual,answer:q.answerDisplay,explanation:q.explanation,data:q.reasoningData});
    }
   }
  }
+ // Exercise both extremes of every new generator's parameter ranges.
+ const savedRandom=Math.random;let boundaryChecks=0;
+ for(const spec of RICH_FAMILIES.filter(s=>s.release==='1.11.0'))for(const random of [()=>0,()=>.999999999]){
+  Math.random=random;const g=REASONING_GENERATORS.find(g=>g.design===spec.id),level=g.levels[0];
+  const q=finalizeGeneratedQuestion(g.fn(level,'non'),{domain:spec.domain,mode:'non',requestedLevel:level,effectiveLevel:level,generator:g});
+  ensure(!validateGeneratedQuestion(q).length,spec.id+' invalid parameter boundary');
+  ensure(checkResponse(q,q.type==='mc'?q.answer:q.allowFraction?q.answerDisplay:q.answer),spec.id+' rejected boundary answer');boundaryChecks++;
+ }
+ Math.random=savedRandom;
  // Focused sessions on every subject, repeated in the same browser across reloads.
  const sessions=[];
  for(const [lesson,[domain,topic]] of Object.entries(RICH_TOPICS)){
@@ -52,11 +67,11 @@ const report=runVariationExpression(c,`(()=>{
   ensure(repeatedNeighbours===0,lesson+' consecutive same approach');ensure(used.size>=6,lesson+' too few families in actual sessions');
   sessions.push({lesson,questions:36,families:used.size,contexts:contexts.size,representations:representations.size,consecutiveRepeats:repeatedNeighbours});
  }
- return {version:APP_VERSION,checked,mutations,topics,sessions,examples,targetReached:topics.every(t=>t.shortfall===0)};
+ return {version:APP_VERSION,checked,mutations,boundaryChecks,topics,sessions,examples,targetReached:topics.every(t=>t.shortfall===0)};
 })()`,480000);
 fs.mkdirSync('/tmp/pabo-rich-evidence',{recursive:true});
 fs.writeFileSync('/tmp/pabo-rich-evidence/report.json',JSON.stringify(report,null,2)+'\n');
 const catalog={schemaVersion:1,version:report.version,scope:'Conservatieve telling per deelonderwerp. Getal- en contextvarianten tellen niet apart; families in verschillende deelonderwerpen zijn niet optelbaar als wereldwijd unieke rekenstructuren.',targetPerTopic:81,targetReached:report.targetReached,topics:report.topics,designs:report.examples.map(({visual,prompt,explanation,answer,data,...metadata})=>metadata)};
 if(process.argv.includes('--write'))fs.writeFileSync('public/assets/data/pabo-variation-catalog.json',JSON.stringify(catalog,null,2)+'\n');
 else assert.deepEqual(JSON.parse(fs.readFileSync('public/assets/data/pabo-variation-catalog.json','utf8')),catalog,'Catalogus komt niet overeen met de bron; voer de bewuste schrijfcontrole uit.');
-console.log(JSON.stringify({version:report.version,checked:report.checked,mutations:report.mutations,topics:report.topics,sessions:report.sessions,targetReached:report.targetReached},null,2));
+console.log(JSON.stringify({version:report.version,checked:report.checked,mutations:report.mutations,boundaryChecks:report.boundaryChecks,topics:report.topics,sessions:report.sessions,targetReached:report.targetReached},null,2));
