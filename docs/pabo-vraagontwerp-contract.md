@@ -1,12 +1,12 @@
 # Pabo Rekenklaar: vraagontwerp en denkvariatie
 
-**Versie 1.10.0 — 20 oktober 2026 — Edwin van der Plas / Wisik**
+**Versie 1.11.0 — 21 oktober 2026 — Edwin van der Plas / Wisik**
 
 Doel: dezelfde wiskundige kennis vanuit verschillende kanten aanspreken, niet dezelfde som steeds anders aankleden.
 
 ## Ontwerpbron en uitbreiding
 
-`src/pabo/reasoning-designs.js` bewaart de 36 oorspronkelijke parameteriseerbare vraagontwerpen: 6 getalinzicht, 6 breuken vergelijken, 6 geheel/rest, 6 meten/meetkunde, 6 grafieken/tabellen en 6 formules. Daarnaast bevat `src/pabo/rich-designs.js` 180 aanvullende ontwerpen: tien per bestaand deelonderwerp. Een ontwerp is niet automatisch een onafhankelijke familie. Expliciete equivalentiekoppelingen voegen bekende rekenstructuren samen. Verschillende getallen tellen niet als extra ontwerpen. Tabellen, een getallenlijn, meetkundige schetsen en grafieken dragen rekeninformatie, geen decoratie.
+`src/pabo/reasoning-designs.js` bewaart de 36 oorspronkelijke parameteriseerbare vraagontwerpen: 6 getalinzicht, 6 breuken vergelijken, 6 geheel/rest, 6 meten/meetkunde, 6 grafieken/tabellen en 6 formules. Daarnaast bevat `src/pabo/rich-designs.js` 180 aanvullende ontwerpen: tien per bestaand deelonderwerp. Versie 1.11.0 voegt via `src/pabo/transfer-designs.js` 79 ontwerpen toe; zie de toelichting onderaan. Een ontwerp is niet automatisch een onafhankelijke familie. Expliciete equivalentiekoppelingen voegen bekende rekenstructuren samen. Verschillende getallen tellen niet als extra ontwerpen. Tabellen, een getallenlijn, meetkundige schetsen en grafieken dragen rekeninformatie, geen decoratie.
 
 De registratie heeft per ontwerp een leerdoel, rekenstructuur, denkhandeling, context, presentatie en een beargumenteerde rubric. De vraagzwaarte is een expertvoorspelling, **geen empirisch gekalibreerde moeilijkheid**. De nieuwe redeneringsvragen hebben voorspelde zwaarte 2–5; de bestaande directe basisvragen blijven staan. Niet elk onderdeel heeft op elke zwaarte evenveel verschillende ontwerpen.
 
@@ -50,3 +50,28 @@ Het streefgetal is 81 inhoudelijk verschillende families per deelonderwerp. Deze
 De bestaande 18 lessen, opslagnaam, XP, diagnostiek, flirts, toetsverdeling en Moshpit blijven behouden. De diagnostische herkenning wordt niet uitgebreid met ongevalideerde tekstregels. De 1.9.0-proef met andere toelichtingen is niet als basis gebruikt: de actuele productiebron 1.8.0 is de basis van 1.10.0.
 
 `npm run pabo:rich` controleert de catalogus, 29.000 gegenereerde instanties en evenveel foutmutaties, plus drie opeenvolgende reeksen per deelonderwerp met herladen en behoud van voortgang. Het streefgetal is geen automatische vrijgavevoorwaarde; correcte opgaven, expliciete tekorten en werkende regressiecontroles zijn dat wel. Niet toegelaten of nog niet ontworpen families worden niet fictief aangevuld om een doelgetal te bereiken.
+
+## Aanvulling 1.11.0 — 21 oktober 2026
+
+Deze kandidaat bouwt op de gepubliceerde 1.10.0 voort. `src/pabo/transfer-designs.js`
+voegt 79 ontwerpen toe, verspreid over alle 18 bestaande deelonderwerpen. De bank
+bevat daarmee 295 geregistreerde ontwerpen. De aantallen zijn geen telling van
+onafhankelijke families. Van 104 uitgewerkte kandidaten zijn er 25 verwijderd
+omdat zij te sterk overeenkwamen met aanwezige ontwerpen. Andere verwante
+ontwerpen hebben expliciete familiekoppelingen, ook wanneer de gevraagde
+onbekende of de presentatie verschilt.
+
+De uitbreiding bevat onder meer twee gelijktijdige afrondingsvoorwaarden,
+plaatswaarde reconstrueren na het verwijderen van een cijfer, twee
+restvoorwaarden, per artikel versus per totaal afronden, een exacte bestelling
+met een minimaal aantal verpakkingen, een balans, een gemiddelde vóór en na
+verwijderen, een mediaan met een onbekende waarde, een maximaal rechthoekig vlak
+bij vaste omtrek en de omtrek na een hoekuitsnijding. De bestaande
+selectievoorwaarden, opslag en diagnostische modellen veranderen niet.
+
+De catalogus toont de werkelijke aantallen en tekorten per onderwerp. Het doel
+van meer dan 80 onafhankelijke families **per** onderwerp blijft open. 79 is het
+aantal aanvullende ontwerpen over de hele release, niet per onderwerp. De
+gewone vrijgavecontroles, onafhankelijke antwoordherberekening en vier
+browseromgevingen blijven vereist. De nieuwe opgaven worden alleen aan de
+bestaande niet-hoofdrekenmodus toegevoegd; de korte Moshpit blijft ongewijzigd.

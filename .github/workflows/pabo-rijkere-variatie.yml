@@ -1,7 +1,7 @@
 name: Pabo rijke variatie vrijgave
 on:
   push:
-    branches: [feat/pabo-rich-variation-20261020]
+    branches: [feat/pabo-rich-variation-20261020, 'feat/pabo-family-expansion-*']
 permissions:
   contents: read
 concurrency:
@@ -30,7 +30,7 @@ jobs:
         run: |
           npm --prefix /tmp/wisik-pw install --no-audit --no-fund playwright@1.56.1
           /tmp/wisik-pw/node_modules/.bin/playwright install --with-deps chromium webkit
-      - name: Controleer alle 216 ontwerpen, mobiele weergave en behoud van voortgang
+      - name: Controleer alle geregistreerde ontwerpen, mobiele weergave en behoud van voortgang
         env:
           PLAYWRIGHT_MODULE: /tmp/wisik-pw/node_modules/playwright/index.mjs
         run: node scripts/check-pabo-reasoning-browser.mjs

@@ -14,7 +14,7 @@ function block(name,source,anchor){
   if(html.includes(start)){const a=html.indexOf(start),b=html.indexOf(end,a);if(b<0)throw new Error('Incomplete '+name);html=html.slice(0,a)+text+html.slice(b+end.length)}
   else once(anchor,`${text}\n${anchor}`);
 }
-block('REASONING DESIGNS',read('reasoning-designs.js')+'\n\n'+read('rich-designs.js'),'const RUBRIC_VARIANTS = Object.freeze({');
+block('REASONING DESIGNS',read('reasoning-designs.js')+'\n\n'+read('rich-designs.js')+'\n\n'+read('transfer-designs.js'),'const RUBRIC_VARIANTS = Object.freeze({');
 once('const RUBRIC_VARIANTS = Object.freeze({','const RUBRIC_VARIANTS = Object.freeze({\n  ...Object.fromEntries(REASONING_DESIGNS.map(s=>[`reasoning.${s.id}`,rubricVariant(`denk-${s.id}`,s.title,RUBRIC_DEMAND[s.demand],s.reason)])),');
 block('REASONING ENGINE',read('reasoning-engine.js'),'function almostEqual(a,b,tolerance=1e-9)');
 // Replace the old sort methods once. Their replacements live in the reviewed source module.
