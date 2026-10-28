@@ -46,3 +46,6 @@
 
 /apple-touch-icon.png
   Cache-Control: no-cache, max-age=0, must-revalidate
+
+/apps/meetkunde/*
+  Cache-Control: no-cache, max-age=0, must-revalidate
