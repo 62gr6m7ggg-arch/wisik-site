@@ -1,5 +1,5 @@
 // Eigen didactische toelichtingen bij de ongewijzigd meegeleverde VWO-bronnen.
-import {D_EXERCISES} from './content-d.js';
+import {D_EXERCISES} from './content-d.js?v=1.1.0';
 export const VERSION = '1.1.0';
 export const EXERCISES = [
 { id:'A1',group:1,title:'Het midden van een koorde',question:'14',points:3,source:'VWO wiskunde B · 2011 · tijdvak II · vraag 14',page:2,answerPage:12,figure:'chord',

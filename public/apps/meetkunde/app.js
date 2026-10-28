@@ -1,7 +1,7 @@
-import {VERSION,EXERCISES,IDS} from './content.js';
-import {REFERENCES} from './references.js';
-import {drawFigure} from './geometry.js';
-import {emptyState,loadState,saveState,validateState,mergeState} from './state.js';
+import {VERSION,EXERCISES,IDS} from './content.js?v=1.1.0';
+import {REFERENCES} from './references.js?v=1.1.0';
+import {drawFigure} from './geometry.js?v=1.1.0';
+import {emptyState,loadState,saveState,validateState,mergeState} from './state.js?v=1.1.0';
 const $=id=>document.getElementById(id),escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
 let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw Error('storage unavailable');},setItem(){throw Error('storage unavailable');}};}
 const loaded=loadState(storage);let state=loaded.state,readBlocked=!!loaded.error,current=null,angle=70;
