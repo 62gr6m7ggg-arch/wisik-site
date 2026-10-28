@@ -13,3 +13,7 @@ De meetkundecontrole toetst beide aantallen/puntentotalen, alle stellingverwijzi
 Alle tien eindfiguren visueel nagekeken. Browsercontrole richt zich op keuze, bewijsstappen, PDF- en werkbladverwijzingen, terugkeer uit het naslagwerk en smalle weergave. Een fysieke iPhone/Safari-test en vakdidactische gebruikerstest zijn niet uitgevoerd. De vervolgvragen zijn oefenkansen, geen gevalideerde beheersingsmeting; bewijzen worden niet automatisch beoordeeld.
 
 De koepelsite blijft 0.1.31. De onderdeelversie van het oefenatelier is 1.1.0.
+
+## Live-nacontrole: modulecache
+
+Een terugkerende browser laadde na de eerste publicatie nog content.js 1.0.0 naast de nieuwe appcode. Daarom dragen nu alle lokale imports in de browsermodulegraaf expliciet de onderdeelversie, inclusief de import van content.js vanuit state.js. De HTML verwijst naar een vernieuwde entry-URL. Een regressiecontrole bewaakt dit cachecontract. Alleen no-cache-headers zijn voor deze release niet voldoende gebleken.

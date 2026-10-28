@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import {EXERCISES,IDS} from '../public/apps/meetkunde/content.js';
+import {VERSION,EXERCISES,IDS} from '../public/apps/meetkunde/content.js';
 import {REFERENCES} from '../public/apps/meetkunde/references.js';
 import {model,drawFigure,dot,sub,norm,circum} from '../public/apps/meetkunde/geometry.js';
 import {validateState,mergeState,loadState,saveState,emptyState} from '../public/apps/meetkunde/state.js';
@@ -37,3 +37,6 @@ const both=mergeState(current,{schema:1,last:'D6b',exercises:{D6b:{notes:'eigen 
 const bridge=fs.readFileSync('public/apps/stoicheia/oefenbrug.js','utf8');for(const id of IDS)assert(bridge.includes("'"+id+"'"),'teruglink '+id);
 assert(!drawFigure('d-parallelBuild',0).includes('>B</text>'),'D5b antwoord niet zichtbaar bij start');assert(!drawFigure('d-mirrorBuild',0).includes('C₁'),'D3b constructie niet zichtbaar bij start');
 console.log('Meetkunde A en D: 21 deelvragen, 41 + 40 punten, stellingkoppelingen, exacte figuren, spiegelwet, 241 baanposities en behoud van voortgang gecontroleerd.');
+
+// Cachecontract: iedere import in de browsermodulegraaf draagt de onderdeelversie.
+for(const file of ['app.js','content.js','state.js']){const code=fs.readFileSync('public/apps/meetkunde/'+file,'utf8');for(const [,url] of code.matchAll(/from '(\.\/[^']+)'/g)){assert.equal(new URL(url,'https://wisik.nl/apps/meetkunde/').searchParams.get('v'),VERSION,'moduleversie '+file+' → '+url);assert(fs.existsSync('public/apps/meetkunde/'+url.split('?')[0]));}}
