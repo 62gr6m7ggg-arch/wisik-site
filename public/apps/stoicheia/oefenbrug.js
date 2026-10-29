@@ -1,6 +1,6 @@
 // Vaste interne route; de oorspronkelijke inhoud en volgorde blijven ongewijzigd.
 (()=>{
- const allowed=['A1','A2a','A2b','A3a','A3b','A4a','A4b','A5a','A5b','A6a','A6b','D1','D2a','D2b','D3a','D3b','D4','D5a','D5b','D6a','D6b'];
+ const allowed=['A1','A2a','A2b','A3a','A3b','A4a','A4b','A5a','A5b','A6a','A6b','C1a','C1b','C2a','C2b','C3a','C3b','C4a','C4b','C5a','C5b','C6','D1','D2a','D2b','D3a','D3b','D4','D5a','D5b','D6a','D6b'];
  const id=new URLSearchParams(location.search).get('oefening');
  if(!allowed.includes(id))return;
  const banner=document.createElement('div');banner.className='exercise-return';

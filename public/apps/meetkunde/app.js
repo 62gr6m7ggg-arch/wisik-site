@@ -1,7 +1,7 @@
-import {VERSION,EXERCISES,IDS} from './content.js?v=1.1.0';
-import {REFERENCES} from './references.js?v=1.1.0';
-import {drawFigure} from './geometry.js?v=1.1.0';
-import {emptyState,loadState,saveState,validateState,mergeState} from './state.js?v=1.1.0';
+import {VERSION,EXERCISES,IDS} from './content.js?v=1.2.0';
+import {REFERENCES} from './references.js?v=1.2.0';
+import {drawFigure} from './geometry.js?v=1.2.0';
+import {emptyState,loadState,saveState,validateState,mergeState} from './state.js?v=1.2.0';
 const $=id=>document.getElementById(id),escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
 let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw Error('storage unavailable');},setItem(){throw Error('storage unavailable');}};}
 const loaded=loadState(storage);let state=loaded.state,readBlocked=!!loaded.error,current=null,angle=70;
@@ -15,18 +15,18 @@ $('version').textContent=VERSION;
 const examQuestions=l=>EXERCISES.filter(e=>e.exam===l);
 const pdfPath=e=>`pdf/Meetkunde_1_Oefententamen_${e.exam}.pdf`;
 $('exam-list').innerHTML=['A','B','C','D'].map(l=>{const qs=examQuestions(l);return `<article><h3>Tentamen ${l}</h3><p class="small">${qs.length?`6 opgaven · ${qs.length} deelvragen<br>Hints en uitleg met figuren`:'Opgaven en uitwerkingen<br>Zelfstandig oefenen op papier'}</p>${qs.length?`<a class="button primary" href="#${qs[0].id}">Open oefenroute ${l}</a>`:''}<a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" target="_blank" rel="noopener">Open PDF ${l} ↗</a><a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" download>Download PDF ${l}</a></article>`;}).join('');
-$('exercise-select').innerHTML=['A','D'].map(l=>`<optgroup label="Tentamen ${l}">${examQuestions(l).map(e=>`<option value="${e.id}">${e.id} · ${escape(e.title)}</option>`).join('')}</optgroup>`).join('');
+$('exercise-select').innerHTML=['A','C','D'].map(l=>`<optgroup label="Tentamen ${l}">${examQuestions(l).map(e=>`<option value="${e.id}">${e.id} · ${escape(e.title)}</option>`).join('')}</optgroup>`).join('');
 function reflection(){const texts={begin:'Begin bij de denkvraag. Noteer eerst één gegeven waarmee je iets kunt afleiden.',onderbouwen:'Bekijk bij één bewijsstap welke stelling wordt gebruikt. Kun je uitleggen waarom de voorwaarden hier gelden?',uitwerken:'Vergelijk stap voor stap. Zoek de eerste plek waar jouw redenering afwijkt en werk vanaf daar verder.',anders:'Vergelijk de logische onderbouwing, niet alleen de vorm van het voorbeeld. Vraag een medestudent of docent mee te kijken als je twijfelt.',zelf:'Probeer de nieuwe korte oefenvraag zonder terug te kijken. Zo onderzoek je of je het inzicht opnieuw kunt gebruiken.'};$('reflection-feedback').textContent=texts[$('reflection').value]||'';}
 function renderStep(){if(!current)return;const e=entry(),n=Math.max(1,Math.min(current.steps.length,e.step||1));e.step=n;const visible=$('proof').open,nShown=visible?n:0;
  $('figure').innerHTML=drawFigure(current.figure,nShown,angle);$('figure-state').textContent=visible?`Uitleg · stap ${n} van ${current.steps.length}`:'Gegeven situatie';
  $('step-count').textContent=`${n} / ${current.steps.length}`;$('step-title').textContent=current.steps[n-1][0];$('step-text').textContent=current.steps[n-1][1];$('step-back').disabled=n===1;$('step-next').disabled=n===current.steps.length;
  $('alternative').hidden=!current.alternative||n!==current.steps.length;$('alternative').textContent=current.alternative||'';
- $('explore').hidden=!(visible&&n===current.steps.length&&['altitude','locus'].includes(current.figure));
+ $('explore').hidden=!(visible&&n===current.steps.length&&['altitude','locus','c-motion','c-motionMidpoint'].includes(current.figure));
  if($('figure-dialog').open){$('large-figure').innerHTML=$('figure').innerHTML;$('large-caption').textContent=visible?`${n}. ${current.steps[n-1][0]} — ${current.steps[n-1][1]}`:'Gegeven situatie. Open de redenering om hulplijnen en bewijsstappen te zien.';$('large-back').disabled=!visible||n===1;$('large-next').disabled=!visible||n===current.steps.length;}
 }
 function route(){const id=location.hash.slice(1);current=EXERCISES.find(e=>e.id===id)||null;$('home').hidden=!!current;$('exercise').hidden=!current;
  if(!current){$('resume').hidden=!state.last;if(state.last){$('resume').href='#'+state.last;$('resume').textContent='Verder met '+state.last+' →';}document.title='Duotent vlakke meetkunde · Wisik';feedbackContext();return;}
- state.last=current.id;const e=entry();angle=70;$('position').value='70';$('exercise-title').textContent=current.title;$('exercise-meta').textContent=`Tentamen ${current.exam} · opgave ${current.group} · VWO-vraag ${current.question} · ${current.points} punten`;$('source').textContent=current.source;document.title=current.title+' · Wisik meetkunde';$('given').textContent=current.given;$('task').textContent=current.task;$('hint-text').textContent=current.hint;$('notes').value=e.notes;$('exercise-select').value=current.id;$('reflection').value=e.reflection;reflection();
+ state.last=current.id;const e=entry(),moving=current.figure.startsWith('c-motion');angle=moving?35:70;$('position').min=moving?'0':'30';$('position').max=moving?'90':'150';$('position').value=String(angle);$('position-label').textContent=moving?'Onderzoek na de uitleg: schuif van B = D naar A = D':'Onderzoek na de uitleg: verplaats P binnen de toegestane boog';$('position-note').textContent=moving?'De driehoek behoudt zijn vorm en grootte. Bekijk ook de twee eindstanden.':'De ligging verandert; de cirkel en meetkundige voorwaarden blijven behouden.';$('exercise-title').textContent=current.title;$('exercise-meta').textContent=`Tentamen ${current.exam} · opgave ${current.group} · VWO-vraag ${current.question} · ${current.points} punten`;$('source').textContent=current.source;document.title=current.title+' · Wisik meetkunde';$('given').textContent=current.given;$('task').textContent=current.task;$('hint-text').textContent=current.hint;$('notes').value=e.notes;$('exercise-select').value=current.id;$('reflection').value=e.reflection;reflection();
  $('worksheet-link').hidden=!current.worksheetPage;$('worksheet-link').href=pdfPath(current)+'#page='+current.worksheetPage;
  $('source-link').href=pdfPath(current)+`#page=${current.page}`;$('answer-link').href=pdfPath(current)+`#page=${current.answerPage}`;
  $('reference-links').innerHTML=current.refs.map(n=>`<li><a href="/apps/stoicheia/?oefening=${current.id}#${REFERENCES[n].id}">${escape(REFERENCES[n].label)} · ${n}</a></li>`).join('');

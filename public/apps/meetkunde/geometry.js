@@ -7,6 +7,12 @@ export function intersect(a,b,c,d){const u=sub(b,a),v=sub(d,c),w=sub(c,a),cross=
 export const foot=(p,a,b)=>add(a,mul(sub(b,a),dot(sub(p,a),sub(b,a))/dot(sub(b,a),sub(b,a))));
 export function circum(a,b,c){const ab=mid(a,b),bc=mid(b,c),u=sub(b,a),v=sub(c,b);const o=intersect(ab,add(ab,[-u[1],u[0]]),bc,add(bc,[-v[1],v[0]]));return {o,r:norm(sub(o,a))};}
 export function model(key,angle=70){
+ if(key==='c-rectangle'||key==='c-triple'){const M=[0,0],A=polar(210),B=polar(340),C=polar(30),D=polar(160),u=sub(C,A),E=add(D,mul(u,-2*dot(D,u)/dot(u,u))),S=intersect(M,E,C,D);return {M,A,B,C,D,E,S};}
+ if(key.startsWith('c-bisectors')){const t=key==='c-bisectorsBuild'?-80:0,A=polar(210+t),B=polar(330+t),C=polar(135+t),P=polar(52.5+t),Q=polar(172.5+t),R=polar(270+t),S=intersect(A,P,B,Q),T=intersect(C,R,P,Q),U=intersect(A,P,Q,R),V=intersect(B,Q,P,R);return {A,B,C,P,Q,R,S,T,U,V};}
+ if(key.startsWith('c-radius')){const M=[0,0],A=polar(200),B=polar(340),C=polar(120),D=polar(270),E=mid(A,B),H=polar(240),v=sub(E,C),Z=add(C,mul(v,-2*dot(C,v)/dot(v,v)));return {M,A,B,C,D,E,H,Z};}
+ if(key.startsWith('c-tangent')){const O=[0,1],D=[0,0],B=add(O,polar(160)),C=add(O,polar(100)),A=intersect(B,C,[-4,0],[1,0]),u=add(mul(sub(C,A),1/norm(sub(C,A))),[1,0]),P=intersect(A,add(A,u),B,D),Q=intersect(A,add(A,u),C,D);return {O,A,B,C,D,P,Q,bounds:[A[0]-.3,-.3,1.3,2.3]};}
+ if(key.startsWith('c-motion')){const t=angle*Math.PI/180,D=[0,0],A=[0,2*Math.cos(t)],B=[2*Math.sin(t),0],C=[Math.sin(t)+Math.cos(t),Math.sin(t)+Math.cos(t)],M=mid(A,B),E=[3,0],F=[3,2.4],G=[0,2.4];return {A,B,C,D,M,E,F,G,bounds:[-1.2,-1.2,3.3,2.7]};}
+ if(key==='c-cyclic'){const O=[0,1],D=[0,0],E=add(O,polar(-10)),F=add(O,polar(110)),B=intersect(E,F,[-4,0],[3,0]),A=[-3,0],C=intersect(A,add(A,E),E,F),result=circum(A,D,F);return {O,A,B,C,D,E,F,result,bounds:[-3.4,Math.min(-.3,result.o[1]-result.r-.2),Math.max(1.3,B[0]+.3),Math.max(2.3,C[1]+.3,result.o[1]+result.r+.2)]};}
  if(key==='d-triangle'){const A=[0,0],B=[1,0],C=polar(70,1.5),E=polar(70),v=sub(C,B),D=add(B,mul(v,-2*dot(B,v)/dot(v,v)));return {A,B,C,D,E,bounds:[-1.2,-1.2,1.3,1.7]};}
  if(key.startsWith('d-equilateral')){const A=[-1.6,0],B=[0,0],C=[-.8,.8*Math.sqrt(3)],D=polar(260,1.3),E=polar(320,1.3),c1=circum(A,B,C),c2=circum(B,D,E),v=sub(E,A),S=add(A,mul(v,-2*dot(sub(A,c1.o),v)/dot(v,v)));return {A,B,C,D,E,S,c1,c2,bounds:[-1.9,-1.7,1.4,1.65]};}
  if(key==='d-mirror'){const A=polar(230),B=polar(310),S=polar(150),C=polar(90),u=mul(sub(C,S),1/norm(sub(C,S))),T=sub(S,mul(u,.25));return {A,B,S,C,T,u,bounds:[-1.35,-1.2,1.3,1.3]};}
@@ -41,6 +47,83 @@ export function drawFigure(key,step=0,angle=70){
  function angleMark(a,v,b,name='',c='accent',radius=24){a=xy(a);v=xy(v);b=xy(b);const t=Math.atan2(a[1]-v[1],a[0]-v[0]),z=Math.atan2(b[1]-v[1],b[0]-v[0]);let delta=(z-t+3*Math.PI)%(2*Math.PI)-Math.PI;const q=[v[0]+radius*Math.cos(t),v[1]+radius*Math.sin(t)],r=[v[0]+radius*Math.cos(t+delta),v[1]+radius*Math.sin(t+delta)];parts.push(`<path d="M${q} A${radius},${radius} 0 0 ${delta>0?1:0} ${r}" class="${c}"/>`);if(name)labels.push(`<text x="${v[0]+(radius+14)*Math.cos(t+delta/2)}" y="${v[1]+(radius+14)*Math.sin(t+delta/2)+5}" text-anchor="middle" class="angle-label">${name}</text>`);}
  function right(a,v,b){a=sub(a,v);b=sub(b,v);a=mul(a,.09/norm(a));b=mul(b,.09/norm(b));poly([add(v,a),add(add(v,a),b),add(v,b)],'accent',false);}
  function tick(a,b,count=1){const m=mid(a,b),u=sub(b,a),n=mul([-u[1],u[0]],.045/norm(u)),dir=mul(u,.045/norm(u));for(let j=0;j<count;j++){const c=add(m,mul(dir,j-(count-1)/2));line(sub(c,n),add(c,n),'accent');}}
+ if(key==='c-rectangle'||key==='c-triple'){
+  circle(p.M,1);poly([p.A,p.B,p.C,p.D]);line(p.A,p.C);for(const n of ['A','B','C','D','M'])point(n,p[n],n==='D'?-24:9,n==='A'||n==='B'||n==='M'?23:-12);
+  if(key==='c-rectangle'){
+   if(step>=1){right(p.A,p.B,p.C);right(p.A,p.D,p.C);}
+   if(step>=2){angleMark(p.B,p.A,p.C,'α');angleMark(p.A,p.C,p.D,'α');}
+   if(step>=3){line(p.A,p.D,'accent2');line(p.B,p.C,'accent2');}
+   if(step>=4){right(p.D,p.A,p.B);right(p.B,p.C,p.D);}
+  }else{
+   line(lerp(p.D,p.E,-.25),lerp(p.D,p.E,1.2));line(p.M,p.E);point('E',p.E,8,-14);point('S',p.S,-23,-10);point('l',lerp(p.D,p.E,1.2),8,-5);
+   if(step>=1){poly([p.D,p.S,p.E],'shade');angleMark(p.C,p.D,p.E,'α','accent',35);angleMark(p.D,p.E,p.M,'','accent2',28);angleMark(p.C,p.S,p.E,'','accent',25);}
+   if(step>=2){line(p.M,p.C,'accent2');angleMark(p.C,p.M,p.E,'','accent2',32);}
+   if(step>=3){angleMark(p.C,p.M,p.E,'2α','accent2',32);}
+   if(step>=4)angleMark(p.C,p.S,p.E,'3α','accent',30);
+  }
+ }else if(key.startsWith('c-bisectors')){
+  circle([0,0],1);
+  if(key==='c-bisectors'){
+   poly([p.A,p.B,p.C]);line(p.A,p.P);line(p.B,p.Q);line(p.C,p.P);line(p.C,p.Q);line(p.P,p.Q);for(const n of ['A','B','C','P','Q','S'])point(n,p[n],n==='Q'?-24:10,n==='S'?23:-12);
+   if(step>=1){angleMark(p.C,p.P,p.Q,'','accent',26);angleMark(p.S,p.P,p.Q,'','accent',34);angleMark(p.C,p.B,p.Q,'','accent',28);angleMark(p.Q,p.B,p.A,'','accent',36);}
+   if(step>=2){angleMark(p.C,p.Q,p.P,'','accent2',25);angleMark(p.S,p.Q,p.P,'','accent2',33);angleMark(p.C,p.A,p.P,'','accent2',28);angleMark(p.P,p.A,p.B,'','accent2',36);}
+   if(step>=3){poly([p.C,p.P,p.Q],'shade');poly([p.S,p.P,p.Q],'shade2');line(p.P,p.Q,'accent');}
+  }else{
+   for(const n of ['P','Q','R'])point(n,p[n],n==='R'?-25:10,-12);
+   if(step>=1){line(p.P,p.Q,'aux');line(p.R,p.C,'accent');point('C',p.C,10,-12);right(p.P,p.T,p.C);}
+   if(step>=2){line(p.Q,p.R,'aux');line(p.P,p.R,'aux');line(p.P,p.A,'accent');line(p.Q,p.B,'accent');point('A',p.A,-24,-10);point('B',p.B,10,24);right(p.Q,p.U,p.A);right(p.P,p.V,p.B);}
+   if(step>=3){poly([p.A,p.B,p.C],'accent');point('S',p.S,10,-12);}
+  }
+ }else if(key.startsWith('c-radius')){
+  circle(p.M,1);point('M',p.M,10,-12);point('D',p.D,-20,23);
+  if(key==='c-radius'){
+   poly([p.A,p.B,p.C]);line(p.M,p.D);line(p.C,p.D);for(const n of ['A','B','C','E'])point(n,p[n],n==='A'?-24:10,n==='E'?22:-12);right(p.M,p.E,p.B);
+   if(step>=1){tick(p.A,p.E);tick(p.E,p.B);}
+   if(step>=2)line(p.M,p.D,'accent');
+   if(step>=3){line(p.A,p.D,'aux');line(p.B,p.D,'aux');tick(p.A,p.D,2);tick(p.B,p.D,2);}
+   if(step>=4){angleMark(p.A,p.C,p.D,'','accent',28);angleMark(p.D,p.C,p.B,'','accent',36);line(p.C,p.D,'accent');}
+  }else{
+   point('H',p.H,-23,10);point('Z',p.Z,10,23);
+   if(step>=1){line(p.M,p.D,'aux');line(p.H,p.C,'aux');point('C',p.C,-22,-12);}
+   if(step>=2){line(p.C,p.Z,'aux');point('E',p.E,10,22);}
+   if(step>=3){line(p.A,p.B,'accent');point('A',p.A,-23,15);point('B',p.B,10,15);right(p.M,p.E,p.B);}
+   if(step>=4)poly([p.A,p.B,p.C],'accent');
+  }
+ }else if(key.startsWith('c-tangent')){
+  circle(p.O,1);line(p.A,[1.25,0]);line(p.A,p.C);line(p.B,p.D);line(p.C,p.D);for(const n of ['A','B','C','D'])point(n,p[n],n==='B'?-24:10,n==='A'||n==='D'?23:-12);
+  if(key==='c-tangent'){
+   if(step>=1){angleMark(p.A,p.D,p.B,'β','accent',32);angleMark(p.A,p.C,p.D,'β','accent',34);}
+   if(step>=2)angleMark(p.B,p.A,p.D,'α','accent2',34);
+   if(step>=3){poly([p.A,p.B,p.D],'shade');poly([p.A,p.D,p.C],'shade2');}
+  }else{
+   line(p.A,lerp(p.A,p.Q,1.15));point('P',p.P,-20,22);point('Q',p.Q,12,-8);
+   angleMark(p.C,p.A,p.Q,'','given',38);angleMark(p.Q,p.A,p.D,'','given',46);
+   if(step>=1){poly([p.A,p.P,p.D],'shade');angleMark(p.Q,p.P,p.D,'','accent',25);angleMark(p.A,p.D,p.B,'','accent',32);}
+   if(step>=2){poly([p.A,p.C,p.Q],'shade2');angleMark(p.P,p.Q,p.D,'','accent2',25);angleMark(p.A,p.C,p.D,'','accent2',28);}
+   if(step>=3){tick(p.D,p.P);tick(p.D,p.Q);}
+  }
+ }else if(key.startsWith('c-motion')){
+  poly([p.D,p.E,p.F,p.G]);poly([p.A,p.B,p.C]);for(const n of ['D','E','F','G','A','B','C'])point(n,p[n],n==='D'||n==='A'||n==='G'?-24:10,n==='D'||n==='B'||n==='E'?23:-12);right(p.A,p.C,p.B);tick(p.A,p.C);tick(p.B,p.C);
+  const interior=angle>0&&angle<90;
+  if(key==='c-motion'){
+   if(step>=1){circle(p.M,1,'aux');if(interior)right(p.B,p.D,p.A);}
+   if(step>=2){line(p.D,p.C,'aux');if(interior){angleMark(p.B,p.D,p.C,'45°','accent',32);angleMark(p.B,p.A,p.C,'45°','accent2',34);}}
+   if(step>=3){line(p.D,[1.65,1.65],'accent');}
+   if(step>=4)line([1,1],[Math.SQRT2,Math.SQRT2],'locus');
+  }else{
+   point('M',p.M,12,-12);tick(p.A,p.M,2);tick(p.M,p.B,2);
+   if(step>=1&&interior){poly([p.D,p.A,p.B],'shade');right(p.A,p.D,p.B);}
+   if(step>=2){circle(p.M,1,'aux');line(p.D,p.M,'aux');}
+   if(step>=3){line(p.D,p.M,'accent');circle(p.D,1,'aux');}
+   if(step>=4){poly(Array.from({length:91},(_,i)=>polar(i)),'locus',false);point('begin',[0,1],-58,5);point('eind',[1,0],-14,26);}
+  }
+ }else if(key==='c-cyclic'){
+  circle(p.O,1);poly([p.A,p.B,p.C]);line(p.D,p.E);line(p.D,p.F);for(const n of ['A','B','C','D','E','F'])point(n,p[n],n==='F'?-23:10,n==='D'||n==='A'||n==='B'?23:-12);
+  if(step>=1){line(p.A,p.C,'accent');line(p.D,p.E,'accent');angleMark(p.D,p.A,p.C,'α','accent',36);angleMark(p.B,p.D,p.E,'α','accent',30);}
+  if(step>=2)angleMark(p.D,p.F,p.E,'α','accent',28);
+  if(step>=3)angleMark(p.C,p.F,p.D,'','accent2',38);
+  if(step>=4){circle(p.result.o,p.result.r,'accent');poly([p.A,p.D,p.F,p.C],'shade');}
+ }else
  if(key==='d-triangle'){
   circle(p.A,1);poly([p.A,p.B,p.C]);line(p.D,p.E);for(const n of ['A','B','C','D','E'])point(n,p[n],n==='E'?-22:10,n==='A'?22:-10);angleMark(p.B,p.A,p.C,'α','given',34);
   if(step>=1){line(p.A,p.D,'aux');tick(p.A,p.B);tick(p.A,p.D);tick(p.A,p.E);}
