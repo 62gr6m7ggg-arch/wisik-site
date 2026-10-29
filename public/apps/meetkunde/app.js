@@ -1,7 +1,7 @@
-import {VERSION,EXERCISES,IDS} from './content.js?v=1.2.0';
-import {REFERENCES} from './references.js?v=1.2.0';
-import {drawFigure} from './geometry.js?v=1.2.0';
-import {emptyState,loadState,saveState,validateState,mergeState} from './state.js?v=1.2.0';
+import {VERSION,EXERCISES,IDS} from './content.js?v=1.3.0';
+import {REFERENCES} from './references.js?v=1.3.0';
+import {drawFigure} from './geometry.js?v=1.3.0';
+import {emptyState,loadState,saveState,validateState,mergeState} from './state.js?v=1.3.0';
 const $=id=>document.getElementById(id),escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
 let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw Error('storage unavailable');},setItem(){throw Error('storage unavailable');}};}
 const loaded=loadState(storage);let state=loaded.state,readBlocked=!!loaded.error,current=null,angle=70;
@@ -15,7 +15,7 @@ $('version').textContent=VERSION;
 const examQuestions=l=>EXERCISES.filter(e=>e.exam===l);
 const pdfPath=e=>`pdf/Meetkunde_1_Oefententamen_${e.exam}.pdf`;
 $('exam-list').innerHTML=['A','B','C','D'].map(l=>{const qs=examQuestions(l);return `<article><h3>Tentamen ${l}</h3><p class="small">${qs.length?`6 opgaven · ${qs.length} deelvragen<br>Hints en uitleg met figuren`:'Opgaven en uitwerkingen<br>Zelfstandig oefenen op papier'}</p>${qs.length?`<a class="button primary" href="#${qs[0].id}">Open oefenroute ${l}</a>`:''}<a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" target="_blank" rel="noopener">Open PDF ${l} ↗</a><a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" download>Download PDF ${l}</a></article>`;}).join('');
-$('exercise-select').innerHTML=['A','C','D'].map(l=>`<optgroup label="Tentamen ${l}">${examQuestions(l).map(e=>`<option value="${e.id}">${e.id} · ${escape(e.title)}</option>`).join('')}</optgroup>`).join('');
+$('exercise-select').innerHTML=['A','B','C','D'].map(l=>`<optgroup label="Tentamen ${l}">${examQuestions(l).map(e=>`<option value="${e.id}">${e.id} · ${escape(e.title)}</option>`).join('')}</optgroup>`).join('');
 function reflection(){const texts={begin:'Begin bij de denkvraag. Noteer eerst één gegeven waarmee je iets kunt afleiden.',onderbouwen:'Bekijk bij één bewijsstap welke stelling wordt gebruikt. Kun je uitleggen waarom de voorwaarden hier gelden?',uitwerken:'Vergelijk stap voor stap. Zoek de eerste plek waar jouw redenering afwijkt en werk vanaf daar verder.',anders:'Vergelijk de logische onderbouwing, niet alleen de vorm van het voorbeeld. Vraag een medestudent of docent mee te kijken als je twijfelt.',zelf:'Probeer de nieuwe korte oefenvraag zonder terug te kijken. Zo onderzoek je of je het inzicht opnieuw kunt gebruiken.'};$('reflection-feedback').textContent=texts[$('reflection').value]||'';}
 function renderStep(){if(!current)return;const e=entry(),n=Math.max(1,Math.min(current.steps.length,e.step||1));e.step=n;const visible=$('proof').open,nShown=visible?n:0;
  $('figure').innerHTML=drawFigure(current.figure,nShown,angle);$('figure-state').textContent=visible?`Uitleg · stap ${n} van ${current.steps.length}`:'Gegeven situatie';

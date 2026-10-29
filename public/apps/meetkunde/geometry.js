@@ -6,7 +6,23 @@ export const polar=(d,r=1)=>[r*Math.cos(d*Math.PI/180),r*Math.sin(d*Math.PI/180)
 export function intersect(a,b,c,d){const u=sub(b,a),v=sub(d,c),w=sub(c,a),cross=(p,q)=>p[0]*q[1]-p[1]*q[0];return add(a,mul(u,cross(w,v)/cross(u,v)));}
 export const foot=(p,a,b)=>add(a,mul(sub(b,a),dot(sub(p,a),sub(b,a))/dot(sub(b,a),sub(b,a))));
 export function circum(a,b,c){const ab=mid(a,b),bc=mid(b,c),u=sub(b,a),v=sub(c,b);const o=intersect(ab,add(ab,[-u[1],u[0]]),bc,add(bc,[-v[1],v[0]]));return {o,r:norm(sub(o,a))};}
+// Helpers for exact tangent circles and their known-point intersections.
+const diagramBounds=(points,circles=[])=>{const ps=[...points,...circles.flatMap(c=>[[c.o[0]-c.r,c.o[1]-c.r],[c.o[0]+c.r,c.o[1]+c.r]])];return [Math.min(...ps.map(p=>p[0]))-.25,Math.min(...ps.map(p=>p[1]))-.25,Math.max(...ps.map(p=>p[0]))+.25,Math.max(...ps.map(p=>p[1]))+.25];};
+const tangentCircle=(a,d,b)=>{const u=sub(b,a),n=[-u[1],u[0]],v=sub(d,a),o=add(a,mul(n,dot(v,v)/(2*dot(v,n))));return {o,r:norm(sub(o,a))};};
+const secondIntersection=(p,c1,c2)=>{const d=sub(c2.o,c1.o),v=[-d[1],d[0]];return add(p,mul(v,-2*dot(sub(p,c1.o),v)/dot(v,v)));};
 export function model(key,angle=70){
+ if(key==='b-trapezoid'){const A=polar(220),B=polar(20),C=polar(100),D=polar(140);return {A,B,C,D};}
+ if(key==='b-tangentBuild'||key==='b-twoCircles'){
+  const A=[-1.2,-.7],B=[1,-.7],C=[-.2,1],D=lerp(B,C,.55),original=circum(A,B,C),ca=tangentCircle(A,D,B),cb=tangentCircle(B,D,A),cc=tangentCircle(C,D,A),E=secondIntersection(A,original,ca),F=secondIntersection(D,cb,cc),H=mid(A,D);
+  return {A,B,C,D,E,F,H,O:ca.o,original,ca,cb,cc,bounds:diagramBounds([A,B,C],key==='b-tangentBuild'?[original,ca]:[cb,cc,original])};
+ }
+ if(key==='b-centroid'){const A=[-1,-1],B=[.8,-.5],D=[-1.5,.1],C=sub(add(B,D),A),E=sub(mul(C,2),A),S=mid(B,D),T=mid(D,E),U=mid(B,E);return {A,B,C,D,E,S,T,U,bounds:[-1.8,-1.3,1.9,2.5]};}
+ if(key==='b-diameter'||key==='b-diameterCircle'){const M=[0,0],A=[0,1],B=[0,-1],P=polar(-10),Q=polar(-55),Pi=intersect(A,P,B,[3,-1]),Qi=intersect(A,Q,B,[3,-1]),result=circum(P,Q,Pi);return {M,A,B,P,Q,Pi,Qi,result,bounds:diagramBounds([[2.25,-1]], [{o:M,r:1},result])};}
+ if(key==='b-incenter'){const M=[-.35,1.2],A=[-.9,-1.2],B=[2,-1.2],C=add(M,mul(sub(A,M),1/norm(sub(A,M)))),D=add(M,mul(sub(B,M),1/norm(sub(B,M)))),a=norm(sub(B,M)),b=norm(sub(A,M)),c=norm(sub(A,B)),E=mul(add(add(mul(A,a),mul(B,b)),mul(M,c)),1/(a+b+c));return {A,B,M,C,D,E,bounds:[-1.65,-1.5,2.3,2.5]};}
+ if(key.startsWith('b-equilateral')){
+  const build=key==='b-equilateralBuild',rot=v=>{const u=polar(build?-12:0);return [v[0]*u[0]-v[1]*u[1],v[0]*u[1]+v[1]*u[0]];},A=rot([.5,Math.sqrt(3)/2]),B=rot([0,0]),C=rot([1,0]),D=rot([1.6,0]),E=rot([1.8,.8*Math.sqrt(3)]),circle=circum(A,C,D),M=E,K=D,r=norm(sub(A,M)),m0=sub(M,mul(polar(-6),2.6)),m1=add(M,mul(polar(-6),.7)),k0=rot([-.5,0]),k1=rot([2.8,0]),l0=lerp(C,E,-.2),l1=lerp(C,E,1.3);
+  return {A,B,C,D,E,M,K,circle,r,m0,m1,k0,k1,l0,l1,bounds:diagramBounds([k0,k1,l0,l1,...(build?[m0,m1]:[])],build?[{o:A,r},{o:M,r}]:[circle])};
+ }
  if(key==='c-rectangle'||key==='c-triple'){const M=[0,0],A=polar(210),B=polar(340),C=polar(30),D=polar(160),u=sub(C,A),E=add(D,mul(u,-2*dot(D,u)/dot(u,u))),S=intersect(M,E,C,D);return {M,A,B,C,D,E,S};}
  if(key.startsWith('c-bisectors')){const t=key==='c-bisectorsBuild'?-80:0,A=polar(210+t),B=polar(330+t),C=polar(135+t),P=polar(52.5+t),Q=polar(172.5+t),R=polar(270+t),S=intersect(A,P,B,Q),T=intersect(C,R,P,Q),U=intersect(A,P,Q,R),V=intersect(B,Q,P,R);return {A,B,C,P,Q,R,S,T,U,V};}
  if(key.startsWith('c-radius')){const M=[0,0],A=polar(200),B=polar(340),C=polar(120),D=polar(270),E=mid(A,B),H=polar(240),v=sub(E,C),Z=add(C,mul(v,-2*dot(C,v)/dot(v,v)));return {M,A,B,C,D,E,H,Z};}
@@ -47,6 +63,68 @@ export function drawFigure(key,step=0,angle=70){
  function angleMark(a,v,b,name='',c='accent',radius=24){a=xy(a);v=xy(v);b=xy(b);const t=Math.atan2(a[1]-v[1],a[0]-v[0]),z=Math.atan2(b[1]-v[1],b[0]-v[0]);let delta=(z-t+3*Math.PI)%(2*Math.PI)-Math.PI;const q=[v[0]+radius*Math.cos(t),v[1]+radius*Math.sin(t)],r=[v[0]+radius*Math.cos(t+delta),v[1]+radius*Math.sin(t+delta)];parts.push(`<path d="M${q} A${radius},${radius} 0 0 ${delta>0?1:0} ${r}" class="${c}"/>`);if(name)labels.push(`<text x="${v[0]+(radius+14)*Math.cos(t+delta/2)}" y="${v[1]+(radius+14)*Math.sin(t+delta/2)+5}" text-anchor="middle" class="angle-label">${name}</text>`);}
  function right(a,v,b){a=sub(a,v);b=sub(b,v);a=mul(a,.09/norm(a));b=mul(b,.09/norm(b));poly([add(v,a),add(add(v,a),b),add(v,b)],'accent',false);}
  function tick(a,b,count=1){const m=mid(a,b),u=sub(b,a),n=mul([-u[1],u[0]],.045/norm(u)),dir=mul(u,.045/norm(u));for(let j=0;j<count;j++){const c=add(m,mul(dir,j-(count-1)/2));line(sub(c,n),add(c,n),'accent');}}
+ if(key==='b-trapezoid'){
+  circle([0,0],1);poly([p.A,p.B,p.C,p.D]);for(const n of ['A','B','C','D'])point(n,p[n],n==='D'?-24:10,n==='A'?23:-12);
+  if(step>=1){line(p.B,p.D,'aux');angleMark(p.A,p.B,p.D,'α');angleMark(p.C,p.D,p.B,'α');}
+  if(step>=2){poly(Array.from({length:81},(_,i)=>polar(140+i)),'locus',false);poly(Array.from({length:81},(_,i)=>polar(20+i)),'locus',false);}
+  if(step>=3){line(p.A,p.D,'accent');line(p.B,p.C,'accent');tick(p.A,p.D);tick(p.B,p.C);}
+ }else if(key==='b-tangentBuild'){
+  circle(p.original.o,p.original.r);poly([p.A,p.B,p.C]);point('A',p.A,-24,20);point('B',p.B,10,20);point('C',p.C,-18,-14);point('D',p.D,12,0);
+  if(step>=1){line(lerp(p.A,p.O,-.1),lerp(p.A,p.O,1.35),'aux');right(p.B,p.A,p.O);}
+  if(step>=2){line(p.A,p.D,'aux');line(lerp(p.H,p.O,-.45),lerp(p.H,p.O,1.35),'aux');point('O',p.O,-24,-12);right(p.D,p.H,p.O);tick(p.A,p.H);tick(p.H,p.D);}
+  if(step>=3){circle(p.O,p.ca.r,'accent');line(p.O,p.A,'aux');line(p.O,p.D,'aux');point('E',p.E,10,-12);}
+ }else if(key==='b-twoCircles'){
+  circle(p.cb.o,p.cb.r);circle(p.cc.o,p.cc.r);poly([p.A,p.B,p.C]);line(p.B,p.F);line(p.C,p.F);for(const n of ['A','B','C','D','F'])point(n,p[n],n==='D'?-24:10,n==='A'||n==='B'?23:-12);
+  if(step>=1){line(p.F,p.D,'aux');angleMark(p.A,p.B,p.D,'','accent',30);angleMark(p.B,p.F,p.D,'','accent',30);angleMark(p.A,p.C,p.D,'','accent2',22);angleMark(p.C,p.F,p.D,'','accent2',22);}
+  if(step>=2)poly([p.B,p.F,p.C],'shade');
+  if(step>=3)angleMark(p.B,p.A,p.C,'','accent',30);
+  if(step>=4){circle(p.original.o,p.original.r,'accent');poly([p.A,p.B,p.F,p.C],'shade2');}
+ }else if(key==='b-centroid'){
+  poly([p.A,p.B,p.C,p.D]);line(p.A,p.E);tick(p.A,p.C,2);tick(p.C,p.E,2);for(const n of ['A','B','C','D','E'])point(n,p[n],n==='D'?-24:10,n==='A'?23:-12);
+  if(step>=1){line(p.B,p.D,'aux');point('S',p.S,-24,10);tick(p.D,p.S);tick(p.S,p.B);}
+  if(step>=2){poly([p.D,p.B,p.E],'shade');line(p.S,p.E,'accent');}
+  if(step>=3){tick(p.A,p.S,3);tick(p.S,p.C,3);line(p.E,p.C,'accent2');}
+  if(step>=4){line(p.B,p.T,'aux');line(p.D,p.U,'aux');point('T',p.T,-24,-8);point('U',p.U,10,-8);tick(p.D,p.T);tick(p.T,p.E);tick(p.B,p.U,2);tick(p.U,p.E,2);}
+ }else if(key.startsWith('b-diameter')){
+  circle(p.M,1);line(p.A,p.B);line([-.6,-1],[2.25,-1]);line(p.A,p.Pi);line(p.A,p.Qi);for(const n of ['A','B','M','P','Q'])point(n,p[n],n==='A'||n==='B'||n==='M'||n==='Q'?-24:10,n==='Q'?-4:n==='B'?23:-12);point('P′',p.Pi,9,23);point('Q′',p.Qi,-8,23);point('k',[2.25,-1],7,-10);
+  if(key==='b-diameter'){
+   if(step>=1)right(p.A,p.B,p.Pi);
+   if(step>=2){angleMark(p.B,p.A,p.P,'α','accent',40);angleMark(p.A,p.Pi,p.B,'','accent2',28);}
+   if(step>=3){line(p.B,p.P,'aux');right(p.A,p.P,p.B);}
+   if(step>=4){angleMark(p.A,p.B,p.P,'β','accent2',30);angleMark(p.A,p.Pi,p.B,'β','accent2',28);}
+  }else{
+   if(step>=1){line(p.P,p.Q,'aux');angleMark(p.P,p.Q,p.Qi,'','accent2',26);angleMark(p.A,p.Q,p.P,'','accent',22);}
+   if(step>=2){line(p.B,p.P,'aux');angleMark(p.A,p.B,p.P,'','accent',24);}
+   if(step>=3)angleMark(p.P,p.Pi,p.Qi,'','accent',26);
+   if(step>=4){circle(p.result.o,p.result.r,'accent');poly([p.P,p.Q,p.Qi,p.Pi],'shade');}
+  }
+ }else if(key==='b-incenter'){
+  circle(p.M,1);poly([p.A,p.B,p.M]);line(p.A,p.E);line(p.B,p.E);line(p.C,p.E);line(p.D,p.E);for(const n of ['A','B','C','D','M','E'])point(n,p[n],n==='C'?-24:10,n==='E'?23:-12);angleMark(p.B,p.A,p.E,'','given',30);angleMark(p.E,p.A,p.M,'','given',38);angleMark(p.A,p.B,p.E,'','given',30);angleMark(p.E,p.B,p.M,'','given',38);
+  if(step>=1)line(p.M,p.E,'aux');
+  if(step>=2){angleMark(p.C,p.M,p.E,'α','accent',28);angleMark(p.E,p.M,p.D,'α','accent',36);}
+  if(step>=3){tick(p.M,p.C);tick(p.M,p.D);line(p.M,p.E,'accent2');}
+  if(step>=4){poly([p.C,p.M,p.E],'shade');poly([p.D,p.M,p.E],'shade2');line(p.C,p.E,'accent');line(p.D,p.E,'accent');tick(p.C,p.E,2);tick(p.D,p.E,2);}
+ }else if(key.startsWith('b-equilateral')){
+  const build=key==='b-equilateralBuild';poly([p.A,p.B,p.C]);line(p.k0,p.k1);for(const n of ['A','B','C'])point(n,p[n],n==='A'?-24:8,n==='B'||n==='C'?23:-12);
+  if(build){line(p.m0,p.m1);point('k',p.k0,-18,0);point('m',p.m0,-20,-8);
+   if(step>=1){line(p.l0,p.l1,'aux');point('l',p.l1,8,-8);}
+   if(step>=2){point('M',p.M,10,-12);line(p.A,p.M,'aux');}
+   if(step>=3){circle(p.A,p.r,'aux');circle(p.M,p.r,'aux');point('K',p.K,10,23);line(p.A,p.K,'accent');line(p.M,p.K,'accent');}
+   if(step>=4){poly([p.A,p.K,p.M],'shade');tick(p.A,p.K);tick(p.K,p.M);tick(p.M,p.A);}
+  }else{
+   line(p.l0,p.l1);point('l',p.l1,8,-8);poly([p.A,p.D,p.E]);point('D',p.D,10,23);point('E',p.E,10,-12);angleMark(p.A,p.E,p.D,'60°','given',32);
+   if(key==='b-equilateral'){
+    if(step>=1){angleMark(p.A,p.C,p.B,'60°','accent',25);angleMark(p.A,p.C,p.D,'120°','accent2',35);}
+    if(step>=2)poly([p.A,p.C,p.D,p.E],'shade');
+    if(step>=3)circle(p.circle.o,p.circle.r,'accent');
+   }else{
+    if(step>=1)circle(p.circle.o,p.circle.r,'aux');
+    if(step>=2){angleMark(p.D,p.A,p.E,'','accent',30);angleMark(p.D,p.C,p.E,'','accent',30);}
+    if(step>=3){angleMark(p.D,p.C,p.E,'60°','accent',30);angleMark(p.D,p.B,p.A,'60°','accent2',28);}
+    if(step>=4){angleMark(p.A,p.D,p.E,'60°','accent',30);tick(p.A,p.D);tick(p.D,p.E);tick(p.E,p.A);}
+   }
+  }
+ }else
  if(key==='c-rectangle'||key==='c-triple'){
   circle(p.M,1);poly([p.A,p.B,p.C,p.D]);line(p.A,p.C);for(const n of ['A','B','C','D','M'])point(n,p[n],n==='D'?-24:9,n==='A'||n==='B'||n==='M'?23:-12);
   if(key==='c-rectangle'){
