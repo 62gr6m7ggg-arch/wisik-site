@@ -1,7 +1,7 @@
-import {VERSION,EXERCISES,IDS} from './content.js?v=1.3.0';
-import {REFERENCES} from './references.js?v=1.3.0';
-import {drawFigure} from './geometry.js?v=1.3.0';
-import {emptyState,loadState,saveState,validateState,mergeState} from './state.js?v=1.3.0';
+import {VERSION,EXERCISES,IDS} from './content.js?v=1.3.1';
+import {REFERENCES} from './references.js?v=1.3.1';
+import {drawFigure} from './geometry.js?v=1.3.1';
+import {emptyState,loadState,saveState,validateState,mergeState} from './state.js?v=1.3.1';
 const $=id=>document.getElementById(id),escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
 let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw Error('storage unavailable');},setItem(){throw Error('storage unavailable');}};}
 const loaded=loadState(storage);let state=loaded.state,readBlocked=!!loaded.error,current=null,angle=70;
@@ -12,6 +12,7 @@ function persist(){const ok=!readBlocked&&saveState(storage,state);$('save-state
 function feedbackContext(){const u=new URL('/kladblok/',location.origin);u.searchParams.set('bron',location.href);u.searchParams.set('product','Duotent vlakke meetkunde');u.searchParams.set('productversie',VERSION);u.searchParams.set('onderdeel',current?`${current.id} · ${current.title}`:'Overzicht');$('feedback').href=u.pathname+u.search;}
 document.querySelector('.skip').addEventListener('click',event=>{event.preventDefault();$('main').focus();$('main').scrollIntoView();});
 $('version').textContent=VERSION;
+const taskHeadings={proof:'Te bewijzen',construction:'Te construeren',other:'Gevraagd'};
 const examQuestions=l=>EXERCISES.filter(e=>e.exam===l);
 const pdfPath=e=>`pdf/Meetkunde_1_Oefententamen_${e.exam}.pdf`;
 $('exam-list').innerHTML=['A','B','C','D'].map(l=>{const qs=examQuestions(l);return `<article><h3>Tentamen ${l}</h3><p class="small">${qs.length?`6 opgaven · ${qs.length} deelvragen<br>Hints en uitleg met figuren`:'Opgaven en uitwerkingen<br>Zelfstandig oefenen op papier'}</p>${qs.length?`<a class="button primary" href="#${qs[0].id}">Open oefenroute ${l}</a>`:''}<a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" target="_blank" rel="noopener">Open PDF ${l} ↗</a><a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" download>Download PDF ${l}</a></article>`;}).join('');
@@ -26,7 +27,7 @@ function renderStep(){if(!current)return;const e=entry(),n=Math.max(1,Math.min(c
 }
 function route(){const id=location.hash.slice(1);current=EXERCISES.find(e=>e.id===id)||null;$('home').hidden=!!current;$('exercise').hidden=!current;
  if(!current){$('resume').hidden=!state.last;if(state.last){$('resume').href='#'+state.last;$('resume').textContent='Verder met '+state.last+' →';}document.title='Duotent vlakke meetkunde · Wisik';feedbackContext();return;}
- state.last=current.id;const e=entry(),moving=current.figure.startsWith('c-motion');angle=moving?35:70;$('position').min=moving?'0':'30';$('position').max=moving?'90':'150';$('position').value=String(angle);$('position-label').textContent=moving?'Onderzoek na de uitleg: schuif van B = D naar A = D':'Onderzoek na de uitleg: verplaats P binnen de toegestane boog';$('position-note').textContent=moving?'De driehoek behoudt zijn vorm en grootte. Bekijk ook de twee eindstanden.':'De ligging verandert; de cirkel en meetkundige voorwaarden blijven behouden.';$('exercise-title').textContent=current.title;$('exercise-meta').textContent=`Tentamen ${current.exam} · opgave ${current.group} · VWO-vraag ${current.question} · ${current.points} punten`;$('source').textContent=current.source;document.title=current.title+' · Wisik meetkunde';$('given').textContent=current.given;$('task').textContent=current.task;$('hint-text').textContent=current.hint;$('notes').value=e.notes;$('exercise-select').value=current.id;$('reflection').value=e.reflection;reflection();
+ state.last=current.id;const e=entry(),moving=current.figure.startsWith('c-motion');angle=moving?35:70;$('position').min=moving?'0':'30';$('position').max=moving?'90':'150';$('position').value=String(angle);$('position-label').textContent=moving?'Onderzoek na de uitleg: schuif van B = D naar A = D':'Onderzoek na de uitleg: verplaats P binnen de toegestane boog';$('position-note').textContent=moving?'De driehoek behoudt zijn vorm en grootte. Bekijk ook de twee eindstanden.':'De ligging verandert; de cirkel en meetkundige voorwaarden blijven behouden.';$('exercise-title').textContent=current.title;$('exercise-meta').textContent=`Tentamen ${current.exam} · opgave ${current.group} · VWO-vraag ${current.question} · ${current.points} punten`;$('source').textContent=current.source;document.title=current.title+' · Wisik meetkunde';$('given').textContent=current.given;$('task-heading').textContent=taskHeadings[current.taskType]||'Gevraagd';$('task').textContent=current.task;$('notes').placeholder=`Gegeven — ${$('task-heading').textContent.toLowerCase()} — mijn aanpak… Je kunt ook op papier werken.`;$('hint-text').textContent=current.hint;$('notes').value=e.notes;$('exercise-select').value=current.id;$('reflection').value=e.reflection;reflection();
  $('worksheet-link').hidden=!current.worksheetPage;$('worksheet-link').href=pdfPath(current)+'#page='+current.worksheetPage;
  $('source-link').href=pdfPath(current)+`#page=${current.page}`;$('answer-link').href=pdfPath(current)+`#page=${current.answerPage}`;
  $('reference-links').innerHTML=current.refs.map(n=>`<li><a href="/apps/stoicheia/?oefening=${current.id}#${REFERENCES[n].id}">${escape(REFERENCES[n].label)} · ${n}</a></li>`).join('');
