@@ -1,8 +1,9 @@
-// Eigen didactische toelichtingen bij de ongewijzigd meegeleverde VWO-bronnen.
-import {D_EXERCISES} from './content-d.js?v=1.3.1';
-import {C_EXERCISES} from './content-c.js?v=1.3.1';
-import {B_EXERCISES} from './content-b.js?v=1.3.1';
-export const VERSION = '1.3.1';
+// A–D: didactische toelichtingen bij VWO-bronnen; E: het eigen Wisik-oefententamen.
+import {E_EXERCISES} from './content-e.js?v=1.4.0';
+import {D_EXERCISES} from './content-d.js?v=1.4.0';
+import {C_EXERCISES} from './content-c.js?v=1.4.0';
+import {B_EXERCISES} from './content-b.js?v=1.4.0';
+export const VERSION = '1.4.0';
 export const EXERCISES = [
 { id:'A1',taskType:'proof',group:1,title:'Het midden van een koorde',question:'14',points:3,source:'VWO wiskunde B · 2011 · tijdvak II · vraag 14',page:2,answerPage:12,figure:'chord',
  given:'Een cirkel heeft middelpunt M. C ligt binnen de cirkel en is niet M. Koorde PQ gaat door C, maar niet door M. S is het midden van PQ.',task:'Bewijs dat S op de cirkel met middellijn MC ligt.',
@@ -70,5 +71,7 @@ export const EXERCISES = [
  steps:[['Gebruik de eerste cirkel','∠ADB = ∠ACB, want beide zijn omtrekshoeken op koorde AB in de oorspronkelijke cirkel.'],['Gebruik de tweede cirkel','∠EDF = ∠ECF, want beide zijn omtrekshoeken op koorde EF in de cirkel door C, D, E en F.'],['Tel overeenkomstige hoeken op','Omdat DB op DE ligt en CA op CF, geldt ∠ADF = ∠ADB + ∠EDF = ∠ACB + ∠ECF = ∠BCE.']],
  rubric:['Gelijke omtrekshoeken op AB onderbouwd (1).','Gelijke omtrekshoeken op EF onderbouwd (1).','De juiste hoeken opgeteld tot de gevraagde gelijkheid (1).'],
  check:'Je weet dat α = γ en β = δ. Waarom volgt α + β = γ + δ, en wat moet je in een meetkundig bewijs daarnaast laten zien?',checkAnswer:'Gelijke getallen mag je optellen. Je moet ook aangeven dat deze deelhoeken samen precies de gevraagde hoeken vormen, zonder overlap of ontbrekend stuk.'}
-].map(e=>({...e,exam:'A',worksheetPage:e.group===2?9:e.group===4?10:undefined})).concat(B_EXERCISES,C_EXERCISES,D_EXERCISES);
+].map(e=>({...e,exam:'A',worksheetPage:e.group===2?9:e.group===4?10:undefined})).concat(B_EXERCISES,C_EXERCISES,D_EXERCISES,E_EXERCISES);
 export const IDS=EXERCISES.map(e=>e.id);
+
+export const EXAMS=[...new Set(EXERCISES.map(e=>e.exam))];

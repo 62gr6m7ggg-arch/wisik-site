@@ -1,4 +1,4 @@
-import {IDS} from './content.js?v=1.3.1';
+import {IDS} from './content.js?v=1.4.0';
 export const STORAGE_KEY='wisik-meetkunde-oefenen-v1';
 const statuses=['','begin','onderbouwen','uitwerken','anders','zelf'];
 const cleanText=v=>typeof v==='string'?v.slice(0,20000):'';

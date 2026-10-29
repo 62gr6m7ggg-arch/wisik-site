@@ -1,3 +1,4 @@
+import {eModel,drawEFigure} from './geometry-e.js?v=1.4.0';
 // Analytisch geconstrueerde figuren: geen benaderde relaties uit plaatjes.
 export const add=(a,b)=>[a[0]+b[0],a[1]+b[1]], sub=(a,b)=>[a[0]-b[0],a[1]-b[1]], mul=(a,k)=>[a[0]*k,a[1]*k];
 export const dot=(a,b)=>a[0]*b[0]+a[1]*b[1], norm=a=>Math.hypot(...a), mid=(a,b)=>mul(add(a,b),.5);
@@ -11,6 +12,7 @@ const diagramBounds=(points,circles=[])=>{const ps=[...points,...circles.flatMap
 const tangentCircle=(a,d,b)=>{const u=sub(b,a),n=[-u[1],u[0]],v=sub(d,a),o=add(a,mul(n,dot(v,v)/(2*dot(v,n))));return {o,r:norm(sub(o,a))};};
 const secondIntersection=(p,c1,c2)=>{const d=sub(c2.o,c1.o),v=[-d[1],d[0]];return add(p,mul(v,-2*dot(sub(p,c1.o),v)/dot(v,v)));};
 export function model(key,angle=70){
+ if(key.startsWith('e-'))return eModel(key);
  if(key==='b-trapezoid'){const A=polar(220),B=polar(20),C=polar(100),D=polar(140);return {A,B,C,D};}
  if(key==='b-tangentBuild'||key==='b-twoCircles'){
   const A=[-1.2,-.7],B=[1,-.7],C=[-.2,1],D=lerp(B,C,.55),original=circum(A,B,C),ca=tangentCircle(A,D,B),cb=tangentCircle(B,D,A),cc=tangentCircle(C,D,A),E=secondIntersection(A,original,ca),F=secondIntersection(D,cb,cc),H=mid(A,D);
@@ -46,6 +48,7 @@ export function model(key,angle=70){
 }
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
 export function drawFigure(key,step=0,angle=70){
+ if(key.startsWith('e-'))return drawEFigure(key,step);
  const p=model(key,angle),parts=[],labels=[],pointLabels=new Map();let bounds=[-1.4,-1.4,1.4,1.4];
  if(key.startsWith('geo'))bounds=[-3.4,-3,3,2.3];
  if(key.startsWith('para'))bounds=[-1.15,-2.15,1.55,1.95];
