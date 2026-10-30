@@ -1,4 +1,8 @@
-import {eModel,drawEFigure} from './geometry-e.js?v=1.4.0';
+import {eModel,drawEFigure} from './geometry-e.js?v=1.5.0';
+import {A_FIGURE_BASES,enrichAModel,drawAVariant} from './figures-a.js?v=1.5.0';
+import {B_FIGURE_BASES,enrichBModel,drawBVariant} from './figures-b.js?v=1.5.0';
+import {C_FIGURE_BASES,enrichCModel,drawCVariant} from './figures-c.js?v=1.5.0';
+import {D_FIGURE_BASES,enrichDModel,drawDVariant} from './figures-d.js?v=1.5.0';
 // Analytisch geconstrueerde figuren: geen benaderde relaties uit plaatjes.
 export const add=(a,b)=>[a[0]+b[0],a[1]+b[1]], sub=(a,b)=>[a[0]-b[0],a[1]-b[1]], mul=(a,k)=>[a[0]*k,a[1]*k];
 export const dot=(a,b)=>a[0]*b[0]+a[1]*b[1], norm=a=>Math.hypot(...a), mid=(a,b)=>mul(add(a,b),.5);
@@ -11,7 +15,10 @@ export function circum(a,b,c){const ab=mid(a,b),bc=mid(b,c),u=sub(b,a),v=sub(c,b
 const diagramBounds=(points,circles=[])=>{const ps=[...points,...circles.flatMap(c=>[[c.o[0]-c.r,c.o[1]-c.r],[c.o[0]+c.r,c.o[1]+c.r]])];return [Math.min(...ps.map(p=>p[0]))-.25,Math.min(...ps.map(p=>p[1]))-.25,Math.max(...ps.map(p=>p[0]))+.25,Math.max(...ps.map(p=>p[1]))+.25];};
 const tangentCircle=(a,d,b)=>{const u=sub(b,a),n=[-u[1],u[0]],v=sub(d,a),o=add(a,mul(n,dot(v,v)/(2*dot(v,n))));return {o,r:norm(sub(o,a))};};
 const secondIntersection=(p,c1,c2)=>{const d=sub(c2.o,c1.o),v=[-d[1],d[0]];return add(p,mul(v,-2*dot(sub(p,c1.o),v)/dot(v,v)));};
+const figureBases={...A_FIGURE_BASES,...B_FIGURE_BASES,...C_FIGURE_BASES,...D_FIGURE_BASES};
+const math={add,sub,mul,dot,norm,mid,lerp,polar,intersect,foot,circum,diagramBounds};
 export function model(key,angle=70){
+ if(figureBases[key]){let p=model(figureBases[key],angle);for(const enrich of [enrichAModel,enrichBModel,enrichCModel,enrichDModel])p=enrich(key,p,math);return p;}
  if(key.startsWith('e-'))return eModel(key);
  if(key==='b-trapezoid'){const A=polar(220),B=polar(20),C=polar(100),D=polar(140);return {A,B,C,D};}
  if(key==='b-tangentBuild'||key==='b-twoCircles'){
@@ -63,10 +70,11 @@ export function drawFigure(key,step=0,angle=70){
  function poly(ps,c='given',closed=true){parts.push(`<${closed?'polygon':'polyline'} points="${ps.map(a=>xy(a).join(',')).join(' ')}" ${attrs(c)}/>`);}
  function circle(o,r,c='circle'){o=xy(o);parts.push(`<circle cx="${o[0]}" cy="${o[1]}" r="${r*scale}" ${attrs(c)}/>`);}
  function point(name,a,dx=10,dy=-10){const k=a.map(v=>v.toFixed(7)).join();if(pointLabels.has(k)){const previous=pointLabels.get(k);labels[previous.index]=labels[previous.index].replace(`>${esc(previous.name)}</text>`,`>${esc(previous.name+"="+name)}</text>`);previous.name+="="+name;return;}pointLabels.set(k,{index:labels.length,name});a=xy(a);labels.push(`<circle cx="${a[0]}" cy="${a[1]}" r="3" class="point"/><text x="${a[0]+dx}" y="${a[1]+dy}" class="point-label">${esc(name)}</text>`);}
- function angleMark(a,v,b,name='',c='accent',radius=24){a=xy(a);v=xy(v);b=xy(b);const t=Math.atan2(a[1]-v[1],a[0]-v[0]),z=Math.atan2(b[1]-v[1],b[0]-v[0]);let delta=(z-t+3*Math.PI)%(2*Math.PI)-Math.PI;const q=[v[0]+radius*Math.cos(t),v[1]+radius*Math.sin(t)],r=[v[0]+radius*Math.cos(t+delta),v[1]+radius*Math.sin(t+delta)];parts.push(`<path d="M${q} A${radius},${radius} 0 0 ${delta>0?1:0} ${r}" class="${c}"/>`);if(name)labels.push(`<text x="${v[0]+(radius+14)*Math.cos(t+delta/2)}" y="${v[1]+(radius+14)*Math.sin(t+delta/2)+5}" text-anchor="middle" class="angle-label">${name}</text>`);}
- function right(a,v,b){a=sub(a,v);b=sub(b,v);a=mul(a,.09/norm(a));b=mul(b,.09/norm(b));poly([add(v,a),add(add(v,a),b),add(v,b)],'accent',false);}
- function tick(a,b,count=1){const m=mid(a,b),u=sub(b,a),n=mul([-u[1],u[0]],.045/norm(u)),dir=mul(u,.045/norm(u));for(let j=0;j<count;j++){const c=add(m,mul(dir,j-(count-1)/2));line(sub(c,n),add(c,n),'accent');}}
- if(key==='b-trapezoid'){
+ function angleMark(a,v,b,name='',c='accent',radius=24){if(norm(sub(a,v))<1e-10||norm(sub(b,v))<1e-10)return;a=xy(a);v=xy(v);b=xy(b);const t=Math.atan2(a[1]-v[1],a[0]-v[0]),z=Math.atan2(b[1]-v[1],b[0]-v[0]);let delta=(z-t+3*Math.PI)%(2*Math.PI)-Math.PI;const q=[v[0]+radius*Math.cos(t),v[1]+radius*Math.sin(t)],r=[v[0]+radius*Math.cos(t+delta),v[1]+radius*Math.sin(t+delta)];parts.push(`<path d="M${q} A${radius},${radius} 0 0 ${delta>0?1:0} ${r}" class="${c}"/>`);if(name)labels.push(`<text x="${v[0]+(radius+14)*Math.cos(t+delta/2)}" y="${v[1]+(radius+14)*Math.sin(t+delta/2)+5}" text-anchor="middle" class="angle-label">${name}</text>`);}
+ function right(a,v,b){a=sub(a,v);b=sub(b,v);if(norm(a)<1e-10||norm(b)<1e-10)return;a=mul(a,.09/norm(a));b=mul(b,.09/norm(b));poly([add(v,a),add(add(v,a),b),add(v,b)],'accent',false);}
+ function tick(a,b,count=1){const m=mid(a,b),u=sub(b,a);if(norm(u)<1e-10)return;const n=mul([-u[1],u[0]],.045/norm(u)),dir=mul(u,.045/norm(u));for(let j=0;j<count;j++){const c=add(m,mul(dir,j-(count-1)/2));line(sub(c,n),add(c,n),'accent');}}
+ const g={...math,line,poly,circle,point,angleMark,right,tick};
+ if([drawAVariant,drawBVariant,drawCVariant,drawDVariant].some(draw=>draw(key,step,p,g))){}else if(key==='b-trapezoid'){
   circle([0,0],1);poly([p.A,p.B,p.C,p.D]);for(const n of ['A','B','C','D'])point(n,p[n],n==='D'?-24:10,n==='A'?23:-12);
   if(step>=1){line(p.B,p.D,'aux');angleMark(p.A,p.B,p.D,'α');angleMark(p.C,p.D,p.B,'α');}
   if(step>=2){poly(Array.from({length:81},(_,i)=>polar(140+i)),'locus',false);poly(Array.from({length:81},(_,i)=>polar(20+i)),'locus',false);}

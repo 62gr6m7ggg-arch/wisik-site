@@ -5,6 +5,7 @@ import {VERSION,EXERCISES,IDS,EXAMS} from '../public/apps/meetkunde/content.js';
 import {REFERENCES} from '../public/apps/meetkunde/references.js';
 import {model,drawFigure,dot,sub,norm,circum} from '../public/apps/meetkunde/geometry.js';
 import {validateState,mergeState,loadState,saveState,emptyState} from '../public/apps/meetkunde/state.js';
+import {methodsFor} from '../public/apps/meetkunde/solutions.js';
 const eq=(a,b,label)=>assert(Math.abs(a-b)<1e-8,label+': '+a+' vs '+b);
 assert.equal(EXERCISES.length,50);assert.equal(new Set(IDS).size,50);assert.deepEqual(EXAMS,['A','B','C','D','E']);
 for(const [exam,count,points] of [['A',11,41],['B',10,42],['C',11,43],['D',10,40],['E',8,40]]){const qs=EXERCISES.filter(e=>e.exam===exam);assert.equal(qs.length,count);assert.equal(qs.reduce((s,e)=>s+e.points,0),points);}
@@ -80,3 +81,49 @@ p=model('e-cyclic');for(const n of ['P','Q','R','S'])on(p[n],{o:p.M,r:3},'E5 geg
 for(const key of ['e-power','e-twoSecants']){p=model(key);for(const n of ['A','B','C','D','E'])eq(norm(p[n]),3,'E6 punt op cirkel');eq(dot(p.A,sub(p.T,p.A)),0,'E6 raaklijn TA');for(const [u,v] of [['B','C'],['D','E']]){eq(cross(sub(p[u],p.T),sub(p[v],p.T)),0,'E6 snijlijn');assert(norm(sub(p.T,p[u]))<norm(sub(p.T,p[v])),'E6 juiste volgorde');eq(angleDeg(p.T,p.A,p[u]),angleDeg(p.T,p[v],p.A),'E6 raaklijn-koordehoek');eq(norm(sub(p.T,p.A))**2,norm(sub(p.T,p[u]))*norm(sub(p.T,p[v])),'E6 productrelatie');}}
 const five=mergeState(four,{schema:1,last:'E3',exercises:{E3:{notes:'eigen plaatsconstructie E',step:4,proof:true}}});for(const [id,note] of [['A1','eigen werk'],['B2a','eigen constructie B'],['C3b','eigen constructie C'],['D6b','eigen bewijs D'],['E3','eigen plaatsconstructie E']])assert.equal(five.exercises[id].notes,note);assert.equal(five.last,'E3');assert.equal(five.exercises.E3.step,4);
 console.log('Meetkunde A–E: 50 deelvragen; 41/42/43/40/40 punten; bronmapping, exacte figuren, raaklijnen, constructies, boogselectie, cacheversies en behoud van voortgang gecontroleerd.');
+
+// Aantallen onafhankelijk geteld in de officiële correctievoorschriften (PDF A–D).
+const officialCounts={
+ A1:2,A2a:1,A2b:2,A3a:1,A3b:1,A4a:2,A4b:1,A5a:1,A5b:1,A6a:1,A6b:1,
+ B1:2,B2a:1,B2b:1,B3:3,B4a:3,B4b:1,B5:1,B6a:1,B6b:2,B6c:2,
+ C1a:2,C1b:1,C2a:1,C2b:2,C3a:4,C3b:1,C4a:2,C4b:3,C5a:3,C5b:1,C6:2,
+ D1:3,D2a:1,D2b:2,D3a:2,D3b:2,D4:1,D5a:2,D5b:2,D6a:1,D6b:3
+};
+assert.equal(Object.keys(officialCounts).length,42);
+assert.equal(Object.values(officialCounts).reduce((a,b)=>a+b,0),72);
+for(const e of EXERCISES){
+ const methods=methodsFor(e);
+ if(e.exam==='E'){assert.equal(e.methods,undefined,'E behoudt de bestaande uitwerking');continue;}
+ assert.equal(methods.length,officialCounts[e.id],e.id+' aantal officiële methoden');
+ assert.equal(new Set(methods.map(m=>m.title)).size,methods.length,e.id+' onderscheidbare methoden');
+ for(const [i,m] of methods.entries()){
+  assert(m.title&&m.steps.length>0&&m.steps.length<=10&&m.rubric.length,e.id+' volledige methode '+i);
+  assert.equal(m.rubric.reduce((sum,s)=>sum+Number(s.match(/\((\d+)(?: punt|\))/)?.[1]||0),0),e.points,e.id+' punten methode '+i);
+  if(m.figurePlan)assert.equal(m.figurePlan.length,m.steps.length,e.id+' figuurstappen');
+  for(let step=0;step<=m.steps.length;step++){
+   const svg=drawFigure(m.figure,step===0?0:m.figurePlan?.[step-1]??step);
+   assert(svg.startsWith('<svg')&&!/NaN|Infinity|undefined/.test(svg),e.id+' geldige methodefiguur '+i+'/'+step);
+  }
+ }
+}
+const legacyMethods=validateState({schema:1,last:'D5b',exercises:{D5b:{notes:'bestaande constructie',proof:true,step:2},C4b:{step:3,proof:true}}});
+assert.equal(legacyMethods.exercises.D5b.method,1,'bestaande cirkelconstructie blijft gekozen');
+assert.equal(legacyMethods.exercises.C4b.method,1,'bestaande buitenhoekenroute blijft gekozen');
+assert.equal(legacyMethods.exercises.D5b.notes,'bestaande constructie');
+const methodState=validateState({schema:1,last:'D1',exercises:{D1:{notes:'eigen bewijs',method:2,step:2,methodSteps:[4,1,2],proof:true}}});
+assert.equal(methodState.exercises.D1.method,2);assert.deepEqual(methodState.exercises.D1.methodSteps,[4,1,2]);
+assert(saveState(store,methodState));assert.deepEqual(loadState(store).state,methodState,'gekozen methode en stap blijven bewaard');
+assert.equal(validateState({schema:1,exercises:{D1:{method:999,step:1}}}).exercises.D1.method,0,'onbekende methode wordt veilig teruggezet');
+for(const e of EXERCISES.filter(e=>e.figure==='c-motion'))for(const m of e.methods)for(const a of [0,35,45,55,90])for(let s=0;s<=m.steps.length;s++)assert(!/NaN|Infinity|undefined/.test(drawFigure(m.figure,s,a)),m.figure+' grensstand '+a);
+for(const file of fs.readdirSync('public/apps/meetkunde').filter(f=>f.endsWith('.js'))){const code=fs.readFileSync('public/apps/meetkunde/'+file,'utf8');for(const [,url] of code.matchAll(/from '(\.\/[^']+)'/g))assert.equal(new URL(url,'https://wisik.nl/apps/meetkunde/').searchParams.get('v'),VERSION,'volledige modulegraaf '+file);}
+console.log('Correctievoorschriften A–D: 72 methoden bij 42 deelvragen, correcte puntentotalen, alle figuurstappen en behoud van gekozen methode gecontroleerd.');
+
+// Nieuwe hulppunten en alternatieve constructies onafhankelijk narekenen.
+p=model('d-triangle-inscribed');eq(norm(p.F),1,'D1 hulppunt F op oorspronkelijke cirkel');eq(angleDeg(p.B,p.F,p.E),angleDeg(p.B,p.A,p.E)/2,'D1 omtrekshoek is halve middelpuntshoek');eq(angleDeg(p.B,p.F,p.E)+angleDeg(p.E,p.D,p.B),180,'D1 juiste overstaande hoeken');assert(!drawFigure('d-triangle-inscribed',0).includes('>F</text>'));
+p=model('b-equilateral-build-other');eq(cross(sub(p.M,p.m0),sub(p.m1,p.m0)),0,'B6c tweede M op m');eq(cross(sub(p.K,p.k0),sub(p.k1,p.k0)),0,'B6c tweede K op k');eq(norm(sub(p.A,p.K)),norm(sub(p.K,p.M)),'B6c tweede AK KM');eq(norm(sub(p.A,p.K)),norm(sub(p.A,p.M)),'B6c tweede AK AM');
+for(const n of ['M','K'])assert(!drawFigure('b-equilateral-build-other',0).includes('>'+n+'</text>'));
+p=model('c-bisectors-reflection');eq(dot(sub(p.C,p.T),sub(p.Q,p.P)),0,'C2b spiegelas loodrecht');eq(norm(sub(p.C,p.T)),norm(sub(p.S,p.T)),'C2b gelijke spiegelafstanden');eq(cross(sub(p.S,p.P),sub(p.A,p.P)),0,'C2b PS vindt A');eq(cross(sub(p.S,p.Q),sub(p.B,p.Q)),0,'C2b QS vindt B');
+p=model('c-tangent-extension');eq(cross(sub(p.E,p.D),sub(p.D,p.A)),0,'C4a E op verlengde raaklijn');eq(angleDeg(p.D,p.B,p.C),angleDeg(p.E,p.D,p.C),'C4a koorde-raaklijnhoek');
+for(let a=0;a<=90;a+=.5){p=model('c-motion-distances',a);eq(dot(sub(p.C,p.Cp),sub(p.B,p.D)),0,'C5a voetpunt BD');eq(dot(sub(p.C,p.Cpp),sub(p.A,p.D)),0,'C5a voetpunt AD');eq(norm(sub(p.C,p.Cp)),norm(sub(p.C,p.Cpp)),'C5a gelijke loodrechte afstanden');}
+p=model('d-parallel-exterior');eq(angleDeg(p.C,p.A,p.R),angleDeg(p.A,p.R,p.L),'D5a juiste richting raaklijn');
+for(let s=0;s<=2;s++)assert(!drawFigure('d-parallel-angleBuild',s).includes('>B</text>'),'D5b hoekconstructie verbergt B tot slot');assert(drawFigure('d-parallel-angleBuild',3).includes('>B</text>'));
