@@ -1,8 +1,8 @@
-import {eModel,drawEFigure} from './geometry-e.js?v=1.5.0';
-import {A_FIGURE_BASES,enrichAModel,drawAVariant} from './figures-a.js?v=1.5.0';
-import {B_FIGURE_BASES,enrichBModel,drawBVariant} from './figures-b.js?v=1.5.0';
-import {C_FIGURE_BASES,enrichCModel,drawCVariant} from './figures-c.js?v=1.5.0';
-import {D_FIGURE_BASES,enrichDModel,drawDVariant} from './figures-d.js?v=1.5.0';
+import {eModel,drawEFigure} from './geometry-e.js?v=1.5.1';
+import {A_FIGURE_BASES,enrichAModel,drawAVariant} from './figures-a.js?v=1.5.1';
+import {B_FIGURE_BASES,enrichBModel,drawBVariant} from './figures-b.js?v=1.5.1';
+import {C_FIGURE_BASES,enrichCModel,drawCVariant} from './figures-c.js?v=1.5.1';
+import {D_FIGURE_BASES,enrichDModel,drawDVariant} from './figures-d.js?v=1.5.1';
 // Analytisch geconstrueerde figuren: geen benaderde relaties uit plaatjes.
 export const add=(a,b)=>[a[0]+b[0],a[1]+b[1]], sub=(a,b)=>[a[0]-b[0],a[1]-b[1]], mul=(a,k)=>[a[0]*k,a[1]*k];
 export const dot=(a,b)=>a[0]*b[0]+a[1]*b[1], norm=a=>Math.hypot(...a), mid=(a,b)=>mul(add(a,b),.5);

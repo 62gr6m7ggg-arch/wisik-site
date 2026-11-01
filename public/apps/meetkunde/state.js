@@ -1,4 +1,4 @@
-import {IDS,EXERCISES} from './content.js?v=1.5.0';
+import {IDS,EXERCISES} from './content.js?v=1.5.1';
 export const STORAGE_KEY='wisik-meetkunde-oefenen-v1';
 const statuses=['','begin','onderbouwen','uitwerken','anders','zelf'];
 const cleanText=v=>typeof v==='string'?v.slice(0,20000):'';

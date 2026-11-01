@@ -1,10 +1,10 @@
 // A–D: didactische toelichtingen bij VWO-bronnen; E: het eigen Wisik-oefententamen.
-import {withOfficialMethods} from './solutions.js?v=1.5.0';
-import {E_EXERCISES} from './content-e.js?v=1.5.0';
-import {D_EXERCISES} from './content-d.js?v=1.5.0';
-import {C_EXERCISES} from './content-c.js?v=1.5.0';
-import {B_EXERCISES} from './content-b.js?v=1.5.0';
-export const VERSION = '1.5.0';
+import {withOfficialMethods} from './solutions.js?v=1.5.1';
+import {E_EXERCISES} from './content-e.js?v=1.5.1';
+import {D_EXERCISES} from './content-d.js?v=1.5.1';
+import {C_EXERCISES} from './content-c.js?v=1.5.1';
+import {B_EXERCISES} from './content-b.js?v=1.5.1';
+export const VERSION = '1.5.1';
 export const EXERCISES = [
 { id:'A1',taskType:'proof',group:1,title:'Het midden van een koorde',question:'14',points:3,source:'VWO wiskunde B · 2011 · tijdvak II · vraag 14',page:2,answerPage:12,figure:'chord',
  given:'Een cirkel heeft middelpunt M. C ligt binnen de cirkel en is niet M. Koorde PQ gaat door C, maar niet door M. S is het midden van PQ.',task:'Bewijs dat S op de cirkel met middellijn MC ligt.',

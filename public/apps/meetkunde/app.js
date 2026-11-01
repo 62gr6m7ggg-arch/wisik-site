@@ -1,8 +1,8 @@
-import {VERSION,EXERCISES,IDS,EXAMS} from './content.js?v=1.5.0';
-import {REFERENCES} from './references.js?v=1.5.0';
-import {drawFigure} from './geometry.js?v=1.5.0';
-import {emptyState,loadState,saveState,validateState,mergeState} from './state.js?v=1.5.0';
-import {methodsFor} from './solutions.js?v=1.5.0';
+import {VERSION,EXERCISES,IDS,EXAMS} from './content.js?v=1.5.1';
+import {REFERENCES} from './references.js?v=1.5.1';
+import {drawFigure} from './geometry.js?v=1.5.1';
+import {emptyState,loadState,saveState,validateState,mergeState} from './state.js?v=1.5.1';
+import {methodsFor} from './solutions.js?v=1.5.1';
 const $=id=>document.getElementById(id),escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
 let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw Error('storage unavailable');},setItem(){throw Error('storage unavailable');}};}
 const loaded=loadState(storage);let state=loaded.state,readBlocked=!!loaded.error,current=null,angle=70;
@@ -17,7 +17,7 @@ $('version').textContent=VERSION;
 const taskHeadings={proof:'Te bewijzen',construction:'Te construeren',other:'Gevraagd'};
 const examQuestions=l=>EXERCISES.filter(e=>e.exam===l);
 const pdfPath=e=>`pdf/Meetkunde_1_Oefententamen_${e.exam}.pdf`;
-$('exam-list').innerHTML=EXAMS.map(l=>{const qs=examQuestions(l);return `<article><h3>Tentamen ${l}</h3><p class="small">${qs.length?`6 opgaven · ${qs.length} deelvragen<br>Hints en uitleg met figuren${l==='E'?'<br>120 minuten · 40 punten<br>Wisikoefententamen in HAN-stijl':''}`:'Opgaven en uitwerkingen<br>Zelfstandig oefenen op papier'}</p>${qs.length?`<a class="button primary" href="#${qs[0].id}">Open oefenroute ${l}</a>`:''}<a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" target="_blank" rel="noopener">Open PDF ${l} ↗</a><a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" download>Download PDF ${l}</a>${l==='E'?'<a href="pdf/Meetkunde_1_Oefententamen_E_Opgaven.pdf" target="_blank" rel="noopener">Alleen opgaven en stellingen ↗</a><a href="pdf/Meetkunde_1_Oefententamen_E_Uitwerkingen.pdf" target="_blank" rel="noopener">Alleen uitwerkingen ↗</a>':''}</article>`;}).join('');
+$('exam-list').innerHTML=EXAMS.map(l=>{const qs=examQuestions(l);return `<article aria-labelledby="exam-${l}"><h3 id="exam-${l}">Tentamen ${l}</h3><p class="small">${qs.length?`6 opgaven · ${qs.length} deelvragen<br>Hints en uitleg met figuren${l==='E'?'<br>120 minuten · 40 punten<br>Wisikoefententamen in HAN-stijl':''}`:'Opgaven en uitwerkingen<br>Zelfstandig oefenen op papier'}</p>${qs.length?`<a class="button primary" href="#${qs[0].id}" aria-label="Begin met oefenen met tentamen ${l}">Begin met oefenen</a>`:''}<a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" target="_blank" rel="noopener">Open PDF ${l} ↗</a><a href="pdf/Meetkunde_1_Oefententamen_${l}.pdf" download>Download PDF ${l}</a>${l==='E'?'<a href="pdf/Meetkunde_1_Oefententamen_E_Opgaven.pdf" target="_blank" rel="noopener">Alleen opgaven en stellingen ↗</a><a href="pdf/Meetkunde_1_Oefententamen_E_Uitwerkingen.pdf" target="_blank" rel="noopener">Alleen uitwerkingen ↗</a>':''}</article>`;}).join('');
 $('exercise-select').innerHTML=EXAMS.map(l=>`<optgroup label="Tentamen ${l}">${examQuestions(l).map(e=>`<option value="${e.id}">${e.id} · ${escape(e.title)}</option>`).join('')}</optgroup>`).join('');
 function reflection(){const texts={begin:'Begin bij de denkvraag. Noteer eerst één gegeven waarmee je iets kunt afleiden.',onderbouwen:'Bekijk bij één bewijsstap welke stelling wordt gebruikt. Kun je uitleggen waarom de voorwaarden hier gelden?',uitwerken:'Vergelijk stap voor stap. Zoek de eerste plek waar jouw redenering afwijkt en werk vanaf daar verder.',anders:'Vergelijk de logische onderbouwing, niet alleen de vorm van het voorbeeld. Vraag een medestudent of docent mee te kijken als je twijfelt.',zelf:'Probeer de nieuwe korte oefenvraag zonder terug te kijken. Zo onderzoek je of je het inzicht opnieuw kunt gebruiken.'};$('reflection-feedback').textContent=texts[$('reflection').value]||'';}
 function renderStep(){if(!current)return;const e=entry(),m=method(),n=Math.max(1,Math.min(m.steps.length,e.step||1));e.step=n;e.methodSteps??=[];e.methodSteps[e.method||0]=n;const visible=$('proof').open,nShown=visible?(m.figurePlan?.[n-1]??n):0,multiple=methodsFor(current).length>1;
