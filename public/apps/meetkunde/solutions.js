@@ -1,7 +1,7 @@
-import {A_VARIANTS} from './variants-a.js?v=1.5.0';
-import {B_VARIANTS} from './variants-b.js?v=1.5.0';
-import {C_VARIANTS} from './variants-c.js?v=1.5.0';
-import {D_VARIANTS} from './variants-d.js?v=1.5.0';
+import {A_VARIANTS} from './variants-a.js?v=1.5.1';
+import {B_VARIANTS} from './variants-b.js?v=1.5.1';
+import {C_VARIANTS} from './variants-c.js?v=1.5.1';
+import {D_VARIANTS} from './variants-d.js?v=1.5.1';
 
 const official={...A_VARIANTS,...B_VARIANTS,...C_VARIANTS,...D_VARIANTS};
 // Deze opmerkingen betroffen inmiddels volledig opgenomen officiële varianten.
