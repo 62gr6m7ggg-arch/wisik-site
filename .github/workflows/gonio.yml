@@ -30,6 +30,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -44,6 +46,16 @@ jobs:
           python -m playwright install --with-deps chromium webkit
       - name: Test Chromium en WebKit op mobiel en desktop
         run: python tests/gonio-browser.py
+      - name: Controleer bestaande live tent bij uitsluitend testwijzigingen
+        if: github.event_name == 'pull_request'
+        env:
+          GONIO_BASE: https://wisik.nl
+        run: |
+          if git diff --quiet HEAD^ HEAD -- public/; then
+            python tests/gonio-browser.py
+          else
+            echo "Publieke bestanden wijzigen; livecontrole volgt na de normale publicatie op main."
+          fi
       - name: Controleer normale Cloudflare-publicatie en live bediening
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
