@@ -7,31 +7,46 @@ import os
 from pathlib import Path
 import threading
 import time
+import urllib.error
 import urllib.request
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parents[1]
 PATH='/rafelrand/sinus-s-en-de-geit/'
-OUT=ROOT/'test-artifacts'/'gonio'
+IS_LIVE=bool(os.environ.get('GONIO_BASE'))
+OUT=ROOT/'test-artifacts'/'gonio'/('live' if IS_LIVE else 'local')
 OUT.mkdir(parents=True,exist_ok=True)
 base=os.environ.get('GONIO_BASE','http://127.0.0.1:8765').rstrip('/')
 server=None
-if not os.environ.get('GONIO_BASE'):
+if not IS_LIVE:
     handler=functools.partial(http.server.SimpleHTTPRequestHandler,directory=str(ROOT/'public'))
     server=http.server.ThreadingHTTPServer(('127.0.0.1',8765),handler)
     threading.Thread(target=server.serve_forever,daemon=True).start()
 else:
     expected=hashlib.sha256((ROOT/'public'/PATH.strip('/')/'index.html').read_bytes()).hexdigest()
+    # Follow the established Wisik live-check convention: honest service identity,
+    # uncompressed bytes and the canonical route. No browser impersonation or security change.
+    headers={'User-Agent':'Wisik-Gonio-publicatiecontrole/0.1.0','Accept-Encoding':'identity','Cache-Control':'no-cache'}
     for attempt in range(30):
         try:
-            req=urllib.request.Request(base+PATH+'?release='+os.getenv('GITHUB_SHA','verify'),headers={'Cache-Control':'no-cache'})
+            req=urllib.request.Request(base+PATH,headers=headers)
             with urllib.request.urlopen(req,timeout=20) as response:
                 live=response.read()
-            if hashlib.sha256(live).hexdigest()==expected:
+                actual=hashlib.sha256(live).hexdigest()
+                evidence={'url':response.url,'status':response.status,'content_type':response.headers.get('Content-Type'),'expected_sha256':expected,'received_sha256':actual,'bytes':len(live)}
+            (OUT/'source-identity.json').write_text(json.dumps(evidence,indent=2))
+            if actual==expected:
                 print('Production HTML matches the tested commit exactly.',flush=True)
                 break
-        except Exception as error:
+            print('Page is reachable but its source does not yet match the tested commit.',flush=True)
+        except urllib.error.HTTPError as error:
+            evidence={'url':error.url,'status':error.code,'server':error.headers.get('Server'),'cf_ray':error.headers.get('CF-Ray'),'reason':str(error)}
+            (OUT/'probe-error.json').write_text(json.dumps(evidence,indent=2))
+            if error.code in (401,403):
+                raise AssertionError('Live access refused; stop without retrying, bypassing protection or claiming live verification.') from error
             print('Publication not available yet:',str(error),flush=True)
+        except (urllib.error.URLError,TimeoutError) as error:
+            print('Publication not reachable yet:',str(error),flush=True)
         print('Waiting for the existing Cloudflare publication, attempt',attempt+1,flush=True)
         time.sleep(10)
     else:
