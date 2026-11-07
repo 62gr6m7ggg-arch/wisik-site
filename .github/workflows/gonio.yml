@@ -30,6 +30,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -49,6 +51,16 @@ jobs:
         run: python tests/gonio-browser.py
       - name: Meet audio, frequentie, geitenstem en stoppen
         run: python tests/gonio-audio-browser.py
+      - name: Controleer ongewijzigde live tent bij uitsluitend testwijzigingen
+        if: github.event_name == 'pull_request'
+        env:
+          GONIO_BASE: https://wisik.nl
+        run: |
+          if git diff --quiet HEAD^ HEAD -- public/; then
+            python tests/gonio-audio-browser.py
+          else
+            echo "Publieke bestanden wijzigen; livecontrole volgt na normale publicatie."
+          fi
       - name: Controleer normale Cloudflare-publicatie en live bediening
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
