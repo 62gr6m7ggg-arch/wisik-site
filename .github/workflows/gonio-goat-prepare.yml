@@ -12,14 +12,15 @@ jobs:
   prepare:
     if: github.ref == 'refs/heads/feat/gonio-geitenstem-20261107'
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 7
     steps:
       - uses: actions/checkout@v4
         with:
           ref: feat/gonio-geitenstem-20261107
+      - name: Installeer de audio-omzetter
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends ffmpeg
       - name: Bereid CC0-opname en gerichte integratie voor
         run: |
-          command -v ffmpeg
           python tools/gonio/prepare-goat.py
           node --check public/rafelrand/sinus-s-en-de-geit/mixer.js
           node scripts/test-gonio.mjs
