@@ -1,7 +1,8 @@
 """Exercise actual audio nodes, not only the mute-button text. Run on local HTTP or production."""
-import functools, hashlib, http.server, json, os, threading
+import functools, http.server, json, os, threading
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from gonio_live_identity import compare_asset
 ROOT=Path(__file__).resolve().parents[1]
 ROUTE='/rafelrand/sinus-s-en-de-geit/'
 OUT=ROOT/'test-artifacts/gonio/audio'/('live' if os.getenv('GONIO_BASE') else 'local')
@@ -53,11 +54,10 @@ try:
       for name in ['index.html','mixer.js','goat-bleat.wav','goat-source.json']:
         fetched=context.request.get(base+ROUTE+name+'?v=0.2.0')
         assert fetched.status==200,(name,fetched.status)
-        actual=hashlib.sha256(fetched.body()).hexdigest()
-        expected=hashlib.sha256((ROOT/'public'/ROUTE.strip('/')/name).read_bytes()).hexdigest()
-        assert actual==expected,(name,'HTTP source differs from tested candidate')
-        identities[name]=actual
-      (OUT/'source-identity.json').write_text(json.dumps(identities,indent=2))
+        expected=(ROOT/'public'/ROUTE.strip('/')/name).read_bytes()
+        identities[name]=compare_asset(expected,fetched.body(),html=name=='index.html')
+        (OUT/'source-identity.json').write_text(json.dumps(identities,indent=2))
+        assert identities[name]['matches'],(name,'HTTP source differs from tested candidate',identities[name])
     page.locator('#together').click();page.locator('#sound').click()
     page.wait_for_function('WisikGonioMixer.status()?.state==="running"')
     page.wait_for_function('__audioMeasure().rms>.01')
