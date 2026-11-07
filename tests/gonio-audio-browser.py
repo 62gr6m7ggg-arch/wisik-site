@@ -33,6 +33,9 @@ window.__audioMeasure=()=>{
 })();"""
 def change(page,id,value):
     page.locator('#'+id).evaluate('(el,v)=>{el.value=v;el.dispatchEvent(new Event("input",{bubbles:true}));}',value)
+# Function predicates are retained by Playwright between polls. Bare expression
+# strings may be re-evaluated by page JavaScript, which production CSP disallows.
+# Keep that policy intact: do not enable unsafe-eval or bypass_csp for these tests.
 results=[]
 try:
  with sync_playwright() as p:
@@ -61,8 +64,8 @@ try:
         identities[name]=identity
       (OUT/'source-identity.json').write_text(json.dumps(identities,indent=2))
     page.locator('#together').click();page.locator('#sound').click()
-    page.wait_for_function('WisikGonioMixer.status()?.state==="running"')
-    page.wait_for_function('__audioMeasure().rms>.01')
+    page.wait_for_function('() => WisikGonioMixer.status()?.state==="running"')
+    page.wait_for_function('() => __audioMeasure().rms>.01')
     page.wait_for_timeout(350)
     low=page.evaluate('__audioMeasure()');assert abs(low['frequency']-220)<12,low
     count=page.evaluate('__probes.length')
@@ -72,10 +75,10 @@ try:
     page.locator('#quiet').click();page.wait_for_timeout(700)
     silent=page.evaluate('__audioMeasure()');assert silent['rms']<1e-5,silent
     assert page.evaluate('WisikGonioMixer.status().state')=='running'
-    page.locator('#together').click();page.wait_for_function('__audioMeasure().rms>.01')
+    page.locator('#together').click();page.wait_for_function('() => __audioMeasure().rms>.01')
     page.locator('#goatSound').click()
-    page.wait_for_function('WisikGonioMixer.status()?.kind==="goat" && WisikGonioMixer.status()?.rate!==null')
-    page.wait_for_function('__audioMeasure().rms>.002')
+    page.wait_for_function('() => WisikGonioMixer.status()?.kind==="goat" && WisikGonioMixer.status()?.rate!==null')
+    page.wait_for_function('() => __audioMeasure().rms>.002')
     goat=page.evaluate('__audioMeasure()')
     assert page.locator('#sound').get_attribute('aria-pressed')=='false'
     count=page.evaluate('__probes.length')
@@ -88,11 +91,11 @@ try:
     assert page.evaluate('__probes.length')==count
     page.locator('#quiet').click()
     assert page.evaluate('WisikGonioMixer.status().kind')=='goat'
-    page.wait_for_function('__audioMeasure().rms>.002')
+    page.wait_for_function('() => __audioMeasure().rms>.002')
     change(page,'listenVolume',0);page.wait_for_timeout(700)
     assert page.evaluate('__audioMeasure().rms')<1e-5
     change(page,'listenVolume',35);page.locator('#goatOriginal').click()
-    page.wait_for_function('__audioMeasure().rms>.002')
+    page.wait_for_function('() => __audioMeasure().rms>.002')
     assert not page.evaluate('document.documentElement.scrollWidth>innerWidth+1')
     page.screenshot(path=str(OUT/f'{engine}-{width}-goat.png'),full_page=True)
     page.locator('[data-stage="0"]').click();page.wait_for_timeout(150)
@@ -106,7 +109,7 @@ try:
    context=browser.new_context();page=context.new_page()
    page.route('**/goat-bleat.wav*',lambda route:route.fulfill(status=404,body='missing'))
    page.goto(base+ROUTE+'#6');page.locator('#goatSound').click()
-   page.wait_for_function('document.querySelector("#audioStatus").textContent.includes("niet gestart")')
+   page.wait_for_function('() => document.querySelector("#audioStatus").textContent.includes("niet gestart")')
    assert page.evaluate('WisikGonioMixer.status()') is None
    assert page.locator('#goatSound').get_attribute('aria-pressed')=='false'
    context.close();browser.close()
