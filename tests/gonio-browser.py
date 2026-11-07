@@ -1,6 +1,5 @@
 """Functional browser checks for the actual tent, locally or against production."""
 import functools
-import hashlib
 import http.server
 import json
 import os
@@ -10,6 +9,7 @@ import time
 import urllib.error
 import urllib.request
 from playwright.sync_api import sync_playwright
+from gonio_live_identity import compare_asset
 
 ROOT=Path(__file__).resolve().parents[1]
 PATH='/rafelrand/sinus-s-en-de-geit/'
@@ -23,22 +23,22 @@ if not IS_LIVE:
     server=http.server.ThreadingHTTPServer(('127.0.0.1',8765),handler)
     threading.Thread(target=server.serve_forever,daemon=True).start()
 else:
-    expected=hashlib.sha256((ROOT/'public'/PATH.strip('/')/'index.html').read_bytes()).hexdigest()
-    # Follow the established Wisik live-check convention: honest service identity,
-    # uncompressed bytes and the canonical route. No browser impersonation or security change.
-    headers={'User-Agent':'Wisik-Gonio-publicatiecontrole/0.1.0','Accept-Encoding':'identity','Cache-Control':'no-cache'}
+    expected=(ROOT/'public'/PATH.strip('/')/'index.html').read_bytes()
+    # Honest service identity; no browser impersonation or security change.
+    headers={'User-Agent':'Wisik-Gonio-publicatiecontrole/0.2.0','Accept-Encoding':'identity','Cache-Control':'no-cache'}
     for attempt in range(30):
         try:
             req=urllib.request.Request(base+PATH,headers=headers)
             with urllib.request.urlopen(req,timeout=20) as response:
                 live=response.read()
-                actual=hashlib.sha256(live).hexdigest()
-                evidence={'url':response.url,'status':response.status,'content_type':response.headers.get('Content-Type'),'expected_sha256':expected,'received_sha256':actual,'bytes':len(live)}
+                evidence=compare_asset(expected,live,html=True)
+                evidence.update({'url':response.url,'status':response.status,'content_type':response.headers.get('Content-Type')})
             (OUT/'source-identity.json').write_text(json.dumps(evidence,indent=2))
-            if actual==expected:
-                print('Production HTML matches the tested commit exactly.',flush=True)
+            (OUT/'received.html').write_bytes(live)
+            if evidence['matches']:
+                print('Production application HTML matches the tested commit. Hosting insertion: '+str(evidence['hosting_insertion']),flush=True)
                 break
-            print('Page is reachable but its source does not yet match the tested commit.',flush=True)
+            print('Page is reachable but its application source does not yet match the tested commit.',flush=True)
         except urllib.error.HTTPError as error:
             evidence={'url':error.url,'status':error.code,'server':error.headers.get('Server'),'cf_ray':error.headers.get('CF-Ray'),'reason':str(error)}
             (OUT/'probe-error.json').write_text(json.dumps(evidence,indent=2))
