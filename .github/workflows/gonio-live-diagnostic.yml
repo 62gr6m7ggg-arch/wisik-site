@@ -1,0 +1,44 @@
+name: Gonio live bronverschil vastleggen
+on:
+  push:
+    branches: ['diagnostic/gonio-live-20261107']
+    paths: ['.github/workflows/gonio-live-diagnostic.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vergelijk de publieke bestanden, zonder publicatie of instellingen te wijzigen
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import difflib, hashlib, json, urllib.request
+          folder='rafelrand/sinus-s-en-de-geit/'
+          out=Path('test-artifacts/gonio-source-difference');out.mkdir(parents=True,exist_ok=True)
+          results=[]
+          headers={'User-Agent':'Wisik-Gonio-publicatiecontrole/0.2.0','Accept-Encoding':'identity','Cache-Control':'no-cache'}
+          for name in ['index.html','mixer.js','goat-bleat.wav','goat-source.json']:
+              url='https://wisik.nl/'+folder+('' if name=='index.html' else name)
+              with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=20) as response:
+                  body=response.read(2000000)
+                  info={'name':name,'status':response.status,'url':response.url,'headers':dict(response.headers)}
+              expected=(Path('public')/folder/name).read_bytes()
+              info.update(bytes=len(body),expected_bytes=len(expected),sha256=hashlib.sha256(body).hexdigest(),expected_sha256=hashlib.sha256(expected).hexdigest(),equal=body==expected)
+              (out/name).write_bytes(body)
+              if name!='goat-bleat.wav' and body!=expected:
+                  diff=''.join(difflib.unified_diff(expected.decode('utf-8').splitlines(True),body.decode('utf-8').splitlines(True),fromfile='tested/'+name,tofile='received/'+name))
+                  (out/(name+'.diff')).write_text(diff)
+                  print(diff[:24000])
+              results.append(info)
+          (out/'results.json').write_text(json.dumps(results,indent=2))
+          print(json.dumps([{k:v for k,v in r.items() if k!='headers'} for r in results],indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gonio-source-difference
+          path: test-artifacts/gonio-source-difference/
+          if-no-files-found: warn
