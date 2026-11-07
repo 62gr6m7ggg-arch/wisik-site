@@ -10,6 +10,7 @@ import time
 import urllib.error
 import urllib.request
 from playwright.sync_api import sync_playwright
+from gonio_integrity import compare_source
 
 ROOT=Path(__file__).resolve().parents[1]
 PATH='/rafelrand/sinus-s-en-de-geit/'
@@ -23,7 +24,8 @@ if not IS_LIVE:
     server=http.server.ThreadingHTTPServer(('127.0.0.1',8765),handler)
     threading.Thread(target=server.serve_forever,daemon=True).start()
 else:
-    expected=hashlib.sha256((ROOT/'public'/PATH.strip('/')/'index.html').read_bytes()).hexdigest()
+    expected_bytes=(ROOT/'public'/PATH.strip('/')/'index.html').read_bytes()
+    expected=hashlib.sha256(expected_bytes).hexdigest()
     # Follow the established Wisik live-check convention: honest service identity,
     # uncompressed bytes and the canonical route. No browser impersonation or security change.
     headers={'User-Agent':'Wisik-Gonio-publicatiecontrole/0.1.0','Accept-Encoding':'identity','Cache-Control':'no-cache'}
@@ -33,10 +35,12 @@ else:
             with urllib.request.urlopen(req,timeout=20) as response:
                 live=response.read()
                 actual=hashlib.sha256(live).hexdigest()
+                identity=compare_source(expected_bytes,live,'index.html')
                 evidence={'url':response.url,'status':response.status,'content_type':response.headers.get('Content-Type'),'expected_sha256':expected,'received_sha256':actual,'bytes':len(live)}
+            evidence.update(identity)
             (OUT/'source-identity.json').write_text(json.dumps(evidence,indent=2))
-            if actual==expected:
-                print('Production HTML matches the tested commit exactly.',flush=True)
+            if identity['verified']:
+                print('Application HTML verified. Raw match:',identity['raw_equal'],'Hosting addition:',identity['hosting_addition'],flush=True)
                 break
             print('Page is reachable but its source does not yet match the tested commit.',flush=True)
         except urllib.error.HTTPError as error:

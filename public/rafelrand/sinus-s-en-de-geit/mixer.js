@@ -1,4 +1,4 @@
-/* Wisik 0.2.0: phase, frequency and a real goat recording remain distinct experiments. */
+/* Wisik 0.2.1: phase, frequency and a real goat recording remain distinct experiments. */
 (function(root){
 'use strict';
 const math={
@@ -143,7 +143,7 @@ function mount(){
   <figure class="plot"><svg id="goatPlot" viewBox="0 0 620 260" role="img" aria-label="De echte geitengolf, na het starten van de opname"><text x="38" y="120" font-size="18">Start het bèèèh om de echte golfvorm te zien.</text></svg><figcaption id="goatCaption">De opname wordt pas na jouw klik geladen. Daarna zie je hoe de toonhoogte de golf horizontaal samendrukt of uitrekt.</figcaption></figure>
   <p class="note"><strong>De knoppen doen verschillende dingen.</strong> De geit reageert op haar eigen toonhoogteknop en het luistervolume, niet op de faseknop van de sinusproef. Er klinkt maximaal één proef tegelijk. Wisselen van onderdeel of tabblad stopt het geluid.</p>
   <details><summary>Waarom blijft een echte geit een aparte proef?</summary><p>Een bèèèh heeft een ingewikkelde golfvorm, met boventonen en veranderingen tijdens de klank. Het is geen enkele sinus met één vaste frequentie. Daarom doen we niet alsof een halve periode verschuiven automatisch de héle geitenopname uitdooft.</p><p>Hier veranderen we de afspeelsnelheid, zonder toonhoogtecorrectie. Dus g(t) wordt g(kt). Bij k=2 is de opname een octaaf hoger én half zo lang; bij k=½ een octaaf lager én tweemaal zo lang. Ook het ritme van het herhaalde bèèèh verandert mee. De amplitude van de opgeslagen opname wordt niet vergroot door deze knop, maar ervaren luidheid kan verschillen.</p><p><strong>Zelf verklaren:</strong> bij a·sin(bt+c), welke parameter verandert de amplitude en welke de periode? Wat blijft hetzelfde als je alleen b verdubbelt?</p></details>
-  <p class="note">Geitenopname: <a href="https://freesound.org/people/TheKingOfGeeks360/sounds/842307/" target="_blank" rel="noopener noreferrer">TheKingOfGeeks360, Goats — Goat Bleat; Close Perspective, Take 2</a> · CC0. Lokaal op Wisik opgeslagen; omgezet naar mono en het piekniveau begrensd. Geen externe speler, tracking of microfoontoegang. Versie 0.2.0.</p>`;
+  <p class="note">Geitenopname: <a href="https://freesound.org/people/TheKingOfGeeks360/sounds/842307/" target="_blank" rel="noopener noreferrer">TheKingOfGeeks360, Goats — Goat Bleat; Close Perspective, Take 2</a> · CC0. Lokaal op Wisik opgeslagen; omgezet naar mono en het piekniveau begrensd. De geitenproef gebruikt geen externe speler of microfoon. De hosting voegt een Cloudflare-statistiekenscript toe. Versie 0.2.1.</p>`;
   $('phase').oninput=drawSine;$('frequency').oninput=drawSine;$('goatPitch').oninput=drawGoat;
   $('listenVolume').oninput=()=>{$('listenVolumeOut').textContent=$('listenVolume').value+'%';updateSound();};
   $('quiet').onclick=()=>{$('phase').value=90;drawSine();};$('together').onclick=()=>{$('phase').value=0;drawSine();};

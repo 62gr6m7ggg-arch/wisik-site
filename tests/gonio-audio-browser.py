@@ -2,6 +2,7 @@
 import functools, hashlib, http.server, json, os, threading
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from gonio_integrity import compare_source
 ROOT=Path(__file__).resolve().parents[1]
 ROUTE='/rafelrand/sinus-s-en-de-geit/'
 OUT=ROOT/'test-artifacts/gonio/audio'/('live' if os.getenv('GONIO_BASE') else 'local')
@@ -54,9 +55,10 @@ try:
         fetched=context.request.get(base+ROUTE+name+'?v=0.2.0')
         assert fetched.status==200,(name,fetched.status)
         actual=hashlib.sha256(fetched.body()).hexdigest()
-        expected=hashlib.sha256((ROOT/'public'/ROUTE.strip('/')/name).read_bytes()).hexdigest()
-        assert actual==expected,(name,'HTTP source differs from tested candidate')
-        identities[name]=actual
+        expected_bytes=(ROOT/'public'/ROUTE.strip('/')/name).read_bytes()
+        identity=compare_source(expected_bytes,fetched.body(),name)
+        assert identity['verified'],(name,'HTTP source differs from tested candidate',identity)
+        identities[name]=identity
       (OUT/'source-identity.json').write_text(json.dumps(identities,indent=2))
     page.locator('#together').click();page.locator('#sound').click()
     page.wait_for_function('WisikGonioMixer.status()?.state==="running"')
