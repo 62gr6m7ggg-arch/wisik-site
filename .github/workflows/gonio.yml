@@ -1,11 +1,11 @@
 name: Gonio proeftent controle
-
 on:
   pull_request:
     paths:
       - 'public/rafelrand/**'
       - 'scripts/test-gonio.mjs'
       - 'tests/gonio-browser.py'
+      - 'tests/gonio-audio-browser.py'
       - '.github/workflows/gonio.yml'
   push:
     branches: [main]
@@ -13,16 +13,14 @@ on:
       - 'public/rafelrand/**'
       - 'scripts/test-gonio.mjs'
       - 'tests/gonio-browser.py'
+      - 'tests/gonio-audio-browser.py'
       - '.github/workflows/gonio.yml'
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: gonio-check-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   gonio:
     name: Gonio inhoud en browsers
@@ -34,7 +32,9 @@ jobs:
         with:
           node-version: 22
       - name: Controleer productiewiskunde en ingang
-        run: node scripts/test-gonio.mjs
+        run: |
+          node scripts/test-gonio.mjs
+          node --check public/rafelrand/sinus-s-en-de-geit/mixer.js
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -42,13 +42,17 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium webkit
-      - name: Test Chromium en WebKit op mobiel en desktop
+      - name: Test acht onderdelen op mobiel en desktop
         run: python tests/gonio-browser.py
+      - name: Meet audio, frequentie, geitenstem en stoppen
+        run: python tests/gonio-audio-browser.py
       - name: Controleer normale Cloudflare-publicatie en live bediening
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           GONIO_BASE: https://wisik.nl
-        run: python tests/gonio-browser.py
+        run: |
+          python tests/gonio-browser.py
+          python tests/gonio-audio-browser.py
       - name: Bewaar testresultaten en schermafbeeldingen
         if: always()
         uses: actions/upload-artifact@v4
