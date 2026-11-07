@@ -6,6 +6,7 @@ on:
       - 'scripts/test-gonio.mjs'
       - 'tests/gonio-browser.py'
       - 'tests/gonio-audio-browser.py'
+      - 'tests/gonio_integrity.py'
       - '.github/workflows/gonio.yml'
   push:
     branches: [main]
@@ -14,6 +15,7 @@ on:
       - 'scripts/test-gonio.mjs'
       - 'tests/gonio-browser.py'
       - 'tests/gonio-audio-browser.py'
+      - 'tests/gonio_integrity.py'
       - '.github/workflows/gonio.yml'
   workflow_dispatch:
 permissions:
@@ -33,6 +35,7 @@ jobs:
           node-version: 22
       - name: Controleer productiewiskunde en ingang
         run: |
+          python tests/gonio_integrity.py
           node scripts/test-gonio.mjs
           node --check public/rafelrand/sinus-s-en-de-geit/mixer.js
       - uses: actions/setup-python@v5
