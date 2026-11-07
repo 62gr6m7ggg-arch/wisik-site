@@ -1,0 +1,60 @@
+name: Gonio live mismatch diagnosis
+on:
+  push:
+    branches: ['fix/gonio-live-evidence-20261107']
+    paths: ['.github/workflows/gonio-live-diagnose.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Compare source, normal build output and public response
+        run: |
+          mkdir -p test-artifacts/gonio-diagnostic
+          cp public/rafelrand/sinus-s-en-de-geit/index.html test-artifacts/gonio-diagnostic/source.html
+          node scripts/build-site-seo.mjs --write
+          python3 - <<'PY'
+          import difflib, hashlib, json, pathlib, urllib.request
+          out=pathlib.Path('test-artifacts/gonio-diagnostic')
+          root=pathlib.Path('public/rafelrand/sinus-s-en-de-geit')
+          raw=(out/'source.html').read_bytes()
+          built=(root/'index.html').read_bytes()
+          (out/'built.html').write_bytes(built)
+          route='https://wisik.nl/rafelrand/sinus-s-en-de-geit/'
+          headers={'User-Agent':'Wisik-Gonio-publicatiecontrole/0.2.0','Accept-Encoding':'identity','Cache-Control':'no-cache'}
+          results=[]
+          for name, suffix in [('canonical',''),('versioned','?v=0.2.0'),('mixer','mixer.js?v=0.2.0'),('goat','goat-bleat.wav?v=0.2.0'),('manifest','goat-source.json?v=0.2.0')]:
+              request=urllib.request.Request(route+suffix,headers=headers)
+              with urllib.request.urlopen(request,timeout=20) as response:
+                  data=response.read()
+                  info={'name':name,'url':response.url,'status':response.status,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'headers':dict(response.headers)}
+              (out/(name+'.body')).write_bytes(data)
+              if name in ('canonical','versioned'):
+                  info['matches_source']=data==raw
+                  info['matches_normal_build']=data==built
+                  diff=''.join(difflib.unified_diff(built.decode().splitlines(True),data.decode().splitlines(True),fromfile='normal-build',tofile=name))
+                  (out/(name+'.diff')).write_text(diff)
+                  print(name, json.dumps({k:v for k,v in info.items() if k!='headers'}), flush=True)
+                  # Character-level comparison avoids printing a minified 40k script.
+                  matcher=difflib.SequenceMatcher(None,built.decode(),data.decode(),autojunk=False)
+                  for tag,a,b,c,d in matcher.get_opcodes():
+                      if tag!='equal':print(tag,'expected',repr(built.decode()[a:b][:1200]),'received',repr(data.decode()[c:d][:1200]),flush=True)
+              else:
+                  file={'mixer':'mixer.js','goat':'goat-bleat.wav','manifest':'goat-source.json'}[name]
+                  info['matches_source']=data==(root/file).read_bytes()
+                  print(name,info['matches_source'],len(data),flush=True)
+              results.append(info)
+          (out/'results.json').write_text(json.dumps(results,indent=2))
+          PY
+      - name: Preserve comparison evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gonio-live-diagnostic
+          path: test-artifacts/gonio-diagnostic/
