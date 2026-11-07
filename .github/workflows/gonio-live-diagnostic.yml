@@ -47,9 +47,6 @@ jobs:
           s=replace(s,"        assert actual==expected,(name,'HTTP source differs from tested candidate')","        assert identity['verified'],(name,'HTTP source differs from tested candidate',identity)")
           s=replace(s,'        identities[name]=actual','        identities[name]=identity')
           p.write_text(s)
-          p=Path('.github/workflows/gonio.yml');s=p.read_text()
-          s=replace(s,'          node scripts/test-gonio.mjs','          python tests/gonio_integrity.py\n          node scripts/test-gonio.mjs')
-          p.write_text(s)
           out=Path('test-artifacts/gonio-hosting-candidate');out.mkdir(parents=True,exist_ok=True)
           for name in ['index.html','mixer.js']:shutil.copy2(root/name,out/name)
           for name in ['gonio-browser.py','gonio-audio-browser.py','gonio_integrity.py']:shutil.copy2(Path('tests')/name,out/name)
@@ -58,12 +55,11 @@ jobs:
           python -m py_compile tests/gonio-browser.py tests/gonio-audio-browser.py tests/gonio_integrity.py
           node scripts/test-gonio.mjs
           node --check public/rafelrand/sinus-s-en-de-geit/mixer.js
-      - name: Commit alleen de kandidaat; verwijder deze tijdelijke voorbereiding
+      - name: Commit alleen pagina- en testbestanden op de kandidaatbranch
         run: |
           git config user.name 'Wisik preparation bot'
           git config user.email 'wisik-preparation@users.noreply.github.com'
-          git add public/rafelrand/sinus-s-en-de-geit/index.html public/rafelrand/sinus-s-en-de-geit/mixer.js tests/gonio-browser.py tests/gonio-audio-browser.py .github/workflows/gonio.yml
-          git rm .github/workflows/gonio-live-diagnostic.yml
+          git add public/rafelrand/sinus-s-en-de-geit/index.html public/rafelrand/sinus-s-en-de-geit/mixer.js tests/gonio-browser.py tests/gonio-audio-browser.py
           git commit -m 'fix(gonio): verify exact application bytes and disclose hosting statistics, 0.2.1'
           git push origin HEAD:refs/heads/diagnostic/gonio-live-20261107
       - uses: actions/upload-artifact@v4
