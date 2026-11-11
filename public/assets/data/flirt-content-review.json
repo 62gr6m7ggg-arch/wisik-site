@@ -4,8 +4,8 @@
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02. B03 is op 29 september 2026 vervangen door de nieuwe Roadie-film met zes halve-literglazen en de fysieke breukkaart; zie de afzonderlijke B03-review. B04 is op 11 november 2026 vervangen door de nieuwe Roadie-montage met zichtbare verfijning van tien kolommen naar honderd vakjes en de vergelijking 70% tegenover 7%; zie de afzonderlijke B04-review.",
-    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden. B04 gebruikt vanaf 11 november 2026 de complete ingebedde stem in de nieuwe MP4; de oudere losse stemopname is voor deze film uitgeschakeld.",
+    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02. B03 is op 29 september 2026 vervangen door de nieuwe Roadie-film met zes halve-literglazen en de fysieke breukkaart; zie de afzonderlijke B03-review. B04 is op 11 november 2026 vervangen door de nieuwe Roadie-montage met zichtbare verfijning van tien kolommen naar honderd vakjes en de vergelijking 70% tegenover 7%; zie de afzonderlijke B04-review. D05 Roadie: vier bakjes met 2/4/6/8 fiches worden in vier exacte verplaatsingen 5/5/5/5.",
+    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden. B04 gebruikt vanaf 11 november 2026 de complete ingebedde stem in de nieuwe MP4; de oudere losse stemopname is voor deze film uitgeschakeld. D05 gebruikt nu ingebedde Nederlandse Roadie-stem in de nieuwe MP4, zonder de oudere M4A-koppeling.",
     "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
     "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
   },
@@ -1010,52 +1010,37 @@
       "verdict": "aligned-with-notes",
       "expectedMisconception": "Voor het gemiddelde wordt de som gedeeld door het aantal tussenruimten of een ander verkeerd aantal.",
       "intendedInsight": "Vier meetwaarden vormen vier bijdragen aan het totaal; daarom wordt 20 over vier waarden verdeeld en is het gemiddelde 5.",
-      "observedContent": "Titel en script onderscheiden vier meetwaarden 2, 4, 6, 8 van de drie tussenruimten. Eén beeld toont vier bakjes met overeenkomstige aantallen fiches en drie verbindingsstreepjes. Het script bakent het inzicht correct af tot het gemiddelde van deze meetwaarden; 20/4 = 5 klopt.",
+      "observedContent": "Nieuwe Roadie-film met doorlopende Nederlandse eigenstem en geanimeerde vier bakjes: eerst 2, 4, 6 en 8 fiches. Vier fysieke verplaatsingen (een fiche van derde naar tweede bakje; drie van vierde naar eerste) eindigen zichtbaar in 5, 5, 5 en 5. Totaal blijft 20; de scheiding tussen bakjes is geen meetwaarde.",
       "visualEvidence": [
         {
-          "timestamps": [
-            4
-          ],
-          "observation": "Titelkaart ‘Gemiddelde: waarden of tussenruimten?’ met code D05."
+          "timestamps": "0-41% van de film",
+          "observation": "Vier bakjes tonen exact 2, 4, 6 en 8 fiches; som is 20. De drie tussenruimten worden apart besproken."
         },
         {
-          "timestamps": [
-            12,
-            21,
-            30,
-            39
-          ],
-          "observation": "Vier bakjes met stapels van 2, 4, 6 en 8 fiches; drie tussenruimten zijn gemarkeerd. Takeaway ‘Vier waarden, niet drie tussenruimten. Gemiddelde = 5.’"
+          "timestamps": "41%-71% van de film",
+          "observation": "Vier getekende fiches bewegen afzonderlijk, met behoud van totaal 20, tussen de bakjes. De eindtoestand is exact 5,5,5,5."
         },
         {
-          "timestamps": [
-            25.8,
-            27
-          ],
-          "observation": "Gerichte extra controle bij ‘Elk krijgt 5 fiches’: de stapels blijven zichtbaar 2, 4, 6, 8; een gelijke verdeling wordt niet getoond."
-        },
-        {
-          "timestamps": [
-            50.424
-          ],
-          "observation": "Afsluiting verwijst naar de herstelset."
+          "timestamps": "71%-einde",
+          "observation": "20 gedeeld door 4 is 5; aantal bakjes (vier waarden) verandert niet."
         }
       ],
-      "captionEvidence": "Het blijven 4 bakjes. Elk krijgt 5 fiches.",
+      "captionEvidence": "23 VTT-cues volgen de HeyGen-eigenstem. Laatste cue eindigt 00:00:39.910, binnen 40.13 s.",
       "notes": [
-        "Niet-blokkerend: de aangekondigde gelijke verdeling blijft verbaal; de afbeelding behoudt de beginhoeveelheden. Het verdelen naar 5 fiches per bakje op circa 25 seconden zou de betekenis van de juiste deler zichtbaar maken.",
-        "De film beweert niet dat tussenruimten bij iedere statistische of tijdsvraag irrelevant zijn; de afbakening tot vier meetwaarden voorkomt die overgeneralisatie."
+        "Het nieuwe beeld herverdeelt alle twintig fiches daadwerkelijk. De drie lege tussenruimten worden niet als meetwaarden gebruikt.",
+        "De gegenereerde Roadie-beweging is achter een exact geanimeerde demonstratie gemonteerd. Er is een technische film/audio- en VTT-controle, maar geen onafhankelijke menselijke audiovisuele kwaliteitsbeoordeling uitgevoerd."
       ],
       "videoId": "wisik-flirt-d05",
       "title": "Gemiddelde: waarden of tussenruimten?",
       "fingerprints": {
         "misconception": "97145a3b26919f9dafc5cbaf2de8ff450f7bad6dfcad7ecf9644ac083e6273d5",
-        "catalogItem": "8850a99d5fb5eda868f3d33d7d7eff479e9917f13e17b7231fc79fe3463043a4",
-        "video": "0f17025b1a2674807a40f35a51ae571f8cf350f92f1403a18f632abfc88c6d78",
-        "poster": "7af51b189048d9b67bddbe3308e2f53da3f992d07207d7b4ce7df0d279fcc0ed",
-        "captions": "82edb8c6c2d8ec66859b0470f746de5a9592a369c31cf253cd575903c8799a99",
+        "catalogItem": "61f488da8eb1f6875f6129310f109a52eb42b7dc82d5df396aec48a101aceaa0",
+        "video": "20963afd46ab138484bd755b2d0b8c65725a001a5ceeba5fe7623002348a3d49",
+        "poster": "d7cc19f42b839c2ce240821b3a632cf91bd4e7a0fa4cd79825b8d90cf9851874",
+        "captions": "1813cebb343cb4b4eeba3c9ee7383138755bc8f6186eccb3dfa1f7291d29bb1f",
         "transcript": "30b1c95bacd775ef6a0c66fc351fc43dfd35309b4138ec44c3aadde1c12e6bd6"
-      }
+      },
+      "reviewedAt": "2026-11-11"
     },
     {
       "code": "D06",

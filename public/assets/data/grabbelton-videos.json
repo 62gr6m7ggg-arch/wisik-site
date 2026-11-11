@@ -609,7 +609,7 @@
       "status": "published",
       "title": "Gemiddelde: waarden of tussenruimten?",
       "summary": "Waarom je bij het gemiddelde van meetwaarden deelt door het aantal waarden, niet de tussenruimten.",
-      "durationSeconds": 51,
+      "durationSeconds": 40,
       "wristbands": [
         "PABO"
       ],
@@ -624,7 +624,8 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D05"
       },
-      "release": "festival-v1"
+      "release": "roadie-d05-20261111",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-d06",
