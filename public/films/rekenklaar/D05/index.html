@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#163f58">
+<meta name="description" content="Bekijk Roadie in D05: ontdek waarom je het gemiddelde van vier waarden door vier deelt, met een bewegende verdeling van twintig fiches.">
+<title>D05 — Gemiddelde: waarden of tussenruimten? · Roadie · Wisik</title>
+<meta property="og:title" content="Roadie D05 — Vier waarden, drie tussenruimten">
+<meta property="og:description" content="Roadie verdeelt twintig fiches eerlijk over vier bakjes. Bekijk de rekenflirt op Wisik.">
+<meta property="og:image" content="https://wisik.nl/films/rekenklaar/D05/poster.jpg?v=roadie-d05-20261111">
+<meta property="og:type" content="video.other">
+<style>
+:root { color-scheme: light; --navy:#163f58; --teal:#2d7c80; --cream:#fffaf0; --coral:#e97146; }
+* { box-sizing:border-box; }
+html { background:#f1f5ef; }
+body { margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--navy); line-height:1.5; }
+a { color:#125e73; }
+main { width:min(1120px,calc(100% - 28px)); margin:22px auto 44px; }
+nav { margin-bottom:16px; font-size:.9rem; }
+nav a { color:#365b64; text-decoration:none; }
+h1 { font-size:clamp(1.35rem,4vw,2.3rem); line-height:1.2; margin:7px 0 8px; }
+.tag { color:#60745c; font-weight:800; letter-spacing:.04em; text-transform:uppercase; font-size:.78rem; }
+.intro { margin:0 0 20px; color:#45616a; max-width:760px; }
+.player-shell { position:relative; aspect-ratio:16/9; background:#15384c; border:5px solid #276c76; border-radius:19px; overflow:hidden; box-shadow:0 14px 28px rgba(22,63,88,.18); isolation:isolate; }
+video { display:block; width:100%; height:100%; object-fit:contain; background:#122e42; }
+.poster { display:none; position:absolute; inset:0; }
+.poster img { width:100%; height:100%; display:block; object-fit:contain; background:#fff9e9; }
+.poster::after { content:""; position:absolute; inset:52% 0 0; pointer-events:none; background:linear-gradient(transparent,rgba(9,32,43,.38)); }
+.play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2; display:flex; align-items:center; justify-content:center; gap:12px; padding:13px 22px; color:white; font-family:inherit; font-size:clamp(.95rem,2.5vw,1.16rem); font-weight:800; line-height:1.25; cursor:pointer; border:3px solid white; border-radius:999px; background:#bc4d30; box-shadow:0 7px 28px rgba(6,33,42,.35); white-space:nowrap; min-height:58px; }
+.play:hover,.play:focus-visible { background:#943c25; outline-offset:4px; }
+.play-icon { font-size:1.65rem; line-height:1; }
+.js .player-shell:not(.started) video { display:none; }
+.js .player-shell:not(.started) .poster { display:block; }
+.js .player-shell.started .poster { display:none; }
+.js .player-shell.started video { display:block; }
+.note { margin:16px 0; color:#48646e; font-size:.9rem; }
+.links { display:flex; flex-wrap:wrap; gap:11px; margin-top:22px; }
+.links a { display:inline-flex; align-items:center; padding:11px 16px; text-decoration:none; font-weight:750; background:white; border:2px solid #d9e6df; border-radius:12px; }
+.links a:hover { border-color:#599b8d; }
+footer { margin-top:26px; font-size:.8rem; color:#60717b; }
+@media (max-width:600px) {
+ main { margin-top:14px; }
+ .player-shell { border-width:3px; border-radius:12px; }
+ .play { min-height:48px; padding:9px 14px; gap:6px; border-width:2px; }
+ .note { font-size:.85rem; }
+}
+</style>
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+<main>
+<nav><a href="/">Wisik</a> · <a href="/grabbelton/">Grabbelton</a> · D05</nav>
+<span class="tag">Wisik · Roadie · Pabo Rekenklaar</span>
+<h1>Gemiddelde: waarden of tussenruimten?</h1>
+<p class="intro">Vier bakjes met 2, 4, 6 en 8 fiches. Roadie laat zien waarom je voor het gemiddelde deelt door vier meetwaarden — niet door de drie tussenruimten.</p>
+<section class="player-shell" id="roadiePlayer" aria-label="D05 Roadie video">
+  <video id="roadieVideo" controls playsinline preload="none"
+    poster="./poster.jpg?v=roadie-d05-20261111"
+    aria-label="D05: Gemiddelde, waarden of tussenruimten?"
+    src="./flirt.mp4?v=roadie-d05-20261111">
+    <track kind="captions" src="./captions.vtt?v=roadie-d05-20261111" srclang="nl" label="Nederlands" default>
+    Je browser ondersteunt deze video niet. <a href="./flirt.mp4?v=roadie-d05-20261111">Open het videobestand</a>.
+  </video>
+  <div class="poster" id="roadiePoster">
+    <img src="./poster.jpg?v=roadie-d05-20261111" width="1280" height="720" alt="Roadie op het Wisik-festival naast vier bakjes met elk vijf fiches; 20 gedeeld door 4 is 5." fetchpriority="high">
+    <button class="play" id="roadieStart" type="button" aria-label="Speel de Roadie-film D05 af"><span class="play-icon" aria-hidden="true">▶</span> Speel Roadie af</button>
+  </div>
+</section>
+<p class="note">40 seconden · Nederlandse stem · Nederlandse ondertiteling. De afbeelding staat bewust al klaar vóórdat je op afspelen drukt.</p>
+<div class="links">
+  <a href="/apps/pabo-rekenklaar/?misconcept=D05&amp;ingang=grabbelton&amp;modus=vier-vragen">Zelf proberen: vier vragen</a>
+  <a href="./transcript.html">Lees het transcript</a>
+  <a href="/grabbelton/">Terug naar de Grabbelton</a>
+</div>
+<footer>Wisik · D05 Roadie-release 11 november 2026</footer>
+</main>
+<script>
+(() => {
+  const shell = document.getElementById('roadiePlayer');
+  const video = document.getElementById('roadieVideo');
+  const start = document.getElementById('roadieStart');
+  start.addEventListener('click', () => {
+    shell.classList.add('started');
+    const attempt = video.play();
+    if (attempt?.catch) attempt.catch(() => { video.controls = true; video.focus(); });
+  });
+})();
+</script>
+</body>
+</html>
