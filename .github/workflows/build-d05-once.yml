@@ -29,11 +29,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: FFmpeg en Pillow beschikbaar maken
+      - uses: FedericoCarboni/setup-ffmpeg@v3
+        with:
+          ffmpeg-version: release
+      - name: Pillow beschikbaar maken en media-tools controleren
         run: |
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg
           python -m pip install --disable-pip-version-check pillow
           python -c "import PIL; print(PIL.__version__)"
+          ffprobe -version | head -n 1
       - name: Haal de afgeronde HeyGen D05 op
         run: |
           curl --fail --location --silent --show-error --retry 3 "$D05_VIDEO_URL" -o /tmp/d05_roadie_source.mp4
