@@ -101,8 +101,8 @@
       "id": "wisik-flirt-a05",
       "status": "published",
       "title": "Rekenvolgorde",
-      "summary": "Waarom de schrijfwijze bepaalt welke bewerking eerst bij elkaar hoort.",
-      "durationSeconds": 48,
+      "summary": "Roadie strijkt in het zand drie rijen van zes fiches weg en tekent haakjes rond 18 min 3. Zo zie je wat in de som bij elkaar hoort.",
+      "durationSeconds": 34,
       "wristbands": [
         "PABO"
       ],
@@ -117,7 +117,8 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A05"
       },
-      "release": "festival-v1"
+      "release": "roadie-a05-zand-20261111",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-a06",

@@ -84,7 +84,7 @@ class TestAudio {
 }
 const mediaContext = { URL, console, HTMLVideoElement: TestVideo, Audio: TestAudio };
 vm.runInNewContext(core, mediaContext);
-for (const [code, duration] of [["A02", 61], ["B03", 63.15], ["B04", 42.092], ["D05", 40.124]]) {
+for (const [code, duration] of [["A02", 61], ["A05", 33.912], ["B03", 63.15], ["B04", 42.092], ["D05", 40.124]]) {
   const player = new TestVideo(code, duration);
   const beforeCues = JSON.stringify(player.textTracks);
   const audioCount = createdAudio.length;
@@ -106,5 +106,5 @@ assert.equal(legacy.dataset.wisikOwnVoice, "1");
 assert.equal(legacy.muted, true);
 assert.ok(Math.abs(legacy.playbackRate - 49.72 / review.clips.A01.duration) < 1e-9);
 assert.notEqual(legacy.textTracks[0].cues[0].startTime, 0.256, "A01: bestaande captionaanpassing blijft actief");
-console.log("Roadie-mediacontrole geslaagd: A02/B03/B04/D05 behouden native audio, snelheid en VTT; A01 behoudt de losse eigenstemroute.");
+console.log("Roadie-mediacontrole geslaagd: A02/A05/B03/B04/D05 behouden native audio, snelheid en VTT; A01 behoudt de losse eigenstemroute.");
 console.log(`Eigenstem-releasecontrole geslaagd: 30 losse M4A-bestanden, geen master-seeking, bronhash ${review.output.sha256}.`);
