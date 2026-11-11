@@ -9,7 +9,7 @@ permissions:
 
 concurrency:
   group: roadie-d05-build
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   render-and-commit:
@@ -26,11 +26,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: FFmpeg en Pillow beschikbaar maken
         run: |
-          sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg python3-pil
-          /usr/bin/python3 -c "import PIL; print(PIL.__version__)"
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg
+          python -m pip install --disable-pip-version-check pillow
+          python -c "import PIL; print(PIL.__version__)"
       - name: Haal de afgeronde HeyGen D05 op
         run: |
           curl --fail --location --silent --show-error --retry 3 "$D05_VIDEO_URL" -o /tmp/d05_roadie_source.mp4
@@ -38,7 +41,7 @@ jobs:
           ffprobe -v error -show_entries stream=codec_type -of compact /tmp/d05_roadie_source.mp4
       - name: Maak exacte, bewegende ficheverdeling en stemmontage
         run: |
-          /usr/bin/python3 scripts/render-roadie-d05.py /tmp/d05_roadie_source.mp4 public/films/rekenklaar/D05/flirt.mp4
+          python scripts/render-roadie-d05.py /tmp/d05_roadie_source.mp4 public/films/rekenklaar/D05/flirt.mp4
           ffmpeg -y -v error -ss 33 -i public/films/rekenklaar/D05/flirt.mp4 -frames:v 1 -q:v 2 public/films/rekenklaar/D05/poster.jpg
           node scripts/finish-roadie-d05.mjs /tmp/d05_roadie_subtitles.srt
       - name: Werk het bijbehorende Pabo-auditbewijs bij
