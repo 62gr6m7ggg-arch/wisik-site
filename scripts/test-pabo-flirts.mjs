@@ -12,11 +12,16 @@ const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
 const html = read("public/apps/pabo-rekenklaar/index.html");
 const script = html.match(/<script>([\s\S]*)<\/script>/)[1];
 const catalog = JSON.parse(read("public/assets/data/grabbelton-videos.json"));
-const expectedMediaSuffix = { A02: "-roadie-20260929b", B03: "-roadie-b03-20260929", B04: "-roadie-b04-20261111", D05: "-roadie-d05-20261111" };
-const b04 = catalog.videos.find(video => video.target.misconceptionCode === "B04");
-assert.equal(b04.durationSeconds, 42, "B04: catalogusduur hoort bij de nieuwe 42,092 secondenfilm");
-assert.equal(b04.release, "roadie-b04-20261111", "B04: nieuwe mediarelease ontbreekt");
-assert.equal(b04.captionsBurnedIn, true, "B04: ingebrande ondertitels moeten expliciet bekend zijn");
+const expectedMediaSuffix = { A02: "-roadie-20260929b", A05: "-roadie-a05-zand-20261111", B03: "-roadie-b03-20260929", B04: "-roadie-b04-20261111", D05: "-roadie-d05-20261111" };
+for (const [code, duration, release] of [
+  ["A05", 34, "roadie-a05-zand-20261111"],
+  ["B04", 42, "roadie-b04-20261111"],
+]) {
+  const item = catalog.videos.find(video => video.target.misconceptionCode === code);
+  assert.equal(item.durationSeconds, duration, `${code}: catalogusduur hoort bij de film`);
+  assert.equal(item.release, release, `${code}: nieuwe mediarelease ontbreekt`);
+  assert.equal(item.captionsBurnedIn, true, `${code}: ingebrande ondertitels moeten expliciet bekend zijn`);
+}
 const invitation = "Even anders kijken? Mag ik dan even met je flirten?";
 
 // DOM-double voor de bestaande modale levenscyclus; dit is geen browsertest.
@@ -113,7 +118,7 @@ for (const item of fixtures.cases) {
   }
   const trackMarkup = markup.match(/<track\b[^>]*>/)?.[0];
   assert.ok(trackMarkup, `${item.code}: Nederlandse VTT blijft beschikbaar`);
-  assert.equal(/\sdefault(?:\s|=|>)/.test(trackMarkup), item.code !== "B04", `${item.code}: voorkom dubbele standaardondertitels bij de nieuwe B04`);
+  assert.equal(/\sdefault(?:\s|=|>)/.test(trackMarkup), !expected.captionsBurnedIn, `${item.code}: voorkom dubbele standaardondertitels`);
   assert.ok(element("modalBody").innerHTML.includes(`data-start-repair="${item.code}"`), `${item.code}: verkeerde herstelset`);
   run('closeModal()');
   assert.equal(run('JSON.stringify({state,activeSession})'), before, `${item.code}: film wijzigt voortgang`);
@@ -150,12 +155,12 @@ const grabContext = {
 };
 vm.createContext(grabContext);
 vm.runInContext(grabSource.slice(renderStart, renderEnd), grabContext);
-for (const code of ["A01", "A02", "B03", "B04", "D05"]) {
+for (const code of ["A01", "A02", "A05", "B03", "B04", "D05"]) {
   const selected = catalog.videos.find(video => video.target.misconceptionCode === code);
   grabContext.renderVideo({ video: selected, reason: "misconception" });
   const player = grabResult.querySelector("video");
   const track = player.querySelector("track");
-  assert.equal(track.default, code !== "B04", `${code}: Grabbelton-ondertitels hebben de verkeerde standaardstand`);
+  assert.equal(track.default, !selected.captionsBurnedIn, `${code}: Grabbelton-ondertitels hebben de verkeerde standaardstand`);
   assert.equal(track.kind, "captions");
   assert.equal(track.src, `https://wisik.nl${selected.captionsSrc}?v=${context.WISIK_SITE_VERSION}${expectedMediaSuffix[code] || ""}`);
 }

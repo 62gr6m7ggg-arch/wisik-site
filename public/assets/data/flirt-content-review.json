@@ -4,8 +4,8 @@
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02. B03 is op 29 september 2026 vervangen door de nieuwe Roadie-film met zes halve-literglazen en de fysieke breukkaart; zie de afzonderlijke B03-review. B04 is op 11 november 2026 vervangen door de nieuwe Roadie-montage met zichtbare verfijning van tien kolommen naar honderd vakjes en de vergelijking 70% tegenover 7%; zie de afzonderlijke B04-review. D05 Roadie: vier bakjes met 2/4/6/8 fiches worden in vier exacte verplaatsingen 5/5/5/5.",
-    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden. B04 gebruikt vanaf 11 november 2026 de complete ingebedde stem in de nieuwe MP4; de oudere losse stemopname is voor deze film uitgeschakeld. D05 gebruikt nu ingebedde Nederlandse Roadie-stem in de nieuwe MP4, zonder de oudere M4A-koppeling.",
+    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02. B03 is op 29 september 2026 vervangen door de nieuwe Roadie-film met zes halve-literglazen en de fysieke breukkaart; zie de afzonderlijke B03-review. B04 is op 11 november 2026 vervangen door de nieuwe Roadie-montage met zichtbare verfijning van tien kolommen naar honderd vakjes en de vergelijking 70% tegenover 7%; zie de afzonderlijke B04-review. D05 Roadie: vier bakjes met 2/4/6/8 fiches worden in vier exacte verplaatsingen 5/5/5/5. A05 Roadie: gecontroleerd op het wegstrepen van drie rijen van zes en het tekenen van de haakjes rond 18 − 3.",
+    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden. B04 gebruikt vanaf 11 november 2026 de complete ingebedde stem in de nieuwe MP4; de oudere losse stemopname is voor deze film uitgeschakeld. D05 gebruikt nu ingebedde Nederlandse Roadie-stem in de nieuwe MP4, zonder de oudere M4A-koppeling. A05 speelt de ingebouwde Nederlandse Roadie-stem op de oorspronkelijke snelheid af.",
     "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
     "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
   },
@@ -139,34 +139,39 @@
     },
     {
       "code": "A05",
-      "verdict": "aligned-with-notes",
+      "verdict": "aligned",
       "expectedMisconception": "De rekenvolgorde keer/delen vóór plus/min wordt niet toegepast.",
       "intendedInsight": "In 18 − 3 × 6 vormen de drie groepjes van zes de af te trekken hoeveelheid; vermenigvuldigen gaat hier vóór aftrekken, dus uitkomst 0.",
-      "observedContent": "Titel en poster: Rekenvolgorde. Script zet de onjuiste links-naar-rechts-uitkomst 90 tegenover drie groepjes van zes afhalen en legt de andere bedoeling met haakjes uit. De kernillustratie heeft precies drie rijen van zes fiches.",
+      "observedContent": "Roadie hurkt bij het zand en gebruikt een takje om drie rijen van zes fiches weg te halen. De telstanden zijn 18, 12, 6 en 0. Hij tekent twee haakjes rond 18 − 3, waardoor de andere berekening (18 − 3) × 6 zichtbaar wordt.",
       "visualEvidence": [
         {
-          "timestamps": "4,000 s; 46,896 s",
-          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
+          "timestamps": "8,120 s; 10,120 s; 11,880 s; 13,880 s",
+          "observation": "Drie rijen van zes verdwijnen achtereenvolgens als de punt van het takje langs de fiches gaat. De controlebeelden tonen 18, 12, 6 en 0 fiches."
         },
         {
-          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
-          "observation": "18 − 3 × 6 boven 18 gele fiches in een 3×6-formatie. Naast de fiches staan 3 × 6 hoort bij elkaar en er blijft 0 over. Op alle vier bemonsterde kernframes blijven de 18 fiches zichtbaar."
+          "timestamps": "26,080–30,120 s",
+          "observation": "Het takje tekent de twee haakjes rond 18 − 3. De vermenigvuldiging met 6 blijft buiten de haakjes."
+        },
+        {
+          "timestamps": "30,120–33,880 s",
+          "observation": "Beide berekeningen staan in beeld met uitkomst 0 respectievelijk 90."
         }
       ],
-      "captionEvidence": "16,102–22,113 s: “3 × 6 hoort bij elkaar: dat is de hoeveelheid die je weghaalt. Er blijft niets over.”",
+      "captionEvidence": "21 Nederlandse VTT-cues volgen de ingebouwde Roadie-stem. De laatste cue eindigt op 33,660 seconden, binnen de speelduur van 33,912 seconden. De film bevat tevens ingebrande ondertiteling.",
       "notes": [
-        "Niet-blokkerende beeldnotitie: het afhalen wordt verteld, terwijl ook bij 21 s nog alle 18 fiches zichtbaar zijn. Wegstrepen of laten verdwijnen kan de breuk met links-naar-rechts sterker maken; de huidige berekening en doelgroepkoppeling zijn correct."
+        "De media zijn technisch gecontroleerd op video, ingebouwde audio en gesynchroniseerde ondertiteling. De gesproken tekst komt overeen met het transcript."
       ],
       "videoId": "wisik-flirt-a05",
       "title": "Rekenvolgorde",
       "fingerprints": {
         "misconception": "5278a12df05e9204efa6b45c0925ea02e704ab4adedfabdf56ef8e7be5ed5600",
-        "catalogItem": "1cb54eb1d6756a54229d578f264df835376325ecccc6877d3b86e6f01171036a",
-        "video": "944bba58a1bfa21a46d102713c2c27f08c3ea0688672b9cc2572e59f353e2076",
-        "poster": "8cbaa7f9fa6cfba40bc85ef1280915615c10f1b73077222e4a862bb216ab694f",
-        "captions": "46d5b58c0a81a2045e2b8588044326fc988a20aa5902c20b6dd7acdaab399540",
-        "transcript": "6cf52c0c875cc6b887f6f5ef69e545902aae35475978680f1a047cc785e4148e"
-      }
+        "catalogItem": "b4f690914471759eae9c5714736721f3a5d846dc20164bd8b6dabeff478d31a6",
+        "video": "84b058fe5811009cc582b7465d0a980349ca04311e372e6cb5b0b93bf85854c6",
+        "poster": "5e5f8898c9bf4bc90f4a5c76df287e9f087b2ae8f1aa6bbe7ab5c9579eeb9ff8",
+        "captions": "33c13420167e357ac2de871531a266d1a0591dc35ce70c131dfc5fdbb50733a0",
+        "transcript": "fc5901cf52c9db74a96b040e4afa2c70be4c23989980795a4aff95080c83a120"
+      },
+      "reviewedAt": "2026-11-11"
     },
     {
       "code": "A06",
