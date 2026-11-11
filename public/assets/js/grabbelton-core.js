@@ -37,7 +37,7 @@
     const resolved = resolveAssetUrl(value);
     if (!resolved) return null;
     const url = new URL(resolved);
-    const mediaVersion = url.pathname.startsWith("/films/rekenklaar/A02/") ? `${asText(version)}-roadie-20260929b` : url.pathname.startsWith("/films/rekenklaar/B03/") ? `${asText(version)}-roadie-b03-20260929` : url.pathname.startsWith("/films/rekenklaar/B04/") ? `${asText(version)}-roadie-b04-20261111` : asText(version);
+    const mediaVersion = url.pathname.startsWith("/films/rekenklaar/A02/") ? `${asText(version)}-roadie-20260929b` : url.pathname.startsWith("/films/rekenklaar/B03/") ? `${asText(version)}-roadie-b03-20260929` : url.pathname.startsWith("/films/rekenklaar/B04/") ? `${asText(version)}-roadie-b04-20261111` : url.pathname.startsWith("/films/rekenklaar/D05/") ? `${asText(version)}-roadie-d05-20261111` : asText(version);
     url.searchParams.set("v", mediaVersion);
     return url.href;
   }
@@ -160,9 +160,9 @@
   function attachOwnVoice(player) {
     if (!(player instanceof BrowserVideoElement) || player.dataset.wisikOwnVoice === "1") return;
     const code = codeFromVideo(player);
-    // A02, B03 and B04 Roadie contain the final Dutch voice and timed captions.
+    // A02, B03, B04 and D05 Roadie contain the final Dutch voice and timed captions.
     // Do not replace its audio or stretch its playback/caption timing.
-    if (code === "A02" || code === "B03" || code === "B04") return;
+    if (code === "A02" || code === "B03" || code === "B04" || code === "D05") return;
     const config = OWN_VOICE[code];
     if (!config) return;
     player.dataset.wisikOwnVoice = "1";
