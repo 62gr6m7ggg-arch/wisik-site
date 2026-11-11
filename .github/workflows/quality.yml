@@ -35,6 +35,11 @@ jobs:
         env:
           RELEASE_BEFORE_SHA: ${{ github.event.before }}
         run: node scripts/classify-release-change.mjs
+      - name: Installeer FFmpeg voor bron- en geluidsinspectie
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg
+          ffprobe -version | head -n 1
       - name: Gerichte Roadie-vrijgavecontrole
         if: steps.scope.outputs.mode == 'roadie'
         run: |
