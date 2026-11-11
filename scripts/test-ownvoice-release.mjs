@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
+import assert from "node:assert/strict";
+import vm from "node:vm";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteVersion = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).version;
@@ -43,4 +45,66 @@ for (const page of ["public/grabbelton/index.html", "public/apps/pabo-rekenklaar
   const html = fs.readFileSync(path.join(root, page), "utf8");
   if (!html.includes(`grabbelton-core.js?v=${siteVersion}`)) fail(`${page} mist cacheversie ${siteVersion}`);
 }
+
+// Films met definitieve eigen audio moeten buiten de historische M4A-koppeling blijven.
+// Controleer werkelijk spelersgedrag: een ontbrekende bypass zou B04 vertragen,
+// muten en zijn al getimede ondertitels opnieuw verdelen.
+const createdAudio = [];
+class TestVideo {
+  constructor(code, duration) {
+    this.currentSrc = `https://wisik.nl/films/rekenklaar/${code}/flirt.mp4?v=test`;
+    this.dataset = {};
+    this.muted = false;
+    this.defaultMuted = false;
+    this.playbackRate = 1;
+    this.defaultPlaybackRate = 1;
+    this.currentTime = 0;
+    this.duration = duration;
+    this.readyState = 1;
+    this.events = new Map();
+    this.textTracks = [{ mode: "hidden", cues: [
+      { startTime: 0.256, endTime: 1.207 },
+      { startTime: 39.927, endTime: 41.816 }
+    ] }];
+  }
+  getAttribute(name) { return name === "src" ? this.currentSrc : null; }
+  addEventListener(name, fn) { this.events.set(name, fn); }
+  querySelector() { return null; }
+}
+class TestAudio {
+  constructor(src) {
+    this.src = src;
+    this.duration = Number.NaN;
+    this.currentTime = 0;
+    this.events = new Map();
+    createdAudio.push(this);
+  }
+  addEventListener(name, fn) { this.events.set(name, fn); }
+  setAttribute() {}
+}
+const mediaContext = { URL, console, HTMLVideoElement: TestVideo, Audio: TestAudio };
+vm.runInNewContext(core, mediaContext);
+for (const [code, duration] of [["A02", 61], ["B03", 63.15], ["B04", 42.092]]) {
+  const player = new TestVideo(code, duration);
+  const beforeCues = JSON.stringify(player.textTracks);
+  const audioCount = createdAudio.length;
+  mediaContext.WisikGrabbeltonCore.attachOwnVoice(player);
+  player.events.get("loadedmetadata")?.();
+  assert.equal(createdAudio.length, audioCount, `${code}: oude losse audio mag niet worden aangemaakt`);
+  assert.equal(player.muted, false, `${code}: ingebouwde eigen stem moet hoorbaar blijven`);
+  assert.equal(player.defaultMuted, false, `${code}: native audio mag niet standaard gemute worden`);
+  assert.equal(player.playbackRate, 1, `${code}: natuurlijke snelheid moet behouden blijven`);
+  assert.equal(player.defaultPlaybackRate, 1, `${code}: standaardsnelheid moet 1× blijven`);
+  assert.equal(JSON.stringify(player.textTracks), beforeCues, `${code}: definitieve VTT-tijden mogen niet veranderen`);
+  assert.equal(player.dataset.wisikOwnVoice, undefined, `${code}: geen historische eigenstem-binding`);
+}
+const legacy = new TestVideo("A01", 49.72);
+mediaContext.WisikGrabbeltonCore.attachOwnVoice(legacy);
+assert.equal(createdAudio.length, 1, "A01: de bestaande losse-eigenstemroute moet actief blijven");
+assert.ok(createdAudio[0].src.includes("/A01.m4a?v="), "A01: juiste historische audiobron");
+assert.equal(legacy.dataset.wisikOwnVoice, "1");
+assert.equal(legacy.muted, true);
+assert.ok(Math.abs(legacy.playbackRate - 49.72 / review.clips.A01.duration) < 1e-9);
+assert.notEqual(legacy.textTracks[0].cues[0].startTime, 0.256, "A01: bestaande captionaanpassing blijft actief");
+console.log("Roadie-mediacontrole geslaagd: A02/B03/B04 behouden native audio, snelheid en VTT; A01 behoudt de losse eigenstemroute.");
 console.log(`Eigenstem-releasecontrole geslaagd: 30 losse M4A-bestanden, geen master-seeking, bronhash ${review.output.sha256}.`);

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-09-29",
+  "reviewedAt": "2026-11-11",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02. B03 is op 29 september 2026 vervangen door de nieuwe Roadie-film met zes halve-literglazen en de fysieke breukkaart; zie de afzonderlijke B03-review.",
-    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden.",
+    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02. B03 is op 29 september 2026 vervangen door de nieuwe Roadie-film met zes halve-literglazen en de fysieke breukkaart; zie de afzonderlijke B03-review. B04 is op 11 november 2026 vervangen door de nieuwe Roadie-montage met zichtbare verfijning van tien kolommen naar honderd vakjes en de vergelijking 70% tegenover 7%; zie de afzonderlijke B04-review.",
+    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden. B04 gebruikt vanaf 11 november 2026 de complete ingebedde stem in de nieuwe MP4; de oudere losse stemopname is voor deze film uitgeschakeld.",
     "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
     "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
   },
@@ -352,29 +352,48 @@
     {
       "code": "B04",
       "verdict": "aligned-with-notes",
-      "intendedInsight": "0,7 is zeven tienden en dus zeventig honderdsten: 70%, niet 7%.",
-      "observedContent": "Titel, script en gelijkheid richten zich op precies de fout één kommaplaats verschuiven. Zeven gevulde kolommen van tien maken 0,7 zichtbaar; de gesproken verfijning naar honderd vakjes ontbreekt in de bekeken beelden.",
+      "intendedInsight": "0,7 is zeven tienden en dezelfde hoeveelheid als zeventig honderdsten: 70%. Daartegenover staat 7% = 0,07, zichtbaar als zeven van honderd vakjes in een even groot geheel.",
+      "observedContent": "De nieuwe Roadie-film toont zeven gekleurde kolommen van tien. Negen horizontale scheidingslijnen verfijnen diezelfde gekleurde oppervlakte tot zeventig van honderd vakjes. Daarna vergelijkt de film 70% met zeven gekleurde vakjes van een even groot honderdveld (7% = 0,07). De slotgelijkheid luidt 0,7 = 70%.",
       "visualEvidence": [
-        "4 s: titelkaart Van decimaal naar procent, code B04.",
-        "12 en 21 s: tien onverdeelde kolommen, waarvan zeven gevuld; bovenaan 0,7 = 7/10 = 70/100 = 70%.",
-        "30 en 39 s: dezelfde tien kolommen zonder horizontale onderverdeling; ook bij de uitleg over zeventig van honderd vakjes is geen honderdveld zichtbaar.",
-        "50,640 s: eindkaart met B04; poster stemt overeen."
+        {
+          "timestamps": "0,4; 3,2; 6,8; 9,8 s",
+          "observation": "Roadie links en het rekenbord rechts, met één geheel en zeven van tien gekleurde kolommen; beeld en ondertitels blijven vrij van gezicht en handen."
+        },
+        {
+          "timestamps": "12,0; 14,5 s",
+          "observation": "Horizontale lijnen verschijnen binnen hetzelfde geheel; de zeven gekleurde kolommen blijven gelijk en worden zeventig gekleurde vakjes."
+        },
+        {
+          "timestamps": "24,8; 27,9 s",
+          "observation": "Het honderdveld bevat precies zeventig gekleurde vakjes; zeven tienden = zeventig honderdsten = 70%."
+        },
+        {
+          "timestamps": "31,9 s",
+          "observation": "Twee even grote gehelen vergelijken zeventig gekleurde vakjes met zeven; het tweede geheel toont 7% = 0,07."
+        },
+        {
+          "timestamps": "34,2; 36,8; 39,0; 41,5 s",
+          "observation": "Roadie sluit af met dezelfde hoeveelheid anders opgeschreven en Eerst begrijpen, dan rekenen."
+        }
       ],
-      "captionEvidence": "Nu verdelen we elke kolom in tien vakjes.",
+      "captionEvidence": "20 cues met de volledige nieuwe Nederlandse spreektekst. Eerste cue 0,279 s; laatste cue eindigt 41,839 s. VTT en ingebrande ondertitels volgen de native filmklok, zonder oude eigenstem-hertiming.",
       "notes": [
-        "Niet-blokkerend voor de experimentele festivalversie: voeg horizontale lijnen toe tijdens 19,710–31,419 s zodat de aangekondigde honderd vakjes en het behoud van hoeveelheid zichtbaar worden. De weergegeven gelijkheid en kernuitleg zijn correct."
+        "De ontbrekende honderdverdeling uit de eerdere B04 is hersteld; de gekleurde hoeveelheid blijft bij de verfijning gelijk.",
+        "Beeldsteekproeven, rekenrasters, spraaktijdcodes, volledige technische decodering en geluidsniveau zijn gecontroleerd. Volledig audiovisueel afspelen en een onafhankelijke luisterbeoordeling waren niet beschikbaar; vloeiendheid van elk gebaar en stemgelijkenis zijn niet definitief afgetekend.",
+        "De gebruiker heeft na levering van deze gemonteerde versie opdracht gegeven tot publicatie. De film gebruikt één doorlopende HeyGen-opname op 25 fps en 1× snelheid, met de toegestane stemkloon. De oude losse B04-stemopname wordt niet over deze MP4 gelegd."
       ],
       "expectedMisconception": "De komma verschuift één in plaats van twee plaatsen.",
       "videoId": "wisik-flirt-b04",
       "title": "Van decimaal naar procent",
       "fingerprints": {
         "misconception": "ad998fa1c5534bf9bea8675540435ca99ce8ffa85d2bae22fa1b027101e2dcf8",
-        "catalogItem": "5d244ca645026e684a163635c79d51d28b527dd9ea8cb1ea41a1be82223e4d3a",
-        "video": "7c5a461031ff7ac4a3201b6452899ff1ce8dbc6ed17d2ece5b3ec84e102827cd",
-        "poster": "48da16c90e6e730daf7eddfcc91bd313ae91caeac4540f6e6832d60e9e618982",
-        "captions": "48f3051774003e6a85fedf1eae0e3644df2502f1ff60ee3a6c6137a154aa1025",
-        "transcript": "de19fd40cce99c34b21d090c21341fb4163a665fcf42e62a89466249b1675a9f"
-      }
+        "catalogItem": "a3db2811e57b88fbb3dae0403b01c8a82c1046f3de29e8e7870e4f3d1ede3fbf",
+        "video": "0dea6c8e48ca3968210103789cdb73f4d76efe6c260769ad53c2e8d0a199a033",
+        "poster": "bf170d988e8e4407cc05976393322e99bcef091c305243bd6af8dd8489bf252d",
+        "captions": "9764e66a0d68a4392656f1fc524728582e7608024fe53a67d754d9680fbfb649",
+        "transcript": "307dc5db3a5c0cf698bc0c706fccd04af86d968c921327edae14adad77dec4bb"
+      },
+      "reviewedAt": "2026-11-11"
     },
     {
       "code": "B05",
