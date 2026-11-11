@@ -511,8 +511,8 @@ input[type="range"]{width:100%;accent-color:var(--navy)}
 </style>
   <link rel="stylesheet" href="./wisik-bridge.css?v=1.1.1">
   <script src="./wisik-bridge.js?v=1.1.1" defer></script>
-  <script src="/assets/js/site-data.js?v=0.1.31" defer></script>
-  <script src="/assets/js/grabbelton-core.js?v=0.1.31" defer></script>
+  <script src="/assets/js/site-data.js?v=0.1.32" defer></script>
+  <script src="/assets/js/grabbelton-core.js?v=0.1.32" defer></script>
 </head>
 <body>
 <div class="app-shell">
@@ -3452,7 +3452,7 @@ async function openDiagnosticFlirt(code){
     const content=document.getElementById("diagnosticFlirtContent");
     if(!video){content.innerHTML="<p>Voor dit denkpatroon staat nog geen flirt klaar. Je kunt wel verder met de uitleg en herstelset.</p>";return}
     const asset=url=>escapeHtml(globalThis.WisikGrabbeltonCore.versionedAssetUrl(url,globalThis.WISIK_SITE_VERSION||APP_VERSION));
-    content.innerHTML=`<h4>${escapeHtml(video.title)}</h4><p>${escapeHtml(video.summary)}</p><video class="flirt-player" controls tabindex="0" playsinline preload="none" crossorigin="anonymous" aria-label="Wisik-flirt: ${escapeHtml(video.title)}" src="${asset(video.source.url)}"${video.posterSrc?` poster="${asset(video.posterSrc)}"`:""}><track kind="captions" srclang="nl" label="Nederlands" src="${asset(video.captionsSrc)}" default></video><p data-flirt-error hidden>De film kan nu niet worden afgespeeld. Je kunt het transcript lezen of verder oefenen.</p><p><a href="${asset(video.transcriptUrl)}" target="_blank" rel="noopener">Lees het transcript (nieuw tabblad)</a></p>`;
+    content.innerHTML=`<h4>${escapeHtml(video.title)}</h4><p>${escapeHtml(video.summary)}</p><video class="flirt-player" controls tabindex="0" playsinline preload="none" crossorigin="anonymous" aria-label="Wisik-flirt: ${escapeHtml(video.title)}" src="${asset(video.source.url)}"${video.posterSrc?` poster="${asset(video.posterSrc)}"`:""}><track kind="captions" srclang="nl" label="Nederlands" src="${asset(video.captionsSrc)}"${video.captionsBurnedIn?"":" default"}></video><p data-flirt-error hidden>De film kan nu niet worden afgespeeld. Je kunt het transcript lezen of verder oefenen.</p><p><a href="${asset(video.transcriptUrl)}" target="_blank" rel="noopener">Lees het transcript (nieuw tabblad)</a></p>`;
     content.querySelector("video").addEventListener("error",()=>{const message=content.querySelector("[data-flirt-error]");if(message)message.hidden=false},{once:true});
   }catch{
     if(stillOpen())document.getElementById("diagnosticFlirtContent").innerHTML="<p>De flirt kan nu niet worden geladen. Je kunt verder oefenen of de herstelset gebruiken.</p>";

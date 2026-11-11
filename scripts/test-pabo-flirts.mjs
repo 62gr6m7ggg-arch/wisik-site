@@ -12,6 +12,11 @@ const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
 const html = read("public/apps/pabo-rekenklaar/index.html");
 const script = html.match(/<script>([\s\S]*)<\/script>/)[1];
 const catalog = JSON.parse(read("public/assets/data/grabbelton-videos.json"));
+const expectedMediaSuffix = { A02: "-roadie-20260929b", B03: "-roadie-b03-20260929", B04: "-roadie-b04-20261111" };
+const b04 = catalog.videos.find(video => video.target.misconceptionCode === "B04");
+assert.equal(b04.durationSeconds, 42, "B04: catalogusduur hoort bij de nieuwe 42,092 secondenfilm");
+assert.equal(b04.release, "roadie-b04-20261111", "B04: nieuwe mediarelease ontbreekt");
+assert.equal(b04.captionsBurnedIn, true, "B04: ingebrande ondertitels moeten expliciet bekend zijn");
 const invitation = "Even anders kijken? Mag ik dan even met je flirten?";
 
 // DOM-double voor de bestaande modale levenscyclus; dit is geen browsertest.
@@ -104,13 +109,56 @@ for (const item of fixtures.cases) {
   assert.ok(markup.includes(`<h4>${run('escapeHtml(rendererExpected.title)')}</h4>`), `${item.code}: verkeerde getoonde titel`);
   assert.ok(markup.includes(run('escapeHtml(rendererExpected.summary)')), `${item.code}: verkeerde getoonde flirttekst`);
   for (const route of [expected.source.url,expected.posterSrc,expected.captionsSrc,expected.transcriptUrl]) {
-    assert.ok(markup.includes(`https://wisik.nl${route}?v=${context.WISIK_SITE_VERSION}${item.code === "A02" ? "-roadie-20260929b" : item.code === "B03" ? "-roadie-b03-20260929" : ""}`), `${item.code}: speler verwijst naar verkeerde asset ${route}`);
+    assert.ok(markup.includes(`https://wisik.nl${route}?v=${context.WISIK_SITE_VERSION}${expectedMediaSuffix[item.code] || ""}`), `${item.code}: speler verwijst naar verkeerde asset ${route}`);
   }
+  const trackMarkup = markup.match(/<track\b[^>]*>/)?.[0];
+  assert.ok(trackMarkup, `${item.code}: Nederlandse VTT blijft beschikbaar`);
+  assert.equal(/\sdefault(?:\s|=|>)/.test(trackMarkup), item.code !== "B04", `${item.code}: voorkom dubbele standaardondertitels bij de nieuwe B04`);
   assert.ok(element("modalBody").innerHTML.includes(`data-start-repair="${item.code}"`), `${item.code}: verkeerde herstelset`);
   run('closeModal()');
   assert.equal(run('JSON.stringify({state,activeSession})'), before, `${item.code}: film wijzigt voortgang`);
 }
 run('state=deepClone(DEFAULT_STATE);state.diagnostics=freshDiagnostics();');
+
+// De Grabbelton gebruikt een tweede renderer: controleer ook zijn echte trackinstelling.
+const grabSource = read("public/assets/js/grabbelton.js");
+const renderStart = grabSource.indexOf("  function renderVideo(selection)");
+const renderEnd = grabSource.indexOf("\n  function drawVideo()", renderStart);
+assert.ok(renderStart >= 0 && renderEnd > renderStart, "Grabbelton-renderer ontbreekt");
+function grabElement(tag) {
+  return {
+    tag, children: [], style: {}, events: new Map(),
+    append(...children) { this.children.push(...children); },
+    replaceChildren(...children) { this.children = children; },
+    setAttribute(name, value) { this[name] = value; },
+    addEventListener(name, fn) { this.events.set(name, fn); },
+    pause() {},
+    querySelector(wanted) {
+      for (const child of this.children) {
+        if (child.tag === wanted) return child;
+        const nested = child.querySelector?.(wanted);
+        if (nested) return nested;
+      }
+      return null;
+    }
+  };
+}
+const grabResult = grabElement("div");
+const grabContext = {
+  core: context.WisikGrabbeltonCore, WISIK_SITE_VERSION: context.WISIK_SITE_VERSION,
+  document: { createElement: grabElement }, byId: () => grabResult, rememberVideo() {}
+};
+vm.createContext(grabContext);
+vm.runInContext(grabSource.slice(renderStart, renderEnd), grabContext);
+for (const code of ["A01", "A02", "B03", "B04"]) {
+  const selected = catalog.videos.find(video => video.target.misconceptionCode === code);
+  grabContext.renderVideo({ video: selected, reason: "misconception" });
+  const player = grabResult.querySelector("video");
+  const track = player.querySelector("track");
+  assert.equal(track.default, code !== "B04", `${code}: Grabbelton-ondertitels hebben de verkeerde standaardstand`);
+  assert.equal(track.kind, "captions");
+  assert.equal(track.src, `https://wisik.nl${selected.captionsSrc}?v=${context.WISIK_SITE_VERSION}${expectedMediaSuffix[code] || ""}`);
+}
 
 run('activeSession={kind:"practice",answered:true,finished:false};');
 // Werkelijke bewijsopbouw: dezelfde fout herhalen is onvoldoende; een andere controlevraag bevestigt.

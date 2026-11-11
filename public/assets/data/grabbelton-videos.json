@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08",
+  "updatedAt": "2026-11-11",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -255,8 +255,8 @@
       "id": "wisik-flirt-b04",
       "status": "published",
       "title": "Van decimaal naar procent",
-      "summary": "Waarom nul komma zeven gelijk is aan zeventig procent en niet zeven procent.",
-      "durationSeconds": 52,
+      "summary": "Roadie laat zien hoe zeven tienden zeventig honderdsten worden: 0,7 = 70%. Zeven procent is maar 0,07.",
+      "durationSeconds": 42,
       "wristbands": [
         "PABO"
       ],
@@ -271,7 +271,8 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B04"
       },
-      "release": "festival-v1"
+      "release": "roadie-b04-20261111",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-b05",
