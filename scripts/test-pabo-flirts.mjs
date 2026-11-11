@@ -12,7 +12,7 @@ const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
 const html = read("public/apps/pabo-rekenklaar/index.html");
 const script = html.match(/<script>([\s\S]*)<\/script>/)[1];
 const catalog = JSON.parse(read("public/assets/data/grabbelton-videos.json"));
-const expectedMediaSuffix = { A02: "-roadie-20260929b", B03: "-roadie-b03-20260929", B04: "-roadie-b04-20261111" };
+const expectedMediaSuffix = { A02: "-roadie-20260929b", B03: "-roadie-b03-20260929", B04: "-roadie-b04-20261111", D05: "-roadie-d05-20261111" };
 const b04 = catalog.videos.find(video => video.target.misconceptionCode === "B04");
 assert.equal(b04.durationSeconds, 42, "B04: catalogusduur hoort bij de nieuwe 42,092 secondenfilm");
 assert.equal(b04.release, "roadie-b04-20261111", "B04: nieuwe mediarelease ontbreekt");
@@ -150,7 +150,7 @@ const grabContext = {
 };
 vm.createContext(grabContext);
 vm.runInContext(grabSource.slice(renderStart, renderEnd), grabContext);
-for (const code of ["A01", "A02", "B03", "B04"]) {
+for (const code of ["A01", "A02", "B03", "B04", "D05"]) {
   const selected = catalog.videos.find(video => video.target.misconceptionCode === code);
   grabContext.renderVideo({ video: selected, reason: "misconception" });
   const player = grabResult.querySelector("video");
