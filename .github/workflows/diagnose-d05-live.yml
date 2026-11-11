@@ -1,4 +1,4 @@
-name: Controle Roadie D05 startbeeld op wisik.nl
+name: Diagnose D05 poster prod en Cloudflare preview
 on:
   push:
     branches: [diagnostic/d05-live-20261111]
@@ -9,20 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - name: Verifieer de publieke HTML-speler en poster
+      - name: Vergelijk routes zonder vroegtijdig stoppen
         run: |
-          set -euo pipefail
-          SITE=https://wisik.nl
-          curl --fail --location --silent --show-error --retry 3 "$SITE/films/rekenklaar/D05/?verify=poster-20261111" -o /tmp/d05-page.html -w 'player_http=%{http_code} type=%{content_type} bytes=%{size_download}\n'
-          grep -F 'Roadie · Pabo Rekenklaar' /tmp/d05-page.html >/dev/null
-          grep -F 'id="roadiePoster"' /tmp/d05-page.html >/dev/null
-          grep -F 'id="roadieStart"' /tmp/d05-page.html >/dev/null
-          grep -F 'poster.jpg?v=roadie-d05-20261111' /tmp/d05-page.html >/dev/null
-          grep -F 'src="./flirt.mp4?v=roadie-d05-20261111"' /tmp/d05-page.html >/dev/null
-          curl --fail --location --silent --show-error --retry 3 "$SITE/films/rekenklaar/D05/poster.jpg?v=roadie-d05-20261111&verify=poster" -o /tmp/d05-poster.jpg -w 'poster_http=%{http_code} type=%{content_type} bytes=%{size_download}\n'
-          sha256sum public/films/rekenklaar/D05/poster.jpg /tmp/d05-poster.jpg
-          cmp public/films/rekenklaar/D05/poster.jpg /tmp/d05-poster.jpg
-          curl --fail --location --silent --show-error --retry 3 "$SITE/grabbelton/?verify=poster-20261111" -o /tmp/d05-grabbelton.html -w 'grabbelton_http=%{http_code} type=%{content_type}\n'
-          grep -F 'href="/films/rekenklaar/D05/"' /tmp/d05-grabbelton.html >/dev/null
-          echo "GESLAAGD: D05-poster, HTML-afspeelknop en Grabbelton-ingang op wisik.nl aanwezig."
+          set +e
+          for host in wisik.nl 0fefd89f.wisik-site.pages.dev; do
+            for route in /films/rekenklaar/D05/ /films/rekenklaar/D05/index.html /grabbelton/ /films/rekenklaar/D05/poster.jpg; do
+              echo "=== $host$route ==="
+              curl --location --silent --show-error --max-time 18 --output /tmp/item --write-out 'code=%{http_code} type=%{content_type} bytes=%{size_download} final=%{url_effective}\n' "https://$host$route?verify=20261111-1530"
+              if test "$route" = "/films/rekenklaar/D05/" || test "$route" = "/films/rekenklaar/D05/index.html"; then
+                grep -F 'id="roadiePoster"' /tmp/item >/dev/null && echo "POSTER_HTML_OK" || echo "NO_POSTER_HTML"
+              fi
+            done
+          done
