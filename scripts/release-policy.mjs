@@ -1,6 +1,7 @@
 // One explicit dependency map. Changes outside this map stop quickly; they never
 // silently launch a site-wide audit. Extend the map when introducing a module.
 export const modules = {
+  delivery: ['scripts/test-delivery-source.mjs'],
   flirts: ['scripts/test-pabo-flirts.mjs', 'scripts/test-native-audio.mjs', 'scripts/test-roadie-release.mjs'],
   pabo: ['scripts/audit-pabo-release.mjs', 'scripts/pabo-didactic-audit.mjs', 'scripts/test-pabo-rich.mjs', 'scripts/test-pabo-navigation.mjs', 'scripts/test-backstage-audit.mjs'],
   space: ['scripts/audit-space-release.mjs', 'scripts/audit-ruimteklaar-review.mjs', 'scripts/test-space-artist-entrance.mjs'],
@@ -38,6 +39,7 @@ export function classifyPaths(paths, { full = false } = {}) {
   const selected = new Set();
   const unknown = [];
   for (const file of paths) {
+    if (/^scripts\/(?:verify-publication\.mjs|test-delivery-source\.mjs|lib\/delivery-source\.mjs)$|^\.github\/workflows\/publication\.yml$/.test(file)) { selected.add('delivery'); continue; }
     if (/^\.github\/|^scripts\/(?:release-|classify-release-change|test-release-|test-native-audio|verify-publication)|^(?:package(?:-lock)?\.json|wrangler\.jsonc|\.gitignore)$/.test(file)) {
       fullModules.forEach(m => selected.add(m)); continue;
     }

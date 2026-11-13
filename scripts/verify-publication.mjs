@@ -1,12 +1,11 @@
 // Bounded delivery check only: no second audit after merge.
 import fs from 'node:fs';
-import {createHash} from 'node:crypto';
+import {deliveredSource} from './lib/delivery-source.mjs';
 import {execFileSync} from 'node:child_process';
 import {changedPaths} from './classify-release-change.mjs';
 const sha=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
 const base=process.env.RELEASE_BEFORE_SHA || process.argv.find(a=>a.startsWith('--base='))?.slice(7);
 const paths=changedPaths(base).filter(p=>p.startsWith('public/'));
-const hash=b=>createHash('sha256').update(b).digest('hex');
 const origin=process.env.LIVE_ORIGIN || 'https://wisik.nl';
 const attempts=6;
 let pending=paths;
@@ -26,7 +25,7 @@ for(let attempt=1;attempt<=attempts && pending.length;attempt++) {
    else {
     if(!response.ok) throw new Error(`HTTP ${response.status}`);
     const actual=Buffer.from(await response.arrayBuffer());
-    if(hash(actual)!==hash(fs.readFileSync(p))) throw new Error('productie bevat nog een andere versie');
+    if(!deliveredSource(fs.readFileSync(p),actual,p).verified) throw new Error('productie bevat nog een andere versie');
    }
    result.verified.push({path:p,check:'SHA-256 / deletion'});
   } catch(e) {failed.push(p);result.failures.push({attempt,path:p,message:e.message});}

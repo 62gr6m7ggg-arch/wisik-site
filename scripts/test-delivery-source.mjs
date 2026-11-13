@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {deliveredSource,hostingAddition} from './lib/delivery-source.mjs';
+const expected=Buffer.from('<html><body>lesson</body></html>\n');
+const hosted=Buffer.from(expected.toString().replace('</body>',hostingAddition+'</body>'));
+assert.equal(deliveredSource(expected,expected,'index.html').rawEqual,true);
+assert.equal(deliveredSource(expected,hosted,'index.html').verified,true);
+assert.equal(deliveredSource(expected,hosted,'index.html').rawEqual,false);
+assert.equal(deliveredSource(expected,Buffer.from(hosted.toString().replace('lesson','changed')),'index.html').verified,false);
+assert.equal(deliveredSource(expected,Buffer.from(hosted.toString().replace('crossorigin="anonymous"','crossorigin="changed"')),'index.html').verified,false);
+assert.equal(deliveredSource(expected,Buffer.from(hosted.toString().replace(hostingAddition,hostingAddition.repeat(2))),'index.html').verified,false);
+assert.equal(deliveredSource(expected,hosted,'app.js').verified,false);
+assert.equal(deliveredSource(expected,Buffer.concat([hosted,Buffer.from('<script>extra()</script>')]),'index.html').verified,false);
+assert.equal(deliveredSource(Buffer.from('media'),Buffer.from('media'),'film.mp4').verified,true);
+assert.equal(deliveredSource(Buffer.from('media'),Buffer.from('changed'),'film.mp4').verified,false);
+console.log('Aflevercontrole: 10 controles; exacte hostingtoevoeging herkend, applicatiewijzigingen afgewezen.');

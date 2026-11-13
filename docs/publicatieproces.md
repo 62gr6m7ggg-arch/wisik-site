@@ -15,6 +15,7 @@ De bestaande GitHub-regel heeft nul vereiste reviewers. Geen bypass nodig.
 | Gonio | Productiewiskunde en integriteit |
 | Konijnenhol | Zelfstandige film en navigatie |
 | Gedeelde websitecode | Gedeelde site-/navigatie-/privacycontroles |
+| Aflevercontrole | Alleen integriteit van de aflevercontrole |
 | Alleen documentatie | Beleidscontrole; geen productaudit |
 | Releasebeleid/workflows | Eenmalige brede regressie |
 | Onbekende module | Directe configuratiefout; module expliciet registreren |
@@ -79,3 +80,7 @@ PR-body/hervatpunt: onderdeel, pakketversie/hash, main-basis, afgeronde stappen,
 eerstvolgende stap, eventuele fout. Commit-ID en run-ID zijn de primaire status;
 chatgeschiedenis is niet de enige opslag. Artifacts worden 14 dagen bewaard.
 De branch/PR en workflowlog blijven de blijvende bron voor hervatten.
+
+De aflevercontrole accepteert uitsluitend de eerder exact vastgelegde Cloudflare-
+statistiektoevoeging in HTML. Gewijzigde applicatiebytes of andere scripts blijven
+afgekeurd. Het is dus geen blinde verwijdering van hostingcode.
