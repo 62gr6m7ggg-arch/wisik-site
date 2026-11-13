@@ -84,3 +84,7 @@ De branch/PR en workflowlog blijven de blijvende bron voor hervatten.
 De aflevercontrole accepteert uitsluitend de eerder exact vastgelegde Cloudflare-
 statistiektoevoeging in HTML. Gewijzigde applicatiebytes of andere scripts blijven
 afgekeurd. Het is dus geen blinde verwijdering van hostingcode.
+
+Een fout bij het archiveren van logs blokkeert geen geslaagde vrijgave. De echte
+teststap blijft verplicht; de workflowlog en PR blijven beschikbaar als het
+optionele artifact tijdelijk niet opgeslagen kan worden.

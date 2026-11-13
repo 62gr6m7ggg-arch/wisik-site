@@ -15,7 +15,7 @@ if(plan.modules.includes('site')) commands.push(['scripts/build-site-seo.mjs','-
 if(plan.modules.includes('gonio')) commands.push(['python:tests/gonio_integrity.py']);
 const unique=[...new Map(commands.map(c=>[c.join(' '),c])).values()];
 for(const args of unique){
- const name=args[0],logPath=`.release/logs/${name.replaceAll('/','_')}.log`;
+ const name=args[0],logPath=`.release/logs/${name.replace(/[^a-zA-Z0-9._-]/g,'_')}.log`;
  const start=Date.now(); const env={...process.env};
  if(plan.modules.length===1 && plan.modules[0]==='flirts' && plan.codes.length) env.WISIK_FLIRT_CODES=plan.codes.join(','); else delete env.WISIK_FLIRT_CODES;
  result.currentCommand=args; save();

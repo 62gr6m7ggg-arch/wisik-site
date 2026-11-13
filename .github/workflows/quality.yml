@@ -34,6 +34,7 @@ jobs:
       - name: Bewaar resultaat en hervatpunt
         if: always()
         uses: actions/upload-artifact@v4
+        continue-on-error: true
         with:
           name: wisik-vrijgavebewijs
           include-hidden-files: true
