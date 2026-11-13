@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-12",
+  "reviewedAt": "2026-11-13",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
@@ -573,46 +573,62 @@
       "verdict": "aligned-with-notes",
       "expectedMisconception": "De omzetfactor wordt slechts één keer of als 1.000 gebruikt waar 100³ nodig is.",
       "intendedInsight": "1 m³ bevat 100 × 100 × 100 = 1.000.000 cm³; breedte, diepte én hoogte tellen mee.",
-      "observedContent": "Titel en volledige VTT/transcript breken de gedachte dat duizend cm³ in een m³ passen met een correcte rij-laag-stapeling. Het beeld is een onverdeelde kubus; de rekenregel staat grotendeels achter de witte inzichtbalk.",
+      "observedContent": "Roadie zet kratjes neer en stapelt vanaf de steiger. De rij, de laag en de kubus ondersteunen de drie factoren honderd. Het slot toont de gelijkheid en de omgekeerde rekenrichting.",
       "visualEvidence": [
         {
           "timestampsSeconds": [
-            4,
-            53.52
+            15.3,
+            19.5
           ],
-          "observation": "Correcte C02-titelkaart en afsluiting."
+          "observation": "Roadie plaatst zwarte kratjes aan het begin van een rij."
         },
         {
           "timestampsSeconds": [
-            12,
-            21,
-            30,
-            39
+            22,
+            24.5
           ],
-          "observation": "Vaste kubus in perspectief met drie zichtbare vlakken; inzichtbalk “Inhoud telt drie richtingen.” Geen blokjes, maten of laagopbouw zichtbaar."
+          "observation": "Bovenaanzicht van een groeiende grondlaag."
         },
         {
           "timestampsSeconds": [
-            35
+            26,
+            29,
+            33
           ],
-          "observation": "Extra opname op volledige resolutie bevestigt dat de onderste delen van 100 × 100 × 100 = 1.000.000 cm³ achter de inzichtbalk vallen."
+          "observation": "Roadie klimt en zet een krat op de stapel; steiger en lagen blijven zichtbaar."
+        },
+        {
+          "timestampsSeconds": [
+            36.5,
+            37.5
+          ],
+          "observation": "De hele kubus is zichtbaar terwijl de terugrekening in beeld staat."
+        },
+        {
+          "timestampsSeconds": [
+            40,
+            46.5,
+            50,
+            55
+          ],
+          "observation": "Bordscène met de derde macht, de twee rekenrichtingen en een voorbeeld met 2 m³."
         }
       ],
-      "captionEvidence": "33.710–37.073: “Honderd keer 10.000 is 1.000.000.”",
+      "captionEvidence": "Volledig Nederlandstalig VTT-spoor op basis van de gemeten spraaktijden.",
       "notes": [
-        "Nietblokkerende festivalnotitie: schuif de rekenregel omhoog zodat de uitkomst volledig leesbaar is.",
-        "Het bedoelde inzicht is juist, maar de verwijzingen naar blokjes en lagen krijgen weinig visuele steun. Een zichtbaar laagje of drie maatlabels zou de bestaande uitleg directer maken."
+        "De bouwscènes illustreren de opbouw. De getallen en gesproken uitleg geven de exacte aantallen van het schaalmodel."
       ],
       "videoId": "wisik-flirt-c02",
       "title": "Van kubieke meter naar kubieke centimeter",
       "fingerprints": {
         "misconception": "aa8c767fbc70ebfbe242366b00ff537a3ff901efe900f6fdc5ca18753814dca9",
-        "catalogItem": "603873a33df23efcaf177e3fbec77e7c7fb60a881ab68d9ea9090f40164cebd1",
-        "video": "efb24f5f49c3de1c0d42d5d7c6a8ce57d5bce2cdcb37aeaddb6c3f470aa1c150",
-        "poster": "964b651d5d382016aa513e7a92ea1bdedb932ea6406a47b0f740f45290fd25c6",
-        "captions": "813e32f03241eb0ba9204075e752ada5daf4a141488741f271c279ea367c97df",
-        "transcript": "4a6510e12884e1a5b0020b09b14bf017ec04606f648e8967fbb14f240be76368"
-      }
+        "catalogItem": "77fde5f3a553d5e6be81010777d720d49ba7877100e34b67f977e637cd983849",
+        "video": "a8521eeb48629979fc95d8d2ec1dbf24ea45ec3ffdff866cce19cb373837bbfc",
+        "poster": "8ca1cb75c7cf1d8b0e9909fcb709a25732d23c12daa099e64975a550a344916d",
+        "captions": "204d53d81bc1c70c3c91aef43640c550e2d9813890a47369f97b1932fb74cbe0",
+        "transcript": "21201a753a44fad1ca566530f674af1deedd25f608e23eeb201ed95cf1a5cd5e"
+      },
+      "reviewedAt": "2026-11-13"
     },
     {
       "code": "C03",

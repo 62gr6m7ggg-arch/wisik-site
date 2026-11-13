@@ -7,6 +7,7 @@
   const MEDIA_HOST = "media.wisik.nl";
   const OWN_VOICE_RELEASE = "eigenstem-2026-09-09-r2";
   const ROADIE_MEDIA_RELEASE = Object.freeze({
+    C02: "roadie-c02-lipsync-20261113",
     A02: "roadie-20260929b",
     A05: "roadie-a05-zand-20261111",
     B03: "roadie-b03-20260929",
