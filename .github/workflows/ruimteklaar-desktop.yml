@@ -1,7 +1,6 @@
 name: Ruimteklaar desktopwerkplek
 on:
-  push:
-    branches: [feat/construction-desktop]
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:

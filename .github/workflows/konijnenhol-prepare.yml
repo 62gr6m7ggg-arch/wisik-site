@@ -1,10 +1,6 @@
 name: Konijnenhol - statische ingangen voorbereiden
 on:
-  push:
-    branches: [feat/konijnenhol]
-    paths:
-      - scripts/install-konijnenhol.mjs
-      - .github/workflows/konijnenhol-prepare.yml
+  workflow_dispatch:
 permissions:
   contents: write
 concurrency:

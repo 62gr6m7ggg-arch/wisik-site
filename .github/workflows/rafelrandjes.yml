@@ -1,11 +1,6 @@
 name: Wisik Rafelrandjes
 on:
-  push:
-    branches: [wisik-rafelrandjes-20260915, main]
-    paths:
-      - 'public/assets/css/rafelrandjes.css'
-      - 'scripts/*rafelrandjes*'
-      - '.github/workflows/rafelrandjes.yml'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

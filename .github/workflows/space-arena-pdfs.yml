@@ -1,11 +1,6 @@
 name: Space-tent oefententamens A-D vrijgave
 on:
-  push:
-    branches: [space-arena-pdfs-20261014]
-    paths:
-      - '.github/workflows/space-arena-pdfs.yml'
-      - 'tools/space-tent/app/arena/**'
-      - 'tools/space-tent/scripts/check-arena-native-browser.mjs'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

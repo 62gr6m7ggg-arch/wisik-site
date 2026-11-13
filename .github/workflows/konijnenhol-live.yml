@@ -1,13 +1,5 @@
 name: Konijnenhol - live publicatiecontrole
 on:
-  push:
-    branches: [main]
-    paths:
-      - public/rafelrand/konijnenhol/**
-      - public/index.html
-      - public/rafelrand/index.html
-      - public/rafelrand/space-tent/index.html
-      - .github/workflows/konijnenhol-live.yml
   workflow_dispatch:
 permissions:
   contents: read

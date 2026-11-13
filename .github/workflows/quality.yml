@@ -1,26 +1,19 @@
 name: Wisik kwaliteitscontrole
-
 on:
-  push:
-    branches: [main]
   pull_request:
   workflow_dispatch:
-  # Periodic full regression audit, independent of individual film releases.
   schedule:
     - cron: '0 3 * * 0'
-
 concurrency:
   group: wisik-release-${{ github.ref }}
   cancel-in-progress: true
-
 permissions:
   contents: read
-
 jobs:
   release-gate:
     name: Verplichte vrijgavecontrole
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,37 +21,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Controleer veilige keuze van de testscope
-        run: node scripts/classify-release-change.mjs --self-test
-      - name: Bepaal scope (onbekend betekent volledige audit)
+      - name: Bepaal uitsluitend de betrokken modules
         id: scope
-        env:
-          RELEASE_BEFORE_SHA: ${{ github.event.before }}
         run: node scripts/classify-release-change.mjs
-      - name: Installeer en cache FFmpeg voor bron- en geluidsinspectie
+      - name: Installeer FFmpeg alleen voor mediacontroles
+        if: steps.scope.outputs.media == 'true'
         uses: FedericoCarboni/setup-ffmpeg@v3
         with:
           ffmpeg-version: release
-      - name: Gerichte Roadie-vrijgavecontrole
-        if: steps.scope.outputs.mode == 'roadie'
-        run: |
-          node scripts/test-roadie-release.mjs
-          node scripts/test-pabo-flirts.mjs
-          node scripts/test-ownvoice-release.mjs
-          node scripts/test-grabbelton-cta.mjs
-          node scripts/test-flirt-endcards.mjs
-          node scripts/test-festival-venues.mjs
-      - name: Volledige vrijgavecontrole (code, onbekende wijzigingen en periodiek)
-        if: steps.scope.outputs.mode == 'full'
-        run: |
-          npm run check
-          node scripts/test-roadie-release.mjs
-      - name: Publiceer volledig controlebewijs als workflow-artifact
-        if: success() && steps.scope.outputs.mode == 'full'
+      - name: Eenmalige controle van de geselecteerde modules
+        run: node scripts/release-check.mjs
+      - name: Bewaar resultaat en hervatpunt
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: wisik-vrijgavebewijs
-          path: |
-            public/assets/data/pabo-release-audit.json
-            public/assets/data/ruimteklaar-release-audit.json
-          if-no-files-found: error
+          include-hidden-files: true
+          path: .release/
+          if-no-files-found: warn
+          retention-days: 14

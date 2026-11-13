@@ -1,14 +1,6 @@
 name: Pabo variatie vrijgave
 on:
-  push:
-    branches: [feat/pabo-variatie-20260916, main]
-    paths:
-      - '.github/workflows/pabo-variatie-prepare.yml'
-      - 'tools/pabo-variation*'
-      - 'src/pabo/**'
-      - 'scripts/*pabo*'
-      - 'scripts/lib/pabo-variation*'
-      - 'public/apps/pabo-rekenklaar/**'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

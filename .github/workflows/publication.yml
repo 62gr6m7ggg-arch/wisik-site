@@ -1,0 +1,32 @@
+name: Wisik publicatiebevestiging
+on:
+  push:
+    branches: [main]
+concurrency:
+  group: wisik-production-confirmation
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  delivery:
+    name: Cloudflare-publicatie bevestigen
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Controleer alleen de gewijzigde online bestanden
+        env:
+          RELEASE_BEFORE_SHA: ${{ github.event.before }}
+        run: node scripts/verify-publication.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wisik-publicatie-hervatpunt
+          include-hidden-files: true
+          path: .release/
+          retention-days: 14

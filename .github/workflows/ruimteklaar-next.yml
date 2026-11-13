@@ -1,7 +1,6 @@
 name: Ruimteklaar constructie vervolgcontrole
 on:
-  push:
-    branches: [fix/construction-next-step]
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:

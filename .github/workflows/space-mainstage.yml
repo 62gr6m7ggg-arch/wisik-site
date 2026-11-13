@@ -1,7 +1,6 @@
 name: Spacetent hoofdpodium vrijgave
 on:
-  push:
-    branches: [feat/space-hoofdpodium]
+  workflow_dispatch:
 permissions:
   contents: write
 concurrency:

@@ -1,13 +1,6 @@
 name: Ruimteklaar factorisatie-toegang
 on:
-  push:
-    branches: [ruimteklaar-factor-login, main]
-    paths:
-      - 'server/ruimteklaar-factor-code.mjs'
-      - 'server/ruimteklaar-test-auth.mjs'
-      - 'scripts/*factor*'
-      - 'scripts/test-ruimteklaar-review-auth.mjs'
-      - '.github/workflows/ruimteklaar-factor-login.yml'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

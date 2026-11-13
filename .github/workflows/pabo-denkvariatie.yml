@@ -1,13 +1,6 @@
 name: Pabo denkvariatie controle
 on:
-  push:
-    branches: [feat/pabo-denkvariatie-20260917, main]
-    paths:
-      - '.github/workflows/pabo-denkvariatie.yml'
-      - 'src/pabo/**'
-      - 'scripts/*pabo*'
-      - 'scripts/lib/pabo-reasoning-audit.mjs'
-      - 'public/apps/pabo-rekenklaar/index.html'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

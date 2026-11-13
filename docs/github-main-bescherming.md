@@ -1,3 +1,10 @@
+# Actuele werking (13 november 2026)
+
+De ruleset is actief: één verplichte check, nul vereiste reviewers. De check
+volgt `scripts/release-policy.mjs`. Zie [het actuele publicatieproces](publicatieproces.md).
+Onderstaande activeringsinformatie is historische beheerinformatie; importeer
+geen tweede regelsysteem en voeg geen extra goedkeuringsstap toe.
+
 # Hoofdversie beschermen — activering door de eigenaar
 
 Dit importbestand wijzigt op zichzelf geen GitHub-instelling. De koppeling kreeg op 17 september 2026 bij het branch-protection-beheerendpoint HTTP 403 (Resource not accessible by integration). Er zijn geen extra tokens, secrets of omwegen ingesteld.

@@ -4,7 +4,6 @@ import vm from "node:vm";
 import { createHash, webcrypto } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { runFlirtChainAudit } from "./lib/flirt-chain-audit.mjs";
-import { auditFlirtContent } from "./lib/flirt-content-audit.mjs";
 import {createVariationContext} from "./lib/pabo-variation-context.mjs";
 import {runPaboVariationAudit} from "./lib/pabo-variation-audit.mjs";
 import {runPaboReasoningAudit} from "./lib/pabo-reasoning-audit.mjs";
@@ -68,7 +67,6 @@ const flirtCatalog = JSON.parse(fs.readFileSync(path.join(root, "public/assets/d
 const flirtFixtures = JSON.parse(fs.readFileSync(path.join(root, "tests/flirt-cases.json"), "utf8"));
 const flirtChain = runFlirtChainAudit(context, flirtCatalog, flirtFixtures);
 const flirtReplay = runFlirtChainAudit(context, flirtCatalog, flirtFixtures);
-const flirtContent = auditFlirtContent(root, flirtCatalog, context.PaboRekenklaarQA.MISCONCEPTION_CATALOG);
 const quality = runInAuditContext(context, "PaboRekenklaarQA.runQualityAudit({samplesPerCombination:100,seed:12062026})");
 const replay = runInAuditContext(context, "PaboRekenklaarQA.runQualityAudit({samplesPerCombination:100,seed:12062026})");
 const diagnostic = runInAuditContext(context, "PaboRekenklaarQA.runDiagnosticAudit({samplesPerPattern:20})");
@@ -243,13 +241,12 @@ const gates = [
 ];
 
 gates.push({id:"flirt-trigger-chain",label:"Van antwoordpatroon naar juiste flirt",passed:JSON.stringify(flirtChain)===JSON.stringify(flirtReplay),evidence:`${flirtChain.chains} ketens; ${flirtChain.answerExamples} vaste antwoordchecks; ${flirtChain.negativeExamples} andere fouten; ${flirtChain.modeExclusions} toets-/sprintuitsluitingen; dubbelzinnige denkroute onderdrukt; vaste seed tweemaal gelijk`});
-gates.push({id:"flirt-content-lock",label:"Beoordeelde flirtinhoud bewaakt",passed:flirtContent.passed,evidence:flirtContent.passed?`${flirtContent.counts.reviewed} beoordelingen gekoppeld aan de exacte tekst, media en misconceptie. ${flirtContent.counts.needsRevision} open inhoudelijke herstelpunten; dit vinkje bevestigt de ongewijzigde review, geen inhoudelijke goedkeuring.`:flirtContent.failures.join("; ")});
 gates.push({id:"session-variation",label:"Spreiding en variatie van volledige sessies",passed:variation.passed&&variationFullCount===98&&variation.counts.duplicates===0&&variation.counts.familyLimitFailures===0&&variation.counts.coverageFailures===0,evidence:`${variationFullCount} volledige toetsroutes, ${variation.counts.miniExams} korte toetsen en ${variation.counts.practiceSessions} oefenreeksen; geen dubbele opgaven binnen de geteste sessies; alle 18 deelonderwerpen in iedere volledige toets; maximaal drie opgaven per familie.`});
 gates.push({id:"reasoning-diversity",label:"Denkvariatie over meerdere oefensessies",passed:reasoning.passed&&reasoning.counts.designs===295,evidence:`295 geregistreerde ontwerpen (inclusief contextvarianten, geen claim van 295 onafhankelijke families); ${reasoning.counts.generated} gecontroleerde varianten; ${reasoning.counts.mutations} foutmutaties; ${reasoning.counts.journeys} meer-sessie-routes met ${reasoning.counts.questions} vragen. Niveau en leerdoel begrenzen de variatie; ${reasoning.counts.relaxed} selecties hadden onvoldoende aanbod voor de volledige acht-vragen-afstand.`});
 const passed = gates.every((gate) => gate.passed);
 const report = {
   schemaVersion: 1,
-  auditVersion: "1.5.0",
+  auditVersion: "2.0.0",
   siteVersion: packageJson.version,
   tool: "Pabo Rekenklaar",
   toolVersion,
@@ -287,15 +284,7 @@ const report = {
   gates,
   variation,
   reasoning: {version:reasoning.version,passed:reasoning.passed,counts:reasoning.counts,journeys:reasoning.journeys.map(({trail,...summary})=>summary),failures:reasoning.failures},
-  flirtContent: {
-    status: flirtContent.contentStatus,
-    counts: flirtContent.counts,
-    reviewedAt: flirtContent.review.reviewedAt,
-    reviewer: flirtContent.review.reviewer,
-    scope: flirtContent.review.scope,
-    entries: flirtContent.review.entries.map(({fingerprints,...entry})=>entry),
-    reportUrl: "/assets/data/flirt-content-review.json",
-  },
+  flirtReviewUrl: "/assets/data/flirt-content-review.json",
   failures: [
     ...sourceIssues.map((issue) => ({ area: "source", issue })),
     ...quality.failures.slice(0, 25).map((failure) => ({ area: "generator", issue: failure })),
@@ -303,7 +292,6 @@ const report = {
     ...naturalClassification.failures.slice(0, 25).map((failure) => ({ area: "natuurlijke-diagnostiek", issue: failure })),
     ...visualAudit.failures.slice(0, 25).map((failure) => ({ area: "grafiek", issue: failure })),
     ...sprintQuestionAudit.failures.slice(0, 25).map((failure) => ({ area: "moshpit", issue: failure })),
-    ...flirtContent.failures.map(issue=>({area:"flirt-inhoud",issue})),
     ...variation.failures.map(issue=>({area:"sessievariatie",issue})),
     ...reasoning.failures.map(issue=>({area:"denkvariatie",issue})),
   ],

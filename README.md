@@ -24,9 +24,9 @@ De repository bevat onder meer:
 - versiegebonden scripts op alle sitepagina's voor Safari en andere mobiele browsers;
 - versiegebonden gedeelde CSS, zodat nieuwe mobiele terreinindelingen niet achter een oude browsercache blijven hangen;
 - mobiele navigatie en een gewone lijstweergave naast de terreinplattegrond;
-- een verplichte deterministische vrijgavecontrole bij iedere wijziging.
+- één gerichte vrijgavecontrole op de gewijzigde modules; een brede regressie wekelijks.
 
-Backstage toont de actuele technische vrijgavestatus en eventuele inhoudelijke flirtproblemen direct in de pagina-intro. De terreinplattegrond en de Backstage-knop op de homepage springen rechtstreeks naar het volledige openbare bewijs; op smalle schermen blijven de acht technische detailcontroles compact uitklapbaar. Het HAN-portret is bereikbaar via één fotokaart met een speciaal afgestemde mobiele uitsnede; er staat geen tweede videoknop naast.
+Backstage toont de actuele technische vrijgavestatus en eventuele inhoudelijke flirtproblemen direct in de pagina-intro. De terreinplattegrond en de Backstage-knop op de homepage springen rechtstreeks naar het volledige openbare bewijs; op smalle schermen blijven de technische detailcontroles compact uitklapbaar. Het HAN-portret is bereikbaar via één fotokaart met een speciaal afgestemde mobiele uitsnede; er staat geen tweede videoknop naast.
 
 ## Lokaal bekijken
 
@@ -85,3 +85,10 @@ npm run audit:update
 De gewone controle schrijft niets en faalt als dat bewijs ontbreekt of niet meer bij de broncode past. Het publieke rapport staat in `public/assets/data/pabo-release-audit.json`.
 
 Zie `DEPLOYMENT.md` voor de publicatie- en beheerroute.
+
+## Gericht vervangen en publiceren
+
+Volg [het publicatieproces](docs/publicatieproces.md) en `AGENTS.md`. Gebruik
+`npm run release:prepare -- --base=<main-sha>` in plaats van achtereenvolgens
+check/build/deploy. Filmmetadata staat uitsluitend in de catalogus; de actuele
+filmreview staat los van het rekenrapport.

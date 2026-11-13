@@ -1,10 +1,6 @@
 name: Spacetent artiesten-ingang controle
 on:
-  push:
-    branches: [wisik-space-artiesteningang-release, main]
-    paths:
-      - 'scripts/*space-artist-entrance*'
-      - '.github/workflows/space-artist-entrance.yml'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

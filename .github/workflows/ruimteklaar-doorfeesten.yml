@@ -1,7 +1,6 @@
 name: Spacetent doorfeesten
 on:
-  push:
-    branches: [fix/space-doorfeesten]
+  workflow_dispatch:
 concurrency:
   group: spacetent-vraagbaak-${{ github.ref }}
   cancel-in-progress: true

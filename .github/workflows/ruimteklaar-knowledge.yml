@@ -1,7 +1,6 @@
 name: Spacetent vraagbaak
 on:
-  push:
-    branches: [feat/space-vraagbaak]
+  workflow_dispatch:
 concurrency:
   group: spacetent-vraagbaak-${{ github.ref }}
   cancel-in-progress: true

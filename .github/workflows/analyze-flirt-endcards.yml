@@ -1,10 +1,7 @@
 name: Analyseer voice-over in oude slotkaarten
 
 on:
-  push:
-    branches:
-      - fix/flirt-slotbeeld-zonder-herstelset
-
+  workflow_dispatch:
 permissions:
   contents: write
 

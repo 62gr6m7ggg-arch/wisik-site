@@ -1,10 +1,7 @@
 name: Vervang oude flirt-slotkaarten
 
 on:
-  push:
-    branches:
-      - fix/flirt-slotbeeld-zonder-herstelset
-
+  workflow_dispatch:
 permissions:
   contents: write
 

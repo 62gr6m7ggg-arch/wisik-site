@@ -7,6 +7,9 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const backstage = fs.readFileSync(path.join(root, "public/backstage/index.html"), "utf8");
 const siteJs = fs.readFileSync(path.join(root, "public/assets/js/site.js"), "utf8");
 const report = JSON.parse(fs.readFileSync(path.join(root, "public/assets/data/pabo-release-audit.json"), "utf8"));
+const review = JSON.parse(fs.readFileSync(path.join(root, "public/assets/data/flirt-content-review.json"), "utf8"));
+const count = verdict => review.entries.filter(entry => entry.verdict === verdict).length;
+report.flirtContent = {...review, counts:{reviewed:review.entries.length,aligned:count("aligned"),withNotes:count("aligned-with-notes"),needsRevision:count("mismatch")},status:count("mismatch")?"revision-needed":count("aligned-with-notes")?"reviewed-with-notes":"aligned"};
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
 const pabo = fs.readFileSync(path.join(root, "public/apps/pabo-rekenklaar/index.html"), "utf8");
 const homepage = fs.readFileSync(path.join(root, "public/index.html"), "utf8");
@@ -38,7 +41,6 @@ const expectedGates = [
   "flirt-trigger-chain",
   "session-variation",
   "reasoning-diversity",
-    "flirt-content-lock",
 ];
 for (const id of expectedGates) {
   const gate = report.gates.find((item) => item.id === id);

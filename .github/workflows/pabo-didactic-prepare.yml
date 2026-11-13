@@ -1,11 +1,6 @@
 name: Pabo didactische poort voorbereiding
 on:
-  push:
-    branches: [feat/pabo-didactische-poort-20260917]
-    paths:
-      - 'scripts/apply-pabo-didactic-fixes.mjs'
-      - 'scripts/pabo-didactic-audit.mjs'
-      - '.github/workflows/pabo-didactic-prepare.yml'
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
