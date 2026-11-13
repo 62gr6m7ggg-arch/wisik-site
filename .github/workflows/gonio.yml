@@ -6,6 +6,7 @@ on:
       - 'scripts/test-gonio.mjs'
       - 'tests/gonio-browser.py'
       - 'tests/gonio-audio-browser.py'
+      - 'tests/gonio-rotation-browser.py'
       - 'tests/gonio_integrity.py'
       - '.github/workflows/gonio.yml'
   push:
@@ -15,6 +16,7 @@ on:
       - 'scripts/test-gonio.mjs'
       - 'tests/gonio-browser.py'
       - 'tests/gonio-audio-browser.py'
+      - 'tests/gonio-rotation-browser.py'
       - 'tests/gonio_integrity.py'
       - '.github/workflows/gonio.yml'
   workflow_dispatch:
@@ -40,6 +42,7 @@ jobs:
           python tests/gonio_integrity.py
           node scripts/test-gonio.mjs
           node --check public/rafelrand/sinus-s-en-de-geit/mixer.js
+          node --check public/rafelrand/sinus-s-en-de-geit/rotation-scene.js
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -49,6 +52,8 @@ jobs:
           python -m playwright install --with-deps chromium webkit
       - name: Test acht onderdelen op mobiel en desktop
         run: python tests/gonio-browser.py
+      - name: Controleer hoekbogen en mobiele labels in scene 3
+        run: python tests/gonio-rotation-browser.py
       - name: Meet audio, frequentie, geitenstem en stoppen
         run: python tests/gonio-audio-browser.py
       - name: Controleer ongewijzigde live tent bij uitsluitend testwijzigingen
@@ -68,6 +73,7 @@ jobs:
         run: |
           python tests/gonio-browser.py
           python tests/gonio-audio-browser.py
+          python tests/gonio-rotation-browser.py
       - name: Bewaar testresultaten en schermafbeeldingen
         if: always()
         uses: actions/upload-artifact@v4
