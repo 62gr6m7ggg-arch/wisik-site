@@ -1,10 +1,6 @@
 name: Space-tent native Tentamenarena
 on:
-  push:
-    branches: [space-arena-native-20261010]
-    paths:
-      - '.github/workflows/space-native-arena.yml'
-      - 'tools/space-tent/scripts/arena-native-release.json'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

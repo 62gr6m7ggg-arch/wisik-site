@@ -29,7 +29,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A01"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-a02",
@@ -51,7 +53,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A02"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "embedded",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-a03",
@@ -73,7 +77,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A03"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-a04",
@@ -95,7 +101,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A04"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-a05",
@@ -118,7 +126,8 @@
         "misconceptionCode": "A05"
       },
       "release": "roadie-a05-zand-20261111",
-      "captionsBurnedIn": true
+      "captionsBurnedIn": true,
+      "audioMode": "embedded"
     },
     {
       "id": "wisik-flirt-a06",
@@ -140,7 +149,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A06"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-a07",
@@ -162,7 +173,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A07"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-a08",
@@ -184,7 +197,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A08"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-b01",
@@ -206,7 +221,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B01"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-b02",
@@ -228,7 +245,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B02"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-b03",
@@ -250,7 +269,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B03"
       },
-      "release": "roadie-2026-09-29"
+      "release": "roadie-2026-09-29",
+      "audioMode": "embedded",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-b04",
@@ -273,7 +294,8 @@
         "misconceptionCode": "B04"
       },
       "release": "roadie-b04-20261111",
-      "captionsBurnedIn": true
+      "captionsBurnedIn": true,
+      "audioMode": "embedded"
     },
     {
       "id": "wisik-flirt-b05",
@@ -295,7 +317,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B05"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-b06",
@@ -317,7 +341,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B06"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-b07",
@@ -339,7 +365,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B07"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-b08",
@@ -361,7 +389,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B08"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-c01",
@@ -383,7 +413,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C01"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-c02",
@@ -406,7 +438,8 @@
         "misconceptionCode": "C02"
       },
       "release": "roadie-c02-lipsync-20261113",
-      "captionsBurnedIn": false
+      "captionsBurnedIn": false,
+      "audioMode": "embedded"
     },
     {
       "id": "wisik-flirt-c03",
@@ -428,7 +461,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C03"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-c04",
@@ -450,7 +485,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C04"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-c05",
@@ -472,7 +509,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C05"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-c06",
@@ -495,7 +534,8 @@
         "misconceptionCode": "C06"
       },
       "release": "roadie-c06-kratten-20261112",
-      "captionsBurnedIn": false
+      "captionsBurnedIn": false,
+      "audioMode": "embedded"
     },
     {
       "id": "wisik-flirt-c07",
@@ -517,7 +557,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C07"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-d01",
@@ -539,7 +581,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D01"
       },
-      "release": "eigenstem-2026-09-08"
+      "release": "eigenstem-2026-09-08",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-d02",
@@ -561,7 +605,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D02"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-d03",
@@ -583,7 +629,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D03"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-d04",
@@ -605,7 +653,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D04"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-d05",
@@ -628,7 +678,8 @@
         "misconceptionCode": "D05"
       },
       "release": "roadie-d05-20261111",
-      "captionsBurnedIn": false
+      "captionsBurnedIn": false,
+      "audioMode": "embedded"
     },
     {
       "id": "wisik-flirt-d06",
@@ -650,7 +701,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D06"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-d07",
@@ -672,7 +725,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D07"
       },
-      "release": "festival-v1"
+      "release": "festival-v1",
+      "audioMode": "legacy",
+      "captionsBurnedIn": false
     }
   ]
 }

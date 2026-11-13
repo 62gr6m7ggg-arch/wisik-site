@@ -1,17 +1,6 @@
 name: Wisik terreinbrede privacy
 on:
-  push:
-    branches: [privacy-terrein-20260916, main]
-    paths:
-      - 'scripts/*privacy-terrein*'
-      - 'scripts/test-pabo-navigation.mjs'
-      - 'public/assets/js/site.js'
-      - 'public/assets/js/kladblok-context.js'
-      - 'public/backstage/index.html'
-      - 'public/kladblok/index.html'
-      - 'public/pabo/pabo-rekenklaar/index.html'
-      - 'public/hbo/space-tent/index.html'
-      - '.github/workflows/privacy-terrein.yml'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

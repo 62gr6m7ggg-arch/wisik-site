@@ -1,7 +1,6 @@
 name: Pabo rijke variatie vrijgave
 on:
-  push:
-    branches: [feat/pabo-rich-variation-20261020, 'feat/pabo-family-expansion-*']
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

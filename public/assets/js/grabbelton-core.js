@@ -6,15 +6,6 @@
   const VALID_WRISTBANDS = new Set(["ALL", "VO", "PABO", "HBO"]);
   const MEDIA_HOST = "media.wisik.nl";
   const OWN_VOICE_RELEASE = "eigenstem-2026-09-09-r2";
-  const ROADIE_MEDIA_RELEASE = Object.freeze({
-    C02: "roadie-c02-lipsync-20261113",
-    A02: "roadie-20260929b",
-    A05: "roadie-a05-zand-20261111",
-    B03: "roadie-b03-20260929",
-    B04: "roadie-b04-20261111",
-    C06: "roadie-c06-kratten-20261112",
-    D05: "roadie-d05-20261111",
-  });
   const OWN_VOICE = Object.freeze({"A01":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A01.m4a","duration":60.05,"contentStart":4.5,"contentDuration":54.05},"A02":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A02.m4a","duration":60.996,"contentStart":4.5,"contentDuration":54.996},"A03":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A03.m4a","duration":54.803,"contentStart":4.5,"contentDuration":48.803},"A04":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A04.m4a","duration":53.35,"contentStart":4.5,"contentDuration":47.35},"A05":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A05.m4a","duration":61.648,"contentStart":4.5,"contentDuration":55.648},"A06":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A06.m4a","duration":61.291,"contentStart":4.5,"contentDuration":55.291},"A07":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A07.m4a","duration":75.297,"contentStart":4.5,"contentDuration":69.297},"A08":{"src":"/assets/audio/eigenstem-2026-09-09-r2/A08.m4a","duration":60.197,"contentStart":4.5,"contentDuration":54.197},"B01":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B01.m4a","duration":65.604,"contentStart":4.5,"contentDuration":59.604},"B02":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B02.m4a","duration":72.192,"contentStart":4.5,"contentDuration":66.192},"B03":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B03.m4a","duration":64.578,"contentStart":4.5,"contentDuration":58.578},"B04":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B04.m4a","duration":75.865,"contentStart":4.5,"contentDuration":69.865},"B05":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B05.m4a","duration":74.9,"contentStart":4.5,"contentDuration":68.9},"B06":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B06.m4a","duration":63.447,"contentStart":4.5,"contentDuration":57.447},"B07":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B07.m4a","duration":67.186,"contentStart":4.5,"contentDuration":61.186},"B08":{"src":"/assets/audio/eigenstem-2026-09-09-r2/B08.m4a","duration":59.481,"contentStart":4.5,"contentDuration":53.481},"C01":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C01.m4a","duration":67.822,"contentStart":4.5,"contentDuration":61.822},"C02":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C02.m4a","duration":64.902,"contentStart":4.5,"contentDuration":58.902},"C03":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C03.m4a","duration":70.359,"contentStart":4.5,"contentDuration":64.359},"C04":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C04.m4a","duration":61.615,"contentStart":4.5,"contentDuration":55.615},"C05":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C05.m4a","duration":60.922,"contentStart":4.5,"contentDuration":54.922},"C06":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C06.m4a","duration":63.88,"contentStart":4.5,"contentDuration":57.88},"C07":{"src":"/assets/audio/eigenstem-2026-09-09-r2/C07.m4a","duration":58.0,"contentStart":4.5,"contentDuration":52.0},"D01":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D01.m4a","duration":59.287,"contentStart":4.5,"contentDuration":53.287},"D02":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D02.m4a","duration":62.762,"contentStart":4.5,"contentDuration":56.762},"D03":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D03.m4a","duration":57.452,"contentStart":4.5,"contentDuration":51.452},"D04":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D04.m4a","duration":60.524,"contentStart":4.5,"contentDuration":54.524},"D05":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D05.m4a","duration":61.287,"contentStart":4.5,"contentDuration":55.287},"D06":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D06.m4a","duration":51.916,"contentStart":4.5,"contentDuration":45.916},"D07":{"src":"/assets/audio/eigenstem-2026-09-09-r2/D07.m4a","duration":68.91,"contentStart":4.5,"contentDuration":62.91}});
 
   const asText = (value) => String(value ?? "").trim();
@@ -42,12 +33,11 @@
     return isAllowedAssetUrl(value, baseUrl) ? new URL(value.trim(), new URL(baseUrl)).href : null;
   }
 
-  function versionedAssetUrl(value, version) {
+  function versionedAssetUrl(value, version, video = null) {
     const resolved = resolveAssetUrl(value);
     if (!resolved) return null;
     const url = new URL(resolved);
-    const code = url.pathname.match(/^\/films\/rekenklaar\/([A-D]\d{2})\//)?.[1];
-    const release = ROADIE_MEDIA_RELEASE[code];
+    const release = video?.release;
     url.searchParams.set("v", release ? `${asText(version)}-${release}` : asText(version));
     return url.href;
   }
@@ -85,6 +75,9 @@
       if (!code || (codes.size && !codes.has(code))) errors.push(`${at} verwijst naar een onbekende misconceptcode.`);
 
       if (status === "published") {
+        if (!["embedded", "legacy"].includes(video.audioMode)) errors.push(`${at} mist een expliciete audiokeuze`);
+        if (typeof video.captionsBurnedIn !== "boolean") errors.push(`${at} mist een expliciete ondertitelkeuze`);
+        if (!/^[a-z0-9][a-z0-9._-]{0,100}$/i.test(video.release || "")) errors.push(`${at} mist een geldige mediaversie`);
         const sourceUrl = asText(video?.source?.url);
         if (asText(video?.title).length < 4) errors.push(`${at} mist een duidelijke titel.`);
         if (asText(video?.summary).length < 20) errors.push(`${at} mist een bruikbare samenvatting.`);
@@ -171,7 +164,7 @@
     if (!(player instanceof BrowserVideoElement) || player.dataset.wisikOwnVoice === "1") return;
     const code = codeFromVideo(player);
     // Roadie-films spelen de ingebouwde stem en de bijbehorende ondertiteltijden af.
-    if (Object.hasOwn(ROADIE_MEDIA_RELEASE, code)) return;
+    if (player.dataset.audioMode === "embedded") return;
     const config = OWN_VOICE[code];
     if (!config) return;
     player.dataset.wisikOwnVoice = "1";

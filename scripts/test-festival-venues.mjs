@@ -135,13 +135,13 @@ for (const video of published) {
   const vtt = read(`public${video.captionsSrc}`);
   assert(vtt.startsWith("WEBVTT") && vtt.includes("-->"), `Ondertiteling ontbreekt: ${video.id}`);
 }
-assert(grabbeltonRuntime.includes("player.poster = core.versionedAssetUrl(video.posterSrc, globalThis.WISIK_SITE_VERSION)"), "Aangeleverde posters worden niet versiegebonden getoond");
+assert(grabbeltonRuntime.includes("player.poster = core.versionedAssetUrl(video.posterSrc, globalThis.WISIK_SITE_VERSION, video)"), "Aangeleverde posters worden niet versiegebonden getoond");
 const canonicalMedia = "/films/rekenklaar/A01/flirt.mp4";
 assert(core.versionedAssetUrl(canonicalMedia, siteVersion) === `https://wisik.nl${canonicalMedia}?v=${siteVersion}`, "Media mist een versiegebonden cache-URL");
 assert(core.versionedAssetUrl(canonicalMedia, "next") !== core.versionedAssetUrl(canonicalMedia, siteVersion), "Nieuwe versies hergebruiken de oude browsercache");
 assert(core.versionedAssetUrl("https://evil.example/film.mp4", siteVersion) === null, "Cacheversie omzeilt toegestane mediabronnen");
 for (const field of ["video.source.url", "video.posterSrc", "video.captionsSrc", "video.transcriptUrl"]) {
-  assert(grabbeltonRuntime.includes(`core.versionedAssetUrl(${field}, globalThis.WISIK_SITE_VERSION)`), `Media gebruikt geen vaste cacheversie: ${field}`);
+  assert(grabbeltonRuntime.includes(`core.versionedAssetUrl(${field}, globalThis.WISIK_SITE_VERSION, video)`), `Media gebruikt geen vaste cacheversie: ${field}`);
 }
 const unsafePoster = JSON.parse(JSON.stringify(catalog));
 unsafePoster.videos[0].posterSrc = "https://evil.example/poster.jpg";
@@ -165,6 +165,7 @@ function fixtureVideo(index, { band = "PABO", code = misconceptionCodes[index % 
     wristbands: [band],
     target: { toolId: "pabo-rekenklaar", misconceptionCode: code },
     durationSeconds: 75,
+    audioMode: "embedded", captionsBurnedIn: false, release: "fixture-v1",
     summary: `Korte uitleg over het denkpatroon met code ${code}.`,
     source: { kind: "self-hosted", url: `https://media.wisik.nl/videos/${id}.mp4` },
     captionsSrc: `https://media.wisik.nl/captions/${id}.vtt`,

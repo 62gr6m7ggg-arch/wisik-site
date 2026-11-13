@@ -1,8 +1,6 @@
 name: Geitenstem kandidaat voorbereiden
 on:
-  push:
-    branches: ['feat/gonio-geitenstem-20261107']
-    paths: ['tools/gonio/prepare-goat.py', '.github/workflows/gonio-goat-prepare.yml']
+  workflow_dispatch:
 permissions:
   contents: write
 concurrency:

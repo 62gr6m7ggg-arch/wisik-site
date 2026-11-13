@@ -5,21 +5,20 @@
 - GitHub-repository: `62gr6m7ggg-arch/wisik-site`
 - productiebranch: `main`
 - Cloudflare Pages-project: `wisik-site`
-- vereiste build command: `npm run build`
+- actuele build command: leeg (vrijgavecontrole vóór merge in GitHub)
 - outputdirectory: `public`
 - hoofddomein: `https://wisik.nl`
 - `www.wisik.nl` wordt permanent doorgestuurd naar het hoofddomein.
 
-Elke wijziging aan `main` activeert automatisch:
-
-1. de GitHub-kwaliteitscontrole;
-2. een nieuwe Cloudflare Pages-build, die dezelfde controle opnieuw moet uitvoeren.
-
-De Cloudflare-buildopdracht mag daarom niet leeg zijn. Met `npm run build` stopt ook Cloudflare vóór publicatie wanneer de vrijgavecontrole faalt. De GitHub-workflow alleen kan een los daarvan gestarte Cloudflare-deployment niet tegenhouden.
+Voor publicatie geldt [het gerichte publicatieproces](docs/publicatieproces.md).
+De ene verplichte PR-controle selecteert alleen gewijzigde modules en hun
+expliciete afhankelijkheden. Na merge publiceert Cloudflare automatisch en
+controleert `publication.yml` alleen de gewijzigde online bestanden.
+Er draait geen tweede algemene audit op main.
 
 ## Automatisch vrijgavebewijs
 
-De verplichte controle voert de kwaliteits-API van Pabo Rekenklaar in een frisse, afgeschermde JavaScript-omgeving uit. Zij controleert onder meer:
+Bij wijzigingen aan de Pabo-module voert de controle de kwaliteits-API van Pabo Rekenklaar in een frisse, afgeschermde JavaScript-omgeving uit. Zij controleert onder meer:
 
 - 17.000 gegenereerde vraaginstanties in 170 generatorcombinaties;
 - 2.250 afzonderlijke Moshpit-vragen op het strikte korte-hoofdrekencontract;
@@ -29,7 +28,7 @@ De verplichte controle voert de kwaliteits-API van Pabo Rekenklaar in een frisse
 - 30 diagnostische patronen, 1.200 gerichte controlevragen en natuurlijke terugclassificatie;
 - het veilig niet stellen van een diagnose als één fout antwoord bij meer dan één patroon past.
 
-Een geslaagde controle levert `public/assets/data/pabo-release-audit.json` op. Backstage toont dit bestand alleen groen wanneer schema, Wisik-versie, attractieversie en alle zes vrijgavepoorten overeenkomen. Bij een volgende kandidaat die faalt, blijft het laatst geslaagde online bewijs staan; een rood kandidaatrapport wordt niet als openbare release gepubliceerd.
+Een geslaagde controle levert `public/assets/data/pabo-release-audit.json` op. Backstage toont dit bestand alleen groen wanneer schema, Wisik-versie, attractieversie en alle toepasselijke vrijgavepoorten overeenkomen. Bij een volgende kandidaat die faalt, blijft het laatst geslaagde online bewijs staan; een rood kandidaatrapport wordt niet als openbare release gepubliceerd.
 
 De audit is een sterke interne regressie- en consistentiecontrole. Zij is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische review of mobiele gebruikerstests.
 
@@ -64,7 +63,11 @@ Lokale voortgang is domeingebonden. Voortgang op een oudere URL verschijnt niet 
 
 Festivalrelease v1 (6 september 2026) publiceert de 30 aangeleverde flirts tegelijk. Bekende inhoudelijke reviewpunten blokkeren deze experimentele release niet. Pabo Rekenklaar en zijn lokale voortgang blijven ongewijzigd; er worden geen video's aan de toetssimulatie toegevoegd.
 
-De stabiele paden zijn `/films/rekenklaar/<CODE>/flirt.mp4`, `poster.jpg`, `captions.vtt` en `transcript.html`. Vervang bij een latere filmversie de bestanden op dezelfde paden en werk catalogusdatum/duur en siteversie bij. De speler voegt de actuele siteversie als `?v=...` toe aan video, poster, ondertiteling en transcript. Daardoor gebruikt een nieuwe release geen oude browserkopie. De canonieke paden blijven gelijk.
+De stabiele paden zijn `/films/rekenklaar/<CODE>/flirt.mp4`, `poster.jpg`, `captions.vtt` en `transcript.html`. Gebruik bij vervanging `npm run flirt:replace -- CODE PAKKET` en daarna
+`npm run release:prepare -- --base=<main-sha>`. De catalogus bepaalt audiokeuze,
+ondertitelinstelling en filmversie. De speler gebruikt die versie voor alle vier
+assets; een filmvervanging vereist geen wijziging van spelercode of siteversie.
+De canonieke paden blijven gelijk.
 
 Live vastgesteld op 6 september 2026: de hosting levert MP4/JPEG met `max-age=14400, must-revalidate`, ondanks `no-cache` in `_headers`. Reken daarom voor die bestanden niet uitsluitend op die headerregel; de versieparameter in de speler is noodzakelijk. Rechtstreekse links zonder versieparameter kunnen bij terugkerende bezoekers maximaal vier uur de vorige film tonen.
 
@@ -137,7 +140,7 @@ Publiceer alleen vanuit `main` nadat **Wisik kwaliteitscontrole** is geslaagd. D
 Voor volledige afdwinging zijn beide externe instellingen nodig:
 
 1. laat GitHub alleen wijzigingen naar `main` toe nadat **Verplichte vrijgavecontrole** is geslaagd;
-2. stel in Cloudflare Pages de build command in op `npm run build`.
+2. laat Cloudflare automatisch de beschermde branch `main` publiceren met een lege build command.
 
 Controleer na structurele wijzigingen ook mobiel Safari, een desktopbrowser, het `www`-redirect en een echte Kladblokinlevering.
 

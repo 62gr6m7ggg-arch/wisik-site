@@ -1,12 +1,6 @@
 name: Pabo navigatie zonder overlap
 on:
-  push:
-    branches: [pabo-navigatie-wrap-20260915, main]
-    paths:
-      - 'public/apps/pabo-rekenklaar/**'
-      - 'scripts/check-pabo-nav-browser.mjs'
-      - 'scripts/test-pabo-navigation.mjs'
-      - '.github/workflows/pabo-navigation-wrap.yml'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

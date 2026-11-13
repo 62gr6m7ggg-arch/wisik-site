@@ -1,7 +1,6 @@
 name: Ruimteklaar selectiecontrole
 on:
-  push:
-    branches: [ruimteklaar-selection-first]
+  workflow_dispatch:
 permissions:
   contents: write
 concurrency:

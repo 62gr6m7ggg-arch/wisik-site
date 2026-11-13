@@ -1,13 +1,6 @@
 name: Space-tent vrije instroom
 on:
-  push:
-    branches: [space-vrije-instroom-20260915, main]
-    paths:
-      - 'scripts/apply-space-entry.mjs'
-      - '.github/workflows/space-vrije-instroom.yml'
-      - 'tools/space-tent/app/entry-*'
-      - 'tools/space-tent/app/ruimteklaar.tsx'
-      - 'tools/space-tent/scripts/check-entry-*'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

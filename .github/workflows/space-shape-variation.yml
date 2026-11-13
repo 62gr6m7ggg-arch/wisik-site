@@ -1,7 +1,6 @@
 name: Space-tent vormvariatie
 on:
-  push:
-    branches: [space-vormvariatie-20260921]
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:

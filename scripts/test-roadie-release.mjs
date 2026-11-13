@@ -43,7 +43,9 @@ function lastCaptionEnd(captions) {
 }
 
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'public/assets/data/grabbelton-videos.json'), 'utf8'));
-const roadies = catalog.videos.filter(video => /^roadie-/.test(video.release || '') || video.target?.misconceptionCode === 'A02');
+const selectedCodes = process.env.WISIK_FLIRT_CODES?.split(',').filter(Boolean);
+const roadies = catalog.videos.filter(video => selectedCodes ? selectedCodes.includes(video.target?.misconceptionCode) : video.audioMode === 'embedded');
+if (selectedCodes) assert.equal(roadies.length, selectedCodes.length, 'Onbekende of dubbele flirtcode');
 assert.ok(roadies.length > 0, 'Roadie-catalogus is onverwacht leeg');
 const checked = new Set();
 for (const video of roadies) {
@@ -60,14 +62,15 @@ for (const video of roadies) {
   const info = probe(media);
   const types = new Set(info.streams.map(stream => stream.codec_type));
   assert.ok(types.has('video'), `${code}: geen videostream`);
-  assert.ok(types.has('audio'), `${code}: geen ingebedde audiostream`);
+  if (video.audioMode === 'embedded') assert.ok(types.has('audio'), `${code}: geen ingebedde audiostream`);
   const duration = Number(info.format?.duration);
   assert.ok(duration > 2 && duration < 600, `${code}: ongeldige speelduur`);
   assert.ok(Math.abs(duration - video.durationSeconds) < 5, `${code}: catalogusduur wijkt af van video (${duration})`);
   const captions = fs.readFileSync(subtitles, 'utf8');
   assert.ok(captions.trimStart().startsWith('WEBVTT'), `${code}: ondertitels zijn geen VTT`);
   assert.ok(lastCaptionEnd(captions) <= duration + 5, `${code}: ondertitels lopen na de film door`);
-  const peak = audioLevel(media);
+  const peak = video.audioMode === 'embedded' ? audioLevel(media) : 'legacy';
+  assert.match(fs.readFileSync(transcript, 'utf8'), /<meta\s+name=["']viewport["']/i, `${code}: mobiel transcript mist viewport`);
   console.log(`${code}: video ${duration.toFixed(2)}s, audio max ${peak} dB, VTT/poster/transcript gecontroleerd.`);
 }
 console.log(`Roadie-filmcontrole geslaagd voor ${roadies.length} gepubliceerde Roadie-films.`);

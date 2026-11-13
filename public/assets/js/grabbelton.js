@@ -123,18 +123,19 @@
     summary.textContent = video.summary;
     const player = document.createElement("video");
     player.className = "grabbelton-player";
+    player.dataset.audioMode = video.audioMode;
     player.controls = true;
     player.playsInline = true;
     player.preload = "metadata";
     player.crossOrigin = "anonymous";
-    player.src = core.versionedAssetUrl(video.source.url, globalThis.WISIK_SITE_VERSION);
-    if (video.posterSrc) player.poster = core.versionedAssetUrl(video.posterSrc, globalThis.WISIK_SITE_VERSION);
+    player.src = core.versionedAssetUrl(video.source.url, globalThis.WISIK_SITE_VERSION, video);
+    if (video.posterSrc) player.poster = core.versionedAssetUrl(video.posterSrc, globalThis.WISIK_SITE_VERSION, video);
     player.setAttribute("aria-label", `Wisik-flirt: ${video.title}`);
     const track = document.createElement("track");
     track.kind = "captions";
     track.srclang = "nl";
     track.label = "Nederlands";
-    track.src = core.versionedAssetUrl(video.captionsSrc, globalThis.WISIK_SITE_VERSION);
+    track.src = core.versionedAssetUrl(video.captionsSrc, globalThis.WISIK_SITE_VERSION, video);
     track.default = !video.captionsBurnedIn;
     player.append(track);
 
@@ -178,7 +179,7 @@
         : "Willekeurig gekozen uit alle gepubliceerde filmpjes.";
     const transcript = document.createElement("a");
     transcript.className = "btn ghost small";
-    transcript.href = core.versionedAssetUrl(video.transcriptUrl, globalThis.WISIK_SITE_VERSION);
+    transcript.href = core.versionedAssetUrl(video.transcriptUrl, globalThis.WISIK_SITE_VERSION, video);
     transcript.textContent = "Lees het transcript";
     const practice = document.createElement("a");
     practice.className = "btn primary small";

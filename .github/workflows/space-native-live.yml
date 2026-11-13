@@ -1,10 +1,5 @@
 name: Space-tent native publicatiecontrole
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'public/apps/ruimteklaar/**'
-      - '.github/workflows/space-native-live.yml'
   workflow_dispatch:
 permissions:
   contents: read

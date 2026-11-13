@@ -1,82 +1,46 @@
-import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { execFileSync } from 'node:child_process';
-
-// Fail closed: only a strictly bounded film/media update may skip the full audit.
-const mediaFile = /^public\/films\/rekenklaar\/[A-D]\d{2}\/(?:flirt\.mp4|poster\.jpg|captions\.vtt|transcript\.html)$/;
-const metadataFiles = new Set([
-  'public/assets/data/grabbelton-videos.json',
-  'public/assets/data/flirt-content-review.json',
-]);
-
-export function classifyPaths(paths, verifiedFilmCodes = new Set(['A02', 'B03', 'B04'])) {
-  if (!Array.isArray(paths) || paths.length === 0) return 'full';
-  for (const filename of paths) {
-    if (typeof filename !== 'string') return 'full';
-    if (metadataFiles.has(filename)) continue;
-    if (!mediaFile.test(filename)) return 'full';
-    const code = filename.split('/')[3];
-    if (!verifiedFilmCodes.has(code)) return 'full';
-  }
-  return 'roadie';
+import {execFileSync} from 'node:child_process';
+import {pathToFileURL} from 'node:url';
+import {classifyPaths} from './release-policy.mjs';
+export {classifyPaths};
+const git = (...args) => execFileSync('git', args, {encoding:'utf8', maxBuffer:4e6}).trim();
+export function changedPaths(base) {
+  if (!base || !/^[a-f0-9]{40}$/.test(base) || /^0+$/.test(base)) throw new Error('Een concrete basiscommit is nodig; gebruik --base=<sha> of expliciet --full.');
+  try { git('cat-file','-e',`${base}^{commit}`); }
+  catch { git('fetch','--no-tags','--depth=1','origin',base); }
+  const committed = git('diff','--no-renames','--name-only',base,'HEAD');
+  const local = git('diff','--name-only','HEAD');
+  const untracked = git('ls-files','--others','--exclude-standard');
+  return [...new Set([committed,local,untracked].join('\n').split('\n').filter(p => p && !p.startsWith('.release/')))];
 }
-
-function git(...args) {
-  return execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+export function releasePlan({base, full=false} = {}) {
+  const paths = full ? [] : changedPaths(base);
+  const plan = {...classifyPaths(paths, {full}), base:base || null, head:git('rev-parse','HEAD'), paths, codes:[]};
+  if (!plan.modules.includes('flirts')) return plan;
+  // Shared player/logic changes require all films; isolated media changes only their codes.
+  if (full || paths.some(p => !/^public\/(?:films\/rekenklaar\/|assets\/data\/(?:grabbelton-videos|flirt-content-review)\.json$)/.test(p) && !/^(docs\/|.*\.md$)/.test(p))) return plan;
+  const codes = new Set(paths.flatMap(p => p.match(/^public\/films\/rekenklaar\/([A-D]\d{2})\//)?.slice(1) || []));
+  for (const [file, field, codeOf] of [
+    ['public/assets/data/grabbelton-videos.json','videos',v=>v.target.misconceptionCode],
+    ['public/assets/data/flirt-content-review.json','entries',v=>v.code],
+  ]) {
+    if (!paths.includes(file)) continue;
+    const before = JSON.parse(git('show',`${base}:${file}`));
+    const after = JSON.parse(fs.readFileSync(file,'utf8'));
+    if (JSON.stringify(before[field].map(codeOf).sort()) !== JSON.stringify(after[field].map(codeOf).sort())) throw new Error('Een nieuwe/verwijderde flirt vraagt een gerichte catalogusmigratie, geen vervanging.');
+    for (const entry of after[field]) if (JSON.stringify(entry) !== JSON.stringify(before[field].find(v=>codeOf(v)===codeOf(entry)))) codes.add(codeOf(entry));
+  }
+  plan.codes = [...codes].sort();
+  return plan;
 }
-
-function diffPaths(event) {
-  if (!['pull_request', 'push'].includes(event)) return null;
-  let base;
-  if (event === 'pull_request') {
-    // The checked-out PR synthetic merge commit has the target branch as parent 1.
-    base = git('rev-parse', 'HEAD^1');
-  } else {
-    base = process.env.RELEASE_BEFORE_SHA || '';
-    if (!/^[a-f0-9]{40}$/.test(base) || /^0+$/.test(base)) return null;
-    try {
-      git('cat-file', '-e', `${base}^{commit}`);
-    } catch {
-      // Pushes may contain multiple commits; compare against the actual before SHA.
-      // If fetching fails, the caller selects the complete audit.
-      git('fetch', '--no-tags', '--depth=1', 'origin', base);
-    }
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  if (process.argv.includes('--self-test')) { await import('./test-release-policy.mjs'); }
+  else {
+    const full = process.argv.includes('--full') || ['schedule','workflow_dispatch'].includes(process.env.GITHUB_EVENT_NAME);
+    const base = process.argv.find(a=>a.startsWith('--base='))?.slice(7) || process.env.RELEASE_BASE_SHA || (process.env.GITHUB_EVENT_NAME==='pull_request' ? git('rev-parse','HEAD^1') : process.env.RELEASE_BEFORE_SHA) || (!full ? git('rev-parse','origin/main') : null);
+    const plan = releasePlan({base,full});
+    fs.mkdirSync('.release',{recursive:true}); fs.writeFileSync('.release/plan.json',JSON.stringify(plan,null,2)+'\n');
+    console.log(JSON.stringify(plan,null,2));
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT,`media=${plan.modules.includes('flirts') || plan.modules.includes('konijnenhol')}\n`);
   }
-  const changed = execFileSync('git', ['diff', '--no-renames', '--name-only', '-z', base, 'HEAD']);
-  return changed.toString('utf8').split('\0').filter(Boolean);
-}
-
-if (process.argv.includes('--self-test')) {
-  assert.equal(classifyPaths(['public/films/rekenklaar/B04/flirt.mp4']), 'roadie');
-  assert.equal(classifyPaths(['public/films/rekenklaar/B04/flirt.mp4', 'public/assets/data/grabbelton-videos.json']), 'roadie');
-  assert.equal(classifyPaths(['public/films/rekenklaar/A02/captions.vtt', 'public/assets/data/flirt-content-review.json']), 'roadie');
-  assert.equal(classifyPaths(['public/assets/js/grabbelton-core.js', 'public/films/rekenklaar/B04/flirt.mp4']), 'full');
-  assert.equal(classifyPaths(['.github/workflows/quality.yml']), 'full');
-  assert.equal(classifyPaths(['scripts/test-roadie-release.mjs']), 'full');
-  assert.equal(classifyPaths(['public/films/rekenklaar/B04/other.mp4']), 'full');
-  assert.equal(classifyPaths(['public/films/rekenklaar/A04/flirt.mp4']), 'full');
-  assert.equal(classifyPaths([]), 'full');
-  console.log('Scopeclassificatie: 9 veiligheidsgevallen geslaagd.');
-} else {
-  let paths = null;
-  let reason = 'no changes or unsupported event';
-  try {
-    paths = diffPaths(process.env.GITHUB_EVENT_NAME);
-    reason = paths ? `${paths.length} changed files` : 'no safe Git comparison';
-  } catch (error) {
-    reason = `comparison unavailable (${error.message})`;
-  }
-  let filmCodes = new Set();
-  try {
-    const catalog = JSON.parse(fs.readFileSync('public/assets/data/grabbelton-videos.json', 'utf8'));
-    filmCodes = new Set(catalog.videos
-      .filter(video => /^roadie-/.test(video.release || '') || video.target?.misconceptionCode === 'A02')
-      .map(video => video.target?.misconceptionCode));
-  } catch {
-    // Missing/unreadable catalog cannot enable the shorter audit.
-  }
-  const mode = classifyPaths(paths, filmCodes);
-  console.log(`Vrijgavescope: ${mode} (${reason})`);
-  for (const path of paths || []) console.log(`  ${path}`);
-  if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `mode=${mode}\n`);
 }

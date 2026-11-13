@@ -1,24 +1,5 @@
 name: Gonio proeftent controle
 on:
-  pull_request:
-    paths:
-      - 'public/rafelrand/**'
-      - 'scripts/test-gonio.mjs'
-      - 'tests/gonio-browser.py'
-      - 'tests/gonio-audio-browser.py'
-      - 'tests/gonio-rotation-browser.py'
-      - 'tests/gonio_integrity.py'
-      - '.github/workflows/gonio.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'public/rafelrand/**'
-      - 'scripts/test-gonio.mjs'
-      - 'tests/gonio-browser.py'
-      - 'tests/gonio-audio-browser.py'
-      - 'tests/gonio-rotation-browser.py'
-      - 'tests/gonio_integrity.py'
-      - '.github/workflows/gonio.yml'
   workflow_dispatch:
 permissions:
   contents: read

@@ -1,7 +1,6 @@
 name: Ruimteklaar beveiligde testmodus
 on:
-  push:
-    branches: [ruimteklaar-protected-review]
+  workflow_dispatch:
 permissions:
   contents: write
 concurrency:

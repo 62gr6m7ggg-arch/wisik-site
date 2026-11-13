@@ -9,9 +9,9 @@ export function canonicalJson(value) {
   return JSON.stringify(value);
 }
 
-export function snapshotFlirtSources(root, catalog, misconceptions) {
+export function snapshotFlirtSources(root, catalog, misconceptions, codes = null) {
   const entries = [];
-  for (const video of catalog.videos.filter(item => item.status === "published")) {
+  for (const video of catalog.videos.filter(item => item.status === "published" && (!codes || codes.includes(item.target.misconceptionCode)))) {
     const code = video.target.misconceptionCode;
     const assets = { video: video.source.url, poster: video.posterSrc, captions: video.captionsSrc, transcript: video.transcriptUrl };
     const fingerprints = { misconception: digest(canonicalJson(misconceptions[code])), catalogItem: digest(canonicalJson(video)) };
@@ -52,8 +52,9 @@ export function verifyFlirtContentReview(review, snapshot, codes) {
   };
 }
 
-export function auditFlirtContent(root, catalog, misconceptions) {
+export function auditFlirtContent(root, catalog, misconceptions, codes = null) {
   const review = JSON.parse(fs.readFileSync(path.join(root, 'public/assets/data/flirt-content-review.json'), 'utf8'));
-  const snapshot = snapshotFlirtSources(root, catalog, misconceptions);
-  return { ...verifyFlirtContentReview(review, snapshot, Object.keys(misconceptions)), review, snapshot };
+  if (codes) review.entries = review.entries.filter(entry => codes.includes(entry.code));
+  const snapshot = snapshotFlirtSources(root, catalog, misconceptions, codes);
+  return { ...verifyFlirtContentReview(review, snapshot, codes || Object.keys(misconceptions)), review, snapshot };
 }

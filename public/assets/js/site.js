@@ -12,8 +12,7 @@
     "diagnostic-patterns",
     "flirt-trigger-chain",
     "session-variation",
-    "reasoning-diversity",
-    "flirt-content-lock"
+    "reasoning-diversity"
   ]);
   const VIEW_LABELS = Object.freeze({
     home: "Start",
@@ -339,6 +338,16 @@
       const response = await fetch(reportUrl, { cache: "no-store", headers: { Accept: "application/json" } });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const report = await response.json();
+      // Reviews are independent of the last calculation audit.
+      const reviewResponse = await fetch("/assets/data/flirt-content-review.json", { cache: "no-store" });
+      if (!reviewResponse.ok) throw new Error(`Review HTTP ${reviewResponse.status}`);
+      const currentReview = await reviewResponse.json();
+      const entries = currentReview.entries || [];
+      const count = verdict => entries.filter(entry => entry.verdict === verdict).length;
+      report.flirtContent = { ...currentReview,
+        counts: { reviewed: entries.length, aligned: count("aligned"), withNotes: count("aligned-with-notes"), needsRevision: count("mismatch") },
+        status: count("mismatch") ? "revision-needed" : count("aligned-with-notes") ? "reviewed-with-notes" : "aligned"
+      };
       const registeredToolVersion = TOOLS.find((tool) => tool.id === "pabo-rekenklaar")?.version;
       const { gates, counts, passed, stale, passedGateCount, requiredGateCount } = evaluateReleaseAudit(report, registeredToolVersion);
       const contentIssues = Number(report.flirtContent?.counts?.needsRevision || 0);

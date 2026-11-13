@@ -53,7 +53,7 @@ const createdAudio = [];
 class TestVideo {
   constructor(code, duration) {
     this.currentSrc = `https://wisik.nl/films/rekenklaar/${code}/flirt.mp4?v=test`;
-    this.dataset = {};
+    this.dataset = { audioMode: "legacy" };
     this.muted = false;
     this.defaultMuted = false;
     this.playbackRate = 1;
@@ -84,8 +84,10 @@ class TestAudio {
 }
 const mediaContext = { URL, console, HTMLVideoElement: TestVideo, Audio: TestAudio };
 vm.runInNewContext(core, mediaContext);
-for (const [code, duration] of [["A02", 61], ["A05", 33.912], ["B03", 63.15], ["B04", 42.092], ["D05", 40.124]]) {
+const catalog = JSON.parse(fs.readFileSync(path.join(root, "public/assets/data/grabbelton-videos.json"), "utf8"));
+for (const {target: {misconceptionCode: code}, durationSeconds: duration} of catalog.videos.filter(v => v.audioMode === "embedded")) {
   const player = new TestVideo(code, duration);
+  player.dataset.audioMode = "embedded";
   const beforeCues = JSON.stringify(player.textTracks);
   const audioCount = createdAudio.length;
   mediaContext.WisikGrabbeltonCore.attachOwnVoice(player);
@@ -106,5 +108,5 @@ assert.equal(legacy.dataset.wisikOwnVoice, "1");
 assert.equal(legacy.muted, true);
 assert.ok(Math.abs(legacy.playbackRate - 49.72 / review.clips.A01.duration) < 1e-9);
 assert.notEqual(legacy.textTracks[0].cues[0].startTime, 0.256, "A01: bestaande captionaanpassing blijft actief");
-console.log("Roadie-mediacontrole geslaagd: A02/A05/B03/B04/D05 behouden native audio, snelheid en VTT; A01 behoudt de losse eigenstemroute.");
+console.log("Roadie-mediacontrole geslaagd: Alle catalogus-Roadies behouden native audio, snelheid en VTT; A01 behoudt de losse eigenstemroute.");
 console.log(`Eigenstem-releasecontrole geslaagd: 30 losse M4A-bestanden, geen master-seeking, bronhash ${review.output.sha256}.`);

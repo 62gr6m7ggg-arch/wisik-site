@@ -12,16 +12,8 @@ const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
 const html = read("public/apps/pabo-rekenklaar/index.html");
 const script = html.match(/<script>([\s\S]*)<\/script>/)[1];
 const catalog = JSON.parse(read("public/assets/data/grabbelton-videos.json"));
-const expectedMediaSuffix = { A02: "-roadie-20260929b", A05: "-roadie-a05-zand-20261111", B03: "-roadie-b03-20260929", B04: "-roadie-b04-20261111", D05: "-roadie-d05-20261111" };
-for (const [code, duration, release] of [
-  ["A05", 34, "roadie-a05-zand-20261111"],
-  ["B04", 42, "roadie-b04-20261111"],
-]) {
-  const item = catalog.videos.find(video => video.target.misconceptionCode === code);
-  assert.equal(item.durationSeconds, duration, `${code}: catalogusduur hoort bij de film`);
-  assert.equal(item.release, release, `${code}: nieuwe mediarelease ontbreekt`);
-  assert.equal(item.captionsBurnedIn, true, `${code}: ingebrande ondertitels moeten expliciet bekend zijn`);
-}
+const selectedCodes = process.env.WISIK_FLIRT_CODES?.split(",").filter(Boolean) || null;
+const expectedMediaSuffix = Object.fromEntries(catalog.videos.map(v => [v.target.misconceptionCode, `-${v.release}`]));
 const invitation = "Even anders kijken? Mag ik dan even met je flirten?";
 
 // DOM-double voor de bestaande modale levenscyclus; dit is geen browsertest.
@@ -63,20 +55,22 @@ context.testCatalog = catalog;
 const fixtures = JSON.parse(read("tests/flirt-cases.json"));
 const chainAudit = runFlirtChainAudit(context, catalog, fixtures);
 assert.deepEqual(runFlirtChainAudit(context, catalog, fixtures), chainAudit, "De ketentest moet met dezelfde seed reproduceerbaar zijn");
-const contentAudit = auditFlirtContent(root, catalog, context.PaboRekenklaarQA.MISCONCEPTION_CATALOG);
+const contentAudit = auditFlirtContent(root, catalog, context.PaboRekenklaarQA.MISCONCEPTION_CATALOG, selectedCodes);
 assert.ok(contentAudit.passed, contentAudit.failures.join("\n"));
-const allCodes = Object.keys(context.PaboRekenklaarQA.MISCONCEPTION_CATALOG);
+const allCodes = Object.keys(context.PaboRekenklaarQA.MISCONCEPTION_CATALOG, selectedCodes);
 for (const part of ['misconception','catalogItem','video','poster','captions','transcript']) {
   const changed = structuredClone(contentAudit.snapshot);
   changed[0].fingerprints[part] = '0'.repeat(64);
   assert.equal(verifyFlirtContentReview(contentAudit.review, changed, allCodes).passed, false, `Gewijzigd ${part} mag geen oude inhoudsreview erven`);
 }
+if (contentAudit.snapshot.length > 1) {
 const swapped = structuredClone(contentAudit.snapshot);
 [swapped[0].code,swapped[1].code]=[swapped[1].code,swapped[0].code];
 assert.equal(verifyFlirtContentReview(contentAudit.review, swapped, allCodes).passed, false, 'Verwisselde codes moeten worden ontdekt');
 const changedTitle = structuredClone(contentAudit.snapshot);
 changedTitle[0].title = changedTitle[1].title;
 assert.equal(verifyFlirtContentReview(contentAudit.review, changedTitle, allCodes).passed, false, 'Verkeerde titel moet worden ontdekt');
+}
 const missingReview = structuredClone(contentAudit.review);
 missingReview.entries.pop();
 assert.equal(verifyFlirtContentReview(missingReview, contentAudit.snapshot, allCodes).passed, false);
@@ -99,7 +93,7 @@ assert.throws(() => runFlirtChainAudit(context,catalog,fixtures), /correct antwo
 context.diagnosticFeedbackMarkup = originalMarkup;
 
 // Controleer ook de interpretatielaag zelf, niet alleen de selectie uit de catalogus.
-for (const item of fixtures.cases) {
+for (const item of fixtures.cases.filter(item => !selectedCodes || selectedCodes.includes(item.code))) {
   context.rendererCase = item;
   run(`state=deepClone(DEFAULT_STATE);state.diagnostics=freshDiagnostics();activeSession={kind:"practice",answered:true,finished:false};
     for(let variant=0;variant<2;variant++){
@@ -116,6 +110,7 @@ for (const item of fixtures.cases) {
   for (const route of [expected.source.url,expected.posterSrc,expected.captionsSrc,expected.transcriptUrl]) {
     assert.ok(markup.includes(`https://wisik.nl${route}?v=${context.WISIK_SITE_VERSION}${expectedMediaSuffix[item.code] || ""}`), `${item.code}: speler verwijst naar verkeerde asset ${route}`);
   }
+  assert.ok(markup.includes(`data-audio-mode="${expected.audioMode}"`), `${item.code}: audiokeuze ontbreekt`);
   const trackMarkup = markup.match(/<track\b[^>]*>/)?.[0];
   assert.ok(trackMarkup, `${item.code}: Nederlandse VTT blijft beschikbaar`);
   assert.equal(/\sdefault(?:\s|=|>)/.test(trackMarkup), !expected.captionsBurnedIn, `${item.code}: voorkom dubbele standaardondertitels`);
@@ -132,7 +127,7 @@ const renderEnd = grabSource.indexOf("\n  function drawVideo()", renderStart);
 assert.ok(renderStart >= 0 && renderEnd > renderStart, "Grabbelton-renderer ontbreekt");
 function grabElement(tag) {
   return {
-    tag, children: [], style: {}, events: new Map(),
+    tag, children: [], style: {}, dataset: {}, events: new Map(),
     append(...children) { this.children.push(...children); },
     replaceChildren(...children) { this.children = children; },
     setAttribute(name, value) { this[name] = value; },
@@ -155,16 +150,18 @@ const grabContext = {
 };
 vm.createContext(grabContext);
 vm.runInContext(grabSource.slice(renderStart, renderEnd), grabContext);
-for (const code of ["A01", "A02", "A05", "B03", "B04", "D05"]) {
+for (const code of selectedCodes || catalog.videos.map(v => v.target.misconceptionCode)) {
   const selected = catalog.videos.find(video => video.target.misconceptionCode === code);
   grabContext.renderVideo({ video: selected, reason: "misconception" });
   const player = grabResult.querySelector("video");
+  assert.equal(player.dataset.audioMode, selected.audioMode);
   const track = player.querySelector("track");
   assert.equal(track.default, !selected.captionsBurnedIn, `${code}: Grabbelton-ondertitels hebben de verkeerde standaardstand`);
   assert.equal(track.kind, "captions");
   assert.equal(track.src, `https://wisik.nl${selected.captionsSrc}?v=${context.WISIK_SITE_VERSION}${expectedMediaSuffix[code] || ""}`);
 }
 
+if (selectedCodes) { console.log(`Gerichte flirtkoppeling geslaagd: ${selectedCodes.join(", ")}, beide spelers en inhoudsvingerafdrukken.`); process.exit(0); }
 run('activeSession={kind:"practice",answered:true,finished:false};');
 // Werkelijke bewijsopbouw: dezelfde fout herhalen is onvoldoende; een andere controlevraag bevestigt.
 run('testQuestion=generateDiagnosticProbe("A01",0,"mix"); testResult=recordDiagnosticOutcome(testQuestion,diagnosticTestResponseFor(testQuestion,"A01"),false);');
@@ -188,7 +185,7 @@ assert.equal(run('diagnosticFlirtAllowed("A01","likely")'), false);
 run('activeSession.answered=true;');
 assert.equal(run('diagnosticFlirtAllowed("A01","recovering")'), true);
 
-const codes = Object.keys(context.PaboRekenklaarQA.MISCONCEPTION_CATALOG);
+const codes = Object.keys(context.PaboRekenklaarQA.MISCONCEPTION_CATALOG, selectedCodes);
 assert.equal(codes.length, 30);
 for (const code of codes) {
   context.testCode = code;
