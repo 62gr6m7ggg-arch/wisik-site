@@ -13,7 +13,7 @@ export const modules = {
 export const fullModules = Object.keys(modules);
 const rules = [
   [/^(?:AGENTS\.md|README\.md|DEPLOYMENT\.md|TEST-RESULTS\.md|PRIVACY-NOTITIES\.md|docs\/)/, []],
-  [/^public\/(?:films\/rekenklaar\/|assets\/data\/(?:grabbelton-videos|flirt-content-review)\.json$)/, ['flirts']],
+  [/^public\/(?:films\/rekenklaar\/[A-D]\d{2}\/(?:flirt\.mp4|poster\.jpg|captions\.vtt|transcript\.html)|assets\/data\/(?:grabbelton-videos|flirt-content-review)\.json)$/, ['flirts']],
   [/^public\/assets\/js\/grabbelton(?:-core)?\.js$|^public\/grabbelton\//, ['flirts','site']],
   [/^public\/apps\/pabo-rekenklaar\/|^src\/pabo\/|^public\/assets\/data\/(?:pabo-release-audit|pabo-variation-catalog)\.json$|^public\/moshpit\//, ['pabo','flirts','site']],
   [/^tools\/space-tent\/|^public\/(?:apps\/ruimteklaar\/|films\/ruimteklaar\/|assets\/data\/ruimteklaar-release-audit\.json$)|^server\/ruimteklaar|^functions\/apps\/ruimteklaar\//, ['space']],
@@ -39,6 +39,7 @@ export function classifyPaths(paths, { full = false } = {}) {
   const selected = new Set();
   const unknown = [];
   for (const file of paths) {
+    if (file === 'tests/gonio_integrity.py') { selected.add('gonio'); selected.add('delivery'); continue; }
     if (/^scripts\/(?:verify-publication\.mjs|test-delivery-source\.mjs|lib\/delivery-source\.mjs)$|^\.github\/workflows\/publication\.yml$/.test(file)) { selected.add('delivery'); continue; }
     if (/^\.github\/|^scripts\/(?:release-|classify-release-change|test-release-|test-native-audio|verify-publication)|^(?:package(?:-lock)?\.json|wrangler\.jsonc|\.gitignore)$/.test(file)) {
       fullModules.forEach(m => selected.add(m)); continue;
