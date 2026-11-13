@@ -88,3 +88,13 @@ afgekeurd. Het is dus geen blinde verwijdering van hostingcode.
 Een fout bij het archiveren van logs blokkeert geen geslaagde vrijgave. De echte
 teststap blijft verplicht; de workflowlog en PR blijven beschikbaar als het
 optionele artifact tijdelijk niet opgeslagen kan worden.
+
+Backstage gebruikt daarnaast de al eerder vastgelegde Cloudflare-e-mailbescherming.
+De aflevercontrole hergebruikt de bestaande strikte decodercontrole: precies één
+contactlink, hetzelfde gedecodeerde adres en dezelfde zichtbare tekst. Overige
+HTML-wijzigingen worden afgewezen, ook in combinatie met de statistiektoevoeging.
+
+Cloudflare build watch paths zijn beperkt tot `public/*`, `functions/*`, `server/*`,
+`wrangler.jsonc`, `package.json` en `package-lock.json`. Alleen documentatie of
+tests aanpassen start daardoor geen nieuwe websitebuild. Productie vanuit main
+blijft ingeschakeld; de build command blijft leeg.

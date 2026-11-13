@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import './test-deployed-privacy-file.mjs';
 import {deliveredSource,hostingAddition} from './lib/delivery-source.mjs';
 const expected=Buffer.from('<html><body>lesson</body></html>\n');
 const hosted=Buffer.from(expected.toString().replace('</body>',hostingAddition+'</body>'));
@@ -13,3 +15,14 @@ assert.equal(deliveredSource(expected,Buffer.concat([hosted,Buffer.from('<script
 assert.equal(deliveredSource(Buffer.from('media'),Buffer.from('media'),'film.mp4').verified,true);
 assert.equal(deliveredSource(Buffer.from('media'),Buffer.from('changed'),'film.mp4').verified,false);
 console.log('Aflevercontrole: 10 controles; exacte hostingtoevoeging herkend, applicatiewijzigingen afgewezen.');
+
+const backstage=fs.readFileSync('public/backstage/index.html');
+const email='kladblok@wisik.nl';
+const encode=(s,key)=>Buffer.from([key,...Buffer.from(s).map(b=>b^key)]).toString('hex');
+const decoder='<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>';
+const emailHosted=backstage.toString().replace(`<a href="mailto:${email}">${email}</a>`,`<a href="/cdn-cgi/l/email-protection#${encode(email,79)}"><span class="__cf_email__" data-cfemail="${encode(email,236)}">[email&#160;protected]</span></a>`).replace('</body>',decoder+hostingAddition+'</body>');
+assert.equal(deliveredSource(backstage,Buffer.from(emailHosted),'public/backstage/index.html').verified,true);
+assert.equal(deliveredSource(backstage,Buffer.from(emailHosted.replace('3 maanden','30 maanden')),'public/backstage/index.html').verified,false);
+assert.equal(deliveredSource(backstage,Buffer.from(emailHosted.replace(encode(email,79),encode('other@example.org',79))),'public/backstage/index.html').verified,false);
+assert.equal(deliveredSource(backstage,Buffer.from(emailHosted),'public/kladblok/index.html').verified,false);
+console.log('Backstage: exact bekende e-mailbescherming plus beacon geaccepteerd; andere tekst/adres/route afgewezen.');
