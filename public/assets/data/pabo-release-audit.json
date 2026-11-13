@@ -4,7 +4,7 @@
   "siteVersion": "0.1.32",
   "tool": "Pabo Rekenklaar",
   "toolVersion": "1.11.0",
-  "generatedAt": "2026-11-13T07:55:50.110Z",
+  "generatedAt": "2026-11-13T15:05:38.523Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
@@ -1573,7 +1573,7 @@
       "withNotes": 11,
       "needsRevision": 0
     },
-    "reviewedAt": "2026-11-12",
+    "reviewedAt": "2026-11-13",
     "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
     "scope": {
       "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
@@ -2010,38 +2010,54 @@
         "verdict": "aligned-with-notes",
         "expectedMisconception": "De omzetfactor wordt slechts één keer of als 1.000 gebruikt waar 100³ nodig is.",
         "intendedInsight": "1 m³ bevat 100 × 100 × 100 = 1.000.000 cm³; breedte, diepte én hoogte tellen mee.",
-        "observedContent": "Titel en volledige VTT/transcript breken de gedachte dat duizend cm³ in een m³ passen met een correcte rij-laag-stapeling. Het beeld is een onverdeelde kubus; de rekenregel staat grotendeels achter de witte inzichtbalk.",
+        "observedContent": "Roadie zet kratjes neer en stapelt vanaf de steiger. De rij, de laag en de kubus ondersteunen de drie factoren honderd. Het slot toont de gelijkheid en de omgekeerde rekenrichting.",
         "visualEvidence": [
           {
             "timestampsSeconds": [
-              4,
-              53.52
+              15.3,
+              19.5
             ],
-            "observation": "Correcte C02-titelkaart en afsluiting."
+            "observation": "Roadie plaatst zwarte kratjes aan het begin van een rij."
           },
           {
             "timestampsSeconds": [
-              12,
-              21,
-              30,
-              39
+              22,
+              24.5
             ],
-            "observation": "Vaste kubus in perspectief met drie zichtbare vlakken; inzichtbalk “Inhoud telt drie richtingen.” Geen blokjes, maten of laagopbouw zichtbaar."
+            "observation": "Bovenaanzicht van een groeiende grondlaag."
           },
           {
             "timestampsSeconds": [
-              35
+              26,
+              29,
+              33
             ],
-            "observation": "Extra opname op volledige resolutie bevestigt dat de onderste delen van 100 × 100 × 100 = 1.000.000 cm³ achter de inzichtbalk vallen."
+            "observation": "Roadie klimt en zet een krat op de stapel; steiger en lagen blijven zichtbaar."
+          },
+          {
+            "timestampsSeconds": [
+              36.5,
+              37.5
+            ],
+            "observation": "De hele kubus is zichtbaar terwijl de terugrekening in beeld staat."
+          },
+          {
+            "timestampsSeconds": [
+              40,
+              46.5,
+              50,
+              55
+            ],
+            "observation": "Bordscène met de derde macht, de twee rekenrichtingen en een voorbeeld met 2 m³."
           }
         ],
-        "captionEvidence": "33.710–37.073: “Honderd keer 10.000 is 1.000.000.”",
+        "captionEvidence": "Volledig Nederlandstalig VTT-spoor op basis van de gemeten spraaktijden.",
         "notes": [
-          "Nietblokkerende festivalnotitie: schuif de rekenregel omhoog zodat de uitkomst volledig leesbaar is.",
-          "Het bedoelde inzicht is juist, maar de verwijzingen naar blokjes en lagen krijgen weinig visuele steun. Een zichtbaar laagje of drie maatlabels zou de bestaande uitleg directer maken."
+          "De bouwscènes illustreren de opbouw. De getallen en gesproken uitleg geven de exacte aantallen van het schaalmodel."
         ],
         "videoId": "wisik-flirt-c02",
-        "title": "Van kubieke meter naar kubieke centimeter"
+        "title": "Van kubieke meter naar kubieke centimeter",
+        "reviewedAt": "2026-11-13"
       },
       {
         "code": "C03",

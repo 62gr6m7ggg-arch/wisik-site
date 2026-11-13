@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-12",
+  "updatedAt": "2026-11-13",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -389,8 +389,8 @@
       "id": "wisik-flirt-c02",
       "status": "published",
       "title": "Van kubieke meter naar kubieke centimeter",
-      "summary": "Waarom een kubieke meter een miljoen kubieke centimeter bevat.",
-      "durationSeconds": 55,
+      "summary": "Roadie bouwt met kratjes een rij, een laag en een kubus. Zie waarom 1 m³ gelijk is aan 1.000.000 cm³ en hoe je terugrekent. Op het bord schrijft hij beide rekenrichtingen uit.",
+      "durationSeconds": 70,
       "wristbands": [
         "PABO"
       ],
@@ -405,7 +405,8 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C02"
       },
-      "release": "festival-v1"
+      "release": "roadie-c02-lipsync-20261113",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-c03",
