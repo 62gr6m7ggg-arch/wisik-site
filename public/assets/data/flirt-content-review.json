@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-11",
+  "reviewedAt": "2026-11-12",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
-    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02. B03 is op 29 september 2026 vervangen door de nieuwe Roadie-film met zes halve-literglazen en de fysieke breukkaart; zie de afzonderlijke B03-review. B04 is op 11 november 2026 vervangen door de nieuwe Roadie-montage met zichtbare verfijning van tien kolommen naar honderd vakjes en de vergelijking 70% tegenover 7%; zie de afzonderlijke B04-review. D05 Roadie: vier bakjes met 2/4/6/8 fiches worden in vier exacte verplaatsingen 5/5/5/5. A05 Roadie: gecontroleerd op het wegstrepen van drie rijen van zes en het tekenen van de haakjes rond 18 − 3.",
-    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden. B04 gebruikt vanaf 11 november 2026 de complete ingebedde stem in de nieuwe MP4; de oudere losse stemopname is voor deze film uitgeschakeld. D05 gebruikt nu ingebedde Nederlandse Roadie-stem in de nieuwe MP4, zonder de oudere M4A-koppeling. A05 speelt de ingebouwde Nederlandse Roadie-stem op de oorspronkelijke snelheid af.",
+    "visuals": "Zes tijdstippen per MP4 bekeken, met extra detailframes waar tekst en beeld botsten. Tijdstippen en waarnemingen staan per film. C01 en C04 zijn na beeldherstel opnieuw bekeken op de vastgelegde beeldmomenten en alle scène-/opbouwovergangen; de uitgevoerde correcties en technische mediacontrole staan bij die beoordelingen. D01 eigenstem: titel, hoofdbeeld en eindkaart opnieuw bekeken; tien seconden overtollige stilte verwijderd, zonder gesproken materiaal te verwijderen. Op 9 september 2026 zijn bij alle 30 flirts uitsluitend de statische oude herstelset-slotbeelden vervangen door een neutrale Wisik-achtergrond. De volledige videoduur bleef per flirt gelijk; de inhoudelijke scènes vóór het slotbeeld zijn niet gewijzigd. A02 is op 29 september 2026 vervangen door de gecontroleerde Roadie-montage met drie festivalborden; zie het afzonderlijke reviewmoment bij A02. B03 is op 29 september 2026 vervangen door de nieuwe Roadie-film met zes halve-literglazen en de fysieke breukkaart; zie de afzonderlijke B03-review. B04 is op 11 november 2026 vervangen door de nieuwe Roadie-montage met zichtbare verfijning van tien kolommen naar honderd vakjes en de vergelijking 70% tegenover 7%; zie de afzonderlijke B04-review. D05 Roadie: vier bakjes met 2/4/6/8 fiches worden in vier exacte verplaatsingen 5/5/5/5. A05 Roadie: gecontroleerd op het wegstrepen van drie rijen van zes en het tekenen van de haakjes rond 18 − 3. C06 Roadie: 3×3×3 bierkratjes, per laag zwart/groen/rood en gesynchroniseerd telbeeld.",
+    "audio": "De nieuwe eigenstemopnamen A–D zijn op 9 september opnieuw technisch en tekstueel gecontroleerd. Voor D01 is de volledige slotconclusie teruggezet en opnieuw vergeleken met het canonieke foutpatroon. De masteraudio en alle 30 segmenttijden worden apart bewaakt in tests/pabo-eigenstem-review-2026-09-09.json. De audiotrack is niet onafhankelijk beluisterd door een tweede persoon. De losse eigenstem-audio is niet gewijzigd door deze slotbeeldcorrectie; de vastgestelde spraakoverlap van circa 4–6 seconden in het oude slotdeel blijft volledig behouden. B04 gebruikt vanaf 11 november 2026 de complete ingebedde stem in de nieuwe MP4; de oudere losse stemopname is voor deze film uitgeschakeld. D05 gebruikt nu ingebedde Nederlandse Roadie-stem in de nieuwe MP4, zonder de oudere M4A-koppeling. A05 speelt de ingebouwde Nederlandse Roadie-stem op de oorspronkelijke snelheid af. C06 Roadie: geïntegreerde Nederlandse audio, oude losse M4A voor deze film uitgeschakeld; één extern VTT-spoor.",
     "limitations": "Een steekproef van beelden is geen frame-voor-framebeoordeling. Dit oordeel bewijst geen leerwinst en meet niet hoe vaak het diagnostische systeem bij echte studenten een fout-positief geeft.",
     "publication": "Bestaande festivalpublicatie blijft beschikbaar conform de eerder gekozen experimenteerruimte. Een mismatch is een open herstelpunt, geen inhoudelijke goedkeuring. De automatische controle bewaakt wijzigingen aan de beoordeelde versie."
   },
@@ -763,39 +763,41 @@
       "verdict": "aligned-with-notes",
       "expectedMisconception": "Een lineaire factor wordt niet gekwadrateerd of tot de derde macht genomen.",
       "intendedInsight": "Bij gelijkvormige vergroting met lengtefactor 3 wordt de oppervlakte 9 maal en de inhoud 27 maal zo groot.",
-      "observedContent": "Titel en volledige VTT/transcript doorbreken expliciet het gebruik van één factor voor lengte, oppervlakte en inhoud. De voorwaarde dat alle lengterichtingen met dezelfde factor groeien wordt correct genoemd. Het beeld ondersteunt de oppervlakte met negen vakjes en geeft alle drie correcte factoren.",
+      "observedContent": "Roadie zet herkenbare bierkratjes neer op het festival. Een exact gesynchroniseerd telbeeld bouwt negen zwarte, negen groene en negen rode kratjes op in een 3×3×3-stapel. Het slot onderscheidt lengtefactor 3, oppervlakfactor 9 en inhoudfactor 27.",
       "visualEvidence": [
         {
-          "timestampsSeconds": [
-            4,
-            51.7
-          ],
-          "observation": "Correcte C06-titelkaart en afsluiting."
+          "timestamps": "0–12,5 s",
+          "observation": "De zwarte onderlaag wordt opgebouwd tot drie rijen van drie; negen zwarte kratjes."
         },
         {
-          "timestampsSeconds": [
-            12,
-            21,
-            30,
-            39
-          ],
-          "observation": "3×3-raster met “vlak ×9”; daarnaast “lengte ×3”, “oppervlakte ×9” en “inhoud ×27”. Inzichtbalk benoemt dat alleen hoger maken iets anders is. Geen blok of kubusverdeling zichtbaar."
+          "timestamps": "12,5–20,8 s",
+          "observation": "De middelste laag telt negen groene kratjes; Roadie beweegt met de groene kratjes."
+        },
+        {
+          "timestamps": "20,8–29,5 s",
+          "observation": "De bovenste laag telt negen rode kratjes; bovenaan rood, midden groen, onderaan zwart."
+        },
+        {
+          "timestamps": "30–43 s",
+          "observation": "Eindbeeld telt 27 herkenbare kratjes: lengte ×3, grondvlak ×9, inhoud ×27."
         }
       ],
-      "captionEvidence": "36.502–40.567: “Dat geldt omdat alle lengterichtingen met dezelfde factor groeien.”",
+      "captionEvidence": "Twintig Nederlandse VTT-cues lopen van 0,256 s tot 42,034 s; de film duurt 43,333 s.",
       "notes": [
-        "Nietblokkerende festivalnotitie: de woorden “Dit blok” en de beschrijving van 27 blokjes hebben geen zichtbaar blok als referent; de film toont alleen het 2D-raster. Een compact 3×3×3-blok zou het inhoudsinzicht concreter maken. De huidige tekst en factoren zijn wiskundig correct."
+        "De negen rijen zijn exact in het telbeeld verwerkt. In zeven bijbehorende Roadie-opnamen worden kratjes fysiek neergezet; niet alle 27 kratjes worden afzonderlijk door Roadie verplaatst.",
+        "De film is technisch op audio, video en ondertitels gecontroleerd, maar geen onafhankelijke menselijke luisterbeoordeling uitgevoerd."
       ],
       "videoId": "wisik-flirt-c06",
       "title": "Vergroten in één, twee en drie richtingen",
       "fingerprints": {
         "misconception": "fa384a100de4137fbf2ee05dea5ac414adeac898773fc29f08d553c64025315b",
-        "catalogItem": "680da73c0d8ad749d6835c0172b01d48106a6378f2845133f1a372b67566a37f",
-        "video": "8f9b8a6a591e437bdbec82ed2d3f141316cef39946dbd52ea1d04aefea6cd6bb",
-        "poster": "00fc36d312e6e056700a178eda1bd1bf0beefe4169ae4543083e0fee08c3368a",
-        "captions": "7b45aad3f8c127e0fdc116aed9a2ba01ba2074b750178054a7183a40312ad2fa",
-        "transcript": "13c0c5f651138a7db0ad1d84e80a7840ce9ee95bf7c2e6319f3b784a33c342f2"
-      }
+        "catalogItem": "9f152123db59fd739d536e7eb0cb73f81d5f406500fb65066c4519afc1e33e77",
+        "video": "e92a22d2b3b27aee00d15a88700e172dd244e24278b035afc591c8750189c902",
+        "poster": "d32f584bb4a1d81fbe4df9c2b6ebd9efe6fc6fdb6dee7f1d0f4e70788df26c69",
+        "captions": "75956df77ff657018af5820dc2825728dc44d7a15656fd19dac59cbe91db8f1c",
+        "transcript": "ae216aa960855df71a64dd420b53f56e02bc50317bfdbe08bd3e6a253b01685c"
+      },
+      "reviewedAt": "2026-11-12"
     },
     {
       "code": "C07",

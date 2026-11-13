@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-11",
+  "updatedAt": "2026-11-12",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -477,8 +477,8 @@
       "id": "wisik-flirt-c06",
       "status": "published",
       "title": "Vergroten in één, twee en drie richtingen",
-      "summary": "Waarom een vergrotingsfactor anders doorwerkt in lengte, oppervlakte en inhoud.",
-      "durationSeconds": 53,
+      "summary": "Roadie stapelt 27 bierkratjes: drie rijen van drie in zwart, groen en rood. Ontdek lengte ×3, oppervlakte ×9 en inhoud ×27.",
+      "durationSeconds": 43,
       "wristbands": [
         "PABO"
       ],
@@ -493,7 +493,8 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C06"
       },
-      "release": "festival-v1"
+      "release": "roadie-c06-kratten-20261112",
+      "captionsBurnedIn": false
     },
     {
       "id": "wisik-flirt-c07",
