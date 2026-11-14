@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-13",
+  "updatedAt": "2026-11-14",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -470,7 +470,7 @@
       "status": "published",
       "title": "De oppervlakte van een driehoek",
       "summary": "Waarom de oppervlakte van een driehoek de helft is van basis maal loodrechte hoogte.",
-      "durationSeconds": 49,
+      "durationSeconds": 70,
       "wristbands": [
         "PABO"
       ],
@@ -485,9 +485,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C04"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-c04-3d72a2e6b2c8c549",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-c05",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-13",
+  "reviewedAt": "2026-11-14",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
@@ -670,70 +670,51 @@
     {
       "code": "C04",
       "verdict": "aligned",
-      "expectedMisconception": "Basis × hoogte wordt gebruikt alsof de figuur een rechthoek is.",
+      "expectedMisconception": "Basis × hoogte wordt gebruikt alsof de driehoek een rechthoek is.",
       "intendedInsight": "De oppervlakte van één driehoek is de helft van basis × loodrechte hoogte.",
-      "observedContent": "Het eerdere driehoekige totaalbeeld is hersteld. Eerst staat één driehoek in beeld; vanaf 11,12 s komt de congruente kopie erbij en ontstaat een werkelijk parallellogram. De gedeelde diagonaal verdeelt dit in twee even grote driehoeken. Vanaf 19,56 s verschijnt b × h voor het geheel en vanaf 25,80 s ½ × b × h voor één driehoek. De hoogte staat loodrecht op de basis, met het rechtehoektekentje bij de voet; vanaf 29,48 s wordt dat benadrukt.",
+      "observedContent": "Roadie legt een even grote gele vlag op de rode vlag, maakt een parallellogram en knipt en verplaatst de linker wig tot een rechthoek. Twee vlaggen beslaan 6 × 4 = 24 dm², één vlag 12 dm². Een verschuivende top behoudt basis en loodrechte hoogte. De slotopgave geeft basis 8 en hoogte 3.",
       "visualEvidence": [
         {
           "timestampsSeconds": [
-            4,
-            47
+            18,
+            25.5
           ],
-          "observation": "C04-titelkaart en afsluiting behouden."
+          "observation": "De twee congruente vlaggen passen op elkaar en vormen aansluitend een parallellogram."
         },
         {
           "timestampsSeconds": [
-            8,
-            14,
-            18
+            31,
+            36,
+            39.5,
+            44.5
           ],
-          "observation": "Eerst één driehoek, daarna twee congruente driehoeken binnen een buitenrand met twee paren evenwijdige zijden: een parallellogram."
+          "observation": "Loodrechte knip en verplaatsing van de wig vormen de rechthoek; de grafische uitleg toont 24 en vervolgens 12 dm²."
         },
         {
           "timestampsSeconds": [
-            28,
-            34
+            57,
+            62,
+            65.5
           ],
-          "observation": "Het gehele parallellogram heeft oppervlakte b × h; één driehoek de helft. De getekende h staat loodrecht op de horizontale basis, met rechtehoekmarkering aan de voet. Kernlabels staan boven de ondertitelzone."
+          "observation": "Vaste basis en loodrechte hoogte, algemene formule en slotopgave."
         }
       ],
-      "captionEvidence": "11.100–15.398 s: een precies gelijke driehoek erbij; 15.428–19.536 s: samen een parallellogram met dezelfde basis en hoogte; 25.802–29.465 s: één driehoek heeft de helft; 29.495–38.258 s: loodrechte hoogte, geen schuine zijde. Het herstelde beeld volgt deze opbouw.",
-      "notes": [],
+      "captionEvidence": "17 s: precies even groot; 24,5 s: parallellogram; 33,8 s: stukje verhuist; 38 s: rechthoek zes bij vier; 43 s: één vlag twaalf; 60,57 s: basis keer loodrechte hoogte gedeeld door twee; 64,31 s: Nu jij.",
+      "notes": [
+        "Door gebruiker goedgekeurde revisie 3 met verfijnd getekende armen en handen. Ondertiteling is ingebrand; geen dubbele VTT weergave."
+      ],
       "videoId": "wisik-flirt-c04",
       "title": "De oppervlakte van een driehoek",
       "fingerprints": {
         "misconception": "44ec3215613b97452d8e7c6d3f59294d8f4d0397f87286b3c06f0907e224063a",
-        "catalogItem": "6267b07575b5c986dcd93be42b6d94d020608b425bfe5aa65f244901a84f4a3a",
-        "video": "6ed88b712158de564f8418404a2dd1d7187e923df092c399b7ef3d36f7a03b2a",
-        "poster": "b284f8db613a4f37ac55f27452ddb91be334dda12f21cd98d9000073c4dcb05c",
-        "captions": "94e034db1c83ef285758169120e7088348b0eae2cac8599f3a17fbcf6ec9510f",
-        "transcript": "92c18a28df6e6207f8bd27b4c4ccf3512550e4794a81ff186ec5f0575f0fb3d1"
+        "catalogItem": "8d58e2568d550032b2a045f0317f97b1a6d873fb825035fbb8510f32fca5b2bd",
+        "video": "8b4404d177cb58d5ecd7aa84eecf7705242623163dd0c139e564421ff7ac92fd",
+        "poster": "1ee8d8c4ecaad586a72face350ae3c3d2734f53213291d1ee3f09976ddd9bdd9",
+        "captions": "64ecce27c5faa3ca4431f77204592e7e0cae194221b43b6095b9f61495f498de",
+        "transcript": "970c9dce431e66f7cdd11a6b140b62aee81b71e26d24549cfc0f8e7682b0d2ae"
       },
-      "reviewedAt": "2026-09-06",
-      "visualRepair": {
-        "date": "2026-09-06",
-        "originalVideoSha256": "efd5bb4a8453f309b3b53d6102df2f143ef8af57c7991682a3c112ae242675b8",
-        "resolvedFindings": [
-          "Driehoekige buitenrand vervangen door een echt parallellogram uit twee congruente driehoeken.",
-          "Loodrechte hoogte voorzien van een rechtehoekmarkering bij de voet van de hoogte."
-        ],
-        "verification": {
-          "code": "C04",
-          "frames": 1223,
-          "fps": 25,
-          "duration": "48.928005",
-          "sha256": "628951efca6d0c53b177c144183dc10d1145748f7bc8bf7630859b6a747b5e70",
-          "unchangedAudioSha256": "776c791ae88654a8b8316352062cc8bbe3f3ca84b8aec2844db2dbccd3bab3d5",
-          "stageFrames": [
-            113,
-            278,
-            489,
-            645,
-            737
-          ],
-          "mainSceneEndFrame": 1086
-        }
-      }
+      "reviewedAt": "2026-11-14",
+      "visualRepair": null
     },
     {
       "code": "C05",
