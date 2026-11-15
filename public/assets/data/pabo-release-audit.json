@@ -1564,7 +1564,7 @@
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
     "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "9a1272e4e492c37894df45b3bf9a048fe299052db47ef26cd53ba1d144692525"
+    "sha256": "b1f6182ca205f9c1b86d2101e2001a01fb47f555a0b657e37c84943a66804610"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",
