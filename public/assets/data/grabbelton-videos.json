@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-14",
+  "updatedAt": "2026-11-15",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -61,8 +61,8 @@
       "id": "wisik-flirt-a03",
       "status": "published",
       "title": "Negatieve getallen vergelijken",
-      "summary": "Waarom min acht kleiner is dan min drie, ondanks de grotere acht.",
-      "durationSeconds": 45,
+      "summary": "Roadie graaft tot −8, klimt naar −3 en laat op de getallenlijn zien waarom −3 groter is dan −8. Probeer daarna −6 en −2.",
+      "durationSeconds": 77,
       "wristbands": [
         "PABO"
       ],
@@ -77,8 +77,8 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A03"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
+      "release": "roadie-a03-b4515a4b95e00c48",
+      "audioMode": "embedded",
       "captionsBurnedIn": false
     },
     {
