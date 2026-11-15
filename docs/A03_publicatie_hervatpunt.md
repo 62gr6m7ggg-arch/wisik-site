@@ -29,3 +29,11 @@
 
 ## Huidige status
 **A03 nog niet live; nieuwe ondertiteling en transcript staan wel op GitHub.** Nu uitsluitend film/poster-upload en releasepad afmaken. Houd de eigenaar tussentijds op de hoogte, en bij een naderende contextlimiet update je ditzelfde document met exact commit/PR/run-ID en de eerste niet-afgeronde stap.
+
+## Hervatting na procesreparatie — 15 november 2026
+- Proces-PR #108 is succesvol gesquasht naar main op commit `0962aa6414a5afead87e8574cfb459c62de598a5`; gerichte GitHub-check geslaagd.
+- Nieuwe route op main: `scripts/publish-flirt-package.mjs`, `docs/binaire-flirtpublicatie.md`, aangepaste `AGENTS.md` en herstelde FFmpeg-installatie in `.github/workflows/quality.yml`.
+- Bestaande A03-branch: `roadie-a03-20261115` op commit `a0768aeed894cea1178bf68930695f61dd6b2ec5`. Nog geen A03-PR; film en poster ontbreken nog op de branch.
+- Deze chat kan tekstbestanden naar GitHub schrijven, maar beschikt niet over een geauthenticeerde binaire `git push` vanuit de bestandscontainer. Het nieuwe script maakt die toegang niet automatisch beschikbaar. **Stop bij deze transportpoort; geen dubbele filmchecks, audits of PR met ontbrekende film.**
+- Voor een Work met werkende Git-checkout: eerst actuele main in de bestaande A03-branch integreren zodat het nieuwe script beschikbaar is; pak `A03_publicatiepakket_2026-11-15.zip` uit; gebruik `node scripts/publish-flirt-package.mjs A03 <pakketmap> d7ff5983e8421613d901b23ef4faa9e477300a4728db1778a2ab648d7d95c4d0` in een schone checkout van de A03-branch. Daarna één PR, één CI-check, merge en aflevering.
+- De oorspronkelijke goedkeuring en controles van de 77s film blijven geldig. Geen nieuwe toestemming nodig. **A03 nog niet live.**
