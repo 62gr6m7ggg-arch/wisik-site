@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-14",
+  "reviewedAt": "2026-11-15",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
@@ -81,31 +81,39 @@
     },
     {
       "code": "A03",
-      "verdict": "aligned",
-      "expectedMisconception": "Het minteken wordt bij het vergelijken onvoldoende meegenomen.",
-      "intendedInsight": "−8 ligt verder links dan −3 en is kleiner; afstand tot nul is iets anders dan de grootte van het getal.",
-      "observedContent": "Titel en poster: Negatieve getallen vergelijken. Script maakt de intuïtie acht is meer dan drie expliciet en betrekt daarna het minteken en de positie op één getallenlijn.",
+      "verdict": "aligned-with-notes",
+      "expectedMisconception": "Leerlingen vergelijken bij negatieve getallen de cijfers zonder het minteken mee te nemen en denken daardoor dat −8 groter is dan −3.",
+      "intendedInsight": "Op een hoogteschaal en op een getallenlijn ligt −3 hoger of verder rechts dan −8, dus −3 > −8. Bij −6 en −2 is −2 groter.",
+      "observedContent": "In de eerder door de eigenaar goedgekeurde Roadie-montage begint de uitleg boven en onder het maaiveld, met −8 en −3 als hoogtes. Roadie klimt omhoog, waarna een verticale schaal horizontaal wordt en een nieuwe vergelijking tussen −6 en −2 wordt gemaakt.",
       "visualEvidence": [
         {
-          "timestamps": "4,000 s; 44,016 s",
-          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
+          "timestamps": "12 s",
+          "observation": "Roadie steekt op het festivalterrein een schep in de grond; beeld voor poster gebruikt."
         },
         {
-          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
-          "observation": "Regelmatig verdeelde getallenlijn van −10 tot 2, met −8 links van −3 en nul verder rechts. Onderschrift onderscheidt links/kleiner van afstand tot nul."
+          "timestamps": "20 s",
+          "observation": "Schaal voor −8 en −3 ten opzichte van maaiveld 0 wordt getoond."
+        },
+        {
+          "timestamps": "31 s",
+          "observation": "Roadie beweegt langs ladders in de kuil omhoog; de negatieve hoogtes zijn zichtbaar."
         }
       ],
-      "captionEvidence": "27,437–32,031 s: “Daarom is −3 groter dan −8, ook al staat er een kleiner cijfer.”",
-      "notes": [],
+      "captionEvidence": "De meegeleverde tijdgecodeerde captions volgen de goedgekeurde A03-montage: op 45,024–47,050 s wordt −3 groter dan −8 uitgelegd; op 60,520–64,400 s volgt de vraag −6 of −2; op 68,817–75,732 s de uitwerking.",
+      "notes": [
+        "De eigenaar keurde de film en stem eerder op 15 november 2026 goed; dit is een overdracht van de bestaande inhoudelijke goedkeuring, geen nieuw onafhankelijk inhoudsoordeel.",
+        "De film heeft ingebedde audio; de web-VTT is afzonderlijk aangeleverd. De voorgaande volledige decode- en captioncontrole is niet herhaald.",
+        "Eventuele verschillen tussen de aangeleverde film en voorafgaande voorlopige scripts zijn niet opnieuw als inhoudelijke wijzigingen beoordeeld."
+      ],
       "videoId": "wisik-flirt-a03",
       "title": "Negatieve getallen vergelijken",
       "fingerprints": {
         "misconception": "78d3d9004e20cc6d6d874424f5aadd945e89ea833079976a02c615937174bb82",
-        "catalogItem": "9cb4251646d5c6feef8b6a9f47ddd4c2d88f0db9f9ecd61eec1e2df55e61e370",
-        "video": "4b84d0ae48463af90cb3f59f6558b4c726b7d542b482188c1a302ea1a8188191",
-        "poster": "78cac0b46991d756ac778208022c11cd7902aaade2a3fa3e8c950a4fab6c15b2",
-        "captions": "aaa3105b8cdf91d6fd822283eb788161a2273f9289417116daa35b2ef10be867",
-        "transcript": "ec21b72f641c52b1ccb11de7ae03d6e094d6a08dabf1a5318cfca29d899fed08"
+        "catalogItem": "db584d5b53a765eb7e2aa6948f9ebf221bdcff5009e196e99305939e127fcbf2",
+        "video": "66f88505b6c74686e2cde1bdf92a38ea9217523f98f1e49031434f33e462af60",
+        "poster": "639f8ac646fa8ad75a2316d5621ff7ed3bfc7cf39c038878a281efda9b4d9131",
+        "captions": "f3ba84ad2688e03eca6f511bb9e1720431e59cd007e7e9b095116b07cddb7535",
+        "transcript": "26d466194a6bfa1da43670643ce3de46b7606fd24af8ef30419762abc07591d8"
       }
     },
     {

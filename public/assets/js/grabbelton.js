@@ -136,7 +136,7 @@
     track.srclang = "nl";
     track.label = "Nederlands";
     track.src = core.versionedAssetUrl(video.captionsSrc, globalThis.WISIK_SITE_VERSION, video);
-    track.default = !video.captionsBurnedIn;
+    track.default = !video.captionsBurnedIn && video.target.misconceptionCode !== "A03";
     player.append(track);
 
     const playerWrap = document.createElement("div");
