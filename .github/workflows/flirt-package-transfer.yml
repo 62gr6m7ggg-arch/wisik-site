@@ -1,0 +1,93 @@
+name: Goedgekeurd flirtpakket overzetten
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: Flirtcode, bijvoorbeeld A03
+        required: true
+        type: string
+      package_url:
+        description: Openbare HTTPS-download van het goedgekeurde ZIP-pakket
+        required: true
+        type: string
+      package_sha256:
+        description: SHA-256 van het goedgekeurde ZIP-pakket
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  transfer:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      FLIRT_CODE: ${{ inputs.code }}
+      PACKAGE_URL: ${{ inputs.package_url }}
+      PACKAGE_SHA: ${{ inputs.package_sha256 }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Goedgekeurd pakket ophalen
+        shell: bash
+        run: |
+          [[ "$FLIRT_CODE" =~ ^[A-D][0-9]{2}$ ]]
+          [[ "$PACKAGE_SHA" =~ ^[0-9a-f]{64}$ ]]
+          [[ "$PACKAGE_URL" == https://* ]]
+          branch="publish/flirt-${FLIRT_CODE,,}-$PACKAGE_SHA"
+          printf 'FLIRT_BRANCH=%s\n' "$branch" >> "$GITHUB_ENV"
+          if git ls-remote --exit-code origin "refs/heads/$branch" >/dev/null; then
+            printf 'Branch staat al op GitHub: `%s`. Hervat de bestaande PR of open er één.\n' "$branch" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          else
+            [[ $? == 2 ]]
+          fi
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' \
+            --connect-timeout 15 --max-time 120 --max-filesize 33554432 \
+            --output "$RUNNER_TEMP/flirt.zip" -- "$PACKAGE_URL"
+          printf '%s  %s\n' "$PACKAGE_SHA" "$RUNNER_TEMP/flirt.zip" | sha256sum --check
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          from zipfile import ZipFile
+
+          temp = Path(os.environ["RUNNER_TEMP"])
+          package = temp / "flirt-package"
+          package.mkdir()
+          limits = {"flirt.mp4": 24 << 20, "poster.jpg": 4 << 20,
+                    "captions.vtt": 1 << 20, "transcript.html": 1 << 20,
+                    "metadata.json": 1 << 20, "review.json": 1 << 20}
+          with ZipFile(temp / "flirt.zip") as archive:
+              for name, limit in limits.items():
+                  entries = [entry for entry in archive.infolist()
+                             if not entry.is_dir() and Path(entry.filename).name == name]
+                  if len(entries) != 1 or not 0 < entries[0].file_size < limit:
+                      raise SystemExit(f"Ontbrekend, dubbel of te groot pakketbestand: {name}")
+                  (package / name).write_bytes(archive.read(entries[0]))
+          PY
+          echo 'PACKAGE_READY=true' >> "$GITHUB_ENV"
+      - name: Plaatsen op publicatiebranch
+        if: env.PACKAGE_READY == 'true'
+        shell: bash
+        run: |
+          command -v ffprobe
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$FLIRT_BRANCH"
+          npm run flirt:replace -- "$FLIRT_CODE" "$RUNNER_TEMP/flirt-package"
+          git add -- "public/films/rekenklaar/$FLIRT_CODE" \
+            public/assets/data/grabbelton-videos.json public/assets/data/flirt-content-review.json
+          if git diff --cached --quiet; then
+            echo 'Dit pakket staat al in de bron.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git commit -m "$FLIRT_CODE: plaats goedgekeurd flirtpakket"
+          git push origin "HEAD:refs/heads/$FLIRT_BRANCH"
+          printf 'Pakket staat op `%s` (%s). Open of hervat één PR; de bestaande vrijgavecontrole draait daar.\n' \
+            "$FLIRT_BRANCH" "$(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
