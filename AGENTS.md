@@ -12,6 +12,12 @@ het voegt geen inhoudelijke goedkeuring of onafhankelijke review toe.
 - Lees alleen de relevante bestanden en compacte logregels. Print geen complete
   toolregistratie, repositoryboom, binaire bestanden of volledige succeslogs.
 
+## Binaire transportpoort — vóór elke filmcontrole
+- Een GitHub-connector met pushrechten kan tekst schrijven, maar heeft niet per definitie toegang tot lokale MP4-bytes. Maak dit onderscheid expliciet.
+- Voor een flirt eerst controleren of een echte geauthenticeerde binaire Git-push in de Work-checkout beschikbaar is. Gebruik bij een complete pakketmap `node scripts/publish-flirt-package.mjs CODE MAP [SHA256]`; zie `docs/binaire-flirtpublicatie.md`.
+- Als dit kanaal ontbreekt: STOP vóór `flirt:replace`, `release:prepare`, PR en audit. Geen Base64 in chat, geen verzonnen CLI-rechten en geen herhaalde tests. Leg exact de transportblokkade vast.
+- Gebruik dezelfde bestaande branch/PR en herhaal geen eerder goedgekeurde filmproductie of controles. De browserupload is een expliciete noodroute, geen automatische mogelijkheid van iedere Chat.
+
 ## Publicatieroute
 1. Lees broncode via bestaande checkout of een publieke clone. Schrijf naar GitHub
    via de gekoppelde GitHub-verbinding. Een lokale terminal zonder credentials is
