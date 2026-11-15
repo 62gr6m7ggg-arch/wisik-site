@@ -17,7 +17,7 @@ jobs:
         run: |
           git switch -c sync/a03-production-12acebac
           while read -r sha path; do
-            curl --fail --silent --show-error --retry 2 --connect-timeout 10 --max-time 60 \
+            curl --fail --silent --show-error --location --proto-redir '=https' --retry 2 --connect-timeout 10 --max-time 60 \
               --output "public/$path" "https://12acebac.wisik-site.pages.dev/$path"
             printf '%s  %s\n' "$sha" "public/$path" | sha256sum --check
             git add -- "public/$path"
