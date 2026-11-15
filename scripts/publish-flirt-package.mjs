@@ -27,6 +27,10 @@ try {
  if (!/^[0-9a-f]{40}$/.test(main||'')) fail('GitHub main kon niet gelezen worden.');
 } catch(error) { fail('Git-pushroute niet bruikbaar: '+(error.message||error)+'. Stop zonder herhaling van audits.'); }
 if (!branch || branch==='main') fail('Gebruik een bestaande featurebranch, niet main.');
+try {
+ // Droogproef test óók de schrijfrechten, zonder wijzigingen te publiceren.
+ run('git',['push','--dry-run','origin','HEAD:refs/heads/'+branch],{timeout:20000});
+} catch(error) { fail('Git-push niet toegestaan of niet bereikbaar: '+(error.message||error)+'. Geen audits starten.'); }
 if (run('git',['status','--porcelain'])) fail('Checkout heeft al wijzigingen; voorkom onbedoelde commits. Gebruik een schone checkout.');
 console.log(JSON.stringify({phase:'transport-ready',code,branch,bytes:size,sha256:hash,base:main}));
 try {
