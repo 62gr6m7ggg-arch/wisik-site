@@ -17,7 +17,7 @@ jobs:
       - name: Exact gepubliceerde A04 overnemen
         run: |
           python3 - <<'PY'
-          import hashlib, pathlib, urllib.request
+          import hashlib, pathlib, subprocess
           expected = {
             'public/films/rekenklaar/A04/flirt.mp4': '45533dbab795b4f2ee8237b9df7b34c05a5d0916702cea59492d4d11d756459a',
             'public/films/rekenklaar/A04/poster.jpg': 'c5bbaa7791728a98192002610c32d9d7edbf6f9a7041b14bdae3580348bed8b2',
@@ -28,8 +28,8 @@ jobs:
           }
           for name, sha in expected.items():
               url = 'https://ce9b439c.wisik-site.pages.dev/' + name.removeprefix('public/')
-              with urllib.request.urlopen(url, timeout=60) as response:
-                  content = response.read(25 * 1024 * 1024)
+              subprocess.run(['curl', '--fail', '--silent', '--show-error', '--location', '--proto', '=https', '--proto-redir', '=https', '--connect-timeout', '15', '--max-time', '120', '--max-filesize', '26214400', '--output', name, '--', url], check=True)
+              content = pathlib.Path(name).read_bytes()
               assert hashlib.sha256(content).hexdigest() == sha, name + ': verkeerde inhoud'
               pathlib.Path(name).write_bytes(content)
               print(name, len(content), sha)
