@@ -12,22 +12,43 @@ het voegt geen inhoudelijke goedkeuring of onafhankelijke review toe.
 - Lees alleen de relevante bestanden en compacte logregels. Print geen complete
   toolregistratie, repositoryboom, binaire bestanden of volledige succeslogs.
 
-## Binaire transportpoort — vóór elke filmcontrole
-- Een GitHub-connector met pushrechten kan tekst schrijven, maar heeft niet per definitie toegang tot lokale MP4-bytes. Maak dit onderscheid expliciet.
-- Voor een flirt eerst controleren of een echte geauthenticeerde binaire Git-push in de Work-checkout beschikbaar is. Gebruik bij een complete pakketmap `node scripts/publish-flirt-package.mjs CODE MAP [SHA256]`; zie `docs/binaire-flirtpublicatie.md`.
-- Ontbreekt binaire Git-push en is er een openbare HTTPS-download van het goedgekeurde ZIP-pakket? Start vanuit main de handmatige workflow **Goedgekeurd flirtpakket overzetten** met flirtcode, downloadlink en ZIP-SHA-256. Gebruik een link zonder geheimen. De workflow meldt de branch waarop je één PR opent of hervat. Draai `release:prepare` niet nog eens voor deze overdracht; de bestaande CI controleert de PR.
-- Ontbreken beide transportmogelijkheden, leg dan de concrete blokkade vast vóór `flirt:replace`, PR of audit. Geen Base64 in chat.
-- Gebruik dezelfde bestaande branch/PR voor dezelfde overdrachtsroute en herhaal geen eerder goedgekeurde filmproductie of controles. De browserupload is een expliciete noodroute, geen automatische mogelijkheid van iedere Chat.
+## Standaardroute voor vervanging van goedgekeurde flirts
+Op 17 november 2026 heeft de eigenaar de met A04 geslaagde route als standaard
+gekozen: **rechtstreeks naar Cloudflare, live-aflevering controleren, daarna
+GitHub synchroniseren**. Volg `docs/binaire-flirtpublicatie.md`. Deze volgorde
+vervangt voor flirtvervangingen de eerdere voorkeur voor binaire Git-push,
+ZIP-overdracht vanuit main en GitHub-browserupload.
 
-## Verplichte keuze van transport — geen improvisatie
-- **Voor elke MP4-overdracht:** bepaal eerst of het goedgekeurde pakket als echte bestanden beschikbaar is in een Work-checkout mét werkende geauthenticeerde Git-push, of als publieke HTTPS-ZIP met bekende SHA-256. Noteer de gekozen route en het hervatpunt. Zolang geen van beide aantoonbaar beschikbaar is: **stop vóór encoderen, uploaden, PR en audits**.
-- Een GitHub-tool voor `create_blob` of `update_file` is **geen bestandsbrug**. Base64 van de film als toolargument (ook wanneer dit buiten de zichtbare chat blijft) is uitdrukkelijk niet de standaard- of herstelroute. Hak de film ook niet op in tekststukken.
-- **Standaard bij een publiek toegankelijk goedgekeurd pakket:** gebruik uitsluitend de bestaande workflow `.github/workflows/flirt-package-transfer.yml`, vanuit `main`, met code, HTTPS-ZIP-URL en SHA-256. Zij haalt de bytes zelf op en plaatst ze op een herbruikbare publicatiebranch. Werk vervolgens vanuit die branch verder, niet vanuit een tweede transportexperiment.
-- **Alleen wanneer echte geauthenticeerde binaire Git-push bewezen beschikbaar is:** gebruik `scripts/publish-flirt-package.mjs` op de bestaande featurebranch. GitHub-connectorrechten impliceren geen lokale terminalcredentials.
-- Ontbreekt de ZIP-URL/SHA of is het pakket niet in de huidige omgeving toegankelijk, meld exact welk invoerbestand of transport ontbreekt. Herhaal geen reeds afgeronde filmproductie of controles. Geen hypothetische 'upload geslaagd'-melding.
-- Herstel na een streamingonderbreking op basis van GitHub-branch, commit, workflow-run en PR; een afgebroken chatstream is op zichzelf geen bewijs van een mislukte GitHub-overdracht.
+- Lees eerst het hervatpunt; gebruik de goedgekeurde film ongewijzigd en leg
+  bestandsgrootte en SHA-256 vast. Geen nieuwe filmproductie of inhoudelijke review.
+- Bevestig toegang tot het echte bestand en tot de Cloudflare Pages-publicatie.
+  De GitHub-connector kan tekst schrijven, maar deelt niet automatisch lokale
+  MP4-bytes of terminalcredentials. Begin niet opnieuw met een GitHub-/Apple-login.
+- Bereid de complete actuele site voor met uitsluitend de bedoelde mediavervanging
+  en catalogus-/reviewgegevens. Behoud Pages Functions, routes, headers, redirects
+  en bestaande bindings. Een los MP4-bestand is geen volledige Pages-deployment.
+- Upload de bestanden vanuit de bestandsomgeving rechtstreeks naar Cloudflare;
+  laat de connector de productie-deployment aanmaken. Geen Base64 van media in
+  chat of GitHub-toolargumenten, geen fragmentatie en geen beveiligingen omzeilen.
+- Controleer de productie-deployment én de werkelijk vanaf wisik.nl gedownloade
+  film: grootte en SHA-256 moeten overeenkomen. Een geslaagde upload alleen is
+  geen bewijs dat de nieuwe film live staat.
+- Synchroniseer de gepubliceerde bestanden vervolgens naar dezelfde bruikbare
+  featurebranch. Haal ze met standaard `curl` op vanaf de onveranderlijke
+  deployment-URL en verifieer hun hashes. Hervat één PR; verwijder een eventuele
+  eenmalige overdrachtsworkflow vóór het openen van die PR.
+- Laat de bestaande gerichte vrijgavecontrole slagen, merge zonder opnieuw
+  toestemming te vragen en wacht op de automatische publicatiebevestiging.
+  Publicatie én bronsynchronisatie horen bij de afronding.
+- Herhaal geen geslaagde controles, audits of ongerelateerde rekentests. Bij een
+  echte blokkade: meld de concrete fout en leg de bereikte fase vast; wissel niet
+  stilzwijgend naar een nieuwe transportproef.
 
-## Publicatieroute
+## Publicatieroute voor overige wijzigingen en GitHub-synchronisatie
+Voor flirtvervangingen geldt eerst de Cloudflare-route hierboven. De onderstaande
+GitHub-stappen volgen daarna voor dezelfde bronbestanden; publiceer niet nogmaals
+handmatig terwijl de automatische deployment loopt.
+
 1. Lees broncode via bestaande checkout of een publieke clone. Schrijf naar GitHub
    via de gekoppelde GitHub-verbinding. Een lokale terminal zonder credentials is
    geen bewijs dat die verbinding rechten mist; probeer die route niet opnieuw.
