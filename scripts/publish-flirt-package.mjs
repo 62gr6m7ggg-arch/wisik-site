@@ -38,7 +38,6 @@ try {
  run('npm',['run','release:prepare','--','--base='+main],{timeout:240000});
  const paths=['public/films/rekenklaar/'+code+'/flirt.mp4','public/films/rekenklaar/'+code+'/poster.jpg','public/films/rekenklaar/'+code+'/captions.vtt','public/films/rekenklaar/'+code+'/transcript.html','public/assets/data/grabbelton-videos.json','public/assets/data/flirt-content-review.json'];
  run('git',['add','--',...paths]);
- if (fs.existsSync('.release/result.json')) run('git',['add','-f','--','.release/result.json']);
  if (!run('git',['diff','--cached','--name-only'])) { console.log('Geen wijzigingen: pakket staat al op branch.'); process.exit(0); }
  run('git',['commit','-m',code+': plaats goedgekeurd binair flirtpakket'],{timeout:30000});
  run('git',['push','origin','HEAD:refs/heads/'+branch],{timeout:120000});
