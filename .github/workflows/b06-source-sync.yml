@@ -1,0 +1,35 @@
+name: B06 reeds gepubliceerde bestanden synchroniseren
+on:
+  push:
+    branches: [publish/b06-roadie-20261117]
+    paths: [.github/workflows/b06-source-sync.yml]
+permissions:
+  contents: write
+jobs:
+  sync:
+    if: github.ref == 'refs/heads/publish/b06-roadie-20261117'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publish/b06-roadie-20261117
+      - name: Exact gepubliceerde B06 overnemen
+        run: |
+          python3 - <<'PY'
+          import hashlib, pathlib, subprocess
+          expected = {'public/films/rekenklaar/B06/flirt.mp4': '73bf03e4d6ba1bee58c4a08a851308adf5cf70264c1ea7882c656887663f78d6', 'public/films/rekenklaar/B06/poster.jpg': 'e9e5718dad8414c27b3c0a6027967a9a193b8f05198b55727e041decb00e8b64', 'public/films/rekenklaar/B06/captions.vtt': '86f94d4f45a224d99df185dda75dfb2fd5d31c912f08f0b72f1e3a080893852c', 'public/films/rekenklaar/B06/transcript.html': '8160687d37424fcc7b7f55f7abc876359703a43230e2084afcc3db4874fb0c84', 'public/assets/data/grabbelton-videos.json': '5999cf7f83f1cada2106535ab13f8d5a015f1b562b6a3c658a4e47b7c4ad2a18', 'public/assets/data/flirt-content-review.json': 'bb2c52d52e39c530f255cac1b05c6c4aa6fdc226de36e9f801e607b4456c9d7b'}
+          for name, sha in expected.items():
+              url = 'https://4b1e5078.wisik-site.pages.dev/' + name.removeprefix('public/')
+              subprocess.run(['curl', '--fail', '--silent', '--show-error', '--location', '--proto', '=https', '--proto-redir', '=https', '--connect-timeout', '15', '--max-time', '120', '--max-filesize', '26214400', '--output', name, '--', url], check=True)
+              content = pathlib.Path(name).read_bytes()
+              assert hashlib.sha256(content).hexdigest() == sha, name + ': verkeerde inhoud'
+              pathlib.Path(name).write_bytes(content)
+              print(name, len(content), sha)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/films/rekenklaar/B06 public/assets/data/grabbelton-videos.json public/assets/data/flirt-content-review.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'B06: synchroniseer goedgekeurde Cloudflare-publicatie'
+          git push origin HEAD:refs/heads/publish/b06-roadie-20261117
