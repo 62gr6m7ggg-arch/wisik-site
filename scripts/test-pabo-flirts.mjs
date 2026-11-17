@@ -113,7 +113,7 @@ for (const item of fixtures.cases.filter(item => !selectedCodes || selectedCodes
   assert.ok(markup.includes(`data-audio-mode="${expected.audioMode}"`), `${item.code}: audiokeuze ontbreekt`);
   const trackMarkup = markup.match(/<track\b[^>]*>/)?.[0];
   assert.ok(trackMarkup, `${item.code}: Nederlandse VTT blijft beschikbaar`);
-  assert.equal(/\sdefault(?:\s|=|>)/.test(trackMarkup), !expected.captionsBurnedIn && item.code !== "A03", `${item.code}: verkeerde standaardstand voor ondertitels`);
+  assert.equal(/\sdefault(?:\s|=|>)/.test(trackMarkup), false, `${item.code}: extra ondertitels moeten standaard uitstaan`);
   assert.ok(element("modalBody").innerHTML.includes(`data-start-repair="${item.code}"`), `${item.code}: verkeerde herstelset`);
   run('closeModal()');
   assert.equal(run('JSON.stringify({state,activeSession})'), before, `${item.code}: film wijzigt voortgang`);
@@ -156,7 +156,7 @@ for (const code of selectedCodes || catalog.videos.map(v => v.target.misconcepti
   const player = grabResult.querySelector("video");
   assert.equal(player.dataset.audioMode, selected.audioMode);
   const track = player.querySelector("track");
-  assert.equal(track.default, !selected.captionsBurnedIn && code !== "A03", `${code}: Grabbelton-ondertitels hebben de verkeerde standaardstand`);
+  assert.equal(track.default, false, `${code}: extra Grabbelton-ondertitels moeten standaard uitstaan`);
   assert.equal(track.kind, "captions");
   assert.equal(track.src, `https://wisik.nl${selected.captionsSrc}?v=${context.WISIK_SITE_VERSION}${expectedMediaSuffix[code] || ""}`);
 }

@@ -64,8 +64,9 @@ Lokale voortgang is domeingebonden. Voortgang op een oudere URL verschijnt niet 
 Festivalrelease v1 (6 september 2026) publiceert de 30 aangeleverde flirts tegelijk. Bekende inhoudelijke reviewpunten blokkeren deze experimentele release niet. Pabo Rekenklaar en zijn lokale voortgang blijven ongewijzigd; er worden geen video's aan de toetssimulatie toegevoegd.
 
 De stabiele paden zijn `/films/rekenklaar/<CODE>/flirt.mp4`, `poster.jpg`, `captions.vtt` en `transcript.html`. Gebruik bij vervanging `npm run flirt:replace -- CODE PAKKET` en daarna
-`npm run release:prepare -- --base=<main-sha>`. De catalogus bepaalt audiokeuze,
-ondertitelinstelling en filmversie. De speler gebruikt die versie voor alle vier
+`npm run release:prepare -- --base=<main-sha>`. De catalogus bepaalt audiokeuze en filmversie. Extra ondertiteling staat in
+beide spelers voor alle films standaard uit; de losse ondertitelbestanden blijven
+via de speler beschikbaar. De speler gebruikt de filmversie voor alle vier
 assets; een filmvervanging vereist geen wijziging van spelercode of siteversie.
 De canonieke paden blijven gelijk.
 
