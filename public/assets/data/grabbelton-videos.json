@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-15",
+  "updatedAt": "2026-11-17",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -85,8 +85,8 @@
       "id": "wisik-flirt-a04",
       "status": "published",
       "title": "Het verschil over nul",
-      "summary": "Waarom een verandering van min vier naar zeven elf stappen groot is.",
-      "durationSeconds": 46,
+      "summary": "Roadie klimt van −4 naar +7: elf verdiepingen omhoog. Eind min begin werkt ook wanneer beide verdiepingen negatief zijn.",
+      "durationSeconds": 115,
       "wristbands": [
         "PABO"
       ],
@@ -101,8 +101,8 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "A04"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
+      "release": "roadie-a04-cd1844e1007cbc07",
+      "audioMode": "embedded",
       "captionsBurnedIn": false
     },
     {

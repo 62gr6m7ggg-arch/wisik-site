@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-15",
+  "reviewedAt": "2026-11-17",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
@@ -120,29 +120,33 @@
       "code": "A04",
       "verdict": "aligned",
       "expectedMisconception": "Bij een overgang van negatief naar positief worden alleen de absolute waarden afgetrokken.",
-      "intendedInsight": "De temperatuurstijging van −4 naar 7 is 4 + 7 = 11 graden; aftrekken van −4 verschilt van aftrekken van 4.",
-      "observedContent": "Titel en poster: Het verschil over nul. Script haalt de fout 7 − 4 = 3 aan als misleidend antwoord op de situatie en corrigeert dit onmiddellijk via het beginpunt −4 en de tussenstop nul.",
+      "intendedInsight": "Van −4 naar +7 is elf verdiepingen: 4 tot nul en 7 verder. Eind min begin geeft 7 − (−4) = 11; van −4 naar −1 is de stijging 3.",
+      "observedContent": "Vastlegging van de door de eigenaar goedgekeurde A04_Roadie_balans.mp4 (5.964.130 bytes). De bestaande montagegegevens beschrijven Roadie op de verdiepingen, eind min begin, twee negatieve verdiepingen en de afsluitende oefenvraag. Geen nieuwe inhoudelijke beoordeling uitgevoerd.",
       "visualEvidence": [
         {
-          "timestamps": "4,000 s; 45,120 s",
-          "observation": "Intro met juiste titel en code; oorspronkelijke statische herstelset-slotkaart is vervangen door een neutrale Wisik-slotachtergrond; inhoudelijke scènes daarvoor zijn ongewijzigd."
+          "timestamps": "0–47,5 s",
+          "observation": "Volgens de bestaande goedgekeurde montage: Roadie gaat van verdieping −4 via nul naar +7; 4 + 7 = 11."
         },
         {
-          "timestamps": "12,000; 21,000; 30,000; 39,000 s",
-          "observation": "Thermometerschaal −4 tot 7; naast de schaal −4 → 0: 4°, 0 → 7: 7°, samen 11°. Formule 7 − (−4) = 11 ondersteunt de afstand."
+          "timestamps": "47,5–104,6 s",
+          "observation": "Volgens de bestaande montagescripts: eind min begin, 7 − (−4), −1 − (−4) en het aftrekken van een negatief getal."
         }
       ],
-      "captionEvidence": "18,775–27,821 s: “Van −4 naar nul stijgt de temperatuur al vier graden. Daarna gaat hij nog zeven graden omhoog. De hele stijging is dus 11 graden.”",
-      "notes": [],
+      "captionEvidence": "Het nieuwe VTT-spoor is uit de bestaande HeyGen-woordtijdcodes en vastgelegde montage-invoegingen samengesteld. Het vervangt de tekst van de oude thermometerfilm.",
+      "notes": [
+        "Filmgoedkeuring: expliciete publicatieopdracht eigenaar op 17 november 2026; geen nieuwe filmproductie of inhoudsreview.",
+        "Exacte goedgekeurde MP4 SHA256: 45533dbab795b4f2ee8237b9df7b34c05a5d0916702cea59492d4d11d756459a.",
+        "Ondertiteling blijft overeenkomstig de bestaande algemene spelerinstelling standaard uit."
+      ],
       "videoId": "wisik-flirt-a04",
       "title": "Het verschil over nul",
       "fingerprints": {
         "misconception": "717942f4470f1c98a390f3af587792c1db895ae15ab6907f328d303a92fe9850",
-        "catalogItem": "2f066abb5a2e3e93db0f16cad16d87534132632bee45ac1dc76f72ebda053da7",
-        "video": "9e4ecc5196ef112ce48ac5d79e0ce3952ef5fc732ae54c066a67d81ebb86511f",
-        "poster": "3e36aa596d47073956968aeeb2d8c3d87a76237b3c9fa1506e8269e580fd0f6f",
-        "captions": "52e9287d540110b49589cd61a5661006f103e111ed20fe57fb2d54846ae2543e",
-        "transcript": "6f7c4704a0d7b8707fc92f90a5c2576da5ebb732b72c64cdf08b2b35545ab372"
+        "catalogItem": "785df25b576c4738e1cf5e0abd40e84ea7a79eed9ea1785e434745cdeaa1fdd3",
+        "video": "45533dbab795b4f2ee8237b9df7b34c05a5d0916702cea59492d4d11d756459a",
+        "poster": "c5bbaa7791728a98192002610c32d9d7edbf6f9a7041b14bdae3580348bed8b2",
+        "captions": "abe27954dc3d77f996a4fcf8193525a9960d3770f04c7fc11c846a13502db3be",
+        "transcript": "e1d0b528cfb8b2befe2f9471fcba7aebac0b38002ba876d21fa384b46d0c82d6"
       }
     },
     {
