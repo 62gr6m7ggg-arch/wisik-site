@@ -613,8 +613,8 @@
       "id": "wisik-flirt-d03",
       "status": "published",
       "title": "Een afgekorte as",
-      "summary": "Waarom de schaal van een as de visuele indruk van een verschil sterk kan veranderen.",
-      "durationSeconds": 48,
+      "summary": "Vrijdag 900 bezoekers, zaterdag 1.000. Roadie rolt de festivalgrafiek uit tot nul: honderd bezoekers meer is geen verdubbeling.",
+      "durationSeconds": 53,
       "wristbands": [
         "PABO"
       ],
@@ -629,9 +629,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D03"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-d03-4f9073045b26446b",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-d04",

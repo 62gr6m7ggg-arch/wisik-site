@@ -930,53 +930,50 @@
     },
     {
       "code": "D03",
-      "verdict": "aligned-with-notes",
+      "verdict": "aligned",
       "expectedMisconception": "De zichtbare staafhoogte op een afgekorte as wordt rechtstreeks gelezen als de werkelijke verhouding.",
-      "intendedInsight": "Lees asstart en waarden: 100→110 is +10%, ook wanneer de zichtbare tweede staaf twee keer zo hoog lijkt.",
-      "observedContent": "Titel, captions en staafdiagram behandelen precies de afgekorte as. De as begint op 90 en de staven eindigen correct op 100 en 110; ‘lijkt ×2 / is +10%’ doorbreekt de fout. Het script nuanceert terecht dat de betekenis van 10% van de context afhangt.",
+      "intendedInsight": "Lees de asstart en de waarden. Van 900 naar 1.000 zijn er 100 bezoekers meer. Een as die bij 800 begint laat de tweede balk tweemaal zo hoog lijken; bij nul wordt de werkelijke verhouding zichtbaar.",
+      "observedContent": "Vastlegging van de door de eigenaar op 17 november 2026 goedgekeurde D03_Roadie_festival.mp4. De eerder gemaakte en bekeken montage toont Roadie bij een festivalbanner met 900 en 1.000 bezoekers. Hij rolt hetzelfde doek uit tot nul. De filmproductie en inhoudelijke beoordeling zijn niet opnieuw uitgevoerd.",
       "visualEvidence": [
         {
           "timestamps": [
-            4
+            4.7,
+            16.4
           ],
-          "observation": "Titelkaart ‘Een afgekorte as’ met code D03."
+          "observation": "Bestaande montage: waarden 900 en 1.000 op een as vanaf 800; onderste deel van het doek is opgerold."
         },
         {
           "timestamps": [
-            12,
-            21,
-            30,
-            39
+            23,
+            26,
+            28
           ],
-          "observation": "As met 90, 100, 110; zichtbare staafhoogten in verhouding 1:2; labels ‘lijkt ×2’ en ‘is +10%’."
+          "observation": "Bestaande uitrolscène: Roadie houdt de houten rol vast en buigt mee; het onderste deel van de grafiek wordt zichtbaar."
         },
         {
           "timestamps": [
-            26.2,
-            28.5
+            30.6,
+            50.6
           ],
-          "observation": "Gerichte extra controle tijdens ‘Laat de as bij 0 beginnen’ en ‘de indruk verandert’: de zichtbare as blijft op 90 beginnen en de staven behouden hun hoogteverhouding."
-        },
-        {
-          "timestamps": [
-            47.376
-          ],
-          "observation": "Afsluiting verwijst naar de herstelset."
+          "observation": "Eerder bekeken export: beide balken beginnen bij nul. Slotantwoord: Nee. Honderd meer."
         }
       ],
-      "captionEvidence": "Een stijging van 10%, geen 100%.",
+      "captionEvidence": "Het VTT-bestand gebruikt de al gecontroleerde woordtijden uit de montage. Het bevat dezelfde tekst als de ingebakken ondertiteling; externe ondertiteling blijft standaard uit.",
       "notes": [
-        "Niet-blokkerend voor deze experimentele festivalversie: het script vraagt een asstart bij nul en beschrijft een veranderende indruk, maar de bekeken beelden voeren die omslag niet uit. Een nulasbeeld op dat moment zou de bedoelde ontdekking versterken. De getoonde berekening en het kerninzicht zijn correct."
+        "Eigenaar bevestigde dat de film er goed uitziet op de telefoon en gaf daarna opdracht tot publicatie.",
+        "Exact goedgekeurde film: 12.421.876 bytes; SHA-256 4158751799977c16755f00ff130cf79875d08553a7f3aa62727620058c262b8a.",
+        "Bestaande technische exportcontrole en beeldsteekproeven worden hergebruikt. Geen nieuwe filmproductie of inhoudelijke review.",
+        "Poster is het eerste echte filmbeeld. Geluid is ingebed; de oude losse stem wordt niet afgespeeld."
       ],
       "videoId": "wisik-flirt-d03",
       "title": "Een afgekorte as",
       "fingerprints": {
         "misconception": "8e1a98a3c87b80bebfa9ff2d7c2a17b7a2986eac281d1a8d41236320a0822c42",
-        "catalogItem": "86d192c2cde6974f69cf12635a56bcae29c895e593e9cd06f7822d97936ef714",
-        "video": "55c5f03e0e3eb2a0a02c1c8c19df57451643007168eff5d8e7ca208b622cb090",
-        "poster": "0bb6176e2b57bb2296f52a375aaac00cc83e537dc8d2be7647d0a68c444e1f7b",
-        "captions": "c0bd415747e576473a969aa8258ab21a6b2ad63cda32bd53d80f2518d5e972dc",
-        "transcript": "b4c04ff9684a8a15609b827cdf2453bcc74ea72719bb54dbd6d2b45e6de4f13c"
+        "catalogItem": "ab083f48501e2c496d1476a6bc00371dab51d1913c6ea742b3a3e15d8f0bbf5c",
+        "video": "4158751799977c16755f00ff130cf79875d08553a7f3aa62727620058c262b8a",
+        "poster": "e9d50f61698a9216da0bda37ce779cfa6375f32e265b58973ed3d3ec8775941a",
+        "captions": "b13bd77bb754063653c26827514f3f0fcfabe4ddae86878df3b757d004ef87ca",
+        "transcript": "25c1f2cb83c8a6380a87ac32bae439fc1acf440bc5cc83efbc42f5fb25a40772"
       }
     },
     {
