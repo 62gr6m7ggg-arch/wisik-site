@@ -301,8 +301,8 @@
       "id": "wisik-flirt-b05",
       "status": "published",
       "title": "Terugrekenen na korting",
-      "summary": "Waarom terugrekenen na korting begint bij het deel dat de nieuwe prijs voorstelt.",
-      "durationSeconds": 53,
+      "summary": "Roadie rekent terug: een hoodie van €40 na 20% korting kostte eerst €50. Vijf gelijke delen maken het oorspronkelijke geheel zichtbaar.",
+      "durationSeconds": 60,
       "wristbands": [
         "PABO"
       ],
@@ -317,9 +317,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B05"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-b05-fb0b1b599e4b1aa1",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-b06",
