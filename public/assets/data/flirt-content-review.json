@@ -569,42 +569,58 @@
       "code": "C01",
       "verdict": "aligned",
       "expectedMisconception": "De factor 100 van meter naar centimeter wordt niet gekwadrateerd.",
-      "intendedInsight": "1 m² is 100 cm × 100 cm = 10.000 cm²; de lengtefactor werkt in twee richtingen.",
-      "observedContent": "Het eerdere 10×10-raster is hersteld. Het vierkant blijft even groot en krijgt werkelijk 100 rijen en 100 kolommen. Beide zijden tonen 1 m = 100 cm. Eén gekoppeld vergroot vakje is 1 cm bij 1 cm, dus 1 cm². De uitkomst 1 m² = 10.000 cm² volgt zichtbaar uit beide lengtefactoren; beeld, VTT en transcript behandelen dezelfde misconceptie.",
+      "intendedInsight": "Een vierkante meter heeft 100 centimeter in beide richtingen. Honderd vakjes per rij en honderd rijen geven 10.000 vierkante centimeter; de helft is 5.000 cm².",
+      "observedContent": "De eigenaar keurde de definitieve C01 met strakker raster op 18 november 2026 goed en gaf publicatieopdracht. Roadie legt een dansvloerplaat neer en meet. Het telbeeld toont eerst één rij van 100 vierkante vakjes en daarna precies 100 kolommen en 100 rijen. De oorspronkelijke Roadie-kleding is hersteld.",
       "visualEvidence": [
         {
-          "timestampsSeconds": [
-            4,
-            54
+          "timestamps": [
+            5,
+            14,
+            22
           ],
-          "observation": "C01-titelkaart en afsluiting behouden."
+          "observation": "Dansvloerplaat 1 m bij 1 m, meetlint 100 cm, vervolgens één vakje van 1 cm²."
         },
         {
-          "timestampsSeconds": [
-            12,
-            17
+          "timestamps": [
+            29,
+            32
           ],
-          "observation": "Hetzelfde vierkant van 1 m bij 1 m krijgt een fijnraster van 100×100, met beide zijden als 100 cm."
+          "observation": "Eén brede rij toont 100 vierkante vakjes: 100 cm lang en 1 cm diep."
         },
         {
-          "timestampsSeconds": [
-            25,
-            30
+          "timestamps": [
+            35,
+            38,
+            45
           ],
-          "observation": "Gekoppelde vergroting van één vakje van 1 cm², naast 100 rijen × 100 vakjes en de juiste oppervlakteconversie. Kernlabels staan boven de ondertitelzone."
+          "observation": "Een onbelemmerd vierkant wordt met 100 rijen gevuld. De telling en 100 × 100 = 10.000 cm² staan naast het raster."
+        },
+        {
+          "timestamps": [
+            52.7,
+            59,
+            61.8,
+            66
+          ],
+          "observation": "Roadie toont het resultaat; de halve vierkante meter wordt gemarkeerd en geeft 5.000 cm²."
         }
       ],
-      "captionEvidence": "16.460–20.245 s: langs beide richtingen 100 cm; 20.275–27.287 s: honderd rijen met elk honderd vakjes van één vierkante centimeter; vanaf 27.317 s: 10.000 vakjes. De ondertitelnotatie “100 cms” is hersteld naar “100 cm”, met dezelfde tijdstippen.",
-      "notes": [],
+      "captionEvidence": "Ingebakken ondertitels en de VTT volgen de daadwerkelijk gebruikte HeyGen-spreektijden. De eenheden en getallen corresponderen met de exacte diagrammen en het transcript.",
+      "notes": [
+        "Eigenaar gaf na beide correcties expliciet opdracht: zet live. Geen nieuwe filmproductie of inhoudelijke review bij deze publicatie.",
+        "Goedgekeurde MP4: 16800933 bytes; SHA-256 e97dcd629096ee9b5cc6604f057176bce945f288e5b25f6305ce954a98987bc4.",
+        "Roadie-model: beige korte broek, wit wisik.nl-T-shirt met korte mouwen en blote onderarmen; geen wijziging zonder expliciete toestemming.",
+        "Ingebed geluid en ingebakken ondertitels; algemene spelerinstelling voor extra ondertitels blijft uit."
+      ],
       "videoId": "wisik-flirt-c01",
       "title": "Van vierkante meter naar vierkante centimeter",
       "fingerprints": {
         "misconception": "116432efe2dd92622d6a938520f6be9d21be2c13a3a9efadc9a9d024a4b0d972",
-        "catalogItem": "daca85be8cb03ea983527c4aea79e4d20b18675857b69ddfbebbcdab4745a27a",
-        "video": "acfab61375e1fab7a03e965dd2a980e8256c7cabbe4cb5b41f79fb5cb53d0a83",
-        "poster": "4a6a2d095fe29543673b80ef43d21ef32c40321150adc50f048b976f23dd07ec",
-        "captions": "b7cfb27506681bbecdaa046f91adcf3ac2ab0c96520de79c4526a3c42311b4be",
-        "transcript": "3b4b28ecdc505eaefb9378b647167ceaef4cf6c8492d070db58590ec41ca65be"
+        "catalogItem": "975dbf67f098456b27eafad952e060d75dbd17f394a7172ee0e5ade9df60f362",
+        "video": "e97dcd629096ee9b5cc6604f057176bce945f288e5b25f6305ce954a98987bc4",
+        "poster": "098716f542051041ff72b6b4451c2c147a6b7099d02215946875d5b5d4e3ccd0",
+        "captions": "496e4c5b0a706edf260b8981d415cbde2abaf927684996f0f0fd53b62e2a3c5c",
+        "transcript": "c9f21ae32627a0d182b17cbaa06e3903258101ff08ca4d4402f7242796e9df3b"
       },
       "reviewedAt": "2026-09-06",
       "visualRepair": {
