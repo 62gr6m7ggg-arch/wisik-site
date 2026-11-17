@@ -415,25 +415,48 @@
     {
       "code": "B05",
       "verdict": "aligned",
-      "intendedInsight": "De nieuwe prijs na 20% korting is 80% van het oorspronkelijke geheel; hetzelfde percentage erbij gebruikt een andere basis.",
-      "observedContent": "De film vraagt expliciet of €72 plus 20% de oorspronkelijke prijs geeft en doorbreekt dit met twintig procent waarvan. Een 80/20-strook maakt €72 als deel van €90 zichtbaar; €90 − €18 = €72 controleert het juiste geheel.",
+      "intendedInsight": "Na 20% korting is de nieuwe prijs 80% van de oude prijs. Vier stukken zijn €40; één stuk is €10 en vijf stukken zijn €50.",
+      "observedContent": "Door Edwin goedgekeurde B05_Roadie.mp4 van 17 november 2026. Roadie licht de hoodie toe met vijf gelijke stukken en sluit af met een pet van €16 na 20% korting, oorspronkelijk €20.",
       "visualEvidence": [
-        "4 s: titelkaart Terugrekenen na korting, code B05.",
-        "12, 21, 30 en 39 s: strook met circa 80% blauwgroen gelabeld €72 = 80% en 20% oranje; oorspronkelijk geheel = €90.",
-        "52,080 s: eindkaart met B05; poster stemt overeen."
+        {
+          "timestamps": [
+            18.6,
+            31.4
+          ],
+          "observation": "Vijf kaarten van 20%; vier betaalde stukken samen €40."
+        },
+        {
+          "timestamps": [
+            39.5,
+            40.2
+          ],
+          "observation": "Vijf kaarten van €10; de oude prijs wordt onthuld als €50."
+        },
+        {
+          "timestamps": [
+            48.7,
+            56.9,
+            59.5
+          ],
+          "observation": "Pet: vier stukken €16, één stuk €4, alle vijf €20."
+        }
       ],
-      "captionEvidence": "Eerst zien wat het bedrag voorstelt: hier 80%, niet het hele bedrag.",
-      "notes": [],
+      "captionEvidence": "Ingebakken ondertitels en VTT gebruiken de oorspronkelijke spreektijden. De uitleg noemt 80%, €40, €10, €50 en bij de pet €16, €4 en €20.",
+      "notes": [
+        "Eigenaar keurde de film goed en gaf opdracht tot publicatie.",
+        "Exact goedgekeurde MP4: 17262104 bytes; SHA-256 16d28accfa73e843eca9662b7f14d5eda0f58473227df4a6b2624150cd775f86.",
+        "Ingebed geluid en ingebakken ondertitels. Geen tweede inhoudelijke review uitgevoerd."
+      ],
       "expectedMisconception": "Het percentage wordt toegepast op het nieuwe bedrag in plaats van op het oorspronkelijke geheel.",
       "videoId": "wisik-flirt-b05",
       "title": "Terugrekenen na korting",
       "fingerprints": {
         "misconception": "4df99ffe17321aa6a993ea8c49bb890b0408056cda90ae973fefe925703ee895",
-        "catalogItem": "646c8270a760e2dd9643cf6bfd6ab4cc1b53864adc6ca5c3c68b78fd1d85ec30",
-        "video": "12805d0e6ecdfbcd8d4677875c9c10d102c4dc3670449a167f9a81342b0b3ea1",
-        "poster": "8ace993ab4b04f6ad5f4929ffec85a42d19ff6df07d57f259d4e5696269abe60",
-        "captions": "b35d42fea73e33cb54bc0a00d6c0b498e5c6bdc8ffa2f95756cfbd150fc91c74",
-        "transcript": "5f92072cb21cafa8341f8d42096a7f170998338f3927019433d13e2a2bfd33c8"
+        "catalogItem": "1b37df807fc4ebde0cfdc3cc6f4fa19de7b25a802144328a99412485f20d5b0b",
+        "video": "16d28accfa73e843eca9662b7f14d5eda0f58473227df4a6b2624150cd775f86",
+        "poster": "886112c814a71ff0d449f2cba4451044ee106a704d341445308e15b7f61d79b1",
+        "captions": "c3108592a1bf022153ce2f969dc491681823f231175d651637c6e9aaa58986ce",
+        "transcript": "701101299916b57fe065bb19a190cba2522527f0f3fd57ec6772a54f1ebcd329"
       }
     },
     {
