@@ -19,6 +19,14 @@ het voegt geen inhoudelijke goedkeuring of onafhankelijke review toe.
 - Ontbreken beide transportmogelijkheden, leg dan de concrete blokkade vast vóór `flirt:replace`, PR of audit. Geen Base64 in chat.
 - Gebruik dezelfde bestaande branch/PR voor dezelfde overdrachtsroute en herhaal geen eerder goedgekeurde filmproductie of controles. De browserupload is een expliciete noodroute, geen automatische mogelijkheid van iedere Chat.
 
+## Verplichte keuze van transport — geen improvisatie
+- **Voor elke MP4-overdracht:** bepaal eerst of het goedgekeurde pakket als echte bestanden beschikbaar is in een Work-checkout mét werkende geauthenticeerde Git-push, of als publieke HTTPS-ZIP met bekende SHA-256. Noteer de gekozen route en het hervatpunt. Zolang geen van beide aantoonbaar beschikbaar is: **stop vóór encoderen, uploaden, PR en audits**.
+- Een GitHub-tool voor `create_blob` of `update_file` is **geen bestandsbrug**. Base64 van de film als toolargument (ook wanneer dit buiten de zichtbare chat blijft) is uitdrukkelijk niet de standaard- of herstelroute. Hak de film ook niet op in tekststukken.
+- **Standaard bij een publiek toegankelijk goedgekeurd pakket:** gebruik uitsluitend de bestaande workflow `.github/workflows/flirt-package-transfer.yml`, vanuit `main`, met code, HTTPS-ZIP-URL en SHA-256. Zij haalt de bytes zelf op en plaatst ze op een herbruikbare publicatiebranch. Werk vervolgens vanuit die branch verder, niet vanuit een tweede transportexperiment.
+- **Alleen wanneer echte geauthenticeerde binaire Git-push bewezen beschikbaar is:** gebruik `scripts/publish-flirt-package.mjs` op de bestaande featurebranch. GitHub-connectorrechten impliceren geen lokale terminalcredentials.
+- Ontbreekt de ZIP-URL/SHA of is het pakket niet in de huidige omgeving toegankelijk, meld exact welk invoerbestand of transport ontbreekt. Herhaal geen reeds afgeronde filmproductie of controles. Geen hypothetische 'upload geslaagd'-melding.
+- Herstel na een streamingonderbreking op basis van GitHub-branch, commit, workflow-run en PR; een afgebroken chatstream is op zichzelf geen bewijs van een mislukte GitHub-overdracht.
+
 ## Publicatieroute
 1. Lees broncode via bestaande checkout of een publieke clone. Schrijf naar GitHub
    via de gekoppelde GitHub-verbinding. Een lokale terminal zonder credentials is
