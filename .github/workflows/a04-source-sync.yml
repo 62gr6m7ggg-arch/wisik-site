@@ -1,0 +1,42 @@
+name: A04 reeds gepubliceerde bestanden synchroniseren
+on:
+  push:
+    branches: [publish/a04-roadie-20261117]
+    paths: [.github/workflows/a04-source-sync.yml]
+permissions:
+  contents: write
+jobs:
+  sync:
+    if: github.ref == 'refs/heads/publish/a04-roadie-20261117'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publish/a04-roadie-20261117
+      - name: Exact gepubliceerde A04 overnemen
+        run: |
+          python3 - <<'PY'
+          import hashlib, pathlib, urllib.request
+          expected = {
+            'public/films/rekenklaar/A04/flirt.mp4': '45533dbab795b4f2ee8237b9df7b34c05a5d0916702cea59492d4d11d756459a',
+            'public/films/rekenklaar/A04/poster.jpg': 'c5bbaa7791728a98192002610c32d9d7edbf6f9a7041b14bdae3580348bed8b2',
+            'public/films/rekenklaar/A04/captions.vtt': 'abe27954dc3d77f996a4fcf8193525a9960d3770f04c7fc11c846a13502db3be',
+            'public/films/rekenklaar/A04/transcript.html': 'e1d0b528cfb8b2befe2f9471fcba7aebac0b38002ba876d21fa384b46d0c82d6',
+            'public/assets/data/grabbelton-videos.json': '63ee7b55a4651a3224b82c80877e7dfc67df0ab2354d71381faa5c83d489252b',
+            'public/assets/data/flirt-content-review.json': 'ee68c111a7169a30f1121d0d5b0d3ce3208e9ee11199f7f8addb19bd2e6cffee',
+          }
+          for name, sha in expected.items():
+              url = 'https://ce9b439c.wisik-site.pages.dev/' + name.removeprefix('public/')
+              with urllib.request.urlopen(url, timeout=60) as response:
+                  content = response.read(25 * 1024 * 1024)
+              assert hashlib.sha256(content).hexdigest() == sha, name + ': verkeerde inhoud'
+              pathlib.Path(name).write_bytes(content)
+              print(name, len(content), sha)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/films/rekenklaar/A04 public/assets/data/grabbelton-videos.json public/assets/data/flirt-content-review.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'A04: synchroniseer goedgekeurde Cloudflare-publicatie'
+          git push origin HEAD:refs/heads/publish/a04-roadie-20261117
