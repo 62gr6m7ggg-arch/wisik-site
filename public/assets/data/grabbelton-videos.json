@@ -325,8 +325,8 @@
       "id": "wisik-flirt-b06",
       "status": "published",
       "title": "Twintig procent eraf en erbij",
-      "summary": "Waarom twintig procent eraf en daarna twintig procent erbij niet terug naar honderd leidt.",
-      "durationSeconds": 51,
+      "summary": "Roadie verkoopt een hoodie van €50. Na 20% korting en daarna 20% erbij wordt de prijs €48. Het beginbedrag verandert.",
+      "durationSeconds": 60,
       "wristbands": [
         "PABO"
       ],
@@ -341,9 +341,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B06"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-b06-0c3ae56a0fef9953",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-b07",

@@ -438,29 +438,57 @@
     },
     {
       "code": "B06",
-      "verdict": "aligned-with-notes",
-      "intendedInsight": "Een daling en stijging met hetzelfde percentage heffen elkaar niet op doordat de tweede basis kleiner is: 100 → 80 → 96.",
-      "observedContent": "Het script confronteert de terug-naar-het-begin-verwachting rechtstreeks en rekent correct met 20% van 100 en vervolgens 20% van 80. Het honderdveld toont 80 behouden blokjes, 16 teruggevoegde blokjes en vier lege vakjes.",
+      "verdict": "aligned",
+      "intendedInsight": "De tweede procentuele verandering gebruikt het nieuwe beginbedrag. Bij de hoodie geldt €50 → €40 → €48. Er blijft €2 verschil.",
+      "observedContent": "Vastlegging van de door Edwin op 17 november 2026 bekeken en goedgekeurde B06_Roadie.mp4. Roadie begint met Edwins marktkoopmansroep en legt daarna de prijsverandering uit. De bestaande montage toont tien euromunten, twee groepen van vier terug en twee euro over.",
       "visualEvidence": [
-        "4 s: titelkaart Twintig procent eraf en erbij, code B06.",
-        "12, 21, 30 en 39 s: 10 × 10-veld met 80 blauwgroene, 16 gele en vier lege vakjes; onderschrift 20% van 100 is 20. 20% van 80 is 16.",
-        "12–39 s: losse rekentekst links toont −20, +16 en =96 zonder uitgeschreven startwaarde 100.",
-        "50,400 s: eindkaart met B06; poster stemt overeen."
+        {
+          "timestamps": [
+            1,
+            9
+          ],
+          "observation": "Roadie prijst de paarse hoodie aan. De oorspronkelijke prijs is €50."
+        },
+        {
+          "timestamps": [
+            17,
+            22,
+            29
+          ],
+          "observation": "Twintig procent van €50 is €10. Tien munten gaan naar links. De nieuwe prijs wordt €40."
+        },
+        {
+          "timestamps": [
+            33,
+            37,
+            43
+          ],
+          "observation": "Tweemaal vier euromunten gaat terug. Twintig procent van €40 is €8 en de prijs wordt €48."
+        },
+        {
+          "timestamps": [
+            51,
+            58.8
+          ],
+          "observation": "De beginbedragen €50 en €40 worden vergeleken. De twee overblijvende munten ondersteunen het slotantwoord €2."
+        }
       ],
-      "captionEvidence": "De percentages waren gelijk, maar de hoeveelheden waarover je ze berekende niet.",
+      "captionEvidence": "De bestaande ingebakken ondertitels en woordtijden uit het goedgekeurde montageproject zijn overgenomen in captions.vtt. De bedragen en uitleg corresponderen met de zichtbare muntgroepen.",
       "notes": [
-        "Niet-blokkerende notatieverbetering: schrijf bij de losse rekentekst ook de startwaarde 100, bijvoorbeeld 100 − 20 + 16 = 96. Script, blokjestelling en einduitkomst zijn correct; de huidige losse tekens kunnen zonder context onvolledig worden gelezen."
+        "Eigenaar bevestigde dat de film er goed uitziet en gaf opdracht tot publicatie volgens de nieuwe methode.",
+        "Goedgekeurde film van 18688910 bytes; SHA-256 73bf03e4d6ba1bee58c4a08a851308adf5cf70264c1ea7882c656887663f78d6.",
+        "Ingebed geluid en ingebakken ondertiteling zijn vastgelegd. Poster is het eerste filmbeeld."
       ],
-      "expectedMisconception": "−p% en daarna +p% worden verondersteld elkaar op te heffen.",
+      "expectedMisconception": "Een daling en stijging met hetzelfde percentage worden verondersteld elkaar op te heffen.",
       "videoId": "wisik-flirt-b06",
       "title": "Twintig procent eraf en erbij",
       "fingerprints": {
         "misconception": "f6e08bf7f2f921e248073f90a37566c802fc4e68aec4ed0be18efaa51bef4165",
-        "catalogItem": "18a42daef918a4bd64b2fcdbc392740d5386a7ef170112bb5c158285d9e576f8",
-        "video": "5dc84ad4bf5c99135d8172b21e80283cc2f2f5b17334402be82710387b014b9c",
-        "poster": "809925fb10bd5ebf4c62478df659651d7fd0098ca4498d51081f1091da746325",
-        "captions": "a45caf14fe3478b837ac71d48e7321c9cf6e49ac40f7ec6131f838703f3fc092",
-        "transcript": "07ed5904f52bbb31e4449f397d51efea878a38a0b7f4506b0fbcd34de1fa0c1e"
+        "catalogItem": "0690d8c55b6f266710b5f1456a057382626a9e4064582c5d10e201bb101194f8",
+        "video": "73bf03e4d6ba1bee58c4a08a851308adf5cf70264c1ea7882c656887663f78d6",
+        "poster": "e9e5718dad8414c27b3c0a6027967a9a193b8f05198b55727e041decb00e8b64",
+        "captions": "86f94d4f45a224d99df185dda75dfb2fd5d31c912f08f0b72f1e3a080893852c",
+        "transcript": "8160687d37424fcc7b7f55f7abc876359703a43230e2084afcc3db4874fb0c84"
       }
     },
     {
