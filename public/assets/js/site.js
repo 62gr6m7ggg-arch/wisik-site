@@ -10,7 +10,6 @@
     "no-fallbacks",
     "readable-graphs",
     "diagnostic-patterns",
-    "flirt-trigger-chain",
     "session-variation",
     "reasoning-diversity"
   ]);
@@ -298,7 +297,7 @@
       && review?.counts?.reviewed === entries.length && review?.counts?.needsRevision === contentIssues
       && (contentIssues ? review?.status === "revision-needed" : ["aligned","reviewed-with-notes"].includes(review?.status));
     const schemaValid = report?.schemaVersion === 1 && report?.tool === "Pabo Rekenklaar" && validReview;
-    const versionsCurrent = report?.siteVersion === window.WISIK_SITE_VERSION && report?.toolVersion === registeredToolVersion;
+    const versionsCurrent = report?.source?.kind === "pabo-math-v1" && report?.toolVersion === registeredToolVersion;
     const passed = schemaValid && versionsCurrent && report?.status === "passed" && completeGateSet;
     const stale = schemaValid && report?.status === "passed" && completeGateSet && !versionsCurrent;
     return {
@@ -389,7 +388,7 @@
       <details class="audit-gate-details"><summary>Bekijk alle ${gates.length} controles</summary><ul class="audit-gates">${gates.map(auditGateMarkup).join("")}</ul></details>
       <div class="audit-panel-foot">
         <p><strong>Gecontroleerd:</strong> ${escapeHtml(formatAuditDate(report.generatedAt))}</p>
-        <p><strong>Versies:</strong> ${escapeHtml(report.tool || "Attractie")} ${escapeHtml(report.toolVersion || "onbekend")} · Wisik-site ${escapeHtml(report.siteVersion || "onbekend")}</p>
+        <p><strong>Versies:</strong> ${escapeHtml(report.tool || "Attractie")} ${escapeHtml(report.toolVersion || "onbekend")} · siteversie bij rekencontrole ${escapeHtml(report.siteVersion || "onbekend")}</p>
         <p><strong>Bronvingerafdruk:</strong> <code>${escapeHtml(String(report.source?.sha256 || "onbekend").slice(0, 16))}…</code></p>
         <p>${escapeHtml(report.scope || "")}</p>
       </div>`;

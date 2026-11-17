@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
-import { createHash, webcrypto } from "node:crypto";
+import { webcrypto } from "node:crypto";
 import { fileURLToPath } from "node:url";
-import { runFlirtChainAudit } from "./lib/flirt-chain-audit.mjs";
+import {paboSourceManifest} from "./lib/pabo-source.mjs";
 import {createVariationContext} from "./lib/pabo-variation-context.mjs";
 import {runPaboVariationAudit} from "./lib/pabo-variation-audit.mjs";
 import {runPaboReasoningAudit} from "./lib/pabo-reasoning-audit.mjs";
@@ -62,11 +62,6 @@ function withoutTimestamp(report) {
 }
 
 const context = createAuditContext();
-vm.runInContext(fs.readFileSync(path.join(root, "public/assets/js/grabbelton-core.js"), "utf8"), context);
-const flirtCatalog = JSON.parse(fs.readFileSync(path.join(root, "public/assets/data/grabbelton-videos.json"), "utf8"));
-const flirtFixtures = JSON.parse(fs.readFileSync(path.join(root, "tests/flirt-cases.json"), "utf8"));
-const flirtChain = runFlirtChainAudit(context, flirtCatalog, flirtFixtures);
-const flirtReplay = runFlirtChainAudit(context, flirtCatalog, flirtFixtures);
 const quality = runInAuditContext(context, "PaboRekenklaarQA.runQualityAudit({samplesPerCombination:100,seed:12062026})");
 const replay = runInAuditContext(context, "PaboRekenklaarQA.runQualityAudit({samplesPerCombination:100,seed:12062026})");
 const diagnostic = runInAuditContext(context, "PaboRekenklaarQA.runDiagnosticAudit({samplesPerPattern:20})");
@@ -240,7 +235,6 @@ const gates = [
   },
 ];
 
-gates.push({id:"flirt-trigger-chain",label:"Van antwoordpatroon naar juiste flirt",passed:JSON.stringify(flirtChain)===JSON.stringify(flirtReplay),evidence:`${flirtChain.chains} ketens; ${flirtChain.answerExamples} vaste antwoordchecks; ${flirtChain.negativeExamples} andere fouten; ${flirtChain.modeExclusions} toets-/sprintuitsluitingen; dubbelzinnige denkroute onderdrukt; vaste seed tweemaal gelijk`});
 gates.push({id:"session-variation",label:"Spreiding en variatie van volledige sessies",passed:variation.passed&&variationFullCount===98&&variation.counts.duplicates===0&&variation.counts.familyLimitFailures===0&&variation.counts.coverageFailures===0,evidence:`${variationFullCount} volledige toetsroutes, ${variation.counts.miniExams} korte toetsen en ${variation.counts.practiceSessions} oefenreeksen; geen dubbele opgaven binnen de geteste sessies; alle 18 deelonderwerpen in iedere volledige toets; maximaal drie opgaven per familie.`});
 gates.push({id:"reasoning-diversity",label:"Denkvariatie over meerdere oefensessies",passed:reasoning.passed&&reasoning.counts.designs===295,evidence:`295 geregistreerde ontwerpen (inclusief contextvarianten, geen claim van 295 onafhankelijke families); ${reasoning.counts.generated} gecontroleerde varianten; ${reasoning.counts.mutations} foutmutaties; ${reasoning.counts.journeys} meer-sessie-routes met ${reasoning.counts.questions} vragen. Niveau en leerdoel begrenzen de variatie; ${reasoning.counts.relaxed} selecties hadden onvoldoende aanbod voor de volledige acht-vragen-afstand.`});
 const passed = gates.every((gate) => gate.passed);
@@ -256,7 +250,6 @@ const report = {
     generatorSeed: 12062026,
     samplesPerCombination: 100,
     diagnosticSamplesPerPattern: 20,
-    flirtSeed: flirtChain.seed,
   },
   counts: {
     generatedQuestions: quality.counts.questions,
@@ -273,10 +266,6 @@ const report = {
     exactReadableChartInstances: visualAudit.exactReadableCharts,
     sprintQuestionChecks: sprintQuestionAudit.checks,
     sprintFallbackQuestions: sprintQuestionAudit.fallbacks,
-    flirtChains: flirtChain.chains,
-    flirtAnswerChecks: flirtChain.answerExamples,
-    flirtNegativeChecks: flirtChain.negativeExamples,
-    flirtModeExclusions: flirtChain.modeExclusions,
     variationFullExams: variationFullCount,
     variationQuestionChecks: variation.counts.questions,
     variationDuplicates: variation.counts.duplicates,
@@ -296,10 +285,7 @@ const report = {
     ...reasoning.failures.map(issue=>({area:"denkvariatie",issue})),
   ],
   scope: "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
-  source: {
-    file: "/apps/pabo-rekenklaar/index.html",
-    sha256: createHash("sha256").update(html).digest("hex"),
-  },
+  source: paboSourceManifest(root),
   provenance: {
     auditScript: "scripts/audit-pabo-release.mjs",
     requiredWorkflow: ".github/workflows/quality.yml",

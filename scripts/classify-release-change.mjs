@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
-import {classifyPaths} from './release-policy.mjs';
+import {classifyPaths,fullModules} from './release-policy.mjs';
+import {paboHtmlPath,paboScript,paboScriptReferences} from './lib/pabo-source.mjs';
 export {classifyPaths};
 const git = (...args) => execFileSync('git', args, {encoding:'utf8', maxBuffer:4e6}).trim();
 export function changedPaths(base) {
@@ -13,25 +14,45 @@ export function changedPaths(base) {
   const untracked = git('ls-files','--others','--exclude-standard');
   return [...new Set([committed,local,untracked].join('\n').split('\n').filter(p => p && !p.startsWith('.release/')))];
 }
-export function releasePlan({base, full=false} = {}) {
-  const paths = full ? [] : changedPaths(base);
-  const plan = {...classifyPaths(paths, {full}), base:base || null, head:git('rev-parse','HEAD'), paths, codes:[]};
-  if (!plan.modules.includes('flirts')) return plan;
-  // Shared player/logic changes require all films; isolated media changes only their codes.
-  if (full || paths.some(p => !/^public\/(?:films\/rekenklaar\/|assets\/data\/(?:grabbelton-videos|flirt-content-review)\.json$)/.test(p) && !/^(docs\/|.*\.md$)/.test(p))) return plan;
-  const codes = new Set(paths.flatMap(p => p.match(/^public\/films\/rekenklaar\/([A-D]\d{2})\//)?.slice(1) || []));
-  for (const [file, field, codeOf] of [
+export function planForPaths(paths,{base=null,head=null,full=false,readBefore,readAfter}={}) {
+  const onlyVersion=file=>{
+    if(full||!paths.includes(file))return false;
+    const clean=text=>{const v=JSON.parse(text);delete v.version;if(file==='package-lock.json'&&v.packages?.[''])delete v.packages[''].version;return v};
+    return JSON.stringify(clean(readBefore(file)))===JSON.stringify(clean(readAfter(file)));
+  };
+  const versionOnly=paths.filter(p=>['package.json','package-lock.json'].includes(p)&&onlyVersion(p));
+  const plan={...classifyPaths(paths.filter(p=>!versionOnly.includes(p)),{full}),base,head,paths,codes:[]};
+  if(versionOnly.length)plan.modules=[...new Set([...plan.modules,'site'])].sort();
+  if(!full && paths.includes(paboHtmlPath)) {
+    const before=readBefore(paboHtmlPath),after=readAfter(paboHtmlPath);
+    if(paboScript(before)!==paboScript(after) || JSON.stringify(paboScriptReferences(before).map(s=>s.split('?')[0]))!==JSON.stringify(paboScriptReferences(after).map(s=>s.split('?')[0]))) {
+      plan.modules=[...new Set([...plan.modules,'pabo','player','pabo-ui'])].sort();
+      plan.reason+='; Pabo-applicatiecode of scriptkoppeling gewijzigd';
+    }
+  }
+  plan.full=fullModules.every(m=>plan.modules.includes(m));
+  if(full || !plan.modules.includes('media'))return plan;
+  const mediaPaths=paths.filter(p=>/^public\/(?:films\/rekenklaar\/|assets\/data\/(?:grabbelton-videos|flirt-content-review)\.json$)/.test(p));
+  if(paths.some(p=>!mediaPaths.includes(p)&&classifyPaths([p]).modules.includes('media')))return plan;
+  if(!mediaPaths.length)return plan; // e.g. a change to the media checks themselves
+  const codes=new Set(mediaPaths.flatMap(p=>p.match(/^public\/films\/rekenklaar\/([A-D]\d{2})\//)?.slice(1)||[]));
+  for(const [file,field,codeOf] of [
     ['public/assets/data/grabbelton-videos.json','videos',v=>v.target.misconceptionCode],
     ['public/assets/data/flirt-content-review.json','entries',v=>v.code],
   ]) {
-    if (!paths.includes(file)) continue;
-    const before = JSON.parse(git('show',`${base}:${file}`));
-    const after = JSON.parse(fs.readFileSync(file,'utf8'));
-    if (JSON.stringify(before[field].map(codeOf).sort()) !== JSON.stringify(after[field].map(codeOf).sort())) throw new Error('Een nieuwe/verwijderde flirt vraagt een gerichte catalogusmigratie, geen vervanging.');
-    for (const entry of after[field]) if (JSON.stringify(entry) !== JSON.stringify(before[field].find(v=>codeOf(v)===codeOf(entry)))) codes.add(codeOf(entry));
+    if(!paths.includes(file))continue;
+    const before=JSON.parse(readBefore(file)),after=JSON.parse(readAfter(file));
+    const globalFields=value=>Object.fromEntries(Object.entries(value).filter(([key])=>![field,'updatedAt','reviewedAt'].includes(key)));
+    if(JSON.stringify(globalFields(before))!==JSON.stringify(globalFields(after)))return plan;
+    if(JSON.stringify(before[field].map(codeOf).sort())!==JSON.stringify(after[field].map(codeOf).sort()))throw new Error('Een nieuwe/verwijderde flirt vraagt een expliciete catalogusmigratie, geen vervanging.');
+    for(const entry of after[field])if(JSON.stringify(entry)!==JSON.stringify(before[field].find(v=>codeOf(v)===codeOf(entry))))codes.add(codeOf(entry));
   }
-  plan.codes = [...codes].sort();
+  plan.codes=[...codes].sort();
   return plan;
+}
+export function releasePlan({base,full=false}={}) {
+  const paths=full?[]:changedPaths(base);
+  return planForPaths(paths,{base,head:git('rev-parse','HEAD'),full,readBefore:p=>git('show',`${base}:${p}`),readAfter:p=>fs.readFileSync(p,'utf8')});
 }
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   if (process.argv.includes('--self-test')) { await import('./test-release-policy.mjs'); }
@@ -41,6 +62,6 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
     const plan = releasePlan({base,full});
     fs.mkdirSync('.release',{recursive:true}); fs.writeFileSync('.release/plan.json',JSON.stringify(plan,null,2)+'\n');
     console.log(JSON.stringify(plan,null,2));
-    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT,`media=${plan.modules.includes('flirts') || plan.modules.includes('konijnenhol')}\n`);
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT,`media=${plan.modules.includes('media') || plan.modules.includes('konijnenhol')}\n`);
   }
 }

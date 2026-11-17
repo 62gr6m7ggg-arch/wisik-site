@@ -9,7 +9,7 @@
     "audit:update": "node scripts/audit-pabo-release.mjs --write",
     "audit:verify": "node scripts/audit-pabo-release.mjs",
     "pabo:didactic": "node scripts/pabo-didactic-audit.mjs",
-    "check": "node scripts/release-prepare.mjs",
+    "check": "node scripts/release-prepare.mjs --check",
     "build": "node scripts/release-prepare.mjs",
     "preview": "npx wrangler pages dev public",
     "deploy": "npx wrangler pages deploy public --project-name wisik-site",
@@ -22,7 +22,7 @@
     "release:plan": "node scripts/classify-release-change.mjs",
     "release:prepare": "node scripts/release-prepare.mjs",
     "release:check": "node scripts/release-check.mjs",
-    "release:full": "node scripts/release-prepare.mjs --full",
+    "release:full": "node scripts/release-prepare.mjs --full --check",
     "flirt:replace": "node scripts/replace-flirt.mjs"
   },
   "devDependencies": {

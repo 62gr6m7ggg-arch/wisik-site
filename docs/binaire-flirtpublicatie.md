@@ -10,7 +10,7 @@ Een gekoppelde GitHub-verbinding met push/adminrechten is niet automatisch een t
    ```sh
    node scripts/publish-flirt-package.mjs A03 /pad/naar/uitgepakt/A03 d7ff5983e8421613d901b23ef4faa9e477300a4728db1778a2ab648d7d95c4d0
    ```
-   Dit controleert eerst pakket, grootte, hash en bereikbaarheid van GitHub; pas daarna draait het eenmaal `flirt:replace` en `release:prepare`, commit en pusht het pakket. **Niet uitvoeren op main.** Gebruik voor andere flirts hun eigen vastgelegde SHA.
+   Dit controleert eerst pakket, grootte, hash en bereikbaarheid van GitHub; pas daarna plaatst `flirt:replace` het pakket en maakt `release:prepare` alleen het testplan. Vervolgens commit en pusht het pakket. De gerichte tests draaien één keer in GitHub. **Niet uitvoeren op main.** Gebruik voor andere flirts hun eigen vastgelegde SHA.
 4. Hervat de bestaande PR, of open precies één PR. Laat de bestaande `Verplichte vrijgavecontrole` slagen, merge, en laat Cloudflare automatisch publiceren. Controleer alleen de aflevering.
 
 ## Als Work geen geauthenticeerde binaire Git-route heeft

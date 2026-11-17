@@ -25,19 +25,24 @@ het voegt geen inhoudelijke goedkeuring of onafhankelijke review toe.
    geen bewijs dat die verbinding rechten mist; probeer die route niet opnieuw.
 2. Plaats het goedgekeurde pakket. Flirts: `npm run flirt:replace -- CODE PAKKET`.
    Inhoudelijke review is onderdeel van de filmgoedkeuring, geen tweede goedkeuring.
-3. `npm run release:prepare -- --base=<actuele-main-sha>` selecteert modules,
-   voert relevante controles uit en vernieuwt alleen hun technische rapporten.
-   Voer hierna niet ook `npm run check`, `build` en `deploy` uit.
-4. Commit de wijziging en automatisch gegenereerde relevante rapporten samen.
-   GitHub draait één gezaghebbende vrijgavecheck op de kandidaat. Merge de PR
-   zodra die slaagt en publicatie is opgedragen. Geen nieuwe toestemmingsvraag.
+3. `npm run release:prepare -- --base=<actuele-main-sha>` maakt alleen het
+   pakket-/testplan; geen rekentests en geen rapportgeneratie in de voorbereiding.
+   Draai niet daarnaast `check`, `build` of een lokale volledige audit.
+   Gerichte ontwikkeltests zijn alleen nodig bij nieuwe code of een concrete fout.
+4. Commit de bronwijziging. GitHub voert de geselecteerde controles één keer uit.
+   Eventuele nieuwe rekenrapporten worden door dezelfde geslaagde run als een
+   uitsluitend uit bewijs bestaande vervolgcommit opgeslagen. De vrijgavecheck
+   verwijst op die commit naar exact dezelfde geteste bron, basis en rapporthashes.
+   Dit start geen tweede workflow. Merge zodra de check slaagt en publicatie is
+   opgedragen; gebruik de actuele PR-head (die de bewijscommit kan bevatten).
+   Geen nieuwe toestemmingsvraag.
 5. Cloudflare publiceert automatisch vanuit main. Na samenvoegen controleert
    `Wisik publicatiebevestiging` (workflow `publication.yml`) alleen aflevering.
    Wacht niet op een niet-bestaande tweede algemene audit en start geen tweede
    deployment terwijl de automatische publicatie bezig is.
 
 ## Omvang en fouten
-- `scripts/release-policy.mjs` is de enige automatische testselectie. Gedeelde
+- `scripts/release-policy.mjs` en `classify-release-change.mjs` bepalen samen de testselectie. Gedeelde
   afhankelijkheden komen erbij; ongewijzigde tenten niet. Een onbekend pad stopt
   direct met uitleg: voeg een modulekoppeling toe, geen blinde volledige audit.
 - Een brede audit hoort bij release-infrastructuur, expliciet volledige controle
@@ -47,3 +52,14 @@ het voegt geen inhoudelijke goedkeuring of onafhankelijke review toe.
   logdump en geen claim dat het aan GitHub-rechten ligt zonder concrete fout.
 - Publicatiestatus is los van teststatus. Meld altijd welke stap is mislukt en
   bewaar de commit/PR als hervatpunt. Oude toestemmingen blijven gelden.
+
+## Grenzen voor media, speler en rekenen
+- Media: alleen gewijzigde filmcodes; pakket, koppeling, audio en beide spelers.
+- Speler: beide spelers, audio en vervolgknoppen; geen vraaggenerator of rekentest.
+- Pabo-opmaak: scriptkoppelingen, syntax en navigatie; geen rekenopgaven.
+- Pabo-appcode, rekenbronnen en bijbehorende auditafhankelijkheden: rekentests.
+- Bij de Pabo-HTML wordt de applicatiescriptcode expliciet met de basis vergeleken.
+  Extra/onbekende scripts worden niet stilzwijgend als opmaak geclassificeerd.
+- Bestaand rekenbewijs wordt goedkoop aan de rekenbron gebonden. Film, speler,
+  opmaak en siteversie maken dat bewijs niet ongeldig.
+- `.release/` is een hervatpunt/artifact, nooit zelf een te publiceren bronwijziging.

@@ -8,7 +8,8 @@ concurrency:
   group: wisik-release-${{ github.ref }}
   cancel-in-progress: true
 permissions:
-  contents: read
+  contents: write
+  checks: write
 jobs:
   release-gate:
     name: Verplichte vrijgavecontrole
@@ -18,6 +19,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -34,7 +36,11 @@ jobs:
           ffmpeg -version | head -n 1
           ffprobe -version | head -n 1
       - name: Eenmalige controle van de geselecteerde modules
-        run: node scripts/release-check.mjs
+        run: node scripts/release-check.mjs --write
+      - name: Sla uitsluitend gegenereerde bewijzen op zonder tweede testronde
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/release-store-reports.mjs
       - name: Bewaar resultaat en hervatpunt
         if: always()
         uses: actions/upload-artifact@v4
@@ -42,6 +48,9 @@ jobs:
         with:
           name: wisik-vrijgavebewijs
           include-hidden-files: true
-          path: .release/
+          path: |
+            .release/
+            public/assets/data/pabo-release-audit.json
+            public/assets/data/ruimteklaar-release-audit.json
           if-no-files-found: warn
           retention-days: 14

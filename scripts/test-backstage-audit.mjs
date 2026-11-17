@@ -21,7 +21,7 @@ function assert(condition, message) {
 }
 
 assert(report.status === "passed", "Het openbare auditbewijs heeft geen geslaagde status");
-assert(report.siteVersion === packageJson.version, "Het auditbewijs hoort niet bij de actuele Wisik-versie");
+assert(report.source.kind === "pabo-math-v1", "Het rekenbewijs mist de afzonderlijke bronbinding");
 assert(report.toolVersion === paboVersion, "Het auditbewijs hoort niet bij de actuele Pabo Rekenklaar-versie");
 assert(report.counts.generatedQuestions >= 16_000, "Te weinig vraagvarianten in het openbare auditbewijs");
 assert(report.counts.generatorCombinations >= 170, "Te weinig generatorcombinaties in het openbare auditbewijs");
@@ -38,7 +38,6 @@ const expectedGates = [
   "no-fallbacks",
   "readable-graphs",
   "diagnostic-patterns",
-  "flirt-trigger-chain",
   "session-variation",
   "reasoning-diversity",
 ];
@@ -84,7 +83,8 @@ const incompleteReport = { ...report, gates: report.gates.slice(0, 1) };
 assert(evaluateReleaseAudit(incompleteReport, paboVersion).passed === false, "Een rapport met één controle krijgt ten onrechte een groene status");
 const duplicateGateReport = { ...report, gates: Array.from({ length: expectedGates.length }, () => report.gates[0]) };
 assert(evaluateReleaseAudit(duplicateGateReport, paboVersion).passed === false, "Dubbele controles krijgen ten onrechte een groene status");
-const staleReport = { ...report, siteVersion: "0.0.0" };
+assert(evaluateReleaseAudit({...report,siteVersion:"0.0.0"},paboVersion).passed === true, "Een sitewijziging mag ongewijzigd rekenen niet ongeldig maken");
+const staleReport = { ...report, toolVersion: "0.0.0" };
 const staleState = evaluateReleaseAudit(staleReport, paboVersion);
 assert(staleState.passed === false && staleState.stale === true, "Een bewijs van een andere siteversie wordt niet als verouderd herkend");
 

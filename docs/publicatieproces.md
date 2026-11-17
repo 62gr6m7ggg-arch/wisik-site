@@ -1,4 +1,4 @@
-# Wisik publicatieproces — 13 november 2026
+# Wisik publicatieproces — 17 november 2026
 
 De eigenaar keurt inhoud en publicatie goed. De automatisering toetst vooraf
 vastgelegde technische voorwaarden; zij vraagt geen extra reviewer of audit aan.
@@ -7,9 +7,10 @@ De bestaande GitHub-regel heeft nul vereiste reviewers. Geen bypass nodig.
 
 | Wijziging | Automatische controle vóór samenvoegen |
 | --- | --- |
-| Eén flirt + catalogus/review | Gewijzigde film, audio, poster, VTT, mobiel transcript, inhoudsvingerafdruk en beide spelers; kleine vaste ketentest |
-| Spelercode | Alle relevante filmkoppelingen en gedeelde site-integratie |
-| Pabo-code | Pabo-rekenaudit, didactiek/variatie, navigatie en flirtintegratie |
+| Eén flirt + catalogus/review | Gewijzigde film, audio, poster, VTT, mobiel transcript, inhoudsvingerafdruk en beide spelers; **nul rekenopgaven** |
+| Spelercode | Beide spelers, audio en vervolgknoppen; **nul rekenopgaven** |
+| Pabo-opmaak / ondertitels | Opmaak, scriptkoppelingen en navigatie; geen rekentests |
+| Pabo-applicatiecode / rekenbronnen | Pabo-rekenaudit, didactiek/variatie, navigatie en flirtintegratie |
 | Spacetent | Spacetent, bron/bundelbinding en beschermde testomgeving |
 | Meetkunde / Stoicheia | Meetkundecontrole |
 | Gonio | Productiewiskunde en integriteit |
@@ -53,15 +54,33 @@ npm run release:prepare -- --base=<main-commit-sha>
 ```
 
 De eerste stap controleert de pakketvorm vóór schrijven en herstelt lokale
-bestanden bij een mislukte samenstelling. De tweede stap controleert het echte
-pakket en schrijft `.release/result.json`. Media, catalogus en review worden
-in dezelfde commit gepubliceerd. Pabo's rekenrapport blijft bij een zuivere
-filmvervanging ongewijzigd. Backstage laadt de actuele filmreview afzonderlijk.
+bestanden bij een mislukte samenstelling. Zij leest alleen de canonieke
+misconceptdefinities en initialiseert geen rekenapp. De tweede stap schrijft
+uitsluitend `.release/plan.json`: geen tests en geen rapportgeneratie.
+Media, catalogus en review worden in dezelfde commit gepubliceerd.
 
-Voor andere modules: pas de bron aan en gebruik dezelfde `release:prepare`.
-Technische rapporten worden alleen na geslaagde berekening vernieuwd en gaan
-mee in de commit. De onafhankelijke CI-check controleert de uiteindelijke kandidaat;
-herhaal lokaal niet nogmaals alle controles na een geslaagde voorbereiding.
+GitHub voert de geselecteerde controles één keer uit op de definitieve kandidaat.
+Een mediawijziging beperkt ook de spelercontrole tot de betrokken codes. Een
+spelerwijziging test beide spelers voor alle codes, zonder vragen te genereren.
+De controles bevatten expliciete verboden op onbedoeld starten van rekentests.
+
+Het rekenbewijs bindt aan de Pabo-applicatiescriptcode, rekenbronnen en gebruikte
+auditcode. HTML-opmaak, films, spelers en algemene siteversies vallen buiten die
+vingerafdruk. Een lichte bronvergelijking bevestigt dat bestaand rekenbewijs nog
+past; de berekeningen worden daarvoor niet herhaald. Als de applicatiescriptcode
+of scriptkoppeling in de Pabo-HTML verandert, selecteert de planner wel rekentests.
+Een onbekende scriptstructuur stopt met een concrete melding.
+
+Wanneer rekenbronnen wijzigen, maakt de ene CI-run het nieuwe rapport. Alleen de
+expliciet toegestane JSON-rapporten mogen daarna naar dezelfde PR worden geschreven.
+De run controleert dat PR-head en basis niet zijn veranderd en bindt de geslaagde
+check aan de bewijscommit. Broncode mag niet door die stap wijzigen. GITHUB_TOKEN
+voorkomt een recursieve workflow; een tweede rekenronde is niet nodig.
+Het artifact bewaart geteste bron, basis, vervolgcommit en rapporthashes.
+Bij periodieke/handmatige controles blijven nieuwe rapporten in het artifact.
+
+`npm run check` en `npm run release:full` blijven expliciete ontwikkelcommando's;
+zij horen niet standaard bij een reeds geplande publicatie.
 
 ## Publicatie en hervatten
 

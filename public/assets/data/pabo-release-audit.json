@@ -4,13 +4,12 @@
   "siteVersion": "0.1.32",
   "tool": "Pabo Rekenklaar",
   "toolVersion": "1.11.0",
-  "generatedAt": "2026-11-17T07:28:24.286Z",
+  "generatedAt": "2026-11-17T08:09:06.605Z",
   "status": "passed",
   "configuration": {
     "generatorSeed": 12062026,
     "samplesPerCombination": 100,
-    "diagnosticSamplesPerPattern": 20,
-    "flirtSeed": 6092026
+    "diagnosticSamplesPerPattern": 20
   },
   "counts": {
     "generatedQuestions": 61300,
@@ -27,10 +26,6 @@
     "exactReadableChartInstances": 1200,
     "sprintQuestionChecks": 2250,
     "sprintFallbackQuestions": 0,
-    "flirtChains": 30,
-    "flirtAnswerChecks": 120,
-    "flirtNegativeChecks": 90,
-    "flirtModeExclusions": 60,
     "variationFullExams": 98,
     "variationQuestionChecks": 5880,
     "variationDuplicates": 0
@@ -71,12 +66,6 @@
       "label": "Diagnostische patronen",
       "passed": true,
       "evidence": "30 patronen; 30/30 natuurlijke dekking; 1200 controlevragen; 8842 natuurlijke classificatiechecks; 3 dubbelzinnige gevallen veilig zonder diagnose"
-    },
-    {
-      "id": "flirt-trigger-chain",
-      "label": "Van antwoordpatroon naar juiste flirt",
-      "passed": true,
-      "evidence": "30 ketens; 120 vaste antwoordchecks; 90 andere fouten; 60 toets-/sprintuitsluitingen; dubbelzinnige denkroute onderdrukt; vaste seed tweemaal gelijk"
     },
     {
       "id": "session-variation",
@@ -1563,8 +1552,24 @@
   "failures": [],
   "scope": "Sterke deterministische regressie- en consistentiecontrole. Dit is geen bewijs van leerwinst, geen empirische kalibratie en geen vervanging voor vakdidactische of mobiele gebruikerstests.",
   "source": {
-    "file": "/apps/pabo-rekenklaar/index.html",
-    "sha256": "f4df2f43e61368ec950ee6a8ec18ac556cb78402ff9e6e13c3a797928fd7eef5"
+    "kind": "pabo-math-v1",
+    "files": {
+      "public/apps/pabo-rekenklaar/index.html#application-script": "56cf9e733a98428192743b851a3aedcab26ab80f4da71e96abdc32f23b807251",
+      "scripts/audit-pabo-release.mjs": "f67b45c77617d36f605a20b99f3aa0831b07774e72092f91a6e579b670149072",
+      "scripts/lib/pabo-reasoning-audit.mjs": "522d8057b5f459c481065b491bcf5724701d4f3e96bc1af0199f04a29ceab239",
+      "scripts/lib/pabo-source.mjs": "f934d3b5ec31702dbd6959a8ab2989c302d407bea8a0b3c9a2565e9b7f6f1b53",
+      "scripts/lib/pabo-variation-audit.mjs": "763d08b576925e09d5a1aa1bae2828af2e5698b4cd41f716446e368a3e3a2ada",
+      "scripts/lib/pabo-variation-context.mjs": "36807a0dde5d7aadb579dfc559ef5a5637b05b293b122ab84887fe4d16f6d1a1",
+      "src/pabo/order-pointer.js": "4308350b4fe3b498a478d6e3321da065555826b0943204f770ae7a2f0ce91f84",
+      "src/pabo/reasoning-designs.js": "aa87cf92dc51ca841294963a8bd2097a0d7206f979a78fb741510293e2461655",
+      "src/pabo/reasoning-engine.js": "e0fcb0465f3ea90d903343d05e3fb0d6784405bfc876a6818788bc449f31c964",
+      "src/pabo/rich-designs.js": "d3d65ca382d942481f354a6e4954bedfe6607ed5f81143402ac2fd789cb9cff8",
+      "src/pabo/transfer-designs.js": "8b7e9c0403bed78c7618d8885cd36d97bb10d4bf71e6aaefe6e8a314bcd5a5b1",
+      "src/pabo/variation-generators.js": "af254ccf63a92f10eabcb33f1a30cc61b1c42e6fa83373c51420ded1ca7ffadb",
+      "src/pabo/variation-rubrics.js": "f37d094e57b69f1076410a44d3f8e32675149d24e4dbf2bc9fb0d8411fef7039",
+      "src/pabo/variation-selection.js": "0d7c9f1ac9f6375e6f930b8843881df276c130c53c9ca1ac681f5f82aee2a175"
+    },
+    "sha256": "af0d89999a0ead20183735f2cfc2da6542bbe7d25b8eb3d85d92f16e6a912651"
   },
   "provenance": {
     "auditScript": "scripts/audit-pabo-release.mjs",

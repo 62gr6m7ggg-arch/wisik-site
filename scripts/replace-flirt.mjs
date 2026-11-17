@@ -3,7 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {digest,canonicalJson,snapshotFlirtSources,verifyFlirtContentReview} from './lib/flirt-content-audit.mjs';
-import {createVariationContext} from './lib/pabo-variation-context.mjs';
+import {readMisconceptions} from './lib/pabo-source.mjs';
 const [code,dir]=process.argv.slice(2);
 assert.match(code||'',/^[A-D]\d{2}$/,'Gebruik: npm run flirt:replace -- C02 /pad/naar/goedgekeurd-pakket');
 assert.ok(dir,'Publicatiepakket ontbreekt');
@@ -38,14 +38,14 @@ Object.assign(item,{durationSeconds:Math.round(duration),release,audioMode:metad
 if(metadata.summary)item.summary=metadata.summary;
 if(metadata.title)item.title=metadata.title;
 const today=new Date().toISOString().slice(0,10);catalog.updatedAt=today;
-const context=createVariationContext(fs.readFileSync('public/apps/pabo-rekenklaar/index.html','utf8'));
+const misconceptions=readMisconceptions(process.cwd());
 const destination=`public/films/rekenklaar/${code}`;
 const changes=new Map(names.map(n=>[`${destination}/${n}`,bytes[n]]));
 changes.set(catalogPath,Buffer.from(JSON.stringify(catalog,null,2)+'\n'));
 const originals=new Map([...changes.keys(),reviewPath].map(p=>[p,fs.existsSync(p)?fs.readFileSync(p):null]));
 try {
  for(const [p,b] of changes)fs.writeFileSync(p,b);
- const snapshot=snapshotFlirtSources(process.cwd(),catalog,context.PaboRekenklaarQA.MISCONCEPTION_CATALOG,[code]);
+ const snapshot=snapshotFlirtSources(process.cwd(),catalog,misconceptions,[code]);
  const updated={...previous,...suppliedReview,code,videoId:item.id,title:item.title,fingerprints:snapshot[0].fingerprints};
  review.entries[review.entries.findIndex(e=>e.code===code)]=updated;review.reviewedAt=today;
  const result=verifyFlirtContentReview({...review,entries:[updated]},snapshot,[code]);assert.ok(result.passed,result.failures.join('\n'));
