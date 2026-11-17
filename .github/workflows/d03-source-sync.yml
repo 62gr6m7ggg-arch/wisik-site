@@ -1,0 +1,34 @@
+name: D03 reeds gepubliceerde bestanden synchroniseren
+on:
+  push:
+    branches: [publish/d03-roadie-20261117]
+    paths: [.github/workflows/d03-source-sync.yml]
+permissions:
+  contents: write
+jobs:
+  sync:
+    if: github.ref == 'refs/heads/publish/d03-roadie-20261117'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publish/d03-roadie-20261117
+      - name: Exact gepubliceerde D03 overnemen
+        run: |
+          python3 - <<'PYCODE'
+          import hashlib, pathlib, subprocess
+          expected = {'public/films/rekenklaar/D03/flirt.mp4': '4158751799977c16755f00ff130cf79875d08553a7f3aa62727620058c262b8a', 'public/films/rekenklaar/D03/poster.jpg': 'e9d50f61698a9216da0bda37ce779cfa6375f32e265b58973ed3d3ec8775941a', 'public/films/rekenklaar/D03/captions.vtt': 'b13bd77bb754063653c26827514f3f0fcfabe4ddae86878df3b757d004ef87ca', 'public/films/rekenklaar/D03/transcript.html': '25c1f2cb83c8a6380a87ac32bae439fc1acf440bc5cc83efbc42f5fb25a40772', 'public/assets/data/grabbelton-videos.json': '89f15a185657803b798a410bef5df84a24969479cb980dac85c74db46e303ebe', 'public/assets/data/flirt-content-review.json': '7de76c9fe02882f185bbc88865fcf20d2dc55a42caf65b7994b8a983ca020ee1'}
+          for name, sha in expected.items():
+              url = 'https://a7a4ee4b.wisik-site.pages.dev/' + name.removeprefix('public/')
+              subprocess.run(['curl', '--fail', '--silent', '--show-error', '--location', '--proto', '=https', '--proto-redir', '=https', '--connect-timeout', '15', '--max-time', '120', '--max-filesize', '26214400', '--output', name, '--', url], check=True)
+              content = pathlib.Path(name).read_bytes()
+              assert hashlib.sha256(content).hexdigest() == sha, name + ': verkeerde inhoud'
+              print(name, len(content), sha)
+          PYCODE
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/films/rekenklaar/D03 public/assets/data/grabbelton-videos.json public/assets/data/flirt-content-review.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'D03: synchroniseer goedgekeurde Cloudflare-publicatie'
+          git push origin HEAD:refs/heads/publish/d03-roadie-20261117
