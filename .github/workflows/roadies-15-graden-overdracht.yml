@@ -1,0 +1,33 @@
+name: Goedgekeurde film 15° in het zand overzetten
+on:
+  push:
+    branches: [publish/stoicheia-15-graden-20261118]
+    paths: [.github/workflows/roadies-15-graden-overdracht.yml]
+permissions:
+  contents: write
+jobs:
+  overzetten:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Neem de goedgekeurde film en poster over
+        shell: bash
+        run: |
+          set -euo pipefail
+          destination=public/apps/stoicheia/roadies
+          base=https://842a65f8.wisik-site.pages.dev/apps/stoicheia/roadies
+          transfer() {
+            local name="$1" size="$2" hash="$3"
+            curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --retry 2 --connect-timeout 15 --max-time 120 --max-filesize "$size" --output "$destination/$name" -- "$base/$name"
+            test "$(stat -c %s "$destination/$name")" = "$size"
+            printf '%s  %s\n' "$hash" "$destination/$name" | sha256sum --check
+            git add -- "$destination/$name"
+          }
+          transfer 15-graden.mp4 13750205 89a31432edf3ae79d827489f5fc87918ef2db9b08f1b601864a097d9df6093e7
+          transfer 15-graden-mobiel.mp4 5713759 d853dea8d867528233cc5b25ead0c008151edb8c83ed411244b23159b60ddc6e
+          transfer 15-graden.jpg 143189 f201313d460678cc5a47b674f22aa33eccdf3b9123cd532ff062cbe9446019a5
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Stoicheia: voeg beide versies van 15° in het zand en de poster toe'
+          git push origin HEAD:refs/heads/publish/stoicheia-15-graden-20261118

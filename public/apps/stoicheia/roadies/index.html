@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#742b3c">
   <title>Roadies goocheltrucjes · Stoicheia · Wisik</title>
-  <meta name="description" content="Ontdek de meetkunde achter Roadies trucs. Construeer het brandpunt en de richtlijn met alleen een gegeven parabool.">
+  <meta name="description" content="Construeer met Roadie het brandpunt en de richtlijn van een parabool of een hoek van 15° met een touw op het zandveld.">
   <link rel="canonical" href="https://wisik.nl/apps/stoicheia/roadies/">
   <link rel="icon" href="/favicon.ico?v=wisik-tenten-20260914-2">
-  <link rel="stylesheet" href="roadies.css?v=1">
+  <link rel="stylesheet" href="roadies.css?v=2">
 </head>
 <body>
   <header class="topbar">
@@ -20,9 +20,13 @@
       <p class="eyebrow">STOICHEIA · MEETKUNDE IN BEWEGING</p>
       <h1>Roadies goocheltrucjes</h1>
       <p class="intro">Ontdek de meetkunde achter Roadies trucs.</p>
+      <nav class="film-links" aria-label="Kies een film">
+        <a href="#zoeklicht">Het geheim van het zoeklicht</a>
+        <a href="#15-graden">15° in het zand</a>
+      </nav>
     </div>
     <section class="films" aria-label="Roadies films">
-      <article class="film" aria-labelledby="zoeklicht-title">
+      <article id="zoeklicht" class="film" aria-labelledby="zoeklicht-title">
         <div class="film-heading">
           <p class="eyebrow">EEN PARABOOL, EEN ZOEKLICHT</p>
           <h2 id="zoeklicht-title">Het geheim van het zoeklicht</h2>
@@ -33,6 +37,19 @@
           Je browser kan deze film niet afspelen. <a href="zoeklicht.mp4">Open het zoeklichtfilmpje</a>.
         </video>
         <p class="film-footer">Met Roadie op het festivalterrein <span>2 min 41 sec</span></p>
+      </article>
+      <article id="15-graden" class="film" aria-labelledby="zand-title">
+        <div class="film-heading">
+          <p class="eyebrow">CONSTRUCTIE EN BEWIJS</p>
+          <h2 id="zand-title">15° in het zand</h2>
+          <p id="zand-description">Hoe maak je een hoek van precies 15° met een touw en vier hoekpaaltjes? Roadie trekt cirkelbogen in een vierkant zandveld. Vanuit de uitkijktoren zie je waarom de constructie klopt.</p>
+        </div>
+        <video controls playsinline preload="none" poster="15-graden.jpg" aria-labelledby="zand-title" aria-describedby="zand-description">
+          <source src="15-graden-mobiel.mp4" type="video/mp4" media="(max-width: 700px)">
+          <source src="15-graden.mp4" type="video/mp4">
+          Je browser kan deze film niet afspelen. <a href="15-graden.mp4">Open 15° in het zand</a>.
+        </video>
+        <p class="film-footer">Met Roadie op het zandveld <span>1 min 57 sec</span></p>
       </article>
     </section>
   </main>
