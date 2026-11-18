@@ -10,6 +10,9 @@ main{max-width:1080px;margin:auto;padding:48px 20px 64px}
 h1,h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:#742b3c;line-height:1.15;margin:0;text-wrap:balance}
 h1{font-size:clamp(32px,5vw,56px)}
 .intro{font-size:21px;line-height:1.5;margin:18px 0 32px}
+.film-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin:-12px 0 28px}
+.film-links a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+.film[id]{scroll-margin-block-start:16px}
 .films{display:grid;gap:28px}
 .film{overflow:hidden;border:1px solid #d7bea0;border-radius:18px;background:#fffaf0;box-shadow:0 8px 28px #43293610}
 .film-heading{padding:28px 32px 24px}
