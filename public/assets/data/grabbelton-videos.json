@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-17",
+  "updatedAt": "2026-11-18",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -445,8 +445,8 @@
       "id": "wisik-flirt-c03",
       "status": "published",
       "title": "Omtrek of oppervlakte",
-      "summary": "Waarom omtrek de rand meet en oppervlakte het vlak binnen de rand.",
-      "durationSeconds": 53,
+      "summary": "Roadie legt een festivaldansvloer aan: lichtslang langs de rand, vloerplaten over het vlak.",
+      "durationSeconds": 67,
       "wristbands": [
         "PABO"
       ],
@@ -461,9 +461,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C03"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-c03-66f007607d0b6863",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-c04",
