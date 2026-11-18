@@ -1,0 +1,45 @@
+name: C03 bron synchroniseren
+on:
+  push:
+    branches: [publish/c03-roadie-20261118]
+    paths: [.github/workflows/sync-c03-roadie.yml]
+permissions:
+  contents: write
+concurrency:
+  group: sync-c03-roadie-20261118
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publish/c03-roadie-20261118
+          fetch-depth: 1
+      - name: Neem de zes gepubliceerde bestanden over en verifieer de hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error --proto '=https' --tlsv1.2 --connect-timeout 20 --max-time 120 --max-filesize 25165824 'https://e69ca143.wisik-site.pages.dev/films/rekenklaar/C03/flirt.mp4' --output 'public/films/rekenklaar/C03/flirt.mp4'
+          echo 'bbf7879f889dc759b08a5a84acc14a0cef99401428305552d47f49c832a113aa  public/films/rekenklaar/C03/flirt.mp4' | sha256sum --check --status
+          curl --fail --location --silent --show-error --proto '=https' --tlsv1.2 --connect-timeout 20 --max-time 120 --max-filesize 25165824 'https://e69ca143.wisik-site.pages.dev/films/rekenklaar/C03/poster.jpg' --output 'public/films/rekenklaar/C03/poster.jpg'
+          echo 'eb2659f76ba1fd3e21b291f1e19e0f7ac8ed3b710869eef8e94c2844daaba874  public/films/rekenklaar/C03/poster.jpg' | sha256sum --check --status
+          curl --fail --location --silent --show-error --proto '=https' --tlsv1.2 --connect-timeout 20 --max-time 120 --max-filesize 25165824 'https://e69ca143.wisik-site.pages.dev/films/rekenklaar/C03/captions.vtt' --output 'public/films/rekenklaar/C03/captions.vtt'
+          echo '6c4d619231378a8c92dee00de6a484b9bfcadb180b58f448921d1d0d29cd7add  public/films/rekenklaar/C03/captions.vtt' | sha256sum --check --status
+          curl --fail --location --silent --show-error --proto '=https' --tlsv1.2 --connect-timeout 20 --max-time 120 --max-filesize 25165824 'https://e69ca143.wisik-site.pages.dev/films/rekenklaar/C03/transcript.html' --output 'public/films/rekenklaar/C03/transcript.html'
+          echo '11eef8699fbe4eef95b37df7acca03228c5522a6bc7434c07f3afe6d3205de00  public/films/rekenklaar/C03/transcript.html' | sha256sum --check --status
+          curl --fail --location --silent --show-error --proto '=https' --tlsv1.2 --connect-timeout 20 --max-time 120 --max-filesize 25165824 'https://e69ca143.wisik-site.pages.dev/assets/data/grabbelton-videos.json' --output 'public/assets/data/grabbelton-videos.json'
+          echo '6a73871d929be59f6fdaa0d1a46e0fa8d849a06aa355eb1f30c98c2cb3b0f207  public/assets/data/grabbelton-videos.json' | sha256sum --check --status
+          curl --fail --location --silent --show-error --proto '=https' --tlsv1.2 --connect-timeout 20 --max-time 120 --max-filesize 25165824 'https://e69ca143.wisik-site.pages.dev/assets/data/flirt-content-review.json' --output 'public/assets/data/flirt-content-review.json'
+          echo '4b673e80e4e7f831552ab5a5bb0971dd352b66e00128afecf31fd6f30599eccc  public/assets/data/flirt-content-review.json' | sha256sum --check --status
+      - name: Sla dezelfde goedgekeurde C03 op
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'public/films/rekenklaar/C03/flirt.mp4' 'public/films/rekenklaar/C03/poster.jpg' 'public/films/rekenklaar/C03/captions.vtt' 'public/films/rekenklaar/C03/transcript.html' 'public/assets/data/grabbelton-videos.json' 'public/assets/data/flirt-content-review.json'
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'C03: synchroniseer goedgekeurde Roadie-film vanaf productie'
+          git push origin HEAD:publish/c03-roadie-20261118
