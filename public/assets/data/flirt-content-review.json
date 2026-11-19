@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-18",
+  "reviewedAt": "2026-11-19",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
@@ -809,41 +809,45 @@
     },
     {
       "code": "C05",
-      "verdict": "aligned-with-notes",
+      "verdict": "aligned",
       "expectedMisconception": "De gegeven straal wordt rechtstreeks als diameter gebruikt of opnieuw gehalveerd.",
-      "intendedInsight": "De straal loopt van middelpunt naar rand; de diameter loopt door het middelpunt van rand naar rand en is tweemaal zo lang.",
-      "observedContent": "Titel, volledige VTT/transcript en cirkelbeeld treffen de verwisseling van r en d. De film benoemt correct r = 5 cm, d = 10 cm en de gelijkwaardige omtrekformules πd en 2πr.",
+      "intendedInsight": "De straal loopt van het middelpunt naar de rand. De diameter gaat van rand tot rand door het middelpunt en is twee keer de straal.",
+      "observedContent": "Roadie spant een lichtsnoer van vijf meter van de tentwand naar de middenpaal. Een tweede snoer van vijf meter maakt de diameter van tien meter zichtbaar. Bij een andere tent met een diameter van acht meter is de straal vier meter.",
       "visualEvidence": [
         {
           "timestampsSeconds": [
-            4,
-            45.6
+            0,
+            7.6,
+            16.5,
+            20.6,
+            27.1
           ],
-          "observation": "Correcte C05-titelkaart en afsluiting."
+          "observation": "Roadie toont de haspel, bevestigt het eerste uiteinde aan de tentwand en loopt met het snoer door de lucht naar het krukje bij de middenpaal."
         },
         {
           "timestampsSeconds": [
-            12,
-            21,
-            30,
-            39
+            34.6,
+            46.2,
+            51.8,
+            56.1,
+            68.3
           ],
-          "observation": "Cirkel met middelpuntstip, volledige diameter en gelabelde rechterstraal “r = 5 cm”; “d = 10 cm” staat onder de cirkel. Inzichtbalk vraagt eerst straal of diameter. Een losse “M” staat ver rechts buiten de cirkel."
+          "observation": "Het bovenaanzicht toont de straal vanaf M en twee snoeren van vijf meter op dezelfde lijn. Een vinger tekent de diagonaal van het scherm. De tweede tent heeft een diameter van acht meter en een straal van vier meter."
         }
       ],
-      "captionEvidence": "23.267–26.063: “Die bestaat uit twee stralen en is hier dus 10 cm.”",
+      "captionEvidence": "De achttien Nederlandse ondertitels zijn ingebakken en ook beschikbaar als WebVTT en tekstversie. Dezelfde cue-tijden horen bij de door Edwin goedgekeurde geluidsmontage.",
       "notes": [
-        "Nietblokkerende visuele notitie: plaats M direct bij de middelpuntstip of laat die losse letter weg; de huidige positie buiten de cirkel is onduidelijk. De straal-diameterrelatie zelf is correct zichtbaar."
+        "Edwin keurde de geluidsrevisie van 71 seconden goed en gaf opdracht deze versie op wisik.nl te plaatsen."
       ],
       "videoId": "wisik-flirt-c05",
       "title": "Straal of diameter",
       "fingerprints": {
         "misconception": "7cff2e8d2de303b4a67af96bb9467aa0d2fc758e22e8b70bd1d2f1718960c597",
-        "catalogItem": "ffdeb84798b54ca6c168ce79e5bb9378ac6f66bdd2351c64a5a6a3ebf2780e13",
-        "video": "fd8202edb8b9bd9ac545f5fe4ec7c73f71a3845b4f1bbcc6eef31922dff4c76d",
-        "poster": "3120024e59c17fde4a1c899391dbe754830a731ef07ba71caf5765dd4d1630fc",
-        "captions": "3b5cc3fc2baed247201818ff72cae26481ec4aebc1020ebe09b647c4de9a6491",
-        "transcript": "427eecc6761c70871b600f18562f9b36dc153a6f0fd2b9841c90976f4c9901b1"
+        "catalogItem": "07f8ae866fdf1bbb0c61a7858e5787aa366eeb52a7e7bbead0883ef947c410b7",
+        "video": "9171de2ed9c823315df93014503a6c142894f39249b7ff16cde74f49711d476b",
+        "poster": "dd42eafc3946f1a9b1d69e89cf7802236714a8c40d1aae641ceff013835e2cc1",
+        "captions": "2616b094136535af71ac6a0f79d0c7df70a31bb18cf446dbf036757d1ca30e8a",
+        "transcript": "1bce8bfb4876ddcf1e8c5fef651db7cb2ca041bc32b47e7a3cdbbad5f78b6555"
       }
     },
     {
