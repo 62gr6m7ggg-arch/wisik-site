@@ -1,0 +1,41 @@
+name: Neem de gepubliceerde B08 over
+on:
+  push:
+    branches: [publish/b08-roadie-dobbelkraam-20261119]
+    paths: ['.github/workflows/b08-roadie-overdracht.yml']
+permissions:
+  contents: write
+jobs:
+  overnemen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publish/b08-roadie-dobbelkraam-20261119
+      - name: Neem de zes vrijgegeven bestanden over van de vaste productieversie
+        shell: bash
+        run: |
+          set -euo pipefail
+          deploy='https://3caf85a3.wisik-site.pages.dev'
+          stage="$(mktemp -d)"
+          trap 'rm -rf -- "$stage"' EXIT
+          while read -r digest path; do
+            mkdir -p "$stage/$(dirname "$path")"
+            curl --fail --silent --show-error --location --retry 2 --max-time 75 --max-filesize 25165824 "$deploy/${path#public/}" --output "$stage/$path"
+            printf '%s  %s\n' "$digest" "$stage/$path" | sha256sum --check --status
+            install -m 0644 "$stage/$path" "$path"
+            git add -- "$path"
+          done <<'BESTANDEN'
+          d619ec225eb76978ca2be6983538e01f3c186c4a1a39db9ead5fef9b7c172301 public/assets/data/flirt-content-review.json
+          ac5b71fe137ec6747e80fe4d48b8f116359e14ac3917ad664826e0fa61d33d01 public/assets/data/grabbelton-videos.json
+          d5e2c0d3c06388e4caac3e29d22aea8ef4189e922a27e7c7caa56e5dd56ed436 public/films/rekenklaar/B08/captions.vtt
+          0f9699ecd9cca51525822ca89a14696230a077be4b18f7a50fe4e94f61ec1465 public/films/rekenklaar/B08/flirt.mp4
+          661deddbf3ff9af0b2c81c0b1b0df8ac75a51436cb389a874996720d8bdacd25 public/films/rekenklaar/B08/poster.jpg
+          26be9d66f5141aa4b1fbe405a780032f5a835a861646c8502cba45ac2ec137c7 public/films/rekenklaar/B08/transcript.html
+          BESTANDEN
+          test "$(git diff --cached --name-only | wc -l)" -eq 6
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "B08: neem de goedgekeurde Roadie-film bij de dobbelkraam over"
+          git push origin HEAD:publish/b08-roadie-dobbelkraam-20261119
