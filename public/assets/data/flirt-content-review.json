@@ -540,29 +540,48 @@
     },
     {
       "code": "B08",
-      "verdict": "aligned-with-notes",
-      "intendedInsight": "De 36 geordende paren zijn even waarschijnlijk bij twee eerlijke onafhankelijk geworpen dobbelstenen; de elf sommen zijn dat niet.",
-      "observedContent": "Titel en script confronteren gelijke kansen voor sommen 2 tot 12. De sommentabel toont één manier voor 2 en zes voor 7; de tekst onderscheidt (1,6) van (6,1) en noemt eerlijkheid en onafhankelijkheid expliciet.",
+      "verdict": "aligned",
+      "intendedInsight": "Bij twee onafhankelijke eerlijke dobbelstenen heeft elk van de 36 geordende paren dezelfde kans. Door voor een totaal de mogelijke paren te tellen, kun je de kansen vergelijken.",
+      "observedContent": "Roadie legt de twee worpen voor elf naast elkaar. Bij zeven gaat rood één omhoog en geel één omlaag. Zo ontstaan zes worpen, drie keer zoveel als bij elf. Vervolgens vergelijkt de kijker vier en negen.",
       "visualEvidence": [
-        "4 s: titelkaart Kansen met twee dobbelstenen, code B08.",
-        "12, 21, 30 en 39 s: correcte 6 × 6-sommentabel van 2 tot 12; één oranje cel voor som 2 en zes gele cellen voor som 7; labels som 2: 1 paar en som 7: 6 paren.",
-        "12–39 s: geen rij-/kolomkoppen die eerste en tweede dobbelsteen aangeven.",
-        "45,936 s: eindkaart met B08; poster stemt overeen."
+        {
+          "timestampsSeconds": [
+            0.2,
+            15.5,
+            20.5
+          ],
+          "observation": "Roadie staat aan de festivalkraam. Bij het bordje elf verschijnen de worpen rood vijf met geel zes en rood zes met geel vijf op afzonderlijke kaarten."
+        },
+        {
+          "timestampsSeconds": [
+            29.9,
+            38,
+            42
+          ],
+          "observation": "Voor zeven verschijnen zes verschillende kaarten. De zes worpen voor zeven vormen drie kolommen van twee naast de ene kolom van twee voor elf."
+        },
+        {
+          "timestampsSeconds": [
+            46,
+            52,
+            58.5,
+            67.2
+          ],
+          "observation": "De bordjes vier en negen blijven tijdens de denktijd zichtbaar. Dubbel twee staat op één kaart. Onder vier liggen uiteindelijk drie worpen en onder negen vier."
+        }
       ],
-      "captionEvidence": "De paren hebben gelijke kansen. De sommen niet.",
-      "notes": [
-        "Niet-blokkerende didactische verbetering: voeg rij-/kolomkoppen 1–6 en eerste/tweede steen toe, zodat leerlingen de geordende paren rechtstreeks uit het beeld kunnen aflezen. De huidige telling en conclusie zijn correct."
-      ],
-      "expectedMisconception": "De elf mogelijke somwaarden worden behandeld alsof elke som één even waarschijnlijke uitkomst is.",
+      "captionEvidence": "Roadie vraagt “En andersom?” bij elf. Bij de slotvraag vraagt hij “Hoeveel worpen horen bij elk totaal?” Na de denktijd zegt hij bij vier “Dubbel twee telt één keer.”",
+      "notes": [],
+      "expectedMisconception": "De elf mogelijke sommen bij twee dobbelstenen worden als even waarschijnlijk gezien.",
       "videoId": "wisik-flirt-b08",
-      "title": "Kansen met twee dobbelstenen",
+      "title": "Zeven of elf? Kansen met twee dobbelstenen",
       "fingerprints": {
         "misconception": "53f5fda2e449ac020dfa395daab85a76744d6258f41552e7f14c56c8fdd03b18",
-        "catalogItem": "8efdcf6c141fdcdae34925939303ccf983df298e2614ba10aead4d3679abd697",
-        "video": "02772798ab4d1f1910c35f608c711b9e4d314f1457ae99f30bed820e89e7f463",
-        "poster": "4c4a7d8061c631fcd4d4e650bab5255c383cab54cfa4c8ff82fcadf26b8e1e37",
-        "captions": "4a0e51b762dde52e6cf954fea52e4ff2c9c4369961ac095394d49a858d4ea889",
-        "transcript": "af0a47762ed204363f6062000927f4cf164b4cd17fbab0a8126fea915abe4b3e"
+        "catalogItem": "0a8bcbd3810d2557c14c6c168f9c60ec800a33ec9e52dd04f8a73a65a4e32ee1",
+        "video": "0f9699ecd9cca51525822ca89a14696230a077be4b18f7a50fe4e94f61ec1465",
+        "poster": "661deddbf3ff9af0b2c81c0b1b0df8ac75a51436cb389a874996720d8bdacd25",
+        "captions": "d5e2c0d3c06388e4caac3e29d22aea8ef4189e922a27e7c7caa56e5dd56ed436",
+        "transcript": "26be9d66f5141aa4b1fbe405a780032f5a835a861646c8502cba45ac2ec137c7"
       }
     },
     {
