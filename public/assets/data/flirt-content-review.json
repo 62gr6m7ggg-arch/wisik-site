@@ -1140,46 +1140,46 @@
     },
     {
       "code": "D06",
-      "verdict": "aligned-with-notes",
+      "verdict": "aligned",
       "expectedMisconception": "Bij een ontbrekende waarde wordt de benodigde totaalsom niet berekend en wordt het gemiddelde rechtstreeks van de bekende som afgetrokken.",
-      "intendedInsight": "Een gemiddelde van 10 bij vier waarden vereist totaal 40; trek de bekende som 24 daarvan af, zodat 16 ontbreekt.",
-      "observedContent": "Vier waarden 6, 8, 10, ? vormen één samenhangende situatie. Script en beeld leggen de cruciale brug gemiddelde 10→totaal 40 en 24+?=40, ?=16 correct. De opening vraagt of men 10 moet invullen en de slotzin legt de betekenis van gelijk verdelen uit.",
+      "intendedInsight": "Bereken de totale speeltijd uit het aantal bands en het gemiddelde. Trek de bekende 24 minuten af van 40 om de ontbrekende 16 minuten te vinden.",
+      "observedContent": "Roadie toont vier gelijke delen van tien minuten op het festivalbord. De stroken van 6, 8 en 10 minuten vullen samen 24 van de 40 minuten. De vierde band krijgt 16 minuten. De slotvraag verplaatst de redenering naar drie bands met gemiddeld twaalf minuten.",
       "visualEvidence": [
         {
-          "timestamps": [
-            4
+          "timestampsSeconds": [
+            0.33,
+            15.5,
+            22.7
           ],
-          "observation": "Titelkaart ‘Het ontbrekende getal bij een gemiddelde’ met code D06."
+          "observation": "Roadie opent bij het festivalbord. De kaartjes vermelden 6, 8, 10 en een vraagteken. Vier gelijke tijdstroken van tien minuten tonen samen de 40 minuten."
         },
         {
-          "timestamps": [
-            12,
-            21,
-            30,
-            39
+          "timestampsSeconds": [
+            34.5,
+            42.85,
+            49.75
           ],
-          "observation": "Kaarten 6, 8, 10, ?; bovenaan ‘gemiddelde 10 → totaal 40’; onderaan ‘24 + ? = 40   ? = 16’."
+          "observation": "Op schaal staan 24 minuten ingepland. De vierde strook toont 16 minuten en splitst later in 6 extra en 10 minuten."
         },
         {
-          "timestamps": [
-            46.656
+          "timestampsSeconds": [
+            61.8,
+            65.25
           ],
-          "observation": "Afsluiting verwijst naar de herstelset."
+          "observation": "Roadie kijkt met gesloten mond naar de kijker tijdens de slotvraag. Het antwoord verschijnt op het bord bij drie bands met gemiddeld 12 minuten: 36 − (8 + 13) = 15 minuten."
         }
       ],
-      "captionEvidence": "Vier getallen die gemiddeld 10 zijn, moeten samen 40 zijn.",
-      "notes": [
-        "De opening en takeaway richten zich op de verwante gedachte ‘het ontbrekende getal is het gemiddelde’, niet letterlijk op ‘gemiddelde van bekende som aftrekken’. De noodzakelijke totaalsom wordt wel expliciet opgebouwd en is centraal in beeld; daarom inhoudelijk passend bij D06, met een accentverschil en geen verkeerde koppeling."
-      ],
+      "captionEvidence": "“Waar trek ik die vierentwintig van af?” krijgt na een denkpauze het antwoord “Van de veertig minuten voor alle vier samen.” De laatste vraag luidt “Hoeveel krijgt de derde?”",
+      "notes": [],
       "videoId": "wisik-flirt-d06",
-      "title": "Het ontbrekende getal bij een gemiddelde",
+      "title": "Hoe lang speelt de laatste band?",
       "fingerprints": {
         "misconception": "b55953f551beec82508007c5aa8b097f8933722e22fd6c9cc1666180f618b6ba",
-        "catalogItem": "554029b58c57e43969741d77fba52d331bc5437fe09885d8a6a7ab8fdef678c4",
-        "video": "c21adcfeb763b025bfd8190425278ff753201603349b0d022da0a03a4e03056f",
-        "poster": "ea21bd638985e09847de20854ecf3b133833d4eebe817096cf4db59eed69f5d0",
-        "captions": "082eda9a3506455db316851d2aa49fa3d3a109bf1b09fd284edcdbff0939b4d6",
-        "transcript": "df73708d419f11411bb689a8c7f144288abb73f2967e47ebc44fa190660697f5"
+        "catalogItem": "df1e7b7f416ce027b0881ae1793a3991d67e353e21c2bdb8e0fdf5fb203b0d9a",
+        "video": "5a02de2cc9b64b3e93482fcec109fa95fbcfa87a550f85499e8b730689338c6d",
+        "poster": "c7b1f2d2568f440e0dba513df80d62cd6433c21f7a2b6bf735461755d3b33b69",
+        "captions": "88c352f1810eba43b7bc394160467923668bb42473cb9f38d04ab1476f8ec6cf",
+        "transcript": "b15a72324203ea512feb2b033c2a294b4bd8a415315a112e500d426997a6aef2"
       }
     },
     {
