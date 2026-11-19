@@ -372,9 +372,9 @@
     {
       "id": "wisik-flirt-b08",
       "status": "published",
-      "title": "Kansen met twee dobbelstenen",
-      "summary": "Waarom de mogelijke sommen met twee dobbelstenen niet allemaal even waarschijnlijk zijn.",
-      "durationSeconds": 47,
+      "title": "Zeven of elf? Kansen met twee dobbelstenen",
+      "summary": "Bij Roadies festivalkraam kies je een bordje. Met een rode en een gele dobbelsteen ontdek je op hoeveel manieren je elk totaal kunt gooien.",
+      "durationSeconds": 70,
       "wristbands": [
         "PABO"
       ],
@@ -389,9 +389,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B08"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-b08-a90a86bd1a5b6ae3",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-c01",
