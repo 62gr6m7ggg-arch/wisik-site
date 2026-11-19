@@ -684,9 +684,9 @@
     {
       "id": "wisik-flirt-d06",
       "status": "published",
-      "title": "Het ontbrekende getal bij een gemiddelde",
-      "summary": "Waarom het gemiddelde niet automatisch het ontbrekende getal is.",
-      "durationSeconds": 48,
+      "title": "Hoe lang speelt de laatste band?",
+      "summary": "Vier bands spelen gemiddeld tien minuten. Roadie laat op het speelschema zien hoe je uit de totale speeltijd afleidt hoeveel minuten de laatste band krijgt.",
+      "durationSeconds": 68,
       "wristbands": [
         "PABO"
       ],
@@ -701,9 +701,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D06"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-d06-515757f939a3f5aa",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-d07",
