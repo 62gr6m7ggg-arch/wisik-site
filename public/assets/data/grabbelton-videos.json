@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-19",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -493,8 +493,8 @@
       "id": "wisik-flirt-c05",
       "status": "published",
       "title": "Straal of diameter",
-      "summary": "Waarom je eerst moet weten of een gegeven lijn straal of diameter is.",
-      "durationSeconds": 47,
+      "summary": "Roadie hangt een lichtsnoer van vijf meter tussen de tentwand en de middenpaal. Hoeveel snoer is er nodig om de hele tent over te steken?",
+      "durationSeconds": 71,
       "wristbands": [
         "PABO"
       ],
@@ -509,9 +509,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C05"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-c05-3138b4ba35840c48",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-c06",
