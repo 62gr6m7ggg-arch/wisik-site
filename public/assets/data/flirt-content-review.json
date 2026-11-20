@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-19",
+  "reviewedAt": "2026-11-20",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
@@ -299,25 +299,48 @@
     {
       "code": "B02",
       "verdict": "aligned",
-      "intendedInsight": "Bij optellen van helften tel je de stukken; hun grootte verandert niet. Twee helften vormen één geheel.",
-      "observedContent": "Titel en script richten zich precies op het afzonderlijk optellen van tellers en noemers. Het tegenvoorbeeld 1/2 + 1/2 laat zien dat 2/4 taart zou laten verdwijnen; de twee getoonde helften dragen het juiste inzicht.",
+      "intendedInsight": "Op even grote pizza’s kun je een derde en een kwart verdelen in gelijke twaalfden. Je telt vier en drie van die gelijke stukken en krijgt zeven twaalfden.",
+      "observedContent": "Roadie legt twee zevenden langs het derde deel. Dan verdeelt hij een derde en een kwart in twaalfden en schuift de zeven punten bij elkaar. De slotvraag gebruikt een halve pizza en een achtste.",
       "visualEvidence": [
-        "4 s: titelkaart Breuken optellen, code B02.",
-        "12, 21, 30 en 39 s: twee complementaire taarthelften; 1/2 + 1/2 = 1 en expliciet niet 2/4.",
-        "45,528 s: eindkaart met B02; poster stemt overeen."
+        {
+          "timestampsSeconds": [
+            3,
+            10,
+            17
+          ],
+          "observation": "Roadie haalt twee porties uit de houtoven. Op de bon staat 2/7. Twee zevenden passen al binnen het derde deel."
+        },
+        {
+          "timestampsSeconds": [
+            25,
+            32,
+            40,
+            44
+          ],
+          "observation": "Het pizzawiel verdeelt het derde deel in vier twaalfden. In een kwart passen drie van diezelfde punten. De zeven punten worden bij elkaar gelegd."
+        },
+        {
+          "timestampsSeconds": [
+            53,
+            57,
+            62,
+            64
+          ],
+          "observation": "Er liggen een halve pizza en een achtste. Na de denktijd wordt de halve pizza in vier achtsten verdeeld en komt het losse achtste erbij."
+        }
       ],
-      "captionEvidence": "De stukken worden niet ineens kwarten doordat je ze optelt.",
+      "captionEvidence": "Na “Hoeveel pizza krijg je?” geeft de montage drie seconden denktijd. Roadie legt uit dat de halve pizza uit vier achtsten bestaat en komt met het losse stuk uit op vijf achtsten.",
       "notes": [],
-      "expectedMisconception": "Bij breuken wordt a/b + c/d uitgevoerd als (a+c)/(b+d).",
+      "expectedMisconception": "Bij het optellen van breuken worden de tellers én de noemers bij elkaar opgeteld, alsof een derde en een kwart samen twee zevende zijn.",
       "videoId": "wisik-flirt-b02",
       "title": "Breuken optellen",
       "fingerprints": {
         "misconception": "d82854f66e2e0a8c3b29b3e8b5b3959a733fe4099eb74c18b92e27ccb5db4c5a",
-        "catalogItem": "f9d89e62bf5736d4f7faf8d08cf084555c7891911e5f9360cfb8ca1a9beb8a31",
-        "video": "21554227eee16f442809f0a2df752abeaacfebb5d7fe662623ac5c3716097fae",
-        "poster": "b63092d19e5f29a6f436c7ba8125df6f733b4115c1cd6dc4fd41f7eebd5b0bb7",
-        "captions": "75a158abe97b90beab2a2add5fe9c8d4d1de4108b84d20653f041f071e09e9fe",
-        "transcript": "1a2b5c12e3acab124303a5a0e45ca430469e871c376089ee49a6009f66a976f7"
+        "catalogItem": "18dd795a203dee94ada1a6a5b487f27526b7d2ed3b15eadc11204be532bbfbd6",
+        "video": "0389fd5b7b6fbd04eef94d1c7cf315878f61ae99cdfb73eadf3dfd6c92f99846",
+        "poster": "001de0524761fa7e72a6de56b6a7d6f1f7274fed840d13fb81c9109232749aa7",
+        "captions": "47c0115be3437b1a6178d4366cca5893ec010a8758bcf232474b0ac30e2761a1",
+        "transcript": "d13a23df4e0c020f169daabd13c8bfa553315927a3db05da25761ab5fdaa01c1"
       }
     },
     {

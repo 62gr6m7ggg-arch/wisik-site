@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-19",
+  "updatedAt": "2026-11-20",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -229,8 +229,8 @@
       "id": "wisik-flirt-b02",
       "status": "published",
       "title": "Breuken optellen",
-      "summary": "Waarom tellers en noemers niet allebei zomaar bij elkaar worden opgeteld.",
-      "durationSeconds": 47,
+      "summary": "Roadie haalt een derde pizza en een kwart pizza uit de houtoven. Met de pizzaschep en het snijwiel laat hij zien hoe je de stukken bij elkaar optelt.",
+      "durationSeconds": 67,
       "wristbands": [
         "PABO"
       ],
@@ -245,9 +245,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "B02"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-b02-94e2ce292d156950",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-b03",
