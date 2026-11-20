@@ -1226,46 +1226,43 @@
     },
     {
       "code": "D07",
-      "verdict": "aligned-with-notes",
+      "verdict": "aligned",
       "expectedMisconception": "Alleen de verandering per eenheid wordt gebruikt en het vaste startbedrag wordt vergeten.",
-      "intendedInsight": "De ritprijs bestaat uit een eenmalig beginbedrag plus afstandskosten: 4 + 6 × 2,50 = 19; bij 0 km is er al €4.",
-      "observedContent": "Titel en taxiverhaal confronteren de onvolledige uitkomst €15 met het instaptarief €4. Eén schema en een lijn met een positieve startwaarde laten correct zien waarom de totale prijs €19 is. De startwaarde wordt expliciet gekoppeld aan nul kilometer. De interne productienotities zijn bij de afrondende controle uit het openbare transcript verwijderd; de gesproken uitleg en ondertiteling blijven gelijk.",
+      "intendedInsight": "Bij nul verkochte biertjes bevat de la al €40. De verkoop voegt zes keer €2,50 toe aan dat startbedrag.",
+      "observedContent": "Roadie gebruikt wisselgeld, zes verkopen en een grafiek om uit te komen op €55 in de la.",
       "visualEvidence": [
         {
-          "timestamps": [
-            4
+          "timestampsSeconds": [
+            1,
+            7
           ],
-          "observation": "Titelkaart ‘De startwaarde niet vergeten’ met code D07."
+          "observation": "Roadie staat aan de bar. Het openingsshot introduceert het wisselgeld."
         },
         {
-          "timestamps": [
-            12,
-            21,
-            30,
-            39
+          "timestampsSeconds": [
+            37,
+            45
           ],
-          "observation": "Schema ‘instap €4 + €2,50 per km’, ‘6 km → 4 + 15 = €19’; lijn begint boven de horizontale as met label ‘€4 bij 0 km’. Er is geen taxi of bewegende teller in deze beelden."
+          "observation": "De berekening en de grafiek verbinden het beginsaldo met het punt bij nul verkochte biertjes."
         },
         {
-          "timestamps": [
-            48.072
+          "timestampsSeconds": [
+            61
           ],
-          "observation": "Afsluiting verwijst naar de herstelset."
+          "observation": "De volgende dienst begint met €30 en eindigt na zes verkopen met €45."
         }
       ],
-      "captionEvidence": "maar de ritprijs begint hier al bij €4.",
-      "notes": [
-        "Het schema ondersteunt de wiskunde, maar de verwijzing ‘Kijk naar de teller voordat de taxi vertrekt’ correspondeert met een formule/grafiek in plaats van een getoonde taxiteller. Dit is een niet-blokkerend redactioneel verschil."
-      ],
+      "captionEvidence": "De slotvraag verandert de startwaarde in €30 en houdt het aantal verkochte biertjes gelijk. Er ligt dan €45 in de la.",
+      "notes": [],
       "videoId": "wisik-flirt-d07",
-      "title": "De startwaarde niet vergeten",
+      "title": "De startwaarde aan de festivalbar",
       "fingerprints": {
         "misconception": "347a8ef39a2d3fc5b0aeef5623b542205f273caea5200a74a377c5b1a6fd8c2f",
-        "catalogItem": "3975ccfdfb3aa9cc122fdc8302ce4dc46890a9b7ac37b498d9f835b8e1c1e9e3",
-        "video": "dc1f7be8ddc39f4e8cfdb4cf016f69715671e68bc6373ae296d7296d62be1e3e",
-        "poster": "db6ee3d3d5ba89680a3a62d9a23f91f34e05957706eec5b2038106b98ba2d1e3",
-        "captions": "363299812a84d32e968d3abe14227eebd927d0b00ce1c3ab7c2df4253f1c6387",
-        "transcript": "3061453e19a08858feae5ae5d6d2ad92c3f218ce2fc4ab3302653ecb11d438f3"
+        "catalogItem": "6a835398e0b4180c20701b894b05435090f20a0e951efa513e47760966fa694c",
+        "video": "3c74bdd74062bfa35fecca6595ea6bddd5ff64db3f2fc3e345bacb86f47622c5",
+        "poster": "4e9e7f557e5f1cae045c114ba75f22aecf8d921cd34c1d13f47f61e84648e814",
+        "captions": "4755d11a41d21c58f1c72544134eb272b90fa239cef76ba754a7701bf128a6db",
+        "transcript": "a875dd7dcceaf5b6c3c8f1bce7d3e4fe32f09fa8963bb936faed5f3ba3f95d51"
       }
     }
   ]

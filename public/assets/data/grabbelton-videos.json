@@ -708,9 +708,9 @@
     {
       "id": "wisik-flirt-d07",
       "status": "published",
-      "title": "De startwaarde niet vergeten",
-      "summary": "Waarom een vaste startwaarde niet verdwijnt wanneer de variabele kosten gaan groeien.",
-      "durationSeconds": 49,
+      "title": "De startwaarde aan de festivalbar",
+      "summary": "Roadie begint met €40 wisselgeld. Wat ligt er na zes verkochte biertjes in de kassala?",
+      "durationSeconds": 66,
       "wristbands": [
         "PABO"
       ],
@@ -725,9 +725,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D07"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-d07-b37d224a05cc5515",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     }
   ]
 }
