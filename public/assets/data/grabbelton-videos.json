@@ -564,9 +564,9 @@
     {
       "id": "wisik-flirt-d01",
       "status": "published",
-      "title": "Hoogste punt of grootste toename",
-      "summary": "Waarom het hoogste punt niet hetzelfde hoeft te zijn als de grootste toename.",
-      "durationSeconds": 56,
+      "title": "Wanneer zet je de tweede scanner in?",
+      "summary": "Roadie vergelijkt tellerstanden bij de festivalingang. In welke tien minuten kwamen de meeste bezoekers binnen?",
+      "durationSeconds": 55,
       "wristbands": [
         "PABO"
       ],
@@ -581,9 +581,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D01"
       },
-      "release": "eigenstem-2026-09-08",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-d01-f2c19a47514ff808",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-d02",

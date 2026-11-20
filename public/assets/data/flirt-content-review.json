@@ -973,42 +973,36 @@
     {
       "code": "D01",
       "verdict": "aligned",
-      "expectedMisconception": "Het hoogste punt wordt gekozen wanneer de grootste toename tussen opeenvolgende waarden wordt gevraagd.",
-      "intendedInsight": "Vergelijk de verschillen: de hoogste eindwaarde hoeft niet na de grootste stijging te liggen.",
-      "observedContent": "De eigen stem vergelijkt 10→30→35→40: de grootste toename is +20 in het eerste jaar, terwijl de hoogste eindwaarde 40 rechts ligt. De volledige slotconclusie maakt expliciet dat waar je het hoogst uitkomt niet automatisch de plaats van de grootste stijging is. Dit sluit aan op het canonieke denkpatroon.",
+      "expectedMisconception": "Het hoogste punt kiezen wanneer naar de grootste toename wordt gevraagd.",
+      "intendedInsight": "Vergelijk de verschillen tussen opeenvolgende tellerstanden over gelijke tijdvakken.",
+      "observedContent": "De eerste ingang telt 80, 200, 230 en 250 bezoekers. Bij de tweede ingang ligt de grootste toename in het middelste tijdvak.",
       "visualEvidence": [
         {
-          "timestamps": [
-            2
+          "timestampsSeconds": [
+            13,
+            26,
+            37
           ],
-          "observation": "Titelkaart met D01 en Hoogste punt of grootste toename."
+          "observation": "De grafiek toont vier tellerstanden en de toename per tien minuten."
         },
         {
-          "timestamps": [
-            12,
-            33,
-            48
+          "timestampsSeconds": [
+            51
           ],
-          "observation": "Grafiek 10, 30, 35, 40; eerste stap +20, volgende +5. Het kernonderscheid sluit aan op de eigen stem."
-        },
-        {
-          "timestamps": [
-            54
-          ],
-          "observation": "Bestaande eindkaart na de complete uitleg, zonder de overtollige stilte."
+          "observation": "Bij de tweede ingang is de stijging van 90 naar 200 gemarkeerd."
         }
       ],
-      "captionEvidence": "De Nederlandse cues volgen de volledige eigen stem en bevatten nu ook de slotconclusie dat waar je het hoogst uitkomt niet automatisch is waar je het hardst bent gestegen.",
+      "captionEvidence": "In tien minuten zijn 120 mensen gescand. Bij de tweede ingang komen er tussen tien over en twintig over zeven 110 bij.",
       "notes": [],
       "videoId": "wisik-flirt-d01",
-      "title": "Hoogste punt of grootste toename",
+      "title": "Wanneer zet je de tweede scanner in?",
       "fingerprints": {
         "misconception": "d3831aae0034f225794b0d0696ad4615eb58316d9954eea70ff3cb1c8c2f98fd",
-        "catalogItem": "b82ec1b6eab3934e0791893ed43913d851284b1f7566f9dc2db3db35d59b396c",
-        "video": "ce8b0095c7e25e4fbbb2276b71c7be875361588699d6968f1fc4f8785dd8e36c",
-        "poster": "4fe45a2347d6727d5461064322f6c8b30a33931e9d772031137e767f26d54ee8",
-        "captions": "5dee9aacc5e3607a5cf835f645148bc27315626fcf58b84736490037d796a324",
-        "transcript": "f32db02596541dc6ec596e30dde3f2cd4ab5b9adf2e8e247f7b618883f1e4cdf"
+        "catalogItem": "d024d5e48189115233e2ddd3efdde94b171c700b344990ad68465c76637c495a",
+        "video": "e561f8b7d4f936b9cf051cc661ba78ef6d66e87af01751da4541d5bc7b095279",
+        "poster": "a9c1db1912e95f633393b5ba2e149962d1abfeedbfd00d29aed51bbfd9a8166f",
+        "captions": "8b728b0cf14e1f802cca93dea4eb72aa6b11f1a87f64e41e25f27a17033bb513",
+        "transcript": "2cc4f1bb3b84f2b2bfaef079291b31d277de5ce3eb147f1ba071e78fb569f348"
       }
     },
     {
