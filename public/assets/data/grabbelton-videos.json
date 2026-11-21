@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-21",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -541,8 +541,8 @@
       "id": "wisik-flirt-c07",
       "status": "published",
       "title": "Minuten zijn geen honderdsten van een uur",
-      "summary": "Waarom twintig minuten geen nul komma twintig uur is.",
-      "durationSeconds": 49,
+      "summary": "Het aggregaat draaide 2 uur en 20 minuten. Roadie schrijft 2,20 uur op de huurbon. Kan hij die zo doorgeven?",
+      "durationSeconds": 61,
       "wristbands": [
         "PABO"
       ],
@@ -557,9 +557,9 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "C07"
       },
-      "release": "festival-v1",
-      "audioMode": "legacy",
-      "captionsBurnedIn": false
+      "release": "roadie-c07-a90919a4c6540675",
+      "audioMode": "embedded",
+      "captionsBurnedIn": true
     },
     {
       "id": "wisik-flirt-d01",

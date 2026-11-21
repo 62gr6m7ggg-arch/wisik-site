@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-20",
+  "reviewedAt": "2026-11-21",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
@@ -936,38 +936,45 @@
     {
       "code": "C07",
       "verdict": "aligned",
-      "expectedMisconception": "Minuten worden behandeld alsof een uur 100 minuten heeft.",
-      "intendedInsight": "Minuten zijn zestigsten van een uur: 20 minuten = 1/3 uur; 0,20 uur = 1/5 uur = 12 minuten.",
-      "observedContent": "Titel, volledige VTT/transcript en klokmodel richten zich precies op het behandelen van tijd als honderdsten. Het contrast tussen 20/60 en 20/100 maakt duidelijk dat een decimale komma geen scheiding tussen uren en minuten is.",
+      "expectedMisconception": "Minuten worden als honderdsten van een uur op de huurbon ingevuld.",
+      "intendedInsight": "Twintig minuten is een derde uur. 2 uur en 20 minuten wordt afgerond 2,33 uur.",
+      "observedContent": "Na het optreden leest Roadie de draaitijd van het aggregaat af. Met de klok vergelijkt hij 20 minuten met 0,20 uur. Bij een tweede huurbon rekent de kijker het kwartier zelf uit.",
       "visualEvidence": [
         {
           "timestampsSeconds": [
-            4,
-            47.76
+            7,
+            13,
+            18
           ],
-          "observation": "Correcte C07-titelkaart en afsluiting."
+          "observation": "Roadie bedankt de band en vergelijkt de teller van 2 uur 20 min met de huurbon van 2,20 uur."
         },
         {
           "timestampsSeconds": [
-            12,
-            21,
             30,
-            39
+            37,
+            45
           ],
-          "observation": "Cirkel met een correct ingekleurde derde sector en label “20 min = 1/3 uur”; daarnaast “0,20 uur = 12 minuten”. Inzichtbalk: “Twintig van zestig, niet twintig van honderd.”"
+          "observation": "De klok toont de derde en de vijfde delen. De afgeronde huurbon vermeldt 2,33 uur."
+        },
+        {
+          "timestampsSeconds": [
+            53,
+            59
+          ],
+          "observation": "Na de slotvraag krijgt de kijker tijd om na te denken. Het kwart uur wordt vijftien minuten."
         }
       ],
-      "captionEvidence": "40.646–43.071: “En 20 minuten is 20/60, niet 20/100.”",
+      "captionEvidence": "Roadie zegt “Nul komma twintig uur. Dat is een vijfde van een uur. Twaalf minuten.” De slotzin verbindt een kwart uur met vijftien minuten.",
       "notes": [],
       "videoId": "wisik-flirt-c07",
       "title": "Minuten zijn geen honderdsten van een uur",
       "fingerprints": {
         "misconception": "d4440e974ba3fabe1f488b71ecb8e5dc9fdc8efb40698553529e5a27af0074ae",
-        "catalogItem": "ff35756b7e08ce43fa9ffc45aa5e706dddb631ee68ec546fa4fd8a8ddc3f6542",
-        "video": "03cde76d1f312403b0deac98c123cccf02f946227064f739ee44e8097126b391",
-        "poster": "1865b08493002e80409cd9b6cd3963a534e3a1da996efbc3558493f1d9c6fab2",
-        "captions": "d1cecdc22165ec3756bce54cb7505a0598ed0a5b8d9ea6de5ba576e879760fdf",
-        "transcript": "22fad23b3f2c1b283219fad9309fda99cdf53779016dcb50b567eb89e4ec2e24"
+        "catalogItem": "9952d7be128ff25347aabf52861680f5d06f3249fe721cab6e72e3f04cedfd29",
+        "video": "0c077a0e6f9bef5ca888eb4b163cce840f6c32b26ecc1102ed1de75c8a7b1401",
+        "poster": "25a3a7b88cf8395520f0533e0ed978d0edc6efd0dcef8221e1e5a73484d3310b",
+        "captions": "5edb4229b9460d8b17df38aa2ab4611a6ca775154d70b2427e0666a5b05428a1",
+        "transcript": "54d726798d534889e7059d90f1721237c87c01be1ebb7301fce11eb86cd03484"
       }
     },
     {
