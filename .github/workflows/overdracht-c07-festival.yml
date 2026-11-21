@@ -1,0 +1,36 @@
+name: C07 vanaf de gepubliceerde film synchroniseren
+on:
+  push:
+    branches: ['publish/c07-roadie-festival-20261121']
+    paths: ['.github/workflows/overdracht-c07-festival.yml']
+permissions:
+  contents: write
+jobs:
+  overzetten:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gepubliceerde C07-bestanden ophalen en vastleggen
+        env:
+          ORIGIN: https://b0b88f9a.wisik-site.pages.dev
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/c07.sha256" <<'HASHES'
+          0c077a0e6f9bef5ca888eb4b163cce840f6c32b26ecc1102ed1de75c8a7b1401  public/films/rekenklaar/C07/flirt.mp4
+          25a3a7b88cf8395520f0533e0ed978d0edc6efd0dcef8221e1e5a73484d3310b  public/films/rekenklaar/C07/poster.jpg
+          5edb4229b9460d8b17df38aa2ab4611a6ca775154d70b2427e0666a5b05428a1  public/films/rekenklaar/C07/captions.vtt
+          54d726798d534889e7059d90f1721237c87c01be1ebb7301fce11eb86cd03484  public/films/rekenklaar/C07/transcript.html
+          e3566833274afa7e819b070c960dd2e4735cc2b319dad475577692c4427f4245  public/assets/data/grabbelton-videos.json
+          ffb149c83647f590206f93b72419bb7c8206c3adc01334a523614524326c3c38  public/assets/data/flirt-content-review.json
+          HASHES
+          while read -r digest destination; do
+            curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --retry 2 --max-filesize 25000000 --connect-timeout 15 --max-time 100 --output "$destination" "$ORIGIN/${destination#public/}"
+          done < "$RUNNER_TEMP/c07.sha256"
+          sha256sum --check "$RUNNER_TEMP/c07.sha256"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- public/films/rekenklaar/C07 public/assets/data/{grabbelton-videos,flirt-content-review}.json
+          git commit -m "C07: neem de gepubliceerde Roadie-film en bijlagen over"
+          git push origin HEAD:refs/heads/publish/c07-roadie-festival-20261121
