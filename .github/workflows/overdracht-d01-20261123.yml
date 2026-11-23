@@ -1,0 +1,34 @@
+name: D01 vanaf de gepubliceerde film synchroniseren
+on:
+  push:
+    branches: ['publish/d01-scanner']
+    paths: ['.github/workflows/overdracht-d01-20261123.yml']
+permissions:
+  contents: write
+jobs:
+  synchroniseren:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gepubliceerde D01-bestanden overnemen
+        env:
+          ORIGIN: https://566239e6.wisik-site.pages.dev
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/d01.sha256" <<'HASHES'
+          01304d1f27c27cce2974daeefdb4a60bcb828fdba5cb79bff4087381f9a2b1f4  public/films/rekenklaar/D01/flirt.mp4
+          1cdd3ae5cf813db2a60e0f779e1dce755b4a36cb73ad904599b48d177fe04a09  public/films/rekenklaar/D01/poster.jpg
+          6934b3a427e8b31efd2ef11c65a8f9c5b5077519cb387907dd4d2da657cdcf55  public/assets/data/grabbelton-videos.json
+          2d10dc049e656a1538a40f9108e49d4664d3d276ab40268d7cdad99af3e5c3e3  public/assets/data/flirt-content-review.json
+          HASHES
+          while read -r digest destination; do
+            curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --retry 2 --max-filesize 25000000 --connect-timeout 15 --max-time 100 --output "$destination" "$ORIGIN/${destination#public/}"
+          done < "$RUNNER_TEMP/d01.sha256"
+          sha256sum --check "$RUNNER_TEMP/d01.sha256"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- public/films/rekenklaar/D01/flirt.mp4 public/films/rekenklaar/D01/poster.jpg public/assets/data/grabbelton-videos.json public/assets/data/flirt-content-review.json
+          git commit -m 'D01: neem de gepubliceerde scannerfilm en bijlagen over'
+          git push origin HEAD:refs/heads/publish/d01-scanner
