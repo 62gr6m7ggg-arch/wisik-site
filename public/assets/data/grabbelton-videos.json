@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-21",
+  "updatedAt": "2026-11-23",
   "series": {
     "title": "Wisik-flirts · festivalversie v1",
     "targetMinimum": 30,
@@ -581,7 +581,7 @@
         "toolId": "pabo-rekenklaar",
         "misconceptionCode": "D01"
       },
-      "release": "roadie-d01-f2c19a47514ff808",
+      "release": "roadie-d01-ab079642f6822254",
       "audioMode": "embedded",
       "captionsBurnedIn": true
     },
