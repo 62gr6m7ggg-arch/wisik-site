@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-21",
+  "reviewedAt": "2026-11-23",
   "reviewer": "Codex — AI-ondersteunde inhoudelijke review; geen onafhankelijke docentbeoordeling",
   "scope": {
     "text": "Volledige titels, catalogusbeschrijvingen, Nederlandse ondertiteling en transcripten vergeleken met het canonieke foutpatroon.",
@@ -1005,9 +1005,9 @@
       "title": "Wanneer zet je de tweede scanner in?",
       "fingerprints": {
         "misconception": "d3831aae0034f225794b0d0696ad4615eb58316d9954eea70ff3cb1c8c2f98fd",
-        "catalogItem": "d024d5e48189115233e2ddd3efdde94b171c700b344990ad68465c76637c495a",
-        "video": "e561f8b7d4f936b9cf051cc661ba78ef6d66e87af01751da4541d5bc7b095279",
-        "poster": "a9c1db1912e95f633393b5ba2e149962d1abfeedbfd00d29aed51bbfd9a8166f",
+        "catalogItem": "5c382846cf490f06bf7d84303a774a7a4b3a40063fb7dfc88dd7f6cd134b82da",
+        "video": "01304d1f27c27cce2974daeefdb4a60bcb828fdba5cb79bff4087381f9a2b1f4",
+        "poster": "1cdd3ae5cf813db2a60e0f779e1dce755b4a36cb73ad904599b48d177fe04a09",
         "captions": "8b728b0cf14e1f802cca93dea4eb72aa6b11f1a87f64e41e25f27a17033bb513",
         "transcript": "2cc4f1bb3b84f2b2bfaef079291b31d277de5ce3eb147f1ba071e78fb569f348"
       }
